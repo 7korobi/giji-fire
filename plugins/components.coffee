@@ -32,6 +32,8 @@ for fname in ctx.keys()
 
 if window?
   live = require "~/config/live.yml"
+  console.log live.firebase
   firebase = require "firebase"
   require 'firebase/firestore'
+
   firebase.initializeApp live.firebase

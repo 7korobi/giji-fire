@@ -10,8 +10,6 @@ module.exports =
       export_to: "progress"
 
     computed:
-      root_path: ->
-        url.web
       export_style: ->
         height = @$el?.clientHeight ? 500
         switch
@@ -89,7 +87,7 @@ module.exports =
           btn(v-model="export_to" as="progress") 進行中の村
       tr
         th.welcome-btns(colspan=4)
-          a(:href="root_path") 総合トップ
+          nuxt-link(to="/") 総合トップ
 
   h2.title-bar
     nuxt-link(to="/") 人狼議事

@@ -12,11 +12,10 @@ div
   .outframe
     .center-left
     .center-right
-
-  .outframe.page-active
+  nuxt.page-active
+  .outframe
     .contentframe
       .inframe
-        nuxt
         c-report(handle="footer", :write_at="1169852700003")
           a-footer
 </template>
