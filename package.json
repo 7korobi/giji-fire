@@ -6,17 +6,19 @@
   "private": true,
   "scripts": {
     "dev": "nuxt",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "precommit": "npm run lint",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
-    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
-    "precommit": "npm run lint"
+    "deploy": "firebase deploy"
   },
   "dependencies": {
     "coffee-loader": "^0.9.0",
     "coffeescript": "^2.2.3",
     "config": "^1.30.0",
     "firebase": "^4.12.1",
+    "lodash": "^4.17.5",
     "marked-pre": "^0.0.22",
     "marked-pre-loader": "^0.0.2",
     "mermaid": "^8.0.0-rc.6",

@@ -1,0 +1,16 @@
+game:
+  folder_id: sample
+
+url:
+  firebase: https://api-project-.firebaseapp.com/
+  store: https://s3-ap-northeast-1.amazonaws.com/--
+  sow:   https://s3-ap-northeast-1.amazonaws.com/--/sow
+
+firebase:
+  projectId:           api-project-
+  storageBucket:       api-project-.appspot.com
+  authDomain:          api-project-.firebaseapp.com
+  databaseURL: https://api-project-.firebaseio.com
+  messagingSenderId: BADID
+  apiKey: BADKEY
+

@@ -1,0 +1,143 @@
+chr_set:
+  _id: sf
+  admin: "黒体放射のエヴェレット解釈"
+  maker: "重ね合せ猫のユニタリ変換"
+  label: "明後日への道標"
+
+chr_npc:
+  - label: "明後日への道標"
+    csid: SF
+    face_id: sf04
+    say_0: |-
+      とたたたたんっ。
+
+      <b>めざましい速さで木の洞に駆け込むと、じっと潜んだ暗闇に瞳がふたつ。
+      いちど大好きな閉所に収まると、そうかんたんに出てはこないのだ。</b>
+    say_1: |-
+      ちゅー！
+
+      　ちゅー！
+
+      <b>がりがり、がりがり。ケージの縁をひっかくと、うろうろ、うろうろ右へ左へ駆け回る。木の洞に目もくれず、夜中じゅう走り続けるのだった……</b>
+
+  - label: "明後日への道標（ナユタ）"
+    csid: SF_sf10
+    face_id: sf10
+    say_0: |-
+      f*ck！またチオチモリンと二酸化炭素分圧だし！
+      エアコンがコンタミるしスタグるしf*ck'nオーロラの季節だし、ガルタイトもサクラダイトもf*ck'n高っけーし…
+
+      <b>同日
+      整備日誌
+      　定期点検。ただちに健康に影響はないが、擦過痕…</b>
+    say_1: |-
+      よーf*ck'nおまえら。
+      マジ聞け。エヴァってでかい１０円キズ見つけた。誰だし？
+      マジ怒んねーから手ぇ挙げ
+
+      <b>ぷつん</b>
+
+      っと。瞬停った…。f*ck。
+      ちょっと外の様子見てくる。俺のプリン残しといてくれよ。
+
+
+
+chr_job:
+  - face_id: sf01
+    job: "通信士"
+
+  - face_id: sf02
+    job: "哲学者"
+
+  - face_id: sf03
+    job: "道案内"
+
+  - face_id: sf04
+    job: "お散歩隊長"
+
+  - face_id: sf05
+    job: "新製品"
+
+  - face_id: sf06
+    job: "士官"
+
+  - face_id: sf07
+    job: "遊泳員"
+
+  - face_id: sf08
+    job: "服飾商"
+
+  - face_id: sf09
+    job: "研修生"
+
+  - face_id: sf10
+    job: "保安技師"
+
+  - face_id: sf11
+    job: "艇長"
+
+  - face_id: sf12
+    job: "廃神"
+
+  - face_id: sf13
+    job: "消防隊長"
+
+  - face_id: sf14
+    job: "対面販売"
+
+  - face_id: sf15
+    job: "忍者隊"
+
+  - face_id: sf16
+    job: "保険調査"
+
+  - face_id: sf17
+    job: "幽閉児"
+
+  - face_id: sf18
+    job: "感性子"
+
+  - face_id: sf19
+    job: "理性子"
+
+  - face_id: sf20
+    job: "測量士"
+
+  - face_id: sf021
+    job: "星間帆走"
+  - face_id: sf022
+    job: "鉱滓地区"
+  - face_id: sf023
+    job: "地下軌道"
+  - face_id: sf024
+    job: "光彩楽団"
+  - face_id: sf025
+    job: "救星隊"
+  - face_id: sf026
+    job: "星先案内"
+  - face_id: sf027
+    job: "鉱滓皇帝"
+  - face_id: sf028
+    job: "溶接技師"
+  - face_id: sf029
+    job: "機巧忍軍"
+  - face_id: sf030
+    job: "閉鎖管理"
+  - face_id: sf031
+    job: "意匠造形"
+  - face_id: sf032
+    job: "鉱滓地区"
+
+  - face_id: sf033
+    job: "重層培養"
+  - face_id: sf034
+    job: "華美人"
+  - face_id: sf035
+    job: "銀河ギャル"
+  - face_id: sf036
+    job: "好奇診"
+  - face_id: sf037
+    job: "執行隊"
+  - face_id: sf038
+    job: "複眼レフ"
+

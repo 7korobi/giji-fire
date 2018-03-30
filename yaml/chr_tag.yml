@@ -1,0 +1,163 @@
+all:
+  label: すべて
+  long: 「人狼議事 ちゃんぷる」のキャラクター
+  chr_set_id: all
+
+giji:
+  label: 人狼議事
+  long: 「人狼議事」のキャラクター
+  tag_id: all
+  chr_set_id: ririnra
+
+animal:
+  label: うきうきサバンナ
+  long: 「うきうきサバンナ」のキャラクター
+  tag_id: all
+  chr_set_id: animal
+
+school:
+  label: 私立七転学園
+  long: 「私立七転学園」のキャラクター
+  tag_id: all
+  chr_set_id: school
+
+shoji:
+  label: てやんでえ
+  long: 「和の国てやんでえ」のキャラクター
+  tag_id: all
+  chr_set_id: wa
+
+travel:
+  label: 帰還者議事
+  long: 「帰還者議事」のキャラクター
+  tag_id: all
+  chr_set_id: time
+
+stratos:
+  label: 明後日への道標
+  long: 「明後日への道標」のキャラクター
+  tag_id: all
+  chr_set_id: sf
+
+myth:
+  label: はおうのひろば
+  long: 「はおうのひろば」のキャラクター
+  tag_id: all
+  chr_set_id: changed
+
+asia:
+  label: 大陸議事
+  long: 「大陸議事」のキャラクター
+  tag_id: all
+  chr_set_id: ger
+
+marchen:
+  label: 狂騒議事
+  long: 「狂騒議事」のキャラクター
+  tag_id: all
+  chr_set_id: mad
+
+kid:
+  label: (児童)
+  long: 児童のキャラクター
+  tag_id: giji
+  chr_set_id: ririnra
+
+young:
+  label: (若者)
+  long: 若者のキャラクター
+  tag_id: giji
+  chr_set_id: ririnra
+
+middle:
+  label: (中年)
+  long: 中年のキャラクター
+  tag_id: giji
+  chr_set_id: ririnra
+
+elder:
+  label: (老人)
+  long: 老人のキャラクター
+  tag_id: giji
+  chr_set_id: ririnra
+
+
+river:
+  label: -運河-
+  long: 往く人来る人休む人
+  tag_id: giji
+  chr_set_id: ririnra
+
+road:
+  label: -往来-
+  long: 往く人来る人休む人
+  tag_id: giji
+  chr_set_id: ririnra
+
+immoral:
+  label: -裏道-
+  long: 街灯の裏の背徳達
+  tag_id: giji
+  chr_set_id: ririnra
+
+
+guild:
+  label: -商工会-
+  long: 商人と職人の集うギルド
+  tag_id: giji
+  chr_set_id: ririnra
+
+elegant:
+  label: -舞踏会-
+  long: 瀟洒な館の舞踏会
+  tag_id: giji
+  chr_set_id: ririnra
+
+ecclesia:
+  label: -公教会-
+  long: 信仰と道徳と学識の源泉
+  tag_id: giji
+  chr_set_id: ririnra
+
+
+medical:
+  label: -施療院-
+  long: 病苦毒霊と戦う砦
+  tag_id: giji
+  chr_set_id: ririnra
+
+market:
+  label: -歌劇酒場-
+  long: 芸の極みに華が咲く
+  tag_id: giji
+  chr_set_id: ririnra
+
+apartment:
+  label: -自室の窓-
+  long: 窓から外を眺めると
+  tag_id: giji
+  chr_set_id: ririnra
+
+servant:
+  label: -使用人-
+  long: 良家を支えるスタッフ
+  tag_id: giji
+  chr_set_id: ririnra
+
+farm:
+  label: -森の農場-
+  long: 森に接する田畑
+  tag_id: giji
+  chr_set_id: ririnra
+
+government:
+  label: -統治公共-
+  long: 所領を治める権能者
+  tag_id: giji
+  chr_set_id: ririnra
+
+god:
+  label: -かみさま-
+  long: かみさま
+  tag_id: all
+  chr_set_id: all

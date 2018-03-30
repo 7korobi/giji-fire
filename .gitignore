@@ -9,3 +9,26 @@ npm-debug.log
 
 # Nuxt generate
 dist
+
+# settings
+config/live.yml
+config/default.yml
+config/production.yml
+
+# mac
+.DS_Store
+
+# logs
+npm-debug.log
+yarn-error.log
+
+# Copyright
+static/images/portrate
+
+# auto-generated
+.awspublish-giji-assets
+.cache
+static/aggregate
+static/nuxt
+static/sow
+static/sow.sh

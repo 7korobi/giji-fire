@@ -1,0 +1,16 @@
+{
+  "name": "人狼議事",
+  "short_name": "人狼議事",
+  "description": "人狼議事 総合トップページ",
+  "icons": [
+      {
+          "src": "/images/portrate/blank.jpg",
+          "sizes": "90x60",
+          "type": "image/jpg"
+      }
+  ],
+  "gcm_sender_id": "103953800507",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#444444"
+}
