@@ -26,14 +26,6 @@ get_value_by_route = (src, by_url, key, val)->
   else
     val
 
-router = (method)->
-  pack: (computed, {by_url}, key, val)->
-    computed[key] =
-      get: -> get_value_by_route @$route, by_url, key, val
-      set: (newVal)->
-        @$router[method] relative_to @$route,
-          "#{key}": newVal
-
 watcher = (method)->
   pack: (computed, {by_url}, key, val)->
     computed[key] =
@@ -85,14 +77,17 @@ module.exports = (args1)->
 
   stores = {}
   watchs = {}
-  routes = {}
+  beforeRouteLeave = (newRoute, oldRoute, next)->
+    next()
+
   beforeRouteUpdate = (newRoute, oldRoute, next)->
     next()
-    for key, { by_url, value } of routes
+    for key, { by_url, value } of watchs
       newVal = get_value_by_route newRoute, by_url, key, value
       oldVal = get_value_by_route oldRoute, by_url, key, value
+
+      $browser[key] = newVal
       unless newVal == oldVal
-        console.log "beforeRouteUpdate(#{key}) #{newVal} != #{oldVal}"
         cb?.call @, newVal, oldVal, key
 
   data = ->
@@ -106,12 +101,6 @@ module.exports = (args1)->
     type = types[value.constructor]
 
     switch method
-      when ""
-        setter = router(method)
-        routes[key] =
-          by_url: type.by_url
-          value:  value
-
       when "replace", "push"
         setter = watcher(method)
         $browser[key] = value
@@ -137,7 +126,7 @@ module.exports = (args1)->
     for key, val of args2
       pack method, key, val
 
-  { data, watch, computed, methods, beforeRouteUpdate }
+  { data, watch, computed, methods, beforeRouteUpdate, beforeRouteLeave }
 
 module.exports.capture = (req)->
   { cookie } = req.headers

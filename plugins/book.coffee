@@ -6,43 +6,14 @@ store = require("~/plugins/browser-store")
   replace:
     idx: ""
     mode: "full"
-
-fix_must = ({ @mode, @idx })->
-
-fix_page = ({ page })->
-  if page
-    if Number(page)
-      @page_idxs = [page - 1]
-    else
-      @page_reset()
-
-    { location, href } = @$router.resolve relative_to @$route,
-      page: undefined
-    history.replaceState null, null, href
-    @$route.query.page = undefined
+    page: ""
 
 _.merge store,
-  beforeMount: ->
-  beforeRouteEnter: ({ query }, from, next)->
-    next (vm)->
-      fix_page.call vm, query
-
-  beforeRouteUpdate: ({ query }, from, next)->
-    next()
-    fix_must.call @, query
-    fix_page.call @, query
-
-  beforeRouteLeave: ({ query }, from, next)->
-    next()
-
   computed:
     page_all_contents: ->
       @chats(@part_id)
     page_idx: ->
       @page_all_contents?.page_idx?(@chat) ? 0
-    page: ->
-      { page } = @$route.query
-      page
 
     mentions: ->
       Query.chats.reduce?.mention_to?[@chat_id]
@@ -107,6 +78,15 @@ _.merge store,
 
     mode: ->
       @page_reset()
+    
+    page: ->
+      if @page
+        if Number(@page)
+          @page_idxs = [@page - 1]
+        else
+          @page_reset()
+
+        @page = undefined
 
 path store, "folder", "book", "part", "phase", "chat"
 
@@ -120,5 +100,4 @@ module.exports = (o)->
       beforeRouteUpdate: undefined
       beforeRouteLeave: undefined
     res.watch = {}
-
   res
