@@ -3,23 +3,25 @@ div
   .outframe
     .sideframe
       .inframe
-        .icons.form
-          nuxt-link.item.active(replace, :to="editor_url")
-            i.mdi.mdi-clipboard-text
-          nuxt-link.item.active(replace, :to="back_url")
-            i.mdi.mdi-map-marker
+        no-ssr
+          .icons.form
+            nuxt-link.item.active(replace, :to="editor_url")
+              i.mdi.mdi-clipboard-text
+            nuxt-link.item.active(replace, :to="back_url")
+              i.mdi.mdi-map-marker
 
-    .summary(name="list" tag="div" key="summary")
-      a-mentions(key="1" @anker="anker")
+    no-ssr
+      .summary(name="list" tag="div" key="summary")
+        a-mentions(key="1" @anker="anker")
     .contentframe
       .inframe
-        c-report.form(handle="footer" key="finder")
-          page-mode
-      .inframe
-        chat(v-for="o in anker_chats" @anker="anker" @focus="focus", :id="o.id", :key="o.id")
-      .inframe
-        c-report.form(handle="footer" key="finder")
-          page-mode
+        no-ssr
+          div
+            c-report.form(handle="footer" key="finder")
+              page-mode
+            chat(v-for="o in anker_chats" @anker="anker" @focus="focus", :id="o.id", :key="o.id")
+            c-report.form(handle="footer" key="finder")
+              page-mode
 
 </template>
 <script lang="coffee">
