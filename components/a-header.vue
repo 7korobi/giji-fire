@@ -95,28 +95,29 @@ module.exports =
 
 </script>
 <template lang="pug">
-div(:class="body_class")
-  welcome(:top="top")
-    .btns.form
-      span.font
-        btn(v-model="font" as="large") 大判
-        btn(v-model="font" as="novel") 明朝
-        btn(v-model="font" as="std") ゴシック
-        btn(v-model="font" as="small") 繊細
+no-ssr
+  div(:class="body_class")
+    welcome(:top="top")
+      .btns.form
+        span.font
+          btn(v-model="font" as="large") 大判
+          btn(v-model="font" as="novel") 明朝
+          btn(v-model="font" as="std") ゴシック
+          btn(v-model="font" as="small") 繊細
 
-      span.theme
-        btn(v-model="theme" as="cinema") 煉瓦
-        btn(v-model="theme" as="snow")   雪景
-        btn(v-model="theme" as="star")   蒼穹
-        btn(v-model="theme" as="night")  闇夜
+        span.theme
+          btn(v-model="theme" as="cinema") 煉瓦
+          btn(v-model="theme" as="snow")   雪景
+          btn(v-model="theme" as="star")   蒼穹
+          btn(v-model="theme" as="night")  闇夜
 
-        btn(v-model="theme" as="moon")   月夜
-        btn(v-model="theme" as="wa")   和の国
+          btn(v-model="theme" as="moon")   月夜
+          btn(v-model="theme" as="wa")   和の国
 
-  a-writeframe(:top="top")
-  .outframe.filmend-frame
-    .contentframe
-      .filmend
+    a-writeframe(:top="top")
+    .outframe.filmend-frame
+      .contentframe
+        .filmend
 
 </template>
 <style lang="stylus" scoped>
