@@ -9,6 +9,7 @@ module.exports =
 
   extensions: ['coffee', 'yml']
   build: require("./build.coffee")
+  generate: require("./generate.coffee")
 
   render: require("./render.coffee")
   router: require("./router.coffee")
