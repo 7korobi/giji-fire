@@ -2,13 +2,37 @@ _ = require "lodash"
 { Query } = require "~/plugins/memory-record"
 { path, relative_to } = require "~/plugins/struct"
 
-store = require("~/plugins/browser-store")
+
+browser = require("~/plugins/browser-store") 
   replace:
     idx: ""
     mode: "full"
     page: ""
 
-_.merge store,
+  watch:
+    idx: ->
+      return unless window?
+      unless window[@chat_id]
+        @go_top()
+
+    mode: ->
+      @page_reset()
+
+    page: ->
+      if @page
+        if Number(@page)
+          @page_idxs = [@page - 1]
+        else
+          @page_reset()
+
+        @page = undefined
+
+
+store =
+  watch:
+    "step.chats": ->
+      @page_reset()
+
   computed:
     page_all_contents: ->
       @chats(@part_id)
@@ -46,7 +70,7 @@ _.merge store,
 
   methods:
     page_reset: ->
-      return unless window
+      return unless window?
       @page_idxs = [ @page_idx ]
       { chat_id } = @
       @$nextTick =>
@@ -68,37 +92,12 @@ _.merge store,
       idx = part_id
       query: { @mode, idx, page: page_idx + 1 }
 
-  watch:
-    "step.chats": ->
-      @page_reset()
-
-    mode: ->
-      @page_reset()
-
-    idx: ->
-      return unless window
-      unless window[@chat_id]
-        @go_top()
-
-    page: ->
-      if @page
-        if Number(@page)
-          @page_idxs = [@page - 1]
-        else
-          @page_reset()
-
-        @page = undefined
-
 path store, "folder", "book", "part", "phase", "chat"
 
 
+
 module.exports = (o)->
-  res = store
-  unless o?.loader
-    res = Object.assign {}, res,
-      beforeMount: undefined
-      beforeRouteEnter: undefined
-      beforeRouteUpdate: undefined
-      beforeRouteLeave: undefined
-    res.watch = {}
-  res
+  if o?.loader
+    _.merge {}, browser, store
+  else
+    _.merge {}, browser.slave, store

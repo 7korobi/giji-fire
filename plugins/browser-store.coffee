@@ -1,19 +1,19 @@
 _ = require "lodash"
 { types, relative_to } = require "~/plugins/struct"
 
-browser_store = bs = (method)->
+browser_store = bs = (method, $browser)->
   db: db = bs[method]
   pack: (computed, {to_str}, key, val)->
     computed[key] =
       get: ->
-        @$data.$browser[key]
+        $browser[key]
 
       set: (newVal)->
         if newVal?
           db.setItem key, to_str newVal
         else
           db.removeItem key
-        @$data.$browser[key] = newVal
+        $browser[key] = newVal
 
 get_value_by_store = (db, by_str, key, val)->
   o = by_str db.getItem key
@@ -26,16 +26,17 @@ get_value_by_route = (src, by_url, key, val)->
   else
     val
 
-watcher = (method)->
+router_store = (method, $browser)->
   pack: (computed, {by_url}, key, val)->
     computed[key] =
       get: ->
-        @$data.$browser[key]
+        $browser[key]
+
       set: (newVal)->
         o = {}
         o[key] = newVal
         { location, href } = @$router.resolve relative_to @$route, o
-        @$data.$browser[key] = newVal
+        $browser[key] = newVal
         history?["#{method}State"] null, null, href
         @$route = { ...@$route, ...location }
 
@@ -67,73 +68,75 @@ catch e
     removeItem: (key)->    delete @_data[key]
 
 
-$browser = {}
-stores = {}
-watchs = {}
-
 module.exports = (args1)->
+  $browser = {}
+  stores = {}
+  routes = {}
+
   computed = {}
   methods = {}
   watch = {}
 
-  cb = args1.watch
+  if args1.watch
+    unless args1.watch.call
+      watch = args1.watch
 
-  beforeRouteEnter = (newRoute, oldRoute, next)->
-    for key, { db, by_str, value } of stores
-      $browser[key] = get_value_by_store db, by_str, key, value
-    for key, { by_url, value } of watchs
-      $browser[key] = get_value_by_route newRoute, by_url, key, value
-    console.log "enter 1"
-    next (vm)->
-      
-      console.log "enter 2"
-
-  beforeRouteLeave = (newRoute, oldRoute, next)->
-    next()
 
   beforeRouteUpdate = (newRoute, oldRoute, next)->
     next()
-    for key, { by_url, value } of watchs
+    for key, { by_url, value } of routes
       newVal = get_value_by_route newRoute, by_url, key, value
-      oldVal = get_value_by_route oldRoute, by_url, key, value
-
       $browser[key] = newVal
-      unless newVal == oldVal
-        cb?.call @, newVal, oldVal, key
-
-  data = ->
-    { $browser }
 
   pack = (method, key, value)->
     type = types[value.constructor]
 
     switch method
+      when "watch"
+        return
+
       when "replace", "push"
-        setter = watcher(method)
-        $browser[key] = value
-        watchs[key] =
+        setter = router_store method, $browser
+        routes[key] =
           by_url: type.by_url
           value:  value
 
       when "cookie", "local", "session"
-        setter = browser_store(method)
-        $browser[key] = value
+        setter = browser_store method, $browser
         stores[key] =
           db: setter.db
           by_str: type.by_str
           value: value
 
+    $browser[key] = value
     setter.pack computed, type, key, value
-    if cb?
-      watch[key] = (newVal, oldVal)->
-        return if _.isEqual newVal, oldVal
-        cb.call @, newVal, oldVal, key
+    if args1.watch?.call
+      watch[key] = args1.watch
 
   for method, args2 of args1
     for key, val of args2
       pack method, key, val
 
-  { data, watch, computed, methods, beforeRouteEnter, beforeRouteUpdate, beforeRouteLeave }
+  slave = { computed, methods, beforeRouteUpdate, data: -> { $browser } }
+  { slave, watch, computed, methods, beforeRouteUpdate, data: ->
+    oldVals =
+      for key of watch
+        [key, _.get($browser, key) ]
+
+    for key, { db, by_str, value } of stores
+      oldVal = $browser[key]
+      $browser[key] = newVal = get_value_by_store db, by_str, key, value
+
+    for key, { by_url, value } of routes
+      oldVal = $browser[key]
+      $browser[key] = newVal = get_value_by_route @$route, by_url, key, value
+
+    @$nextTick =>
+      for [key, oldVal] in oldVals
+        newVal = _.get $browser, key
+        watch[key].call @, newVal, oldVal, key
+    { $browser }
+  }
 
 module.exports.capture = (req)->
   { cookie } = req.headers

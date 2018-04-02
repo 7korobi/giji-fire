@@ -14,7 +14,7 @@ new Rule("chat").schema ->
     title:  pages 'SAI', all.where (o)-> o.phase.handle in ['MAKER', 'ADMIN', 'public']
 
     full:   pages 'SAI', all
-    normal: pages 'SAI', all.where (o)-> o.phase.handle in ['SSAY', 'VSSAY', 'MAKER', 'ADMIN', 'public', 'private']
+    normal: pages 'SAI', all.where (o)-> o.phase.handle in ['SSAY', 'VSSAY', 'MAKER', 'ADMIN', 'public']
 
     solo:   pages 'SAI', all.where (o)-> o.phase.handle in ['TSAY', 'private']
     extra:  pages 'SAI', all.where (o)-> ! (o.phase.handle in ['SSAY', 'VSSAY', 'MAKER', 'ADMIN', 'dark', 'GSAY', 'TSAY', 'public'])
