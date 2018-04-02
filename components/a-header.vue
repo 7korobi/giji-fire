@@ -8,11 +8,6 @@ module.exports =
       cookie:
         theme: "cinema"
         font:  "std"
-      watch: (val, old, key)->
-        return unless window?
-        @use_style key
-        return unless key == 'theme'
-        @use_style 'log'
   ]
   data: ->
     top:    0
@@ -56,6 +51,17 @@ module.exports =
           "day"
         else
           "night"
+
+  watch:
+    theme: ->
+      console.log "theme #{@theme}"
+      return unless window?
+      @use_style 'theme'
+      @use_style 'log'
+    font: ->
+      console.log "font #{@font}"
+      return unless window?
+      @use_style 'font'
 
   methods:
     use_style: (key)->

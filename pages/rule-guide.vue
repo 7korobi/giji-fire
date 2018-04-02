@@ -116,7 +116,11 @@ div
 
 <script lang="coffee">
 module.exports =
-  default:
-    data: ->
-      require "../yaml/rule.yml"
+  data: ->
+    require "../yaml/rule.yml"
+  beforeRouteUpdate: ({ hash }, oldRoute, next)->
+    next()
+    @$store.commit "menu/focus",
+      query: hash
+      mode: 'top'
 </script>

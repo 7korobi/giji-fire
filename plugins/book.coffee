@@ -46,17 +46,17 @@ _.merge store,
 
   methods:
     page_reset: ->
+      return unless window
       @page_idxs = [ @page_idx ]
       { chat_id } = @
-      if chat_id? && window?
-        @$nextTick =>
-          if window[chat_id]
-            @$store.commit "menu/focus", chat_id
-          else
-            console.log "scrollto TOP"
-            window.scrollTo 0, 0
-      else
-        @go_top()
+      @$nextTick =>
+        if chat_id? && window[chat_id]
+          @$store.commit "menu/focus",
+            query: "#" + chat_id
+            mode: 'center'
+        else
+          console.log "scrollto TOP"
+          window.scrollTo 0, 0
 
     go_top: ->
       @$nextTick =>
@@ -72,13 +72,14 @@ _.merge store,
     "step.chats": ->
       @page_reset()
 
+    mode: ->
+      @page_reset()
+
     idx: ->
+      return unless window
       unless window[@chat_id]
         @go_top()
 
-    mode: ->
-      @page_reset()
-    
     page: ->
       if @page
         if Number(@page)

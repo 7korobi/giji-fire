@@ -67,16 +67,27 @@ catch e
     removeItem: (key)->    delete @_data[key]
 
 
+$browser = {}
+stores = {}
+watchs = {}
+
 module.exports = (args1)->
-  $browser = {}
   computed = {}
   methods = {}
   watch = {}
 
   cb = args1.watch
 
-  stores = {}
-  watchs = {}
+  beforeRouteEnter = (newRoute, oldRoute, next)->
+    for key, { db, by_str, value } of stores
+      $browser[key] = get_value_by_store db, by_str, key, value
+    for key, { by_url, value } of watchs
+      $browser[key] = get_value_by_route newRoute, by_url, key, value
+    console.log "enter 1"
+    next (vm)->
+      
+      console.log "enter 2"
+
   beforeRouteLeave = (newRoute, oldRoute, next)->
     next()
 
@@ -91,10 +102,6 @@ module.exports = (args1)->
         cb?.call @, newVal, oldVal, key
 
   data = ->
-    for key, { db, by_str, value } of stores
-      $browser[key] = value = get_value_by_store db, by_str, key, value
-    for key, { by_url, value } of watchs
-      $browser[key] = get_value_by_route @$route, by_url, key, value
     { $browser }
 
   pack = (method, key, value)->
@@ -126,7 +133,7 @@ module.exports = (args1)->
     for key, val of args2
       pack method, key, val
 
-  { data, watch, computed, methods, beforeRouteUpdate, beforeRouteLeave }
+  { data, watch, computed, methods, beforeRouteEnter, beforeRouteUpdate, beforeRouteLeave }
 
 module.exports.capture = (req)->
   { cookie } = req.headers

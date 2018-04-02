@@ -1,8 +1,5 @@
 require "../models/index"
-
-_ = require "lodash"
-store = require "~/plugins/browser-store"
-{ State, Query } = Mem = require "~/plugins/memory-record"
+Mem = require "~/plugins/memory-record"
 
 if window?
   window.Mem = Mem
@@ -16,8 +13,6 @@ module.exports =
 
   actions:
     nuxtServerInit: ({ commit }, { isDev, req, env })->
-      if req
-        store.capture req
       commit "update", { env }
 
 

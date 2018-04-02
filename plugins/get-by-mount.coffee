@@ -25,9 +25,7 @@ base = (timestr, name, opt = {})->
       read_at: {}
     o.timer[key] = timeout
     @$store.commit "update", o
-    if Date.now() - timeout < read_at[key]
-      new Promise (ok)-> ok()
-    else
+    unless Date.now() - timeout < read_at[key]
       @$store.dispatch name, payload
       .then =>
         o.read_at[key] = Date.now()

@@ -32,14 +32,18 @@ module.exports =
 
       state.left  = parseInt left
       state.right = parseInt left + width
-    
-    focus: (state, chat_id)->
+
+    focus: (state, { query, mode })->
       return unless window?
-      return unless el = window[chat_id]
-      return unless rect = el.getBoundingClientRect()
-      rect_center = rect.top + rect.height / 2
-      top = rect_center - state.horizon
-      # console.log " go to #{chat_id} as #{top}px"
+      return unless el = document.querySelector query
+      return unless { height, top } = el.getBoundingClientRect()
+      switch mode
+        when 'center'
+          top += height / 2 - state.horizon
+        when 'bottom'
+          top += height
+
+      # console.log " go to #{id} as #{top}px"
       window.scrollBy 0, top
 
     shows: (state, a)->
