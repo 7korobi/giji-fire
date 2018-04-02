@@ -12,9 +12,8 @@ module.exports =
           idx = @part_id
         else
           idx = @chat_id || @part_id
-      name: "sow-village-idx-mode"
-      params: { mode, idx }
-      query: @$route.query
+      name: "sow-village-show"
+      query: Object.assign {}, @$route.query, { mode, idx }
       hash:  @$route.hash
 
   computed:

@@ -54,7 +54,7 @@ new Rule("chat").schema ->
         max: o.write_at
 
       emit "say",
-        max: o.write_at
+        max: o.write_at + 1
         min: o.write_at
         count: 1
         all: o.log.length
@@ -63,7 +63,7 @@ new Rule("chat").schema ->
         emit "potof", o.phase_id, o.potof_id,
           count: 1
           all: o.log.length
-          max: o.write_at
+          max: o.write_at + 1
           min: o.write_at
 
       for mention_id in o.q.mention_ids

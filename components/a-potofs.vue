@@ -19,7 +19,7 @@
             btn(v-model="sort" as="give.give", @toggle="reverse") 促
           th(colspan="2")
             btn(v-model="sort" as="say.count", @toggle="reverse") 回数
-            btn(v-model="sort" as="say.avg", @toggle="reverse" title="字数 ÷ 回") 平均
+            btn(v-model="sort" as="say.avg", @toggle="reverse" title="字数 ÷ 回数") 平均
             btn(v-model="sort" as="say.all", @toggle="reverse") 字数
             btn(v-model="sort" as="say.density", @toggle="reverse" title="字数 ÷ 範囲") 密度
           th
@@ -115,6 +115,7 @@ module.exports =
           o.hide = false
         for id in @hide_potof_ids
           Query.potofs.find(id).hide = true
+
         list
       else
         []

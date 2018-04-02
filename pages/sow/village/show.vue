@@ -84,8 +84,8 @@ module.exports =
     focus: (@idx)->
     anker: (book_id, a)->
       @$router.push
-        path: "../#{@part_id}/anker"
-        query: { a, @back }
+        path: "./anker"
+        query: { a, @back, idx: @part_id }
 
   computed:
     editor_url: ->

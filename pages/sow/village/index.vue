@@ -207,8 +207,10 @@ module.exports =
       @$router.replace query: {}
     
     book_url: (book_id, mode)->
-      name: "sow-village-idx-mode"
-      params: { mode, idx: [book_id, 0].join("-") }
+      name: "sow-village-show"
+      query:
+        mode: mode
+        idx: [book_id, 0].join("-")
 
     rating_img: (rating)->
       "#{url.store}/images/icon/cd_#{rating}.png"
