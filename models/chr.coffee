@@ -72,7 +72,7 @@ new Rule("face").schema ->
         _id:
           sow_auth_id: null
         count: 0
-    @summary_url = "/summary/faces/#{@_id}"
+    @summary_url = "/summary/faces/show?id=#{@_id}"
 
   map =
     count: 1

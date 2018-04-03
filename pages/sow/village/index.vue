@@ -176,7 +176,7 @@ mount = require "~/plugins/get-by-mount"
 
 module.exports =
   mixins: [
-    mount "1h", "story/oldlog"
+    mount "1h", "sow/oldlog"
     require('~/plugins/pager')
     require("~/plugins/browser-store")
       replace:

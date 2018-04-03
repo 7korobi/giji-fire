@@ -25,6 +25,23 @@ div
     br
     .card 人狼議事で遊ぶことができるキャラクターはこちら。
 
+  c-post.form(handle="VSAY")
+    nuxt-link(to="/summary/faces") キャラクター活躍記録
+    br
+    .card どこかの村で活躍したことのあるキャラクターはこちら。
+
+  c-report(handle="footer" deco="center") 開始待ちの村／進行中の村
+  c-post(handle="EVIL", v-for="o in progress", :head="o.name", :key="o._id")
+    a(:href="o.folder.href") {{ o.folder.nation }}{{ o.vid }}
+    | は、進行中だ。
+    .date
+      timeago(:since="o.timer.nextcommitdt")
+  c-post(handle="MOB",  v-for="o in prologue", :head="o.name", :key="o._id")
+    a(:href="o.folder.href") {{ o.folder.nation }}{{ o.vid }}
+    | は、開始が楽しみだ。
+    .date
+      timeago(:since="o.timer.nextcommitdt")
+
   c-report(handle="footer" deco="center")
     nuxt-link(to="/demo") 開発者用ページ
 </template>
@@ -33,6 +50,7 @@ div
 
 module.exports =
   mixins: [
+    require("~/plugins/get-by-mount") "1h", "sow/progress"
   ]
   computed:
     user: ->
@@ -40,6 +58,10 @@ module.exports =
     mypage: ->
       return null unless @user?._id
       "mypage"
+    prologue: ->
+      Query.sow_villages.prologue.list
+    progress: ->
+      Query.sow_villages.progress.list
 
 </script>
 <style lang="stylus" scoped>
