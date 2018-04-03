@@ -105,6 +105,7 @@ new Rule("sow_village").schema ->
       emit "config",      { sort, belongs_to: "roles"   }
 
     @map_reduce: (o, emit)->
+      emit "mode", o.mode, o.q.folder_id, cmd
       emit "yeary",       o.q.yeary,       cmd
       emit "monthry",     o.q.monthry,     cmd
       emit "folder_id",   o.q.folder_id,   cmd
