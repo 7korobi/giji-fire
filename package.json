@@ -13,11 +13,13 @@
     "generate:nuxt": "nuxt generate",
 
     "copy": "run-p -n copy:*",
+    "copy_dist": "cp -r static/* dist/",
     "copy:stylus": "ls styl/*.styl.use | xargs stylus --compress --out static/css/",
     "copy:portrate": "cp \"../../人狼議事 チーム フォルダ/web_work/images/portrate\"/* static/images/portrate/.",
     "copy:monaco":   "rm -rf static/lib/monaco-editor/min && cp -r node_modules/monaco-editor/min static/lib/monaco-editor/.",
 
     "deploy": "run-s generate:nuxt deploy:hosting",
+    "deploy:copy": "run-s copy copy_dist deploy:hosting",
     "deploy:hosting": "firebase deploy --only hosting",
     "deploy:all": "firebase deploy"
   },
