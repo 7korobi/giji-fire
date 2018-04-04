@@ -1,0 +1,24 @@
+@import "./_theme.styl"
+@import "./_theme_film.styl"
+
+palette_single(icons, pastel, N09)
+
+.talk
+  .chat
+    border-radius: 0.5rem
+    border-style: none
+    border-width: 0
+    margin:  0 7px 0 0
+
+.center-left
+.center-right
+  border-color: hsla(210,66%,90%,1)
+
+.page-active:before
+  // animation: bg-pulse-fire 5s ease-in-out infinite alternate
+  background-repeat: repeat-y
+  background-position: center top
+  background-image: linear-gradient(90deg, hsla(210,90%,99%,1), hsla(190,80%,66%,1), hsla(35,90%,99%,1))
+
+.contentframe
+  background-color: #FFF

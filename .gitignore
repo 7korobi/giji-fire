@@ -30,6 +30,8 @@ static/images/portrate
 .awspublish-giji-assets
 .cache
 static/aggregate
-static/nuxt
 static/sow
 static/sow.sh
+
+static/css
+static/lib

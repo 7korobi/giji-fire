@@ -1,0 +1,113 @@
+[title]:after
+  content: attr(title)
+
+[data-tooltip]:after
+  content: attr(data-tooltip)
+
+[title]
+[data-tooltip]
+  position: relative
+
+  &:after
+  &:before
+    // Position
+    position: absolute
+
+    // Hide it by default
+    z-index: 99999
+    display: none
+    opacity: 0
+    border-width: 0
+    height: 0
+    overflow: visible
+
+  &:after
+    // Content
+    height: auto
+    text-align: left
+    white-space: pre
+    font-style: normal
+    font-weight: normal
+    border-radius: 8px
+    padding: 5px
+
+  &:before
+    content: ''
+    width: 0
+    height: 0
+    border-width: 0
+    border-style: solid
+    border-color: transparent
+    border-radius: 6px
+
+[title]
+.tooltip-bottom
+.tooltip-right
+.tooltip-left
+.tooltip-top
+  &.tap
+  &:hover
+  &:focus
+    &:after
+    &:before
+      display: block
+      opacity: 1
+      border-width: 6px
+
+  &:has(:focus)
+    &:after
+    &:before
+      display: block
+      opacity: 1
+      border-width: 6px
+
+// Bottom
+.tooltip-bottom
+  &:after
+  &:before
+    top: 85%
+    left: 0
+    margin-top: 12px
+  &:before
+    margin-top:  6px
+    left: 15px
+
+// Top
+[title]
+.tooltip-top
+  &:after
+  &:before
+    top: auto
+    bottom: 85%
+    left: 0
+    margin-bottom: 12px
+  &:before
+    margin-bottom:  6px
+    left: 15px
+
+// Right
+.tooltip-right
+  &:after
+  &:before
+    left: 100%
+    margin-left: 6px
+    margin-top: 0
+    top: 0
+  &:before
+    margin-left: -6px
+    left: 100%
+    top: 7px
+
+// Left
+.tooltip-left
+  &:after
+  &:before
+    right: 100%
+    margin-right: 6px
+    left: auto
+    margin-top: 0
+    top: 0
+  &:before
+    margin-right: -6px
+    right: 100%
+    top: 7px

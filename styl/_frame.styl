@@ -1,0 +1,230 @@
+html
+body
+p
+  margin: 0
+
+body
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+  -webkit-overflow-scrolling: touch
+  -webkit-touch-callout: none
+  text-size-adjust: 100%
+  font-smooth: antialiased
+  user-select: none
+  overflow-wrap: break-word
+  word-wrap:     break-word
+
+.summary
+.sideframe
+.writeframe
+.center-left
+.center-right
+  pointer-events: none
+
+.editframe
+.inframe
+  pointer-events: auto
+
+.page-active
+  &:before
+  &:after
+    content: ''
+    position: fixed
+    pointer-events: none
+    width:  100vw
+    height: 100vh
+    top: 0
+    opacity: 1
+
+  &:before
+    z-index: -98
+  &:after
+    z-index: -97
+
+.chat
+  box-sizing: border-box
+  display: block
+
+.swipe
+  overflow-y: hidden
+  overflow-x: scroll
+  -ms-overflow-style: none
+  &::-webkit-scrollbar
+    display:none;
+
+  table
+    border-collapse: collapse
+  td
+  th
+    margin:  0
+    padding: 0
+    white-space: nowrap
+    vertical-align: center
+
+.fullframe
+  margin: 0
+
+.summary
+.inframe
+.outframe
+.fullframe
+.contentframe
+  box-sizing: content-box
+
+.writeframe
+.outframe
+  margin: 0 auto
+
+.center-left
+.center-right
+  position: fixed
+  z-index: -95
+  top: 50vh
+  border-bottom-width: 2px
+  border-bottom-style: solid
+
+.center-left
+  left:   0
+
+.center-right
+  right:   0
+
+.summary
+.editframe
+.sideframe
+.writeframe
+  position: fixed
+  overflow-y: auto
+  z-index: 10
+  &:hover
+    z-index: 30
+
+.contentframe
+  .inframe
+    padding: 10px 0
+
+.writeframe
+  top: 0
+  box-sizing: content-box
+  .contentframe
+    background-attachment: scroll
+
+.summary
+  left:   0
+  bottom: 0
+  overflow-x: hidden
+
+.sideframe
+  right:  0
+  bottom: 0
+  overflow-x: visible
+
+.editframe
+  right: 0
+  top:  0
+  overflow-x: hidden
+
+.sideframe
+  .icons
+    width: 50px
+    margin: 0 2px 6px auto
+    overflow: hidden
+
+    display: flex
+    flex-direction: column
+    flex-wrap:      nowrap
+    align-items:     center
+    align-content:   space-around
+    justify-content: space-around
+
+    .item
+      box-sizing: content-box
+      flex-basis: auto
+      text-align: center
+      width:     40px
+      height:    60px
+      font-size: 40px
+      border-radius: 5px
+    .fa
+      margin: 10px auto
+    .mdi::before
+      margin: 18px auto
+
+
+.post
+  padding-right: 12px
+  margin 0 0 6px 7px
+  border-style: solid none solid solid
+  border-width: 2px 0 2px 18px
+
+.talk
+  width: 100%
+  table-layout: fixed
+  border-collapse: collapse
+  border-spacing:  0
+  margin: 0 0 6px 0
+  thead, tfoot, tbody, th, td
+    border:  0
+    padding: 0
+    background: transparent
+  td
+    vertical-align: middle
+    position: relative
+  th
+    width: 125px
+    vertical-align: top
+    .portrate
+      margin:  0 19px 0 16px
+
+.report
+  border-style: double dotted
+  border-width: 4px 1px
+  margin: 0 -10px 6px -10px
+  padding: 1px 8px 1px 10px
+  .name
+    margin-left: 127px
+    margin-right: 13px
+  .date
+    margin-right: 13px
+
+.contentframe
+  .chat
+    z-index:  2
+
+  .post
+    margin 0 0 6px 107px
+    // box-shadow: inset -30px 0px 45px -38px #222
+    // 罫線にshadowが乗らない。
+
+  .baloon
+    z-index: 1
+    position: absolute
+    content: ''
+    width:  0
+    height: 0
+    top:   60px
+    left:  -6px
+    border-style: solid
+    border-width:  6px
+    border-radius: 6px 0 0 6px
+    border-right-width 1px
+
+  .report
+    position: relative
+
+    &::before
+    &::after
+      top: -8px
+      content: ""
+      position: absolute
+      border-style: solid
+      border-width: 1px
+      border-top-color: transparent
+      background-color: transparent
+
+    &::before
+      border-width: 4px 8px 0 0
+      left: 0
+
+    &::after
+      border-width: 4px 0 0 8px
+      right: 0

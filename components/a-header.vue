@@ -1,6 +1,5 @@
 <script lang="coffee">
-
-host = "https://s3-ap-northeast-1.amazonaws.com/giji-assets/nuxt"
+{ url } = require "~/config/live.yml"
 
 module.exports =
   mixins: [
@@ -48,9 +47,9 @@ module.exports =
     body_class: ->
       [@log, @theme, @font]
     href: ->
-      log: host + "/css/log-#{@log}.styl.css"
-      font: host + "/css/font-#{@font}.styl.css"
-      theme: host + "/css/theme-#{@theme}.styl.css"
+      log: url.assets + "/css/log-#{@log}.styl.css"
+      font: url.assets + "/css/font-#{@font}.styl.css"
+      theme: url.assets + "/css/theme-#{@theme}.styl.css"
     log: ->
       switch @theme
         when "snow"
@@ -82,8 +81,8 @@ module.exports =
   head: ->
     # https://materialdesignicons.com/
     link: [
-      { hid: 'hid1', rel: 'stylesheet', type: 'text/css', href: host + '/element-ui/theme-chalk/index.css' }
-      { hid: 'hid2', rel: 'stylesheet', type: 'text/css', href: host + '/css/index.styl.css' }
+      { hid: 'hid1', rel: 'stylesheet', type: 'text/css', href: url.assets + '/element-ui/theme-chalk/index.css' }
+      { hid: 'hid2', rel: 'stylesheet', type: 'text/css', href: url.assets + '/css/index.styl.css' }
       { hid: 'hid3', rel: 'stylesheet', type: 'text/css', href: 'https://cdn.materialdesignicons.com/2.1.19/css/materialdesignicons.min.css' }
       { hid: 'hid4', rel: @new.rel.log,   type: 'text/css', href: @href.log }
       { hid: 'hid5', rel: @new.rel.font,  type: 'text/css', href: @href.font }

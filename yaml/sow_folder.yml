@@ -705,7 +705,7 @@ CABALA:
       URL_SW:         http://cabala.halfmoon.jp/cafe
       BASEDIR_CGIERR: http://cabala.halfmoon.jp//cafe
       NAME_HOME:      人狼議事 Cabala Cafe
-      MAX_VILLAGES:   4
+      MAX_VILLAGES:   0
     path:
       <<: *SIMPLE_PATH
     pl:  /www/giji_log/cafe/config.pl

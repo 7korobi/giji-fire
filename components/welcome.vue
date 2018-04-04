@@ -21,7 +21,7 @@ module.exports =
           else
             opacity: 0
       welcome_style: ->
-        backgroundImage: "url(#{url.store}/images/bg/fhd-giji.png)"
+        backgroundImage: "url(#{url.assets}/images/bg/fhd-giji.png)"
         backgroundPosition: "left 50% top #{ -@top / 3 }px"
 
     components:

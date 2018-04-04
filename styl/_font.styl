@@ -1,0 +1,159 @@
+@import "./_width.styl"
+
+
+clicker($base, $inline, $family)
+  $gap = $inline - $base
+  $mu = $gap * -.5 + 1px
+  $md = $gap * -.5
+  $pu = $gap *  .5 - 3px
+  $pd = $gap *  .5 - 2px
+
+  margin:  $mu 2px $md 2px
+  padding: $pu $pd $pd $pd
+
+inline($base, $inline, $family)
+  font-family: $family
+  if sans-serif == $family
+    font-family: Avenir, "Helvetica Neue", Helvetica, "游ゴシック", "Yu Gothic", sans-serif
+  if serif == $family
+    font-family: "花園明朝A", "花園明朝B", "HanaMinA", "HanaMinB", serif
+
+  font-size:   $base
+  line-height: $inline
+
+font($small, $base, $family)
+  $middle = ($small + $base) / 2
+  $pad    = $base / 3
+  $hr_top = $base / 4 - 3px
+  $hr_btm = $base / 4
+
+  $block    = $base * 1.5
+  $inline   = $base * 1.3
+
+  h1
+    inline(2.00 * $base, 2.00 * $inline, $family)
+  h2
+    inline(1.50 * $base, 1.50 * $inline, $family)
+  h3
+    inline(1.17 * $base, 1.17 * $inline, $family)
+  h4
+    inline(1.00 * $base, 1.00 * $inline, $family)
+  h5
+    inline(0.83 * $base, 0.83 * $inline, $family)
+  h6
+    inline(0.67 * $base, 0.67 * $inline, $family)
+
+  hr
+    padding: $hr_top 0 $hr_btm 0
+
+  width($base, 28 * $base + 132)
+
+  sup
+    vertical-align: $small *  0.5
+    font-size:      $small
+    line-height:    $small + 2px
+
+  sub
+    vertical-align: $small * -0.5
+    font-size:      $small
+    line-height:    $small + 2px
+
+
+  body
+  .links
+  .name
+  .text
+  dfn
+  abbr
+  input
+  select
+  button
+  textarea
+  strong
+  time
+  kbd
+  em
+  a
+  b
+    inline($base,  $block,  $family)
+
+  [title]
+  [data-tooltip]
+    &:after
+      inline($base,  $block,  $family)
+
+  code
+    inline($base,  $block, "monospace")
+
+  input
+  button
+  [href]
+  [cite]
+  [chat_id]
+  .btn
+    clicker($base,  $block,  $family)
+
+  .form
+    input
+    button
+    [href]
+    [cite]
+    [chat_id]
+    .btn
+      margin: 2px
+
+  .fine
+  .date
+    inline($small, $middle, $family)
+    dfn
+    abbr
+    input
+    select
+    button
+    textarea
+    strong
+    time
+    code
+    kbd
+    em
+    a
+    b
+    p
+      inline($small, $middle, $family)
+
+  .date
+    input
+    button
+    [href]
+    [cite]
+    [chat_id]
+    .btn
+      clicker($small, $block, $family)
+
+
+  .chrblank
+    inline(12px, 15px, $family)
+
+    dfn
+    abbr
+    input
+    select
+    button
+    textarea
+    strong
+    time
+    code
+    kbd
+    em
+    a
+    b
+    p
+      inline(12px, 15px, $family)
+
+    input
+    button
+    [href]
+    [cite]
+    [chat_id]
+    .btn
+      clicker(12px, 15px, $family)

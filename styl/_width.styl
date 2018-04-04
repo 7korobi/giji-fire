@@ -1,0 +1,50 @@
+
+.editframe .inframe
+.editframe:hover
+.summary:hover
+  width: "calc( 100vw - %s )" % 55px
+
+.editframe
+  height: 80px
+  width:  80px
+
+.editframe:hover
+  height: 100vh
+
+width($font, $center)
+  $gap = 24px
+  $limit1 = $center / 0.9
+  $limit2 = $center + 2 * ( $gap +  80px )
+  $limit3 = $center + 2 * ( $gap + 160px )
+  $half   = ( $center + $gap ) / 2
+
+  .center-left
+  .center-right
+    width: "calc( (50vw - %s) / 3 )" % $half
+
+  @media screen and (min-width: $limit3)
+    .summary
+      width: "calc( 50vw - %s )" % $half
+  @media screen and (max-width: $limit3)
+    .summary
+      width: 160px
+
+  @media screen and (min-width: $limit2)
+    .sideframe
+      width: "calc( 50vw - %s )" % $half
+  @media screen and (max-width: $limit2)
+    .sideframe
+      width: 80px
+
+  @media screen and (min-width: $limit1)
+    .writeframe
+    .outframe
+      .contentframe
+        width: $center
+        margin: 0 auto
+
+  @media screen and (max-width: $limit1)
+    .writeframe
+    .outframe
+      .contentframe
+        margin: 0 5%

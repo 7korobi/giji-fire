@@ -1,7 +1,9 @@
 #####
 # Headers of the page
 #
-host = "https://s3-ap-northeast-1.amazonaws.com/giji-assets/nuxt"
+yaml = require 'js-yaml'
+fs   = require 'fs'
+{ url } = yaml.safeLoad fs.readFileSync "config/live.yml", 'utf8'
 
 module.exports =
   title: '人狼議事'
@@ -17,5 +19,5 @@ module.exports =
     { href: "mailto:7korobi@gmail.com" }
   ]
   script: [
-    { src: host + '/monaco-editor/vs/loader.js', type: 'text/javascript', charset: 'utf8' }
+    { src: url.assets + '/lib/monaco-editor/min/vs/loader.js', type: 'text/javascript', charset: 'utf8' }
   ]

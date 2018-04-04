@@ -3,7 +3,7 @@ ExtractTextPlugin = require 'extract-text-webpack-plugin'
 module.exports =
   extend: (config, { isDev, isClient })->
 
-  publicPath: 'https://api-project-54633717694.firebaseapp.com/'
+  # publicPath: 'https://api-project-54633717694.firebaseapp.com/'
 
   babel:
     presets: [

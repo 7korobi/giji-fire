@@ -8,11 +8,18 @@
     "dev": "nuxt",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "precommit": "npm run lint",
-    "build": "nuxt build",
-    "start": "nuxt start",
-    "generate": "nuxt generate && firebase deploy --only hosting",
-    "deploy": "firebase deploy",
-    "hosting": "firebase deploy --only hosting"
+
+    "generate": "run-s generate:nuxt stylus",
+    "generate:nuxt": "nuxt generate",
+
+    "copy": "run-p -n copy:*",
+    "copy:stylus": "ls styl/*.styl.use | xargs stylus --compress --out static/css/",
+    "copy:portrate": "cp \"../../人狼議事 チーム フォルダ/web_work/images/portrate\"/* static/images/portrate/.",
+    "copy:monaco":   "rm -rf static/lib/monaco-editor/min && cp -r node_modules/monaco-editor/min static/lib/monaco-editor/.",
+
+    "deploy": "run-s generate:nuxt deploy:hosting",
+    "deploy:hosting": "firebase deploy --only hosting",
+    "deploy:all": "firebase deploy"
   },
   "dependencies": {
     "coffee-loader": "^0.9.0",
@@ -25,6 +32,7 @@
     "mermaid": "^8.0.0-rc.6",
     "moment": "^2.21.0",
     "monaco-editor": "^0.11.1",
+    "npm-run-all": "^4.1.2",
     "nuxt": "^1.4.0",
     "pug": "^2.0.3",
     "pug-html-loader": "^1.1.5",
