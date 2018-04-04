@@ -10,8 +10,9 @@
     "precommit": "npm run lint",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate",
-    "deploy": "firebase deploy"
+    "generate": "nuxt generate && firebase deploy --only hosting",
+    "deploy": "firebase deploy",
+    "hosting": "firebase deploy --only hosting"
   },
   "dependencies": {
     "coffee-loader": "^0.9.0",

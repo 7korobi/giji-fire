@@ -11,6 +11,7 @@ npm-debug.log
 dist
 
 # settings
+firebase.crashreporting.json
 config/live.yml
 config/default.yml
 config/production.yml

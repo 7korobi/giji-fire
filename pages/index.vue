@@ -10,10 +10,15 @@ div
     nuxt-link(:to="mypage") あなたの情報
   c-report(handle="footer" deco="center") みんなの情報
   c-post.form(handle="SSAY")
-    a(href="https://github.com/7korobi/giji-nuxt/commits/master") 総合トップ
+    | 更新履歴
+    hr
+    a(href="https://github.com/7korobi/giji-fire/commits/master") 総合トップ
+    a(href="https://github.com/7korobi/giji-sow-api/commits/master") 村ログAPI
+    a(href="https://github.com/7korobi/giji_rails/commits/master") 村ログ収集・キャラ更新
     a(href="https://github.com/7korobi/sow-giji/commits/cabala") ゲーム
     a(href="https://github.com/7korobi/sow-giji/commits/show-fix") ゲーム（新）
-    .card 人狼議事を構成するプログラムの、更新履歴はこちら。
+    span
+    a(href="https://api-project-54633717694.firebaseapp.com/") テストサイト
 
   c-post.form(handle="SSAY")
     nuxt-link(to="/rule-guide") 人狼議事のルール
