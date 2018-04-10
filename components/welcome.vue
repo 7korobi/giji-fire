@@ -36,10 +36,10 @@ module.exports =
           attrs =
             class: undefined
             attrs: {}
-          if data = mode?.progress[folder_id]
+          if data = mode?.progress?[folder_id]
             attrs.class = "EVIL"
             children.push m "sup", [data.count]
-          if data = mode?.prologue[folder_id]
+          if data = mode?.prologue?[folder_id]
             attrs.class = "MOB"
             children.push m "sup", [data.count]
 
