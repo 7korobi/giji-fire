@@ -1,6 +1,6 @@
 <template lang="pug">
 div
-  no-ssr
+  div
     transition-group(name="list" tag="div")
       c-post(handle="footer" key="breadcrumb")
         bread-crumb
@@ -55,6 +55,16 @@ div
           btn(as="card.discard"    v-model="order" @toggle="submenu")
             | 破棄役職
             sup(v-if="discard.length") {{ discard.length }}
+        table
+          tbody
+            tr
+              td
+                btn(as="" v-model="search")
+                  | 検索
+              td
+                input(style="width: 97%; " @focus="order = 'name'" v-model="search" size="30")
+
+          
         sub(style="width: 100%")
           | {{ page_all_contents.all | currency }}村があてはまります。
 
@@ -119,7 +129,7 @@ div
             | {{ o.label }}
             sup(v-if="1 < o.count") {{ o.count }}
 
-  no-ssr
+  div
     div(v-for="(villages, idx) in page_contents", :key="idx")
       c-report(handle="MAKER", v-for="o in villages", :write_at="o.write_at", :id="o._id", :key="o._id")
         .name
@@ -195,6 +205,7 @@ module.exports =
         event: []
         discard: []
         config: []
+        search: ""
       watch: ->
         @page_idxs = [0]
   ]
@@ -246,7 +257,7 @@ module.exports =
     page_all_contents: ->
       Query
       .sow_villages
-      .search @mode, @query_in, @query_where, @order, @asc
+      .all_contents @mode, @query_in, @query_where, @search, @order, @asc
       .reduce.list
 
 </script>

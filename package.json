@@ -23,7 +23,7 @@
 
     "deploy:firebase": "firebase deploy --only hosting",
     "deploy:aws": "aws s3 sync dist s3://giji-assets/fire --acl public-read --exclude '*.html'",
-    "deploy:rsync": "rsync -avz dist 7korobi@giji.f5.si:/home/7korobi/giji-fire/dist",
+    "deploy:rsync": "rsync -avz dist 7korobi@giji.f5.si:/home/7korobi/giji-fire/.",
     "deploy:all": "firebase deploy"
   },
   "dependencies": {

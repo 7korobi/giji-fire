@@ -26,9 +26,15 @@ new Rule("sow_village").schema ->
     progress: all.where(mode: "progress").sort "timer.nextcommitdt", "desc"
 
     mode: ( mode )->
-      all.where({ mode })
-    search: ( mode, query_in, query_where, order, asc )->
-      all.where({ mode }).in(query_in).where(query_where).order
+      all
+      .where { mode }
+    all_contents: ( mode, query_in, query_where, search_word, order, asc )->
+      all
+      .where { mode }
+      .in query_in
+      .where query_where
+      .search search_word
+      .order
         sort: [order, asc]
         page_by: 25
 
@@ -74,6 +80,8 @@ new Rule("sow_village").schema ->
     
     @aggregate =
       face_ids: []
+    
+    @search_words = @name
 
   Object.assign @model_property,
     roles:
