@@ -1,0 +1,97 @@
+<template lang="pug">
+div
+  p(v-if="user")
+    span
+      i.btn.mdi.mdi-logout(@click="signout")
+    span {  }
+      
+  p(v-if=" ! user")
+    span
+      i.btn.mdi.mdi-logout(@click="signout")
+    span
+      i.btn.mdi.mdi-facebook-box(@click="facebook")
+      i.btn.mdi.mdi-twitter(@click="twitter")
+      i.btn.mdi.mdi-google(@click="google")
+      i.btn.mdi.mdi-github-face(@click="github")
+    
+  p(v-if="code") {{ code }}
+  p(v-if="message") {{ message }}
+</template>
+<script lang="coffee">
+firebase = require "firebase"
+
+module.exports =
+  data: ->
+    code: null
+    message: null
+  mounted: ->
+    @auth.onIdTokenChanged (user)=>
+      if user
+        { uid, email, photoURL, displayName, apiKey, authDomain, refreshToken, metadata } = user
+        user = { uid, email, photoURL, displayName, apiKey, authDomain, refreshToken, metadata }
+      @$store.commit 'firebase/replace', { user }
+
+    @auth.onAuthStateChanged (user)=>
+      if user
+        { uid, email, photoURL, displayName, apiKey, authDomain, refreshToken, metadata } = user
+        user = { uid, email, photoURL, displayName, apiKey, authDomain, refreshToken, metadata }
+      @$store.commit 'firebase/replace', { user }
+
+    @auth.getRedirectResult()
+    .then (o)=>
+      { operationType, user, additionalUserInfo, credential } = o
+
+      return unless user && credential
+      { isNewUser, username, profile } = additionalUserInfo
+      { accessToken, providerId, secret, signInMethod } = credential
+      { uid, email, photoURL, displayName, apiKey, authDomain, refreshToken, metadata } = user
+      @$store.commit 'firebase/replace',
+        user: { uid, email, photoURL, displayName, apiKey, authDomain, refreshToken, metadata }
+        credential: { accessToken, providerId, secret, signInMethod }
+
+    .catch ({ @code, @message })=>
+
+    @auth.setPersistence(firebase.auth.Auth.Persistence.SESSION)
+    .then ()=>
+      console.log "session persistence"
+    .catch ({ @code, @message })=>
+
+  computed:
+    user: ->
+      @$store.state.firebase.user
+
+    auth: ->
+      firebase.auth()
+    db: ->
+      firebase.firestore()
+    messaging: ->
+      firebase.messaging()
+    collection: ->
+      @db.collection('test')
+    doc: ->
+      @db.doc('test/user-data')
+
+  methods:
+    signout: ->
+      @auth.signOut()
+      @$store.commit 'firebase/replace',
+        user: null
+        credential: null
+    facebook: ->
+      @auth.signInWithRedirect new firebase.auth.FacebookAuthProvider()
+    twitter: ->
+      @auth.signInWithRedirect new firebase.auth.TwitterAuthProvider()
+    github: ->
+      @auth.signInWithRedirect new firebase.auth.GithubAuthProvider()
+    google: ->
+      @auth.signInWithRedirect new firebase.auth.GoogleAuthProvider()
+
+
+
+</script>
+
+<style lang="stylus" scoped>
+.mdi
+  line-height: 4rem
+  font-size:   3rem
+</style>

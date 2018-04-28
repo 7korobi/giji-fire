@@ -1,7 +1,7 @@
 <script lang="coffee">
-require "~/plugins/components.coffee"
 
 module.exports =
+  props: ['back_url']
   data: -> {}
 
 </script>
@@ -14,20 +14,18 @@ div
       .inframe
         no-ssr
           .icons.form
-    .summary(name="list" tag="div" key="summary")
-      no-ssr
-        .inframe.TITLE
-          hr
-          .swipe
-            fire-oauth(style="white-space: nowrap")
-          hr
+            nuxt-link.item.active(replace, :to="back_url")
+              i.mdi.mdi-map-marker
+
+    no-ssr
+      .summary(name="list" tag="div" key="summary")
+        d-mentions.inframe.mentions(key="1" @anker="$listeners.anker")
 
     .center-left
     .center-right
     .contentframe
       .inframe
-        no-ssr
-          nuxt
+        slot
         c-report(handle="footer", :write_at="1169852700003")
           a-footer
 </template>

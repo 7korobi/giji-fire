@@ -99,7 +99,6 @@ it shows white-space: pre
 <script lang="coffee">
 
 module.exports =
-  mounted: ->
-    @$el.className = "chat text SSAY"
+  layout: "markdown"
 
 </script>

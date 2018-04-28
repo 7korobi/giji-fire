@@ -2,28 +2,24 @@
 <template lang="pug">
 .text-editor
   textarea(ref="input", @input="input", :value="value", :rows="areaRow", :placeholder="placeholder")
-  i.mdi(:class="mark")
+  span.mdi(:class="mark")
     | {{size}}/
-    span.per {{maxSize}}字
+    sub {{maxSize}}字
     | {{row}}/
-    span.per {{maxRow}}行
+    sub {{maxRow}}行
   span.pull-right
-    a(@click="nDm") [[]]
-    a(@click="anker") >>
-    a(@click="comment") /**/
-    a(@click="submit") 投稿
+    a.btn(@click="nDm") [[]]
+    a.btn(@click="anker") >>
+    a.btn(@click="comment") /**/
+    a.btn(@click="submit") 投稿
 </template>
 
 <style lang="stylus" scoped>
-.per
-  vertical-align: -0.2em
-  font-size:       0.7em
-  margin:  0 0 0  -0.2em
-  padding: 0
-  display: inline
 </style>
 
 <script lang="coffee">
+_ = require "lodash"
+
 caret = (cb)-> ->
   { input } = @$refs
   st = input.selectionStart
@@ -63,11 +59,13 @@ module.exports =
       anker:   caret (pre, select, post)-> "#{pre}>>#{select}#{post}"
       comment: caret (pre, select, post)-> "#{pre}/*#{select}*/#{post}"
 
-      submit: ->
+      submit: _.debounce ->
         console.log @value
+      , 1000
 
-      input: (e)->
+      input: _.debounce (e)->
         @$emit 'input', e.target.value
+      , 200
 
     computed:
       ban: ->

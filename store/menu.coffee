@@ -18,6 +18,7 @@ module.exports =
       order: "asc"
 
     shows: [] # pin, toc, potof, current, search
+    component: "default"
     target: null
 
   mutations:

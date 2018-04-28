@@ -4,16 +4,7 @@ div
     bread-crumb
       li
         nuxt-link(to="/demo") 開発者用ページ
-  c-post(handle="SSAY")
-    span
-      i.btn.mdi.mdi-facebook-box(@click="facebook")
-      i.btn.mdi.mdi-twitter(@click="twitter")
-      i.btn.mdi.mdi-google(@click="google")
-      i.btn.mdi.mdi-github-face(@click="github")
-      i.btn.mdi.mdi-logout(@click="signout")
-    p(v-if="code") {{ code }}
-    p(v-if="message") {{ message }}
-      
+
   c-post(handle="TSAY")
     article
       table
@@ -94,11 +85,7 @@ div
 firebase = require "firebase"
 
 module.exports =
-  data: ->
-    user: null
-    credential: null
-    code: null
-    message: null
+  data: -> {}
   mounted: ->
     @messaging.requestPermission()
     .then =>
@@ -123,37 +110,12 @@ module.exports =
         # console.log doc.data()
         console.log doc.metadata
 
-    @auth.setPersistence(firebase.auth.Auth.Persistence.SESSION)
-    .then ()=>
-      console.log "session persistence"
-    .catch ({ @code, @message })=>
-    @auth.onAuthStateChanged (@user)=>
-      console.log "onAuthStateChanged"
-      now = firebase.firestore.FieldValue.serverTimestamp()
-
-      if @user
-        ///
-        @db.runTransaction (t)=>
-          ref = await t.get @db.doc('test/user-transaction')
-          if ref
-            t.update ref,
-              testColumn: "7korobi"
-              timestamp: now
-        ///
-        @doc.set JSON.parse JSON.stringify @user
-        @doc.update
-          timestamp: now
-
-    @auth.onIdTokenChanged (@user)=>
-      console.log "onIdTokenChanged"
-    @auth.getRedirectResult()
-    .then ({@user, @credential})=>
-      console.log "getRedirectResult then"
-    .catch ({ @code, @message })=>
-
   computed:
-    auth: ->
-      firebase.auth()
+    user: ->
+      @$store.state.firebase.user
+    credential: ->
+      @$store.state.firebase.credential
+
     db: ->
       firebase.firestore()
     messaging: ->
@@ -163,17 +125,6 @@ module.exports =
     doc: ->
       @db.doc('test/user-data')
 
-  methods:
-    signout: ->
-      @auth.signOut()
-    facebook: ->
-      @auth.signInWithRedirect new firebase.auth.FacebookAuthProvider()
-    twitter: ->
-      @auth.signInWithRedirect new firebase.auth.TwitterAuthProvider()
-    github: ->
-      @auth.signInWithRedirect new firebase.auth.GithubAuthProvider()
-    google: ->
-      @auth.signInWithRedirect new firebase.auth.GoogleAuthProvider()
 </script>
 
 <style lang="stylus" scoped>

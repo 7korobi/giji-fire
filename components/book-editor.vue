@@ -111,45 +111,7 @@
   c-report.form(handle="SSAY" deco="giji")
     h4 設定-登場人物
     hr
-    p.
-      #[.btn {{ faces.list.length }}名]から選択できます。
-    hr
-    span
-      check(set v-model="book.tag_ids", :as="tags_all") {{ tag("all").label }}
-      check(set v-model="book.tag_ids", :as="tags_giji") {{ tag("giji").label }}
-      check(set v-model="book.tag_ids", :as="[]") なし
-    span
-      check(v-model="book.tag_ids" as="shoji") {{ tag("shoji").label }}
-      check(v-model="book.tag_ids" as="travel") {{ tag("travel").label }}
-      check(v-model="book.tag_ids" as="stratos") {{ tag("stratos").label }}
-      check(v-model="book.tag_ids" as="myth") {{ tag("myth").label }}
-      check(v-model="book.tag_ids" as="asia") {{ tag("asia").label }}
-      check(v-model="book.tag_ids" as="marchen") {{ tag("marchen").label }}
-      check(v-model="book.tag_ids" as="animal") {{ tag("animal").label }}
-      check(v-model="book.tag_ids" as="school") {{ tag("school").label }}
-    span
-      check(v-model="book.tag_ids" as="kid") {{ tag("kid").label }}
-      check(v-model="book.tag_ids" as="young") {{ tag("young").label }}
-      check(v-model="book.tag_ids" as="middle") {{ tag("middle").label }}
-      check(v-model="book.tag_ids" as="elder") {{ tag("elder").label }}
-    span
-      check(v-model="book.tag_ids" as="river") {{ tag("river").label }}
-      check(v-model="book.tag_ids" as="road") {{ tag("road").label }}
-      check(v-model="book.tag_ids" as="immoral") {{ tag("immoral").label }}
-    span
-      check(v-model="book.tag_ids" as="guild") {{ tag("guild").label }}
-      check(v-model="book.tag_ids" as="elegant") {{ tag("elegant").label }}
-      check(v-model="book.tag_ids" as="ecclesia") {{ tag("ecclesia").label }}
-    span
-      check(v-model="book.tag_ids" as="medical") {{ tag("medical").label }}
-      check(v-model="book.tag_ids" as="market") {{ tag("market").label }}
-    span
-      check(v-model="book.tag_ids" as="apartment") {{ tag("apartment").label }}
-      check(v-model="book.tag_ids" as="servant") {{ tag("servant").label }}
-      check(v-model="book.tag_ids" as="farm") {{ tag("farm").label }}
-      check(v-model="book.tag_ids" as="government") {{ tag("government").label }}
-    span
-      check(v-model="book.tag_ids" as="god") {{ tag("god").label }}
+    e-tags(v-model="book.tag_ids")
 
   c-report.form(handle="MAKER" deco="giji")
     h4 能力から検索
@@ -232,8 +194,6 @@ module.exports =
     user: -> @$store.state.user
     says: -> Query.says.active.list
     tags: -> Query.tags.finds @book.tag_ids
-    tags_all: -> Query.tags.leaf.ids
-    tags_giji: -> Query.tags.nodes("giji", 1).ids
 
     sides: ->
       [

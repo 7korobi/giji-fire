@@ -3,6 +3,8 @@ div
   c-report(handle="footer" deco="center")
     bread-crumb
   c-post(handle="TSAY")
+    nuxt-link(to="/demo/wiki") WIKI
+  c-post(handle="TSAY")
     nuxt-link(to="/demo/marked") Markdown Talk
   c-post(handle="TSAY")
     nuxt-link(to="/demo/markdown") Markdown vue
@@ -15,7 +17,7 @@ div
   c-post(handle="TSAY")
     nuxt-link.button(to="/demo/chats") chats sample
   c-post(handle="TSAY")
-    nuxt-link.button(to="/sow/village/allstar-2-0/full") 村ログ(allstar-2)
+    nuxt-link.button(to="/sow/village/show?mode=full&idx=allstar-2-0") 村ログ(allstar-2)
   c-report(handle="footer" deco="center")
     bread-crumb
 </template>
@@ -24,6 +26,8 @@ div
 firebase = require "firebase"
 
 module.exports =
+  head: ->
+    title: '人狼議事 - 開発者用ページ'
   data: ->
     auth_info: {}
     a: 1

@@ -37,5 +37,5 @@ module.exports =
       Object.assign attrs,
         handle: chat.handle ? o.handle
 
-    m "c-" + attrs.show, { attrs, key, on: ctx.data.on }
+    m "c-" + attrs.show, { attrs, key, on: ctx.data.on }, ctx.children
 </script>

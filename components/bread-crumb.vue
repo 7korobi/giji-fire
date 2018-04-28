@@ -3,6 +3,10 @@ _ = require "lodash"
 
 module.exports =
   mounted: ->
+#    console.log @$route.matched[0]?.components.default?.options.bread_crumb
+#    console.log @$router.resolve({ path: '.' }).resolved.matched[0]?.components.default?.options.bread_crumb
+#    console.log @$router.resolve({ path: '..' }).resolved.matched[0]?.components.default?.options.bread_crumb
+#    console.log @$router.resolve({ path: '../..' }).resolved.matched[0]?.components.default?.options.bread_crumb
 #    console.log @$slots.default
 
 </script>

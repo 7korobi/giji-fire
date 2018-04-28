@@ -27,7 +27,8 @@ div
     .contentframe
       .inframe
         no-ssr
-          nuxt
+          c-report(handle="SSAY" deco="giji")
+            nuxt
         c-report(handle="footer", :write_at="1169852700003")
           a-footer
 </template>

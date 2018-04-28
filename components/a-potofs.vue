@@ -128,7 +128,7 @@ module.exports =
           (o)-> o.live.role_id
 
     show: ->
-      @part && "potof" in @$store.state.menu.shows
+      @part
 
   methods:
     potof_ids: (f)->

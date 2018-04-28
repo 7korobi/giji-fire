@@ -55,18 +55,18 @@ store =
       [ idx, mode, name ] = (@$route.query.back ? @back).split(",")
       name: name
       query: { idx, mode, page: 'back' }
+
+    editor_url: ->
+      back = @$route.query.back
+      back ?= @back
+      path: "./editor"
+      query: { back }
     
     hide_potof_ids:
       get: ->
         @$store.state.book.hide_potof_ids
       set: (ids)->
         @$store.commit "book/hide_potof_ids", ids
-
-    shows:
-      get: ->
-        @$store.state.menu.shows
-      set: (shows)->
-        @$store.commit "menu/shows", shows
 
   methods:
     page_reset: ->

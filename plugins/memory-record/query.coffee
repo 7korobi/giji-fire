@@ -45,6 +45,7 @@ module.exports = class Query
 
   in: (req)->
     query_parser @, req, (q, target, req, path)->
+      console.log(req)
       add = (f)-> q._filters.push f
       switch req && req.constructor
         when Array
@@ -58,7 +59,7 @@ module.exports = class Query
             for val in path o
               return true if req.test val
             false
-        when null, 0, Boolean, String, Number
+        when null, 0, "", Boolean, String, Number
           add (o)->
             -1 < path(o)?.indexOf req
         else

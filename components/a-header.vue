@@ -44,8 +44,6 @@ module.exports =
   computed:
     center: ->
       @$store.commit "menu/center", { @top, @left, @height, @width }
-    body_class: ->
-      [@log, @theme, @font]
     href: ->
       log: url.assets + "/css/log-#{@log}.styl.css"
       font: url.assets + "/css/font-#{@font}.styl.css"
@@ -94,8 +92,8 @@ module.exports =
 
 </script>
 <template lang="pug">
-no-ssr
-  div(:class="body_class")
+div
+  no-ssr
     welcome(:top="top")
       .btns.form
         span.font
@@ -113,10 +111,9 @@ no-ssr
           btn(v-model="theme" as="moon")   月夜
           btn(v-model="theme" as="wa")   和の国
 
-    a-writeframe(:top="top")
-    .outframe.filmend-frame
-      .contentframe
-        .filmend
+  .outframe.filmend-frame
+    .contentframe
+      .filmend
 
 </template>
 <style lang="stylus" scoped>

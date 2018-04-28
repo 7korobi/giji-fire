@@ -7,13 +7,13 @@ module.exports =
   ]
   computed:
     show: ->
-      @chat && "mentions" in @$store.state.menu.shows
+      @chat
 
 </script>
 
 <template lang="pug">
-.inframe.mentions(v-if="show")
-  div.date(:class="chat.handle")
+div(v-if="show")
+  .date(:class="chat.handle")
     hr
     span.pull-left
       a(v-if="chat.phase && chat.phase.update") 訂正

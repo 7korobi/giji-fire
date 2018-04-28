@@ -1,0 +1,65 @@
+<script lang="coffee">
+
+module.exports =
+  props: ['back_url']
+
+  data: -> {}
+  computed:
+    is_show_mention: ->
+      "mentions" in @shows
+    is_show_toc: ->
+      "toc"   in @shows
+    is_show_potofs: ->
+      "potof" in @shows
+
+    shows:
+      get: ->
+        @$store.state.menu.shows
+      set: (shows)->
+        @$store.commit "menu/shows", shows
+
+
+</script>
+<template lang="pug">
+div
+  a-header
+  .outframe.page-active
+
+    .sideframe
+      .inframe
+        no-ssr
+          .icons.form
+            nuxt-link.item.active(replace, :to="back_url")
+              i.mdi.mdi-map-marker
+            check.item(v-model="shows" as="mentions")
+              i.mdi.mdi-pin
+            check.item(v-model="shows" as="toc")
+              i.mdi.mdi-filmstrip
+            check.item(v-model="shows" as="potof")
+              i.mdi.mdi-account-multiple
+
+    no-ssr
+      .summary(name="list" tag="div" key="summary")
+        d-mentions.inframe.mentions(key="1" @anker="$listeners.anker" v-if="is_show_mention")
+        .inframe.TITLE(v-if="is_show_toc")
+          hr
+          .swipe
+            d-mode.form(style="white-space: nowrap")
+            hr
+            d-toc(key="2")
+        a-potofs(key="3" v-if="is_show_potofs")
+
+    .center-left
+    .center-right
+    .contentframe
+      .inframe
+        slot
+        c-report(handle="footer", :write_at="1169852700003")
+          a-footer
+
+          .icons.form
+
+</template>
+<style lang="stylus" scoped>
+</style>
+

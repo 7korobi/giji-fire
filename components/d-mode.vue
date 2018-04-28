@@ -11,7 +11,7 @@ module.exports =
         when "title", "memo"
           idx = @part_id
         else
-          idx = @chat_id || @part_id
+          idx = @part_id || @chat_id
       name: "sow-village-show"
       query: Object.assign {}, @$route.query, { mode, idx }
       hash:  @$route.hash

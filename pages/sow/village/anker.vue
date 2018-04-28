@@ -1,27 +1,12 @@
 <template lang="pug">
-div
-  .outframe
-    .sideframe
-      .inframe
-        no-ssr
-          .icons.form
-            nuxt-link.item.active(replace, :to="editor_url")
-              i.mdi.mdi-clipboard-text
-            nuxt-link.item.active(replace, :to="back_url")
-              i.mdi.mdi-map-marker
-
-    no-ssr
-      .summary(name="list" tag="div" key="summary")
-        a-mentions(key="1" @anker="anker")
-    .contentframe
-      .inframe
-        no-ssr
-          div
-            c-report.form(handle="footer" key="finder")
-              page-mode
-            chat(v-for="o in anker_chats" @anker="anker" @focus="focus", :id="o.id", :key="o.id")
-            c-report.form(handle="footer" key="finder")
-              page-mode
+log-anker(:back_url='back_url' @anker="anker")
+  c-report.form(handle="footer")
+    d-mode
+  no-ssr
+    div
+      chat(v-for="o in anker_chats" @anker="anker" @focus="focus", :id="o.id", :key="o.id")
+  c-report.form(handle="footer")
+    d-mode
 
 </template>
 <script lang="coffee">
@@ -38,9 +23,7 @@ module.exports =
         a: []
   ]
 
-  layout: "sow"
-  mounted: ->
-    @shows = [@shows..., "current"]
+  layout: 'blank'
 
   methods:
     focus: (@idx)->
@@ -48,12 +31,6 @@ module.exports =
       @a = uniq @a, a
 
   computed:
-    editor_url: ->
-      back = @$route.query.back
-      back ?= @back
-      path: "./editor"
-      query: { back }
-
     anker_chats: ->
       Query.chats.ankers(@book_id, @a).list
 

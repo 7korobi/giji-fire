@@ -1,68 +1,46 @@
 
 <template lang="pug">
-div
-  .outframe
-    .sideframe
-      .inframe
-        no-ssr
-          .icons.form
-            nuxt-link.item.active(replace, :to="editor_url")
-              i.mdi.mdi-clipboard-text
-            nuxt-link.item.active(replace, :to="back_url")
-              i.mdi.mdi-map-marker
-            check.item(v-model="shows" as="mentions")
-              i.mdi.mdi-pin
-            check.item(v-model="shows" as="toc")
-              i.mdi.mdi-filmstrip
-            check.item(v-model="shows" as="potof")
-              i.mdi.mdi-account-multiple
-    no-ssr
-      .summary(name="list" tag="div" key="summary")
-        a-mentions(key="1" @anker="anker")
-        a-toc(key="2")
-        a-potofs(key="3")
-    .contentframe
-      .inframe
-        c-post(handle="footer" key="breadcrumb")
-          bread-crumb
-            li
-              nuxt-link(:to="folder_url") 終了した村一覧
+log-show(:back_url='back_url' @anker="anker")
+  c-post(handle="footer")
+    bread-crumb
+      li
+        nuxt-link(:to="folder_url") 終了した村一覧
 
-        no-ssr
-          div
-            c-report.form(handle="footer" key="finder")
-              page-mode
-              page-part
+  no-ssr
+    div
+      c-report.form(handle="footer" key="finder")
+        d-mode
+        d-part
 
-            div(v-if="mode == 'memo'")
-              c-report.form(handle="footer")
-                span
-                  btn(v-model="mode", as="memos")
-                    i.mdi.mdi-timer
-                span 最新のメモを表示しています。
+      div(v-if="mode == 'memo'")
+        c-report.form(handle="footer")
+          span
+            btn(v-model="mode", as="memos")
+              i.mdi.mdi-timer
+          span 最新のメモを表示しています。
 
-            div(v-if="mode == 'memos'")
-              c-report.form(handle="footer")
-                span
-                  btn(v-model="mode", as="memo")
-                    i.mdi.mdi-timer-off
-                span メモ掲載の一覧を表示しています。
+      div(v-if="mode == 'memos'")
+        c-report.form(handle="footer")
+          span
+            btn(v-model="mode", as="memo")
+              i.mdi.mdi-timer-off
+          span メモ掲載の一覧を表示しています。
 
-            div(v-for="(chats, idx) in page_contents", :key="idx")
-              chat(v-for="o in chats" @anker="anker" @focus="focus", :id="o.id", :key="o.id")
+      div(v-for="(chats, idx) in page_contents", :key="idx")
+        chat(v-for="o in chats" @anker="anker" @focus="focus", :id="o.id", :key="o.id")
 
-            c-report.form(v-if="page_next_idx" handle="footer" key="limitup")
-              .center
-                scroll-mine(@input="page_add", :as="page_next_idx") 次頁
+      c-report.form(v-if="page_next_idx" handle="footer" key="limitup")
+        .center
+          scroll-mine(@input="page_add", :as="page_next_idx") 次頁
 
-            c-report.form(v-else handle="footer" key="limitup")
-              page-part
-              page-mode
+      c-report.form(v-else handle="footer" key="limitup")
+        d-part
+        d-mode
 
-        c-post(handle="footer" key="breadcrumb")
-          bread-crumb
-            li
-              nuxt-link(:to="folder_url") 終了した村一覧
+  c-post(handle="footer")
+    bread-crumb
+      li
+        nuxt-link(:to="folder_url") 終了した村一覧
 
 </template>
 
@@ -79,7 +57,7 @@ module.exports =
       loader: true
   ]
 
-  layout: 'sow'
+  layout: 'blank'
   head: ->
     labels = [@part, @book].map (o)-> o?.label
     labels.push "人狼議事"
@@ -93,14 +71,9 @@ module.exports =
         query: { a, @back, idx: @part_id }
 
   computed:
-    editor_url: ->
-      back = @$route.query.back
-      back ?= @back
-      path: "./editor"
-      query: { back }
-
     folder_url: ->
       "/sow/village?folder_id=#{@folder_id.toUpperCase()}"
+
     page_all_contents: ->
       @chats(@part_id)
 
