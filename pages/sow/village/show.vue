@@ -1,6 +1,6 @@
 
 <template lang="pug">
-log-show(:back_url='back_url' @anker="anker")
+log-show(:part='part' :back_url='back_url' @anker="anker")
   c-post(handle="footer")
     bread-crumb
       li

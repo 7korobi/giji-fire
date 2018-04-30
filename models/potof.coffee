@@ -3,7 +3,8 @@
 
 new Rule("potof").schema ->
   @order "write_at"
-  @path "folder", "book", "part"
+  @path "folder", "book"
+  @belongs_to "part"
   @belongs_to "face"
   @belongs_to "winner"
   @has_many "cards"
@@ -80,7 +81,7 @@ new Rule("potof").schema ->
       max: null
       min: null
 
-    say_id: (part_id)->
+    say_handle: (part_id)->
       { max_is } = @say(part_id)
       max_is?.phase?.handle ? "TSAY"
     

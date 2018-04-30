@@ -1,7 +1,7 @@
 <script lang="coffee">
 
 module.exports =
-  props: ['back_url']
+  props: ['part', 'back_url']
 
   data: -> {}
   computed:
@@ -47,7 +47,7 @@ div
             d-mode.form(style="white-space: nowrap")
             hr
             d-toc(key="2")
-        a-potofs(key="3" v-if="is_show_potofs")
+        a-potofs(key="3" :part='part' v-if="is_show_potofs")
 
     .center-left
     .center-right

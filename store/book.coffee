@@ -7,7 +7,6 @@ module.exports =
     type: "OK"
     message: null
     read_at: {}
-    hide_potof_ids: []
 
   mutations:
     data: (state, o)->
@@ -18,9 +17,6 @@ module.exports =
       if o.book?
         state.read_at[o.book._id] = o.read_at
       merge o
-
-    hide_potof_ids: (state, ids)->
-      state.hide_potof_ids = ids
 
   actions:
     create: ({commit}, { book, potof })->

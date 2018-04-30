@@ -16,6 +16,7 @@ module.exports =
     potofs:
       sort: "live"
       order: "asc"
+      hide_ids: []
 
     shows: [] # pin, toc, potof, current, search
     component: "default"

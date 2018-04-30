@@ -15,7 +15,7 @@ module.exports =
         csid = o.csid
         csid = 'sf' if csid == 'SF'
         potof_idx = idx
-        potof_id = "#{o.event_id}-#{potof_idx}"
+        potof_id = "#{o.story_id}-#{potof_idx}"
         Set.stat.add
           _id: "#{o.event_id}"
 
@@ -58,6 +58,7 @@ module.exports =
 
         Set.potof.add
           _id:       potof_id
+          part_id: o.event_id
           job:            job
           pno:          o.pno
           face_id:  o.face_id
@@ -94,14 +95,14 @@ module.exports =
           unless potof_id
             potof_idx += 1
             Set.card.add
-              _id: [o.event_id, potof_idx, "live"].join("-")
+              _id: [o.story_id, potof_idx, "live"].join("-")
               role_id: "leave"
               date: 0
             Set.stat.add
-              _id: [o.event_id, potof_idx, "SSAY"].join("-")
+              _id: [o.story_id, potof_idx, "SSAY"].join("-")
               said: 0
             Set.potof.add
-              _id: [o.event_id, potof_idx].join("-")
+              _id: [o.story_id, potof_idx].join("-")
               face_id:  o.face_id
               job: Query.chr_jobs.find([csid, o.face_id].join("_"))?.job
               sign: o.sow_auth_id

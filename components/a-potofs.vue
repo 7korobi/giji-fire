@@ -49,12 +49,12 @@
           td.r(:class="o.live.role_id") {{ o.live.date           | currency("日") }}
           td.c(:class="o.live.role_id") {{ o.live.role.label }}
 
-          th.r(:class="o.say_id(part.id)") {{ o.give && o.give.give | currency("回") }}
-          td.r(:class="o.say_id(part.id)") {{ o.say(part.id).count  | currency("回") }}
-          td.r(:class="o.say_id(part.id)") {{ o.say(part.id).all    | currency("字") }}
-          th.r(:class="o.say_id(part.id)") {{ o.say(part.id) | timerange }}
-          th.c(:class="o.say_id(part.id)")
-            abbr(:class="o.say_id(part.id)") {{ o.sign }}
+          th.r(:class="o.say_handle(part.id)") {{ o.give && o.give.give | currency("回") }}
+          td.r(:class="o.say_handle(part.id)") {{ o.say(part.id).count  | currency("回") }}
+          td.r(:class="o.say_handle(part.id)") {{ o.say(part.id).all    | currency("字") }}
+          th.r(:class="o.say_handle(part.id)") {{ o.say(part.id) | timerange }}
+          th.c(:class="o.say_handle(part.id)")
+            abbr(:class="o.say_handle(part.id)") {{ o.sign }}
 
           th.c(:class="o.winner_id")
             abbr(v-if="o.request", :class="o.winner_id") {{ o.request.role.label }}
@@ -68,13 +68,13 @@
       tbody.TITLE.form.tb-btn
         tr
           th
-            btn(v-model="hide_potof_ids", :as="live_on")  参加者
+            btn(v-model="hide_ids", :as="live_on")  参加者
           th
-            btn(v-model="hide_potof_ids", :as="live_off") リタイア
+            btn(v-model="hide_ids", :as="live_off") リタイア
           th
-            btn(v-model="hide_potof_ids", :as="full_on")  全表示
+            btn(v-model="hide_ids", :as="full_on")  全表示
           th
-            btn(v-model="hide_potof_ids", :as="full_off") クリア
+            btn(v-model="hide_ids", :as="full_off") クリア
 
     portrate(v-for="o in potofs", :key="o.id", :face_id="o.face_id", :hide="o.hide", @click="toggle(o)")
       .bar(:class="bgc(o)")
@@ -84,36 +84,38 @@
 <script lang="coffee">
 { Query } = require "~/plugins/memory-record"
 
-module.exports =
-  mixins: [
-    require('~/plugins/book')()
-  ]
+store = (method, key)->
+  get: ->
+    @$store.state.menu.potofs[key]
+  set: (val)->
+    o = {}
+    o[key] = val
+    @$store.commit method, potofs: o
 
+stores = (method, ...keys)->
+  o = {}
+  for key in keys
+    o[key] = store method, key
+  o
+
+module.exports =
+  props: ['part']
   data: -> {}
 
-  computed:
+  computed: {
+    ...stores "menu/update", 'order', 'sort', 'hide_ids'
+
     full_on:  ->  @potof_ids -> false
     full_off: ->  @potof_ids -> true
     live_on:  ->  @potof_ids (o)-> ! o.commit
     live_off: ->  @potof_ids (o)-> o.commit
 
-    order:
-      get: ->
-        @$store.state.menu.potofs.order
-      set: (order)->
-        @$store.commit "menu/update", potofs: { order }
-    sort:
-      get: ->
-        @$store.state.menu.potofs.sort
-      set: (sort)->
-        @$store.commit "menu/update", potofs: { sort }
-
     potofs: ->
       if @part
-        { list } = Query.potofs.catalog(@book_id, @part_id, @sort, @order)
+        { list } = Query.potofs.catalog(@part.book_id, @part.id, @sort, @order)
         for o in list
           o.hide = false
-        for id in @hide_potof_ids
+        for id in @hide_ids
           Query.potofs.find(id).hide = true
 
         list
@@ -129,6 +131,7 @@ module.exports =
 
     show: ->
       @part
+  }
 
   methods:
     potof_ids: (f)->
@@ -139,7 +142,7 @@ module.exports =
 
     toggle: (o)->
       o.hide = ! o.hide
-      @hide_potof_ids = @potof_ids (o)-> o.hide
+      @hide_ids = @potof_ids (o)-> o.hide
 
     reverse: ->
       switch @order

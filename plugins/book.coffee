@@ -64,9 +64,9 @@ store =
     
     hide_potof_ids:
       get: ->
-        @$store.state.book.hide_potof_ids
-      set: (ids)->
-        @$store.commit "book/hide_potof_ids", ids
+        @$store.state.menu.potofs.hide_ids
+      set: (hide_ids)->
+        @$store.commit "menu/update", potofs: { hide_ids }
 
   methods:
     page_reset: ->

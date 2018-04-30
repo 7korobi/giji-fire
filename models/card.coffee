@@ -2,7 +2,7 @@
 
 new Rule("card").schema ->
   @order "write_at"
-  @path "folder", "book", "part", "potof"
+  @path "folder", "book", "potof"
   @belongs_to "role"
 
   Object.assign @model_property,
