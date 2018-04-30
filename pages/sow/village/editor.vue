@@ -25,8 +25,6 @@ module.exports =
   ]
   layout: "sow"
   mounted: ->
-    @shows = [@shows..., "current"]
-
   methods:
     anker: (book_id, a)->
       a = uniq @$route.query.a, a

@@ -1,22 +1,19 @@
 <script lang="coffee">
+{ vuex_value } = require '~/plugins/vuex-helper'
 
 module.exports =
   props: ['part', 'back_url']
 
   data: -> {}
-  computed:
+  computed: {
+    ...vuex_value 'menu.side',['shows']
     is_show_mention: ->
       "mentions" in @shows
     is_show_toc: ->
       "toc"   in @shows
     is_show_potofs: ->
       "potof" in @shows
-
-    shows:
-      get: ->
-        @$store.state.menu.shows
-      set: (shows)->
-        @$store.commit "menu/shows", shows
+  }
 
 
 </script>

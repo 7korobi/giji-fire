@@ -1,6 +1,7 @@
 _ = require "lodash"
 { Query } = require "~/plugins/memory-record"
 { path, relative_to } = require "~/plugins/struct"
+{ vuex_value } = require '~/plugins/vuex-helper'
 
 
 browser = require("~/plugins/browser-store") 
@@ -61,12 +62,8 @@ store =
       back ?= @back
       path: "./editor"
       query: { back }
-    
-    hide_potof_ids:
-      get: ->
-        @$store.state.menu.potofs.hide_ids
-      set: (hide_ids)->
-        @$store.commit "menu/update", potofs: { hide_ids }
+
+    hide_potof_ids: vuex_value("menu.potofs", ['hide_ids']).hide_ids
 
   methods:
     page_reset: ->

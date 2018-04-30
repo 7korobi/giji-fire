@@ -18,9 +18,8 @@ module.exports =
       order: "asc"
       hide_ids: []
 
-    shows: [] # pin, toc, potof, current, search
-    component: "default"
-    target: null
+    side:
+      shows: [] # pin, toc, potof, current, search
 
   mutations:
     center: (state, { top, left, height, width })->
@@ -47,10 +46,6 @@ module.exports =
 
       # console.log " go to #{id} as #{top}px"
       window.scrollBy 0, top
-
-    shows: (state, a)->
-      state.shows = a
-      return
 
     update: (state, o)->
       for key, val of state when o[key]

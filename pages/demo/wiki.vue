@@ -47,14 +47,19 @@ module.exports =
   
   mounted: ->
     idx =
-      for key, i in ["wiki","test","page"]
+      for key, i in ["test","page"]
         @idx[i] || key
     @idx = idx.join("-")
-    @edit_chat.potof_id = @edit_potof._id = @book_id + '-1'
-    @edit_chat._id = @part_id + '-SS-edit'
 
+    @edit_chat.potof_id = @edit_potof._id = @book_id + '-1'
+    @edit_chat._id = @book_id + '-1-SS-edit'
+
+    Set.book.add
+      _id: @book_id
+    Set.part.add
+      _id: @book_id + '-1'
     Set.phase.add
-      _id: @part_id + '-SS'
+      _id: @book_id + '-1-SS'
       handle: "SSAY"
     Set.potof.add @edit_potof
     Set.chat.add  @edit_chat

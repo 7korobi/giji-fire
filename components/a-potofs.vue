@@ -83,27 +83,14 @@
 
 <script lang="coffee">
 { Query } = require "~/plugins/memory-record"
-
-store = (method, key)->
-  get: ->
-    @$store.state.menu.potofs[key]
-  set: (val)->
-    o = {}
-    o[key] = val
-    @$store.commit method, potofs: o
-
-stores = (method, ...keys)->
-  o = {}
-  for key in keys
-    o[key] = store method, key
-  o
+{ vuex_value } = require '~/plugins/vuex-helper'
 
 module.exports =
   props: ['part']
   data: -> {}
 
   computed: {
-    ...stores "menu/update", 'order', 'sort', 'hide_ids'
+    ...vuex_value "menu.potofs", ['order', 'sort', 'hide_ids']
 
     full_on:  ->  @potof_ids -> false
     full_off: ->  @potof_ids -> true

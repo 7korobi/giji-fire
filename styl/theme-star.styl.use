@@ -26,7 +26,7 @@ palette_single(icons, foot, N09)
 .page-active:before
   background-repeat: no-repeat
   background-position: right top
-  background-image: url("//api-project-54633717694.firebaseapp.com/images/bg/jupiter.png")
+  background-image: url("//s3-ap-northeast-1.amazonaws.com/giji-assets/images/bg/jupiter.png")
   background-color: hsla(210,96%,10%,1)
 
 .contentframe
