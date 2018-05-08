@@ -79,7 +79,6 @@ module.exports =
   head: ->
     # https://materialdesignicons.com/
     link: [
-      { hid: 'hid1', rel: 'stylesheet', type: 'text/css', href: url.assets + '/element-ui/theme-chalk/index.css' }
       { hid: 'hid2', rel: 'stylesheet', type: 'text/css', href: url.assets + '/css/index.styl.css' }
       { hid: 'hid3', rel: 'stylesheet', type: 'text/css', href: 'https://cdn.materialdesignicons.com/2.1.19/css/materialdesignicons.min.css' }
       { hid: 'hid4', rel: @new.rel.log,   type: 'text/css', href: @href.log }

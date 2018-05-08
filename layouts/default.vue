@@ -15,12 +15,6 @@ div
         no-ssr
           .icons.form
     .summary(name="list" tag="div" key="summary")
-      no-ssr
-        .inframe.TITLE
-          hr
-          .swipe
-            fire-oauth(style="white-space: nowrap")
-          hr
 
     .center-left
     .center-right

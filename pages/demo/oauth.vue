@@ -6,6 +6,9 @@ div
         nuxt-link(to="/demo") 開発者用ページ
 
   c-post(handle="TSAY")
+    fire-oauth(style="white-space: nowrap")
+
+  c-post(handle="TSAY")
     article
       table
         tbody(v-if="credential")
@@ -117,7 +120,10 @@ module.exports =
       @$store.state.firebase.credential
 
     db: ->
-      firebase.firestore()
+      store = firebase.firestore()
+      store.settings
+        timestampsInSnapshots: true
+      store
     messaging: ->
       firebase.messaging()
     collection: ->
