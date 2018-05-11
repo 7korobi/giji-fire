@@ -83,7 +83,7 @@ new Rule("sow_village").schema ->
     
     @search_words = @name
 
-  Object.assign @model_property,
+  @property 'model',
     roles:
       get: ->
         @query.reduce ? []

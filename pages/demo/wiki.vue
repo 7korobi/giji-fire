@@ -8,10 +8,8 @@ div
   e-potof(v-model="edit_potof")
 
   chat(:id="edit_chat._id")
-    hr
-    a.btn() 投稿
   c-report(:handle="edit_chat.handle" head="a")
-    text-editor(v-model="edit_chat.log" :maxRow="5" :maxSize="250")
+    text-editor(v-model="edit_chat.log" @submit="chat_post" :maxRow="5" :maxSize="250")
   c-report(handle="footer" deco="center")
     bread-crumb
 </template>
@@ -44,7 +42,25 @@ module.exports =
       log: "a"
 
     { edit_chat, edit_potof, tag_ids: [], step: State.step }
-  
+
+  computed:
+    user: ->
+      @$store.state.firebase.user
+    credential: ->
+      @$store.state.firebase.credential
+
+    db: ->
+      store = firebase.firestore()
+      store.settings
+        timestampsInSnapshots: true
+      store
+    collection: ->
+      @db.collection(@book_id)
+
+  methods:
+    chat_post: (text)->
+      console.log text
+
   mounted: ->
     idx =
       for key, i in ["test","page"]
@@ -54,14 +70,17 @@ module.exports =
     @edit_chat.potof_id = @edit_potof._id = @book_id + '-1'
     @edit_chat._id = @book_id + '-1-SS-edit'
 
-    Set.book.add
-      _id: @book_id
-    Set.part.add
-      _id: @book_id + '-1'
     Set.phase.add
       _id: @book_id + '-1-SS'
       handle: "SSAY"
     Set.potof.add @edit_potof
     Set.chat.add  @edit_chat
+
+    @collection.onSnapshot (q)=>
+      q.docChanges.forEach ({ newIndex, oldIndex, type })=>
+        console.log { newIndex, oldIndex, type }
+      q.forEach (doc)=>
+        console.log doc.data()
+        console.log doc.metadata
 
 </script>

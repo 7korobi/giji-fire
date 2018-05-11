@@ -1,13 +1,15 @@
 <script lang="coffee">
-{ Query } = require "~/plugins/memory-record"
+{ Query, State } = require "~/plugins/memory-record"
 { url } = require "~/config/live.yml"
 
 module.exports =
   default:
     props: ["top"]
 
-    data: ->
+    data: -> {
+      ...State
       export_to: "progress"
+    }
 
     computed:
       mode: ->

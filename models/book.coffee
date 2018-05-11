@@ -11,7 +11,7 @@ new Rule("book").schema ->
   @has_many "potofs"
   @belongs_to "winner"
 
-  Object.assign @model_property,
+  @property 'model',
     head:
       get: ->
         "#{@idx}: #{@label}"

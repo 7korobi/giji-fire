@@ -8,7 +8,7 @@ Set    = require "./set.coffee"
 Map    = require "./map.coffee"
 
 rename = (base)->
-  base = base.replace /s$/, ""
+  base = _.snakeCase(base).replace /s$/, ""
   name = Mem.Name[base]
   return name if name
 
@@ -164,13 +164,21 @@ module.exports = class Rule
     for key, val of cb @all
       @use_cache key, val
 
+
+  property: (type, o)->
+    Object.assign @["#{type}_property"], o
+
+
   default_scope: (scope)->
     @all._copy scope @all
 
   shuffle: ->
     @default_scope (all)-> all.shuffle()
+
   order: (sort...)->
     @default_scope (all)-> all.sort sort...
+
+  
 
   relation_to_one: (key, target, ik, else_id)->
     @model_property[key] =

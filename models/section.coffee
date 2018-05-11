@@ -18,7 +18,7 @@ new Rule("section").schema ->
   @deploy ->
     @label ?= @idx
 
-  Object.assign @model_property,
+  @property 'model',
     label:
       get: ->
         begin = format.head.format @begin_at

@@ -18,9 +18,10 @@ new Rule("tag").schema ->
   @belongs_to "chr_set"
   @habtm "faces", reverse: true
   @tree()
-  @model_property.chr_job =
-    value: (face_id)->
-      Query.chr_jobs.find "#{@chr_set_id}_#{face_id}"
+  @property 'model',
+    chr_job:
+      value: (face_id)->
+        Query.chr_jobs.find "#{@chr_set_id}_#{face_id}"
   @scope (all)->
     enable: ->
       all.where (o)->
@@ -93,7 +94,7 @@ new Rule("face").schema ->
       for tag in o.tag_ids
         emit "tag", tag, map
 
-  Object.assign @model_property,
+  @property 'model',
     roles:
       get: ->
         @aggregate.roles

@@ -5,7 +5,7 @@ new Rule("card").schema ->
   @path "folder", "book", "potof"
   @belongs_to "role"
 
-  Object.assign @model_property,
+  @property 'model',
     stat:
       get: ->
         Query.stats.find("#{@potof_id}-#{@idx}")
@@ -20,7 +20,7 @@ new Rule("stat").schema ->
 
   @deploy ->
     @able_id = @idx
-  Object.assign @model_property,
+  @property 'model',
     card:
       get: ->
         Query.stats.find("#{@potof_id}-#{@idx}")
