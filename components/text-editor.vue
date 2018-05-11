@@ -7,14 +7,66 @@
     sub {{maxSize}}字
     | {{row}}/
     sub {{maxRow}}行
+
   span.pull-right
-    a.btn(@click="nDm") [[]]
-    a.btn(@click="anker") >>
-    a.btn(@click="comment") /**/
     a.btn(@click="submit") 投稿
+
+  span.pull-right
+    a.btn(@click="nDm")
+      i.mdi.mdi-dice-3
+
+  span.pull-right
+    a.btn(@click='h1')
+      i.mdi.mdi-format-header-1
+    a.btn(@click='h2')
+      i.mdi.mdi-format-header-2
+    a.btn(@click='h3')
+      i.mdi.mdi-format-header-3
+    a.btn(@click='h4')
+      i.mdi.mdi-format-header-4
+    a.btn(@click='h5')
+      i.mdi.mdi-format-header-5
+    a.btn(@click='h6')
+      i.mdi.mdi-format-header-6
+
+  div
+    span
+      a.btn(@click='blockquote')
+        i.mdi.mdi-format-indent-increase
+      a.btn(@click='ul')
+        i.mdi.mdi-format-list-bulleted
+      a.btn(@click='ol')
+        i.mdi.mdi-format-list-numbers
+      a.btn(@click='table')
+        i.mdi.mdi-table
+      a.btn(@click='footnote')
+        i.mdi.mdi-tag-text-outline
+      a.btn(@click='hr')
+        i.mdi.mdi-format-page-break
+
+    span
+      a.btn(@click='image')
+        i.mdi.mdi-tooltip-image
+      a.btn(@click='anker')
+        i.mdi.mdi-link-variant
+      a.btn(@click='sup')
+        i.mdi.mdi-format-superscript
+      a.btn(@click='sub')
+        i.mdi.mdi-format-subscript
+      a.btn(@click='strong')
+        i.mdi.mdi-format-bold
+      a.btn(@click='ruby')
+        i.mdi.mdi-source-commit-end-local
+      a.btn(@click='code')
+        i.mdi.mdi-code-braces
+      a.btn(@click='del')
+        i.mdi.mdi-format-strikethrough-variant
+
 </template>
 
 <style lang="stylus" scoped>
+span
+  margin: 0 6px
 </style>
 
 <script lang="coffee">
@@ -55,12 +107,56 @@ module.exports =
       caret: {}
 
     methods:
+      anker: caret (hd, text, tl)->
+        """[#{text}]: <#> "#{text}"
+        #{hd}[#{text}]#{tl}"""
+      ruby: caret (hd, text, tl)->
+        """[#{text}]: ○
+        #{hd}[#{text}]#{tl}"""
+      hr: caret (hd, text, tl)->
+        """#{hd}
+        * * *
+        #{text}#{tl}"""
+      table: caret (hd, text, tl)->
+        """#{hd}
+
+        |     |     |
+        |:--- |:--- |
+        |#{text}||
+        #{tl}
+        """
+
+      h1: caret (hd, text, tl)->
+        """#{hd}#{text}
+        =====
+        #{tl}"""
+      h2: caret (hd, text, tl)->
+        """#{hd}#{text}
+        -----
+        #{tl}"""
+      h3: caret (hd, text, tl)->  """#{hd}### #{text}#{tl}"""
+      h4: caret (hd, text, tl)->  """#{hd}#### #{text}#{tl}"""
+      h5: caret (hd, text, tl)->  """#{hd}##### #{text}#{tl}"""
+      h6: caret (hd, text, tl)->  """#{hd}###### #{text}#{tl}"""
+
+      sup: caret (hd, text, tl)-> """#{hd}^#{text}^#{tl}"""
+      sub: caret (hd, text, tl)-> """#{hd}~#{text}~#{tl}"""
+      del: caret (hd, text, tl)-> """#{hd} ~~#{text}~~ #{tl}"""
+
+      em: caret (hd, text, tl)->     """#{hd} *#{text}* #{tl}"""
+      strong: caret (hd, text, tl)-> """#{hd} **#{text}** #{tl}"""
+      code: caret (hd, text, tl)->   """#{hd}`#{text}`#{tl}"""
+
+      blockquote: caret (hd, text, tl)-> """#{hd}> #{text}#{tl}"""
+      image: caret (hd, text, tl)->      """#{hd}![#{text}](#)#{tl}"""
+      ul: caret (hd, text, tl)->         """#{hd}* #{text}#{tl}"""
+      ol: caret (hd, text, tl)->         """#{hd}1. #{text}#{tl}"""
+      footnote: caret (hd, text, tl)->   """#{hd}^[#{text}]#{tl}"""
+
       nDm:     caret (pre, select, post)-> "#{pre}[[#{select}]]#{post}"
-      anker:   caret (pre, select, post)-> "#{pre}>>#{select}#{post}"
-      comment: caret (pre, select, post)-> "#{pre}/*#{select}*/#{post}"
 
       submit: _.debounce ->
-        console.log @value
+        @$emit 'submit', @value
       , 1000
 
       input: _.debounce (e)->
