@@ -14,7 +14,7 @@ palette_single(icons, foot, VBROAD)
 .center-right
   border-color: hsla(35,21%,47%,1)
 
-.page-active:before
+.page-active-bg
   // animation: bg-pulse-fire 5s ease-in-out infinite alternate
   background-repeat: repeat-y
   background-position: center top

@@ -13,10 +13,10 @@ palette_single(icons, metal, P04)
 .center-right
   border-color: hsla(70,15%,10%,1)
 
-.page-active:before
+.page-active-bg
   background: url("//s3-ap-northeast-1.amazonaws.com/giji-assets/images/bg/nagatanienn.png")
 
-.page-active:after
+.page-active
   // animation: bg-pulse-fire 5s ease-in-out infinite alternate
   background-repeat: repeat-y
   background-position: center top

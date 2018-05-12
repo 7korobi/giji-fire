@@ -14,7 +14,7 @@ palette_single(icons, pastel, N09)
 .center-right
   border-color: hsla(210,66%,90%,1)
 
-.page-active:before
+.page-active-bg
   // animation: bg-pulse-fire 5s ease-in-out infinite alternate
   background-repeat: repeat-y
   background-position: center top

@@ -24,22 +24,6 @@ body
 .inframe
   pointer-events: auto
 
-.page-active
-  &:before
-  &:after
-    content: ''
-    position: fixed
-    pointer-events: none
-    width:  100vw
-    height: 100vh
-    top: 0
-    opacity: 1
-
-  &:before
-    z-index: -98
-  &:after
-    z-index: -97
-
 .chat
   box-sizing: border-box
   display: block

@@ -1,28 +1,29 @@
 <template lang="pug">
-div
+.page-active-bg
   a-header
-  .outframe.page-active
-    .sideframe
-      .inframe
-        no-ssr
-          .icons.form
-            nuxt-link.item.active(replace, :to="back_url")
-              i.mdi.mdi-map-marker
-            check.item(v-model="shows" as="potof")
-              i.mdi.mdi-account-multiple
+  .page-active
+    .outframe
+      .sideframe
+        .inframe
+          no-ssr
+            .icons.form
+              nuxt-link.item.active(replace, :to="back_url")
+                i.mdi.mdi-map-marker
+              check.item(v-model="shows" as="potof")
+                i.mdi.mdi-account-multiple
 
-    no-ssr
-      .summary(name="list" tag="div" key="summary")
-        a-potofs(key="3" :part='part')
+      no-ssr
+        .summary(name="list" tag="div" key="summary")
+          a-potofs(key="3" :part='part')
 
-    .center-left
-    .center-right
-    .contentframe
-      .inframe
-        slot
-        c-report(handle="footer", :write_at="1169852700003")
-          a-footer
-          .icons.form
+      .center-left
+      .center-right
+      .contentframe
+        .inframe
+          slot
+          c-report(handle="footer", :write_at="1169852700003")
+            a-footer
+            .icons.form
 
 </template>
 <style lang="stylus" scoped>

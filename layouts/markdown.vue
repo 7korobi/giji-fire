@@ -6,31 +6,32 @@ module.exports =
 
 </script>
 <template lang="pug">
-div
+.page-active-bg
   a-header
-  .outframe.page-active
+  .page-active
+    .outframe
 
-    .sideframe
-      .inframe
+      .sideframe
+        .inframe
+          no-ssr
+            .icons.form
+      .summary(name="list" tag="div" key="summary")
         no-ssr
-          .icons.form
-    .summary(name="list" tag="div" key="summary")
-      no-ssr
-        .inframe.TITLE
-          hr
-          .swipe
-            fire-oauth(style="white-space: nowrap")
-          hr
+          .inframe.TITLE
+            hr
+            .swipe
+              fire-oauth(style="white-space: nowrap")
+            hr
 
-    .center-left
-    .center-right
-    .contentframe
-      .inframe
-        no-ssr
-          c-report(handle="SSAY" deco="giji")
-            nuxt
-        c-report(handle="footer", :write_at="1169852700003")
-          a-footer
+      .center-left
+      .center-right
+      .contentframe
+        .inframe
+          no-ssr
+            c-report(handle="SSAY" deco="giji")
+              nuxt
+          c-report(handle="footer", :write_at="1169852700003")
+            a-footer
 </template>
 <style lang="stylus" scoped>
 </style>

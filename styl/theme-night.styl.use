@@ -14,10 +14,10 @@ palette_single(icons, metal, P04)
 .center-right
   border-color: hsla(40deg,15%,10%,1)
 
-.page-active:before
+.page-active-bg
   background-color: #000
 
-.page-active:after
+.page-active
   // animation: bg-pulse-fire 15s ease-in-out infinite alternate
   background-repeat: repeat-y
   background-position: center top
