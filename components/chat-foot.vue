@@ -1,7 +1,7 @@
 <template lang="pug">
-.date
-  timeago(v-if="full && write_at", :since="write_at")
-  abbr(v-if="chat_id", :cite="chat_id") {{ anker }}
+.date(v-if="anker")
+  timeago(v-if="full && write_at" :since="write_at")
+  abbr(v-if="chat_id" :cite="chat_id") {{ anker }}
 </template>
 
 <script lang="coffee">

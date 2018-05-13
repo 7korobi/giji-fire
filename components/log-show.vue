@@ -2,7 +2,7 @@
 { vuex_value } = require '~/plugins/vuex-helper'
 
 module.exports =
-  props: ['part', 'back_url']
+  props: ['part', 'back_url', 'page_idx', 'chat_id']
 
   data: -> {}
   computed: {
@@ -37,7 +37,7 @@ module.exports =
 
       no-ssr
         .summary(name="list" tag="div" key="summary")
-          d-mentions.inframe.mentions(key="1" @anker="$listeners.anker" v-if="is_show_mention")
+          d-mentions.inframe.mentions(key="1" @anker="$listeners.anker" :page_idx="page_idx" :chat_id="chat_id" v-if="is_show_mention")
           .inframe.TITLE(v-if="is_show_toc")
             hr
             .swipe

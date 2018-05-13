@@ -40,9 +40,6 @@ store =
     page_idx: ->
       @page_all_contents?.page_idx?(@chat) ? 0
 
-    mentions: ->
-      Query.chats.reduce?.mention_to?[@chat_id]
-
     now: ->
       Query.chats.now(@hide_potof_ids)
 

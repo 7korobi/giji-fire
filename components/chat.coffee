@@ -1,4 +1,5 @@
 { Query } = require "~/plugins/memory-record"
+{ vuex_value } = require '~/plugins/vuex-helper'
 el = require "~/plugins/dom"
 markdown = require "~/plugins/markdown"
 
@@ -34,11 +35,13 @@ module.exports = ->
         if chk?.value == "confirm" && confirm "open?\n#{url}"
           open url, "_blank"
 
-  computed:
+  computed: {
+    ...vuex_value 'menu.side',['shows']
     el_adjust: el.adjust
 
     full: ->
-      ! 'current' in @$store.state.menu.side.shows
+      false
+      # @current?.id == @chat?.id
 
     anker: ->
       if chat = @chat
@@ -55,7 +58,7 @@ module.exports = ->
           ""
 
     current: ->
-      { idx } = @$route.params
+      idx = @$route.params.idx || @$route.query.idx
       if idx
         Query.chats.find idx
     chat: ->
@@ -72,3 +75,4 @@ module.exports = ->
       text = @log
       markdown[@deco] @, (html)-> text = html
       text
+  }

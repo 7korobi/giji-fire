@@ -1,7 +1,7 @@
 <script lang="coffee">
 
 module.exports =
-  props: ['back_url']
+  props: ['back_url', 'page_idx', 'chat_id']
   data: -> {}
 
 </script>
@@ -19,7 +19,7 @@ module.exports =
 
       no-ssr
         .summary(name="list" tag="div" key="summary")
-          d-mentions.inframe.mentions(key="1" @anker="$listeners.anker")
+          d-mentions.inframe.mentions(key="1" @anker="$listeners.anker" :page_idx="page_idx" :chat_id="chat_id")
 
       .center-left
       .center-right
