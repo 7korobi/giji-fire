@@ -5,6 +5,8 @@ markdown = require "~/plugins/markdown"
 
 module.exports = ->
   props:
+    current: Object
+
     id: String
     write_at: [Date, Number]
 
@@ -57,10 +59,6 @@ module.exports = ->
         else
           ""
 
-    current: ->
-      idx = @$route.params.idx || @$route.query.idx
-      if idx
-        Query.chats.find idx
     chat: ->
       if @id
         Query.chats.find @id

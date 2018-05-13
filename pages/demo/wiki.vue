@@ -7,7 +7,7 @@ div
 
   e-potof(v-model="edit_potof")
 
-  chat(:id="edit_chat._id")
+  chat(:id="edit_chat._id" :current="chat")
   c-report(:handle="edit_chat.handle" head="a")
     text-editor(v-model="edit_chat.log" @submit="chat_post" :maxRow="5" :maxSize="250")
   c-report(handle="footer" deco="center")

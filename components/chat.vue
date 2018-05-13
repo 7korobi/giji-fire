@@ -7,20 +7,22 @@ module.exports =
     id:
       type: String
       required: true
-    show:
-      type: String
+    show: String
+    current: Object
 
   render: (m, ctx)->
-    { id, show } = ctx.props
+    { id, show, current } = ctx.props
     chat = Query.chats.find id
     return [] unless chat
 
     key = id
     attrs =
       id: id
+      current: current
+      show: show ? chat.show
+
       write_at: chat.write_at
       handle: chat.handle
-      show: show ? chat.show
       deco: chat.deco
       head: chat.head
       log: chat.log

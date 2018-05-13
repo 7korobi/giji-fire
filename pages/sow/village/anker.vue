@@ -4,7 +4,7 @@ log-anker(:page_idx="page_idx" :chat_id="chat_id" :back_url='back_url' @anker="a
     d-mode
   no-ssr
     div
-      chat(v-for="o in anker_chats" @anker="anker" @focus="focus", :id="o.id", :key="o.id")
+      chat(v-for="o in anker_chats" @anker="anker" @focus="focus" :id="o.id" :key="o.id")
   c-report.form(handle="footer")
     d-mode
 

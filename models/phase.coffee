@@ -6,6 +6,7 @@ attrs =
   private: {            label: '秘密' }
   SSAY:   { mark:  '', label: '会話' }
   TSAY:   { mark: '-', label: '独言' }
+  AIM:    { mark: '-', label: '内緒' }
   MAKER:  { mark: '#', label: '村建' }
   ADMIN:  { mark: '%', label: '管理' }
   VSSAY:  { mark: '@', label: '見物' }

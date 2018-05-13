@@ -27,7 +27,7 @@ log-show(:part='part' :page_idx="page_idx" :chat_id="chat_id" :back_url='back_ur
           span メモ掲載の一覧を表示しています。
 
       div(v-for="(chats, idx) in page_contents", :key="idx")
-        chat(v-for="o in chats" @anker="anker" @focus="focus", :id="o.id", :key="o.id")
+        chat(v-for="o in chats" @anker="anker" @focus="focus" :current="chat" :id="o.id", :key="o.id")
 
       c-report.form(v-if="page_next_idx" handle="footer" key="limitup")
         .center
