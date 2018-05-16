@@ -44,10 +44,10 @@
 
       transition-group.potofs.fine.tlist(name="list" tag="tbody")
         tr(v-for="o in potofs", :key="o.id" v-if="! o.hide")
-          th.r(:class="o.live.role_id") {{ o.job }}
-          th.l(:class="o.live.role_id") {{ o.face && o.face.name }}
-          td.r(:class="o.live.role_id") {{ o.live.date           | currency("日") }}
-          td.c(:class="o.live.role_id") {{ o.live.role.label }}
+          th.r(:class="o.live && o.live.role_id") {{ o.job }}
+          th.l(:class="o.live && o.live.role_id") {{ o.face && o.face.name }}
+          td.r(:class="o.live && o.live.role_id") {{ o.live && o.live.date           | currency("日") }}
+          td.c(:class="o.live && o.live.role_id") {{ o.live && o.live.role.label }}
 
           th.r(:class="o.say_handle(part.id)") {{ o.give && o.give.give | currency("回") }}
           td.r(:class="o.say_handle(part.id)") {{ o.say(part.id).count  | currency("回") }}
@@ -114,7 +114,7 @@ module.exports =
         when "text", "role_labels", "winner_id", "win"
           (o)-> o.winner_id
         else
-          (o)-> o.live.role_id
+          (o)-> o.live && o.live.role_id
 
     show: ->
       @part

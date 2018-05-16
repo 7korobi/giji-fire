@@ -1,3 +1,7 @@
+<style lang="stylus" scoped>
+span
+  margin: 2px 6px
+</style>
 
 <template lang="pug">
 .text-editor
@@ -63,11 +67,6 @@
         i.mdi.mdi-format-strikethrough-variant
 
 </template>
-
-<style lang="stylus" scoped>
-span
-  margin: 0 6px
-</style>
 
 <script lang="coffee">
 _ = require "lodash"
@@ -157,7 +156,9 @@ module.exports =
 
       submit: _.debounce ->
         @$emit 'submit', @value
-      , 1000
+      , 3000,
+        leading: true
+        trailing: false
 
       input: _.debounce (e)->
         @$emit 'input', e.target.value

@@ -408,11 +408,12 @@ palette_single($bgTheme, $backT, key)
       blockquote
         border-color: $edge
 
+    input
     textarea
       body &.{theme}
       .{theme} &
         color:            $pen
-        background-color: $bg
+        background-color: $bgHi
         border-color:     $edge
         :hover
         :focus
@@ -494,10 +495,8 @@ palette_single($bgTheme, $backT, key)
         color: $pen
         background-color: $bgHi
 
-    input
     select
     button
-    textarea
     .btn
     [href]
       body &.{theme}

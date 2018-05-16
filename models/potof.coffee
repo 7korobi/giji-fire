@@ -22,14 +22,6 @@ new Rule("potof").schema ->
 
 
   @deploy ->
-    if @face?
-      { job, name } = @face
-
-    @head = [
-      @job  || job
-      @name || name
-    ].join(" ")
-
     role_id_set = {}
     able_id_set = {}
     for card in @cards.list when card.role
@@ -71,6 +63,16 @@ new Rule("potof").schema ->
             @win = "参加"
 
     @winner_id ?=  "NONE"
+
+  @property 'model',
+    head:
+      get: ->
+        if @face?
+          { job, name } = @face
+        [
+          @job  || job
+          @name || name
+        ].join(" ")
 
   class @model extends @model
     say: (part_id)->

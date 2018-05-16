@@ -18,4 +18,3 @@ module.exports =
       setter = [...dir[1..-1], key].join('.')
       o[key] = state_value mutation, getter, setter
     o
-
