@@ -23,6 +23,7 @@ phase_attr = (self)->
     Object.assign self, o
   unless self.guide
     self.mark = null
+  self
 
 module.exports =
   namespaced: true
