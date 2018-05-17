@@ -3,6 +3,27 @@
 { url } = require "~/config/live.yml"
 _ = require "lodash"
 
+attrs =
+  TITLE:   { mark: 'T', label: '表題' }
+  public:  {            label: '活動' }
+  private: {            label: '秘密' }
+  SSAY:   { mark:  '', label: '会話' }
+  TSAY:   { mark: '-', label: '独言' }
+  AIM:    { mark: '-', label: '内緒' }
+  MAKER:  { mark: '#', label: '村建' }
+  ADMIN:  { mark: '%', label: '管理' }
+  VSSAY:  { mark: '@', label: '見物' }
+  WSAY:   { mark: '*', label: '人狼' }
+  GSAY:   { mark: '+', label: '墓下' }
+  SPSAY:  { mark: '=', label: '共鳴' }
+  XSAY:   { mark: '!', label: '念波' }
+  VGSAY:  { mark: '@', label: '見物' }
+phase_attr = (self)->
+  if o = attrs[self.handle]
+    Object.assign self, o
+  unless self.guide
+    self.mark = null
+
 module.exports =
   namespaced: true
   state: -> {}
@@ -65,14 +86,15 @@ module.exports =
           sign: o.sow_auth_id
 
       phases =
-        "#{book_id}-0-mA":
+        "#{book_id}-0-mA": phase_attr
           handle: "MAKER"
           group:  "A"
           update: false
-        "#{book_id}-0-mS":
+        "#{book_id}-0-mS": phase_attr
           handle: "MAKER"
           group:  "A"
           update: false
+
 
       write_at = 0
 
@@ -160,7 +182,7 @@ module.exports =
         deco = o.style ? "sow"
         head = potof_id && o.name
 
-        phases[phase_id] ?=
+        phases[phase_id] ?= phase_attr
           handle: handle
           guide: guide
           type:  phase_type

@@ -8,7 +8,7 @@ log-wiki(:part="part" :page_idx="0" :chat_id="chat_id" :back_url="back_url" @ank
   div(v-for="(chats, idx) in page_contents", :key="idx")
     chat(v-for="o in chats" @anker="anker" @focus="focus" :current="chat" :id="o.id", :key="o.id")
 
-  c-post(handle="TSAY" v-if="! user")
+  c-post(handle="TSAY")
     fire-oauth(style="white-space: nowrap")
   e-potof(v-if="user" v-model="edit.potof")
   chat(v-if="user && edit.potof.face_id" :id="edit.chat._id" :current="chat")
@@ -54,10 +54,12 @@ module.exports =
 
   computed: {
     ...vuex_value 'firebase',['user', 'credential']
-    part_id: ->
-      @book_id + '-1'
-    part: ->
-      { @book_id, id: @part_id, label: 'wiki' }
+    part_id:  -> @book_id + '-1'
+    phase_id: -> @book_id + '-1-SS'
+    potof_id: ->
+      { face_id, uid } = @edit.potof
+      @book_id + '-' + uid
+
     page_contents: ->
       Query.chats.full( [], @part_id ).reduce.list
 
@@ -83,29 +85,33 @@ module.exports =
     chat_post: (log)->
       return if log.length < 4
 
-      { _id, head } = @edit.potof
-      potof_id = _id
+      { head, face_id } = @edit.potof
       { show, deco, to, handle } = @edit.chat
 
       _id = @part_id + '-SS-' + @edit.chat.new_idx()
       write_at = new Date - 0
-      doc = { _id, potof_id, write_at, show, deco, to, head, log }
+      doc = { _id, face_id, @potof_id, write_at, show, deco, to, head, log }
 
       await @_chats.doc(_id).set doc,
         merge: true
-      console.log doc
       @edit.chat.log = ''
 
   watch:
     user: ->
-      @edit.potof.sign = @user.displayName
-      @edit.potof.uid = @user.uid
+      if @user
+        { displayName, uid } = @user
+      else
+        displayName = null
+        uid = null
+      @edit.potof.sign = displayName
+      @edit.potof.uid = uid
       console.log { @user }
     credential: ->
       console.log { @credential }
+
     'edit.potof.face_id': ->
       { face_id, tag_id, job, sign, uid } = @edit.potof
-      _id = @book_id + uid
+      _id = @potof_id
       write_at = new Date - 0
       doc = { _id, face_id, tag_id, job, write_at, sign, uid }
       @edit.chat.head = @edit.potof.head
@@ -120,11 +126,17 @@ module.exports =
 
     Set.book.add
       _id: @book_id
+    Set.part.add
+      _id: @part_id
+      label: 'wiki'
     Set.phase.add
-      _id: @part_id + '-SS'
+      _id: @phase_id
       handle: 'SSAY'
-      update: true
+      label: '会話'
+      mark: 'SS-'
       group: 'S'
+      update: true
+      guide: true
 
     snap @_chats,  'chat'
     snap @_phases, 'phase'

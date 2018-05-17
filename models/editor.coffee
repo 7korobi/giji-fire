@@ -6,11 +6,11 @@ Base = (table)->
     str = ""
     while num
       at = num % size
-      str = table[at] + str
+      str += table[at]
       num = Math.floor(num / size)
     str
 
-Base60 = Base "ABCDEFGHIJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz0123456789"
+Base59 = Base "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz0123456789"
 
 
 module.exports = edit =
@@ -37,7 +37,7 @@ module.exports = edit =
     head: ""
     log: ""
     new_idx: ->
-      Base60.num2str new Date - 0
+      Base59.num2str new Date - 0
 
 Set.book.add  edit.book
 Set.phase.add edit.phase

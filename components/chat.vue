@@ -25,7 +25,9 @@ module.exports =
       { face_id, head, sign } = o
     
     key = id
-    { show = show, handle = handle, head = head, write_at, deco, log, to } = chat
+    { face_id = face_id, show = show, handle = handle, head = head,
+      write_at, deco, log, to
+    } = chat
 
     attrs = { current, show, id, face_id, write_at, sign, handle, deco, head, log, to }
     m "c-" + attrs.show, { attrs, key, on: ctx.data.on }, ctx.children
