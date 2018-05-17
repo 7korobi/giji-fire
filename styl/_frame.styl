@@ -13,6 +13,14 @@ body
   overflow-wrap: break-word
   word-wrap:     break-word
 
+
+IMG
+  display: block
+
+IMG.hide
+  filter: sepia(60%) hue-rotate(180deg);
+
+
 .summary
 .sideframe
 .writeframe
@@ -46,6 +54,58 @@ body
 
 .fullframe
   margin: 0
+  margin-left: "calc(50% - %s)" % 45vw
+  width: 90vw
+
+.chrblank
+  background: #444844
+  color:      #CCF
+  margin: 0 auto
+  p
+    text-align:  center
+    white-space: nowrap
+
+.swipe
+  .portrate
+    max-width: 45px
+    width:     45px
+    background-color: black
+
+    IMG
+      max-height: 65px
+      height:     65px
+      max-width: 45px
+      width:     45px
+    IMG + .chrblank
+      margin: 0.5px 0.5px 2px 0.5px
+      padding: 0
+
+    .chrblank
+      max-width:    44px
+      width:        44px
+      border-radius: 4px
+
+.fullframe,
+.contentframe
+  .portrate
+    max-width: 90px
+    width:     90px
+    background-color: black
+
+    IMG
+      max-height: 130px
+      height:     130px
+      max-width: 90px
+      width:     90px
+    IMG + .chrblank
+      margin: 1px 1px 3px 1px
+      padding: 0
+
+    .chrblank
+      max-width:    88px
+      width:        88px
+      border-radius: 9px
+
 
 .summary
 .inframe

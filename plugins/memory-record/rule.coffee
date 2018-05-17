@@ -34,12 +34,13 @@ module.exports = class Rule
 
     @map_property = {}
 
+    { base } = @$name
     @model_property =
       $form:
         enumerable: false
         get: ->
           # TODO
-          Mem.Set[@$name.base].form(@id)
+          Mem.Set[base].form(@id)
       id:
         enumerable: true
         get: -> @_id
@@ -52,7 +53,7 @@ module.exports = class Rule
         enumerable: false
         get: ->
           # TODO
-          Mem.Set[@$name.base].find(@id)
+          Mem.Set[base].find(@id)
       changes:
         enumerable: true
         value: (key)->

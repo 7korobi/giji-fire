@@ -61,23 +61,29 @@ module.exports = m =
       to_str: JSON.stringify
       by_str: JSON.parse
 
-  _id: (o, at, name)->
+  idx_id: (at, name)->
+    o = {}
     key = "#{name}_id"
-    _.set o, "computed.#{key}.get", ->
+    _.set o, "#{key}.get", ->
       if at < @idx.length
         @idx[0..at].join("-")
       else
         null
-    _.set o, "computed.idx.get", ->
+    _.set o, "idx.get", ->
       @$data.$browser.idx.split("-")
+    o
 
-  item: (o, at, name)->
+  item: (at, name)->
+    o = {}
     key = "#{name}_id"
     list = "#{name}s"
-    _.set o, "computed.#{name}.get", ->
+    _.set o, "#{name}.get", ->
       Query[list].find @[key]
+    o
 
-  path: (o, keys...)->
+  path: (keys...)->
+    o = {}
     for name, idx in keys
-      m._id o, idx, name
-      m.item o, idx, name
+      _.merge o, m.idx_id idx, name
+      _.merge o, m.item idx, name
+    o

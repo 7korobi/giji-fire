@@ -1,5 +1,5 @@
 <template lang="pug">
-log-anker(:page_idx="page_idx" :chat_id="chat_id" :back_url='back_url' @anker="anker")
+log-anker(:part="part" :page_idx="0" :chat_id="chat_id" :back_url='back_url' @anker="anker")
   c-report.form(handle="footer")
     d-mode
   no-ssr

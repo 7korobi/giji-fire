@@ -45,7 +45,6 @@ module.exports = class Query
 
   in: (req)->
     query_parser @, req, (q, target, req, path)->
-      console.log(req)
       add = (f)-> q._filters.push f
       switch req && req.constructor
         when Array

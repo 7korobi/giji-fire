@@ -15,12 +15,12 @@ module.exports =
 
 <template lang="pug">
 div(v-if="chat")
-  .date(:class="chat.handle")
+  .date(:class="chat.phase.handle")
     hr
     span.pull-left
       a(v-if="chat.phase && chat.phase.update") 訂正
       a(v-if="chat.part") {{ chat.part.label }}
-      a p{{ 1 + page_idx}}
+      a p{{ 1 + page_idx }}
     span
       a(v-if="chat.potof") {{ chat.potof.sign }}
       em(v-if="chat.phase") {{ chat.phase.label }}

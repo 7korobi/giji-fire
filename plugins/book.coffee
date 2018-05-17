@@ -34,7 +34,8 @@ store =
     "step.chats": ->
       @page_reset()
 
-  computed:
+  computed: {
+    ...path "folder", "book", "part", "phase", "chat"
     page_all_contents: ->
       @chats(@part_id)
     page_idx: ->
@@ -61,6 +62,7 @@ store =
       query: { back }
 
     hide_potof_ids: vuex_value("menu.potofs", ['hide_ids']).hide_ids
+  }
 
   methods:
     page_reset: ->
@@ -85,10 +87,6 @@ store =
       return unless part_id && data = @chats(part_id)
       idx = part_id
       query: { @mode, idx, page: page_idx + 1 }
-
-path store, "folder", "book", "part", "phase", "chat"
-
-
 
 module.exports = (o)->
   if o?.loader

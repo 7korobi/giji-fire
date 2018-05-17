@@ -10,15 +10,15 @@
     "precommit": "npm run lint",
     "generate": "run-s generate:nuxt stylus",
     "generate:nuxt": "nuxt generate",
-    "copy": "run-p -n copy:*",
+    "copy": "run-s copy_all copy_dist",
+    "copy_all": "run-p -n copy:*",
     "copy_dist": "cp -r static/* dist/",
     "copy:stylus": "ls styl/*.styl.use | xargs stylus --compress --out static/css/",
     "copy:portrate": "cp \"../../人狼議事 チーム フォルダ/web_work/images/portrate\"/* static/images/portrate/.",
     "copy:monaco": "rm -rf static/lib/monaco-editor/min && cp -r node_modules/monaco-editor/min static/lib/monaco-editor/.",
-    "deploy": "run-s deploy:copy generate:nuxt deploy:test",
+    "deploy": "run-s generate:nuxt deploy:test",
     "deploy:test": "run-p -n deploy:firebase deploy:aws",
     "deploy:live": "run-p -n deploy:rsync deploy:aws",
-
     "deploy:firebase": "firebase deploy --only hosting",
     "deploy:aws": "aws s3 sync dist s3://giji-assets/fire --acl public-read --exclude '*.html'",
     "deploy:rsync": "rsync -avz dist 7korobi@giji.f5.si:/home/7korobi/giji-fire/.",
@@ -26,6 +26,7 @@
     "deploy:all": "firebase deploy"
   },
   "dependencies": {
+    "base-2n": "^1.0.1",
     "coffee-loader": "^0.9.0",
     "coffeescript": "2.2.4",
     "config": "^1.30.0",

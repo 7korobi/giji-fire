@@ -61,10 +61,6 @@ module.exports =
 </script>
 
 <style lang="stylus" scoped>
-.fullframe
-  margin-left: "calc(50% - %s)" % 45vw
-  width: 90vw
-
 .chrblank
   a
     display: block

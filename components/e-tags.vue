@@ -60,9 +60,6 @@ module.exports =
 </script>
 
 <style lang="stylus">
-.fullframe
-  margin-left: "calc(50% - %s)" % 45vw
-  width: 90vw
 </style>
 
 

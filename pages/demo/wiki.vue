@@ -1,5 +1,5 @@
 <template lang="pug">
-log-wiki(:part="part" :back_url="back_url")
+log-wiki(:part="part" :page_idx="0" :chat_id="chat_id" :back_url="back_url" @anker="anker")
   .summary(name="list" tag="div" key="summary")
     a-potofs(label="みている")
   c-report(handle="footer" deco="center")
@@ -8,9 +8,11 @@ log-wiki(:part="part" :back_url="back_url")
   div(v-for="(chats, idx) in page_contents", :key="idx")
     chat(v-for="o in chats" @anker="anker" @focus="focus" :current="chat" :id="o.id", :key="o.id")
 
-  e-potof(v-model="edit.potof")
-  chat(v-if="edit.potof.face_id" :id="edit.chat._id" :current="chat")
-  c-report(v-if="edit.potof.face_id" :handle="edit.phase.handle")
+  c-post(handle="TSAY" v-if="! user")
+    fire-oauth(style="white-space: nowrap")
+  e-potof(v-if="user" v-model="edit.potof")
+  chat(v-if="user && edit.potof.face_id" :id="edit.chat._id" :current="chat")
+  c-report(v-if="user && edit.potof.face_id" :handle="edit.phase.handle")
     btn(v-model="edit.chat.show" as="post")
       i.mdi.mdi-file-document-box
     btn(v-model="edit.chat.show" as="talk") 
@@ -28,13 +30,18 @@ firebase = require "firebase"
 { Query, Set, State } = require "~/plugins/memory-record"
 { vuex_value } = require '~/plugins/vuex-helper'
 
+edit = require '~/models/editor'
+
 snap = (collection, target)->
   collection.onSnapshot (q)=>
+    console.log target, q.docs.length
     q.docChanges.forEach ({ newIndex, oldIndex, type, doc })=>
       switch type
         when 'added', 'modified'
-          Set[target].add q.docs[newIndex].data()
-      console.log { newIndex, oldIndex, type, doc }
+          Set[target].add doc.data()
+        when 'removed'
+          Set[target].remove doc.data()
+      console.log { type, newIndex, oldIndex }
 
 module.exports =
   mixins: [
@@ -43,34 +50,6 @@ module.exports =
   ]
   layout: 'blank'
   data: ->
-    edit =
-      potof:
-        _id: "edit-edit-edit"
-        tag_id: ""
-        face_id: ""
-        job: ""
-        sign: "ななころび"
-
-      phase:
-        _id: 'edit-edit-edit-SS'
-        handle: 'SSAY'
-        group: 'S'
-
-      chat:
-        _id: 'edit-edit-edit-SS-edit'
-        potof_id: "edit-edit-edit"
-        write_at: 0
-        show: "talk"
-        deco: "giji"
-        to: null
-        head: ""
-        log: ""
-
-    Set.book.add
-      _id: 'edit-edit'
-    Set.phase.add edit.phase
-    Set.potof.add edit.potof
-    Set.chat.add  edit.chat
     { edit, tag_ids: [], step: State.step }
 
   computed: {
@@ -104,23 +83,31 @@ module.exports =
     chat_post: (log)->
       return if log.length < 4
 
+      { _id, head } = @edit.potof
+      potof_id = _id
       { show, deco, to, handle } = @edit.chat
-      potof_id = @book_id + '-1'
-      _id = @part_id + '-SS-1'
-      head = ''
+
+      _id = @part_id + '-SS-' + @edit.chat.new_idx()
       write_at = new Date - 0
       doc = { _id, potof_id, write_at, show, deco, to, head, log }
+
       await @_chats.doc(_id).set doc,
         merge: true
       console.log doc
       @edit.chat.log = ''
 
   watch:
+    user: ->
+      @edit.potof.sign = @user.displayName
+      @edit.potof.uid = @user.uid
+      console.log { @user }
+    credential: ->
+      console.log { @credential }
     'edit.potof.face_id': ->
-      { face_id, tag_id, job, sign } = @edit.potof
-      _id = @book_id + '-1'
+      { face_id, tag_id, job, sign, uid } = @edit.potof
+      _id = @book_id + uid
       write_at = new Date - 0
-      doc = { _id, face_id, tag_id, job, write_at, sign }
+      doc = { _id, face_id, tag_id, job, write_at, sign, uid }
       @edit.chat.head = @edit.potof.head
       await @_potofs.doc(_id).set doc,
         merge: true
@@ -136,6 +123,7 @@ module.exports =
     Set.phase.add
       _id: @part_id + '-SS'
       handle: 'SSAY'
+      update: true
       group: 'S'
 
     snap @_chats,  'chat'

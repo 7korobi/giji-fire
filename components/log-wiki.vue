@@ -14,7 +14,8 @@
 
       no-ssr
         .summary(name="list" tag="div" key="summary")
-          a-potofs(key="3" :part='part')
+          d-mentions.inframe.mentions(key="1" @anker="$listeners.anker" :page_idx="0" :chat_id="chat_id")
+          a-potofs(key="3" :part='part' v-if="is_show_potofs")
 
       .center-left
       .center-right
@@ -33,11 +34,14 @@
 { vuex_value } = require '~/plugins/vuex-helper'
 
 module.exports =
-  props: ['part', 'back_url']
+  props: ['part', 'back_url', 'chat_id']
 
   data: -> {}
   computed: {
     ...vuex_value "menu.side", ["shows"]
+    is_show_potofs: ->
+      "potof" in @shows
+    
   }
 
 </script>
