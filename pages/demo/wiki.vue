@@ -11,7 +11,7 @@ log-wiki(:part="part" :page_idx="0" :chat_id="chat_id" :back_url="back_url" @ank
   c-post(handle="TSAY")
     fire-oauth(style="white-space: nowrap")
   e-potof(v-if="user" v-model="edit.potof")
-  chat(v-if="user && edit.potof.face_id" :id="edit.chat._id" :current="chat")
+  chat(v-if="user && edit.potof.face_id" :id="edit.chat._id" :current="chat" @check="check_post")
   c-report(v-if="user && edit.potof.face_id" :handle="edit.phase.handle")
     btn(v-model="edit.chat.show" as="post")
       i.mdi.mdi-file-document-box
@@ -19,7 +19,7 @@ log-wiki(:part="part" :page_idx="0" :chat_id="chat_id" :back_url="back_url" @ank
       i.mdi.mdi-comment-text
     btn(v-model="edit.chat.show" as="report")
       i.mdi.mdi-note-text
-    text-editor(v-model="edit.chat.log" @submit="chat_post" :maxRow="8" :maxSize="250")
+    text-editor(v-model="edit.chat.log" @drop_image="image_post" @submit="chat_post" :maxRow="8" :maxSize="250")
 
   c-report(handle="footer" deco="center")
     bread-crumb
@@ -72,12 +72,17 @@ module.exports =
       potof = Query.potofs.my( @book_id, uid )
       { potof }
 
+    storage: ->
+      firebase.storage()
+    image: ->
+      @storage.ref().child('images')
+
     db: ->
-      store = firebase.firestore()
-      store.settings
-        timestampsInSnapshots: true
-      store
+      firebase.firestore()
+
     _book: ->
+      @db.settings
+        timestampsInSnapshots: true
       @db
       .collection 'wiki'
       .doc @book_id
@@ -95,6 +100,12 @@ module.exports =
     remove: (chat_id)->
       console.log chat_id
     
+    check_post: (target)->
+      console.log target
+    image_post: (file, next)->
+      { state, downloadURL } = await @image.child(file.name).put(file)
+      next await downloadURL
+
     chat_post: (log)->
       return if log.length < 4
 

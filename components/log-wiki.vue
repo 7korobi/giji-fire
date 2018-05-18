@@ -1,5 +1,5 @@
 <template lang="pug">
-.page-active-bg
+.page-active-bg(@drop="drop")
   a-header
   .page-active
     .outframe
@@ -43,5 +43,10 @@ module.exports =
       "potof" in @shows
     
   }
+  methods:
+    drop: (e)->
+      e.stopPropagation()
+      e.preventDefault()
+      console.log "block drop"
 
 </script>

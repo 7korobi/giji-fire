@@ -3,7 +3,7 @@ module.exports = require("~/components/chat.coffee")()
 </script>
 
 <template lang="pug">
-.chat.report(@click="click", :id="id", :key="id", :class="classname")
+.chat.report(@click="click" @input="input" :key="id" :class="classname")
   chat-head(v-if="head", :full="full", :head="head", :to="to", :sign="sign")
   hr(v-if="head")
   .text(v-if="$slots.default" :class="deco")

@@ -26,15 +26,22 @@ module.exports = ->
       default: ""
 
   methods:
+    input: ({ target })->
+      { type, value } = target.attributes
+      if type && type.value == 'checkbox'
+        @$emit "check", target.checked
+
     click: ({ target })->
-      { cite, href, chk } = target.attributes
+      { cite, href, chk, src, alt } = target.attributes
       if cite && chat = Query.chats.find cite.value
         { book_id } = chat
         ids = Array.from new Set [@id, chat.id]
         @$emit "anker", book_id, ids.map (id)-> id[book_id.length ..]
         
-      if url = href?.value
-        if chk?.value == "confirm" && confirm "open?\n#{url}"
+      if href
+        check = chk.value
+        url = href.value
+        if check == "confirm" && confirm "open?\n#{url}"
           open url, "_blank"
 
   computed: {

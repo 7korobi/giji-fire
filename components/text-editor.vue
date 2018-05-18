@@ -4,7 +4,7 @@ span
 </style>
 
 <template lang="pug">
-.text-editor
+.text-editor(@drop="drop")
   textarea(ref="input", @input="input", :value="value", :rows="areaRow", :placeholder="placeholder")
   span.mdi(:class="mark")
     | {{size}}/
@@ -49,8 +49,6 @@ span
         i.mdi.mdi-format-page-break
 
     span
-      a.btn(@click='image')
-        i.mdi.mdi-tooltip-image
       a.btn(@click='anker')
         i.mdi.mdi-link-variant
       a.btn(@click='sup')
@@ -71,17 +69,16 @@ span
 <script lang="coffee">
 _ = require "lodash"
 
-caret = (cb)-> ->
+caret = (cb)-> (...args)->
   { input } = @$refs
   st = input.selectionStart
   ed = input.selectionEnd
   value = @value
-  after = cb value[...st], value[st...ed], value[ed...]
+  after = cb value[...st], value[st...ed], value[ed...], ...args
   size = after.length - value.length
   @$emit 'input', after
   @$nextTick ->
-    input.selectionStart = st
-    input.selectionEnd = ed + size
+    input.selectionStart = input.selectionEnd = ed + size
 
 module.exports =
   default:
@@ -125,6 +122,13 @@ module.exports =
         #{tl}
         """
 
+      text: caret (hd, _, tl, text)->
+        """#{hd}
+        * * *
+        #{text}
+        * * *
+        #{tl}"""
+
       h1: caret (hd, text, tl)->
         """#{hd}#{text}
         =====
@@ -147,12 +151,36 @@ module.exports =
       code: caret (hd, text, tl)->   """#{hd}`#{text}`#{tl}"""
 
       blockquote: caret (hd, text, tl)-> """#{hd}> #{text}#{tl}"""
-      image: caret (hd, text, tl)->      """#{hd}![#{text}](#)#{tl}"""
+      image: caret (hd, text, tl, name, type)->      """#{hd}![#{text || type}](#{name})#{tl}"""
       ul: caret (hd, text, tl)->         """#{hd}* #{text}#{tl}"""
       ol: caret (hd, text, tl)->         """#{hd}1. #{text}#{tl}"""
       footnote: caret (hd, text, tl)->   """#{hd}^[#{text}]#{tl}"""
 
       nDm:     caret (pre, select, post)-> "#{pre}[[#{select}]]#{post}"
+
+      drop: (e)->
+        e.stopPropagation()
+        e.preventDefault()
+        for item in e.dataTransfer.items
+          switch item.kind
+            when 'file'
+              1
+            when 'string'
+              item.getAsString (data)=>
+                console.log data
+            else
+              console.log item
+        for file in e.dataTransfer.files
+          { name, type } = file
+          switch
+            when file.type.match /// ^text/ ///
+              reader = new FileReader()
+              reader.onload = ({ target })=>
+                @text target.result
+              reader.readAsText(file)
+            when file.type.match /// ^image/ ///
+              @$emit "drop_image", file, (url)=>
+                @image url, type
 
       submit: _.debounce ->
         @$emit 'submit', @value
