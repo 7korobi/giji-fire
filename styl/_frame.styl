@@ -16,6 +16,15 @@ body
 article
   user-select: text
 
+  table
+    width: 100%
+
+  th,
+  td
+    border-radius: 3px
+    padding:   0px 4px
+
+
 IMG.hide
   filter: sepia(60%) hue-rotate(180deg);
 
@@ -202,25 +211,6 @@ IMG.hide
   border-style: solid none solid solid
   border-width: 2px 0 2px 18px
 
-.talk
-  width: 100%
-  table-layout: fixed
-  border-collapse: collapse
-  border-spacing:  0
-  margin: 0 0 6px 0
-  thead, tfoot, tbody, th, td
-    border:  0
-    padding: 0
-    background: transparent
-  td
-    vertical-align: middle
-    position: relative
-  th
-    width: 125px
-    vertical-align: top
-    .portrate
-      margin:  0 19px 0 16px
-
 .report
   border-style: double dotted
   border-width: 4px 1px
@@ -274,3 +264,29 @@ IMG.hide
     &::after
       border-width: 4px 0 0 8px
       right: 0
+
+  .talk
+    width: 100%
+    table-layout: fixed
+    border-collapse: collapse
+    border-spacing:  0
+    margin: 0 0 6px 0
+
+  .talk > thead
+  .talk > tfoot
+  .talk > tbody
+  .talk > tbody > tr
+  .talk > tbody > tr > td
+  .talk > tbody > tr > th
+  .talk > tbody > tr > th > .portrate
+    border:  0
+    padding: 0
+    background: transparent
+  .talk > tbody > tr > td
+    vertical-align: middle
+    position: relative
+  .talk > tbody > tr > th
+    width: 125px
+    vertical-align: top
+  .talk > tbody > tr > th > .portrate
+    margin:  0 20px 0 15px

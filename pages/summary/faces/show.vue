@@ -25,35 +25,37 @@
 
 
       c-report(handle="footer")
-        table
-          thead
-            tr
-              th 総合値
-              th 一番長い発言
-              th 総文字数
-              th 総発言回数
-          tbody.calc(v-for="o in face.mestypes")
-            tr(:class="o.handle")
-              th {{ o.title }}
-              td {{ o.max | currency }} 字
-              td {{ o.all | currency }} 字
-              td {{ o.count | currency }} 回
+        article
+          table
+            thead
+              tr
+                th 総合値
+                th 一番長い発言
+                th 総文字数
+                th 総発言回数
+            tbody.calc(v-for="o in face.mestypes")
+              tr(:class="o.handle")
+                th {{ o.title }}
+                td {{ o.max | currency }} 字
+                td {{ o.all | currency }} 字
+                td {{ o.count | currency }} 回
 
 
       c-report(handle="footer")
-        table
-          thead
-            tr
-              th 平均値
-              th /村数
-              th 文字数
-              th 発言回数
-          tbody.calc(v-for="o in face.mestypes")
-            tr(:class="o.handle")
-              th {{ o.title }}
-              td {{ o.per | currency }} 村
-              td {{ o.all / o.per | currency }} 字
-              td {{ o.count / o.per | currency }} 回
+        article
+          table
+            thead
+              tr
+                th 平均値
+                th /村数
+                th 文字数
+                th 発言回数
+            tbody.calc(v-for="o in face.mestypes")
+              tr(:class="o.handle")
+                th {{ o.title }}
+                td {{ o.per | currency }} 村
+                td {{ o.all / o.per | currency }} 字
+                td {{ o.count / o.per | currency }} 回
 
       c-talk.form(v-for="folder in face.folders" :handle="folder_handle(folder[0][0])", :face_id="face.id", :head="folder.nation", :key="folder[0][0]")
         | {{ folder.length }}回登場しました
@@ -67,20 +69,21 @@
         btn(as="all" v-model="order") 総発言文字数
         btn(as="date_min" v-model="order") 古参度
         btn(as="date_max" v-model="order") 新着度
-        table
-          transition-group.tlist(name="list" tag="tbody")
-            tr(v-for="o in sow_auths", :key="o._id.sow_auth_id")
-              th
-                .sow_auth_id {{ o._id.sow_auth_id }}
-              td.r.count {{ o.story_ids.length | currency }}村
-              td.r.count {{ o.count | currency }}回
-              td.r.count {{ o.all | currency }}文字
-              td.timer
-                timeago.count(:since="o.date_min")
-              th
-                .pad ～
-              td.timer
-                timeago.count(:since="o.date_max")
+        article
+          table
+            transition-group.tlist(name="list" tag="tbody")
+              tr(v-for="o in sow_auths", :key="o._id.sow_auth_id")
+                th
+                  .sow_auth_id {{ o._id.sow_auth_id }}
+                td.r.count {{ o.story_ids.length | currency }}村
+                td.r.count {{ o.count | currency }}回
+                td.r.count {{ o.all | currency }}文字
+                td.timer
+                  timeago.count(:since="o.date_min")
+                th
+                  .pad ～
+                td.timer
+                  timeago.count(:since="o.date_max")
 
       c-post(handle="footer")
         bread-crumb
@@ -165,13 +168,6 @@ module.exports =
 </script>
 
 <style lang="stylus" scoped>
-table
-  width: 100%
-
-th,
-td
-  border-radius: 3px
-  padding:   2px 4px
 
 .timer
   white-space: nowrap

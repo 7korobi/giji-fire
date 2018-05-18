@@ -107,14 +107,6 @@ module.exports =
         o.event_id ?= o._id.split("-")[0..2].join("-")
         return if "*CAST*" == log
 
-        mention_ids = []
-        log = log.replace ///<mw\ +(..)(\d+),(\d+),(.+?)>///g, (str, phase_idx, $1, part_idx, code)=>
-          if phase_idx == 'MM'
-            phase_idx = @phase_id[-2..][0] + 'M'
-          idx = Number($1)
-          mention_ids.push mention_id = [book_id, part_idx, phase_idx, idx].join("-")
-          """<q cite="#{mention_id}">»#{code}</q>"""
-
         guide = true
         handle = o.mestype
         phase_group = o.subid
@@ -182,7 +174,15 @@ module.exports =
           phase_idx = "AIM"
           handle = "AIM"
 
-        unless log
+        mention_ids = []
+        if log
+          log = log.replace ///<mw\ +(..)(\d+),(\d+),(.+?)>///g, (str, phase_idx, $1, part_idx, code)=>
+            if phase_idx == 'MM'
+              phase_idx = @phase_id[-2..][0] + 'M'
+            idx = Number($1)
+            mention_ids.push mention_id = [book_id, part_idx, phase_idx, idx].join("-")
+            """<q cite="#{mention_id}">»#{code}</q>"""
+        else
           log = "メモをはがした。"
           show = "post"
 
