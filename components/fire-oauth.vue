@@ -3,11 +3,12 @@ div
   p(v-if="user")
     span
       i.btn.mdi.mdi-logout(@click="signout")
-    span {  }
-      
-  p(v-if=" ! user")
+    img.oauth_icon(:src="user.photoURL")
     span
-      i.btn.mdi.mdi-logout(@click="signout")
+      div {{ providerID }}
+      div {{ user.displayName }}
+
+  p(v-if=" ! user")
     span
       i.btn.mdi.mdi-facebook-box(@click="facebook")
       i.btn.mdi.mdi-twitter(@click="twitter")
@@ -19,6 +20,7 @@ div
 </template>
 <script lang="coffee">
 firebase = require "firebase"
+{ vuex_value } = require '~/plugins/vuex-helper'
 
 module.exports =
   data: ->
@@ -56,9 +58,11 @@ module.exports =
       console.log "session persistence"
     .catch ({ @code, @message })=>
 
-  computed:
-    user: ->
-      @$store.state.firebase.user
+  computed: {
+    ...vuex_value 'firebase',['user', 'credential']
+
+    providerID: ->
+      @credential?.providerId
 
     auth: ->
       firebase.auth()
@@ -70,6 +74,7 @@ module.exports =
       @db.collection('test')
     doc: ->
       @db.doc('test/user-data')
+  }
 
   methods:
     signout: ->
@@ -91,6 +96,11 @@ module.exports =
 </script>
 
 <style lang="stylus" scoped>
+.oauth_icon
+  padding:    0 .5rem 0 .5rem
+  max-width:  2.50rem
+  max-height: 2.50rem
+
 .mdi
   line-height: 4rem
   font-size:   3rem

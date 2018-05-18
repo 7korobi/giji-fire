@@ -41,7 +41,6 @@ snap = (collection, target)->
           Set[target].add doc.data()
         when 'removed'
           Set[target].remove doc.data()
-      console.log { type, newIndex, oldIndex }
 
 post = (target, doc)->
   { _id } = doc
@@ -125,15 +124,14 @@ module.exports =
         uid = null
       @edit.potof.sign = displayName
       @edit.potof.uid = uid
-      console.log { @user }
-    credential: ->
-      console.log { @credential }
 
     'my.potof.face_id': ->
+      return unless @my.potof
       { face_id, tag_id, job, sign, uid } = @my.potof
       Object.assign @edit.potof, { face_id, tag_id, job, sign, uid }
 
     'edit.potof.face_id': ->
+      return unless @edit.potof
       { face_id, tag_id, head, job, sign, uid } = @edit.potof
       @edit.chat.head = head
       _id = @potof_id

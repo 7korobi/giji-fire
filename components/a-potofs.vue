@@ -152,7 +152,7 @@ module.exports =
 .c
   text-align: center
 .last
-  min-width: 1000px
+  min-width: 150vw
 
 .btns a
   margin-bottom: 6px
