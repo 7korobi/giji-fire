@@ -9,16 +9,26 @@ module.exports =
       Query.chats.find @chat_id
     mentions: ->
       Query.chats.reduce?.mention_to?[@chat_id]
+  methods:
+    edit: ->
+      @$emit "edit", @chat_id
+
+    remove: ->
+      @$emit "remove", @chat_id
 
 
 </script>
 
 <template lang="pug">
 div(v-if="chat")
-  .date(:class="chat.phase.handle")
+  .form(:class="chat.phase.handle")
     hr
+    a.btn.active(@click="remove" v-if="chat.phase && chat.phase.update")
+      i.mdi.mdi-comment-remove-outline
+    a.btn.active(@click="edit"   v-if="chat.phase && chat.phase.update")
+      i.mdi.mdi-square-edit-outline
+  .date(:class="chat.phase.handle")
     span.pull-left
-      a(v-if="chat.phase && chat.phase.update") 訂正
       a(v-if="chat.part") {{ chat.part.label }}
       a p{{ 1 + page_idx }}
     span
@@ -32,7 +42,7 @@ div(v-if="chat")
   .swipe
     table
       tbody.tlist
-        tr-intro-chat(v-for="o in mentions" @anker="_events.anker", :key="o.id", :id="o.id", :handle="o.phase.handle", :deco="o.deco", :log="o.log")
+        tr-intro-chat(v-for="o in mentions" v-on="$listeners", :key="o.id", :id="o.id", :handle="o.phase.handle", :deco="o.deco", :log="o.log")
 </template>
 
 <style lang="stylus" scoped>

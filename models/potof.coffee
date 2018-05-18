@@ -14,6 +14,11 @@ new Rule("potof").schema ->
   @habtm "ables"
 
   @scope (all)->
+    my: (book_id, uid)->
+      all.where({ book_id, uid }).order
+        sort: ['write_at', 'desc']
+      .list[0]
+    
     catalog: (book_id, part_id, sort, order)->
       [a1, a2] = sort.split(".")
       if "say" == a1

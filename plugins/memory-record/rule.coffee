@@ -157,9 +157,9 @@ module.exports = class Rule
     Mem.set_deploy @$name.base, cb
 
   depend_on: (parent)->
-    { all } = @
+    { _finder } = @all
     Mem.set_depend parent, ->
-      all._finder.clear_cache all
+      _finder.clear_cache()
 
   scope: (cb)->
     for key, val of cb @all

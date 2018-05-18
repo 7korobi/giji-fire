@@ -14,7 +14,7 @@
 
       no-ssr
         .summary(name="list" tag="div" key="summary")
-          d-mentions.inframe.mentions(key="1" @anker="$listeners.anker" :page_idx="0" :chat_id="chat_id")
+          d-mentions.inframe.mentions(key="1" v-on="$listeners" :page_idx="0" :chat_id="chat_id")
           a-potofs(key="3" :part='part' v-if="is_show_potofs")
 
       .center-left

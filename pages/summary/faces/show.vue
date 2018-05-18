@@ -11,7 +11,7 @@
         h1 {{ face.name }}の活躍
         .date
           | #[timeago(:since="face.date_min")] ～ #[timeago(:since="face.date_max")]
-      c-talk(handle="TSAY" deco="", :face_id="face.id", :head="face.name")
+      c-talk(handle="TSAY" deco="giji", :face_id="face.id", :head="face.name")
         | #[b {{ face.lives.sum }}]人が村にいました。
         .flex
           a.label3(v-for="o in face.lives", :class="o._id.live")
@@ -58,7 +58,7 @@
       c-talk.form(v-for="folder in face.folders" :handle="folder_handle(folder[0][0])", :face_id="face.id", :head="folder.nation", :key="folder[0][0]")
         | {{ folder.length }}回登場しました
         .flex
-          nuxt-link.label-mini(v-for="id in folder", :to="log_url(id)", :key="id.join('-')") {{ id[1] }}
+          nuxt-link.label-mini(v-for="id in folder", :to="book_url(id,'normal')", :key="id.join('-')") {{ id[1] }}
 
 
       c-report.form(handle="VGSAY" deco="center", :head="face.name + 'で活躍した人達'")
@@ -126,9 +126,11 @@ module.exports =
     folder_handle: (folder_id)->
       folder_handle[folder_id]
 
-    log_url: (book_id)->
-      name: "sow-village-idx-mode"
-      params: { mode: "title", idx: [book_id..., 0].join("-") }
+    book_url: (book_id, mode)->
+      name: "sow-village-show"
+      query:
+        mode: mode
+        idx: [...book_id, 0].join("-")
 
     label_size: (str)->
       width  = 0.8 * (str.match(/[iIjl]/g) ? []).length

@@ -1,5 +1,5 @@
 <template lang="pug">
-log-wiki(:part="part" :page_idx="0" :chat_id="chat_id" :back_url="back_url" @anker="anker")
+log-wiki(:part="part" :page_idx="0" :chat_id="chat_id" :back_url="back_url" @anker="anker" @remove="remove" @edit="replace")
   .summary(name="list" tag="div" key="summary")
     a-potofs(label="みている")
   c-report(handle="footer" deco="center")
@@ -43,6 +43,11 @@ snap = (collection, target)->
           Set[target].remove doc.data()
       console.log { type, newIndex, oldIndex }
 
+post = (target, doc)->
+  { _id } = doc
+  target.doc(_id).set doc,
+    merge: true
+
 module.exports =
   mixins: [
     require('~/plugins/book')
@@ -56,12 +61,16 @@ module.exports =
     ...vuex_value 'firebase',['user', 'credential']
     part_id:  -> @book_id + '-1'
     phase_id: -> @book_id + '-1-SS'
-    potof_id: ->
-      { face_id, uid } = @edit.potof
-      @book_id + '-' + uid
+    potof_id: -> @book_id + '-' + @edit.potof.face_id
 
     page_contents: ->
       Query.chats.full( [], @part_id ).reduce.list
+
+    my: ->
+      return {} unless @user
+      { uid } = @user
+      potof = Query.potofs.my( @book_id, uid )
+      { potof }
 
     db: ->
       store = firebase.firestore()
@@ -81,19 +90,19 @@ module.exports =
     focus: (@idx)->
     anker: (book_id, a)->
       console.log book_id, a
+    replace: (chat_id)->
+      console.log chat_id
+    remove: (chat_id)->
+      console.log chat_id
     
     chat_post: (log)->
       return if log.length < 4
 
-      { head, face_id } = @edit.potof
       { show, deco, to, handle } = @edit.chat
 
       _id = @part_id + '-SS-' + @edit.chat.new_idx()
       write_at = new Date - 0
-      doc = { _id, face_id, @potof_id, write_at, show, deco, to, head, log }
-
-      await @_chats.doc(_id).set doc,
-        merge: true
+      await post @_chats, { _id, @potof_id, write_at, show, deco, to, log }
       @edit.chat.log = ''
 
   watch:
@@ -109,14 +118,16 @@ module.exports =
     credential: ->
       console.log { @credential }
 
+    'my.potof.face_id': ->
+      { face_id, tag_id, job, sign, uid } = @my.potof
+      Object.assign @edit.potof, { face_id, tag_id, job, sign, uid }
+
     'edit.potof.face_id': ->
-      { face_id, tag_id, job, sign, uid } = @edit.potof
+      { face_id, tag_id, head, job, sign, uid } = @edit.potof
+      @edit.chat.head = head
       _id = @potof_id
       write_at = new Date - 0
-      doc = { _id, face_id, tag_id, job, write_at, sign, uid }
-      @edit.chat.head = @edit.potof.head
-      await @_potofs.doc(_id).set doc,
-        merge: true
+      await post @_potofs, { _id, face_id, tag_id, job, write_at, sign, uid }
 
   mounted: ->
     idx =
@@ -133,7 +144,7 @@ module.exports =
       _id: @phase_id
       handle: 'SSAY'
       label: '会話'
-      mark: 'SS-'
+      mark: null
       group: 'S'
       update: true
       guide: true

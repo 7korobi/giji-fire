@@ -58,14 +58,15 @@ module.exports = class Finder
       o = map.order o, cmd, @set
       _.set query, path, o
 
-  clear_cache: (all)->
+  clear_cache: ->
     State.step[@name.list] = ++$step
     return
 
   remove: (all, from)->
     { _memory } = all
     hit = false
-    each @mae, from, (item)=>
+    each @name, from, (item)=>
+      @model.bless item
       old = _memory[item.id]
       if old?
         @model.delete old.item
