@@ -3,7 +3,7 @@ module.exports = require("~/components/chat.coffee")()
 </script>
 
 <template lang="pug">
-table.talk(:id="id", :key="id")
+table.talk(:id="id" :key="id")
   tbody
     tr
       th

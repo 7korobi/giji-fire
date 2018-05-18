@@ -65,6 +65,8 @@ store =
   }
 
   methods:
+    focus: (@idx)->
+
     page_reset: ->
       return unless window?
       @page_idxs = [ @page_idx ]

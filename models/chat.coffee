@@ -39,14 +39,7 @@ new Rule("chat").schema ->
     sort: ["count", "desc"]
 
   @deploy ->
-    @q =
-      mention_ids: []
-    @log = @log.replace ///<mw\ +(..)(\d+),(\d+),(.+?)>///g, (str, phase_idx, $1, part_idx, code)=>
-      if phase_idx == 'MM'
-        phase_idx = @phase_id[-2..][0] + 'M'
-      idx = Number($1)
-      @q.mention_ids.push mention_id = [@book_id, part_idx, phase_idx, idx].join("-")
-      """<q cite="#{mention_id}">»#{code}</q>"""
+    @mention_ids ?= []
 
   class @model extends @model
     @map_reduce: (o, emit)->
@@ -66,7 +59,7 @@ new Rule("chat").schema ->
           max: o.write_at + 1
           min: o.write_at
 
-      for mention_id in o.q.mention_ids
+      for mention_id in o.mention_ids
         emit "mention", mention_id,
           count: 1
         
@@ -82,5 +75,5 @@ new Rule("chat").schema ->
         sort: ["write_at", "asc"]
         page_by: 25
       emit "mention", anker
-      for mention_id in o.q.mention_ids
+      for mention_id in o.mention_ids
         emit "mention_to", mention_id, anker

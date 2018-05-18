@@ -9,6 +9,10 @@ module.exports =
       Query.chats.find @chat_id
     mentions: ->
       Query.chats.reduce?.mention_to?[@chat_id]
+
+    can_update: ->
+      @chat?.phase?.update
+
   methods:
     edit: ->
       @$emit "edit", @chat_id
@@ -23,9 +27,9 @@ module.exports =
 div(v-if="chat")
   .form(:class="chat.phase.handle")
     hr
-    a.btn.active(@click="remove" v-if="chat.phase && chat.phase.update")
+    a.btn.active(@click="remove" v-if="can_update")
       i.mdi.mdi-comment-remove-outline
-    a.btn.active(@click="edit"   v-if="chat.phase && chat.phase.update")
+    a.btn.active(@click="edit"   v-if="can_update")
       i.mdi.mdi-square-edit-outline
   .date(:class="chat.phase.handle")
     span.pull-left

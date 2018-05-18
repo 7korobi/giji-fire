@@ -26,7 +26,6 @@ module.exports =
   layout: 'blank'
 
   methods:
-    focus: (@idx)->
     anker: (book_id, a)->
       @a = uniq @a, a
 

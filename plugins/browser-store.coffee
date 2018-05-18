@@ -1,19 +1,19 @@
 _ = require "lodash"
 { types, relative_to } = require "~/plugins/struct"
 
-browser_store = bs = (method, $browser)->
+browser_store = bs = (method)->
   db: db = bs[method]
   pack: (computed, {to_str}, key, val)->
     computed[key] =
       get: ->
-        $browser[key]
+        @$data.$browser[key]
 
       set: (newVal)->
         if newVal?
           db.setItem key, to_str newVal
         else
           db.removeItem key
-        $browser[key] = newVal
+        @$data.$browser[key] = newVal
 
 get_value_by_store = (db, by_str, key, val)->
   o = by_str db.getItem key
@@ -26,17 +26,17 @@ get_value_by_route = (src, by_url, key, val)->
   else
     val
 
-router_store = (method, $browser)->
+router_store = (method)->
   pack: (computed, {by_url}, key, val)->
     computed[key] =
       get: ->
-        $browser[key]
+        @$data.$browser[key]
 
       set: (newVal)->
         o = {}
         o[key] = newVal
         { location, href } = @$router.resolve relative_to @$route, o
-        $browser[key] = newVal
+        @$data.$browser[key] = newVal
         history?["#{method}State"] null, null, href
         @$route = { ...@$route, ...location }
 

@@ -141,11 +141,6 @@ module.exports =
       await post @_potofs, { _id, face_id, tag_id, job, write_at, sign, uid }
 
   mounted: ->
-    idx =
-      for key, i in ["test","page"]
-        @idx[i] || key
-    @idx = idx.join("-")
-
     Set.book.add
       _id: @book_id
     Set.part.add

@@ -64,7 +64,6 @@ module.exports =
     title: labels.join(' ')
 
   methods:
-    focus: (@idx)->
     anker: (book_id, a)->
       @$router.push
         path: "./anker"
