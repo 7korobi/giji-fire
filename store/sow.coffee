@@ -197,7 +197,7 @@ module.exports =
           type:  phase_type
           group: phase_group
           update: false
-        Set.chat.add { _id, potof_id, phase_id, write_at, to, show, deco, log, head, handle, mention_ids }
+        Set.chat.add { _id, potof_id, write_at, to, show, deco, log, head, handle, mention_ids }
         o
 
       Set.phase.merge phases

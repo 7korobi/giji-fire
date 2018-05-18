@@ -37,10 +37,10 @@ module.exports = ->
         { book_id } = chat
         ids = Array.from new Set [@id, chat.id]
         @$emit "anker", book_id, ids.map (id)-> id[book_id.length ..]
-        
+
       if href
-        check = chk.value
         url = href.value
+        check = chk?.value
         if check == "confirm" && confirm "open?\n#{url}"
           open url, "_blank"
 
