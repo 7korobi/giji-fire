@@ -66,7 +66,7 @@ module.exports =
   methods:
     anker: (book_id, a)->
       @$router.push
-        path: "./anker"
+        name: 'sow-village-anker'
         query: { a, @back, idx: @part_id }
 
   computed:
