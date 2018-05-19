@@ -24,11 +24,11 @@ module.exports = edit =
     sign: "ななころび"
 
   phase:
-    _id: 'edit-edit-edit-edit'
+    _id: 'edit-edit-edit-SS'
     handle: 'SSAY'
 
   chat:
-    _id: 'edit-edit-edit-edit-edit'
+    _id: 'edit-edit-edit-SS-edit'
     potof_id: "edit-edit-self"
     write_at: 0
     show: "talk"

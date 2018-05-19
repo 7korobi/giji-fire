@@ -1,10 +1,15 @@
 <script lang="coffee">
 { Query } = require "~/plugins/memory-record"
 { vuex_value } = require '~/plugins/vuex-helper'
+{ computed: { anker }} = require("~/components/chat.coffee")()
 
 module.exports =
   props: ['chat_id', 'page_idx']
   computed:
+    anker: anker
+    current: ->
+      @chat
+
     chat: ->
       Query.chats.find @chat_id
     mentions: ->
@@ -25,13 +30,8 @@ module.exports =
 
 <template lang="pug">
 div(v-if="chat")
-  .form(:class="chat.phase.handle")
-    hr
-    a.btn.active(@click="remove" v-if="can_update")
-      i.mdi.mdi-comment-remove-outline
-    a.btn.active(@click="edit"   v-if="can_update")
-      i.mdi.mdi-square-edit-outline
   .date(:class="chat.phase.handle")
+    hr
     span.pull-left
       a(v-if="chat.part") {{ chat.part.label }}
       a p{{ 1 + page_idx }}
@@ -40,6 +40,13 @@ div(v-if="chat")
       em(v-if="chat.phase") {{ chat.phase.label }}
     span.pull-right
       timeago(v-if="chat.write_at" :since="chat.write_at")
+  .form(:class="chat.phase.handle")
+    a.btn.active(@click="remove" v-if="can_update")
+      i.mdi.mdi-comment-remove-outline
+    a.btn.active(@click="edit"   v-if="can_update")
+      i.mdi.mdi-square-edit-outline
+    span.pull-right
+      a {{ anker }}
     hr
     h6 参照されている
     hr

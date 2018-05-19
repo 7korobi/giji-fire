@@ -55,16 +55,20 @@ module.exports = ->
     anker: ->
       if chat = @chat
         console.log chat unless chat.phase
-        { mark } = chat.phase
-        if mark?
-          prefix =
+        { mark, guide } = chat.phase
+        switch
+          when ! guide
+            ""
+          when  mark?
             if (current = @current) && current.part_id == chat.part_id
-              ""
+              "#{mark}#{chat.idx}"
             else
-              "#{chat.part.idx}:"
-          "#{mark}#{prefix}#{chat.idx}"
-        else
-          ""
+              "#{mark}#{chat.part.idx}:#{chat.idx}"
+          else
+            if (current = @current) && current.part_id == chat.part_id
+              chat.id[ chat.part_id.length ..]
+            else
+              chat.id[ chat.book_id.length ..]
 
     chat: ->
       if @id

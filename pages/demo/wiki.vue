@@ -47,6 +47,10 @@ post = (target, doc)->
   target.doc(_id).set doc,
     merge: true
 
+remove = (target, doc)->
+  { _id } = doc
+  target.doc(_id).delete()
+
 module.exports =
   mixins: [
     require('~/plugins/book')
@@ -95,12 +99,15 @@ module.exports =
     anker: (book_id, a)->
       console.log book_id, a
     replace: (chat_id)->
-      console.log chat_id
-    remove: (chat_id)->
-      console.log chat_id
+      @edit.chat = Query.chats.find chat_id
+
+    remove: (_id)->
+      if confirm "この書き込みを削除しますか？"
+        await remove @_chats, { _id }
     
     check_post: (target)->
       console.log target
+
     image_post: (file, next)->
       { state, downloadURL } = await @image.child(file.name).put(file)
       next await downloadURL
@@ -108,11 +115,13 @@ module.exports =
     chat_post: (log)->
       return if log.length < 4
 
-      { show, deco, to, handle } = @edit.chat
-
-      _id = @part_id + '-SS-' + @edit.chat.new_idx()
-      write_at = new Date - 0
-      await post @_chats, { _id, @potof_id, write_at, show, deco, to, log }
+      { _id, potof_id, write_at, show, deco, to, handle } = @edit.chat
+      if potof_id == @edit.potof_id
+        potof_id = @potof_id
+        write_at = new Date - 0
+        _id = @part_id + '-SS-' + @edit.chat.new_idx()
+      await post @_chats, { _id, potof_id, write_at, show, deco, to, log }
+      @edit.chat = Query.chats.find 'edit-edit-edit-SS-edit'
       @edit.chat.log = ''
 
   watch:

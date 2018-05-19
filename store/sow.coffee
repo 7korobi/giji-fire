@@ -4,9 +4,9 @@
 _ = require "lodash"
 
 attrs =
-  TITLE:   { mark: 'T', label: '表題' }
-  public:  {            label: '活動' }
-  private: {            label: '秘密' }
+  TITLE:  { mark: 'T', label: '表題' }
+  public:  {           label: '活動' }
+  private: {           label: '秘密' }
   SSAY:   { mark:  '', label: '会話' }
   TSAY:   { mark: '-', label: '独言' }
   AIM:    { mark: '-', label: '内緒' }
@@ -21,8 +21,6 @@ attrs =
 phase_attr = (self)->
   if o = attrs[self.handle]
     Object.assign self, o
-  unless self.guide
-    self.mark = null
   self
 
 module.exports =
@@ -91,10 +89,12 @@ module.exports =
           handle: "MAKER"
           group:  "A"
           update: false
+          guide:  false
         "#{book_id}-0-mS": phase_attr
           handle: "MAKER"
           group:  "A"
           update: false
+          guide:  true
 
 
       write_at = 0
@@ -148,6 +148,7 @@ module.exports =
               show = "report"
             else
               show = "post"
+            guide = false
           when "A", "B"
             potof_id = undefined
             show = "post"
