@@ -1,0 +1,60 @@
+<template lang="pug">
+div
+  chat(:id="value._id" :current="chat" @check="$listeners.check")
+  c-report(:handle="value.phase.handle")
+    span.pull-left
+    span
+      btn(v-model="value.show" as="post")
+        i.mdi.mdi-file-document-box
+      btn(v-model="value.show" as="talk") 
+        i.mdi.mdi-comment-text
+      btn(v-model="value.show" as="report")
+        i.mdi.mdi-note-text
+    span.pull-right(v-if="is_creating")
+      slot
+    span.pull-right(v-if="is_replacing")
+      | {{ value._id }} を編集中
+      a.btn.active(@click="replace_cancel")
+        i.mdi.mdi-open-in-new
+    text-editor(v-model="value.log" @drop_image="$listeners.drop_image" @submit="$listeners.submit" :maxRow="8" :maxSize="250")
+</template>
+<script lang="coffee">
+
+firebase = require "firebase"
+{ Query, Set, State } = require "~/plugins/memory-record"
+{ vuex_value } = require '~/plugins/vuex-helper'
+
+edit = require '~/models/editor'
+
+post = (target, doc)->
+  { _id } = doc
+  target.doc(_id).set doc,
+    merge: true
+
+remove = (target, doc)->
+  { _id } = doc
+  target.doc(_id).delete()
+
+module.exports =
+  data: ->
+    { edit, step: State.step }
+  props:
+    value:
+      required: true
+
+  computed: {
+    is_creating: -> @value.potof_id == @edit.potof.id
+    is_replacing: -> ! @is_creating
+
+    phases: ->
+      Query.phases.where({ @part_id }).list
+  }
+
+  methods:
+    replace_cancel:   -> @value = Query.chats.find @edit.phase.id + '-edit'
+
+    remove: (_id)->
+      if confirm "この書き込みを削除しますか？"
+        await remove @_chats, { _id }
+    
+</script>

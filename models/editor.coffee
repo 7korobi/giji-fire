@@ -14,8 +14,6 @@ Base59 = Base "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz0123456789"
 
 
 module.exports = edit =
-  book:
-    _id: 'edit-edit'
   potof:
     _id: 'edit-edit-self'
     tag_id: ""
@@ -24,11 +22,11 @@ module.exports = edit =
     sign: "ななころび"
 
   phase:
-    _id: 'edit-edit-edit-SS'
+    _id: 'edit-edit-edit-edit'
     handle: 'SSAY'
 
   chat:
-    _id: 'edit-edit-edit-SS-edit'
+    _id: 'edit-edit-edit-edit-edit'
     potof_id: "edit-edit-self"
     write_at: 0
     show: "talk"
@@ -39,7 +37,8 @@ module.exports = edit =
     new_idx: ->
       Base59.num2str new Date - 0
 
-Set.book.add  edit.book
+edit.org_chat = edit.chat
+
+Set.chat.add  edit.chat
 Set.phase.add edit.phase
 Set.potof.add edit.potof
-Set.chat.add  edit.chat

@@ -146,17 +146,19 @@ module.exports =
       sub: caret (hd, text, tl)-> """#{hd}~#{text}~#{tl}"""
       del: caret (hd, text, tl)-> """#{hd} ~~#{text}~~ #{tl}"""
 
-      em: caret (hd, text, tl)->     """#{hd} *#{text}* #{tl}"""
+      ul: caret (hd, text, tl)->  """#{hd}* #{text}#{tl}"""
+      ol: caret (hd, text, tl)->  """#{hd}1. #{text}#{tl}"""
+
+      em:     caret (hd, text, tl)-> """#{hd} *#{text}* #{tl}"""
       strong: caret (hd, text, tl)-> """#{hd} **#{text}** #{tl}"""
-      code: caret (hd, text, tl)->   """#{hd}`#{text}`#{tl}"""
+      code:   caret (hd, text, tl)-> """#{hd}`#{text}`#{tl}"""
 
       blockquote: caret (hd, text, tl)-> """#{hd}> #{text}#{tl}"""
-      image: caret (hd, text, tl, name, type)->      """#{hd}![#{text || type}](#{name})#{tl}"""
-      ul: caret (hd, text, tl)->         """#{hd}* #{text}#{tl}"""
-      ol: caret (hd, text, tl)->         """#{hd}1. #{text}#{tl}"""
-      footnote: caret (hd, text, tl)->   """#{hd}^[#{text}]#{tl}"""
+      footnote:   caret (hd, text, tl)-> """#{hd}^[#{text}]#{tl}"""
 
-      nDm:     caret (pre, select, post)-> "#{pre}[[#{select}]]#{post}"
+      image: caret (hd, text, tl, name, type)-> """#{hd}![#{text || type}](#{name})#{tl}"""
+
+      nDm: caret (pre, select, post)-> "#{pre}[[#{select}]]#{post}"
 
       drop: (e)->
         e.stopPropagation()

@@ -10,6 +10,7 @@ new Rule("chat").schema ->
   pages = (group, q)-> (hides, part_id)->
     q.where (o)-> part_id == o.part_id && !(o.potof_id in hides) && o.phase.group in group
   @scope (all)->
+    wiki:   (hides, part_id)-> all.where (o)-> part_id == o.part_id && !(o.potof_id in hides)
     memo:   pages 'M',   all
     title:  pages 'SAI', all.where (o)-> o.phase.handle in ['MAKER', 'ADMIN', 'public']
 

@@ -22,10 +22,6 @@ module.exports =
     edit: ->
       @$emit "edit", @chat_id
 
-    remove: ->
-      @$emit "remove", @chat_id
-
-
 </script>
 
 <template lang="pug">
@@ -41,12 +37,9 @@ div(v-if="chat")
     span.pull-right
       timeago(v-if="chat.write_at" :since="chat.write_at")
   .form(:class="chat.phase.handle")
-    a.btn.active(@click="remove" v-if="can_update")
-      i.mdi.mdi-comment-remove-outline
-    a.btn.active(@click="edit"   v-if="can_update")
-      i.mdi.mdi-square-edit-outline
-    span.pull-right
-      a {{ anker }}
+    span
+      a.btn.active(@click="edit"   v-if="can_update")
+        i.mdi.mdi-square-edit-outline
     hr
     h6 参照されている
     hr

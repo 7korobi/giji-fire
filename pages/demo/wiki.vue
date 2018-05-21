@@ -10,15 +10,25 @@ log-wiki(:part="part" :page_idx="0" :chat_id="chat_id" :back_url="back_url" @ank
 
   c-post(handle="TSAY")
     fire-oauth(style="white-space: nowrap")
-  e-potof(v-if="user" v-model="edit.potof")
+  e-potof(v-if="user && is_creating" v-model="edit.potof")
+  c-report(v-if="user && is_replacing" handle="header" deco="center") 編集中
+
   chat(v-if="user && edit.potof.face_id" :id="edit.chat._id" :current="chat" @check="check_post")
-  c-report(v-if="user && edit.potof.face_id" :handle="edit.phase.handle")
-    btn(v-model="edit.chat.show" as="post")
-      i.mdi.mdi-file-document-box
-    btn(v-model="edit.chat.show" as="talk") 
-      i.mdi.mdi-comment-text
-    btn(v-model="edit.chat.show" as="report")
-      i.mdi.mdi-note-text
+  c-report(v-if="user && edit.potof.face_id" :handle="edit.chat.phase.handle")
+    span
+      btn(v-model="edit.chat.show" as="post")
+        i.mdi.mdi-file-document-box
+      btn(v-model="edit.chat.show" as="talk") 
+        i.mdi.mdi-comment-text
+      btn(v-model="edit.chat.show" as="report")
+        i.mdi.mdi-note-text
+    span.pull-right(v-if="is_creating")
+      btn(v-for="phase in phases" v-model="edit.phase.handle" :class="phase.handle" :as="phase.handle") {{ phase.label }}
+    span.pull-right(v-if="is_replacing")
+      a.btn.active(@click="replace_cancel")
+        i.mdi.mdi-open-in-new
+      a.btn.active(@click="remove")
+        i.mdi.mdi-comment-remove-outline
     text-editor(v-model="edit.chat.log" @drop_image="image_post" @submit="chat_post" :maxRow="8" :maxSize="250")
 
   c-report(handle="footer" deco="center")
@@ -63,11 +73,19 @@ module.exports =
   computed: {
     ...vuex_value 'firebase',['user', 'credential']
     part_id:  -> @book_id + '-1'
-    phase_id: -> @book_id + '-1-SS'
     potof_id: -> @book_id + '-' + @edit.potof.face_id
+    phase_id: ->
+      { _id } = Query.phases.where({ @part_id, handle: @edit.phase.handle }).list[0]
+      _id
+
+    is_creating: -> @edit.chat.potof_id == @edit.potof.id
+    is_replacing: -> ! @is_creating
+
+    phases: ->
+      Query.phases.where({ @part_id }).list
 
     page_contents: ->
-      Query.chats.full( [], @part_id ).reduce.list
+      Query.chats.wiki( @hide_potof_ids, @part_id ).reduce.list
 
     my: ->
       return {} unless @user
@@ -98,11 +116,12 @@ module.exports =
     focus: (@idx)->
     anker: (book_id, a)->
       console.log book_id, a
-    replace: (chat_id)->
-      @edit.chat = Query.chats.find chat_id
+
+    replace_cancel:   -> @edit.chat = Query.chats.find @edit.phase.id + '-edit'
+    replace: (chat_id)-> @edit.chat = Query.chats.find chat_id
 
     remove: (_id)->
-      if confirm "この書き込みを削除しますか？"
+      if confirm "編集中の #{edit.chat._id} を削除しますか？"
         await remove @_chats, { _id }
     
     check_post: (target)->
@@ -116,12 +135,12 @@ module.exports =
       return if log.length < 4
 
       { _id, potof_id, write_at, show, deco, to, handle } = @edit.chat
-      if potof_id == @edit.potof_id
+      if @is_creating
         potof_id = @potof_id
         write_at = new Date - 0
-        _id = @part_id + '-SS-' + @edit.chat.new_idx()
+        _id = [@phase_id, @edit.chat.new_idx()].join('-')
       await post @_chats, { _id, potof_id, write_at, show, deco, to, log }
-      @edit.chat = Query.chats.find 'edit-edit-edit-SS-edit'
+      @replace_cancel()
       @edit.chat.log = ''
 
   watch:
@@ -148,19 +167,21 @@ module.exports =
       await post @_potofs, { _id, face_id, tag_id, job, write_at, sign, uid }
 
   mounted: ->
+    guide = true
+    update = true
+
     Set.book.add
       _id: @book_id
     Set.part.add
       _id: @part_id
       label: 'wiki'
-    Set.phase.add
-      _id: @phase_id
-      handle: 'SSAY'
-      label: '会話'
-      mark: null
-      group: 'S'
-      update: true
-      guide: true
+    Set.phase.add { update, guide, _id: @part_id + '-SS', handle: 'SSAY', label: '会話' }
+    Set.phase.add { update, guide, _id: @part_id + '-W', handle: 'WSAY', label: '人狼' }
+    Set.phase.add { update, guide, _id: @part_id + '-P', handle: 'PSAY', label: '結社' }
+    Set.phase.add { update, guide, _id: @part_id + '-G', handle: 'GSAY', label: '墓下' }
+    Set.phase.add { update, guide, _id: @part_id + '-F', handle: 'FSAY', label: '発泡' }
+    Set.phase.add { update, guide, _id: @part_id + '-X', handle: 'XSAY', label: '妖精' }
+    Set.phase.add { update, guide, _id: @part_id + '-T', handle: 'TITLE', label: '黒地' }
 
     snap @_chats,  'chat'
     snap @_phases, 'phase'
