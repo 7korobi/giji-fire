@@ -5,7 +5,7 @@ span
 
 <template lang="pug">
 .text-editor(@drop="drop")
-  textarea(ref="input", @input="input", :value="value", :rows="areaRow", :placeholder="placeholder")
+  textarea(ref="input" :value="value" :rows="areaRow" :placeholder="placeholder" @input="input" @focus="focus" @blur="blur")
   span.mdi(:class="mark")
     | {{size}}/
     sub {{maxSize}}字
@@ -88,6 +88,9 @@ module.exports =
       value:
         type: String
         required: true
+      rows:
+        type: Number
+        default: 0
       maxSize:
         type: Number
         default: 100
@@ -100,6 +103,12 @@ module.exports =
       placeholder:
         type: String
         default: ""
+      is_ban:
+        type: Boolean
+        default: false
+      is_warn:
+        type: Boolean
+        default: false
 
     data: ->
       caret: {}
@@ -195,6 +204,7 @@ module.exports =
                 @image url, type
 
       submit: _.debounce ->
+        return if @ban
         @$emit 'submit', @value
       , 3000,
         leading: true
@@ -204,21 +214,26 @@ module.exports =
         @$emit 'input', e.target.value
       , 200
 
+      focus: -> @$emit 'icon', 'mdi-pen'
+      blur:  -> @$emit 'icon', 'mdi-access-point'
+
     computed:
       ban: ->
         ban = false
-        ban ||= @maxSize < @size
-        ban ||= @row < @minRow
-        ban ||= @maxRow < @row
+        ban ||= !( 2 <= @size <= @maxSize )
+        ban ||= !( @minRow <= @row <= @maxRow )
+        ban ||= @is_ban
         ban
       warn: ->
-        ok = true
-        ok &&= ! @value.match ///>>///
-        ! ok
+        warn = false
+        warn ||=  @value.match ///>>///
+        warn ||= @is_warn
+        warn
+
       mark: ->
-        m = "fa-check"
-        m = "fa-warning" if @warn
-        m = "fa-ban"     if @ban
+        m = "mdi-check-circle-outline"
+        m = "mdi-alert-circle-outline" if @warn
+        m = "mdi-cancel"               if @ban
         [m]
 
       size: ->
@@ -226,6 +241,7 @@ module.exports =
       row: ->
         @value.split("\n").length
       areaRow: ->
+        return @rows   if @rows
         return @minRow if @row < @minRow
         return @maxRow if @maxRow < @row
         return @row

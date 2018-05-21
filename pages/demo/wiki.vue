@@ -29,7 +29,7 @@ log-wiki(:part="part" :page_idx="0" :chat_id="chat_id" :back_url="back_url" @ank
         i.mdi.mdi-open-in-new
       a.btn.active(@click="remove")
         i.mdi.mdi-comment-remove-outline
-    text-editor(v-model="edit.chat.log" @drop_image="image_post" @submit="chat_post" :maxRow="8" :maxSize="250")
+    text-editor(v-model="edit.chat.log" @icon="icon_change" @drop_image="image_post" @submit="chat_post" :rows="9" :maxRow="9" :maxSize="999" :is_ban="is_ban" :is_warn="is_warn"  placeholder="※ 画像をDropできます")
 
   c-report(handle="footer" deco="center")
     bread-crumb
@@ -68,7 +68,10 @@ module.exports =
   ]
   layout: 'blank'
   data: ->
-    { edit, tag_ids: [], step: State.step }
+    icon =
+      _id: ''
+      icon: ''
+    { edit, icon, tag_ids: [], step: State.step }
 
   computed: {
     ...vuex_value 'firebase',['user', 'credential']
@@ -80,6 +83,14 @@ module.exports =
 
     is_creating: -> @edit.chat.potof_id == @edit.potof.id
     is_replacing: -> ! @is_creating
+
+    is_ban: ->
+      ban = false
+      ban
+
+    is_warn: ->
+      warn = false
+      warn
 
     phases: ->
       Query.phases.where({ @part_id }).list
@@ -113,7 +124,12 @@ module.exports =
   }
 
   methods:
+    icon_change: (icon)->
+      @icon = { icon, _id: @potof_id }
+
     focus: (@idx)->
+      @icon_change 'mdi-access-point'
+
     anker: (book_id, a)->
       console.log book_id, a
 
@@ -137,8 +153,6 @@ module.exports =
       next await downloadURL
 
     chat_post: (log)->
-      return if log.length < 4
-
       { _id, potof_id, write_at, show, deco, to, handle } = @edit.chat
       if @is_creating
         potof_id = @potof_id
@@ -155,6 +169,7 @@ module.exports =
       else
         displayName = null
         uid = null
+        @icon_change ""
       @edit.potof.sign = displayName
       @edit.potof.uid = uid
 
@@ -168,8 +183,24 @@ module.exports =
       { face_id, tag_id, head, job, sign, uid } = @edit.potof
       @edit.chat.head = head
       _id = @potof_id
+      icon = 'mdi-access-point'
       write_at = new Date - 0
+
       await post @_potofs, { _id, face_id, tag_id, job, write_at, sign, uid }
+      @icon_change icon
+
+    'icon._id': (_id, old_id)->
+      return unless Query.potofs.find _id
+      await Promise.all [
+        post @_potofs, @icon
+        post @_potofs,
+          _id: old_id
+          icon: ""
+      ]
+
+    'icon.icon': (icon)->
+      return unless Query.potofs.find @icon._id
+      await post @_potofs, @icon
 
   mounted: ->
     guide = true
@@ -180,16 +211,22 @@ module.exports =
     Set.part.add
       _id: @part_id
       label: 'wiki'
-    Set.phase.add { update, guide, _id: @part_id + '-S', handle: 'SSAY', label: '会話' }
-    Set.phase.add { update, guide, _id: @part_id + '-W', handle: 'WSAY', label: '人狼' }
-    Set.phase.add { update, guide, _id: @part_id + '-P', handle: 'PSAY', label: '結社' }
-    Set.phase.add { update, guide, _id: @part_id + '-G', handle: 'GSAY', label: '墓下' }
-    Set.phase.add { update, guide, _id: @part_id + '-F', handle: 'FSAY', label: '発泡' }
-    Set.phase.add { update, guide, _id: @part_id + '-X', handle: 'XSAY', label: '妖精' }
+    Set.phase.add { update, guide, _id: @part_id + '-S', handle: 'SSAY',  label: '会話' }
+    Set.phase.add { update, guide, _id: @part_id + '-W', handle: 'WSAY',  label: '人狼' }
+    Set.phase.add { update, guide, _id: @part_id + '-P', handle: 'PSAY',  label: '結社' }
+    Set.phase.add { update, guide, _id: @part_id + '-G', handle: 'GSAY',  label: '墓下' }
+    Set.phase.add { update, guide, _id: @part_id + '-F', handle: 'FSAY',  label: '発泡' }
+    Set.phase.add { update, guide, _id: @part_id + '-X', handle: 'XSAY',  label: '妖精' }
     Set.phase.add { update, guide, _id: @part_id + '-T', handle: 'TITLE', label: '黒地' }
 
     snap @_chats,  'chat'
     snap @_phases, 'phase'
     snap @_potofs, 'potof'
+
+  beforeDestroy: ->
+    @icon.icon = ""
+    return unless Query.potofs.find @icon._id
+    await post @_potofs, @icon
+
 
 </script>

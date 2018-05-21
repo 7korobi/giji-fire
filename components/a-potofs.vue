@@ -8,7 +8,7 @@
     table
       tfoot.TITLE.form.tb-btn
         tr
-          th(colspan="2")
+          th(colspan="3")
             sup (スクロールします)
           th
             btn(v-model="sort" as="live.date", @toggle="reverse") 日程
@@ -44,6 +44,7 @@
 
       transition-group.potofs.fine.tlist(name="list" tag="tbody")
         tr(v-for="o in potofs", :key="o.id" v-if="! o.hide")
+          td.c.mdi(:class="o.icon")
           th.r(:class="o.live && o.live.role_id") {{ o.job }}
           th.l(:class="o.live && o.live.role_id") {{ o.face && o.face.name }}
           td.r(:class="o.live && o.live.role_id") {{ o.live && o.live.date           | currency("日") }}
