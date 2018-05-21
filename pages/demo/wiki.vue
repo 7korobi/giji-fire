@@ -23,7 +23,7 @@ log-wiki(:part="part" :page_idx="0" :chat_id="chat_id" :back_url="back_url" @ank
       btn(v-model="edit.chat.show" as="report")
         i.mdi.mdi-note-text
     span.pull-right(v-if="is_creating")
-      btn(v-for="phase in phases" v-model="edit.phase.handle" :class="phase.handle" :as="phase.handle") {{ phase.label }}
+      btn(v-for="phase in phases" v-model="edit.phase.handle" :class="phase.handle" :key="phase.handle" :as="phase.handle") {{ phase.label }}
     span.pull-right(v-if="is_replacing")
       a.btn.active(@click="replace_cancel")
         i.mdi.mdi-open-in-new
@@ -120,9 +120,14 @@ module.exports =
     replace_cancel:   -> @edit.chat = Query.chats.find @edit.phase.id + '-edit'
     replace: (chat_id)-> @edit.chat = Query.chats.find chat_id
 
-    remove: (_id)->
-      if confirm "編集中の #{edit.chat._id} を削除しますか？"
-        await remove @_chats, { _id }
+    remove: ->
+      { _id, potof } = @edit.chat
+      return unless confirm "編集中の #{_id} を削除しますか？"
+      await remove @_chats, { _id }
+
+      return if potof.chats.ids.length
+      { _id } = potof
+      await remove @_potofs, { _id }
     
     check_post: (target)->
       console.log target
