@@ -3,7 +3,7 @@ div
   c-report(handle="footer" deco="center")
     bread-crumb
   c-post(handle="TSAY")
-    nuxt-link(to="/demo/wiki?idx=test-page") WIKI
+    nuxt-link(to="/demo/wiki?idx=test-book") WIKI
   c-post(handle="TSAY")
     nuxt-link(to="/demo/marked") Markdown Talk
   c-post(handle="TSAY")

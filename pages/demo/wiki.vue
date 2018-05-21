@@ -180,7 +180,7 @@ module.exports =
     Set.part.add
       _id: @part_id
       label: 'wiki'
-    Set.phase.add { update, guide, _id: @part_id + '-SS', handle: 'SSAY', label: '会話' }
+    Set.phase.add { update, guide, _id: @part_id + '-S', handle: 'SSAY', label: '会話' }
     Set.phase.add { update, guide, _id: @part_id + '-W', handle: 'WSAY', label: '人狼' }
     Set.phase.add { update, guide, _id: @part_id + '-P', handle: 'PSAY', label: '結社' }
     Set.phase.add { update, guide, _id: @part_id + '-G', handle: 'GSAY', label: '墓下' }

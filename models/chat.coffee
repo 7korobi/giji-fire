@@ -53,7 +53,7 @@ new Rule("chat").schema ->
         count: 1
         all: o.log.length
 
-      if o.phase_id.match(/-[SGV]S$/)
+      if o.phase_id.match(/-[SGV]S?$/)
         emit "potof", o.phase_id, o.potof_id,
           count: 1
           all: o.log.length
