@@ -15,6 +15,8 @@ module.exports =
     mentions: ->
       Query.chats.reduce?.mention_to?[@chat_id]
 
+    can_fav: ->
+      @chat?.phase?.fav
     can_update: ->
       @chat?.phase?.update
 
@@ -36,10 +38,13 @@ div(v-if="chat")
       em(v-if="chat.phase") {{ chat.phase.label }}
     span.pull-right
       timeago(v-if="chat.write_at" :since="chat.write_at")
-  .form(:class="chat.phase.handle")
+  .text(:class="chat.phase.handle")
     span
-      a.btn.active(@click="edit"   v-if="can_update")
+      a.btn.active(@click="edit" v-if="can_update")
         i.mdi.mdi-square-edit-outline
+      a.btn.active(@click="edit" v-if="can_fav")
+        i.mdi.mdi-heart-outline(v-if="true")
+        i.mdi.mdi-heart(v-if="false")
     hr
     h6 参照されている
     hr

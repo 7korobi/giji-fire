@@ -59,10 +59,12 @@ span
         i.mdi.mdi-format-bold
       a.btn(@click='ruby')
         i.mdi.mdi-source-commit-end-local
-      a.btn(@click='code')
-        i.mdi.mdi-code-braces
+      a.btn(@click='cnv_kana')
+        i.mdi.mdi-gender-male-female
       a.btn(@click='del')
         i.mdi.mdi-format-strikethrough-variant
+      a.btn(@click='code')
+        i.mdi.mdi-code-braces
 
 </template>
 
@@ -155,6 +157,14 @@ module.exports =
 
       blockquote: caret (hd, text, tl)-> """#{hd}> #{text}#{tl}"""
       footnote:   caret (hd, text, tl)-> """#{hd}^[#{text}]#{tl}"""
+      cnv_kana:   caret (hd, text, tl)->
+        # ひらがなをカタカナに、カタカナをひらがなに
+        text = text.replace /([\u3041-\u3096])|([\u30a1-\u30f6])/g, (match, hira, kata)->
+          if hira
+            return String.fromCharCode hira.charCodeAt(0) + 0x60
+          if kata
+            return String.fromCharCode kata.charCodeAt(0) - 0x60
+        """#{hd}#{text}#{tl}"""
 
       image: caret (hd, text, tl, name, type)-> """#{hd}![#{text || type}](#{name})#{tl}"""
 
