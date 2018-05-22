@@ -8,6 +8,26 @@ log-wiki(:part="part" :page_idx="0" :chat_id="chat_id" :back_url="back_url" @ank
   div(v-for="(chats, idx) in page_contents", :key="idx")
     chat(v-for="o in chats" @anker="anker" @focus="focus" :current="chat" :id="o.id", :key="o.id")
 
+  div(v-if="! page_contents.length")
+    c-post(handle="VSAY")
+      article
+        blockquote.
+          現在、この名前の項目はありません。
+          誰でも編集できます。
+        hr
+        br
+        h3 項目を新しく書くには
+        ol
+          li 下のアイコンから、ログインに使うサービスを選択。
+          li 書き込みに使うキャラクターを選択。
+          li 枠形と色味を好みできめたら、
+          li
+            a(target="blank" href="https://ja.wikipedia.org/wiki/Markdown") Markdown形式
+            | で自由に書き込もう。
+        ol(style="list-style-type: upper-latin")
+          li 画像を書き込みフォームにDrag＆Dropすると、その画像を張り付けるぞ。
+        br
+
   c-post(handle="TSAY")
     fire-oauth(style="white-space: nowrap")
   e-potof(v-if="user && is_creating" v-model="edit.potof")
@@ -29,7 +49,7 @@ log-wiki(:part="part" :page_idx="0" :chat_id="chat_id" :back_url="back_url" @ank
         i.mdi.mdi-open-in-new
       a.btn.active(@click="remove")
         i.mdi.mdi-comment-remove-outline
-    text-editor(v-model="edit.chat.log" @icon="icon_change" @drop_image="image_post" @submit="chat_post" :rows="9" :maxRow="9" :maxSize="999" :is_ban="is_ban" :is_warn="is_warn"  placeholder="※ 画像をDropできます")
+    text-editor(v-model="edit.chat.log" @icon="icon_change" @drop_image="image_post" @submit="chat_post" :rows="9" :maxRow="9" :maxSize="999" :is_ban="is_ban" :is_warn="is_warn")
 
   c-report(handle="footer" deco="center")
     bread-crumb
