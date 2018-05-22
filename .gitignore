@@ -12,6 +12,7 @@ dist
 
 # settings
 firebase.crashreporting.json
+config/service_account.yml
 config/live.yml
 config/default.yml
 config/production.yml
@@ -29,6 +30,10 @@ static/images/portrate
 # auto-generated
 .awspublish-giji-assets
 .cache
+functions/index.js
+functions/index.js.map
+functions/spec.js
+functions/spec.js.map
 static/aggregate
 static/sow
 static/sow.sh
