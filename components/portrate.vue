@@ -19,7 +19,7 @@ module.exports =
       else
         []
     image_src: ->
-      face = Query.faces.find(@face_id, "all")
+      face = Query.faces.find(@face_id, "blank")
       switch
         when @img_src
           @img_src

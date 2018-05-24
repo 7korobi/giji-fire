@@ -181,3 +181,10 @@ list =
     { chr_set_id, face_id, job }
 
 Set.chr_job.merge list
+
+Set.face.add
+  _id: 'blank'
+  comment: ""
+  name: ""
+  order: 0
+  tag_ids: []

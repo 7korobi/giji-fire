@@ -17,12 +17,14 @@
     "copy:portrate": "cp \"../../人狼議事 チーム フォルダ/web_work/images/portrate\"/* static/images/portrate/.",
     "copy:monaco": "rm -rf static/lib/monaco-editor/min && cp -r node_modules/monaco-editor/min static/lib/monaco-editor/.",
     "deploy": "run-s generate:nuxt deploy:test",
-    "deploy:test": "run-p -n deploy:firebase deploy:aws",
+    "deploy:test": "run-p -n deploy:host deploy:aws",
     "deploy:live": "run-p -n deploy:rsync deploy:aws",
-    "deploy:firebase": "firebase deploy",
+
     "deploy:aws": "aws s3 sync dist s3://giji-assets/fire --acl public-read --exclude '*.html'",
     "deploy:rsync": "rsync -avz dist 7korobi@giji.f5.si:/home/7korobi/giji-fire/.",
     "deploy:copy": "run-s copy copy_dist",
+    "deploy:host": "firebase deploy --only hosting",
+    "deploy:func": "firebase deploy --only functions",
     "deploy:all": "firebase deploy"
   },
   "dependencies": {
