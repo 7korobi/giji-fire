@@ -42,6 +42,12 @@ log-wiki(:part="part" :page_idx="0" :chat_id="chat_id" :back_url="back_url" @ank
         i.mdi.mdi-comment-text
       btn(v-model="edit.chat.show" as="report")
         i.mdi.mdi-note-text
+    | &nbsp;
+    span
+      btn(v-model="edit.chat.deco" as="giji")
+        i.mdi.mdi-file-document
+      btn(v-model="edit.chat.deco" as="mermaid")
+        i.mdi.mdi-file-image
     span.pull-right(v-if="is_creating")
       btn(v-for="phase in phases" v-model="edit.phase.handle" :class="phase.handle" :key="phase.handle" :as="phase.handle") {{ phase.label }}
     span.pull-right(v-if="is_replacing")
@@ -49,7 +55,7 @@ log-wiki(:part="part" :page_idx="0" :chat_id="chat_id" :back_url="back_url" @ank
         i.mdi.mdi-open-in-new
       a.btn.active(@click="remove")
         i.mdi.mdi-comment-remove-outline
-    text-editor(v-model="edit.chat.log" @icon="icon_change" @drop_image="image_post" @submit="chat_post" :rows="9" :maxRow="9" :maxSize="999" :is_ban="is_ban" :is_warn="is_warn")
+    text-editor(v-model="edit.chat.log" @icon="icon_change" @drop_image="image_post" @submit="chat_post" :rows="7" :maxRow="20" :maxSize="999" :is_ban="is_ban" :is_warn="is_warn")
 
   c-report(handle="footer" deco="center")
     bread-crumb

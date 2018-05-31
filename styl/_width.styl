@@ -9,10 +9,6 @@ width($font, $center)
   $limit3 = $center + 2 * ( $gap + 160px )
   $half   = ( $center + $gap ) / 2
 
-  .center-left
-  .center-right
-    width: "calc( (50vw - %s) / 3 )" % $half
-
   @media screen and (min-width: $limit3)
     .summary
       width: "calc( 50vw - %s )" % $half

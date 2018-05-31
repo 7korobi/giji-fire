@@ -19,7 +19,7 @@ div
 
   .fullframe
     transition-group.portrates(name="list" tag="div")
-      portrate(v-for="face in faces.list", :face_id="face.id", :key="face.id")
+      portrate(v-for="face in faces.list" :face_id="face.id" :key="face.id")
         p(v-if="'fav_count' == order")
           | ♥{{face.fav_count}}回
         p(v-else)
@@ -55,7 +55,6 @@ module.exports =
 
   computed:
     faces: ->
-      console.log @
       Query.faces.aggregate(@tag_id, @order)
 
 </script>

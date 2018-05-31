@@ -6,7 +6,7 @@ Base = (table)->
     str = ""
     while num
       at = num % size
-      str += table[at]
+      str = table[at] + str
       num = Math.floor(num / size)
     str
 

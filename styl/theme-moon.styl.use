@@ -11,7 +11,7 @@ palette_single(icons, metal, P04)
 
 .center-left
 .center-right
-  border-color: hsla(0,96%,10%,1)
+  border-color: hsla(-10,96%,30%,1)
 
 .page-active
   // animation: bg-pulse-fire 15s ease-in-out infinite alternate

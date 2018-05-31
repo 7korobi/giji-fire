@@ -12,7 +12,7 @@ palette_single(icons, pastel, N09)
 
 .center-left
 .center-right
-  border-color: hsla(210,66%,90%,1)
+  border-color: hsla(190,80%,66%,1)
 
 .page-active-bg
   // animation: bg-pulse-fire 5s ease-in-out infinite alternate

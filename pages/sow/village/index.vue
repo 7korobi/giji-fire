@@ -17,7 +17,7 @@ div
             sup(v-if="rating.length") {{ rating.length }}
         span
           btn(as="timer.updateddt" v-model="order" @toggle="submenu")
-            | 日時
+            | 年月日
             sup(v-if="yeary.length + monthry.length") {{ yeary.length + monthry.length }}
           btn(as="upd_range"       v-model="order" @toggle="submenu")
             | 更新間隔
@@ -68,19 +68,27 @@ div
         sub(style="width: 100%")
           | {{ page_all_contents.all | currency }}村があてはまります。
 
-      c-post.form(v-if="drill" handle="btns" key="subform")
+      c-report.form(v-if="drill" handle="btns" key="subform")
         p(v-if="order === 'vid'")
           check(v-for="o in summary('folder_id')" v-model="folder_id", :as="o.id", :key="o.id")
             | {{ o.id }}
             sup(v-if="1 < o.count") {{ o.count }}
+
         p(v-if="order === 'timer.updateddt'")
-          check(v-for="o in summary('yeary')" v-model="yeary", :as="o.id", :key="o.id")
-            | {{ o.id }}
-            sup(v-if="1 < o.count") {{ o.count }}
-        p(v-if="order === 'timer.updateddt'")
-          check(v-for="o in summary('monthry')" v-model="monthry", :as="o.id", :key="o.id")
-            | {{ o.id }}
-            sup(v-if="1 < o.count") {{ o.count }}
+          table
+            thead
+              tr
+                td
+                th.r(v-for="label in month_labels") {{ label }}
+            tbody
+              tr(v-for="oo in summary('yeary')")
+                td.l
+                  check(v-model="yeary", :as="oo.id", :key="oo.id")
+                    | {{ oo.id }}
+                    sup(v-if="1 < oo.count") {{ oo.count }}
+                td.r(v-for="o in months(oo.id)")
+                  check(v-if="o" v-model="monthry", :as="o.id", :key="o.id")
+                    sup {{ o.count }}
         p(v-if="order === 'upd_range'")
           check(v-for="o in summary('upd_range')" v-model="upd_range", :as="o.id", :key="o.id")
             | {{ o.id }}
@@ -149,6 +157,9 @@ div
               tr
                 th 規模
                 td {{ o.q.size }}人 {{ o.say.CAPTION }}
+              tr
+                td(colspan="2")
+                  timeago(:since="o.write_at")
           .card(style="width: 66%")
             p
               a.label(v-if="o.mob", :class="o.mob.win") {{ o.mob.label }}
@@ -234,7 +245,16 @@ module.exports =
     summary: (key)->
       @all.reduce?[key]
 
+    months: (year)->
+      @month_labels.map (month)=>
+        id = year + month
+        if o = @all.reduce.monthry[year][id]
+          o.id = id
+        o
+
   computed:
+    month_labels: ->
+      ['01月','02月','03月','04月','05月','06月','07月','08月','09月','10月','11月','12月']
     query_in: ->
       obj = {}
       for key in ["option", "event","discard","config"]

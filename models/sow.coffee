@@ -1,12 +1,6 @@
 { Set, Model, Query, Rule } = Mem = require "~/plugins/memory-record"
 { url } = require "~/config/live.yml"
-
-monthry = new Intl.DateTimeFormat 'ja-JP',
-  year:  "numeric"
-  month: "2-digit"
-
-yeary = new Intl.DateTimeFormat 'ja-JP',
-  year:  "numeric"
+moment = require '~/plugins/moment'
 
 new Rule("sow_roletable").schema ->
 
@@ -46,7 +40,12 @@ new Rule("sow_village").schema ->
 
     @write_at = updated_at
     @query = Query.sow_villages.where({@id})
-    @q =
+
+    monthry = moment(updated_at).format('YYYY年MM月')
+    yeary = moment(updated_at).format('YYYY年')
+    @q = {
+      yeary
+      monthry
       sow_auth_id: @sow_auth_id.replace(/\./g, '&#2e')
       folder_id: @folder.toUpperCase()
       size: "x" + @vpl[0]
@@ -55,9 +54,8 @@ new Rule("sow_village").schema ->
       game: @type.game
       upd_at: "#{hour}:#{minute}"
       upd_range: "#{interval * 24}h"
-      yeary: yeary.format updated_at
-      monthry: monthry.format updated_at
       rating: @rating
+    }
 
     @q.rating = "default"  if @rating in [null, 0, "0", "null", "view"]
     @q.rating = "alert"    if @rating in ["R15", "r15", "r18"]
@@ -97,7 +95,6 @@ new Rule("sow_village").schema ->
   class @model extends @model
     @order: (o, emit)->
       emit "yeary",       { sort: ['id','asc'] }
-      emit "monthry",     { sort: ['id','asc'] }
       emit "folder_id",   { sort }
       emit "upd_range",   { sort }
       emit "upd_at",      { sort: ['id','asc'] }
@@ -113,9 +110,9 @@ new Rule("sow_village").schema ->
       emit "config",      { sort, belongs_to: "roles"   }
 
     @map_reduce: (o, emit)->
-      emit "mode", o.mode, o.q.folder_id, cmd
-      emit "yeary",       o.q.yeary,       cmd
-      emit "monthry",     o.q.monthry,     cmd
+      emit "mode", o.mode, o.q.folder_id,  cmd
+      emit "yeary",   o.q.yeary,              cmd
+      emit "monthry", o.q.yeary, o.q.monthry, cmd
       emit "folder_id",   o.q.folder_id,   cmd
       emit "upd_range",   o.q.upd_range,   cmd
       emit "upd_at",      o.q.upd_at,      cmd

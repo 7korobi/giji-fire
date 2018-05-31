@@ -12,7 +12,7 @@ palette_single(icons, metal, P04)
 
 .center-left
 .center-right
-  border-color: hsla(40deg,15%,10%,1)
+  border-color: hsla(35,99%,66%,1)
 
 .page-active-bg
   background-color: #000

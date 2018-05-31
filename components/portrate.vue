@@ -18,8 +18,16 @@ module.exports =
         ["hide"]
       else
         []
+    blank: ->
+      _id: 'blank'
+      id: 'blank'
+      comment: ""
+      name: ""
+      order: 0
+      tag_ids: []
+
     image_src: ->
-      face = Query.faces.find(@face_id, "blank")
+      face = Query.faces.find(@face_id) ? @blank
       switch
         when @img_src
           @img_src

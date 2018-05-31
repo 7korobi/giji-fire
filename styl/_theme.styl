@@ -182,8 +182,8 @@ lights = {
 }
 
 
-HSLA(key,SS,LL,AA)
-  HH = hues[key]
+HSLA(key,SS,LL,AA = 1, hue_offset = 0)
+  HH = hues[key] + hue_offset
   if 30% < SS && 30% < LL && LL < 70%
     SS = SS * saturates[key] / 100
     LL = LL * lights[key]    / 100
@@ -206,7 +206,9 @@ palette($themes, $backT)
 
 palette_single($bgTheme, $backT, key)
   if pastel == $backT
+    $fine =   HSLA(key,50%,75%,1,  12deg)
     $edge =   HSLA(key,50%,75%,1)
+    $line =   HSLA(key,50%,75%,1, -12deg)
     $focus =  HSLA(key,75%,65%,1)
 
     $emboss = HSLA(key,60%,65%,1)
@@ -223,7 +225,9 @@ palette_single($bgTheme, $backT, key)
     $penHi =  HSLA(key,  33%,20%,1)
 
   if snow == $backT
+    $fine =   HSLA(key,15%,75%,1,  12deg)
     $edge =   HSLA(key,15%,75%,1)
+    $line =   HSLA(key,15%,75%,1, -12deg)
     $focus =  HSLA(key,25%,65%,1)
 
     $emboss = HSLA(key,15%,65%,1)
@@ -240,7 +244,9 @@ palette_single($bgTheme, $backT, key)
     $penHi =  HSLA(key,  80%,20%,1)
 
   if light == $backT
+    $fine =   HSLA(key,50%,50%,1,  12deg)
     $edge =   HSLA(key,50%,50%,1)
+    $line =   HSLA(key,50%,50%,1, -12deg)
     $focus =  HSLA(key,75%,40%,1)
 
     $emboss = HSLA(key,40%,50%,1)
@@ -257,7 +263,9 @@ palette_single($bgTheme, $backT, key)
     $penHi =  HSLA(key,  66%, 0%,1)
 
   if white == $backT
+    $fine =   HSLA(key,15%,50%,1,  12deg)
     $edge =   HSLA(key,15%,50%,1)
+    $line =   HSLA(key,15%,50%,1, -12deg)
     $focus =  HSLA(key,25%,40%,1)
 
     $emboss = HSLA(key,15%,45%,1)
@@ -274,7 +282,9 @@ palette_single($bgTheme, $backT, key)
     $penHi =  HSLA(key,  80%, 0%,1)
 
   if foot == $backT
+    $fine =   HSLA(key,50%,50%,1,  12deg)
     $edge =   HSLA(key,50%,50%,1)
+    $line =   HSLA(key,50%,50%,1, -12deg)
     $focus =  HSLA(key,30%,45%,1)
 
     $bgLow =  HSLA(key,40%,33%,1)
@@ -291,7 +301,9 @@ palette_single($bgTheme, $backT, key)
     $penHi =  HSLA(key,  15%,90%,1)
 
   if ash == $backT
+    $fine =   HSLA(key,15%,50%,1,  12deg)
     $edge =   HSLA(key,15%,50%,1)
+    $line =   HSLA(key,15%,50%,1, -12deg)
     $focus =  HSLA(key,25%,40%,1)
 
     $bgLow =  HSLA(key,15%,33%,1)
@@ -308,7 +320,9 @@ palette_single($bgTheme, $backT, key)
     $penHi =  HSLA(key,  15%,90%,1)
 
   if black == $backT
+    $fine =   HSLA(key,66%,40%,1,  12deg)
     $edge =   HSLA(key,66%,40%,1)
+    $line =   HSLA(key,66%,40%,1, -12deg)
     $focus =  HSLA(key,80%,30%,1)
 
     $emboss = HSLA(key,30%,30%,1)
@@ -325,7 +339,9 @@ palette_single($bgTheme, $backT, key)
     $penHi =  HSLA(key,  15%,90%,1)
 
   if metal == $backT
+    $fine =   HSLA(key,15%,40%,1,  12deg)
     $edge =   HSLA(key,15%,40%,1)
+    $line =   HSLA(key,15%,40%,1, -12deg)
     $focus =  HSLA(key,25%,30%,1)
 
     $emboss = HSLA(key,30%,30%,1)
@@ -342,7 +358,9 @@ palette_single($bgTheme, $backT, key)
     $penHi =  HSLA(key,  15%,90%,1)
 
   if night == $backT
+    $fine =   HSLA(key,66%,40%,1,  12deg)
     $edge =   HSLA(key,66%,40%,1)
+    $line =   HSLA(key,66%,40%,1, -12deg)
     $focus =  HSLA(key,80%,30%,1)
 
     $emboss = HSLA(key,50%,30%,1)
@@ -359,7 +377,9 @@ palette_single($bgTheme, $backT, key)
     $penHi =  HSLA(key,  85%,90%,1)
 
   if grass == $backT
+    $fine =   HSLA(key,50%,50%,1,  12deg)
     $edge =   HSLA(key,50%,50%,1)
+    $line =   HSLA(key,50%,50%,1, -12deg)
     $focus =  HSLA(key,99%,50%,0.3)
 
     $emboss = HSLA(key,40%,35%,1)
@@ -407,6 +427,136 @@ palette_single($bgTheme, $backT, key)
 
       blockquote
         border-color: $edge
+      
+      // mermaid
+      .section.section1
+      .section.section3
+      .section.section5
+      .section.section7
+        fill: $bgLow
+      .section.section0
+      .section.section2
+      .section.section4
+      .section.section6
+        fill: $bgHi
+
+      .task.doneCrit0
+      .task.doneCrit1
+      .task.doneCrit2
+      .task.doneCrit3
+      .task.doneCrit4
+      .task.doneCrit5
+        fill: $bgLow
+        stroke: $penHi
+
+      .task.done0
+      .task.done1
+      .task.done2
+      .task.done3
+      .task.done4
+      .task.done5
+        fill: $bgLow
+        stroke: $emboss
+
+      .task.activeCrit0
+      .task.activeCrit1
+      .task.activeCrit2
+      .task.activeCrit3
+      .task.activeCrit4
+      .task.activeCrit5
+        fill: $bgHi
+        stroke: $penHi
+
+      .task.active0
+      .task.active1
+      .task.active2
+      .task.active3
+      .task.active4
+      .task.active5
+        fill: $bgHi
+        stroke: $emboss
+
+      .task.crit0
+      .task.crit1
+      .task.crit2
+      .task.crit3
+      .task.crit4
+      .task.crit5
+        fill: $emboss
+        stroke: $penHi
+
+      .task.task0
+      .task.task1
+      .task.task2
+      .task.task3
+      .task.task4
+      .task.task5
+        fill: $emboss
+        stroke: $emboss
+
+      .cluster > rect
+        fill: $bg
+        stroke: $hide
+      text.labelText
+      text.labelText > tspan
+        fill: $hide
+
+      .grid
+        .tick > line
+        .tick > text
+        .domain
+          stroke: $hide
+          fill: $hide
+
+      .cluster > text
+      text.sectionTitle
+      text.titleText
+      text.loopText
+        fill: $penHi
+
+      .note
+        fill: $bgHi
+        stroke: $bgLow
+
+      .label
+        color: $pen
+      .edgeLabel
+        color: $pen
+        background-color: $bgLow
+      text.actor
+      text.actor > tspan
+      text.messageText
+      text.messageText > tspan
+      text.noteText
+      text.noteText > tspan
+        fill: $pen
+
+      .messageLine0
+      .messageLine1
+      .edgePath > path.path
+      line.loopLine
+        stroke: $line
+        fill: $line
+
+      polygon.labelBox
+        fill: $emboss
+        stroke: $line
+      .edgePath path.arrowheadPath
+      marker#arrowhead
+      marker#crosshead
+        fill: $line
+
+      svg > g > rect
+        stroke: $fine
+        fill: $bg
+      .node > rect
+      .node > circle
+      .node > polygon
+      line.actor-line
+      .actor
+        stroke: $fine
+        fill: $bgHi
+        
 
     input
     textarea
@@ -555,3 +705,4 @@ palette_single($bgTheme, $backT, key)
         sup, sub, abbr
           background-color: $emboss
           color: $penEmb
+

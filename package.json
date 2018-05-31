@@ -19,6 +19,8 @@
     "deploy": "run-s generate:nuxt deploy:test",
     "deploy:test": "run-p -n deploy:host deploy:aws",
     "deploy:live": "run-p -n deploy:rsync deploy:aws",
+    "deploy:styl": "run-s copy:stylus copy_dist deploy:test",
+    "deploy:img":  "run-s copy:portrate copy_dist deploy:test",
 
     "deploy:aws": "aws s3 sync dist s3://giji-assets/fire --acl public-read --exclude '*.html'",
     "deploy:rsync": "rsync -avz dist 7korobi@giji.f5.si:/home/7korobi/giji-fire/.",
