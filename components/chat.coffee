@@ -33,10 +33,17 @@ module.exports = ->
 
     click: ({ target })->
       { cite, href, chk, src, alt } = target.attributes
-      if cite && chat = Query.chats.find cite.value
-        { book_id } = chat
-        ids = Array.from new Set [@id, chat.id]
-        @$emit "anker", book_id, ids.map (id)-> id[book_id.length ..]
+      if cite
+        a = cite.value
+        b = a.split('-')
+        b[3] = 'AIM' if 'TS' == b[3]
+        c = a.split('-')
+        c[2]-- if c[2]
+        chat = Query.chats.find a, b.join('-'), c.join('-')
+        if chat
+          { book_id } = chat
+          ids = Array.from new Set [@id, chat.id]
+          @$emit "anker", book_id, ids.map (id)-> id[book_id.length ..]
 
       if href
         url = href.value

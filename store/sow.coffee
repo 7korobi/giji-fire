@@ -179,7 +179,7 @@ module.exports =
         if log
           log = log.replace ///<mw\ +(..)(\d+),(\d+),(.+?)>///g, (str, _phase_idx, $1, _part_idx, _code)=>
             if _phase_idx == 'MM'
-              _phase_idx = @phase_id[-2..][0] + 'M'
+              _phase_idx = phase_idx[-2..][0] + 'M'
             _idx = Number($1)
             mention_ids.push _mention_id = [book_id, _part_idx, _phase_idx, _idx].join("-")
             """<q cite="#{_mention_id}">»#{_code}</q>"""

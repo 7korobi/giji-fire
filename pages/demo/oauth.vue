@@ -73,7 +73,7 @@ div
             th accessToken
             td {{ user.stsTokenManager.accessToken }}
           tr
-            th expirationTime
+            th expirationTime 
             td
               timeago(:since="user.stsTokenManager.expirationTime")
           tr
