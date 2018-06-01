@@ -107,7 +107,7 @@ module.exports =
       console.log token
 
     @collection.where("appName", "==", "[DEFAULT]").onSnapshot (q)=>
-      q.docChanges.forEach ({ newIndex, oldIndex, type })=>
+      q.docChanges().forEach ({ newIndex, oldIndex, type })=>
         console.log { newIndex, oldIndex, type }
       q.forEach (doc)=>
         # console.log doc.data()

@@ -71,7 +71,7 @@ edit = require '~/models/editor'
 snap = (collection, target)->
   collection.onSnapshot (q)=>
     console.log target, q.docs.length
-    q.docChanges.forEach ({ newIndex, oldIndex, type, doc })=>
+    q.docChanges().forEach ({ newIndex, oldIndex, type, doc })=>
       switch type
         when 'added', 'modified'
           Set[target].add doc.data()
