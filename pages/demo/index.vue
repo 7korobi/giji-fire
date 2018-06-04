@@ -5,6 +5,8 @@ div
   c-post(handle="TSAY")
     nuxt-link(to="/demo/wiki?idx=test-book") WIKI
   c-post(handle="TSAY")
+    nuxt-link(to="/demo/svg") SVG
+  c-post(handle="TSAY")
     nuxt-link(to="/demo/marked") Markdown Talk
   c-post(handle="TSAY")
     nuxt-link(to="/demo/markdown") Markdown vue
