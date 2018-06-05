@@ -74,7 +74,10 @@ module.exports =
           _.merge { handle, title, per }, o
       face.aggregate.mestypes.push sum
 
-      keys = face.aggregate.log.story_ids.map (key)-> key.split("-")
+      keys = face.aggregate.log.story_ids
+      .map (key)-> key.split("-")
+      .filter (o)-> o[0] and o[1]
+
       folders = _.groupBy keys, (o)-> o[0]
       for key, list of folders
         folders[key] = _.sortBy list, (o)-> o[1] - 0
