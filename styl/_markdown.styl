@@ -253,20 +253,17 @@ sub
 // SVG section
 
 .edgePath 
-  > path.path
-    fill: none
+  > path.path.hide
+    stroke: none
+    stroke-width: 0
+
   > path.path.wide
-    fill: none
     stroke-width: 6px
-    stroke-dasharray: 1px, 0
 
   > path.path.solid
-    fill: none
     stroke-width: 3px
-    stroke-dasharray: 1px, 0
 
   > path.path.dotted
-    fill: none
     stroke-width: 3px
     stroke-dasharray: 3px, 6px
 
@@ -283,3 +280,6 @@ rect.icon
   stroke: black
 rect.cluster
   stroke-width: 3px
+
+text.messageText
+  text-anchor: middle
