@@ -4856,11 +4856,9 @@ marked-pre-loader@^0.0.2:
     loader-utils latest
     marked-pre latest
 
-marked-pre@^0.0.25:
-  version "0.0.25"
-  resolved "https://registry.yarnpkg.com/marked-pre/-/marked-pre-0.0.25.tgz#1a4329b123288aa94f8f2e26f847c876a9f3183d"
-  dependencies:
-    npm-run-all "^4.1.3"
+marked-pre@^0.0.26:
+  version "0.0.26"
+  resolved "https://registry.yarnpkg.com/marked-pre/-/marked-pre-0.0.26.tgz#e00989b2f0d64cb611cceaa8d5d3bec08ab667e2"
 
 marked-pre@latest:
   version "0.0.22"

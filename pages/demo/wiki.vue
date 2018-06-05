@@ -55,7 +55,7 @@ log-wiki(:part="part" :page_idx="0" :chat_id="chat_id" :back_url="back_url" @ank
         i.mdi.mdi-open-in-new
       a.btn.active(@click="remove")
         i.mdi.mdi-comment-remove-outline
-    text-editor(v-model="edit.chat.log" @icon="icon_change" @drop_image="image_post" @submit="chat_post" :rows="7" :maxRow="20" :maxSize="999" :is_ban="is_ban" :is_warn="is_warn")
+    text-editor(v-model="edit.chat.log" @icon="icon_change" @drop_image="image_post" @submit="chat_post" :deco="edit.chat.deco" :rows="7" :maxRow="20" :maxSize="999" :is_ban="is_ban" :is_warn="is_warn")
 
   c-report(handle="footer" deco="center")
     bread-crumb

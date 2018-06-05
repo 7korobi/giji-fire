@@ -27,6 +27,7 @@ if window?
   giji_options =
     renderer: giji_renderer
     tag: 'article'
+    ruby: true
     gfm: true
     tables: true
     indentCode: false

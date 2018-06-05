@@ -14,11 +14,11 @@ span
   span.pull-right
     a.btn(@click="submit") 投稿
 
-  span.pull-right
+  span.pull-right(v-if="'giji' == deco")
     a.btn(@click="nDm")
       i.mdi.mdi-dice-3
 
-  span.pull-right
+  span.pull-right(v-if="'giji' == deco")
     a.btn(@click='h1')
       i.mdi.mdi-format-header-1
     a.btn(@click='h2')
@@ -33,7 +33,7 @@ span
       i.mdi.mdi-format-header-6
 
   div
-    span
+    span(v-if="'giji' == deco")
       a.btn(@click='blockquote')
         i.mdi.mdi-format-indent-increase
       a.btn(@click='ul')
@@ -47,7 +47,7 @@ span
       a.btn(@click='hr')
         i.mdi.mdi-format-page-break
 
-    span
+    span(v-if="'giji' == deco")
       a.btn(@click='anker')
         i.mdi.mdi-link-variant
       a.btn(@click='sup')
@@ -87,6 +87,8 @@ module.exports =
       value:
         type: String
         required: true
+      deco:
+        type: String
       rows:
         type: Number
         default: 0

@@ -250,3 +250,36 @@ sub
   display: inline-block
   text-align: center
 
+// SVG section
+
+.edgePath 
+  > path.path
+    fill: none
+  > path.path.wide
+    fill: none
+    stroke-width: 6px
+    stroke-dasharray: 1px, 0
+
+  > path.path.solid
+    fill: none
+    stroke-width: 3px
+    stroke-dasharray: 1px, 0
+
+  > path.path.dotted
+    fill: none
+    stroke-width: 3px
+    stroke-dasharray: 3px, 6px
+
+
+#svg-marker-arrow > path
+  stroke-width: 1px
+  stroke-dasharray: 1px, 0
+#svg-marker-cross > path
+  stroke-width: 2px
+  stroke-dasharray: 1px, 0
+
+rect.icon
+  fill:   black
+  stroke: black
+rect.cluster
+  stroke-width: 3px

@@ -494,6 +494,7 @@ palette_single($bgTheme, $backT, key)
         fill: $emboss
         stroke: $emboss
 
+      rect.cluster
       .cluster > rect
         fill: $bg
         stroke: $hide
@@ -541,13 +542,12 @@ palette_single($bgTheme, $backT, key)
         fill: $emboss
         stroke: $line
       .edgePath path.arrowheadPath
-      marker#arrowhead
-      marker#crosshead
+      marker
         fill: $line
+      marker#svg-marker-arrow
+        fill: $line
+        stroke: $line
 
-      svg > g > rect
-        stroke: $fine
-        fill: $bg
       .node > rect
       .node > circle
       .node > polygon

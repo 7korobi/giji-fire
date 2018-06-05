@@ -6,23 +6,24 @@ regexp_join = (regex, ...names) ->
 
   for name in names
     key = new RegExp name, 'g'
-    val = syntax['_' + name]
+    val = syntax[name]
     val = val.source or val
     source = source.replace key, val
   new RegExp source, flags
 
 syntax =
+  edges: /^( *)((\w+)?(?: *_arrow_ *\w+)+) *(?:_comment_)?(?:_eol_)?/
+  node:  /^( *)(\w+) *(?:_comment_)?(?:_eol_)?/
   newline: /^ *\n|^ +$/
-  node:  /^( *)(\w+) *(comment)?(?:eol)?/
-  child_edge: /^( *)(-+|=+|\.+)([>Xx]?) *(\w+) *(comment)?(?:eol)?/
-  edge:  /^( *)(\w+) *(-+|=+|\.+)([>Xx]?) *(\w+) *(comment)?(?:eol)?/
 
-  _comment: /: *(.*) */
-  _eol: / *(?:\n|$)/
+  _arrow_: /(-|=|\.)+(>|X|x)?/
+  _comment_: /: *(.*) */
+  _eol_: / *(?:\n|$)/
 
-syntax.node = regexp_join syntax.node, 'comment', 'eol'
-syntax.edge = regexp_join syntax.edge, 'comment', 'eol'
-syntax.child_edge = regexp_join syntax.child_edge, 'comment', 'eol'
+syntax.node  = regexp_join syntax.node,  '_arrow_', '_comment_', '_eol_'
+syntax.edges = regexp_join syntax.edges, '_arrow_', '_comment_', '_eol_'
+
+console.log syntax
 
 class Render
   constructor: (@graph)->
@@ -32,13 +33,13 @@ class Render
     arrow =
       switch arrow
         when '>'
-          'arrow'
+          'url(#svg-marker-arrow)'
         when 'X', 'x'
-          'cross'
+          'url(#svg-marker-cross)'
         else
           null
     line =
-      switch line[0]
+      switch line
         when '='
           'wide'
         when '-'
@@ -48,6 +49,7 @@ class Render
 
     if label
       @graph.setEdge v, w,
+        key: [v,w].join(",")
         minlen: 1
         weight: 1
         arrow: arrow
@@ -59,6 +61,7 @@ class Render
         height:      20
     else
       @graph.setEdge v, w,
+        key: [v,w].join(",")
         minlen: 1
         weight: 1
         arrow: arrow
@@ -66,16 +69,18 @@ class Render
 
   icon: (v, label)->
     @graph.setNode v,
+      key: v
       label: label
-      class: 'portrate'
+      class: 'icon'
       href: "https://api-project-54633717694.firebaseapp.com/images/portrate/#{v}.jpg"
       width:  100
       height: 140
   
-  group: (v, w, label)->
+  cluster: (v, w, label)->
     @graph.setNode w,
+      key: w
       label: label
-      class: 'group'
+      class: 'cluster'
     @graph.setParent v, w
 
 parse = (render, src)->
@@ -101,34 +106,39 @@ parse = (render, src)->
       render.newline()
       continue
 
-    if cap = syntax.child_edge.exec src
-      [ all, depth, line, arrow, w, $, label ] = cap
-      # console.log "child_edge", cap
-      if v = find_parent "", depth
-        src = src[all.length ..]
-        render.edge v, w, line, arrow, label
-        continue
-
-    if cap = syntax.edge.exec src
-      [ all, depth, v, line, arrow, w, $, label ] = cap
+    if cap = syntax.edges.exec src
+      [ all, depth, edges, v, $, $, label ] = cap
       src = src[all.length ..]
-      # console.log "edge", cap
-      find_parent "", depth
-      render.edge v, w, line, arrow, label
+      edges = edges
+      .split syntax._arrow_
+      .map (s)-> s?.trim()
+
+      if v
+        if find_parent "", depth
+          throw new Error "解釈できない文字列です。"
+      else
+        unless v = find_parent "", depth
+          throw new Error "解釈できない文字列です。"
+
+      edges[0] = v
+      for v, idx in edges by 3
+        [ v, line, arrow, w ] = edges[idx .. idx + 3]
+        if w
+          render.edge v, w, line, arrow, label
       continue
 
     if cap = syntax.node.exec src
-      [ all, depth, v, $, label ] = cap
+      [ all, depth, v, label ] = cap
       src = src[all.length ..]
       # console.log "node", cap
       render.icon v, label
 
       if parent = find_parent v, depth
         { label } = render.graph.node parent
-        render.group v, parent, label
+        render.cluster v, parent, label
 
       continue
-    
+
     if src
       throw new Error "解釈できない文字列です。"
 
@@ -204,40 +214,54 @@ c10
       graph.sources() # without edge target
       graph.sinks()   # without edge source
 
+###
+Vue.component('anchored-heading', {
+  render: function (createElement) {
+    return createElement(
+      'h' + this.level,   // タグ名
+      this.$slots.default // 子の配列
+    )
+  },
+  props: {
+    level: {
+      type: Number,
+      required: true
+    }
+  }
+})
+
+.chat.report(@click="click" @input="input" :id="id" :key="id" :class="classname")
+  .text(v-html="log_html" :class="deco")
+
+  ||
+
+n "div",
+  key: @id
+  staticClass: "chat report"
+  class: @classname
+  attrs:
+    id: @id
+  on:
+    click: @click
+    input: @input
+, [
+  n "div",
+    staticClass: "text"
+    class: @deco
+    domProps:
+      innerHTML: @_s @log_html
+]
+###
+
 </script>
 <style lang="stylus" scoped>
-g.portrate > rect
-  fill:   black
-  stroke: black
-g.group
-  fill: none
-g.group > rect
-  stroke-width: 3px
-g > text
-  fill: white
 
-
-.edgePath > path.path.wide
-  fill: none
-  stroke-width: 6px
-  stroke-dasharray: 1px, 0
-
-.edgePath > path.path.solid
-  fill: none
-  stroke-width: 3px
-  stroke-dasharray: 1px, 0
-
-.edgePath > path.path.dotted
-  fill: none
-  stroke-width: 3px
-  stroke-dasharray: 3px
-
-#svg-marker-arrow > path
-  stroke-width: 1px
-  stroke-dasharray: 1px, 0
-#svg-marker-cross > path
-  stroke-width: 2px
-  stroke-dasharray: 1px, 0
+.nodes-move:not(.nodes-leave-active)
+  > rect
+  > image
+    transition: x .5s, y .5s
+.edges-move:not(.edges-leave-active)
+  transition: d .5s   
 
 </style>
 <template lang="pug">
@@ -246,14 +270,15 @@ svg(:style="`max-width: 100%; width: ${root.width}px;`" :viewBox="view_box")
     path.path(d="M0,0 L10,5 L0,10 z")
   marker.edgePath#svg-marker-cross(viewBox="0 0 10 10" markerUnits="userSpaceOnUse" markerWidth="20" markerHeight="20" refX="5" refY="5" orient="0")
     path.path(d="M0,0 L10,10 M0,10 L10,0 z")
-  g(v-for="o in nodes" v-if="o" :class="o.class")
-    rect(:x="o.x - o.width / 2" :y="o.y - o.height / 2" :width="o.width" :height="o.height" rx="10" ry="10")
-    image(v-if="o.href" :x="o.x - o.width / 2 + 5" :y="o.y - o.height / 2 + 5" :width="o.width - 10" :height="o.height - 10" :xlink:href="o.href")
-  g.edgePath
-    path.path(v-for="o in edges" v-if="o.points" :class="o.class" :d="path_d(o.points)" :marker-end="`url(#svg-marker-${o.arrow})`")
+  transition-group(tag="g" name="nodes")
+    rect(v-for="o in nodes" v-if="o" :class="o.class" :key="'rect-' + o.key" :x="o.x - o.width / 2" :y="o.y - o.height / 2" :width="o.width" :height="o.height" rx="10" ry="10")
+    image(v-for="o in nodes" v-if="o && o.href" :class="o.class" :key="'img-' + o.key" :x="o.x - o.width / 2 + 5" :y="o.y - o.height / 2 + 5" :width="o.width - 10" :height="o.height - 10" :xlink:href="o.href")
+  transition-group.edgePath(tag="g" name="edges")
+    path.path(v-for="o in edges" v-if="o.points" :class="o.class" :key="o.key" :d="path_d(o.points)" :marker-end="o.arrow")
   g
     text.messageText(v-for="o in nodes" v-if="o && o.label" :x="o.x - o.width / 2" :y="20 + o.y + o.height / 2" )
       | {{ o.label }}
     text.messageText(v-for="o in edges" v-if="o && o.label" :x="o.x - o.width / 2" :y="o.y + o.height / 2" )
       | {{ o.label }}
 </template>
+
