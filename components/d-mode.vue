@@ -8,7 +8,7 @@ module.exports =
   methods:
     mode_to: (mode)->
       switch @mode
-        when "title", "memo"
+        when "memo"
           idx = @part_id
         else
           idx = @part_id || @chat_id
@@ -26,10 +26,6 @@ module.exports =
 
 <template lang="pug">
 .center(v-if="show")
-  span
-    nuxt-link(:to="mode_to('title')")
-      | タイトル
-      sup {{ now.title(part_id).all }}
   span(v-if="secret")
     nuxt-link(:to="mode_to('memo')")
       | メモ

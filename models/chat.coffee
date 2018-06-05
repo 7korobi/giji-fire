@@ -12,7 +12,6 @@ new Rule("chat").schema ->
   @scope (all)->
     wiki:   (hides, part_id)-> all.where (o)-> part_id == o.part_id && !(o.potof_id in hides)
     memo:   pages 'M',   all
-    title:  pages 'SAI', all.where (o)-> o.phase.handle in ['MAKER', 'ADMIN', 'public']
 
     full:   pages 'SAI', all
     normal: pages 'SAI', all.where (o)-> o.phase.handle in ['SSAY', 'VSSAY', 'MAKER', 'ADMIN', 'public']
@@ -28,7 +27,6 @@ new Rule("chat").schema ->
     now: (hides)->
       memo:   (part_id)-> all.memo(  hides, part_id).reduce.last ? blank
       memos:  (part_id)-> all.memo(  hides, part_id).reduce.list ? blank
-      title:  (part_id)-> all.title( hides, part_id).reduce.list ? blank
       full:   (part_id)-> all.full(  hides, part_id).reduce.list ? blank
       normal: (part_id)-> all.normal(hides, part_id).reduce.list ? blank
       solo:   (part_id)-> all.solo(  hides, part_id).reduce.list ? blank
@@ -54,6 +52,14 @@ new Rule("chat").schema ->
         all: o.log.length
 
       if o.phase_id.match(/-[SGV]S?$/)
+        all = o.phase_id.split("-")
+        all[2] = 'top'
+        all_phase_id = all.join("-")
+        emit "potof", all_phase_id, o.potof_id,
+          count: 1
+          all: o.log.length
+          max: o.write_at + 1
+          min: o.write_at
         emit "potof", o.phase_id, o.potof_id,
           count: 1
           all: o.log.length

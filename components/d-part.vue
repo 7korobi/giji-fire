@@ -4,6 +4,9 @@ module.exports =
     require('~/plugins/book')()
     require('~/plugins/pager')
   ]
+  methods:
+    label: (part_id)->
+      @book.parts.find(part_id)?.label
   computed:
     part_prev_id: ->
       ids = @book.parts.pluck('id')
@@ -22,9 +25,9 @@ module.exports =
 
 <template lang="pug">
 .center(v-if="show")
-  nuxt-link(v-if="part_prev_id" :to="page_url(part_prev_id, 0)") 前の日へ
+  nuxt-link(v-if="part_prev_id" :to="page_url(part_prev_id, 0)") {{ label(part_prev_id) }}へ戻る
   | &nbsp;
-  nuxt-link(v-if="part_next_id" :to="page_url(part_next_id, 0)") 次の日へ
+  nuxt-link(v-if="part_next_id" :to="page_url(part_next_id, 0)") {{ label(part_next_id) }}へ進む
 
 </template>
 

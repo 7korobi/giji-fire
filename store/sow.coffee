@@ -85,12 +85,12 @@ module.exports =
           sign: o.sow_auth_id
 
       phases =
-        "#{book_id}-0-mA": phase_attr
+        "#{book_id}-top-mA": phase_attr
           handle: "MAKER"
           group:  "A"
           update: false
           guide:  false
-        "#{book_id}-0-mS": phase_attr
+        "#{book_id}-top-mS": phase_attr
           handle: "MAKER"
           group:  "A"
           update: false
@@ -221,9 +221,13 @@ module.exports =
 
       [welcome = "", v_rules] = o.comment.split(/■村のルール<br>/)
 
+      Set.part.add
+        _id: o._id + "-top"
+        label: "タイトル"
+
       Set.chat.add
-        _id: o._id + "-0-mS-welcome"
-        phase_id: o._id + "-0-mS"
+        _id: o._id + "-top-mS-welcome"
+        phase_id: o._id + "-top-mS"
         write_at: chat_head.write_at - 3
         handle: "MAKER"
         show: "report"
@@ -234,8 +238,8 @@ module.exports =
 
       if v_rules
         Set.chat.add
-          _id: o._id + "-0-mS-vrule"
-          phase_id: o._id + "-0-mS"
+          _id: o._id + "-top-mS-vrule"
+          phase_id: o._id + "-top-mS"
           write_at: chat_head.write_at - 2
           handle: "MAKER"
           show: "report"
@@ -249,8 +253,8 @@ module.exports =
       n_rules = for {head}, idx in nation.list
         "#{idx + 1}. #{head}"
       Set.chat.add
-        _id: o._id + "-0-mS-nrule"
-        phase_id: o._id + "-0-mS"
+        _id: o._id + "-top-mS-nrule"
+        phase_id: o._id + "-top-mS"
         write_at: chat_head.write_at - 1
         handle: "MAKER"
         show: "report"
