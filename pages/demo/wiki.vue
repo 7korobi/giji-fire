@@ -46,7 +46,7 @@ log-wiki(:part="part" :page_idx="0" :chat_id="chat_id" :back_url="back_url" @ank
     span
       btn(v-model="edit.chat.deco" as="giji")
         i.mdi.mdi-file-document
-      btn(v-model="edit.chat.deco" as="mermaid")
+      btn(v-model="edit.chat.deco" as="dagre")
         i.mdi.mdi-file-image
     span.pull-right(v-if="is_creating")
       btn(v-for="phase in phases" v-model="edit.phase.handle" :class="phase.handle" :key="phase.handle" :as="phase.handle") {{ phase.label }}

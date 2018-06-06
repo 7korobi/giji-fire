@@ -1,0 +1,59 @@
+<script lang="coffee">
+
+link = (href, title, text)->
+  [protocol, hostname] = href.split /// \:// | / | \? | \# ///g
+  text  ||= protocol
+  title ||= [protocol, hostname].join("\n")
+  switch href
+    when null, undefined, "", "#"
+      if title
+        """<q title="#{title}">#{text}</q>"""
+      else
+        """<q>#{text}</q>"""
+    else
+      if title
+        """<b chk="confirm" href="#{href}" title="#{title}">#{text}</b>"""
+      else
+        """<b chk="confirm" href="#{href}">#{text}</b>"""
+
+sow = (log)->
+  log
+  .replace ///<br>///g, "\n"
+
+  .replace ///^\s*([~=＝…ー－―‐-])\1{4,}\s*$///gm, "<hr>"
+
+  .replace ///<strong>([^<]*?)<\/strong><sup>([^<]*?)</sup>///g, (tag, item, title, idx, src)->
+    """<abbr title="#{title}">#{item}</abbr>"""
+
+  .replace ///<a\ title="([^"]*?)"><strong>([^<]*?)</strong></a>///g, (tag, title, item, idx, src)->
+    """<abbr title="#{title}">#{item}</abbr>"""
+
+  .replace /// ((\/\*) ([\s\S]*?) (\*\/|$)) ///g, (human)->
+    """<del>#{human}</del>"""
+
+  .replace ///[a-z]+://[^\s<]+[^<.,:;"')\]\s]///g, (url, idx, src)->
+    return url if '<a href="' == src[idx - 9 ... idx].toLowerCase()
+    suffix = ""
+    url = url.replace ///&lt;$|&gt;$|\]$|\[$///, (last)->
+      suffix = last
+      ""
+    link(url) + suffix
+
+module.exports =
+  props: ["value"]
+
+  render: (m)->
+    { value } = @
+    if value
+      m "article",
+        domProps:
+          innerHTML: sow value
+    else
+      ''
+
+  methods: {}
+  computed: {}
+</script>
+
+<style lang="stylus" scoped>
+</style>

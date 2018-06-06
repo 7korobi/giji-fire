@@ -268,45 +268,6 @@ c10
       graph.sources() # without edge target
       graph.sinks()   # without edge source
 
-###
-Vue.component('anchored-heading', {
-  render: function (createElement) {
-    return createElement(
-      'h' + this.level,   // タグ名
-      this.$slots.default // 子の配列
-    )
-  },
-  props: {
-    level: {
-      type: Number,
-      required: true
-    }
-  }
-})
-
-.chat.report(@click="click" @input="input" :id="id" :key="id" :class="classname")
-  .text(v-html="log_html" :class="deco")
-
-  ||
-
-n "div",
-  key: @id
-  staticClass: "chat report"
-  class: @classname
-  attrs:
-    id: @id
-  on:
-    click: @click
-    input: @input
-, [
-  n "div",
-    staticClass: "text"
-    class: @deco
-    domProps:
-      innerHTML: @_s @log_html
-]
-###
-
 </script>
 <style lang="stylus" scoped>
 

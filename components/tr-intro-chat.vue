@@ -14,6 +14,8 @@ module.exports = require("~/components/chat.coffee")()
 tr.chat(@click="click" @input="input" :key="id" :class="classname")
   td
     q(v-if="id", :cite="id") {{ anker }}
-  td.mention(v-html="log_html" :class="deco")
+  td.mention
+    component(:value="log" :is="deco_target" :class="deco")
+
     slot
 </template>

@@ -1,0 +1,259 @@
+<script lang="coffee">
+marked = require 'marked-pre'
+{ Query } = require "~/plugins/memory-record"
+{ url } = require "~/config/live.yml"
+
+
+class Renderer
+  constructor: (@options)->
+
+  code: (code, lang)->
+    { m } = @options
+    if lang
+      lang = @options.langPrefix + lang
+      m 'pre', {}, [
+        m 'code', { class: lang }, code
+      ]
+    else
+      m 'pre', {}, [
+        m 'code', {}, code
+      ]
+
+  blockquote: (quote)->
+    { m } = @options
+    m 'blockquote', {}, [quote]
+
+  html: (html)->
+    html
+
+  heading: (text, level, raw)->
+    { m, headerIds, headerPrefix } = @options
+    if headerIds
+      id = headerPrefix + raw.toLowerCase().replace(/[^\w]+/g, '-')
+      m "h#{level}", { attrs: { id }}, text
+    else
+      m "h#{level}", {}, text
+
+  hr: ->
+    { m } = @options
+    m 'hr'
+
+  list: (body, ordered, start, taskList)->
+    { m } = @options
+    type =
+      if ordered
+      then "ol"
+      else "ul"
+    start = undefined unless ordered && start != 1
+    m type,
+      attrs: { start }
+    , body
+
+  listitem: (text, checked)->
+    { m } = @options
+    if checked?
+      m 'li',
+        attrs:
+          class: 'task-list-item'
+      , [
+        m "input",
+          attrs:
+            type: 'checkbox'
+            checked: checked
+            class: 'task-list-item-checkbox'
+        ...text
+      ]
+    else
+      m 'li', {}, text
+
+  paragraph: (text, is_top)->
+    { m } = @options
+    if is_top
+      m 'p', {}, text
+    else
+      text
+
+  table: (header, body)->
+    { m } = @options
+    ret = m 'table', {}, [
+      m 'thead', {}, [header]
+      m 'tbody', {}, body
+    ]
+    console.log ret
+    ret
+
+  tablerow: (content)->
+    { m } = @options
+    m 'tr', {}, content
+
+  tablecell: (content, flags)->
+    { m } = @options
+    style =
+      if flags.align
+      then """style="text-align:#{ flags.align }" """
+      else ''
+    tag =
+      if flags.header
+        'th'
+      else
+        'td'
+    m tag,
+      style:
+        'text-align': flags.align
+    , content
+
+  # span level renderer
+  strong: (text)->
+    { m } = @options
+    m 'strong', {}, text
+
+  mark: (text)->
+    { m } = @options
+    m 'abbr', {}, text
+
+  em: (text)->
+    { m } = @options
+    m 'em', {}, text
+
+  sup: (text)->
+    { m } = @options
+    m 'sup', {}, text
+
+  sub: (text)->
+    { m } = @options
+    m 'sub', {}, text
+
+  codespan: (text)->
+    { m } = @options
+    m 'code', {}, text
+
+  br: ->
+    '\n'
+
+  del: (text)->
+    { m } = @options
+    m 'del', {}, text
+
+  ruby: (ruby, title, text)->
+    { m } = @options
+    ret =
+      m 'ruby', {}, [
+        text
+        m 'rp', {}, ["《"]
+        m 'rt', {}, ruby
+        m 'rp', {}, ["》"]
+      ]
+    if title
+      ret = 
+        m "span",
+          attrs: { title }
+        , [ ret ]
+    ret
+
+  note: (num, title)->
+    { m } = @options
+    m 'sup',
+      attrs: { title, class: 'note' }
+    , num
+
+  link: (href, title, text)->
+    { m } = @options
+    [protocol, hostname] = href.split /// \:// | / | \? | \# ///g
+    text  ||= protocol
+    title ||= [protocol, hostname].join("\n")
+    switch href
+      when null, undefined, "", "#"
+        m "q",
+          attrs: { title }
+        , text
+      else
+        m "b",
+          attrs: { title, href, chk: 'confirm' }
+        , text
+
+  image: (src, title, alt)->
+    console.log(src, title, alt)
+    { m } = @options
+    m 'img',
+      attrs: { src, alt, title }
+
+  anker: (cite)->
+    { m } = @options
+    m 'q',
+      attrs: { cite }
+    , "--#{cite}"
+
+  text: (text)->
+    text
+
+
+options =
+  renderer: new Renderer
+  tag: 'article'
+  ruby: true
+  gfm: true
+  tables: true
+  indentCode: false
+  taskLists: true
+  breaks: true
+  pedantic: false
+  sanitize: true
+  smartLists: true
+  smartypants: true
+
+###
+attrs = { current, show, id, face_id, write_at, sign, handle, deco, head, log, to }
+m "c-" + attrs.show, { attrs, key, on: ctx.data.on }, ctx.children
+
+Vue.component('anchored-heading', {
+  render: function (createElement) {
+    return createElement(
+      'h' + this.level,   // タグ名
+      this.$slots.default // 子の配列
+    )
+  },
+  props: {
+    level: {
+      type: Number,
+      required: true
+    }
+  }
+})
+
+.chat.report(@click="click" @input="input" :id="id" :key="id" :class="classname")
+  .text(v-html="log_html" :class="deco")
+
+  ||
+
+n "div",
+  key: @id
+  staticClass: "chat report"
+  class: @classname
+  attrs:
+    id: @id
+  on:
+    click: @click
+    input: @input
+, [
+  n "div",
+    staticClass: "text"
+    class: @deco
+    domProps:
+      innerHTML: @_s @log_html
+]
+###
+
+module.exports =
+  props: ["value"]
+
+  render: (m)->
+    { value } = @
+    if value
+      options.m = m
+      marked value, options
+    else
+      ''
+</script>
+
+<style lang="stylus" scoped>
+</style>

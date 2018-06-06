@@ -223,7 +223,7 @@ module.exports =
 
       Set.part.add
         _id: o._id + "-top"
-        label: "タイトル"
+        label: "📖タイトル"
 
       Set.chat.add
         _id: o._id + "-top-mS-welcome"

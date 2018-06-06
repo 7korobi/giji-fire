@@ -6,7 +6,7 @@ div
         nuxt-link(to="/demo") 開発者用ページ
 
   c-report(head="SVG TEST" sign="ななころび" handle="SSAY")
-    g-dagre(v-model="text")
+    g-marked(v-model="text")
   c-report(handle="SSAY")
     text-editor(v-model="text" :rows="7" :maxRow="20" :maxSize="999")
 

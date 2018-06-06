@@ -3,6 +3,16 @@
 el = require "~/plugins/dom"
 markdown = require "~/plugins/markdown"
 
+targets =
+  sow:  'g-sow'
+  head: 'g-sow'
+  mono: 'g-sow'
+  dagre: 'g-dagre'
+  giji:   'g-marked'
+  center: 'g-marked'
+  mermaid: 'g-sow'
+
+
 module.exports = ->
   props:
     current: Object
@@ -86,6 +96,9 @@ module.exports = ->
       if id && "focus" == @el_adjust
         @$emit "focus", id
       [@handle, @el_adjust]
+
+    deco_target: ->
+      targets[@deco]
 
     log_html: ->
       text = @log

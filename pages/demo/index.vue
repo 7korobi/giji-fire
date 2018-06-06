@@ -5,7 +5,10 @@ div
   c-post(handle="TSAY")
     nuxt-link(to="/demo/wiki?idx=test-book") WIKI
   c-post(handle="TSAY")
+    | 簡易言語
     nuxt-link(to="/demo/svg") SVG
+    nuxt-link(to="/demo/marked2") marked
+    nuxt-link(to="/demo/sow") sow
   c-post(handle="TSAY")
     nuxt-link(to="/demo/marked") Markdown Talk
   c-post(handle="TSAY")

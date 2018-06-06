@@ -21,9 +21,14 @@ if window?
         else
           """<b chk="confirm" href="#{href}">#{text}</b>"""
 
-  giji_renderer = Object.assign new marked.Renderer(),
-    link: link
+  ruby = (ruby, title, text)->
+    if title
+      """<span title="#{title}"><ruby>#{text}<rp>《</rp><rt>#{ruby}</rt><rp>》</rp></ruby></span>"""
+    else
+      """<ruby>#{text}<rp>《</rp><rt>#{ruby}</rt><rp>》</rp></ruby>"""
 
+
+  giji_renderer = Object.assign new marked.Renderer(), { link, ruby }
   giji_options =
     renderer: giji_renderer
     tag: 'article'
