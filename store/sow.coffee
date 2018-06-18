@@ -4,7 +4,7 @@
 _ = require "lodash"
 
 attrs =
-  TITLE:  { mark: 'T', label: '表題' }
+  TITLE:  { mark:  '', label: '表題' }
   public:  {           label: '活動' }
   private: {           label: '秘密' }
   SSAY:   { mark:  '', label: '会話' }
@@ -91,7 +91,7 @@ module.exports =
           update: false
           guide:  false
         "#{book_id}-top-mS": phase_attr
-          handle: "MAKER"
+          handle: "TITLE"
           group:  "A"
           update: false
           guide:  true
@@ -226,14 +226,27 @@ module.exports =
         label: "📖タイトル"
 
       Set.chat.add
+        _id: o._id + "-top-mS-title"
+        phase_id: o._id + "-top-mS"
+        write_at: chat_head.write_at - 4
+        show: "report"
+        deco: "center"
+        sign: sign
+        head: "#{ o.folder }-#{ o.vid } by #{ sign }"
+        log: """
+
+          ## #{o.name}
+
+
+        """
+
+      Set.chat.add
         _id: o._id + "-top-mS-welcome"
         phase_id: o._id + "-top-mS"
         write_at: chat_head.write_at - 3
-        handle: "MAKER"
         show: "report"
         deco: "head"
         sign: sign
-        head: "#{o.vid}: #{o.name}"
         log: welcome
 
       if v_rules
@@ -241,7 +254,6 @@ module.exports =
           _id: o._id + "-top-mS-vrule"
           phase_id: o._id + "-top-mS"
           write_at: chat_head.write_at - 2
-          handle: "MAKER"
           show: "report"
           deco: "giji"
           sign: sign
@@ -256,7 +268,6 @@ module.exports =
         _id: o._id + "-top-mS-nrule"
         phase_id: o._id + "-top-mS"
         write_at: chat_head.write_at - 1
-        handle: "MAKER"
         show: "report"
         deco: "giji"
         sign: sign

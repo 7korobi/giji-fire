@@ -3,8 +3,8 @@ p.form
   span.tag
     tag#all
     tag#giji
-    tag#shoji
     tag#travel
+    tag#shoji
     tag#stratos
     tag#myth
     tag#asia

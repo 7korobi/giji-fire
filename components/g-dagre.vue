@@ -60,7 +60,7 @@ class Render
       class: line
       label: label
       labelpos: 'c'
-      width:  25 * label.length 
+      width:  25 * label.length + edge_label_width
       height: 30
       rx:      5
       ry:      5
@@ -69,8 +69,8 @@ class Render
     @graph.setNode v,
       label: label
       class: 'icon'
-      width:  100
-      height: 140
+      width:   90 + border_width
+      height: 130 + border_width
       rx:      10
       ry:      10
   
@@ -147,6 +147,9 @@ parse = (render, src)->
     if src
       throw new Error "解釈できない文字列です。"
 
+edge_label_width = 20
+border_width   = 10
+
 init = ->
   g = new dagre.graphlib.Graph
     directed:    true
@@ -160,7 +163,7 @@ init = ->
     rankdir: 'RL' # TB / BT / LR / RL
     nodesep: 10
     ranksep: 10
-    edgesep: 10
+    edgesep:  0
     marginx:  3
     marginy:  3
 
@@ -189,7 +192,8 @@ module.exports =
         o = @graph.edge key
         o?.label?.trim() and Object.assign {}, o,
           key: "labelrect-" + key
-          x: o.x - o.width  * 0.5
+          width: o.width - edge_label_width
+          x: o.x - o.width  * 0.5 + edge_label_width * 0.5
           y: o.y - o.height * 0.7
 
     edge_labels: ->
@@ -197,6 +201,7 @@ module.exports =
         o = @graph.edge key
         o?.label and Object.assign {}, o,
           key: "text-" + key
+          x: o.x
 
     node_images: ->
       @graph.nodes()
@@ -206,10 +211,10 @@ module.exports =
           href = "#{url.assets}/images/portrate/#{ key }.jpg"
         o and href and
           key: "image-" + key
-          x: o.x - o.width  / 2 + 5
-          y: o.y - o.height / 2 + 5
-          width:  o.width  - 10
-          height: o.height - 10
+          x: o.x - o.width  * 0.5 + border_width * 0.5
+          y: o.y - o.height * 0.5 + border_width * 0.5
+          width:  o.width  - border_width
+          height: o.height - border_width
           href: href
 
     node_rects: ->

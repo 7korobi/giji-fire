@@ -2313,28 +2313,28 @@
 
 -   _id: t36
     name: "イルマ"
-    comment: "KKKてきな何か。"
+    comment: ""
     order: 30036
     tag_ids:
       - travel
 
 -   _id: t37
     name: "シュンタロ"
-    comment: "国語の教科書から。"
+    comment: ""
     order: 30009  # 素顔的なこだわり
     tag_ids:
       - travel
 
 -   _id: t38
     name: "スズキ"
-    comment: "人の死なない推理小説『黒後家蜘蛛の会』のそばに"
+    comment: ""
     order: 30038
     tag_ids:
       - travel
 
 -   _id: t39
     name: "ガモウ"
-    comment: "そろそろ聖戦士が欲しかった！"
+    comment: ""
     order: 30018.1  # 聖戦士はみんなここ
     tag_ids:
       - travel
@@ -2380,7 +2380,7 @@
 
 -   _id: t40
     name: マスタ
-    comment: 土地と自由かららしい。ロシアのやつだってさ
+    comment: ""
     order: 30039
     tag_ids:
       - travel
@@ -2393,8 +2393,199 @@
       - shoji
 
 #########################
-# xxxx-xx-xx update
+# 2018-06-15 学園もの！
 
+-   _id: t41
+    name: アオ
+    comment: ""
+    order: 30041
+    tag_ids:
+      - travel
+
+-   _id: t42
+    name: レン
+    comment: ""
+    order: 30042
+    tag_ids:
+      - travel
+
+-   _id: t43
+    name: こころ
+    comment: ""
+    order: 30043
+    tag_ids:
+      - travel
+
+-   _id: t44
+    name: ナツミ
+    comment: ""
+    order: 30044
+    tag_ids:
+      - travel
+
+-   _id: t45
+    name: クロエ
+    comment: ""
+    order: 30018.1  # 聖戦士はみんなここ
+    tag_ids:
+      - travel
+
+-   _id: t46
+    name: サダミツ
+    comment: ""
+    order: 30046
+    tag_ids:
+      - travel
+
+-   _id: t47
+    name: ノッカ
+    comment: ""
+    order: 30047
+    tag_ids:
+      - travel
+
+-   _id: t48
+    name: Ａ
+    comment: ""
+    order: 30048
+    tag_ids:
+      - travel
+
+-   _id: t49
+    name: Ａ
+    comment: ""
+    order: 30049
+    tag_ids:
+      - travel
+
+-   _id: t50
+    name: ヨスガ
+    comment: ""
+    order: 30050
+    tag_ids:
+      - travel
+
+-   _id: t51
+    name: エニシ
+    comment: ""
+    order: 30051
+    tag_ids:
+      - travel
+
+-   _id: t52
+    name: ニトカ
+    comment: ""
+    order: 30052
+    tag_ids:
+      - travel
+
+-   _id: t53
+    name: ツヅラ
+    comment: ""
+    order: 30053
+    tag_ids:
+      - travel
+
+-   _id: t54
+    name: ウツギ
+    comment: ""
+    order: 30054
+    tag_ids:
+      - travel
+
+-   _id: t55
+    name: セイカ
+    comment: ""
+    order: 30055
+    tag_ids:
+      - travel
+
+-   _id: t56
+    name: ヤスリ
+    comment: ""
+    order: 30056
+    tag_ids:
+      - travel
+
+-   _id: t57
+    name: はのん
+    comment: ""
+    order: 30057
+    tag_ids:
+      - travel
+
+-   _id: t58
+    name: シンイチ
+    comment: ""
+    order: 30058
+    tag_ids:
+      - travel
+
+#########################
+# xxxx-xx-xx update
+# 
+# Siri, Alexa, Clova, Coltana, OK!Google.
+# Pepper, Nao, Romeo, ASIMO, AIBO, Nabaztag
+# Tay, りんな
+#
+# でてきたアイデア
+# Stay Sober Society (BTTF the GAME)。 Seriously Swastika Society!（こんな社会、マジ卍！）とかでもいいよ。
+# 誠実局    ：秘密局
+# 憂世文庫    ：ロシア文庫
+# アカツキ
+# セイジ・眼鏡ジャージ
+# 兄弟宿舎    ：フラタニティ
+# 無傘闊歩    ：番傘川柳
+# 明後日白書    ：あすなろ→あすなろ白書
+# レオ
+# てっちー・ふんわりアホ
+# 忘心花        ：心の花りぃら
+# ナル
+# ぱぁる
+# はや
+# こころ・眼鏡美人
+# 従民の剣    ：人民の権利
+# 姉妹寮監    ：ソロリティ
+# 悔恨の星    ：曙の星キリ
+# シャラ
+# クロエ・吊り目
+# 新天門　：天地会（洪門）
+# 革神会    ：格神会
+# OJESSA    ：（over justice ever SS-association）オデッササダミツ
+# セン
+# ナツメ・性悪
+# 土夜会        ：木曜会アンジュ
+# リンカ
+# ノッカ・双子さわやか
+# 一蓮装置
+# 一字会議        ：ビルダーバーグ会議ヨスガ    ：因〇
+# アサヒ
+# カヅキ
+# アラカ    ：予
+# カサネ
+# オトハ・双子眼鏡
+# 托生部隊
+# 四門評議エニシ    ：縁〇
+# ハタエ    ：果
+# ヨヅキ
+# キザシ    ：兆
+# メグル
+# アオバ・糸目ジャージ
+# 勿忘草    ：短歌結社
+# 白白部    ：白白教
+# カスリ
+# ハスナワ・夜専学生
+# 真音流    ：真言立川流
+# TL    ：タギー　→Thug life
+# 19K    ：14K
+# 化外街道サザナミ
+# トバリ
+# ツヅラ〇
+# ルイ
+# ススカゼ
+#
+# ウンモ星人  http://ufojikenbo.blogspot.com/2016/06/ummo.html
+# 
 # 肩書案
 # 人狼議事
 #  養蜂家（気難しい英国老紳士がいい）
@@ -2484,4 +2675,4 @@
 # http://ichiranya.com/
 # http://cjjc.weblio.jp/
 # http://ja.wikipedia.org/wiki/十五少年漂流記
-#
+# http://sougouranking.net/

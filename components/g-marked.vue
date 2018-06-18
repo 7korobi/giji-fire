@@ -88,10 +88,6 @@ class Renderer
 
   tablecell: (content, flags)->
     { m } = @options
-    style =
-      if flags.align
-      then """style="text-align:#{ flags.align }" """
-      else ''
     tag =
       if flags.header
         'th'
@@ -105,7 +101,10 @@ class Renderer
   # span level renderer
   strong: (text)->
     { m } = @options
-    m 'strong', {}, text
+    m 'strong',
+      style:
+        'text-emphasis': "sesame open"
+    , text
 
   mark: (text)->
     { m } = @options
@@ -172,7 +171,8 @@ class Renderer
         , text
 
   image: (src, title, alt)->
-    console.log(src, title, alt)
+    unless title
+      title = undefined
     { m } = @options
     m 'img',
       attrs: { src, alt, title }
@@ -186,6 +186,12 @@ class Renderer
   text: (text)->
     text
 
+  url: (href)->
+    switch
+      when Query.faces.find(href)
+        "#{url.assets}/images/portrate/#{ href }.jpg"
+      else
+        href
 
 options =
   renderer: new Renderer

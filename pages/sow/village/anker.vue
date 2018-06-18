@@ -31,6 +31,7 @@ module.exports =
 
   computed:
     anker_chats: ->
+      # todo @book_id ずれる
       Query.chats.ankers(@book_id, @a).list
 
 </script>
