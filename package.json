@@ -21,6 +21,7 @@
     "deploy:live": "run-p -n deploy:rsync deploy:aws",
     "deploy:styl": "run-s copy:stylus copy_dist deploy:test",
     "deploy:img": "run-s copy:portrate copy_dist deploy:test",
+    "deploy:aws_img": "aws s3 sync dist/images s3://giji-assets/images --acl public-read --exclude '*.html'",
     "deploy:aws": "aws s3 sync dist s3://giji-assets/fire --acl public-read --exclude '*.html'",
     "deploy:rsync": "rsync -avz dist 7korobi@giji.f5.si:/home/7korobi/giji-fire/.",
     "deploy:copy": "run-s copy copy_dist",
