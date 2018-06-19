@@ -8,6 +8,8 @@ div
     check(set v-model="value", :as="tags_giji") {{ tag("giji").label }}
     check(set v-model="value", :as="[]") なし
   span
+    check(v-model="value" as="pair") {{ tag("pair").label }}
+  span
     check(v-model="value" as="travel") {{ tag("travel").label }}
     check(v-model="value" as="shoji") {{ tag("shoji").label }}
     check(v-model="value" as="stratos") {{ tag("stratos").label }}

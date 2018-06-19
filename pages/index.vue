@@ -26,7 +26,7 @@ div
     .card 人狼議事を遊ぶとき、従うべきルールはこちら。
 
   c-post.form(handle="VSAY")
-    nuxt-link(to="/character-tag") キャラクター一覧表
+    nuxt-link(to="/chr/list") キャラクター一覧表
     br
     .card 人狼議事で遊ぶことができるキャラクターはこちら。
 

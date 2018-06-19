@@ -81,6 +81,11 @@ elder:
   tag_id: giji
   chr_set_id: ririnra
 
+pair:
+  label: +おそろ+
+  long: お揃いのキャラクター
+  tag_id: pair
+  chr_set_id: all
 
 river:
   label: -運河-

@@ -2,6 +2,8 @@
 div
   c-report(handle="footer" deco="center")
     bread-crumb
+  c-post(handle="SSAY")
+    nuxt-link(to="/chr/sort") キャラソート
   c-post(handle="TSAY")
     nuxt-link(to="/demo/wiki?idx=test-book") WIKI
   c-post(handle="TSAY")

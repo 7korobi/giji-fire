@@ -219,6 +219,7 @@
       - immoral
       - river
       - young
+      - pair
 -   _id: c58
     order: 22
     name: "ブルーノ"
@@ -337,6 +338,7 @@
 #      - elegant
       - market
       - young
+      - pair
 -   _id: c75
     order: 35
     name: "ビリー"
@@ -347,6 +349,7 @@
 #      - elegant
       - market
       - middle
+      - pair
 -   _id: c32
     order: 36
     name: "オスカー"
@@ -356,6 +359,7 @@
       - giji
       - apartment
       - kid
+      - pair
 -   _id: c33
     order: 37
     name: "ホリー"
@@ -365,6 +369,7 @@
       - giji
       - apartment
       - kid
+      - pair
 -   _id: c02
     order: 38
     name: "アルフレッド"
@@ -684,7 +689,7 @@
       - market
       - young
 -   _id: c47
-    order: 85
+    order: 21.1
     name: "ペラジー"
     tag_ids:
       - animal
@@ -693,6 +698,7 @@
       - ecclesia
       - river
       - young
+      - pair
 -   _id: c80
     order: 87
     name: "テッド"
@@ -918,6 +924,7 @@
       - giji
       - guild
       - young
+      - pair
 -   _id: c76
     order: 210
     name: "ジョージ"
@@ -927,6 +934,7 @@
       - giji
       - apartment
       - kid
+      - pair
 -   _id: c60
     order: 213
     name: "ポーチュラカ"
@@ -1009,6 +1017,7 @@
       - apartment
       - young
       - middle
+      - pair
 -   order: 10001
     name: "露蝶"
     comment: "中国女性名"
@@ -1186,11 +1195,13 @@
     order: 70014
     tag_ids:
       - myth
+      - pair
 -   _id: m11
     order: 70015
     name: "ライトニング"
     tag_ids:
       - myth
+      - pair
 -   _id: m13
     order: 70016
     name: "ミケ"
@@ -1285,12 +1296,14 @@
     _id: sf18
     tag_ids:
       - stratos
+      - pair
 -   order: 80015
     name: "参休"
     comment:
     _id: sf19
     tag_ids:
       - stratos
+      - pair
 -   order: 80016
     name: "クリスマス"
     comment:
@@ -1468,6 +1481,7 @@
     name: "朝顔"
     tag_ids:
       - shoji
+      - pair
 -   _id: w43
     order: 90029
     name: "春松"
@@ -1478,6 +1492,7 @@
     name: "夕顔"
     tag_ids:
       - shoji
+      - pair
 -   _id: w40
     order: 90031
     name: "朧"
@@ -1748,6 +1763,7 @@
       - giji
       - apartment
       - young
+      - pair
 
 #########################
 # 2013-06-14 update
@@ -1957,6 +1973,7 @@
     order: 70021
     tag_ids:
       - myth
+      - pair
 
 -   _id: m20
     name: "ショコラ"
@@ -1964,6 +1981,7 @@
     order: 70022
     tag_ids:
       - myth
+      - pair
 
 #########################
 # 2014-12-11 update
@@ -2464,6 +2482,7 @@
     order: 30050
     tag_ids:
       - travel
+      - pair
 
 -   _id: t51
     name: エニシ
@@ -2471,6 +2490,7 @@
     order: 30051
     tag_ids:
       - travel
+      - pair
 
 -   _id: t52
     name: ニトカ

@@ -15,6 +15,9 @@ p.form
     tag#school
 
   span.tag
+    tag#pair
+
+  span.tag
     tag#kid
     tag#young
     tag#middle
