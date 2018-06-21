@@ -29,8 +29,11 @@ div
     nuxt-link(to="/chr/list") キャラクター一覧表
     br
     .card 人狼議事で遊ぶことができるキャラクターはこちら。
-
-  c-post.form(handle="VSAY")
+    hr
+    nuxt-link(to="/chr/sort") キャラクター並べ替えゲーム
+    br
+    .card 人狼議事キャラソートを作ってみました。長い！
+    hr
     nuxt-link(to="/summary/faces") キャラクター活躍記録
     br
     .card どこかの村で活躍したことのあるキャラクターはこちら。

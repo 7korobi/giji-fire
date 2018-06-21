@@ -1,4 +1,5 @@
 <script lang="coffee">
+# todo anker とまとめる。
 { vuex_value } = require '~/plugins/vuex-helper'
 
 module.exports =

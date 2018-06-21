@@ -5,7 +5,7 @@
   },
   "functions": {
     "predeploy": [
-      "webpack --config config/webpack/index-functions.coffee"
+      "run-s deploy:func_1"
     ]
   },
   "hosting": {

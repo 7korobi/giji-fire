@@ -10,6 +10,7 @@ log-anker(:part="part" :page_idx="0" :chat_id="chat_id" :back_url='back_url' @an
 
 </template>
 <script lang="coffee">
+# todo showとまとめる。
 { Query } = require "~/plugins/memory-record"
 { uniq, relative_to } = require "~/plugins/struct"
 

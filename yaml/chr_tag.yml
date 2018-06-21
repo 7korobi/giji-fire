@@ -82,7 +82,7 @@ elder:
   chr_set_id: ririnra
 
 pair:
-  label: +おそろ+
+  label: =おそろ=
   long: お揃いのキャラクター
   tag_id: pair
   chr_set_id: all

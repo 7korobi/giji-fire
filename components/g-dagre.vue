@@ -18,28 +18,39 @@ syntax =
   nodes: /^( *)((?:\w| )+)(?:_comment_)?(?:_eol_)/
   newline: /^ *\n|^ +$/
 
-  _arrow_: /(-+|=+|\.+)(>|X|x|O|o)?/
+  error: /^[^\n]*\n|[^\n]+$/
+
+  _arrow_: /(<|X|x|O|o)?(-+|=+|\.+)(>|X|x|O|o)?/
   _comment_: /: *(.*) */
   _eol_: / *(?:\n|$)/
 
 syntax.nodes = regexp_join syntax.nodes, '_arrow_', '_comment_', '_eol_'
 syntax.edges = regexp_join syntax.edges, '_arrow_', '_comment_', '_eol_'
 
+marker = (key)->
+  switch key
+    when '<', '('
+      'url(#svg-marker-arrow-start)'
+    when '>', ')'
+      'url(#svg-marker-arrow-end)'
+    when 'O', 'o'
+      'url(#svg-marker-circle)'
+    when 'X', 'x'
+      'url(#svg-marker-cross)'
+    else
+      null
+
 class Render
   constructor: (@graph)->
+    @graph.errors = []
   newline: ->
-  edge: (v, w, line, arrow, label)->
+  error: (line)->
+    @graph.errors.push line
+
+  edge: (v, w, line, start, end, label)->
     weight = line.length
-    arrow =
-      switch arrow
-        when '>', ')'
-          'url(#svg-marker-arrow)'
-        when 'O', 'o'
-          'url(#svg-marker-circle)'
-        when 'X', 'x'
-          'url(#svg-marker-cross)'
-        else
-          null
+    start = marker start
+    end   = marker end
     line =
       switch line[0]
         when '='
@@ -53,10 +64,11 @@ class Render
 
     label ?= "   "
     @graph.setEdge v, w,
-      key: [v,w].join(",")
+      key: [v,w].join()
+      "marker-start": start
+      "marker-end": end
       minlen: 1
       weight: weight
-      arrow: arrow
       class: line
       label: label
       labelpos: 'c'
@@ -105,7 +117,7 @@ parse = (render, src)->
       continue
 
     if cap = syntax.edges.exec src
-      [ all, depth, edges, v, $, $, label ] = cap
+      [ all, depth, edges, v, $, $, $, label ] = cap
       src = src[all.length ..]
       # console.log "edges", cap
       edges = edges
@@ -114,16 +126,18 @@ parse = (render, src)->
 
       if v
         if find_parent "", depth
-          throw new Error "解釈できない文字列です。"
+          render.error all
+          continue
       else
         unless v = find_parent "", depth
-          throw new Error "解釈できない文字列です。"
+          render.error all
+          continue
 
       edges[0] = v
-      for v, idx in edges by 3
-        [ v, line, arrow, w ] = edges[idx .. idx + 3]
+      for v, idx in edges by 5
+        [ v, start, line, end, w ] = edges[idx .. idx + 4]
         if w
-          render.edge v, w, line, arrow, label
+          render.edge v, w, line, start, end, label
       continue
 
     if cap = syntax.nodes.exec src
@@ -136,16 +150,20 @@ parse = (render, src)->
       for v, idx in nodes
         render.icon v, label
         if label
-          render.edge v, v, "", "", label
+          render.edge v, v, "", "", "", label
 
         if parent = find_parent v, depth
           { label } = render.graph.node parent
-          render.cluster v, parent, label
+          if label
+            render.cluster v, parent, label
 
       continue
 
-    if src
-      throw new Error "解釈できない文字列です。"
+    if cap = syntax.error.exec src
+      [ all ] = cap
+      src = src[all.length ..]
+      render.error all, "解釈できない文字列です。"
+      continue
 
 edge_label_width = 20
 border_width   = 10
@@ -180,74 +198,69 @@ module.exports =
     root:  -> @graph.graph()
     
     edge_paths: ->
-      @graph.edges().map (key)=>
+      for key in @graph.edges()
         o = @graph.edge key
-        o?.points and Object.assign {}, o,
-          key: "path-" + key
-          "marker-end": o.arrow
+        continue unless o?.points
+        Object.assign {}, o,
+          key: "path-" + o.key
           d: @path_d o.points
+          points: undefined
 
     edge_rects: ->
-      @graph.edges().map (key)=>
+      for key in @graph.edges()
         o = @graph.edge key
-        o?.label?.trim() and Object.assign {}, o,
-          key: "labelrect-" + key
+        continue unless o?.label?.trim()
+        Object.assign {}, o,
+          key: "labelrect-" + o.key
           width: o.width - edge_label_width
           x: o.x - o.width  * 0.5 + edge_label_width * 0.5
           y: o.y - o.height * 0.7
+          points: undefined
 
     edge_labels: ->
-      @graph.edges().map (key)=>
+      for key in @graph.edges()
         o = @graph.edge key
-        o?.label and Object.assign {}, o,
-          key: "text-" + key
-          x: o.x
+        continue unless o?.label
+
+        Object.assign {}, o,
+          key: "text-" + o.key
+          label: o.label
+          points: undefined
 
     node_images: ->
-      @graph.nodes()
-      .map (key)=>
+      for key in @graph.nodes()
         o = @graph.node key
         if Query.faces.find(key)
           href = "#{url.assets}/images/portrate/#{ key }.jpg"
-        o and href and
-          key: "image-" + key
-          x: o.x - o.width  * 0.5 + border_width * 0.5
-          y: o.y - o.height * 0.5 + border_width * 0.5
-          width:  o.width  - border_width
-          height: o.height - border_width
-          href: href
+        continue unless o and href
+
+        key: "image-" + key
+        x: o.x - o.width  * 0.5 + border_width * 0.5
+        y: o.y - o.height * 0.5 + border_width * 0.5
+        width:  o.width  - border_width
+        height: o.height - border_width
+        href: href
 
     node_rects: ->
-      @graph.nodes()
-      .map (key)=>
+      for key in @graph.nodes()
         o = @graph.node key
-        o and
-          key: "rect-" + key
-          rx: o.rx
-          ry: o.ry
-          x: o.x - o.width  / 2
-          y: o.y - o.height / 2
-          width:  o.width
-          height: o.height
+        continue unless o
+
+        key: "rect-" + key
+        rx: o.rx
+        ry: o.ry
+        x: o.x - o.width  / 2
+        y: o.y - o.height / 2
+        width:  o.width
+        height: o.height
 
     view_box: -> "0 0 #{@root.width} #{@root.height}"
 
     graph: ->
       g = init()
-      try
-        r = new Render g
-        parse r, @value
-        dagre.layout r.graph
-      catch e
-        console.warn(e)
-        g = init()
-        g.setNode 'error',
-        label: e.message
-        x: 0
-        y: 0
-        width:  400
-        height: 100
-        dagre.layout g
+      r = new Render g
+      parse r, @value
+      dagre.layout r.graph
       g
 
     todo: ->
@@ -285,20 +298,25 @@ c10
 
 </style>
 <template lang="pug">
-svg(:style="`max-width: 100%; width: ${root.width}px;`" :viewBox="view_box")
-  marker.edgePath#svg-marker-circle(viewBox="0 0 10 10" markerUnits="userSpaceOnUse" markerWidth="20" markerHeight="20" refX="2" refY="5" orient="auto")
-    circle(cx="5" cy="5" r="4")
-  marker.edgePath#svg-marker-arrow(viewBox="0 0 10 10" markerUnits="userSpaceOnUse" markerWidth="20" markerHeight="20" refX="3" refY="5" orient="auto")
-    path.path(d="M0,0 L10,5 L0,10 z")
-  marker.edgePath#svg-marker-cross(viewBox="0 0 10 10" markerUnits="userSpaceOnUse" markerWidth="20" markerHeight="20" refX="5" refY="5" orient="0")
-    path.path(d="M0,0 L10,10 M0,10 L10,0 z")
-  transition-group(tag="g" name="nodes")
-    rect( v-for="o in node_rects"  v-if="o" v-bind="o")
-    image(v-for="o in node_images" v-if="o" v-bind="o")
-  transition-group.edgePath(tag="g" name="edges")
-    path.path(v-for="o in edge_paths" fill="none" v-if="o" v-bind="o")
-    rect.path(v-for="o in edge_rects" v-if="o" v-bind="o")
-    text.messageText(v-for="o in edge_labels" v-if="o" v-bind="o")
-      | {{ o.label }}
+article
+  svg(:style="`max-width: 100%; width: ${root.width}px;`" :viewBox="view_box")
+    marker.edgePath#svg-marker-circle(viewBox="0 0 10 10" markerUnits="userSpaceOnUse" markerWidth="20" markerHeight="20" refX="2" refY="5" orient="auto")
+      circle(cx="5" cy="5" r="4")
+    marker.edgePath#svg-marker-arrow-start(viewBox="0 0 10 10" markerUnits="userSpaceOnUse" markerWidth="20" markerHeight="20" refX="3" refY="5" orient="auto")
+      path.path(d="M10,0 L0,5 L10,10 z")
+    marker.edgePath#svg-marker-arrow-end(viewBox="0 0 10 10" markerUnits="userSpaceOnUse" markerWidth="20" markerHeight="20" refX="3" refY="5" orient="auto")
+      path.path(d="M0,0 L10,5 L0,10 z")
+    marker.edgePath#svg-marker-cross(viewBox="0 0 10 10" markerUnits="userSpaceOnUse" markerWidth="20" markerHeight="20" refX="5" refY="5" orient="0")
+      path.path(d="M0,0 L10,10 M0,10 L10,0 z")
+    transition-group(tag="g" name="nodes")
+      rect( v-for="o in node_rects"  v-if="o" v-bind="o")
+      image(v-for="o in node_images" v-if="o" v-bind="o")
+    transition-group.edgePath(tag="g" name="edges")
+      path.path(v-for="o in edge_paths" fill="none" v-if="o" v-bind="o")
+      rect.path(v-for="o in edge_rects" v-if="o" v-bind="o")
+      text.messageText(v-for="o in edge_labels" v-if="o" v-bind="o")
+        | {{ o.label }}
+  .errors
+    .error(v-for="err in graph.errors") {{ err }}
 </template>
 

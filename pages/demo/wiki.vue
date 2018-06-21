@@ -1,7 +1,29 @@
 <template lang="pug">
-log-wiki(:part="part" :page_idx="0" :chat_id="chat_id" :back_url="back_url" @anker="anker" @remove="remove" @edit="replace")
-  .summary(name="list" tag="div" key="summary")
-    a-potofs(label="みている")
+log-wiki
+  template(slot="summary")
+    d-mentions.inframe.mentions(key="1" :page_idx="0" :chat_id="chat_id" @anker="anker")
+    a-potofs(key="3" :part='part' v-if="is_show_potofs")
+
+  template(slot="icons")
+    .item
+      i.c.mdi(:class="icon.icon")
+    h6.c(:class="edit.chat.phase.handle" v-if="user && is_replacing") 編集中
+    a.btn.item(:class="handle" @click="move" v-if="can_move")
+      i.mdi.mdi-table-column-plus-before
+    a.btn.item(:class="handle" @click="replace_mode" v-if="can_update")
+      i.mdi.mdi-square-edit-outline
+    a.btn.item(:class="handle" @click="fav"  v-if="can_fav")
+      i.mdi.mdi-heart-outline(v-if="true")
+      i.mdi.mdi-heart(v-if="false")
+    hr
+    nuxt-link.item.active(replace :class="handle" :to="back_url")
+      i.mdi.mdi-map-marker
+    check.item(v-model="shows" as="magnify")
+      i.mdi.mdi-magnify
+    check.item(v-model="shows" as="potof")
+      i.mdi.mdi-account-multiple
+    hr
+
   c-report(handle="footer" deco="center")
     bread-crumb
 
@@ -36,22 +58,22 @@ log-wiki(:part="part" :page_idx="0" :chat_id="chat_id" :back_url="back_url" @ank
   chat(v-if="user && edit.potof.face_id" :id="edit.chat._id" :current="chat" @check="check_post")
   c-report(v-if="user && edit.potof.face_id" :handle="edit.chat.phase.handle")
     span
-      btn(v-model="edit.chat.show" as="post")
+      btn.large(v-model="edit.chat.show" as="post")
         i.mdi.mdi-file-document-box
-      btn(v-model="edit.chat.show" as="talk") 
+      btn.large(v-model="edit.chat.show" as="talk") 
         i.mdi.mdi-comment-text
-      btn(v-model="edit.chat.show" as="report")
+      btn.large(v-model="edit.chat.show" as="report")
         i.mdi.mdi-note-text
     | &nbsp;
     span
-      btn(v-model="edit.chat.deco" as="giji")
+      btn.large(v-model="edit.chat.deco" as="giji")
         i.mdi.mdi-file-document
-      btn(v-model="edit.chat.deco" as="dagre")
+      btn.large(v-model="edit.chat.deco" as="dagre")
         i.mdi.mdi-file-image
     span.pull-right(v-if="is_creating")
       btn(v-for="phase in phases" v-model="edit.phase.handle" :class="phase.handle" :key="phase.handle" :as="phase.handle") {{ phase.label }}
     span.pull-right(v-if="is_replacing")
-      a.btn.active(@click="replace_cancel")
+      a.btn.active(@click="create_mode")
         i.mdi.mdi-open-in-new
       a.btn.active(@click="remove")
         i.mdi.mdi-comment-remove-outline
@@ -60,8 +82,11 @@ log-wiki(:part="part" :page_idx="0" :chat_id="chat_id" :back_url="back_url" @ank
   c-report(handle="footer" deco="center")
     bread-crumb
 </template>
+<style lang="stylus" scoped>
+.large
+  font-size: 2.5ex
+</style>
 <script lang="coffee">
-
 firebase = require "firebase"
 { Query, Set, State } = require "~/plugins/memory-record"
 { vuex_value } = require '~/plugins/vuex-helper'
@@ -101,6 +126,18 @@ module.exports =
 
   computed: {
     ...vuex_value 'firebase',['user', 'credential']
+    my: ->
+      return {} unless @user
+      { uid } = @user
+      potof = Query.potofs.my( @book_id, uid )
+      { potof }
+
+    ...vuex_value "menu.side", ["shows"]
+    is_show_magnify: ->
+      "magnify" in @shows
+    is_show_potofs: ->
+      "potof" in @shows
+
     part_id:  -> @book_id + '-1'
     potof_id: -> @book_id + '-' + @edit.potof.face_id
     phase_id: ->
@@ -118,17 +155,26 @@ module.exports =
       warn = false
       warn
 
+    can_move: ->
+      @is_replacing && @edit.chat.id != @chat_id
+
+    can_fav: ->
+      @phase?.fav
+    can_update: ->
+      @phase?.update
+
+    chat: ->
+      Query.chats.find @chat_id
+    phase: ->
+      @chat?.phase
+    handle: ->
+      @chat?.handle ? @phase?.handle
+
     phases: ->
       Query.phases.where({ @part_id }).list
 
     page_contents: ->
       Query.chats.wiki( @hide_potof_ids, @part_id ).reduce.list
-
-    my: ->
-      return {} unless @user
-      { uid } = @user
-      potof = Query.potofs.my( @book_id, uid )
-      { potof }
 
     storage: ->
       firebase.storage()
@@ -158,9 +204,12 @@ module.exports =
 
     anker: (book_id, a)->
       console.log book_id, a
-
-    replace_cancel:   -> @edit.chat = Query.chats.find @edit.phase.id + '-edit'
-    replace: (chat_id)-> @edit.chat = Query.chats.find chat_id
+    
+    fav: ->
+    create_mode: ->
+      @edit.chat = Query.chats.find @edit.phase.id + '-edit'
+    replace_mode: ->
+      @edit.chat = Query.chats.find @chat_id
 
     remove: ->
       { _id, potof } = @edit.chat
@@ -178,14 +227,23 @@ module.exports =
       { state, downloadURL } = await @image.child(file.name).put(file)
       next await downloadURL
 
+    move: ->
+      return if @is_creating
+      { _id } = @edit.chat
+      { write_at } = @chat
+      write_at -= 10
+      await post @_chats, { _id, write_at }
+
     chat_post: (log)->
-      { _id, potof_id, write_at, show, deco, to, handle } = @edit.chat
+      { _id, show, deco, to } = @edit.chat
       if @is_creating
         potof_id = @potof_id
         write_at = new Date - 0
         _id = [@phase_id, @edit.chat.new_idx()].join('-')
-      await post @_chats, { _id, potof_id, write_at, show, deco, to, log }
-      @replace_cancel()
+        await post @_chats, { _id, potof_id, write_at, show, deco, to, log }
+      else
+        await post @_chats, { _id, show, deco, to, log }
+      @create_mode()
       @edit.chat.log = ''
 
   watch:

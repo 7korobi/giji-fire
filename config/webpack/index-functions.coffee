@@ -10,6 +10,10 @@ yml =
   test: /\.yml$/,
   loader: 'json-loader!yaml-loader'
 
+vue =
+  test: /\.vue$/,
+  loader: 'vue-loader'
+
 module.exports =
   entry:
     index:  './functions/api/index.coffee'
@@ -25,13 +29,14 @@ module.exports =
     rules: [
       coffee
       yml
+      vue
     ]
 
   resolve:
     extensions: [ '.coffee', '.yml', '.js' ]
     alias:
-      '~':  current
-      '~~': current
+      '@': current
+      '~': current
 
   plugins: []
   externals: [nodeExternals()] # Important

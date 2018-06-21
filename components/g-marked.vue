@@ -4,6 +4,8 @@ marked = require 'marked-pre'
 { url } = require "~/config/live.yml"
 
 
+marked.InlineLexer.rules.breaks.strong = /^\[\[(?:[^\]]|[^\]]\]|\][^\]])+\]\](?!\])|^\_\_(?:[^\_]|[^\_]\_|\_[^\_])+\_\_(?!\_)|^\~\~(?:[^\~]|[^\~]\~|\~[^\~])+\~\~(?!\~)|^\*\*(?:[^\*]|[^\*]\*|\*[^\*])+\*\*(?!\*)|^\=\=(?:[^\=]|[^\=]\=|\=[^\=])+\=\=(?!\=)|^\+\+(?:[^\+]|[^\+]\+|\+[^\+])+\+\+(?!\+)|^\:\:(?:[^\:]|[^\:]\:|\:[^\:])+\:\:(?!\:)|^\-\-(?:[^\-]|[^\-]\-|\-[^\-])+\-\-(?!\-)/
+
 class Renderer
   constructor: (@options)->
 
@@ -79,7 +81,6 @@ class Renderer
       m 'thead', {}, [header]
       m 'tbody', {}, body
     ]
-    console.log ret
     ret
 
   tablerow: (content)->
@@ -103,24 +104,9 @@ class Renderer
     { m } = @options
     m 'strong',
       style:
-        'text-emphasis': "sesame open"
+        'display': 'inline'
+        'text-emphasis': "sesame"
     , text
-
-  mark: (text)->
-    { m } = @options
-    m 'abbr', {}, text
-
-  em: (text)->
-    { m } = @options
-    m 'em', {}, text
-
-  sup: (text)->
-    { m } = @options
-    m 'sup', {}, text
-
-  sub: (text)->
-    { m } = @options
-    m 'sub', {}, text
 
   codespan: (text)->
     { m } = @options
@@ -133,23 +119,7 @@ class Renderer
     { m } = @options
     m 'del', {}, text
 
-  ruby: (ruby, title, text)->
-    { m } = @options
-    ret =
-      m 'ruby', {}, [
-        text
-        m 'rp', {}, ["《"]
-        m 'rt', {}, ruby
-        m 'rp', {}, ["》"]
-      ]
-    if title
-      ret = 
-        m "span",
-          attrs: { title }
-        , [ ret ]
-    ret
-
-  note: (num, title)->
+  note: (num, text, title)->
     { m } = @options
     m 'sup',
       attrs: { title, class: 'note' }
@@ -177,21 +147,67 @@ class Renderer
     m 'img',
       attrs: { src, alt, title }
 
-  anker: (cite)->
-    { m } = @options
-    m 'q',
-      attrs: { cite }
-    , "--#{cite}"
-
   text: (text)->
     text
-
   url: (href)->
     switch
       when Query.faces.find(href)
         "#{url.assets}/images/portrate/#{ href }.jpg"
       else
         href
+
+  # markdown-it
+  container: (text, lang)->
+    { m } = @options
+    m 'p',
+      attrs:
+        class: lang
+    , text
+
+  strikeout: (text)->
+    { m } = @options
+    m 's', {}, text
+
+  span: (text)->
+    { m } = @options
+    m 'span', {}, text
+
+  ins: (text)->
+    { m } = @options
+    m 'ins', {}, text
+
+  kbd: (text)->
+    { m } = @options
+    m 'kbd', {}, text
+
+  mdi: (name)->
+    { m } = @options
+    m 'i',
+      attrs:
+        class: "mdi #{name}"
+
+  abbr: (text, title)->
+    { m } = @options
+    m 'ruby', {}, [
+      text
+      m 'rp', {}, ["《"]
+      m 'rt', {}, title
+      m 'rp', {}, ["》"]
+    ]
+
+  mark: (text)->
+    { m } = @options
+    m 'abbr', {}, text
+
+  sup: (text)->
+    { m } = @options
+    m 'sup', {}, text
+
+  sub: (text)->
+    { m } = @options
+    m 'sub', {}, text
+
+
 
 options =
   renderer: new Renderer
@@ -206,6 +222,7 @@ options =
   sanitize: true
   smartLists: true
   smartypants: true
+  em: false
 
 ###
 attrs = { current, show, id, face_id, write_at, sign, handle, deco, head, log, to }
