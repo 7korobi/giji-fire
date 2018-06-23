@@ -97,7 +97,7 @@ module.exports = class Query
         "(#{item})"
     return @ unless list.length
     regexp = (new RegExp list.join("|"), "ig")
-    @where (o)-> (! o.search_words) || regexp.test o.search_words
+    @where (o)-> (! o.q.search_words) || regexp.test o.q.search_words
 
   shuffle: ->
     @sort Math.random

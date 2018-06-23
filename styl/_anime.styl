@@ -16,31 +16,28 @@
   transition-property: border-color, width
   transition-duration: .3s
 
-.expand-transition
-  transition: all .2s ease
-
 .editframe
   transition-property: height, width
   transition-duration: .2s   , .2s
   transition-delay:    .1s   , 0s
   transition-timing-function: ease
 
+.timeline
 .icons
 .list
-  &-move
-    transition: transform .3s
-  &-enter-to
-    transition: all .2s ease .1s
-  &-enter, &-leave-to
-    opacity: 0
+  &-enter
   &-leave-to
+    opacity: 0
+
+  &-leave-active
     position: absolute
 
+  &-enter-active
+  &-leave-active
+  &-move
+    transition: opacity .1s, transform .3s
 
-.timeline
-  &-enter, &leave-to
-    opacity: 0
-    transition: all .2s ease .1s
+
 
 .portrates
   background: #000
@@ -54,17 +51,3 @@
 
   .portrate
     flex-basis: auto
-
-  .expand-enter
-  .expand-leave
-    height: 0
-    padding: 0 10px
-    opacity: 0
-
-  .list-leave-to
-    position: absolute
-
-  .list-enter
-  .list-leave-to
-    transform: translateY(30px)
-

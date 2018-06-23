@@ -4,13 +4,24 @@ div
     bread-crumb
   c-report(handle="header" deco="center")
     tags(v-model="tag_id")
+
+    hr
+    table(style="width: 100%")
+      tbody
+        tr
+          td
+            btn(as="" v-model="search")
+              | 検索
+          td
+            input(style="width: 97%; " v-model="search" size="10")
+
     sub(style="width: 100%")
       | {{ chrs.length }}人の{{ set.long }}を表示しています。
   .fullframe
     transition-group.portrates(name="list" tag="div")
-      portrate(v-for="chr in chrs", :face_id="chr._id", :key="chr._id")
-        p {{ job(chr._id) }}
-        p {{ chr.name }}
+      portrate(v-for="chr in chrs", :face_id="chr.face_id", :key="chr.face_id")
+        p {{ chr.job }}
+        p {{ chr.face.name }}
   c-post(handle="footer")
     bread-crumb
 </template>
@@ -22,18 +33,17 @@ module.exports =
     require("~/plugins/browser-store")
       replace:
         tag_id: "giji"
+        search: ""
   ]
   computed:
     set: ->
       Query.tags.find @tag_id
     chrs: ->
-      Query.faces.tag(@tag_id).list
+      Query.chr_jobs
+      .tag @tag_id
+      .search @search
+      .list
 
-  methods:
-    job: (face_id)->
-      @set
-      .chr_job face_id
-      .job
 </script>
 
 <style lang="stylus">

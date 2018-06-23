@@ -23,11 +23,11 @@ div
         hr
         transition-group.list
           portrate(@click="choice" :face_id="a" :key="a")
-            p {{ job(a) }}
-            p {{ name(a) }}
+            p {{ a_job.job }}
+            p {{ a_job.face.name }}
           portrate(@click="choice" :face_id="b" :key="b")
-            p {{ job(b) }}
-            p {{ name(b) }}
+            p {{ b_job.job }}
+            p {{ b_job.face.name }}
         
         ol
           li 好きなほうのアイコンをタップで選択します。
@@ -35,9 +35,9 @@ div
 
   .fullframe(v-else)
     transition-group.portrates(name="list" tag="div")
-      portrate(v-for="id in chrs" :face_id="id" :key="id")
-        p {{ job(id) }}
-        p {{ name(id) }}
+      portrate(v-for="chr in chrs", :face_id="chr.face_id", :key="chr.face_id")
+        p {{ chr.job }}
+        p {{ chr.face.name }}
 
   c-post(handle="footer")
     bread-crumb
@@ -94,7 +94,7 @@ module.exports =
     set: ->
       Query.tags.find @tag_id
 
-    ids: ->
+    misaligned_ids: ->
       Query.faces.tag(@tag_id).reduce.set
 
     full: ->
@@ -106,10 +106,10 @@ module.exports =
     done: ->
       @count.true ? 0
 
-    chrs: ->
+    ids: ->
       @a
       @b
-      chrs = @ids.slice().sort sort_capture.deploy @cache
+      ids = @misaligned_ids.slice().sort sort_capture.deploy @cache
       @count = sort_capture.count()
 
       if sort_capture.args
@@ -117,8 +117,17 @@ module.exports =
         []
       else
         @a = @b = @message = null
-        chrs
+        ids
 
+    a_job: ->
+      @set.chr_job @a
+
+    b_job: ->
+      @set.chr_job @b
+
+    chrs: ->
+      @ids.map (face_id)=>
+        @set.chr_job face_id
 
   methods:
     clear_cache: ->
@@ -135,13 +144,6 @@ module.exports =
       @cache = @cache
       @a = @b = @message = null
 
-    name: (face_id)->
-      Query.faces.find face_id
-      .name
-    job: (face_id)->
-      @set
-      .chr_job face_id
-      .job
 </script>
 
 <style lang="stylus">

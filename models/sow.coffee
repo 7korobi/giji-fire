@@ -79,7 +79,8 @@ new Rule("sow_village").schema ->
     @aggregate =
       face_ids: []
     
-    @search_words = @name
+    @q =
+      search_words: @name
 
   @property 'model',
     roles:

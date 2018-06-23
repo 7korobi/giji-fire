@@ -1,8 +1,10 @@
 
 <template lang="pug">
 div
+  c-post(handle="footer")
+    bread-crumb
   c-post(handle="SSAY")
-    | {{ faces.list.length }}人を表示しています。
+    | {{ chrs.length }}人を表示しています。
     ul
       li 人気度
       li
@@ -10,6 +12,17 @@ div
       li ♥ いちばん沢山、そのキャラクターで遊んだプレイヤー
   c-report(handle="header" deco="center")
     tags(v-model="tag_id")
+
+    hr
+    table(style="width: 100%")
+      tbody
+        tr
+          td
+            btn(as="" v-model="search")
+              | 検索
+          td
+            input(style="width: 97%; " v-model="search" size="10")
+
   c-report(handle="header" deco="center")
     btn(as="order"        v-model="order") 基本
     btn(as="story_length" v-model="order") 登場回数
@@ -19,21 +32,21 @@ div
 
   .fullframe
     transition-group.portrates(name="list" tag="div")
-      portrate(v-for="face in faces.list" :face_id="face.id" :key="face.id")
+      portrate(v-for="chr in chrs" :face_id="chr.face_id" :key="chr.face_id")
         p(v-if="'fav_count' == order")
-          | ♥{{face.fav_count}}回
+          | ♥{{chr.face.fav_count}}回
         p(v-else)
-          | 登場{{face.story_length}}回
+          | 登場{{chr.face.story_length}}回
 
         p(v-if="'date_max' == order")
-          timeago(format="short", :since="face.date_max")
+          timeago(format="short", :since="chr.face.date_max")
         p(v-if="'date_min' == order")
-          timeago(format="short", :since="face.date_min")
-        nuxt-link(:to="face.summary_url")
-          p {{ face.chr_jobs.list[0].job }}
-          p {{ face.name }}
+          timeago(format="short", :since="chr.face.date_min")
+        nuxt-link(:to="chr.face.summary_url")
+          p {{ chr.job }}
+          p {{ chr.face.name }}
         p
-          | ♥{{ face.sow_auth_id }}
+          | ♥{{ chr.face.sow_auth_id }}
 
   c-post(handle="footer")
     bread-crumb
@@ -48,14 +61,20 @@ module.exports =
   mixins: [
     require("~/plugins/get-by-mount") "12h", "aggregate/faces"
     require("~/plugins/browser-store")
-      push:
+      replace:
         order: "date_max"
         tag_id:  "all"
+        search: ""
   ]
 
   computed:
-    faces: ->
-      Query.faces.aggregate(@tag_id, @order)
+    set: ->
+      Query.tags.find @tag_id
+    chrs: ->
+      Query.chr_jobs
+      .aggregate @tag_id, @order
+      .search @search
+      .list
 
 </script>
 

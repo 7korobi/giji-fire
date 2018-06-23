@@ -33,15 +33,6 @@ new Rule("face").schema ->
   @has_many "chr_npcs"
 
   @scope (all)->
-    aggregate: (tag_id, order)->
-      asc =
-        switch order
-          when "order", "date_min"
-            "asc"
-          else
-            "desc"
-      all.tag(tag_id).sort(order, asc)
-
     tag: (tag_id)->
       switch tag_id
         when "all"
@@ -147,13 +138,43 @@ new Rule("chr_npc").schema ->
     @chr_set_idx = order.indexOf @chr_set_id
 
 new Rule("chr_job").schema ->
-  @order "face.order"
   @belongs_to "chr_set"
   @belongs_to "face"
 
   @deploy ->
     @_id = "#{@chr_set_id}_#{@face_id}"
     @chr_set_idx = order.indexOf @chr_set_id
+    @q =
+      search_words:
+        if @face
+        then "#{@job} #{@face.name}"
+        else ""
+
+  @scope (all)->
+    aggregate: (tag_id, order)->
+      asc =
+        switch order
+          when "order", "date_min"
+            "asc"
+          else
+            "desc"
+      all.tag(tag_id).sort("face.#{order}", asc)
+
+    tag: (tag_id)->
+      { chr_set_id } = Query.tags.find tag_id
+      switch tag_id
+        when "all"
+          all
+          .where { chr_set_id }
+        else
+          all
+          .where { chr_set_id }
+          .in 'face.tag_ids': tag_id
+
+  class @model extends @model
+    @order: (o, emit)->
+      emit "list",
+        sort: ["face.order"]
 
 
 Set.tag.set  require "../yaml/chr_tag.yml"

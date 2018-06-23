@@ -69,7 +69,7 @@
       - guild
       - young
 -   _id: c36
-    order: 8
+    order: 8.1
     name: "ミッシェル"
     tag_ids:
       - animal
@@ -79,7 +79,7 @@
       - servant
       - young
 -   _id: c26
-    order: 8
+    order: 8.2
     name: "モニカ"
     tag_ids:
       - animal
@@ -127,7 +127,7 @@
       - road
       - middle
 -   _id: c16
-    order: 127
+    order: 900.127
     name: "マリアンヌ"
     tag_ids:
       - animal
@@ -679,7 +679,7 @@
       - guild
       - young
 -   _id: c73
-    order: 83
+    order: 900.195
     name: "ローズマリー"
     tag_ids:
       - animal
@@ -803,7 +803,7 @@
 -   _id: c89
     name: "カトリーナ"
     comment: 2011/12/06
-    order: 128
+    order: 900.128
     tag_ids:
       - animal
       - school
@@ -812,7 +812,7 @@
       - young
 -   _id: c84
     name: "ブレンダ"
-    order: 129
+    order: 900.129
     comment: 2011/12/05
     tag_ids:
       - animal
@@ -822,7 +822,7 @@
       - middle
 -   _id: c85
     name: "ハナ"
-    order: 130
+    order: 900.130
     comment: 2011/12/05
     tag_ids:
       - animal
@@ -834,7 +834,7 @@
 -   _id: c91
     comment: 2011/12/06 姦しい奥様♪
     name: "ドロシー"
-    order: 143
+    order: 900.143
     tag_ids:
       - animal
       - school
@@ -845,7 +845,7 @@
 -   _id: c92
     comment: 2011/12/06 姦し娘ーず♪
     name: "セレスト"
-    order: 144
+    order: 900.144
     tag_ids:
       - animal
       - school
@@ -856,7 +856,7 @@
 -   _id: c93
     comment: 2011/12/06 えー○○が許されるのは小学生までだよねー♪
     name: "ベッキー"
-    order: 145
+    order: 900.145
     tag_ids:
       - animal
       - school
@@ -865,7 +865,7 @@
       - servant
       - young
 -   _id: c78
-    order: 150
+    order: 900.150
     name: "ネイサン"
     tag_ids:
       - animal
@@ -874,7 +874,7 @@
       - market
       - middle
 -   _id: c82
-    order: 148
+    order: 900.148
     name: "ロビン"
     tag_ids:
       - animal
@@ -886,7 +886,7 @@
 -   _id: c94
     name: "ダーラ"
     comment: 2011/12/11
-    order: 165
+    order: 900.170
     tag_ids:
       - animal
       - school
@@ -896,7 +896,7 @@
       - market
       - middle
 -   _id: c64
-    order: 180
+    order: 900.185
     name: "ヘクター"
     tag_ids:
       - animal
@@ -905,7 +905,7 @@
       - immoral
       - middle
 -   _id: c81
-    order: 190
+    order: 900.190
     name: "サイラス"
     tag_ids:
       - animal
@@ -916,7 +916,7 @@
       - farm
       - young
 -   _id: c67
-    order: 200
+    order: 900.200
     name: "ソフィア"
     tag_ids:
       - animal
@@ -926,7 +926,7 @@
       - young
       - pair
 -   _id: c76
-    order: 210
+    order: 900.202
     name: "ジョージ"
     tag_ids:
       - animal
@@ -936,7 +936,7 @@
       - kid
       - pair
 -   _id: c60
-    order: 213
+    order: 900.197
     name: "ポーチュラカ"
     tag_ids:
       - animal
@@ -946,7 +946,7 @@
       - kid
 -   _id: c87
     name: "エリアス"
-    order: 217
+    order: 900.217
     comment: 2011/12/05
     tag_ids:
       - animal
@@ -956,7 +956,7 @@
       - medical
       - young
 -   _id: c45
-    order: 220
+    order: 900.222
     name: "プリシラ"
     tag_ids:
       - animal
@@ -965,7 +965,7 @@
       - immoral
       - young
 -   _id: c48
-    order: 225
+    order: 900.228
     name: "ビアンカ"
     tag_ids:
       - animal
@@ -976,7 +976,7 @@
       - elder
 -   _id: c86
     name: "ホレーショー"
-    order: 230
+    order: 900.233
     comment: 2011/12/05
     tag_ids:
       - animal
@@ -986,7 +986,7 @@
       - apartment
       - middle
 -   _id: c83
-    order: 240
+    order: 900.240
     name: "アイリス"
     tag_ids:
       - marchen
@@ -998,7 +998,7 @@
       - market
       - young
 -   _id: c31
-    order: 250
+    order: 900.250
     name: "ネル"
     tag_ids:
       - animal
@@ -1008,7 +1008,7 @@
       - apartment
       - young
 -   _id: c99
-    order: 999
+    order: 900.260
     name: "サイモン"
     tag_ids:
       - animal
@@ -1024,7 +1024,7 @@
     _id: g01
     tag_ids:
       - asia
--   order: 215
+-   order: 900.215
     name: "志偉"
     comment: "台湾男性名 越南の名前も探したかったが、見つからぬ…"
     _id: g02
@@ -1044,19 +1044,19 @@
       - asia
 -   name: "デメテル"
     comment: "阿片窟からきました"
-    order: 20001
+    order: 900.213
     _id: mad01
     tag_ids:
       - marchen
 -   name: "エルゴット"
     comment: "阿片窟からきました"
-    order: 245
+    order: 900.270
     _id: mad02
     tag_ids:
       - marchen
 -   name: "シーシャ"
     comment: "阿片窟からきました"
-    order: 223
+    order: 900.220
     _id: mad03
     tag_ids:
       - marchen
@@ -1068,13 +1068,13 @@
       - marchen
 -   name: "ヤヘイ"
     comment: "阿片窟からきました"
-    order: 1010
+    order: 900.280
     _id: mad05
     tag_ids:
       - marchen
 -   name: "アヤワスカ"
     comment: "阿片窟からきました"
-    order: 236
+    order: 900.236
     _id: mad06
     tag_ids:
       - marchen
@@ -1092,7 +1092,7 @@
       - travel
 -   name: "ミナカタ"
     comment: "ー仁ー"
-    order: 156
+    order: 900.156
     _id: t03
     tag_ids:
       - travel
@@ -1595,7 +1595,7 @@
 -   _id: g05
     name: "麻雀"
     comment: "中国女性名"
-    order: 170
+    order: 900.175
     tag_ids:
       - asia
 
@@ -1637,7 +1637,7 @@
 -   _id: t08
     name: "ミルフィ"
     comment: "海賊戦隊ゴーカイジャー"
-    order: 30020
+    order: 900.224
     tag_ids:
       - travel
 
@@ -1724,7 +1724,7 @@
 -   _id: c109
     name: "ラディスラヴァ"
     comment: "年末カウントダウン♪"
-    order: 185
+    order: 900.180
     tag_ids:
       - animal
       - school
@@ -1734,7 +1734,7 @@
 -   _id: c102
     comment: "年末カウントダウン♪"
     name: "ウォーレン"
-    order: 155
+    order: 900.155
     tag_ids:
       - animal
       - school
@@ -1745,7 +1745,7 @@
 -   _id: c107
     name: "イヴォン"
     comment: "年末カウントダウン♪"
-    order: 205
+    order: 900.205
     tag_ids:
       - animal
       - school
@@ -1756,7 +1756,7 @@
 -   _id: c103
     comment: "年末カウントダウン♪"
     name: "ナンシー"
-    order: 234
+    order: 900.234
     tag_ids:
       - animal
       - school
@@ -1892,7 +1892,7 @@
 -   _id: c111
     name: "スージー"
     comment: "リニューアル記念！ 弟がいるという噂が…"
-    order: 160
+    order: 900.165
     tag_ids:
       - giji
       - apartment
@@ -1903,7 +1903,7 @@
 -   _id: c113
     name: "ジェレミー"
     comment: "リニューアル記念！"
-    order: 228
+    order: 900.2308
     tag_ids:
       - giji
       - apartment
@@ -2166,7 +2166,7 @@
 -   _id: t31
     name: "ホウイチ"
     comment: ""
-    order: 158
+    order: 900.158
     tag_ids:
       - travel
 
@@ -2187,7 +2187,7 @@
 -   _id: t34
     name: "ドン"
     comment: ""
-    order: 17
+    order: 17.1
     tag_ids:
       - travel
 
@@ -2207,7 +2207,7 @@
 -   _id: c117
     name: "ルパート"
     comment: ""
-    order: 135
+    order: 117
     tag_ids:
       - giji
       - road
@@ -2217,7 +2217,7 @@
 -   _id: c118
     name: "ユージン"
     comment: ""
-    order: 118
+    order: 900.2306
     tag_ids:
       - giji
       - river
@@ -2227,7 +2227,7 @@
 -   _id: c119
     name: "オーレリア"
     comment: ""
-    order: 119
+    order: 900.210
     tag_ids:
       - giji
       - ecclesia
@@ -2249,14 +2249,14 @@
 -   _id: t35
     name: "イスルギ"
     comment: ""
-    order: 30020
+    order: 900.208
     tag_ids:
       - travel
 
 -   _id: c121
     name: ブッカ
     comment: "ブッカ・ホワイト氏から。"
-    order: 121
+    order: 900.159
     tag_ids:
       - giji
       - farm
@@ -2274,14 +2274,14 @@
 -   _id: mad10
     name: ルグレ
     comment: "後悔あとをたたず"
-    order: 20010
+    order: 900.2302
     tag_ids:
       - marchen
 
 -   _id: mad11
     name: オルギア
     comment: "ええじゃないかええじゃないかー！"
-    order: 20011
+    order: 900.2304
     tag_ids:
       - marchen
 
@@ -2363,7 +2363,7 @@
 -   _id: c122
     name: フローラ
     comment: ""
-    order: 122
+    order: 900.226
     tag_ids:
       - giji
       - young
@@ -2502,7 +2502,7 @@
 -   _id: t53
     name: ツヅラ
     comment: ""
-    order: 30053
+    order: 900.160
     tag_ids:
       - travel
 
@@ -2540,6 +2540,32 @@
     order: 30058
     tag_ids:
       - travel
+
+#########################
+# 2018-06-23 
+
+-   _id: c126
+    name: ロイエ
+    comment: ""
+    order: 126
+    tag_ids:
+      - giji
+      - young
+      - servant
+
+-   _id: w55
+    name: 網斎
+    comment: ""
+    order: 90055
+    tag_ids:
+      - shoji
+
+-   _id: mad12
+    name: パカロロ
+    comment: ""
+    order: 900.235
+    tag_ids:
+      - marchen
 
 #########################
 # xxxx-xx-xx update
@@ -2690,8 +2716,23 @@
 #  法隆寺、猫集会、学園特警
 # トッカータ
 #  雨色の空想
-#  ドッツ イボテン ムッシモール ムスカゾン クベンシス
-#  リゼル ペヨーテ カーピ シポ オアスカ アミン
+#  ドッツ
+#  イボテン ムッシモール
+#  ムスカゾン
+#  クベンシス
+#  シロシビン
+#  リゼル
+#  ペヨーテ ウバタマ
+#  カーピ (アヤワスカ ヤヘイ オアスカ ダイミ)
+#  シポ
+#  アミン
+#  クリスタル アンナカ アイス アン サンキスト マツ ラムネ 
+#  パカロロ ハッシュ
+#  チャーリー コーク
+#  ペケ アダム レイブ バツ タマ
+#  アンパン
+#  ソウマ ミスト ワック ホッグ グーン
+#  
 
 # http://ichiranya.com/
 # http://cjjc.weblio.jp/
