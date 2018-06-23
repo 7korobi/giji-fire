@@ -21,6 +21,22 @@ module.exports =
     idx = 0
     talks: [
       id: 'demo-1-SS-' + (++idx)
+      head: ""
+      deco: "giji"
+      handle: "TITLE"
+      face_id: "c100"
+      write_at: now - 1000000
+      log: """
+        |  | 
+        |--:|:--
+        | ポチ | azubu~ciel-48~
+        | クラリッサ | ななころび
+        | グレッグ | ななころび
+        | ウォーレン | ななころび
+      """
+    ,
+
+      id: 'demo-1-SS-' + (++idx)
       head: "発言レンダーてすと"
       deco: "giji"
       handle: "SSAY"
@@ -36,13 +52,48 @@ module.exports =
         | col ^3^ is    | [other]         | $1600 |
         | col ~2~ is    | [short]         |   $12 |
         | zebra stripes | [ガイド][guide] |    $1 |
-
         [guide]: <http://crazy-crazy.sakura.ne.jp/giji/?%28Knowledge%29Guidance#l1> "手引き"
         [other]: http://wolfbbs.jp/%BF%CD%CF%B5%A5%AF%A5%ED%A1%BC%A5%F3.html#content_1_18 "短期サーバー紹介"
         [short]: # "１０分とか、５分とか。……ひどいときは１分だぜ。クール！"
 
       """
     ,
+
+      id: 'demo-1-SS-' + (++idx)
+      head: "発言レンダーてすと"
+      deco: "giji"
+      handle: "SSAY"
+      face_id: "c60"
+      write_at: now - 1000000
+      log: """
+        *[大丈夫]: だいじょうぶ
+        *[採用]: さいよう
+        *[立入禁止]: keep out
+        ## ―コントロール--ルーム--―
+
+        　これで大丈夫、かしら？
+
+        ::: name
+        * * *
+        送り終えた::メッセージ::を何度も読み返し、やっと~~モニター~~から顔をあげた。
+        と思えばまた別の画面を開き、[[モニター]]とにらめっこ。
+        客室に眠る参加者達がかわるがわる映し出される。
+        * * *
+        :::
+
+        　++**14人、ちゃんといるわね**。++
+        　それから==++立入禁止++区域==のロックは...~~......~~
+
+        > 隅々まで設定の~~チェック~~を終えると、両手を広げ椅子の背に思い切りもたれかかった。
+
+        　よぉし、大丈夫、完璧！
+        　ポチにだってやればできるんだから。
+        　お父様ったら「ポチに`GM`はまだ早い」だなんて。
+
+        > 娘は父親に隠れて``GM``志願し、晴れてこの度採用されたのである。
+      """
+    ,
+
       id: 'demo-1-SS-' + (++idx)
       head: "発言レンダーてすと"
       deco: "giji"
@@ -107,8 +158,10 @@ module.exports =
       write_at: now - 4000000
       log: """
         あとさ、こまいところ。
-        1. [x] HTMLかくのは**禁止** <hr>
-        2. [ ] ~~検閲により削除~~したら--strikeout--するほうがいいかしら。
+        1. [x] ::HTML::かくのは**禁止** <hr>
+        1. [ ] ~~検閲により削除~~したら--strikeout--するほうがいいかしら。
+          1. ``コード``[[ブロック]]についてはよし。
+          1. f*ck'n f*ck'n
       """
     ,
       id: 'demo-1-SS-' + (++idx)

@@ -6,6 +6,8 @@ marked = require 'marked-pre'
 
 marked.InlineLexer.rules.breaks.strong = /^\[\[(?:[^\]]|[^\]]\]|\][^\]])+\]\](?!\])|^\_\_(?:[^\_]|[^\_]\_|\_[^\_])+\_\_(?!\_)|^\~\~(?:[^\~]|[^\~]\~|\~[^\~])+\~\~(?!\~)|^\*\*(?:[^\*]|[^\*]\*|\*[^\*])+\*\*(?!\*)|^\=\=(?:[^\=]|[^\=]\=|\=[^\=])+\=\=(?!\=)|^\+\+(?:[^\+]|[^\+]\+|\+[^\+])+\+\+(?!\+)|^\:\:(?:[^\:]|[^\:]\:|\:[^\:])+\:\:(?!\:)|^\-\-(?:[^\-]|[^\-]\-|\-[^\-])+\-\-(?!\-)/
 
+itself = (o)-> o
+
 class Renderer
   constructor: (@options)->
 
@@ -23,10 +25,11 @@ class Renderer
 
   blockquote: (quote)->
     { m } = @options
-    m 'blockquote', {}, [quote]
+    m 'blockquote', {}, quote
 
-  html: (html)->
-    html
+  paragraph: itself
+  text: itself
+  html: itself
 
   heading: (text, level, raw)->
     { m, headerIds, headerPrefix } = @options
@@ -67,13 +70,6 @@ class Renderer
       ]
     else
       m 'li', {}, text
-
-  paragraph: (text, is_top)->
-    { m } = @options
-    if is_top
-      m 'p', {}, text
-    else
-      text
 
   table: (header, body)->
     { m } = @options
@@ -147,8 +143,6 @@ class Renderer
     m 'img',
       attrs: { src, alt, title }
 
-  text: (text)->
-    text
   url: (href)->
     switch
       when Query.faces.find(href)
