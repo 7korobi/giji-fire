@@ -73,9 +73,14 @@ class Renderer
 
   table: (header, body)->
     { m } = @options
-    ret = m 'table', {}, [
-      m 'thead', {}, [header]
-      m 'tbody', {}, body
+    ret =
+    m 'div',
+      class: 'swipe'
+    , [
+      m 'table', {}, [
+        m 'thead', {}, [header]
+        m 'tbody', {}, body
+      ]
     ]
     ret
 
@@ -83,26 +88,21 @@ class Renderer
     { m } = @options
     m 'tr', {}, content
 
-  tablecell: (content, flags)->
+  tablecell: (content, { header, align })->
     { m } = @options
     tag =
-      if flags.header
+      if header
         'th'
       else
         'td'
     m tag,
-      style:
-        'text-align': flags.align
+      class: align?[0]
     , content
 
   # span level renderer
   strong: (text)->
     { m } = @options
-    m 'strong',
-      style:
-        'display': 'inline'
-        'text-emphasis': "sesame"
-    , text
+    m 'strong', {}, text
 
   codespan: (text)->
     { m } = @options

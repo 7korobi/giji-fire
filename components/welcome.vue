@@ -139,15 +139,15 @@ module.exports =
   white-space: pre
 
 h2
-  height: 100px
-  margin:   0
-  padding: 25px 0 0 0
+  height: 130px
   white-space: pre
   text-align: center
-  font-size:   35px
-  line-height: 50px
+  transform-origin: center bottom
+  font-size:    45px
+  line-height: 130px
   a
-    font-size:   35px
-    line-height: 50px
+    background-color: transparent !important
+    font-size:    45px
+    line-height:  50px
 
 </style>

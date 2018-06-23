@@ -3,20 +3,11 @@ hr
   display: block
   height:  0
   margin:  0
-  -webkit-margin-before: 0
-  -webkit-margin-after:  0
+  margin-before: 0
+  margin-after:  0
   border: none
 
 hr:before
-  content: ""
-  clear: both
-  display: block
-  margin:  0
-  padding: 0
-  height: 1px
-  border-style: solid none none none
-  border-width: 1px 0 0 0
-
 hr:after
   content: ""
   clear: both
@@ -24,19 +15,24 @@ hr:after
   margin:  0
   padding: 0
   height: 1px
+
+hr:before
+  border-style: solid none none none
+  border-width: 1px 0 0 0
+
+hr:after
   border-style: none none dashed none
   border-width: 0 0 1px 0
 
 h1, h2, h3, h4, h5, h6
   box-sizing: border-box
   display: block
-  font-weight: 300
+  transform: scale( 1, 0.8)
+  transform-origin: center center
   margin: 0
 
 p
   margin: 0
-  margin-before: 0
-  margin-after:  0
 
 blockquote
   margin: 0
@@ -62,12 +58,18 @@ rt
   padding: 0 4px
 
 sup.note
-strong
   font-weight: bold
+
+s
+  text-decoration-style: wavy
+
+strong
+  -webkit-text-emphasis: sesame
+  text-emphasis: sesame
+  display: inline
 
 [title]
 [cite]
-code
   border-style: solid
   border-width: 2px
 
@@ -85,11 +87,15 @@ em
 abbr
 strong
 kbd
+code
 time
 select
 button
 time
   border-width: 0
+
+ins
+  text-decoration-style: wavy
 
 strong
 del
@@ -100,8 +106,17 @@ b
   font-weight: normal
   text-decoration: none
 
-th, td
-  border-radius: 2px
+thead tr
+tbody tr
+th
+td
+  border-radius: 3px
+
+thead tr
+  border-style: solid
+th
+  border-style: dashed
+  border-width: 2px
 
 q:not([title]):before
 q:not([title]):after
@@ -109,12 +124,16 @@ q:not([title]):after
 
 input[type=time]
 input[type=number]
+
+.right
 .r
   text-align: right
 
+.left
 .l
   text-align: left
 
+.center
 .c
   text-align: center
 
@@ -159,9 +178,7 @@ input[type=reset]
 [chat_id]
 a
 b
-em
 abbr
-strong
 kbd
 code
 time

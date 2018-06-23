@@ -6,8 +6,15 @@ div
       li
         nuxt-link(to="/demo") 開発者用ページ
   div(v-for="o in talks")
-    c-talk(:head="o.head", :deco="o.deco", :handle="o.handle", :face_id="o.face_id", :write_at="o.write_at", :log="o.log")
-    c-report(:head="o.deco", deco="mono", :handle="o.handle", :write_at="o.write_at") {{ o.log }}
+    c-talk(:head="o.head" :deco="o.deco" :handle="o.handle" :face_id="o.face_id" :write_at="o.write_at" :log="o.log")
+    c-report(:head="o.deco" :handle="o.handle" :write_at="o.write_at")
+      span
+        btn.large(v-model="o.deco" as="giji")
+          i.mdi.mdi-file-document
+        btn.large(v-model="o.deco" as="dagre")
+          i.mdi.mdi-file-image
+      text-editor(v-model="o.log" :deco="o.deco" :rows="7" :maxRow="20" :maxSize="999")
+
   c-report(handle="footer" deco="center")
     bread-crumb
       li
@@ -27,7 +34,7 @@ module.exports =
       face_id: "c100"
       write_at: now - 1000000
       log: """
-        |  | 
+        | | 
         |--:|:--
         | ポチ | azubu~ciel-48~
         | クラリッサ | ななころび

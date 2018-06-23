@@ -31,17 +31,17 @@ font($small, $base, $family)
   $inline   = $base * 1.3
 
   h1
-    inline(2.00 * $base, 2.00 * $inline, $family)
+    inline(2.50 * $base, 2.50 * $base, $family)
   h2
-    inline(1.50 * $base, 1.50 * $inline, $family)
+    inline(1.88 * $base, 1.88 * $base, $family)
   h3
-    inline(1.17 * $base, 1.17 * $inline, $family)
+    inline(1.50 * $base, 1.50 * $base, $family)
   h4
-    inline(1.00 * $base, 1.00 * $inline, $family)
+    inline(1.25 * $base, 1.25 * $base, $family)
   h5
-    inline(0.83 * $base, 0.83 * $inline, $family)
+    inline(1.00 * $base, 1.00 * $base, $family)
   h6
-    inline(0.67 * $base, 0.67 * $inline, $family)
+    inline(0.83 * $base, 0.83 * $base, $family)
 
   hr
     padding: $hr_top 0 $hr_btm 0
@@ -71,7 +71,6 @@ font($small, $base, $family)
   textarea
   strong
   time
-  kbd
   em
   a
   b
@@ -82,6 +81,7 @@ font($small, $base, $family)
     &:after
       inline($base,  $block,  $family)
 
+  kbd
   code
     inline($base,  $block, "monospace")
 

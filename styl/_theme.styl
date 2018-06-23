@@ -401,9 +401,6 @@ palette_single($bgTheme, $backT, key)
     0%   { text-shadow: 0 2px 1px $bgHi, 0 -2px 1px $bgHi }
 
 
-  kbd
-    background-color: #000
-
   for theme in $bgTheme
     .{theme}.focus
       border-color:   $focus
@@ -576,9 +573,6 @@ palette_single($bgTheme, $backT, key)
     h4
     h5
     h6
-    b
-    em
-    strong
       body &.{theme}
       .{theme} &
         color: $penHi
@@ -591,7 +585,6 @@ palette_single($bgTheme, $backT, key)
 
     h3
     h4
-    strong
       body &.{theme}
       .{theme} &
         Glowing(1.5px, 1.0px, $shade)
@@ -602,18 +595,31 @@ palette_single($bgTheme, $backT, key)
       .{theme} &
         Glowing(1.0px, 0.5px, $shade)
 
-    .bar
+    thead tr
+      body &.{theme}
+      .{theme} &
+        border-color: $focus
+
     th
       body &.{theme}
       .{theme} &
+        color: $penHi
+        border-color: $focus
+
+    b
+    em
+    strong
+      body &.{theme}
+      .{theme} &
         color: $pen
-        background-color: $bgHi
+        text-emphasis-color: $penHi
+        text-decoration-color: $penHi
 
     label
     rt
       body &.{theme}
       .{theme} &
-        color: $pen
+        color: $penHi
         background-color: $bgHi
 
     abbr
@@ -626,6 +632,13 @@ palette_single($bgTheme, $backT, key)
     .date
       .{theme}.focus &
         color: $focus
+
+    ins
+      body &.{theme}
+      .{theme} &
+        color: $penHi
+        text-emphasis-color: $focus
+        text-decoration-color: $focus
 
     del
     .name
@@ -647,6 +660,13 @@ palette_single($bgTheme, $backT, key)
       .{theme} &:before
       body &.{theme}:after
       .{theme} &:after
+        text-shadow: none
+        color: $pen
+        background-color: $bgHi
+
+    .bar
+      body &.{theme}
+      .{theme} &
         text-shadow: none
         color: $pen
         background-color: $bgHi
@@ -673,14 +693,25 @@ palette_single($bgTheme, $backT, key)
         &:link
           color: $penHi
 
+    s
+      body &.{theme}
+      .{theme} &
+        text-decoration-color: $focus
+        text-emphasis-color: $focus
+
+    kbd
     code
+      body &.{theme}
+      .{theme} &
+        color: $pen
+        background-color: $on
+
     [title]
     [cite]
       body &.{theme}
       .{theme} &
         color: $penHi
         border-color: $on
-
 
     input
     select

@@ -25,7 +25,7 @@
 
 
       c-report(handle="footer")
-        article
+        article.swipe
           table
             thead
               tr
@@ -42,7 +42,7 @@
 
 
       c-report(handle="footer")
-        article
+        article.swipe
           table
             thead
               tr
@@ -69,20 +69,19 @@
         btn(as="all" v-model="order") 総発言文字数
         btn(as="date_min" v-model="order") 古参度
         btn(as="date_max" v-model="order") 新着度
-        article
+        article.swipe
           table
             transition-group.tlist(name="list" tag="tbody")
               tr(v-for="o in sow_auths", :key="o._id.sow_auth_id")
-                th
-                  .sow_auth_id {{ o._id.sow_auth_id }}
+                td.c
+                  abbr {{ o._id.sow_auth_id }}
                 td.r.count {{ o.story_ids.length | currency }}村
                 td.r.count {{ o.count | currency }}回
                 td.r.count {{ o.all | currency }}文字
-                td.timer
+                td.c
                   timeago.count(:since="o.date_min")
-                th
-                  .pad ～
-                td.timer
+                td.c ～
+                td.c
                   timeago.count(:since="o.date_max")
 
       c-post(handle="footer")
@@ -169,27 +168,10 @@ module.exports =
 
 <style lang="stylus" scoped>
 
-.timer
-  white-space: nowrap
-  width: 17ex
-
-.r
-  white-space: nowrap
-  text-align: right
-
-.sow_auth_id
-  text-align: center
-  margin: 0 -2ex 0 0
-
-.pad
-  text-align: left
-  font-size: 0.8em
-  margin: 0 -4ex 0 -1ex
-
 .chat
   .text
-    td.count,
-    td .count,
+    td.count
+    td .count
     a  .count
         font-size: 0.8em
         padding: 0

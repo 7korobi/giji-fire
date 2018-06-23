@@ -55,6 +55,7 @@ new Rule("sow_village").schema ->
       upd_at: "#{hour}:#{minute}"
       upd_range: "#{interval * 24}h"
       rating: @rating
+      search_words: @name
     }
 
     @q.rating = "default"  if @rating in [null, 0, "0", "null", "view"]
@@ -78,9 +79,6 @@ new Rule("sow_village").schema ->
     
     @aggregate =
       face_ids: []
-    
-    @q =
-      search_words: @name
 
   @property 'model',
     roles:
