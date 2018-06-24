@@ -1109,68 +1109,68 @@
     tag_ids:
       - travel
 -   _id: m99
-    order: 70001
+    order: 70000.01
     name: "パルック"
     tag_ids:
       - myth
 -   _id: m06
-    order: 70002
+    order: 70000.21
     name: "リリンラ"
     tag_ids:
       - myth
 -   _id: m03
-    order: 70003
+    order: 70000.22
     name: "トノサマ"
     tag_ids:
       - myth
 -   _id: m05
-    order: 70004
+    order: 70000.23
     name: "ナナコロ"
     tag_ids:
       - myth
 -   _id: m15
-    order: 70005
+    order: 70000.24
     name: "ミソチャ"
     tag_ids:
       - myth
 -   _id: m07
-    order: 70006
+    order: 70000.11
     name: "アリス"
     tag_ids:
       - myth
 -   _id: r30
-    order: 70006
+    order: 70000.31
     name: "トリ"
     tag_ids:
       - myth
 -   _id: m01
-    order: 70007
+    order: 70001
     name: "ケムシ"
     tag_ids:
       - myth
 -   _id: m02
-    order: 70008
+    order: 70002
     name: "ポプラ"
     tag_ids:
       - myth
 -   _id: m04
-    order: 70009
+    order: 70004
     name: "アオイ"
     tag_ids:
       - myth
 -   _id: b44
     comment: ''
     name: "ドナルド"
-    order: 70010
+    order: 70007.9
     tag_ids:
       - myth
 -   _id: m08
-    order: 70011
+    order: 70008
     name: "おっぱい"
     tag_ids:
       - myth
 -   _id: m09
-    order: 70012
+    order: 70009
     name: "カミジャー"
     tag_ids:
       - myth
@@ -1181,34 +1181,34 @@
 -   _id: b49
     comment: ''
     name: "ボリス"
-    order: 70012
+    order: 70008.1
     tag_ids:
       - myth
 -   _id: m10
-    order: 70013
+    order: 70010
     name: "アチャポ"
     tag_ids:
       - myth
 -   _id: m12
     comment: ''
     name: "トルニトス"
-    order: 70014
+    order: 70012
     tag_ids:
       - myth
       - pair
 -   _id: m11
-    order: 70015
+    order: 70011
     name: "ライトニング"
     tag_ids:
       - myth
       - pair
 -   _id: m13
-    order: 70016
+    order: 70000.12
     name: "ミケ"
     tag_ids:
       - myth
 -   _id: m14
-    order: 70017
+    order: 70014
     name: "カリュクス"
     tag_ids:
       - myth
@@ -1926,7 +1926,7 @@
 -   _id: m16
     name: "アーサー"
     comment: "円卓の騎士"
-    order: 70018
+    order: 70016
     tag_ids:
       - myth
 
@@ -1963,14 +1963,14 @@
 -   _id: m18
     name: "ミーム"
     comment: "インターネット・ミームから。 えんいー"
-    order: 70020
+    order: 70018
     tag_ids:
       - myth
 
 -   _id: m19
     name: "タルト"
     comment: "https://twitter.com/7korobi/status/510069062974447617"
-    order: 70021
+    order: 70019
     tag_ids:
       - myth
       - pair
@@ -1978,7 +1978,7 @@
 -   _id: m20
     name: "ショコラ"
     comment: "https://twitter.com/noa_marimo/status/510100541536358400"
-    order: 70022
+    order: 70020
     tag_ids:
       - myth
       - pair
@@ -2567,71 +2567,140 @@
     tag_ids:
       - marchen
 
+-   _id: t59
+    name: メイ
+    comment: ""
+    order: 30059
+    tag_ids:
+      - travel
+
+-   _id: t60
+    name: タツミ
+    comment: ""
+    order: 30060
+    tag_ids:
+      - travel
+
+-   _id: m21
+    name: ロバート
+    comment: ""
+    order: 70021
+    tag_ids:
+      - marchen
+
 #########################
 # xxxx-xx-xx update
 # 
-# AIさくらさん,
-# Siri, Alexa, Clova, Coltana, OK!Google.
-# Pepper, Nao, Romeo, ASIMO, AIBO, Nabaztag
-# Tay, りんな, Xiaoice
-#
 # でてきたアイデア
-# Stay Sober Society (BTTF the GAME)。 Seriously Swastika Society!（こんな社会、マジ卍！）とかでもいいよ。
-# 誠実局    ：秘密局
-# 憂世文庫    ：ロシア文庫
-# アカツキ
-# セイジ・眼鏡ジャージ
-# 兄弟宿舎    ：フラタニティ
-# 無傘闊歩    ：番傘川柳
-# 明後日白書    ：あすなろ→あすなろ白書
-# レオ
-# てっちー・ふんわりアホ
-# 忘心花        ：心の花りぃら
-# ナル
-# ぱぁる
-# はや
-# こころ・眼鏡美人
-# 従民の剣    ：人民の権利
-# 姉妹寮監    ：ソロリティ
-# 悔恨の星    ：曙の星キリ
-# シャラ
-# クロエ・吊り目
-# 新天門　：天地会（洪門）
-# 革神会    ：格神会
-# OJESSA    ：（over justice ever SS-association）オデッササダミツ
-# セン
-# ナツメ・性悪
-# 土夜会        ：木曜会アンジュ
-# リンカ
-# ノッカ・双子さわやか
-# 一蓮装置
-# 一字会議        ：ビルダーバーグ会議ヨスガ    ：因〇
-# アサヒ
-# カヅキ
-# アラカ    ：予
-# カサネ
-# オトハ・双子眼鏡
-# 托生部隊
-# 四門評議エニシ    ：縁〇
-# ハタエ    ：果
-# ヨヅキ
-# キザシ    ：兆
-# メグル
-# アオバ・糸目ジャージ
-# 勿忘草    ：短歌結社
-# 白白部    ：白白教
-# カスリ
-# ハスナワ・夜専学生
-# 真音流    ：真言立川流
-# TL    ：タギー　→Thug life
-# 19K    ：14K
-# 化外街道サザナミ
-# トバリ
-# ツヅラ〇
-# ルイ
-# ススカゼ
+#   Stay Sober Society (BTTF the GAME)。 Seriously Swastika Society!（こんな社会、マジ卍！）とかでもいいよ。
+#   誠実局        ：秘密局
+#   憂世文庫      ：ロシア文庫
+#   兄弟宿舎      ：フラタニティ
+#   無傘闊歩      ：番傘川柳
+#   明後日白書    ：あすなろ→あすなろ白書
+#   夜笑国        ：夜郎国
+#   五弧十六刻    ：五胡十六国
+#   平気政権      ：平氏政権
+#   華派          ：カハ
+#   樺根牌        ：カハネ・ハイ
+#   PARC          ：FARC　P=pa'jara 抜け目のない女,小鳥
+#   解放の空      ：タミル・イーラム解放のトラ
+#   狐塚大社      ：伏見稲荷大社
+#   けらけら      ：ヒズボラ
+#   姉妹寮則      ：ソロリティ
+#   明後日白書    ：あすなろ→あすなろ白書
+#   ひだまり坂    ：くらやみ坂刑場
+#   六曜会        ：木曜会
+#   白白部        ：白白教
+#   忘心花        ：心の花りぃら
+#   従民の剣      ：人民の権利
+#   姉妹寮監      ：ソロリティ
+#   悔恨の星      ：曙の星キリ
+#   新天門        ：天地会（洪門）
+#   革神会        ：格神会
+#   OJESSA        ：（over justice ever SS-association）オデッササダミツ
+#   夜襲王権      ：ヤマト王権
+#   大太刀源流    ：示現流
+#   GES科学研究所 ：ESP科学研究所
+#   SLA総合本部   ：GLA総合本部
+#   独占匠会      ：刀匠会
+#   五香伝        ：五カ伝
+#   五鬼六道      ：五畿七道
+#   土夜会        ：木曜会アンジュ
+#   一字会議      ：ビルダーバーグ会議
+#   勿忘草        ：短歌結社
+#   白白部        ：白白教
+#   真音流        ：真言立川流
+#   TL            ：タギー　→Thug life
+#   19K           ：14K
+#   ウンモ星人    ：http://ufojikenbo.blogspot.com/2016/06/ummo.html
 #
-# ウンモ星人  http://ufojikenbo.blogspot.com/2016/06/ummo.html
+# 音声ＡＩ
+#   AIさくらさん,
+#   Siri, Alexa, Clova, Coltana, OK!Google.
+# 自律ロボット
+#   Pepper, Nao, Romeo, ASIMO, AIBO, Nabaztag
+# チャットパートナー
+#   Tay, りんな, Xiaoice
+#
+# 海底遺跡
+#               ：海底遺跡 与那国島（渡難島）
+#               ：プトレマイオス朝王宮 アレクサンドリア沖
+#               ：インド都市 カンベイ湾
+#               ：ポート・ロイヤル カリブ海
+#               ：ヒンドゥー寺院群 マハーバリプラム沖
+#               ：ミケーネ都市 ラコニア
+#               ：クリシュナ神殿 ドワールカ沖
+#               ：BC7500年頃の都市 カンベイ湾スラト沖
+#               ：魔の三角地帯 バミューダ沖
+#               ：アトランティス（アトラスの娘） BC500年頃言及 大西洋沖
+#               ：レムリア大陸(五千万年前) インド洋沖
+#               ：ムー大陸(一万年と二千年前)  トゥイ・トンガ国 ポリネシア
+#               ：マガラニカ 南極
+#               ：モノリス ※映画2001年宇宙の旅 
+# 地上の遺跡
+#               ：地上絵（BC200年） ペルー アンデス山麓
+#               ：核戦争跡（25億年前以降） ガボン共和国オートオゴウェ州オクロ
+#               ：核戦争跡（BC2000年頃） モヘンジョダロ
+#               ：ストーンヘンジ（BC3000年） イギリス ソールズベリー傍
+#               ：ピラミッド 中央ボスニア 
+#
+#   アカツキ
+#   セイジ・眼鏡ジャージ
+#   レオ
+#   てっちー・ふんわりアホ
+#   ナル
+#   ぱぁる
+#   はや
+#   こころ・眼鏡美人
+#   シャラ
+#   クロエ・吊り目
+#   セン
+#   ナツメ・性悪
+#   リンカ
+#   ノッカ・双子さわやか
+#   一蓮装置
+#   アサヒ
+#   カヅキ
+#   アラカ    ：予
+#   カサネ
+#   オトハ・双子眼鏡
+#   托生部隊
+#   ヨスガ    ：因〇
+#   四門評議エニシ    ：縁〇
+#   ハタエ    ：果
+#   ヨヅキ
+#   キザシ    ：兆
+#   メグル
+#   アオバ・糸目ジャージ
+#   カスリ
+#   ハスナワ・夜専学生
+#   化外街道サザナミ
+#   トバリ
+#   ツヅラ〇
+#   ルイ
+#   ススカゼ
+#
 # 
 # 肩書案
 # 人狼議事
@@ -2694,7 +2763,7 @@
 # 温泉から
 #  洞窟探査、鉱泉分析、三助、湯もみ、湯治客（刀傷 刺青）、大旦那（サル顔）
 # 都市伝説、怪談
-#  クロ衆、渡難連邦
+#  クロ衆
 # 結社、集会
 #  電気保安協会、HTB連合、農園政府、官房秘密局、時間貯蓄銀行、麻薬委員、魔法省
 #  硯友社、新漫画党、末方忍軍、旧車會、同胞団

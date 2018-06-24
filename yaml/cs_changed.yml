@@ -99,3 +99,5 @@ chr_job:
   - face_id: r30
     job: "ひとづかい"
 
+  - face_id: m21
+    job: 三等兵

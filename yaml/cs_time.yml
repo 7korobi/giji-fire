@@ -282,3 +282,11 @@ chr_job:
   - face_id: t58
     job: 真向一気
     comment: 由来：一向一揆
+
+  - face_id: t59
+    job: 夜笑国
+    comment: 由来：古代の夜郎国
+
+  - face_id: t60
+    job: 大太刀源流
+    comment: 由来：示現流
