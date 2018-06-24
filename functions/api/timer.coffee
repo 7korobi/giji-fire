@@ -1,6 +1,7 @@
 { firestore, database, https } = require 'firebase-functions'
 admin = require 'firebase-admin'
-moment = require 'moment'
+format = require 'date-fns/format'
+locale = require "date-fns/locale/ja"
 
 serviceAccount = require "~/config/service_account.yml"
 
@@ -57,7 +58,7 @@ module.exports =
     #    tempo: ["15min"]
     #
     https.onRequest (req, res)->
-      now_s = moment(new Date - timezone).format("YYYY/MM/DD HH:mm:ss")
+      now_s = format new Date - timezone, "YYYY/MM/DD HH:mm:ss", { locale }
       qs = await admin.firestore().collection('parts').where('is_active','==',true).get()
       for doc in qs.docs
         part = doc.data()
@@ -88,5 +89,5 @@ module.exports =
     ref = admin.firestore().doc('test/tick')
     oo = await ref.get()
 
-    now = moment(new Date() - timezone).format("YYYY/MM/DD HH:mm:ss");
+    now_s = format new Date - timezone, "YYYY/MM/DD HH:mm:ss", { locale }
 ###

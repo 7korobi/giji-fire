@@ -1,4 +1,5 @@
-moment = require "~/plugins/moment"
+format = require 'date-fns/format'
+locale = require "date-fns/locale/ja"
 
 to_time = (msec)->
   i = msec / 1000
@@ -12,13 +13,13 @@ to_time = (msec)->
 
 module.exports = ({ min, max, range })->
   return "" unless range?
-  min_str = moment(min).format('ddd HH時')
-  max_str = moment(max).format('ddd HH時')
+  min_str = format min, 'dd HH時', { locale }
+  max_str = format max, 'dd HH時', { locale }
   if min_str == max_str
     max_str
   else
     if range < 12 * 3600 * 1000
-      max_str = moment(max).format('-HH時')
+      max_str = format max, '-HH時', { locale }
       min_str.replace "時", max_str
     else
       min_str + " - " + max_str

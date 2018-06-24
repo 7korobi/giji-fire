@@ -1,5 +1,6 @@
 <script lang="coffee">
-moment = require '~/plugins/moment'
+format = require 'date-fns/format'
+locale = require "date-fns/locale/ja"
 
 SECOND = 1000
 MINUTE = SECOND * 60
@@ -48,16 +49,14 @@ for time, idx in times
   time[2] = locales[idx]
 
 
-format =
+mode =
   date:
     format: (since)->
-      moment since
-      .format('ll') + "頃"
+      format since, "YYYY/MM/DD(dd)頃", { locale }
 
   short:
     format: (since)->
-      moment since
-      .format 'l'
+      format since, "YYYY/MM/DD", { locale }
 
 module.exports =
   data: ->
@@ -93,7 +92,7 @@ module.exports =
       if @maxTime && @msec > @maxTime
         clearInterval @interval
         @interval = null
-        return format[@format].format(@sinceTime)
+        return mode[@format].format(@sinceTime)
 
       [_, base, text] = @time
       msec = Math.abs 100 + @msec

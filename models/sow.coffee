@@ -1,6 +1,7 @@
 { Set, Model, Query, Rule } = Mem = require "~/plugins/memory-record"
 { url } = require "~/config/live.yml"
-moment = require '~/plugins/moment'
+format = require 'date-fns/format'
+locale = require "date-fns/locale/ja"
 
 new Rule("sow_roletable").schema ->
 
@@ -41,11 +42,13 @@ new Rule("sow_village").schema ->
     @write_at = updated_at
     @query = Query.sow_villages.where({@id})
 
-    monthry = moment(updated_at).format('YYYY年MM月')
-    yeary = moment(updated_at).format('YYYY年')
+    in_month = format updated_at, 'MM月', { locale }
+    yeary = format updated_at, 'YYYY年', { locale }
+    monthry = yeary + in_month
     @q = {
       yeary
       monthry
+      in_month
       sow_auth_id: @sow_auth_id.replace(/\./g, '&#2e')
       folder_id: @folder.toUpperCase()
       size: "x" + @vpl[0]
@@ -110,8 +113,9 @@ new Rule("sow_village").schema ->
 
     @map_reduce: (o, emit)->
       emit "mode", o.mode, o.q.folder_id,  cmd
-      emit "yeary",   o.q.yeary,              cmd
-      emit "monthry", o.q.yeary, o.q.monthry, cmd
+      emit "in_month", o.q.in_month,           cmd
+      emit "yeary",    o.q.yeary,              cmd
+      emit "monthry",  o.q.yeary, o.q.monthry, cmd
       emit "folder_id",   o.q.folder_id,   cmd
       emit "upd_range",   o.q.upd_range,   cmd
       emit "upd_at",      o.q.upd_at,      cmd

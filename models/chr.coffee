@@ -151,15 +151,6 @@ new Rule("chr_job").schema ->
         else ""
 
   @scope (all)->
-    aggregate: (tag_id, order)->
-      asc =
-        switch order
-          when "order", "date_min"
-            "asc"
-          else
-            "desc"
-      all.tag(tag_id).sort("face.#{order}", asc)
-
     tag: (tag_id)->
       { chr_set_id } = Query.tags.find tag_id
       switch tag_id

@@ -18,7 +18,7 @@ div
         span
           btn(as="timer.updateddt" v-model="order" @toggle="submenu")
             | 年月日
-            sup(v-if="yeary.length + monthry.length") {{ yeary.length + monthry.length }}
+            sup(v-if="timer_length") {{ timer_length }}
           btn(as="upd_range"       v-model="order" @toggle="submenu")
             | 更新間隔
             sup(v-if="upd_range.length") {{ upd_range.length }}
@@ -76,19 +76,23 @@ div
 
         p(v-if="order === 'timer.updateddt'")
           table
-            thead
+            tbody
               tr
                 td
-                th.r(v-for="label in month_labels") {{ label }}
-            tbody
+                  a.btn(@click="clear_timer")
+                td.r(v-for="label in month_labels")
+                  check.r.fine(v-model="in_month", :as="label", :key="label")
+                    kbd(v-if="1 < summary('in_month')[label].count") {{ summary('in_month')[label].count }}
+                    br
+                    | {{ label }}
               tr(v-for="oo in summary('yeary')")
-                td.l
-                  check(v-model="yeary", :as="oo.id", :key="oo.id")
+                td.r
+                  check.r.fine(v-model="yeary", :as="oo.id", :key="oo.id")
+                    kbd(v-if="1 < oo.count") {{ oo.count }}
+                    br
                     | {{ oo.id }}
-                    sup(v-if="1 < oo.count") {{ oo.count }}
                 td.r(v-for="o in months(oo.id)")
-                  check(v-if="o" v-model="monthry", :as="o.id", :key="o.id")
-                    sup {{ o.count }}
+                  check.r(v-if="o" v-model="monthry", :as="o.id", :key="o.id") {{ o.count }}
         p(v-if="order === 'upd_range'")
           check(v-for="o in summary('upd_range')" v-model="upd_range", :as="o.id", :key="o.id")
             | {{ o.id }}
@@ -205,6 +209,7 @@ module.exports =
         folder_id: []
         yeary: []
         monthry: []
+        in_month: []
         upd_range: []
         upd_at: []
         sow_auth_id: []
@@ -229,6 +234,8 @@ module.exports =
   methods:
     reset: ->
       @$router.replace query: {}
+    clear_timer: ->
+      @yeary = @monthry = @in_month = []
     
     book_url: (book_id, part_idx, mode)->
       name: "sow-village-show"
@@ -255,6 +262,8 @@ module.exports =
   computed:
     month_labels: ->
       ['01月','02月','03月','04月','05月','06月','07月','08月','09月','10月','11月','12月']
+    timer_length: ->
+      @yeary.length + @in_month.length + @monthry.length
     query_in: ->
       obj = {}
       for key in ["option", "event","discard","config"]
@@ -264,7 +273,7 @@ module.exports =
 
     query_where: ->
       obj = {}
-      for key in ["folder_id","yeary","monthry","upd_range","upd_at","sow_auth_id","rating","size","say","game"]
+      for key in ["folder_id","yeary","monthry","in_month","upd_range","upd_at","sow_auth_id","rating","size","say","game"]
         continue unless @[key].length
         obj["q." + key] = @[key]
       obj

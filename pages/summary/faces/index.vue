@@ -71,9 +71,16 @@ module.exports =
     set: ->
       Query.tags.find @tag_id
     chrs: ->
+      asc =
+        switch @order
+          when "order", "date_min"
+            "asc"
+          else
+            "desc"
       Query.chr_jobs
-      .aggregate @tag_id, @order
+      .tag(@tag_id)
       .search @search
+      .sort("face.#{@order}", asc)
       .list
 
 </script>
