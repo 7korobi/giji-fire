@@ -6,10 +6,13 @@ span
 <template lang="pug">
 .text-editor(@drop="drop")
   textarea(ref="input" :value="value" :rows="areaRow" :placeholder="placeholder" @input="input" @focus="focus" @blur="blur")
-  strong.mdi(:class="mark")
-  a.
-    #[em {{size}}]/#[sub {{maxSize}}字]
-    #[em {{row}}]/#[sub {{maxRow}}行]
+  kbd
+    i.mdi(:class="mark")
+    a
+      | {{size}}/
+      sub {{maxSize}}字
+      | {{row}}/
+      sub {{maxRow}}行
 
   span.pull-right
     a.btn(@click="submit") 投稿

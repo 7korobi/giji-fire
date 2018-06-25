@@ -8747,6 +8747,12 @@ vue-loader@^13.7.2:
     vue-style-loader "^3.0.0"
     vue-template-es2015-compiler "^1.6.0"
 
+vue-markup@^0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/vue-markup/-/vue-markup-0.0.5.tgz#47cc4fcaa147b83c8425a6a67533fd4a411b4c56"
+  dependencies:
+    dagre "^0.8.2"
+
 vue-meta@^1.4.3:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/vue-meta/-/vue-meta-1.5.0.tgz#02a9f166a1e87763a87bfd47431122ed575bcdde"

@@ -1,7 +1,43 @@
 Vue = require "vue"
+Marked = require 'vue-markup/lib/marked.vue'
+Dagre = require 'vue-markup/lib/dagre.vue'
+
+{ Query } = require "~/plugins/memory-record"
+{ url } = require "~/config/live.yml"
 
 if window?
   Vue = Vue.default
+Marked = Marked.default
+Dagre = Dagre.default
+
+Object.assign Marked.options.renderer,
+  url: (href)->
+    switch
+      when Query.faces.find(href)
+        "#{url.assets}/images/portrate/#{ href }.jpg"
+      else
+        href
+
+Object.assign Dagre.options.renderer,
+  node: (v, label)->
+    console.log { v, label }
+
+  href: (key)->
+    "#{url.assets}/images/portrate/#{ key }.jpg"
+
+  dic: (v)->
+    job = Query.chr_jobs
+    .search v
+    .list[0]
+    switch
+      when !! job?.face
+        ["icon", job.face.id, job.face.name]
+      else
+        ["box", v, v]
+
+
+Vue.component 'g-dagre',  Dagre
+Vue.component 'g-marked', Marked
 
 ctx = require.context "~/components", true, ///(.+)\.vue$///
 for fname in ctx.keys()
