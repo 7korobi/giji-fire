@@ -8,7 +8,7 @@ div
   c-report(head="SVG TEST" sign="ななころび" handle="SSAY")
     g-marked(v-model="text")
   c-report(handle="SSAY")
-    text-editor(v-model="text" :rows="7" :maxRow="20" :maxSize="999")
+    text-editor(deco="giji" v-model="text" :rows="7" :maxRow="20" :maxSize="999")
 
   c-report(handle="footer" deco="center")
     bread-crumb

@@ -80,7 +80,8 @@
                 td.r.count {{ o.all | currency }}文字
                 td.c
                   timeago.count(:since="o.date_min")
-                td.c ～
+                td.c
+                  .gap ～
                 td.c
                   timeago.count(:since="o.date_max")
 
@@ -168,14 +169,6 @@ module.exports =
 
 <style lang="stylus" scoped>
 
-.chat
-  .text
-    td.count
-    td .count
-    a  .count
-        font-size: 0.8em
-        padding: 0
-
 .calc
   td
     font-weight: bold
@@ -203,6 +196,9 @@ module.exports =
       text-align: right
       display: block
 
+.gap
+  margin: 0 -1ex
+
 .label-mini
   width: 4ex
   text-align: right
@@ -216,30 +212,6 @@ module.exports =
   width: "calc( %s -  4px )" % 40%
 .label6
   width: "calc( %s -  4px )" % 48%
-
-.list
-  background: #000
-  padding: 2px
-  display: flex
-  flex-direction:  row
-  flex-wrap:       wrap
-  align-items:     center
-  align-content:   space-around
-  justify-content: space-around
-
-.list-move
-  transition: transform 0.3s
-
-.list-enter-to
-  transition: all 0.2s ease 0.1s
-
-.list-leave-to
-  position: absolute
-
-.list-enter,
-.list-leave-to
-  opacity: 0
-  transform: translateY(30px)
 
 </style>
 

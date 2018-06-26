@@ -30,8 +30,6 @@ div(v-if="chat")
     span.pull-right
       timeago(v-if="chat.write_at" :since="chat.write_at")
     hr
-    h6 絞込み検索
-    hr
     h6 参照されている
     hr
   .swipe

@@ -34,8 +34,8 @@ module.exports = edit =
     to: null
     head: ""
     log: ""
-    new_idx: ->
-      Base59.num2str new Date - 0
+    new_idx: (zero = 0)->
+      Base59.num2str new Date - zero
 
 edit.org_chat = edit.chat
 

@@ -17,7 +17,7 @@ div
     a(href="https://github.com/7korobi/giji_rails/commits/master") 村ログ収集・キャラ更新
     a(href="https://github.com/7korobi/sow-giji/commits/cabala") ゲーム
     a(href="https://github.com/7korobi/sow-giji/commits/show-fix") ゲーム（新）
-    span
+    hr
     a(href="https://api-project-54633717694.firebaseapp.com/") テストサイト
 
   c-post.form(handle="SSAY")

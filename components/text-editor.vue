@@ -22,48 +22,60 @@ span
       i.mdi.mdi-dice-3
 
   span.pull-right(v-if="'giji' == deco")
-    a.btn(@click='h1')
-      i.mdi.mdi-format-header-1
+    a.btn(@click='table')
+      i.mdi.mdi-table
+    a.btn(@click='cnv_kana')
+      i.mdi.mdi-gender-male-female
+    a.btn(@click='codeblock')
+      i.mdi.mdi-code-braces
+    a.btn(@click='blockquote')
+      i.mdi.mdi-format-indent-increase
+    a.btn(@click='ul')
+      i.mdi.mdi-format-list-bulleted
+    a.btn(@click='ol')
+      i.mdi.mdi-format-list-numbers
+
+  span.pull-right(v-if="'giji' == deco")
     a.btn(@click='h2')
       i.mdi.mdi-format-header-2
     a.btn(@click='h3')
       i.mdi.mdi-format-header-3
     a.btn(@click='h4')
       i.mdi.mdi-format-header-4
-    a.btn(@click='h5')
-      i.mdi.mdi-format-header-5
-    a.btn(@click='h6')
-      i.mdi.mdi-format-header-6
 
   div
     span(v-if="'giji' == deco")
-      a.btn(@click='blockquote')
-        i.mdi.mdi-format-indent-increase
-      a.btn(@click='ul')
-        i.mdi.mdi-format-list-bulleted
-      a.btn(@click='ol')
-        i.mdi.mdi-format-list-numbers
-      a.btn(@click='table')
-        i.mdi.mdi-table
+      a.btn(@click='left')
+        i.mdi.mdi-format-align-left
+      a.btn(@click='center')
+        i.mdi.mdi-format-align-center
+      a.btn(@click='right')
+        i.mdi.mdi-format-align-right
+
+    span(v-if="'giji' == deco")
       a.btn(@click='footnote')
         i.mdi.mdi-tag-text-outline
       a.btn(@click='hr')
         i.mdi.mdi-format-page-break
-
-    span(v-if="'giji' == deco")
       a.btn(@click='anker')
         i.mdi.mdi-link-variant
+
+    span(v-if="'giji' == deco")
       a.btn(@click='sup')
         i.mdi.mdi-format-superscript
       a.btn(@click='sub')
         i.mdi.mdi-format-subscript
       a.btn(@click='strong')
-        i.mdi.mdi-format-bold
-      a.btn(@click='ruby')
         i.mdi.mdi-source-commit-end-local
-      a.btn(@click='cnv_kana')
-        i.mdi.mdi-gender-male-female
+      a.btn(@click='ruby')
+        i.mdi.mdi-source-commit-end
       a.btn(@click='del')
+        i.mdi.mdi-flip-to-back
+      a.btn(@click='ins')
+        i.mdi.mdi-format-underline
+      a.btn(@click='abbr')
+        i.mdi.mdi-marker
+      a.btn(@click='s')
         i.mdi.mdi-format-strikethrough-variant
       a.btn(@click='code')
         i.mdi.mdi-code-braces
@@ -118,16 +130,53 @@ module.exports =
       caret: {}
 
     methods:
+      blockquote:  caret (hd, text, tl)->
+        text = text
+        .split /\n/g
+        .map (line)-> "> #{line}"
+        .join "\n"
+        """#{hd}#{text}
+        #{tl}"""
+
       anker: caret (hd, text, tl)->
         """[#{text}]: <#> "#{text}"
         #{hd}[#{text}]#{tl}"""
       ruby: caret (hd, text, tl)->
-        """[#{text}]: ○
-        #{hd}[#{text}]#{tl}"""
+        """*[#{text}]: ○
+        #{hd}#{text}#{tl}"""
       hr: caret (hd, text, tl)->
         """#{hd}
         * * *
         #{text}#{tl}"""
+
+      codeblock: caret (hd, text, tl)->
+        """#{hd}
+        ```
+        #{text}
+        ```
+        #{tl}"""
+
+      left: caret (hd, text, tl)->
+        """#{hd}
+        ::: left
+        #{text}
+        :::
+        #{tl}"""
+
+      center: caret (hd, text, tl)->
+        """#{hd}
+        ::: center
+        #{text}
+        :::
+        #{tl}"""
+
+      right: caret (hd, text, tl)->
+        """#{hd}
+        ::: right
+        #{text}
+        :::
+        #{tl}"""
+
       table: caret (hd, text, tl)->
         """#{hd}
 
@@ -159,16 +208,17 @@ module.exports =
 
       sup: caret (hd, text, tl)-> """#{hd}^#{text}^#{tl}"""
       sub: caret (hd, text, tl)-> """#{hd}~#{text}~#{tl}"""
-      del: caret (hd, text, tl)-> """#{hd} ~~#{text}~~ #{tl}"""
+      del: caret (hd, text, tl)-> """#{hd}~~#{text}~~#{tl}"""
+      ins: caret (hd, text, tl)-> """#{hd}++#{text}++#{tl}"""
+      s:   caret (hd, text, tl)-> """#{hd}--#{text}--#{tl}"""
 
       ul: caret (hd, text, tl)->  """#{hd}* #{text}#{tl}"""
       ol: caret (hd, text, tl)->  """#{hd}1. #{text}#{tl}"""
 
-      em:     caret (hd, text, tl)-> """#{hd} *#{text}* #{tl}"""
-      strong: caret (hd, text, tl)-> """#{hd} **#{text}** #{tl}"""
+      strong: caret (hd, text, tl)-> """#{hd}**#{text}**#{tl}"""
+      abbr:   caret (hd, text, tl)-> """#{hd}==#{text}==#{tl}"""
       code:   caret (hd, text, tl)-> """#{hd}`#{text}`#{tl}"""
 
-      blockquote: caret (hd, text, tl)-> """#{hd}> #{text}#{tl}"""
       footnote:   caret (hd, text, tl)-> """#{hd}^[#{text}]#{tl}"""
       cnv_kana:   caret (hd, text, tl)->
         # ひらがなをカタカナに、カタカナをひらがなに

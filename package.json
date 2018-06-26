@@ -59,7 +59,7 @@
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
     "tiny-cookie": "^2.1.2",
-    "vue-markup": "^0.0.5",
+    "vue-markup": "^0.0.9",
     "webpack-bundle-size-analyzer": "^2.7.0",
     "yaml-loader": "^0.5.0"
   },

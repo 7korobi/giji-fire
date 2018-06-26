@@ -8,8 +8,6 @@ module.exports =
   state: ->
     user: null
     env: {}
-    read_at: {}
-    timer: {}
 
   actions:
     nuxtServerInit: ({ commit }, { isDev, req, env })->

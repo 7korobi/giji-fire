@@ -1,11 +1,20 @@
 { to_msec } = require "~/plugins/struct"
 { State } = require "~/plugins/memory-record"
 
-base = (timestr, name, opt = {})->
+Vue = require 'vue'
+if Vue.default?
+  Vue = Vue.default
+
+{ step } = State
+manage =
+  read_at: {}
+  timer: {}
+
+base = (timestr, name, opt)->
   timeout = to_msec timestr
 
   capture = (vue)->
-    if opt.call
+    if opt?.call
       payload = opt.call vue
       suffix = JSON.stringify payload
     else
@@ -15,21 +24,18 @@ base = (timestr, name, opt = {})->
     { payload, key, name }
 
   data: ->
-    step: State.step
+    { manage, step }
 
   mounted: ->
-    { timer, read_at } = @$store.state
+    { timer, read_at } = @manage
     { payload, key, name } = capture @
-    o =
-      timer: {}
-      read_at: {}
-    o.timer[key] = timeout
-    @$store.commit "update", o
+
+    timer[key] = timeout
+    @manage.timer = timer
     unless Date.now() - timeout < read_at[key]
-      @$store.dispatch name, payload
-      .then =>
-        o.read_at[key] = Date.now()
-        @$store.commit "update", o
+      await @$store.dispatch name, payload
+      read_at[key] = Date.now()
+      @manage.read_at = read_at
 
 base.plugin = (@arg)->
   ({ commit, state })->

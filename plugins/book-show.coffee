@@ -1,13 +1,10 @@
 _ = require "lodash"
-{ Query } = require "~/plugins/memory-record"
-{ path, relative_to } = require "~/plugins/struct"
-{ vuex_value } = require '~/plugins/vuex-helper'
+{ path } = require "~/plugins/struct"
 
 
 browser = require("~/plugins/browser-store") 
   replace:
     idx: ""
-    mode: "full"
     page: ""
 
   watch:
@@ -15,9 +12,6 @@ browser = require("~/plugins/browser-store")
       return unless window?
       unless window[@chat_id]
         @go_top()
-
-    mode: ->
-      @page_reset()
 
     page: ->
       if @page
@@ -28,7 +22,6 @@ browser = require("~/plugins/browser-store")
 
         @page = undefined
 
-
 store =
   watch:
     "step.chats": ->
@@ -36,34 +29,9 @@ store =
 
   computed: {
     ...path "folder", "book", "part", "phase", "chat"
-    page_all_contents: ->
-      @chats(@part_id)
     page_idx: ->
       @page_all_contents?.page_idx?(@chat) ? 0
-
-    now: ->
-      Query.chats.now(@hide_ids)
-
-    chats: ->
-      @now[@mode]
-
-    back: ->
-      [ @chat_id || @part_id, @mode, @$route.name ].join(",")
-
-    back_url: ->
-      [ idx, mode, name ] = (@$route.query.back ? @back).split(",")
-      name: name
-      query: { idx, mode, page: 'back' }
-
-    editor_url: ->
-      back = @$route.query.back
-      back ?= @back
-      path: "./editor"
-      query: { back }
-
-    hide_ids: vuex_value("menu.potofs", ['hide_ids']).hide_ids
   }
-
   methods:
     focus: (@idx)->
 
@@ -90,8 +58,4 @@ store =
       idx = part_id
       query: { @mode, idx, page: page_idx + 1 }
 
-module.exports = (o)->
-  if o?.loader
-    _.merge {}, browser, store
-  else
-    _.merge {}, browser.slave, store
+module.exports = _.merge {}, browser, store
