@@ -1,4 +1,3 @@
-nodeExternals = require 'webpack-node-externals'
 path = require 'path'
 current = process.cwd()
 
@@ -16,13 +15,12 @@ vue =
 
 module.exports =
   entry:
-    index:  './functions/api/index.coffee'
+    spec: './spec/index.coffee'
   output:
-    path: path.join current, 'functions'
+    path: path.join current, '__test__'
     filename: '[name].js' # Important
     libraryTarget: 'this' # Important
 
-  target: 'node' # Important
   devtool: 'source-map'
   module:
     rules: [
@@ -38,4 +36,3 @@ module.exports =
       '~': current
 
   plugins: []
-  externals: [nodeExternals()] # Important
