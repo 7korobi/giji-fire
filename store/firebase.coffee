@@ -4,6 +4,7 @@ module.exports =
   namespaced: true
 
   state: ->
+    token: null
     user: null
     credential: null
 

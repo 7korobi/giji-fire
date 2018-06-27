@@ -5,7 +5,10 @@ module.exports =
     color: '#3B8070'
   css: []
   plugins: []
-  modules: ['~/config/webpack/extention.js']
+  modules: [
+    '~/config/webpack/extention.js'
+    ['@nuxtjs/pwa', { icon: false } ]
+  ]
 
   extensions: ['coffee', 'yml']
   build: require("./build.coffee")
@@ -13,3 +16,9 @@ module.exports =
 
   render: require("./render.coffee")
   router: require("./router.coffee")
+
+  workbox: require("./workbox.coffee")
+
+  manifest:
+    name: '人狼議事'
+    lang: 'ja'

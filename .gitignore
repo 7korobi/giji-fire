@@ -28,6 +28,7 @@ yarn-error.log
 static/images/portrate
 
 # auto-generated
+sw.*
 .awspublish-giji-assets
 .cache
 functions/index.js

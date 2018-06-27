@@ -3,13 +3,6 @@ admin = require 'firebase-admin'
 format = require 'date-fns/format'
 locale = require "date-fns/locale/ja"
 
-serviceAccount = require "~/config/service_account.yml"
-
-admin.initializeApp
-  credential:  admin.credential.cert serviceAccount
-  databaseURL: "https://api-project-54633717694.firebaseio.com"
-
-
 msec = (timespan)->
   since = parseFloat timespan
   timespan.replace /week|day|hour|min|sec/, (unit, idx)->

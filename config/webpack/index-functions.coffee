@@ -16,9 +16,10 @@ vue =
 
 module.exports =
   entry:
-    index:  './functions/api/index.coffee'
+    'functions/index':  './functions/api/index.coffee'
+    'static/firebase-messaging-sw':  './worker/firebase-messaging-index.coffee'
   output:
-    path: path.join current, 'functions'
+    path: current
     filename: '[name].js' # Important
     libraryTarget: 'this' # Important
 

@@ -55,10 +55,10 @@ log-wiki
         ol(style="list-style-type: upper-latin")
           li 画像を書き込みフォームにDrag＆Dropすると、その画像を張り付けるぞ。
           li
-            i.mdi.mdi-square-edit-outline
+            abbr.mdi.mdi-square-edit-outline
             | 投稿済みのメッセージを編集できるぞ。
           li
-            i.mdi.mdi-table-column-plus-before
+            abbr.mdi.mdi-table-column-plus-before
             | 編集中のメッセージは、他のメッセージの上に移動できるぞ。
         br
 
@@ -114,6 +114,7 @@ remove = (target, doc)->
 
 module.exports =
   mixins: [
+#    require("~/plugins/book-fcm")
     require("~/plugins/book-show")
     require("~/plugins/book-firebase") "wiki"
   ]
