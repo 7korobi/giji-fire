@@ -1,53 +1,49 @@
 { firestore, database, https } = require 'firebase-functions'
 admin = require 'firebase-admin'
-format = require 'date-fns/format'
-locale = require "date-fns/locale/ja"
-
-msec = (timespan)->
-  since = parseFloat timespan
-  timespan.replace /week|day|hour|min|sec/, (unit, idx)->
-    switch unit
-      when "week"
-        since *= 7 * 24 * 60 * 60 * 1000
-      when "day"
-        since *=     24 * 60 * 60 * 1000
-      when "hour"
-        since *=          60 * 60 * 1000
-      when "min"
-        since *=               60 * 1000
-      when "sec"
-        since *=                    1000
-  parseInt since
-
-nine_hour = msec '9hour'
-timezone = -nine_hour
-
-tempo = (doc)->
-  return null unless doc?.tempo?[0]
-
-  since = msec doc.tempo[0] || '1day'
-  gap   = msec doc.tempo[1] || '0'
-  gap -= nine_hour
-
-  now_idx = parseInt(( new Date - gap) / since)
-  if now_idx != doc.last_idx
-    doc.last_idx = now_idx
-  else
-    null
-
 
 module.exports =
-  chk_update:
-    firestore.document('parts/{part_id}').onUpdate ({ data, params })->
-      console.log data.data()
+  book_create:
+    firestore.document('{mode}/{book_id}/{type}/{id}').onCreate (snap, { params })->
       console.log params
+      console.log snap.data()
 
+      { mode, book_id, type, id } = params
+      ref_potofs = await admin.firestore().collection("#{mode}/#{book_id}/potofs").get()
+      fcm_tokens =
+        for doc in ref_potofs.docs
+          s = doc.data().fcm_token
+          continue unless s
+          s
 
-  update:
-    firestore.document('{mode}/{book_id}/parts/{part_id}').onUpdate ({ data, params })->
-      console.log data.data()
+      switch type
+        when 'chats'
+          payload =
+            notification: 
+              title: 'chat message here!'
+              body: "#{book_id} updated. chat updated."
+#              icon: ""
+
+        when 'potofs'
+          payload =
+            notification: 
+              title: 'potof here!'
+              body: "#{book_id} updated. potof updated."
+#              icon: ""
+
+      await admin.messaging().sendToDevice fcm_tokens, payload
+
+  book_delete:
+    firestore.document('{mode}/{book_id}/{type}/{id}').onDelete (snap, { params })->
       console.log params
-  
+      console.log snap.data()
+
+      { mode, book_id, type, id } = params
+
+  book_update:
+    firestore.document('{mode}/{book_id}/{type}/{id}').onUpdate ({ before, after }, { params })->
+      console.log params
+      console.log after.data()
+
   post:
     https.onCall ( data, { auth })->
       console.log auth

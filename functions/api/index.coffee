@@ -9,6 +9,7 @@ admin.initializeApp
 
 module.exports = {
   ...require './timer'
+  ...require './wiki'
 
   packMessage:
     func.https.onCall ({ text }, { auth })->

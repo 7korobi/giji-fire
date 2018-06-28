@@ -114,7 +114,7 @@ remove = (target, doc)->
 
 module.exports =
   mixins: [
-#    require("~/plugins/book-fcm")
+    require("~/plugins/book-fcm")
     require("~/plugins/book-show")
     require("~/plugins/book-firebase") "wiki"
   ]

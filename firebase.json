@@ -5,7 +5,7 @@
   },
   "functions": {
     "predeploy": [
-      "run-s deploy:func_1"
+      "run-s copy:func"
     ]
   },
   "hosting": {

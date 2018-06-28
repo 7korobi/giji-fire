@@ -12,8 +12,6 @@ div
   c-post(handle="TSAY")
     nuxt-link(to="/demo/marked") Markdown Talk
   c-post(handle="TSAY")
-    nuxt-link(to="/demo/markdown") Markdown vue
-  c-post(handle="TSAY")
     nuxt-link.button(to="/demo/oauth") OpenID
   c-post(handle="TSAY")
     nuxt-link.button(to="/demo/timeago") 時計 page

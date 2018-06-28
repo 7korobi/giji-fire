@@ -60,27 +60,26 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 7);
+/******/ 	return __webpack_require__(__webpack_require__.s = 8);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 7:
+/***/ 8:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var messaging;
+var live, messaging;
 
 importScripts('https://www.gstatic.com/firebasejs/4.0.0/firebase-app.js');
 
 importScripts('https://www.gstatic.com/firebasejs/4.0.0/firebase-messaging.js');
 
-firebase.initializeApp({
-  apiKey: "AAAADLhsX74:APA91bGw5FDSw-t7GoeNliXjo-QvUHtHLeGdGPrIu_B9GwBwbN-ewBWsUEurfome3JLozNiYh8vfZlq1r35WPEMrr0rmoFrKgAae7Ysf81ftP8_Hfa4lJNYdnRo_Q_11U4SwNZB9TWvY",
-  messagingSenderId: "54633717694"
-});
+live = __webpack_require__(9);
+
+firebase.initializeApp(live.firebase);
 
 messaging = firebase.messaging();
 
@@ -93,6 +92,13 @@ messaging.setBackgroundMessageHandler(function (payload) {
     icon: '/firebase-logo.png'
   });
 });
+
+/***/ }),
+
+/***/ 9:
+/***/ (function(module, exports) {
+
+module.exports = {"game":{"folder_id":"beta"},"url":{"web":"https://giji.f5.si","api":"https://giji-api.duckdns.org/api","firebase":"https://api-project-54633717694.firebaseapp.com","assets":"https://api-project-54633717694.firebaseapp.com","store":"https://s3-ap-northeast-1.amazonaws.com/giji-assets","sow":"https://s3-ap-northeast-1.amazonaws.com/giji-assets/sow"},"firebase":{"projectId":"api-project-54633717694","storageBucket":"api-project-54633717694.appspot.com","authDomain":"api-project-54633717694.firebaseapp.com","databaseURL":"https://api-project-54633717694.firebaseio.com","messagingSenderId":"54633717694","apiKey":"AIzaSyAC3N874UpvVZTYmh88mDHkuWKfUDhj25o"}}
 
 /***/ })
 

@@ -39,9 +39,9 @@ tempo = (doc)->
 
 module.exports =
   chk_update:
-    firestore.document('parts/{part_id}').onUpdate ({ data, params })->
-      console.log data.data()
+    firestore.document('parts/{part_id}').onUpdate ({ before, after }, { params })->
       console.log params
+      console.log after.data()
 
   tick_https:
     # _id:

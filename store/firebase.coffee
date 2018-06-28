@@ -4,7 +4,7 @@ module.exports =
   namespaced: true
 
   state: ->
-    token: null
+    fcm_token: null
     user: null
     credential: null
 

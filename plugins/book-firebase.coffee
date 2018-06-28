@@ -34,7 +34,7 @@ module.exports = (folder_id)->
     { edit, icon, tag_ids: [], step: State.step }
 
   computed: {
-    ...vuex_value 'firebase',['user', 'credential']
+    ...vuex_value 'firebase',['user', 'credential', 'fcm_token']
     my: ->
       return {} unless @user
       { uid } = @user
@@ -162,6 +162,11 @@ module.exports = (folder_id)->
       @edit.chat.log = ''
 
   watch:
+    fcm_token: ->
+      return unless @edit.potof
+      _id = @potof_id
+      await post @_potofs, { _id, @fcm_token }
+
     user: ->
       if @user
         { displayName, uid } = @user
@@ -185,7 +190,7 @@ module.exports = (folder_id)->
       icon = 'mdi-access-point'
       write_at = new Date - 0
 
-      await post @_potofs, { _id, face_id, tag_id, job, write_at, sign, uid }
+      await post @_potofs, { _id, face_id, tag_id, job, write_at, sign, uid, @fcm_token }
       @icon_change icon
 
     'icon._id': (_id, old_id)->
