@@ -60,6 +60,9 @@ log-wiki
           li
             abbr.mdi.mdi-table-column-plus-before
             | 編集中のメッセージは、他のメッセージの上に移動できるぞ。
+          li
+            fcm(:topic="book_id")
+
         br
 
   c-post(handle="TSAY")
@@ -114,7 +117,6 @@ remove = (target, doc)->
 
 module.exports =
   mixins: [
-    require("~/plugins/book-fcm")
     require("~/plugins/book-show")
     require("~/plugins/book-firebase") "wiki"
   ]

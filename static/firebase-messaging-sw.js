@@ -73,9 +73,9 @@
 
 var live, messaging;
 
-importScripts('https://www.gstatic.com/firebasejs/4.0.0/firebase-app.js');
+importScripts('https://www.gstatic.com/firebasejs/5.0.4/firebase-app.js');
 
-importScripts('https://www.gstatic.com/firebasejs/4.0.0/firebase-messaging.js');
+importScripts('https://www.gstatic.com/firebasejs/5.0.4/firebase-messaging.js');
 
 live = __webpack_require__(9);
 
@@ -84,13 +84,16 @@ firebase.initializeApp(live.firebase);
 messaging = firebase.messaging();
 
 messaging.setBackgroundMessageHandler(function (payload) {
-  var title;
   console.log(payload);
-  title = 'Background Message Title';
-  return self.registration.showNotification(title, {
-    body: 'Background Message body.',
-    icon: '/firebase-logo.png'
-  });
+  return self.registration.showNotification(title, payload.notification);
+});
+
+self.addEventListener('install', function (event) {
+  return console.log('Service Worker installing.');
+});
+
+self.addEventListener('activate', function (event) {
+  return console.log('Service Worker activating.');
 });
 
 /***/ }),

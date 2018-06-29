@@ -42,6 +42,7 @@ module.exports =
     firestore.document('parts/{part_id}').onUpdate ({ before, after }, { params })->
       console.log params
       console.log after.data()
+      null
 
   tick_https:
     # _id:

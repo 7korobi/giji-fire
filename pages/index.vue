@@ -38,7 +38,9 @@ div
     br
     .card どこかの村で活躍したことのあるキャラクターはこちら。
 
-  c-report(handle="footer" deco="center") 開始待ちの村／進行中の村
+  c-report(handle="footer" deco="center")
+    | 開始待ちの村／進行中の村
+    fcm(topic="init")
   c-post(handle="EVIL", v-for="o in progress", :head="o.name", :key="o._id")
     a(:href="o.folder.href") {{ o.folder.nation }}{{ o.vid }}
     | は、進行中だ。
