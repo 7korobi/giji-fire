@@ -30,8 +30,7 @@ module.exports =
           no-ssr
             c-report(handle="SSAY" deco="giji")
               nuxt
-          c-report(handle="footer", :write_at="1169852700003")
-            a-footer
+          a-footer
 </template>
 <style lang="stylus" scoped>
 </style>

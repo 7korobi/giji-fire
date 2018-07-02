@@ -8950,9 +8950,9 @@ vue-loader@^13.7.2:
     vue-style-loader "^3.0.0"
     vue-template-es2015-compiler "^1.6.0"
 
-vue-markup@^0.0.13:
-  version "0.0.13"
-  resolved "https://registry.yarnpkg.com/vue-markup/-/vue-markup-0.0.13.tgz#1c828f9d9f41f37f73b8f30303596294308b60f7"
+vue-markup@^0.0.19:
+  version "0.0.19"
+  resolved "https://registry.yarnpkg.com/vue-markup/-/vue-markup-0.0.19.tgz#157b95f99deb7591251a173c8a01e4374f02de34"
   dependencies:
     dagre "^0.8.2"
 

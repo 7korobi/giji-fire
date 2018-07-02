@@ -20,10 +20,8 @@ module.exports =
       .center-right
       .contentframe
         .inframe
-          no-ssr
-            nuxt
-          c-report(handle="footer", :write_at="1169852700003")
-            a-footer
+          nuxt
+          a-footer
 </template>
 <style lang="stylus" scoped>
 </style>

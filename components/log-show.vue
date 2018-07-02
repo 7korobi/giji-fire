@@ -52,8 +52,7 @@ module.exports =
       .contentframe
         .inframe
           slot
-          c-report(handle="footer", :write_at="1169852700003")
-            a-footer
+          a-footer
 
             .icons.form
 

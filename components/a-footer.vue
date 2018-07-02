@@ -1,4 +1,20 @@
-<template lang="md">
+<template lang="pug">
+
+c-report(handle="footer", :write_at="1169852700003")
+  g-marked(v-model="text")
+
+</template>
+<style lang="stylus" scoped>
+
+article
+  text-align: right
+
+</style>
+<script lang="coffee">
+
+module.exports =
+  data: ->
+    text: """
 人狼議事キャラセット by りりんら
 管理 [sol・la]()[ななころび](mailto:7korobi@gmail.com)
 
@@ -22,14 +38,6 @@ Sangria
 @7korobi
 ```
 
-</template>
+"""
 
-<style lang="stylus" scoped>
-article
-  text-align: right
-.lang-copyright
-  background-image: none
-  background-color: ivory
-  color: #A00
-  text-align: left
-</style>
+</script>

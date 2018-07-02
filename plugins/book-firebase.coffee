@@ -7,7 +7,6 @@ edit = require '~/models/editor'
 
 snap = (collection, target)->
   collection.onSnapshot (q)=>
-    console.log target, q.docs.length
     q.docChanges().forEach ({ newIndex, oldIndex, type, doc })=>
       switch type
         when 'added', 'modified'
@@ -70,9 +69,6 @@ module.exports = (folder_id)->
       db
     _storage: ->
       firebase.storage()
-    _functions: ->
-      firebase.functions()
-
     _images: ->
       @_storage.ref().child('images').child @part_id
 
@@ -103,13 +99,8 @@ module.exports = (folder_id)->
   }
 
   methods:
-    _post_chat: (o)->
-      { _id } = o
-      console.log await @_functions.httpsCallable('post_chat')(o)
-
-    _post_potof: (o)->
-      { _id } = o
-      console.log await @_functions.httpsCallable('post_potof')(o)
+    _func: (name, o)->
+      firebase.functions().httpsCallable( name )( o )
 
     icon_change: (icon)->
       @icon = { icon, _id: @potof_id }
@@ -129,11 +120,12 @@ module.exports = (folder_id)->
     remove: ->
       { _id, potof } = @edit.chat
       return unless confirm "編集中の #{_id} を削除しますか？"
-      await remove @_chats, { _id }
+      await @_func 'wiki_chat_delete', { _id }
 
       return if potof.chats.ids.length
       { _id } = potof
-      await remove @_potofs, { _id }
+      await @_func 'wiki_potof_delete', { _id }
+      @create_mode()
     
     check_post: (target)->
       console.log target
@@ -147,7 +139,7 @@ module.exports = (folder_id)->
       { _id } = @edit.chat
       { write_at } = @chat
       write_at -= 10
-      await post @_chats, { _id, write_at }
+      await @_func 'wiki_chat', { _id, write_at }
 
     chat_post: (log)->
       { _id, show, deco, to } = @edit.chat
@@ -155,18 +147,13 @@ module.exports = (folder_id)->
         potof_id = @potof_id
         write_at = new Date - 0
         _id = [@phase_id, @edit.chat.new_idx(@at_zero)].join('-')
-        await post @_chats, { _id, potof_id, write_at, show, deco, to, log }
+        await @_func 'wiki_chat', { _id, potof_id, write_at, show, deco, to, log }
       else
-        await post @_chats, { _id, show, deco, to, log }
+        await @_func 'wiki_chat', { _id, show, deco, to, log }
       @create_mode()
       @edit.chat.log = ''
 
   watch:
-    fcm_token: ->
-      return unless @edit.potof
-      _id = @potof_id
-      await post @_potofs, { _id, @fcm_token }
-
     user: ->
       if @user
         { displayName, uid } = @user
@@ -190,13 +177,13 @@ module.exports = (folder_id)->
       icon = 'mdi-access-point'
       write_at = new Date - 0
 
-      await post @_potofs, { _id, face_id, tag_id, job, write_at, sign, uid, @fcm_token }
+      await @_func 'wiki_potof', { _id, face_id, tag_id, job, write_at, sign, uid }
       @icon_change icon
 
     'icon._id': (_id, old_id)->
       return unless Query.potofs.find _id
       await Promise.all [
-        post @_potofs, @icon
+        @_func 'wiki_potof', @icon
         post @_potofs,
           _id: old_id
           icon: ""
@@ -204,7 +191,7 @@ module.exports = (folder_id)->
 
     'icon.icon': (icon)->
       return unless Query.potofs.find @icon._id
-      await post @_potofs, @icon
+      await @_func 'wiki_potof', @icon
 
   mounted: ->
     snap @_chats,  'chat'
@@ -214,4 +201,4 @@ module.exports = (folder_id)->
   beforeDestroy: ->
     @icon.icon = ""
     return unless Query.potofs.find @icon._id
-    await post @_potofs, @icon
+    await @_func 'wiki_potof', @icon

@@ -1,6 +1,15 @@
 { firestore, database, https } = require 'firebase-functions'
 admin = require 'firebase-admin'
 
+ref_for = ( mode, type, doc )->
+  { _id } = doc
+  return unless _id
+  [ folder, book_idx ] = _id.split("-")
+  book_id = "#{folder}-#{book_idx}"
+
+  admin
+  .firestore()
+  .doc "#{mode}/#{book_id}/#{type}/#{_id}"
 
 
 module.exports =
@@ -60,7 +69,7 @@ module.exports =
 
       res.status(201).send("OK.")
 
-  book_create:
+  book_created:
     firestore.document('{mode}/{book_id}/{type}/{id}').onCreate (snap, { params })->
       console.log params
       console.log snap.data()
@@ -105,7 +114,7 @@ module.exports =
 
       await admin.messaging().send message
 
-  book_delete:
+  book_deleted:
     firestore.document('{mode}/{book_id}/{type}/{id}').onDelete (snap, { params })->
       console.log params
       console.log snap.data()
@@ -113,10 +122,43 @@ module.exports =
       { mode, book_id, type, id } = params
       null
 
-  book_update:
+  book_updated:
     firestore.document('{mode}/{book_id}/chats/{id}').onUpdate ({ before, after }, { params })->
       console.log params
       console.log after.data()
 
       { mode, book_id, type, id } = params
       null
+
+
+  wiki_potof:
+    https.onCall (doc, { auth })->
+      console.log auth
+      ref_for "wiki", "potofs", doc
+      .set doc,
+        merge: true
+
+  wiki_potof_delete:
+    https.onCall (doc, { auth })->
+      console.log auth
+      ref_for "wiki", "potofs", doc
+      .delete()
+
+
+  wiki_chat:
+    https.onCall (doc, { auth })->
+      console.log auth
+      ref_for "wiki", "chats", doc
+      .set doc,
+        merge: true
+
+  wiki_chat_delete:
+    https.onCall (doc, { auth })->
+      console.log auth
+      ref_for "wiki", "chats", doc
+      .delete()
+
+
+  book_chat:
+    https.onCall (doc, { auth })->
+      console.log auth

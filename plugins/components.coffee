@@ -10,6 +10,8 @@ if window?
 Marked = Marked.default
 Dagre = Dagre.default
 
+Marked.options.silent = false
+
 Object.assign Marked.options.renderer,
   url: (href)->
     switch
@@ -17,6 +19,9 @@ Object.assign Marked.options.renderer,
         "#{url.assets}/images/portrate/#{ href }.jpg"
       else
         href
+
+  cite_exist: (cite)->
+    Query.chats.find(cite)
 
 Object.assign Dagre.options.renderer,
   node: (v, label)->

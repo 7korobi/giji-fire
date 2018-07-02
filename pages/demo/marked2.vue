@@ -6,7 +6,7 @@ div
         nuxt-link(to="/demo") 開発者用ページ
 
   c-report(head="SVG TEST" sign="ななころび" handle="SSAY")
-    g-marked(v-model="text")
+    g-marked(:value="text" :context="chat")
   c-report(handle="SSAY")
     text-editor(deco="giji" v-model="text" :rows="7" :maxRow="20" :maxSize="999")
 
@@ -21,4 +21,6 @@ module.exports =
   default:
     data: (req)->
       text: ""
+      chat:
+        part_id: "edit-edit-edit"
 </script>

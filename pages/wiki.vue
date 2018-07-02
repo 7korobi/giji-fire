@@ -106,11 +106,6 @@ firebase = require "firebase"
 { Query, Set, State } = require "~/plugins/memory-record"
 { vuex_value } = require '~/plugins/vuex-helper'
 
-post = (target, doc)->
-  { _id } = doc
-  target.doc(_id).set doc,
-    merge: true
-
 remove = (target, doc)->
   { _id } = doc
   target.doc(_id).delete()

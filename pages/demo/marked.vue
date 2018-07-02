@@ -6,7 +6,7 @@ div
       li
         nuxt-link(to="/demo") 開発者用ページ
   div(v-for="o in talks")
-    c-talk(:head="o.head" :deco="o.deco" :handle="o.handle" :face_id="o.face_id" :write_at="o.write_at" :log="o.log")
+    chat(:id="o.id" :key="o.id")
     c-report(:head="o.deco" :handle="o.handle" :write_at="o.write_at")
       span
         btn.large(v-model="o.deco" as="giji")
@@ -22,14 +22,20 @@ div
 </template>
 
 <script lang="coffee">
+{ Set, Query } = require "~/plugins/memory-record"
+
 module.exports =
   data: ->
     now = Date.now()
     idx = 0
-    talks: [
-      id: 'demo-1-SS-' + (++idx)
+
+    Set.phase.add
+      _id: 'demo-1-1-SS'
+    Set.chat.merge talks = [
+      _id: 'demo-1-1-SS-' + (++idx)
       head: ""
       deco: "giji"
+      show: "talk"
       handle: "TITLE"
       face_id: "c100"
       write_at: now - 1000000
@@ -43,9 +49,10 @@ module.exports =
       """
     ,
 
-      id: 'demo-1-SS-' + (++idx)
+      _id: 'demo-1-1-SS-' + (++idx)
       head: "発言レンダーてすと"
       deco: "giji"
+      show: "talk"
       handle: "SSAY"
       face_id: "c100"
       write_at: now - 1000000
@@ -66,9 +73,10 @@ module.exports =
       """
     ,
 
-      id: 'demo-1-SS-' + (++idx)
+      _id: 'demo-1-1-SS-' + (++idx)
       head: "発言レンダーてすと"
       deco: "giji"
+      show: "talk"
       handle: "SSAY"
       face_id: "c60"
       write_at: now - 1000000
@@ -101,9 +109,10 @@ module.exports =
       """
     ,
 
-      id: 'demo-1-SS-' + (++idx)
+      _id: 'demo-1-1-SS-' + (++idx)
       head: "発言レンダーてすと"
       deco: "giji"
+      show: "talk"
       handle: "GSAY"
       face_id: "c101"
       write_at: now - 2000000
@@ -130,9 +139,10 @@ module.exports =
         沢山使うと幅をとってしまうし、
       """
     ,
-      id: 'demo-1-SS-' + (++idx)
+      _id: 'demo-1-1-SS-' + (++idx)
       head: "発言レンダーてすと"
       deco: "giji"
+      show: "talk"
       handle: "WSAY"
       face_id: "c102"
       write_at: now - 3000000
@@ -157,9 +167,10 @@ module.exports =
         > 唄の寵愛を受けし罪人は　拡声器を握る……
       """
     ,
-      id: 'demo-1-SS-' + (++idx)
+      _id: 'demo-1-1-SS-' + (++idx)
       head: "発言レンダーてすと"
       deco: "giji"
+      show: "talk"
       handle: "PSAY"
       face_id: "c103"
       write_at: now - 4000000
@@ -171,9 +182,10 @@ module.exports =
           1. f*ck'n f*ck'n
       """
     ,
-      id: 'demo-1-SS-' + (++idx)
+      _id: 'demo-1-1-SS-' + (++idx)
       head: "発言レンダーてすと"
       deco: "mermaid"
+      show: "talk"
       handle: "TSAY"
       face_id: "c104"
       write_at: now - 5000000
@@ -185,9 +197,10 @@ module.exports =
           C --> D
       """
     ,
-      id: 'demo-1-SS-' + (++idx)
+      _id: 'demo-1-1-SS-' + (++idx)
       head: "発言レンダーてすと"
       deco: "mermaid"
+      show: "talk"
       handle: "TSAY"
       face_id: "c105"
       write_at: now - 6000000
@@ -205,6 +218,7 @@ module.exports =
           エピローグ:              3d
       """
     ]
+    { talks }
 
   computed:
     now: ->
