@@ -21,6 +21,10 @@ span
     a.btn(@click="nDm")
       i.mdi.mdi-dice-3
 
+    label.btn
+      input.btn(type="file" accept="image/*" @change="upload_btn" style="display: none")
+      i.mdi.mdi-image
+
   span.pull-right(v-if="'giji' == deco")
     a.btn(@click='table')
       i.mdi.mdi-table
@@ -233,6 +237,23 @@ module.exports =
 
       nDm: caret (pre, select, post)-> "#{pre}[[#{select}]]#{post}"
 
+      file: (file)->
+        { name, type } = file
+        switch
+          when file.type.match /// ^text/ ///
+            reader = new FileReader()
+            reader.onload = ({ target })=>
+              @text target.result
+            reader.readAsText(file)
+          when file.type.match /// ^image/ ///
+            @$emit "drop_image", file, (url)=>
+              @image url, type
+
+      upload_btn: (e)->
+        for file in e.target.files
+          @file file
+        e.target.files.length = 0
+
       drop: (e)->
         e.stopPropagation()
         e.preventDefault()
@@ -246,16 +267,7 @@ module.exports =
             else
               console.log item
         for file in e.dataTransfer.files
-          { name, type } = file
-          switch
-            when file.type.match /// ^text/ ///
-              reader = new FileReader()
-              reader.onload = ({ target })=>
-                @text target.result
-              reader.readAsText(file)
-            when file.type.match /// ^image/ ///
-              @$emit "drop_image", file, (url)=>
-                @image url, type
+          @file file
 
       submit: _.debounce ->
         return if @ban
@@ -266,7 +278,7 @@ module.exports =
 
       input: _.debounce (e)->
         @$emit 'input', e.target.value
-      , 200
+      , 300
 
       focus: -> @$emit 'icon', 'mdi-pen'
       blur:  -> @$emit 'icon', 'mdi-access-point'
@@ -280,7 +292,7 @@ module.exports =
         ban
       warn: ->
         warn = false
-        warn ||=  @value.match ///>>///
+        warn ||=  @value.match /-/
         warn ||= @is_warn
         warn
 

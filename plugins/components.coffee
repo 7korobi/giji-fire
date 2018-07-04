@@ -10,8 +10,6 @@ if window?
 Marked = Marked.default
 Dagre = Dagre.default
 
-Marked.options.silent = false
-
 Object.assign Marked.options.renderer,
   url: (href)->
     switch

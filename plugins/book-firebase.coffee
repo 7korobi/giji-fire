@@ -5,14 +5,14 @@ firebase = require "firebase"
 
 edit = require '~/models/editor'
 
-snap = (collection, target)->
-  collection.onSnapshot (q)=>
+snap = (target, set)->
+  target.onSnapshot (q)=>
     q.docChanges().forEach ({ newIndex, oldIndex, type, doc })=>
       switch type
         when 'added', 'modified'
-          Set[target].add doc.data()
+          set.add doc.data()
         when 'removed'
-          Set[target].remove doc.data()
+          set.remove doc.data()
 
 post = (target, doc)->
   { _id } = doc
@@ -25,7 +25,7 @@ remove = (target, doc)->
   return unless _id
   target.doc(_id).delete()
 
-module.exports = (folder_id)->
+module.exports = (mode)->
   data: ->
     icon =
       _id: ''
@@ -33,7 +33,7 @@ module.exports = (folder_id)->
     { edit, icon, tag_ids: [], step: State.step }
 
   computed: {
-    ...vuex_value 'firebase',['user', 'credential', 'fcm_token']
+    ...vuex_value 'firebase',['user', 'credential']
     my: ->
       return {} unless @user
       { uid } = @user
@@ -85,23 +85,25 @@ module.exports = (folder_id)->
     phases: ->
       Query.phases.where({ @book_id }).list
 
-    _book:   -> @_firestore.doc "#{folder_id}/#{@book_id}"
+    _book:   -> @_firestore.doc "#{mode}/#{@book_id}"
     _potof:  -> @_book.doc "potofs/#{@potof_id}"
 
     _part:   -> @_book.doc "parts/#{@part_id}"
     _phase:  -> @_book.doc "phases/#{@phase_id}"
     _chat:   -> @_book.doc "chats/#{@chat_id}"
 
-    _parts:  -> @_book.collection "parts"
-    _potofs: -> @_book.collection "potofs"
-    _phases: -> @_book.collection "phases"
-    _chats:  -> @_book.collection "chats"
+    _potofs: ->  @_book.collection("potofs")
+    _cards: ->   @_book.collection("cards")
+
+    _parts:  ->  @_book.collection("parts")
+    _phases: ->  @_book.collection("phases")
+    _chats: ->   @_book.collection("chats")
   }
 
   methods:
     _func: (name, o)->
       firebase.functions().httpsCallable( name )( o )
-
+    
     icon_change: (icon)->
       @icon = { icon, _id: @potof_id }
 
@@ -120,11 +122,11 @@ module.exports = (folder_id)->
     remove: ->
       { _id, potof } = @edit.chat
       return unless confirm "編集中の #{_id} を削除しますか？"
-      await @_func 'wiki_chat_delete', { _id }
+      await remove @_chats, { _id }
 
       return if potof.chats.ids.length
       { _id } = potof
-      await @_func 'wiki_potof_delete', { _id }
+      await remove @_potofs, { _id }
       @create_mode()
     
     check_post: (target)->
@@ -139,7 +141,7 @@ module.exports = (folder_id)->
       { _id } = @edit.chat
       { write_at } = @chat
       write_at -= 10
-      await @_func 'wiki_chat', { _id, write_at }
+      await post @_chats, { _id, write_at }
 
     chat_post: (log)->
       { _id, show, deco, to } = @edit.chat
@@ -147,9 +149,9 @@ module.exports = (folder_id)->
         potof_id = @potof_id
         write_at = new Date - 0
         _id = [@phase_id, @edit.chat.new_idx(@at_zero)].join('-')
-        await @_func 'wiki_chat', { _id, potof_id, write_at, show, deco, to, log }
+        await post @_chats, { _id, potof_id, write_at, show, deco, to, log }
       else
-        await @_func 'wiki_chat', { _id, show, deco, to, log }
+        await post @_chats, { _id, show, deco, to, log }
       @create_mode()
       @edit.chat.log = ''
 
@@ -177,28 +179,38 @@ module.exports = (folder_id)->
       icon = 'mdi-access-point'
       write_at = new Date - 0
 
-      await @_func 'wiki_potof', { _id, face_id, tag_id, job, write_at, sign, uid }
+      await post @_potofs, { _id, face_id, tag_id, job, write_at, sign, uid }
       @icon_change icon
 
     'icon._id': (_id, old_id)->
-      return unless Query.potofs.find _id
+      return unless Query.potofs.find @icon._id
       await Promise.all [
-        @_func 'wiki_potof', @icon
-        post @_potofs,
+        await post @_potofs, @icon
+        await post @_potofs,
           _id: old_id
           icon: ""
       ]
 
     'icon.icon': (icon)->
       return unless Query.potofs.find @icon._id
-      await @_func 'wiki_potof', @icon
+      await post @_potofs, @icon
 
   mounted: ->
-    snap @_chats,  'chat'
-    snap @_phases, 'phase'
-    snap @_potofs, 'potof'
+    @$detaches = [
+      snap @_potofs, Set.potof
+      snap @_cards,  Set.card
+
+      snap @_parts,  Set.part
+      snap @_phases, Set.phase
+      snap @_chats,  Set.chat
+    ]
 
   beforeDestroy: ->
     @icon.icon = ""
-    return unless Query.potofs.find @icon._id
-    await @_func 'wiki_potof', @icon
+    if Query.potofs.find @icon._id
+      await post @_potofs, @icon
+      .then ->
+        console.log "clear icon"
+    for unsubscribe in @$detaches
+      unsubscribe()
+    console.log "unsubscribed"
