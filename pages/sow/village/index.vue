@@ -13,12 +13,12 @@ div
             | 州
             sup(v-if="folder_id.length") {{ folder_id.length }}
           btn(as="rating"          v-model="order" @toggle="submenu")
-            | レーティング
+            | こだわり
             sup(v-if="rating.length") {{ rating.length }}
         span
           btn(as="timer.updateddt" v-model="order" @toggle="submenu")
             | 年月日
-            sup(v-if="timer_length") {{ timer_length }}
+            sup(v-if="monthry.length") {{ monthry.length }}
           btn(as="upd_range"       v-model="order" @toggle="submenu")
             | 更新間隔
             sup(v-if="upd_range.length") {{ upd_range.length }}
@@ -75,24 +75,7 @@ div
             sup(v-if="1 < o.count") {{ o.count }}
 
         p(v-if="order === 'timer.updateddt'")
-          table
-            tbody
-              tr
-                td
-                  a.btn(@click="clear_timer")
-                td.r(v-for="label in month_labels")
-                  check.r.fine(v-model="in_month", :as="label", :key="label")
-                    kbd(v-if="1 < summary('in_month')[label].count") {{ summary('in_month')[label].count }}
-                    br
-                    | {{ label }}
-              tr(v-for="oo in summary('yeary')")
-                td.r
-                  check.r.fine(v-model="yeary", :as="oo.id", :key="oo.id")
-                    kbd(v-if="1 < oo.count") {{ oo.count }}
-                    br
-                    | {{ oo.id }}
-                td.r(v-for="o in months(oo.id)")
-                  check.r(v-if="o" v-model="monthry", :as="o.id", :key="o.id") {{ o.count }}
+          grid(v-bind="grid_data" v-model="monthry")
         p(v-if="order === 'upd_range'")
           check(v-for="o in summary('upd_range')" v-model="upd_range", :as="o.id", :key="o.id")
             | {{ o.id }}
@@ -207,9 +190,7 @@ module.exports =
       replace:
         order:  "vid"
         folder_id: []
-        yeary: []
         monthry: []
-        in_month: []
         upd_range: []
         upd_at: []
         sow_auth_id: []
@@ -233,10 +214,8 @@ module.exports =
 
   methods:
     reset: ->
-      @$router.replace query: {}
-    clear_timer: ->
-      @yeary = @monthry = @in_month = []
-    
+      @$router.replace query: { @order }
+
     book_url: (book_id, part_idx, mode)->
       name: "sow-village-show"
       query:
@@ -250,44 +229,49 @@ module.exports =
       @drill = ! @drill
 
     summary: (key)->
-      @all.reduce?[key]
+      query_in    = { ...@query_in    }
+      query_where = { ...@query_where }
 
-    months: (year)->
-      @month_labels.map (month)=>
-        id = year + month
-        if o = @all.reduce.monthry[year][id]
-          o.id = id
-        o
+      switch key
+        when 'yeary', 'monthry', 'in_month'
+          delete query_where['q.yeary']
+          delete query_where['q.monthry']
+          delete query_where['q.in_month']
+        when "option", "event", "discard", "config"
+          delete query_in["card." + key]
+        else
+          delete query_where["q." + key]
+      Query
+      .sow_villages
+      .summary @mode, query_in, query_where, @search
+      .reduce?[key]
 
   computed:
-    month_labels: ->
-      ['01月','02月','03月','04月','05月','06月','07月','08月','09月','10月','11月','12月']
-    timer_length: ->
-      @yeary.length + @in_month.length + @monthry.length
+    grid_data: ->
+      x: @summary('in_month')
+      y: @summary('yeary')
+      data: @summary('monthry')
+      find: ( x, y )=> y + x
+
     query_in: ->
       obj = {}
-      for key in ["option", "event","discard","config"]
+      for key in ["option", "event", "discard", "config"]
         continue unless @[key].length
         obj["card." + key] = @[key]
       obj
 
     query_where: ->
       obj = {}
-      for key in ["folder_id","yeary","monthry","in_month","upd_range","upd_at","sow_auth_id","rating","size","say","game"]
+      for key in ["folder_id","monthry","upd_range","upd_at","sow_auth_id","rating","size","say","game"]
         continue unless @[key].length
         obj["q." + key] = @[key]
       obj
-
-    all: ->
-      Query
-      .sow_villages
-      .mode @mode
 
     page_all_contents: ->
       Query
       .sow_villages
       .all_contents @mode, @query_in, @query_where, @search, @order, @asc
-      .reduce.list
+      .list
 
 </script>
 <style lang="stylus" scoped>

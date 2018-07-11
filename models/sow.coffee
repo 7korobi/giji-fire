@@ -23,6 +23,14 @@ new Rule("sow_village").schema ->
     mode: ( mode )->
       all
       .where { mode }
+
+    summary: ( mode, query_in, query_where, search_word )->
+      all
+      .where { mode }
+      .in query_in
+      .where query_where
+      .search search_word
+
     all_contents: ( mode, query_in, query_where, search_word, order, asc )->
       all
       .where { mode }
@@ -91,31 +99,31 @@ new Rule("sow_village").schema ->
       get: ->
         @query.reduce.event?.length ? 0
 
-  sort = ['count', 'desc']
   cmd =
     count: 1
   class @model extends @model
     @order: (o, emit)->
-      emit "yeary",       { sort: ['id','asc'] }
-      emit "folder_id",   { sort }
-      emit "upd_range",   { sort }
+      emit "yeary",       { sort: ['id','desc'] }
+      emit "in_month",    { sort: ['id','asc'] }
       emit "upd_at",      { sort: ['id','asc'] }
-      emit "sow_auth_id", { sort }
-      emit "rating",      { sort }
-      emit "size",        { sort }
-      emit "say",         { sort, belongs_to: "says"    }
-      emit "game",        { sort, belongs_to: "games"   }
-      emit "mob",         { sort, belongs_to: "roles"   }
-      emit "option",      { sort, belongs_to: "options" }
-      emit "event",       { sort, belongs_to: "roles"   }
-      emit "discard",     { sort, belongs_to: "roles"   }
-      emit "config",      { sort, belongs_to: "roles"   }
+      emit "folder_id",   { sort: ['count', 'desc'] }
+      emit "upd_range",   { sort: ['count', 'desc'] }
+      emit "sow_auth_id", { sort: ['count', 'desc'] }
+      emit "rating",      { sort: ['count', 'desc'] }
+      emit "size",        { sort: ['count', 'desc'] }
+      emit "say",         { sort: ['count', 'desc'], belongs_to: "says"    }
+      emit "game",        { sort: ['count', 'desc'], belongs_to: "games"   }
+      emit "mob",         { sort: ['count', 'desc'], belongs_to: "roles"   }
+      emit "option",      { sort: ['count', 'desc'], belongs_to: "options" }
+      emit "event",       { sort: ['count', 'desc'], belongs_to: "roles"   }
+      emit "discard",     { sort: ['count', 'desc'], belongs_to: "roles"   }
+      emit "config",      { sort: ['count', 'desc'], belongs_to: "roles"   }
 
     @map_reduce: (o, emit)->
       emit "mode", o.mode, o.q.folder_id,  cmd
-      emit "in_month", o.q.in_month,           cmd
-      emit "yeary",    o.q.yeary,              cmd
-      emit "monthry",  o.q.yeary, o.q.monthry, cmd
+      emit "in_month", o.q.in_month, cmd
+      emit "yeary",    o.q.yeary,    cmd
+      emit "monthry",  o.q.monthry,  cmd
       emit "folder_id",   o.q.folder_id,   cmd
       emit "upd_range",   o.q.upd_range,   cmd
       emit "upd_at",      o.q.upd_at,      cmd
