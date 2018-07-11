@@ -101,3 +101,36 @@ chr_job:
 
   - face_id: m21
     job: 三等兵
+
+  - face_id: f1-1
+    job: 候補
+
+  - face_id: f1-2
+    job: 候補
+
+  - face_id: f1-3
+    job: 候補
+
+  - face_id: f2-1
+    job: 候補
+
+  - face_id: f2-2
+    job: 候補
+
+  - face_id: f3-1
+    job: 候補
+
+  - face_id: f3-2
+    job: 候補
+
+  - face_id: f4-1
+    job: 候補
+
+  - face_id: f4-2
+    job: 候補
+
+  - face_id: f5-1
+    job: 候補
+
+  - face_id: f5-2
+    job: 候補
