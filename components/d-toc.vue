@@ -3,9 +3,9 @@ timerange = require "~/components/filters/timerange"
 
 module.exports =
   mixins: [
-    require('~/plugins/book')()
     require('~/plugins/pager')
   ]
+  props: ["book", "chats", "part_id"]
   methods:
     part_label: (part_id)->
       [ min,..., max ] = @chats(part_id)
@@ -17,6 +17,11 @@ module.exports =
       max = max.write_at
       range = max - min
       timerange { min, max, range }
+
+    page_url: (part_id, page_idx)->
+      return unless part_id && data = @chats(part_id)
+      idx = part_id
+      query: { @mode, idx, page: page_idx + 1 }
 
     page_label: (part_id, page_idx)->
       [ min,..., max ] = @chats(part_id)[page_idx]

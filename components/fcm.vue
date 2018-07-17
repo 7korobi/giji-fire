@@ -6,7 +6,7 @@ check.item(v-model="fcm_topics" :as="topic")
 <style lang="stylus" scoped>
 </style>
 <script lang="coffee">
-{ vuex_value } = require '~/plugins/vuex-helper'
+{ vuex_value } = require '~/plugins/struct'
 firebase = require "firebase"
 
 module.exports =
@@ -17,6 +17,7 @@ module.exports =
 
       watch:
         fcm_topics: ->
+          return unless @_messaging
           try
             @_messaging.onTokenRefresh =>
               @_unsubscribe { @fcm_token, @fcm_topics }
@@ -39,7 +40,7 @@ module.exports =
     enable: ->
       @fcm_token and (@topic in @fcm_topics)
     _messaging: ->
-      firebase.messaging()
+      firebase.messaging?() 
     _subscribe: ->
       firebase.functions().httpsCallable 'subscribe'
     _unsubscribe: ->

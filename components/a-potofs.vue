@@ -84,7 +84,7 @@
 
 <script lang="coffee">
 { Query } = require "~/plugins/memory-record"
-{ vuex_value } = require '~/plugins/vuex-helper'
+{ vuex_value } = require '~/plugins/struct'
 
 module.exports =
   props: ['part']

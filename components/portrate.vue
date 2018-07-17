@@ -27,12 +27,10 @@ module.exports =
       tag_ids: []
 
     image_src: ->
+      return @img_src if @img_src
+
       face = Query.faces.find(@face_id) ? @undef
-      switch
-        when @img_src
-          @img_src
-        when face
-          "#{url.assets}/images/portrate/#{ face.id }.jpg"
+      "#{url.assets}/images/portrate/#{ face.id }.#{face.format ? 'jpg'}"
 
   methods:
     click: ->

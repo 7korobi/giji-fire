@@ -1,7 +1,6 @@
 firebase = require "firebase"
 { Query, Set, State } = require "~/plugins/memory-record"
-{ vuex_value } = require '~/plugins/vuex-helper'
-{ path, relative_to } = require "~/plugins/struct"
+{ vuex_value, path, relative_to } = require "~/plugins/struct"
 
 edit = require '~/models/editor'
 
@@ -110,9 +109,6 @@ module.exports = (mode)->
     focus: (@idx)->
       @icon_change 'mdi-access-point'
 
-    anker: (book_id, a)->
-      console.log book_id, a
-    
     fav: ->
     create_mode: ->
       @edit.chat = Query.chats.find @edit.phase.id + '-edit'

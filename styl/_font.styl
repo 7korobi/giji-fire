@@ -24,11 +24,12 @@ inline($base, $inline, $family)
 font($small, $base, $family)
   $middle = ($small + $base) / 2
   $pad    = $base / 3
-  $hr_top = $base / 4 - 3px
-  $hr_btm = $base / 4
 
   $block    = $base * 1.5
   $inline   = $base * 1.3
+
+  $hr_top = $block / 4 - 4px
+  $hr_btm = $block / 4
 
   h1
     inline(2.50 * $base, 2.50 * $base, $family)

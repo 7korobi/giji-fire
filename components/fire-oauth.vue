@@ -20,7 +20,7 @@ div
 </template>
 <script lang="coffee">
 firebase = require "firebase"
-{ vuex_value } = require '~/plugins/vuex-helper'
+{ vuex_value } = require '~/plugins/struct'
 
 module.exports =
   data: ->

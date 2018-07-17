@@ -1,11 +1,14 @@
 _ = require "lodash"
-{ path } = require "~/plugins/struct"
+{ Query } = require "~/plugins/memory-record"
+{ path, relative_to } = require "~/plugins/struct"
 
 
 browser = require("~/plugins/browser-store") 
   replace:
     idx: ""
     page: ""
+  push:
+    a: []
 
   watch:
     idx: ->
@@ -22,6 +25,7 @@ browser = require("~/plugins/browser-store")
 
         @page = undefined
 
+
 store =
   watch:
     "step.chats": ->
@@ -31,9 +35,26 @@ store =
     ...path "folder", "book", "part", "phase", "chat"
     page_idx: ->
       @page_all_contents?.page_idx?(@chat) ? 0
+    cite_chats: ->
+      # todo @book_id ずれる
+      Query.chats.ankers(@book_id, @a).list
+
+    back: ->
+      [ @chat_id || @part_id, @mode ].join(",")
+
+    back_url: ->
+      [ idx, mode ] = (@$route.query.back ? @back).split(",")
+      query: { idx, mode, page: 'back' }
   }
   methods:
     focus: (@idx)->
+
+    anker: (book_id, a)->
+      if @a.length
+        @a = _.union @a, a
+      else
+        @$router.push
+          query: { a, @back, idx: @part_id }
 
     page_reset: ->
       return unless window?

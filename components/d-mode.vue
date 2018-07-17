@@ -2,9 +2,7 @@
 { relative_to } = require "~/plugins/struct"
 
 module.exports =
-  mixins: [
-    require('~/plugins/book')()
-  ]
+  props: ["now", "mode", "part_id", "chat_id"]
   methods:
     mode_to: (mode)->
       switch @mode
@@ -12,9 +10,8 @@ module.exports =
           idx = @part_id
         else
           idx = @part_id || @chat_id
-      name: "sow-village-show"
-      query: Object.assign {}, @$route.query, { mode, idx }
-      hash:  @$route.hash
+      idx = @chat_id || @part_id
+      relative_to @$route, { mode, idx }
 
   computed:
     secret: ->

@@ -7,6 +7,7 @@ p.form
     tag#shoji
     tag#stratos
     tag#myth
+    tag#fable
     tag#asia
     tag#marchen
 

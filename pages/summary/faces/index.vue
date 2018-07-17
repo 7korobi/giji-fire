@@ -30,23 +30,24 @@ div
     btn(as="date_max"     v-model="order") 新着度
     btn(as="date_min"     v-model="order") 古参度
 
-  .fullframe
-    transition-group.portrates(name="list" tag="div")
-      portrate(v-for="chr in chrs" :face_id="chr.face_id" :key="chr.face_id")
-        p(v-if="'fav_count' == order")
-          | ♥{{chr.face.fav_count}}回
-        p(v-else)
-          | 登場{{chr.face.story_length}}回
+  no-ssr
+    .fullframe
+      transition-group.portrates(name="list" tag="div")
+        portrate(v-for="chr in chrs" :face_id="chr.face_id" :key="chr.face_id")
+          p(v-if="'fav_count' == order")
+            | ♥{{chr.face.fav_count}}回
+          p(v-else)
+            | 登場{{chr.face.story_length}}回
 
-        p(v-if="'date_max' == order")
-          timeago(format="short", :since="chr.face.date_max")
-        p(v-if="'date_min' == order")
-          timeago(format="short", :since="chr.face.date_min")
-        nuxt-link(:to="chr.face.summary_url")
-          p {{ chr.job }}
-          p {{ chr.face.name }}
-        p
-          | ♥{{ chr.face.sow_auth_id }}
+          p(v-if="'date_max' == order")
+            timeago(format="short", :since="chr.face.date_max")
+          p(v-if="'date_min' == order")
+            timeago(format="short", :since="chr.face.date_min")
+          nuxt-link(:to="chr.face.summary_url")
+            p {{ chr.job }}
+            p {{ chr.face.name }}
+          p
+            | ♥{{ chr.face.sow_auth_id }}
 
   c-post(handle="footer")
     bread-crumb

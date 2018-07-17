@@ -1,22 +1,3 @@
-<script lang="coffee">
-{ Query } = require "~/plugins/memory-record"
-{ vuex_value } = require '~/plugins/vuex-helper'
-{ computed: { anker }} = require("~/components/chat.coffee")()
-
-module.exports =
-  props: ['chat_id', 'page_idx']
-  computed:
-    anker: anker
-    current: ->
-      @chat
-
-    chat: ->
-      Query.chats.find @chat_id
-    mentions: ->
-      Query.chats.reduce?.mention_to?[@chat_id]
-
-</script>
-
 <template lang="pug">
 div(v-if="chat")
   .date(:class="chat.phase.handle")
@@ -51,3 +32,17 @@ table
   border-collapse: collapse;
 
 </style>
+
+<script lang="coffee">
+{ Query } = require "~/plugins/memory-record"
+{ vuex_value } = require '~/plugins/struct'
+
+module.exports =
+  props: ['chat_id', 'page_idx']
+  computed:
+    chat: ->
+      Query.chats.find @chat_id
+    mentions: ->
+      Query.chats.reduce?.mention_to?[@chat_id]
+
+</script>

@@ -9,6 +9,7 @@ admin.initializeApp
 
 module.exports = {
   ...require './timer'
+  ...require './subscribe'
   ...require './book'
 
   packMessage:

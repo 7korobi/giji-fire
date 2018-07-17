@@ -1,19 +1,19 @@
 _ = require "lodash"
 { types, relative_to } = require "~/plugins/struct"
 
-browser_store = bs = (method)->
+browser_store = bs = (method, browser_key)->
   db: db = bs[method]
   pack: (computed, {to_str}, key, val)->
     computed[key] =
       get: ->
-        @$data.$browser[key]
+        @$data[browser_key][key]
 
       set: (newVal)->
         if newVal?
           db.setItem key, to_str newVal
         else
           db.removeItem key
-        @$data.$browser[key] = newVal
+        @$data[browser_key][key] = newVal
 
 get_value_by_store = (db, by_str, key, val)->
   o = by_str db.getItem key
@@ -26,17 +26,18 @@ get_value_by_route = (src, by_url, key, val)->
   else
     val
 
-router_store = (method)->
+router_store = (method, browser_key)->
   pack: (computed, {by_url}, key, val)->
     computed[key] =
       get: ->
-        @$data.$browser[key]
+        @$data[browser_key][key]
 
       set: (newVal)->
+        return if @[key] == newVal
         o = {}
         o[key] = newVal
-        { location, href } = @$router.resolve relative_to @$route, o
-        @$data.$browser[key] = newVal
+        { location, href } = @$router.resolve relative_to @$route, o, true
+        @$data[browser_key][key] = newVal
         history?["#{method}State"] null, null, href
         @$route = { ...@$route, ...location }
 
@@ -68,7 +69,9 @@ catch e
     removeItem: (key)->    delete @_data[key]
 
 
+idx = 0
 module.exports = (args1)->
+  browser_key = "$browser#{++idx}"
   $browser = {}
   stores = {}
   routes = {}
@@ -96,13 +99,13 @@ module.exports = (args1)->
         return
 
       when "replace", "push"
-        setter = router_store method, $browser
+        setter = router_store method, browser_key
         routes[key] =
           by_url: type.by_url
           value:  value
 
       when "cookie", "local", "session"
-        setter = browser_store method, $browser
+        setter = browser_store method, browser_key
         stores[key] =
           db: setter.db
           by_str: type.by_str
@@ -117,8 +120,7 @@ module.exports = (args1)->
     for key, val of args2
       pack method, key, val
 
-  slave = { computed, methods, beforeRouteUpdate, data: -> { $browser } }
-  { slave, watch, computed, methods, beforeRouteUpdate, data: ->
+  data = ->
     oldVals =
       for key of watch
         [key, _.get($browser, key) ]
@@ -135,8 +137,11 @@ module.exports = (args1)->
       for [key, oldVal] in oldVals
         newVal = _.get $browser, key
         watch[key].call @, newVal, oldVal, key
-    { $browser }
-  }
+    o = {}
+    o[browser_key] = $browser
+    o
+
+  { watch, computed, methods, beforeRouteUpdate, data }
 
 module.exports.capture = (req)->
   { cookie } = req.headers

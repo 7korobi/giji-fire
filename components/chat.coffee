@@ -1,7 +1,6 @@
 { Query } = require "~/plugins/memory-record"
-{ vuex_value } = require '~/plugins/vuex-helper'
+{ vuex_value } = require '~/plugins/struct'
 el = require "~/plugins/dom"
-markdown = require "~/plugins/markdown"
 
 targets =
   sow:  'g-sow'
@@ -99,9 +98,4 @@ module.exports = ->
 
     deco_target: ->
       targets[@deco]
-
-    log_html: ->
-      text = @log
-      markdown[@deco] @, (html)-> text = html
-      text
   }

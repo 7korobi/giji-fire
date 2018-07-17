@@ -32,6 +32,12 @@ tempo = (doc)->
 
   now_idx = parseInt(( new Date - gap) / since)
   if now_idx != doc.last_idx
+    doc.write_at = new Date - 0
+    doc.last_at  = (now_idx + 0) * since + gap
+    doc.next_at  = (now_idx + 1) * since + gap
+    doc.write_time = format doc.write_at - timezone, "YYYY/MM/DD HH:mm:ss", { locale }
+    doc.next_time  = format doc.next_at  - timezone, "YYYY/MM/DD HH:mm:ss", { locale }
+    doc.last_time  = format doc.last_at  - timezone, "YYYY/MM/DD HH:mm:ss", { locale }
     doc.last_idx = now_idx
   else
     null
@@ -52,14 +58,18 @@ module.exports =
     #    tempo: ["15min"]
     #
     https.onRequest (req, res)->
-      now_s = format new Date - timezone, "YYYY/MM/DD HH:mm:ss", { locale }
       qs = await admin.firestore().collection('parts').where('is_active','==',true).get()
       for doc in qs.docs
         part = doc.data()
         if tempo part
-          part.write_at = new Date - 0
-          part.at = now_s
           admin.firestore().doc("parts/#{part._id}").set part,
+            merge: true
+
+      qs = await admin.firestore().collection('game').where('is_active','==',true).get()
+      for doc in qs.docs
+        book = doc.data()
+        if tempo book
+          admin.firestore().doc("game/#{book._id}").set book,
             merge: true
 
       res.status(201).send("OK.")

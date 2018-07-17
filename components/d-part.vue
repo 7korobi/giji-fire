@@ -1,20 +1,28 @@
 <script lang="coffee">
 module.exports =
   mixins: [
-    require('~/plugins/book')()
     require('~/plugins/pager')
   ]
+  props: ["mode", "book", "chats", "part_id"]
   methods:
+    page_url: (part_id, page_idx)->
+      return unless part_id && data = @chats(part_id)
+      idx = part_id
+      query: { @mode, idx, page: page_idx + 1 }
+
     label: (part_id)->
       @book.parts.find(part_id)?.label
   computed:
+    part_ids: ->
+      @book.parts.pluck('id')
+
     part_prev_id: ->
-      ids = @book.parts.pluck('id')
+      ids = @part_ids
       idx = ids.indexOf @part_id
       ids[idx - 1]
 
     part_next_id: ->
-      ids = @book.parts.pluck('id')
+      ids = @part_ids
       idx = ids.indexOf @part_id
       ids[idx + 1]
 

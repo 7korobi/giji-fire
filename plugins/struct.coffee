@@ -10,21 +10,36 @@ to_x = (type, sp, nil)-> (u)->
     else
       type u
 
+state_value = (mutation, getter, setter)->
+  get: ->
+    _.get @$store.state, getter
+  set: (val)->
+    o = _.set {}, setter, val
+    @$store.commit mutation, o
+
+
 module.exports = m =
-  relative_to: ({ name, params, query, hash }, o)->
+  vuex_value: (path, keys)->
+    dir = path.split('.')
+    o = {}
+    for key in keys
+      mutation = "#{dir[0]}/update"
+      getter = [...dir[0..-1], key].join('.')
+      setter = [...dir[1..-1], key].join('.')
+      o[key] = state_value mutation, getter, setter
+    o
+
+  relative_to: ({ name, params, query, hash }, o, is_replace)->
+    unless is_replace
+      params = _.cloneDeep params
+      query  = _.cloneDeep query
     to = { name, params, query, hash }
     for key, val of o
       if params[key]
-        to.params[key] = val
+        params[key] = val
       else
-        to.query[key] = val
+        query[key] = val
     to
-
-  uniq: (args...)->
-    a = []
-    for arg in args
-      a.push arg...
-    Array.from new Set a
 
   to_msec: (str)->
     timeout = 0
@@ -65,12 +80,12 @@ module.exports = m =
     o = {}
     key = "#{name}_id"
     _.set o, "#{key}.get", ->
-      if at < @idx.length
-        @idx[0..at].join("-")
+      if at < @idx_a.length
+        @idx_a[0..at].join("-")
       else
         null
-    _.set o, "idx.get", ->
-      @$data.$browser.idx.split("-")
+    _.set o, "idx_a.get", ->
+      @idx.split("-")
     o
 
   item: (at, name)->

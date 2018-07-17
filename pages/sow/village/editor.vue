@@ -14,20 +14,16 @@
 
 </template>
 <script lang="coffee">
+_ = require "lodash"
 { Query } = require "~/plugins/memory-record"
-{ uniq, relative_to } = require "~/plugins/struct"
+{ relative_to } = require "~/plugins/struct"
 
 module.exports =
-  mixins: [
-    require("~/plugins/get-by-mount") "24h", "sow/story", -> @book_id
-    require('~/plugins/book')
-      loader: true
-  ]
   layout: "sow"
   mounted: ->
   methods:
     anker: (book_id, a)->
-      a = uniq @$route.query.a, a
+      a = _.union @$route.query.a, a
       @$router.replace relative_to @$route, { a }
 
 </script>

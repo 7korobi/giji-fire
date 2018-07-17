@@ -5,6 +5,7 @@ order = [
   "wa"
   "time"
   "sf"
+  "fable"
   "mad"
   "ger"
   "changed"
@@ -79,6 +80,9 @@ new Rule("face").schema ->
     @map_reduce: (o, emit)->
       head = o.name[0]
       head = o.name[1] if head in ["†"]
+      head = head.replace /[\u3041-\u3096]/g, (hira)->
+        String.fromCharCode hira.charCodeAt(0) + 0x60
+
       emit "all", "all", map
       emit "name_head", head,
         set: o.name

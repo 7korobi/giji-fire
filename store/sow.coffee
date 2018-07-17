@@ -84,6 +84,10 @@ module.exports =
           face_id:  o.face_id
           sign: o.sow_auth_id
 
+      potofs = Query.potofs
+      .where { book_id }
+      .sort "live.date", "desc"
+
       phases =
         "#{book_id}-top-mA": phase_attr
           handle: "MAKER"
@@ -105,7 +109,29 @@ module.exports =
         csid = 'sf' if csid == 'SF'
         face_id = undefined if face_id in ["maker", "admin", "c06"]
         o.event_id ?= o._id.split("-")[0..2].join("-")
-        return if "*CAST*" == log
+        if "*CAST*" == log
+          phase_id = "#{o.event_id}-mS"
+          list =
+            for [ sign, job, name, live ] in potofs.pluck('sign', 'job', 'face.name', 'live.role_id') when 'leave' != live
+              "| #{job} | #{name} | … | #{sign} |"
+          log = """
+            |   |   |   |   |
+            |--:|:--|:-:|:-:|
+            #{ list.join("\n") }
+          """
+          phases[phase_id] ?= phase_attr
+            handle: 'TITLE'
+            group:  'A'
+            update: false
+            guide:  true
+          Set.chat.add
+            _id: phase_id + "-CAST"
+            phase_id: phase_id
+            write_at: write_at
+            show: "report"
+            deco: "giji"
+            log: log
+          return
 
         guide = true
         handle = o.mestype
@@ -141,7 +167,11 @@ module.exports =
           when "M"
             show = "report"
           when "S"
-            show = "talk"
+            switch o.logid[0..1]
+              when "II"
+                show = "post"
+              else
+                show = "talk"
           when "I"
             potof_id = undefined
             if log?.match(///。|、///g)?.length > 3
@@ -215,7 +245,7 @@ module.exports =
         _id: o._id
         label: o.name
         winner_id: data.events[-1..][0].winner?[4..]
-        potof_size: Query.potofs.where({book_id}).list.length
+        potof_size: potofs.list.length
         sign: sign
         write_at: chat_head.write_at - 4
 

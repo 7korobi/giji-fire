@@ -104,7 +104,7 @@ log-wiki
 <script lang="coffee">
 firebase = require "firebase"
 { Query, Set, State } = require "~/plugins/memory-record"
-{ vuex_value } = require '~/plugins/vuex-helper'
+{ vuex_value } = require '~/plugins/struct'
 
 remove = (target, doc)->
   { _id } = doc

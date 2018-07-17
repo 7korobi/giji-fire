@@ -1,13 +1,13 @@
 <template lang="pug">
 log-wiki
   template(slot="summary")
-    d-mentions.inframe.mentions(key="1" :page_idx="0" :chat_id="chat_id" @anker="anker")
-    a-potofs(key="3" :part='part' v-if="is_show_potofs")
+    d-mentions.inframe.mentions(v-bind="for_mentions" key="1" @anker="anker")
+    a-potofs(v-bind="for_potofs" key="3" v-if="is_show_potofs")
 
   template(slot="icons")
     .item
       i.c.mdi(:class="icon.icon")
-    h6.c(:class="edit.chat.phase.handle" v-if="user && is_replacing") 編集中
+    h6.c(:class="edit.chat.phase.handle" v-if="user && is_replacing") 編集
     a.btn.item(:class="handle" @click="move" v-if="can_move")
       i.mdi.mdi-table-column-plus-before
     a.btn.item(:class="handle" @click="replace_mode" v-if="can_update")
@@ -17,7 +17,8 @@ log-wiki
       i.mdi.mdi-heart(v-if="false")
     hr
     nuxt-link.item.active(replace :class="handle" :to="back_url")
-      i.mdi.mdi-map-marker
+      i.mdi.mdi-backspace(v-if="a.length")
+      i.mdi.mdi-map-marker(v-else)
     check.item(v-model="shows" as="magnify")
       i.mdi.mdi-magnify
     check.item(v-model="shows" as="potof")
@@ -27,7 +28,9 @@ log-wiki
   c-report(handle="footer" deco="center")
     bread-crumb
 
-  div(v-for="(chats, idx) in page_contents", :key="idx")
+  div(v-if="a.length")
+    chat(v-for="o in cite_chats" @anker="anker" @focus="focus" :id="o.id" :key="o.id")
+  div(v-else v-for="(chats, idx) in page_contents", :key="idx")
     chat(v-for="o in chats" @anker="anker" @focus="focus" :current="chat" :id="o.id", :key="o.id")
 
   div
@@ -62,7 +65,7 @@ log-wiki
             | 編集中のメッセージは、他のメッセージの上に移動できるぞ。
           li
             fcm(:topic="book_id")
-
+            | このページ内での新規投稿を通知
         br
 
   c-post(handle="TSAY")
@@ -102,22 +105,22 @@ log-wiki
   font-size: 2.5ex
 </style>
 <script lang="coffee">
-firebase = require "firebase"
 { Query, Set, State } = require "~/plugins/memory-record"
-{ vuex_value } = require '~/plugins/vuex-helper'
-
-remove = (target, doc)->
-  { _id } = doc
-  target.doc(_id).delete()
+{ vuex_value } = require '~/plugins/struct'
 
 module.exports =
   mixins: [
+    require("~/plugins/for_component")
     require("~/plugins/book-show")
     require("~/plugins/book-firebase") "wiki"
   ]
   layout: 'blank'
   data: ->
     { step: State.step, mode: 'full' }
+
+  head: ->
+    labels = [@book_id, "人狼議事wiki"]
+    title: labels.join(' ')
 
   computed: {
     ...vuex_value "menu.potofs", ['hide_ids']
@@ -127,24 +130,18 @@ module.exports =
     is_show_potofs: ->
       "potof" in @shows
 
-    back: ->
-      [ @chat_id || @part_id, @$route.name ].join(",")
-    back_url: ->
-      [ idx, name ] = (@$route.query.back ? @back).split(",")
-      name: name
-      query: { idx, page: 'back' }
-
     part_id:  -> @book_id + '-top'
+
+    page_idx: -> 0
+
     page_all_contents: ->
       Query.chats.wiki( @hide_ids, @part_id ).list
+
     page_contents: ->
       @page_all_contents
   }
 
   methods:
-    icon_change: (icon)->
-      @icon = { icon, _id: @potof_id }
-
     focus: (@idx)->
       @icon_change 'mdi-access-point'
 

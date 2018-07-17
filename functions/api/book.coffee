@@ -1,5 +1,6 @@
 { firestore, database, https } = require 'firebase-functions'
 admin = require 'firebase-admin'
+{ startGM, deployGM, executionGM, checkGM } = require './game/progress'
 
 ref_for = ( mode, type, doc )->
   { _id } = doc
@@ -11,77 +12,22 @@ ref_for = ( mode, type, doc )->
   .firestore()
   .doc "#{mode}/#{book_id}/#{type}/#{_id}"
 
+next_idx = (ref)->
+  ref = await ref.orderBy("idx", "desc").limit(1).get()
+  idx = ref?.docs?.idx
+  if -1 < idx
+    idx + 1
+  else
+    0
+
 
 module.exports =
-  subscribe:
-    https.onCall ({ fcm_token, fcm_topics }, { auth })->
-      fcm_tokens = [fcm_token]
-      all =
-        for topic in fcm_topics
-          admin.messaging().subscribeToTopic fcm_tokens, topic
-      Promise.all all
-
-  unsubscribe:
-    https.onCall ({ fcm_token, fcm_topics }, { auth })->
-      fcm_tokens = [fcm_token]
-      all =
-        for topic in fcm_topics
-          admin.messaging().unsubscribeFromTopic fcm_tokens, topic
-      Promise.all all
-
-  book_external:
-    https.onRequest ({ query }, res)->
-      { mode, book_id, part_id, face_id } = query
-      message =
-        topic: mode
-        notification: 
-          title: '村の情報'
-        webpush:
-          headers:
-            TTL: '60'
-          notification:
-            click_action: 'https://giji.f5.si/'
-
-      if book_id
-        switch mode
-          when "init"
-            switch
-              when !! face_id
-                message.notification.body = """
-                  #{book_id}
-                  新しい参加者がいます。
-                """
-                await admin.messaging().send message
-
-              when !! part_id
-                message.notification.body = """
-                  #{book_id}
-                  日付が進みました。
-                """
-                await admin.messaging().send message
-
-              else
-                message.notification.body = """
-                  #{book_id}
-                  新しい村が現れました。
-                """
-                await admin.messaging().send message
-
-      res.status(201).send("OK.")
-
   book_created:
     firestore.document('{mode}/{book_id}/{type}/{id}').onCreate (snap, { params })->
       console.log params
       console.log snap.data()
 
       { mode, book_id, type, id } = params
-      ref_potofs = await admin.firestore().collection("#{mode}/#{book_id}/potofs").get()
-      fcm_tokens =
-        for doc in ref_potofs.docs
-          s = doc.data().fcm_token
-          continue unless s
-          s
-
       switch type
         when 'chats'
           message =
@@ -122,43 +68,23 @@ module.exports =
       { mode, book_id, type, id } = params
       null
 
-  book_updated:
+  chat_updated:
     firestore.document('{mode}/{book_id}/chats/{id}').onUpdate ({ before, after }, { params })->
       console.log params
       console.log after.data()
+      { mode, book_id } = params
 
-      { mode, book_id, type, id } = params
+  game_updated:
+    firestore.document('game/{book_id}').onUpdate ({ before, after }, { params })->
+      { book_id } = params
+      idx = await next_idx admin.firestore().collection("game/#{book_id}/parts")
+      _id = "#{book_id}-#{idx}"
+      label =
+        switch idx
+          when 0
+            "プロローグ"
+          else
+            "#{idx}日目"
+      write_at = new Date - 0
+      admin.firestore().doc("game/#{book_id}/parts/#{_id}").set { _id, idx, label, write_at }
       null
-
-
-  wiki_potof:
-    https.onCall (doc, { auth })->
-      console.log auth
-      ref_for "wiki", "potofs", doc
-      .set doc,
-        merge: true
-
-  wiki_potof_delete:
-    https.onCall (doc, { auth })->
-      console.log auth
-      ref_for "wiki", "potofs", doc
-      .delete()
-
-
-  wiki_chat:
-    https.onCall (doc, { auth })->
-      console.log auth
-      ref_for "wiki", "chats", doc
-      .set doc,
-        merge: true
-
-  wiki_chat_delete:
-    https.onCall (doc, { auth })->
-      console.log auth
-      ref_for "wiki", "chats", doc
-      .delete()
-
-
-  book_chat:
-    https.onCall (doc, { auth })->
-      console.log auth

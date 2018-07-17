@@ -16,6 +16,7 @@ div
     check(v-model="value" as="myth") {{ tag("myth").label }}
     check(v-model="value" as="asia") {{ tag("asia").label }}
     check(v-model="value" as="marchen") {{ tag("marchen").label }}
+    check(v-model="value" as="fable") {{ tag("fable").label }}
     check(v-model="value" as="animal") {{ tag("animal").label }}
     check(v-model="value" as="school") {{ tag("school").label }}
   span
