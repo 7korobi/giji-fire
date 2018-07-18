@@ -36,11 +36,6 @@ module.exports = class Rule
 
     { base } = @$name
     @model_property =
-      $form:
-        enumerable: false
-        get: ->
-          # TODO
-          Mem.Set[base].form(@id)
       id:
         enumerable: true
         get: -> @_id
@@ -49,11 +44,6 @@ module.exports = class Rule
         get: -> @_id
 
     @form_property =
-      $model:
-        enumerable: false
-        get: ->
-          # TODO
-          Mem.Set[base].find(@id)
       changes:
         enumerable: true
         value: (key)->
@@ -110,9 +100,6 @@ module.exports = class Rule
       class @model extends @model
     Object.defineProperties @model::, @model_property
 
-    class @form extends @model
-    Object.defineProperties @form::, @form_property
-
     if @set == Set
       class @set extends @set
     Object.defineProperties @set::, @set_property
@@ -121,7 +108,7 @@ module.exports = class Rule
       class @map extends @map
     Object.defineProperties @map::, @map_property
 
-    @model.$name = @form.$name = @set.$name = @map.$name = @$name
+    @model.$name = @set.$name = @map.$name = @$name
 
     Mem.Query[@$name.list] = @all
 
@@ -132,7 +119,6 @@ module.exports = class Rule
     Mem.Finder[@$name.base] = finder = @all._finder
     finder.set = @set
     finder.map = @map
-    finder.form = @form
     finder.model = @model
     finder.format = {}
     @

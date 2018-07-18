@@ -12,3 +12,10 @@ module.exports =
       { @part }
     for_mentions: ->
       { @chat_id, @page_idx }
+    for_editor: ->
+      deco = @edit.chat.deco
+      { head, log, potof } = @edit.chat
+      is_ban = false
+      is_ban ||= !( head || log?.match /// #{ potof?.face?.name } ///)
+      is_warn = false
+      { is_ban, is_warn, deco, rows: 7, maxRow: 20, maxSize: 999 }

@@ -42,14 +42,6 @@ module.exports = (mode)->
     is_creating: -> @edit.chat.potof_id == @edit.potof.id
     is_replacing: -> ! @is_creating
 
-    is_ban: ->
-      ban = false
-      ban
-
-    is_warn: ->
-      warn = false
-      warn
-
     can_move: ->
       @is_replacing && @edit.chat.id != @chat_id
 
@@ -140,12 +132,12 @@ module.exports = (mode)->
       await post @_chats, { _id, write_at }
 
     chat_post: (log)->
-      { _id, show, deco, to } = @edit.chat
+      { _id, show, deco, head, to } = @edit.chat
       if @is_creating
         potof_id = @potof_id
         write_at = new Date - 0
         _id = [@phase_id, @edit.chat.new_idx(@at_zero)].join('-')
-        await post @_chats, { _id, potof_id, write_at, show, deco, to, log }
+        await post @_chats, { _id, potof_id, write_at, show, deco, head, to, log }
       else
         await post @_chats, { _id, show, deco, to, log }
       @create_mode()

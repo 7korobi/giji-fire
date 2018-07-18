@@ -2,6 +2,11 @@
 log-wiki
   template(slot="summary")
     d-mentions.inframe.mentions(v-bind="for_mentions" key="1" @anker="anker")
+    .inframe.TITLE
+      hr
+      .swipe
+        i.mdi.mdi-magnify
+        input(style="width: calc(97% - 2em);" v-model="search" size="30")
     a-potofs(v-bind="for_potofs" key="3" v-if="is_show_potofs")
 
   template(slot="icons")
@@ -19,8 +24,6 @@ log-wiki
     nuxt-link.item.active(replace :class="handle" :to="back_url")
       i.mdi.mdi-backspace(v-if="a.length")
       i.mdi.mdi-map-marker(v-else)
-    check.item(v-model="shows" as="magnify")
-      i.mdi.mdi-magnify
     check.item(v-model="shows" as="potof")
       i.mdi.mdi-account-multiple
     hr
@@ -30,43 +33,49 @@ log-wiki
 
   div(v-if="a.length")
     chat(v-for="o in cite_chats" @anker="anker" @focus="focus" :id="o.id" :key="o.id")
-  div(v-else v-for="(chats, idx) in page_contents", :key="idx")
-    chat(v-for="o in chats" @anker="anker" @focus="focus" :current="chat" :id="o.id", :key="o.id")
-
-  div
-    c-post(handle="VSAY")
-      article(v-if="! page_contents.length")
-        blockquote.
-          現在、この名前の項目はありません。
-          誰でも編集できます。
-        hr
-        br
-        h3 項目を新しく書くには
-        ol
-          li 下のアイコンから、ログインに使うサービスを選択。
-          li 書き込みに使うキャラクターを選択。
-          li 枠形と色味を好みできめたら、
-          li
-            a(target="blank" href="https://ja.wikipedia.org/wiki/Markdown") Markdown形式
-            | で自由に書き込もう。
-      article(v-if="page_contents.length")
-        ol
-          li
-            a(target="blank" href="https://ja.wikipedia.org/wiki/Markdown") Markdown形式
-            | で自由に書き込もう。
-      article
-        ol(style="list-style-type: upper-latin")
-          li 画像を書き込みフォームにDrag＆Dropすると、その画像を張り付けるぞ。
-          li
-            abbr.mdi.mdi-square-edit-outline
-            | 投稿済みのメッセージを編集できるぞ。
-          li
-            abbr.mdi.mdi-table-column-plus-before
-            | 編集中のメッセージは、他のメッセージの上に移動できるぞ。
-          li
-            fcm(:topic="book_id")
-            | このページ内での新規投稿を通知
-        br
+  div(v-else)
+    c-report.form(handle="footer" key="finder")
+      i.mdi.mdi-magnify
+      input(style="width: 88%; " v-model="search" size="30")
+    div(v-for="(chats, idx) in page_contents", :key="idx")
+      chat(v-for="o in chats" @anker="anker" @focus="focus" :current="chat" :id="o.id", :key="o.id")
+    div
+      c-post(handle="VSAY")
+        article(v-if="! page_contents.length")
+          blockquote.
+            現在、この名前の項目はありません。
+            誰でも編集できます。
+          hr
+          br
+          h3 項目を新しく書くには
+          ol
+            li 下のアイコンから、ログインに使うサービスを選択。
+            li 書き込みに使うキャラクターを選択。
+            li 枠形と色味を好みできめたら、
+            li
+              a(target="blank" href="https://ja.wikipedia.org/wiki/Markdown") Markdown形式
+              | で自由に書き込もう。
+        article(v-if="page_contents.length")
+          ol
+            li
+              a(target="blank" href="https://ja.wikipedia.org/wiki/Markdown") Markdown形式
+              | で自由に書き込もう。
+        article
+          ol(style="list-style-type: upper-latin")
+            li 画像を書き込みフォームにDrag＆Dropすると、その画像を張り付けるぞ。
+            li
+              abbr.mdi.mdi-square-edit-outline
+              | 投稿済みのメッセージを編集できるぞ。
+            li
+              abbr.mdi.mdi-table-column-plus-before
+              | 編集中のメッセージは、他のメッセージの上に移動できるぞ。
+            li
+              fcm(:topic="book_id")
+              | このページ内での新規投稿を通知
+          br
+    c-report.form(handle="footer" key="finder")
+      
+      input(style="width: 95%; " v-model="search" size="30")
 
   c-post(handle="TSAY")
     fire-oauth(style="white-space: nowrap")
@@ -84,6 +93,12 @@ log-wiki
         i.mdi.mdi-note-text
     | &nbsp;
     span
+      btn.large(v-model="edit.chat.head" as="")
+        i.mdi.mdi-arrow-expand-up
+      btn.large(v-model="edit.chat.head" :as="edit.potof.head") 
+        i.mdi.mdi-arrow-collapse-up
+    | &nbsp;
+    span
       btn.large(v-model="edit.chat.deco" as="giji")
         i.mdi.mdi-file-document
       btn.large(v-model="edit.chat.deco" as="dagre")
@@ -95,7 +110,7 @@ log-wiki
         i.mdi.mdi-open-in-new
       a.btn.active(@click="remove")
         i.mdi.mdi-comment-remove-outline
-    text-editor(v-model="edit.chat.log" @icon="icon_change" @drop_image="image_post" @submit="chat_post" :deco="edit.chat.deco" :rows="7" :maxRow="20" :maxSize="999" :is_ban="is_ban" :is_warn="is_warn")
+    text-editor(v-model="edit.chat.log" v-bind="for_editor" @icon="icon_change" @drop_image="image_post" @submit="chat_post")
 
   c-report(handle="footer" deco="center")
     bread-crumb
@@ -116,7 +131,7 @@ module.exports =
   ]
   layout: 'blank'
   data: ->
-    { step: State.step, mode: 'full' }
+    { step: State.step, mode: 'wiki' }
 
   head: ->
     labels = [@book_id, "人狼議事wiki"]
@@ -133,9 +148,6 @@ module.exports =
     part_id:  -> @book_id + '-top'
 
     page_idx: -> 0
-
-    page_all_contents: ->
-      Query.chats.wiki( @hide_ids, @part_id ).list
 
     page_contents: ->
       @page_all_contents

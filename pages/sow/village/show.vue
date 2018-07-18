@@ -8,6 +8,9 @@ log-wiki
       .swipe
         d-mode.form(v-bind="for_mode" style="white-space: nowrap")
         hr
+        i.mdi.mdi-magnify
+        input(style="width: calc(97% - 2em);" v-model="search" size="30")
+        hr
         d-toc(v-bind="for_toc" key="2")
     a-potofs(v-bind="for_potofs" key="3" v-if="is_show_potofs")
 
@@ -33,6 +36,8 @@ log-wiki
         chat(v-for="o in cite_chats" @anker="anker" @focus="focus" :id="o.id" :key="o.id")
       div(v-else)
         c-report.form(handle="footer" key="finder")
+          i.mdi.mdi-magnify
+          input(style="width: calc(97% - 2em);" v-model="search" size="30")
           d-mode(v-bind="for_mode")
           d-part(v-bind="for_part")
 
@@ -60,6 +65,8 @@ log-wiki
         c-report.form(v-else handle="footer" key="limitup")
           d-part(v-bind="for_part")
           d-mode(v-bind="for_mode")
+          i.mdi.mdi-magnify
+          input(style="width: calc(97% - 2em);" v-model="search" size="30")
 
   c-post(handle="footer")
     bread-crumb
@@ -108,15 +115,6 @@ module.exports =
       "toc"   in @shows && ! @a.length
     is_show_potofs: ->
       "potof" in @shows
-
-    now: ->
-      Query.chats.now(@hide_ids)
-
-    chats: ->
-      @now[@mode]
-
-    page_all_contents: ->
-      @chats(@part_id)
 
     page_idx: ->
       @page_all_contents?.page_idx?(@chat) ? 0

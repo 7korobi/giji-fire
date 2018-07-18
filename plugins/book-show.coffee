@@ -7,6 +7,7 @@ browser = require("~/plugins/browser-store")
   replace:
     idx: ""
     page: ""
+    search: ""
   push:
     a: []
 
@@ -38,6 +39,15 @@ store =
     cite_chats: ->
       # todo @book_id ずれる
       Query.chats.ankers(@book_id, @a).list
+
+    now: ->
+      Query.chats.now(@hide_ids, @search)
+
+    chats: ->
+      @now[@mode]
+
+    page_all_contents: ->
+      @chats(@part_id)
 
     back: ->
       [ @chat_id || @part_id, @mode ].join(",")

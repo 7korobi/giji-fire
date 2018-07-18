@@ -7,10 +7,15 @@ new Rule("chat").schema ->
 
   blank = []
   blank.all = 0
-  pages = (group, q)-> (hides, part_id)->
-    q.where (o)-> part_id == o.part_id && !(o.potof_id in hides) && o.phase.group in group
+  pages = (group, q)-> (hides, words, part_id)->
+    q
+    .where (o)-> part_id == o.part_id && !(o.potof_id in hides) && o.phase.group in group
+    .search words
   @scope (all)->
-    wiki:   (hides, part_id)-> all.where (o)-> part_id == o.part_id && !(o.potof_id in hides)
+    wiki: (hides, words, part_id)->
+      all
+      .where (o)-> part_id == o.part_id && !(o.potof_id in hides)
+      .search words
     memo:   pages 'M',   all
 
     full:   pages 'SAI', all
@@ -24,14 +29,15 @@ new Rule("chat").schema ->
       ids = a.map (idx)-> book_id + idx
       all.where(_id: ids).sort("write_at", "desc")
 
-    now: (hides)->
-      memo:   (part_id)-> all.memo(  hides, part_id).reduce.last ? blank
-      memos:  (part_id)-> all.memo(  hides, part_id).reduce.list ? blank
-      full:   (part_id)-> all.full(  hides, part_id).reduce.list ? blank
-      normal: (part_id)-> all.normal(hides, part_id).reduce.list ? blank
-      solo:   (part_id)-> all.solo(  hides, part_id).reduce.list ? blank
-      extra:  (part_id)-> all.extra( hides, part_id).reduce.list ? blank
-      rest:   (part_id)-> all.rest(  hides, part_id).reduce.list ? blank
+    now: (...args)->
+      memo:   (part_id)-> all.memo(  ...args, part_id).reduce.last ? blank
+      memos:  (part_id)-> all.memo(  ...args, part_id).reduce.list ? blank
+      full:   (part_id)-> all.full(  ...args, part_id).reduce.list ? blank
+      normal: (part_id)-> all.normal(...args, part_id).reduce.list ? blank
+      solo:   (part_id)-> all.solo(  ...args, part_id).reduce.list ? blank
+      extra:  (part_id)-> all.extra( ...args, part_id).reduce.list ? blank
+      rest:   (part_id)-> all.rest(  ...args, part_id).reduce.list ? blank
+      wiki:   (part_id)-> all.wiki(  ...args, part_id).reduce.list ? blank
 
   anker =
     belongs_to: 'chats'
@@ -39,6 +45,8 @@ new Rule("chat").schema ->
 
   @deploy ->
     @mention_ids ?= []
+    @q =
+      search_words: @log
 
   class @model extends @model
     @map_reduce: (o, emit)->

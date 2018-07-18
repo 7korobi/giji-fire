@@ -30,15 +30,6 @@ module.exports = class Set extends Array
     list.__proto__ = @::
     list
 
-  @find: (id)->
-    _memory[id].item
-
-  @form: (id)->
-    _memory[id].form ?= do ->
-      # TODO
-      o = _.cloneDeep @find id
-      o.__proto__ = Form::
-
   sort: (sort...)->
     o = _.orderBy @, sort...
     o.__proto__ = @__proto__

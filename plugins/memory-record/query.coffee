@@ -97,7 +97,9 @@ module.exports = class Query
         "(#{item})"
     return @ unless list.length
     regexp = (new RegExp list.join("|"), "ig")
-    @where (o)-> (! o.q.search_words) || regexp.test o.q.search_words
+    @where (o)->
+      s = o.q.search_words
+      (!s) || regexp.test s
 
   shuffle: ->
     @sort Math.random
@@ -113,7 +115,16 @@ module.exports = class Query
   
   page: (page_by)->
     @order { page_by }
-    
+
+  form: (ids...)->
+    oo = @find ...ids
+    if oo
+      o = @all._memory[oo.id].form ?= {}
+      o.__proto__ = oo
+      o
+    else
+      oo
+
   find: (ids...)->
     for id in ids when o = @hash[id]
       return o if o
