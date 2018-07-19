@@ -8,8 +8,7 @@ log-wiki
       .swipe
         d-mode.form(v-bind="for_mode" style="white-space: nowrap")
         hr
-        i.mdi.mdi-magnify
-        input(style="width: calc(97% - 2em);" v-model="search" size="30")
+        search(v-model="search")
         hr
         d-toc(v-bind="for_toc" key="2")
     a-potofs(v-bind="for_potofs" key="3" v-if="is_show_potofs")
@@ -36,8 +35,7 @@ log-wiki
         chat(v-for="o in cite_chats" @anker="anker" @focus="focus" :id="o.id" :key="o.id")
       div(v-else)
         c-report.form(handle="footer" key="finder")
-          i.mdi.mdi-magnify
-          input(style="width: calc(97% - 2em);" v-model="search" size="30")
+          search(v-model="search")
           d-mode(v-bind="for_mode")
           d-part(v-bind="for_part")
 
@@ -65,8 +63,7 @@ log-wiki
         c-report.form(v-else handle="footer" key="limitup")
           d-part(v-bind="for_part")
           d-mode(v-bind="for_mode")
-          i.mdi.mdi-magnify
-          input(style="width: calc(97% - 2em);" v-model="search" size="30")
+          search(v-model="search")
 
   c-post(handle="footer")
     bread-crumb

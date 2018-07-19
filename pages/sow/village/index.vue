@@ -55,16 +55,7 @@ div
           btn(as="card.discard"    v-model="order" @toggle="submenu")
             | 破棄役職
             sup(v-if="discard.length") {{ discard.length }}
-        table
-          tbody
-            tr
-              td
-                btn(as="" v-model="search")
-                  | 検索
-              td
-                input(style="width: 97%; " @focus="order = 'name'" v-model="search" size="30")
-
-          
+        search(v-model="search" @focus="order = 'name'")
         sub(style="width: 100%")
           | {{ page_all_contents.all | currency }}村があてはまります。
 

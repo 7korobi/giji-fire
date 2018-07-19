@@ -1,6 +1,13 @@
 firebase = require "firebase"
+RANDOM = require "~/plugins/random"
 { Query, Set, State } = require "~/plugins/memory-record"
 { vuex_value, path, relative_to } = require "~/plugins/struct"
+
+kbd_r = ///
+  \[\[(?:
+    [^\]]|[^\]]\]|\][^\]]
+  )+\]\](?!\])
+///g
 
 edit = require '~/models/editor'
 
@@ -132,15 +139,21 @@ module.exports = (mode)->
       await post @_chats, { _id, write_at }
 
     chat_post: (log)->
-      { _id, show, deco, head, to } = @edit.chat
+      { _id, show, deco, head, to, random } = @edit.chat
+      log.replace kbd_r, ( str )->
+        key = str[2...-2]
+        random[key] ?= RANDOM key, { @book_id }
+        ''
+
       if @is_creating
         potof_id = @potof_id
         write_at = new Date - 0
         _id = [@phase_id, @edit.chat.new_idx(@at_zero)].join('-')
-        await post @_chats, { _id, potof_id, write_at, show, deco, head, to, log }
+        await post @_chats, { _id, potof_id, write_at, show, deco, head, to, log, random }
       else
-        await post @_chats, { _id, show, deco, to, log }
+        await post @_chats, { _id, show, deco, head, to, log, random }
       @create_mode()
+      @edit.chat.random = {}
       @edit.chat.log = ''
 
   watch:

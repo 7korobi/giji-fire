@@ -34,6 +34,7 @@ module.exports = edit =
     to: null
     head: ""
     log: ""
+    random: {}
     new_idx: (zero = 0)->
       Base59.num2str new Date - zero
 

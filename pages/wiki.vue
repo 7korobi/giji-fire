@@ -5,8 +5,7 @@ log-wiki
     .inframe.TITLE
       hr
       .swipe
-        i.mdi.mdi-magnify
-        input(style="width: calc(97% - 2em);" v-model="search" size="30")
+        search(v-model="search")        
     a-potofs(v-bind="for_potofs" key="3" v-if="is_show_potofs")
 
   template(slot="icons")
@@ -35,8 +34,7 @@ log-wiki
     chat(v-for="o in cite_chats" @anker="anker" @focus="focus" :id="o.id" :key="o.id")
   div(v-else)
     c-report.form(handle="footer" key="finder")
-      i.mdi.mdi-magnify
-      input(style="width: 88%; " v-model="search" size="30")
+      search(v-model="search")
     div(v-for="(chats, idx) in page_contents", :key="idx")
       chat(v-for="o in chats" @anker="anker" @focus="focus" :current="chat" :id="o.id", :key="o.id")
     div
@@ -73,9 +71,6 @@ log-wiki
               fcm(:topic="book_id")
               | このページ内での新規投稿を通知
           br
-    c-report.form(handle="footer" key="finder")
-      
-      input(style="width: 95%; " v-model="search" size="30")
 
   c-post(handle="TSAY")
     fire-oauth(style="white-space: nowrap")
