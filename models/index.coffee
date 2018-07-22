@@ -1,4 +1,5 @@
 require "./chr"
+require "./locale"
 require "./potof"
 require "./card"
 

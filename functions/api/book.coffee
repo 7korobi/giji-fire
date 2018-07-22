@@ -2,6 +2,10 @@
 admin = require 'firebase-admin'
 { startGM, deployGM, executionGM, checkGM } = require './game/progress'
 
+require "~/models/index"
+{ Query } = require "~/plugins/memory-record"
+
+
 ref_for = ( mode, type, doc )->
   { _id } = doc
   return unless _id
@@ -14,11 +18,32 @@ ref_for = ( mode, type, doc )->
 
 next_idx = (ref)->
   ref = await ref.orderBy("idx", "desc").limit(1).get()
-  idx = ref?.docs?.idx
-  if -1 < idx
-    idx + 1
+  for o in ref.docs
+    { idx, label, _id } = o.data()
+    if -1 < idx
+      return idx + 1
+    return 0
+  return 0
+
+init_chats = (idx, { book_id, locale_id, tag_id, face_id })->
+  { chr_set_id } = Query.tags.find tag_id
+  job = Query.chr_jobs.where({ chr_set_id, face_id }).list[0]
+  npc = Query.chr_npcs.where({ chr_set_id, face_id }).list[0]
+  locale = Query.locales.find locale_id
+  head = "#{job.job} #{job.face.name}"
+
+  write_at = new Date - 0
+
+  a = []
+  if 3 < idx
+    day = 3
   else
-    0
+    day = idx
+  if locale.intro[day]
+    a.push { _id: "#{book_id}-#{idx}-S-INTRO", deco: 'giji', show: 'post', log: locale.intro[day], write_at: write_at - 1 }
+  if npc["say_#{idx}"]
+    a.push { _id: "#{book_id}-#{idx}-S-NPC",   deco: 'giji', show: 'talk', head, log: npc["say_#{idx}"], write_at }
+  a
 
 
 module.exports =
@@ -49,16 +74,17 @@ module.exports =
                 あたらしい参加者がいます。
               """
 
-      switch mode
-        when 'wiki'
-          Object.assign message,
-            webpush:
-              headers:
-                TTL: '60'
-              notification:
-                click_action: 'https://giji.f5.si/wiki?idx=' + book_id
+      if message
+        switch mode
+          when 'wiki'
+            Object.assign message,
+              webpush:
+                headers:
+                  TTL: '60'
+                notification:
+                  click_action: 'https://giji.f5.si/wiki?idx=' + book_id
 
-      await admin.messaging().send message
+        await admin.messaging().send message
 
   book_deleted:
     firestore.document('{mode}/{book_id}/{type}/{id}').onDelete (snap, { params })->
@@ -76,15 +102,33 @@ module.exports =
 
   game_updated:
     firestore.document('game/{book_id}').onUpdate ({ before, after }, { params })->
+      { locale_id } = after.data()
       { book_id } = params
       idx = await next_idx admin.firestore().collection("game/#{book_id}/parts")
       _id = "#{book_id}-#{idx}"
+      write_at = new Date - 0
       label =
         switch idx
           when 0
             "プロローグ"
           else
             "#{idx}日目"
-      write_at = new Date - 0
-      admin.firestore().doc("game/#{book_id}/parts/#{_id}").set { _id, idx, label, write_at }
+      b = admin.firestore().batch()
+      o = { _id, idx, label, write_at }
+      b.set admin.firestore().doc("game/#{book_id}/parts/#{_id}"), o
+
+      phases = [
+        { _id: "#{_id}-S", update: false, guide: true, handle: 'SSAY',  label: '会話' }
+        { _id: "#{_id}-T", update: true,  guide: true, handle: 'TITLE', label: '黒地' }
+      ]
+      for o in phases
+        b.set admin.firestore().doc("game/#{book_id}/phases/#{o._id}"), o
+
+      npc_ref  = await admin.firestore().doc("game/#{book_id}/potofs/#{book_id}-NPC").get()
+      { tag_id, face_id } = npc_ref.data()
+
+      for o in init_chats idx, { book_id, locale_id, tag_id, face_id }
+        b.set admin.firestore().doc("game/#{book_id}/chats/#{o._id}"), o
+
+      await b.commit()
       null
