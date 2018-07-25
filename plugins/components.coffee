@@ -18,14 +18,13 @@ Object.assign Marked.options.renderer,
       else
         href
 
-  kbd: (text)->
+  kbd: (text, idx)->
     { m, context } = @options
     attrs = {}
     if context?.random?
-      attrs.title = text
-      text = context.random[text] ? '¿🎲¿'
+      { title, text } = context.random[idx] ? { title: text, text: '🎲' }
+      attrs.title = title
     m 'kbd', { attrs }, text
-    
 
   cite_exist: (cite)->
     Query.chats.find(cite)

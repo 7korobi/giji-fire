@@ -622,6 +622,7 @@ palette_single($bgTheme, $backT, key)
         color: $penHi
         background-color: $bgHi
 
+    .ban
     abbr
       body &.{theme}
       .{theme} &
@@ -641,6 +642,7 @@ palette_single($bgTheme, $backT, key)
         text-decoration-color: $focus
 
     del
+    .warn
     .name
     .date
       body &.{theme}
@@ -725,16 +727,12 @@ palette_single($bgTheme, $backT, key)
       .{theme}.focus &
         border-color: $focus
 
-    input
-    select
-    button
-    textarea
-    .btn
     .name
+    .btn
     [href]
       body &.{theme}
       .{theme} &
-        sup, sub, abbr
+        sup, sub
           background-color: $emboss
           color: $penEmb
 

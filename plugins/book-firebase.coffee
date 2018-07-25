@@ -140,9 +140,12 @@ module.exports = (mode)->
 
     chat_post: (log)->
       { _id, show, deco, head, to, random } = @edit.chat
+
+      idx = 0
       log.replace kbd_r, ( str )->
         key = str[2...-2]
-        random[key] ?= RANDOM key, { @book_id }
+        random[idx] ?= RANDOM key, { @book_id }
+        idx++
         ''
 
       if @is_creating
@@ -153,7 +156,7 @@ module.exports = (mode)->
       else
         await post @_chats, { _id, show, deco, head, to, log, random }
       @create_mode()
-      @edit.chat.random = {}
+      @edit.chat.random = []
       @edit.chat.log = ''
 
   watch:

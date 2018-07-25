@@ -2,8 +2,9 @@
 <template lang="pug">
 log-wiki
   template(slot="summary")
-    d-mentions.inframe.mentions(v-bind="for_mentions" @anker="anker" key="1" v-if="is_show_mention")
-    .inframe.TITLE(v-if="is_show_toc")
+    d-mentions.inframe.mentions(v-bind="for_mentions" @anker="anker" key="1" v-if="is_show.mention")
+    d-side.inframe(v-bind="for_side" @anker="anker" key="2" v-if="is_show.side")
+    .inframe.TITLE(v-if="is_show.toc")
       hr
       .swipe
         d-mode.form(v-bind="for_mode" style="white-space: nowrap")
@@ -11,13 +12,15 @@ log-wiki
         search(v-model="search")
         hr
         d-toc(v-bind="for_toc" key="2")
-    a-potofs(v-bind="for_potofs" key="3" v-if="is_show_potofs")
+    a-potofs(v-bind="for_potofs" key="3" v-if="is_show.potofs")
 
   template(slot="icons")
     nuxt-link.item.active(replace, :to="back_url")
       i.mdi.mdi-backspace(v-if="a.length")
       i.mdi.mdi-map-marker(v-else)
-    check.item(v-model="shows" as="mentions")
+    check.item(v-model="shows" as="side")
+      i.mdi.mdi-notebook
+    check.item(v-model="shows" as="mention")
       i.mdi.mdi-pin
     check.item(v-model="shows" as="toc" v-if="! a.length")
       i.mdi.mdi-filmstrip
@@ -106,12 +109,11 @@ module.exports =
   computed: {
     ...vuex_value "menu.potofs", ['hide_ids']
     ...vuex_value "menu.side", ["shows"]
-    is_show_mention: ->
-      "mentions" in @shows
-    is_show_toc: ->
-      "toc"   in @shows && ! @a.length
-    is_show_potofs: ->
-      "potof" in @shows
+    is_show: ->
+      side:     "side"     in @shows && !( @mode in ["memo", "memos"] )
+      mention:  "mention"  in @shows
+      toc:      "toc"      in @shows && ! @a.length
+      potofs:   "potof"    in @shows
 
     page_idx: ->
       @page_all_contents?.page_idx?(@chat) ? 0

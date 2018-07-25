@@ -6,7 +6,7 @@ log-wiki
       hr
       .swipe
         search(v-model="search")        
-    a-potofs(v-bind="for_potofs" key="3" v-if="is_show_potofs")
+    a-potofs(v-bind="for_potofs" key="3" v-if="is_show.potofs")
 
   template(slot="icons")
     .item
@@ -79,33 +79,25 @@ log-wiki
 
   chat(v-if="user && edit.potof.face_id" :id="edit.chat._id" :current="chat" @check="check_post")
   c-report(v-if="user && edit.potof.face_id" :handle="edit.chat.phase.handle")
-    span
-      btn.large(v-model="edit.chat.show" as="post")
-        i.mdi.mdi-file-document-box
-      btn.large(v-model="edit.chat.show" as="talk") 
-        i.mdi.mdi-comment-text
-      btn.large(v-model="edit.chat.show" as="report")
-        i.mdi.mdi-note-text
-    | &nbsp;
-    span
-      btn.large(v-model="edit.chat.head" as="")
-        i.mdi.mdi-arrow-expand-up
-      btn.large(v-model="edit.chat.head" :as="edit.potof.head") 
-        i.mdi.mdi-arrow-collapse-up
-    | &nbsp;
-    span
-      btn.large(v-model="edit.chat.deco" as="giji")
-        i.mdi.mdi-file-document
-      btn.large(v-model="edit.chat.deco" as="dagre")
-        i.mdi.mdi-file-image
-    span.pull-right(v-if="is_creating")
-      btn(v-for="phase in phases" v-model="edit.phase.handle" :class="phase.handle" :key="phase.handle" :as="phase.handle") {{ phase.label }}
-    span.pull-right(v-if="is_replacing")
-      a.btn.active(@click="create_mode")
-        i.mdi.mdi-open-in-new
-      a.btn.active(@click="remove")
-        i.mdi.mdi-comment-remove-outline
     text-editor(v-model="edit.chat.log" v-bind="for_editor" @icon="icon_change" @drop_image="image_post" @submit="chat_post")
+      select(v-if="is_creating" v-model="edit.phase.handle" key="handle")
+        option(v-for="phase in phases" :value="phase.handle" :class="phase.handle" :key="phase.handle") ∞ {{ phase.label }}
+
+      select(v-model="edit.chat.show" key="show")
+        option(value="post")   描写
+        option(value="talk")   会話
+        option(value="report") 看板 
+      select(v-model="edit.chat.head" key="head")
+        option(value="") 無地
+        option(:value="edit.potof.head") 記名
+      select(v-model="edit.chat.deco" key="deco")
+        option(value="giji")  文字
+        option(value="dagre") 作図
+      span.pull-right(v-if="is_replacing")
+        a.btn.active(@click="create_mode")
+          i.mdi.mdi-open-in-new
+        a.btn.active(@click="remove")
+          i.mdi.mdi-comment-remove-outline
 
   c-report(handle="footer" deco="center")
     bread-crumb
@@ -135,10 +127,9 @@ module.exports =
   computed: {
     ...vuex_value "menu.potofs", ['hide_ids']
     ...vuex_value "menu.side", ["shows"]
-    is_show_magnify: ->
-      "magnify" in @shows
-    is_show_potofs: ->
-      "potof" in @shows
+    is_show: ->
+      magnify: "magnify" in @shows
+      potofs:  "potof"   in @shows
 
     part_id:  -> @book_id + '-top'
 

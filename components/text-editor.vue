@@ -6,48 +6,45 @@ span
 <template lang="pug">
 .text-editor(@drop="drop")
   textarea(ref="input" :value="value" :rows="areaRow" :placeholder="placeholder" @input="input" @focus="focus" @blur="blur")
-  kbd
-    i.mdi(:class="mark")
-    a
-      | {{size}}/
-      sub {{maxSize}}字
-      | {{row}}/
-      sub {{maxRow}}行
-
-  span.pull-right
-    a.btn(@click="submit") 投稿
-
-  span.pull-right(v-if="'giji' == deco")
-    a.btn(@click="nDm")
-      i.mdi.mdi-dice-3
-
-    label.btn
-      input.btn(type="file" accept="image/*" @change="upload_btn" style="display: none")
-      i.mdi.mdi-image
-
-  span.pull-right(v-if="'giji' == deco")
-    a.btn(@click='table')
-      i.mdi.mdi-table
-    a.btn(@click='cnv_kana')
-      i.mdi.mdi-gender-male-female
-    a.btn(@click='codeblock')
-      i.mdi.mdi-code-braces
-    a.btn(@click='blockquote')
-      i.mdi.mdi-format-indent-increase
-    a.btn(@click='ul')
-      i.mdi.mdi-format-list-bulleted
-    a.btn(@click='ol')
-      i.mdi.mdi-format-list-numbers
-
-  span.pull-right(v-if="'giji' == deco")
-    a.btn(@click='h2')
-      i.mdi.mdi-format-header-2
-    a.btn(@click='h3')
-      i.mdi.mdi-format-header-3
-    a.btn(@click='h4')
-      i.mdi.mdi-format-header-4
+  div.form
+    button(@click="submit" :class="{ ban, warn }")
+      i.mdi(:class="mark")
+      span
+        | {{size}}/
+        sub {{maxSize}}字
+        | {{row}}/
+        sub {{maxRow}}行
+    slot
 
   div
+    span(v-if="'giji' == deco")
+      a.btn(@click='h2')
+        i.mdi.mdi-format-header-2
+      a.btn(@click='h3')
+        i.mdi.mdi-format-header-3
+      a.btn(@click='h4')
+        i.mdi.mdi-format-header-4
+
+    span(v-if="'giji' == deco")
+      a.btn(@click="nDm")
+        i.mdi.mdi-dice-3
+
+      label.btn
+        input.btn(type="file" accept="image/*" @change="upload_btn" style="display: none")
+        i.mdi.mdi-image
+
+    span(v-if="'giji' == deco")
+      a.btn(@click='codeblock')
+        i.mdi.mdi-code-braces
+      a.btn(@click='blockquote')
+        i.mdi.mdi-format-indent-increase
+      a.btn(@click='ul')
+        i.mdi.mdi-format-list-bulleted
+      a.btn(@click='ol')
+        i.mdi.mdi-format-list-numbers
+      a.btn(@click='table')
+        i.mdi.mdi-table
+
     span(v-if="'giji' == deco")
       a.btn(@click='left')
         i.mdi.mdi-format-align-left
@@ -57,37 +54,50 @@ span
         i.mdi.mdi-format-align-right
 
     span(v-if="'giji' == deco")
-      a.btn(@click='footnote')
-        i.mdi.mdi-tag-text-outline
       a.btn(@click='hr')
         i.mdi.mdi-format-page-break
+      a.btn(@click='footnote')
+        i.mdi.mdi-tag-text-outline
       a.btn(@click='anker')
         i.mdi.mdi-link-variant
+
+    span(v-if="'giji' == deco")
+      a.btn(@click='cnv_kana') あア
+      a.btn(@click='set_voice_none') あ
+      a.btn(@click='set_voice_full') あ゙
+      a.btn(@click='set_voice_half') あ゚
+
 
     span(v-if="'giji' == deco")
       a.btn(@click='sup')
         i.mdi.mdi-format-superscript
       a.btn(@click='sub')
         i.mdi.mdi-format-subscript
-      a.btn(@click='strong')
-        i.mdi.mdi-source-commit-end-local
-      a.btn(@click='ruby')
-        i.mdi.mdi-source-commit-end
-      a.btn(@click='del')
-        i.mdi.mdi-flip-to-back
-      a.btn(@click='ins')
-        i.mdi.mdi-format-underline
-      a.btn(@click='abbr')
-        i.mdi.mdi-marker
       a.btn(@click='s')
         i.mdi.mdi-format-strikethrough-variant
-      a.btn(@click='code')
-        i.mdi.mdi-code-braces
+      a.btn(@click='del')
+        del あ
+      a.btn(@click='ins')
+        ins あ
+      a.btn(@click='abbr')
+        abbr あ
+      a.btn(@click='strong')
+        strong あ
+      a.btn(@click='ruby')
+        ruby あ
+          rt ○○
 
 </template>
 
 <script lang="coffee">
 _ = require "lodash"
+
+voice_chrs   = "がぎぐげござじずぜぞだぢづでどばびぶべぼぱぴぷぺぽゔゞガギグゲゴザジズゼゾダヂヅデドバビブベボパピプペポヴヷヸヹヺヾ"
+devoice_chrs = "かきくけこさしすせそたちつてとはひふへほはひふへほうゝカキクケコサシスセソタチツテトハヒフヘホハヒフヘホウワヰヱヲヽ"
+devoice = {}
+for voice_chr, idx in voice_chrs
+  devoice_chr = devoice_chrs[idx]
+  devoice[voice_chr] = devoice_chr
 
 caret = (cb)-> (...args)->
   { input } = @$refs
@@ -221,9 +231,35 @@ module.exports =
 
       strong: caret (hd, text, tl)-> """#{hd}**#{text}**#{tl}"""
       abbr:   caret (hd, text, tl)-> """#{hd}==#{text}==#{tl}"""
-      code:   caret (hd, text, tl)-> """#{hd}`#{text}`#{tl}"""
+      code:   caret (hd, text, tl)-> """#{hd}``#{text}``#{tl}"""
 
       footnote:   caret (hd, text, tl)-> """#{hd}^[#{text}]#{tl}"""
+
+      set_voice_none:   caret (hd, text, tl)->
+        text = text.replace /([\u3041-\u3096\u309d\309f\u30a1-\u30fa\u30fd\u30fe\u30ff])|([\u3099\u309a])/g, (match, chr, cut)->
+          return "" if cut
+          chr = devoice[chr] ? chr
+          return chr
+        """#{hd}#{text}#{tl}"""
+
+      set_voice_half:   caret (hd, text, tl)->
+        text = text.replace /([\u3041-\u3096\u309d\309f\u30a1-\u30fa\u30fd\u30fe\u30ff])|([\u3099\u309a])/g, (match, chr, cut)->
+          return "" if cut
+          chr = devoice[chr] ? chr
+          return chr + "\u309a"
+        text = text.replace /([ハヒフヘホ])[\u309a]/g, (match, chr)->
+          return String.fromCharCode chr.charCodeAt(0) + 2
+        """#{hd}#{text}#{tl}"""
+
+      set_voice_full:   caret (hd, text, tl)->
+        text = text.replace /([\u3041-\u3096\u309d\309f\u30a1-\u30fa\u30fd\u30fe\u30ff])|([\u3099\u309a])/g, (match, chr, cut)->
+          return "" if cut
+          chr = devoice[chr] ? chr
+          return chr + "\u3099"
+        text = text.replace /([カキクケコサシスセソタチツテトハヒフヘホ])[\u309a]/g, (match, chr)->
+          return String.fromCharCode chr.charCodeAt(0) + 1
+        """#{hd}#{text}#{tl}"""
+
       cnv_kana:   caret (hd, text, tl)->
         # ひらがなをカタカナに、カタカナをひらがなに
         text = text.replace /([\u3041-\u3096])|([\u30a1-\u30f6])/g, (match, hira, kata)->

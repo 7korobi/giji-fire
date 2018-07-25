@@ -119,7 +119,7 @@ div
     div(v-for="(villages, idx) in page_contents", :key="idx")
       c-report(handle="MAKER", v-for="o in villages", :write_at="o.write_at", :id="o._id", :key="o._id")
         .name
-          sup.pull-right {{ o.sow_auth_id }}
+          sup.pull-right {{ o.sow_auth_id | decode }}
           nuxt-link(:to="book_url(o.id, 'top', 'full')") {{ o.name }}
         .cards
           table.btns.card(style="width: 33%")
