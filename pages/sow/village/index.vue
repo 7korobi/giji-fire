@@ -1,9 +1,10 @@
 <template lang="pug">
 div
-  div
+  no-ssr
     transition-group(name="list" tag="div")
       c-post(handle="footer" key="breadcrumb")
         bread-crumb
+        
       c-post.form(handle="btns" key="form")
         span
           btn(as="" @input="reset()" value="order")
