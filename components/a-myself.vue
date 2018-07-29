@@ -37,7 +37,7 @@ div(v-if="self")
       p(v-if="o.help" v-html="o.help")
 </template>
 
-<style lang="stylus" scoped>
+<style lang="sass" scoped>
 </style>
 
 <script lang="coffee">

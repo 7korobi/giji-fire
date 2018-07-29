@@ -53,5 +53,5 @@ module.exports =
       @is_open = false
 </script>
 
-<style lang="stylus">
+<style lang="sass">
 </style>

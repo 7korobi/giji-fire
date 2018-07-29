@@ -19,7 +19,7 @@ div(v-if="chat")
         tr-intro-chat(v-for="o in mentions" v-on="$listeners", :key="o.id", :id="o.id", :handle="o.phase.handle", :deco="o.deco", :log="o.log")
 </template>
 
-<style lang="stylus" scoped>
+<style lang="sass" scoped>
 
 time
   white-space: nowrap

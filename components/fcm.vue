@@ -3,7 +3,7 @@ check.item(v-model="fcm_topics" :as="topic")
   i.mdi.mdi-bell-ring(v-if="enable")
   i.mdi.mdi-bell-off(v-if="! enable")
 </template>
-<style lang="stylus" scoped>
+<style lang="sass" scoped>
 </style>
 <script lang="coffee">
 { vuex_value } = require '~/plugins/struct'

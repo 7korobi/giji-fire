@@ -30,14 +30,14 @@ new Rule("chat").schema ->
       all.where(_id: ids).sort("write_at", "desc")
 
     now: (...args)->
-      memo:   (part_id)-> all.memo(  ...args, part_id).reduce.last ? blank
-      memos:  (part_id)-> all.memo(  ...args, part_id).reduce.list ? blank
-      full:   (part_id)-> all.full(  ...args, part_id).reduce.list ? blank
-      normal: (part_id)-> all.normal(...args, part_id).reduce.list ? blank
-      solo:   (part_id)-> all.solo(  ...args, part_id).reduce.list ? blank
-      extra:  (part_id)-> all.extra( ...args, part_id).reduce.list ? blank
-      rest:   (part_id)-> all.rest(  ...args, part_id).reduce.list ? blank
-      wiki:   (part_id)-> all.wiki(  ...args, part_id).reduce.list ? blank
+      memo:   (part_id)-> all.memo(  ...args, part_id).reduce?.last ? blank
+      memos:  (part_id)-> all.memo(  ...args, part_id).reduce?.list ? blank
+      full:   (part_id)-> all.full(  ...args, part_id).reduce?.list ? blank
+      normal: (part_id)-> all.normal(...args, part_id).reduce?.list ? blank
+      solo:   (part_id)-> all.solo(  ...args, part_id).reduce?.list ? blank
+      extra:  (part_id)-> all.extra( ...args, part_id).reduce?.list ? blank
+      rest:   (part_id)-> all.rest(  ...args, part_id).reduce?.list ? blank
+      wiki:   (part_id)-> all.wiki(  ...args, part_id).reduce?.list ? blank
 
   anker =
     belongs_to: 'chats'
@@ -46,11 +46,12 @@ new Rule("chat").schema ->
   @deploy ->
     @mention_ids ?= []
     @q =
+      group: [@potof_id, @phase_id].join('+')
       search_words: @log
 
   class @model extends @model
     @map_reduce: (o, emit)->
-      emit "last", [o.potof_id, o.phase_id].join('+'),
+      emit "last", o.q.group,
         max: o.write_at
 
       emit "say",
@@ -73,6 +74,10 @@ new Rule("chat").schema ->
           all: o.log.length
           max: o.write_at + 1
           min: o.write_at
+
+      if o.phase_id.match(/-.M?$/)
+        emit "side", o.phase_id, o.potof_id,
+          max: o.write_at + 1
 
       for mention_id in o.mention_ids
         emit "mention", mention_id,

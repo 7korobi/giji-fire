@@ -54,7 +54,7 @@ table(v-if="show")
           | {{ page_idx + 1 }}
 </template>
 
-<style lang="stylus" scoped>
+<style lang="sass" scoped>
 .page
   text-align: center
 

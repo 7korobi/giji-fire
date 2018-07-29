@@ -46,6 +46,6 @@ module.exports =
     slot
 </template>
 
-<style lang="stylus">
+<style lang="sass">
 </style>
 

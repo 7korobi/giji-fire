@@ -5,7 +5,7 @@ div.form
   label.mdi.mdi-eraser(v-if="value !== ''" @click="clear")
 </template>
 
-<style lang="stylus" scoped>
+<style lang="sass" scoped>
 .form
   width: 98%
   display: flex

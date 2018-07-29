@@ -62,7 +62,7 @@ module.exports =
     
 </script>
 
-<style lang="stylus">
+<style lang="sass">
 </style>
 
 

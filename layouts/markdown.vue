@@ -32,6 +32,6 @@ module.exports =
               nuxt
           a-footer
 </template>
-<style lang="stylus" scoped>
+<style lang="sass" scoped>
 </style>
 

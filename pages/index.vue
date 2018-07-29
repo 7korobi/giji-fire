@@ -77,7 +77,7 @@ module.exports =
       Query.sow_villages.progress.list
 
 </script>
-<style lang="stylus" scoped>
+<style lang="sass" scoped>
 .card
   padding: 10px 0 10px 20px
 </style>

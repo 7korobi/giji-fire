@@ -95,7 +95,7 @@ module.exports =
 
 </script>
 
-<style lang="stylus" scoped>
+<style lang="sass" scoped>
 .oauth_icon
   padding:    0 .5rem 0 .5rem
   max-width:  2.50rem

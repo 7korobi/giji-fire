@@ -30,6 +30,9 @@ sow = (log)->
 
   .replace /// ((\/\*) ([\s\S]*?) (\*\/|$)) ///g, (human)->
     """<del>#{human}</del>"""
+  
+  .replace ///<strong>([^<]*?)</strong>///g, (tag, item, idx, src)->
+    """<label>#{item}</label>"""
 
   .replace ///[a-z]+://[^\s<]+[^<.,:;"')\]\s]///g, (url, idx, src)->
     return url if '<a href="' == src[idx - 9 ... idx].toLowerCase()
@@ -55,5 +58,5 @@ module.exports =
   computed: {}
 </script>
 
-<style lang="stylus" scoped>
+<style lang="sass" scoped>
 </style>

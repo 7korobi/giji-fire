@@ -12,6 +12,8 @@ module.exports =
       { @part }
     for_mentions: ->
       { @chat_id, @page_idx }
+    for_side: ->
+      { @side_contents }
     for_editor: ->
       deco = @edit.chat.deco
       { head, log, potof } = @edit.chat

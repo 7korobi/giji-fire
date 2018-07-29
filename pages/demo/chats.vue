@@ -117,7 +117,7 @@ no-ssr
           nuxt-link(to="/demo") 開発者用ページ
 </template>
 
-<style lang="stylus" scoped>
+<style lang="sass" scoped>
 </style>
 
 <script lang="coffee">

@@ -1,14 +1,12 @@
 Vue = require "vue"
-Marked = require 'vue-markup/lib/marked.vue'
-Dagre = require 'vue-markup/lib/dagre.vue'
+Marked = require('vue-markup/src/marked.vue').default
+Dagre  = require('vue-markup/src/dagre.vue').default
 
 { Query } = require "~/plugins/memory-record"
 { url } = require "~/config/live.yml"
 
 if window?
   Vue = Vue.default
-Marked = Marked.default
-Dagre = Dagre.default
 
 Object.assign Marked.options.renderer,
   url: (href)->

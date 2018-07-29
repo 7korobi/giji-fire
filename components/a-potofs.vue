@@ -40,6 +40,7 @@
             btn(v-model="sort" as="role_labels", @toggle="reverse") 役割
           th
             btn(v-model="sort" as="text", @toggle="reverse") 補足
+          th メモ
           th
 
       transition-group.potofs.fine.tlist(name="list" tag="tbody")
@@ -55,7 +56,7 @@
           td.r(:class="o.say_handle(part.id)") {{ o.say(part.id).all    | currency("字") }}
           th.r(:class="o.say_handle(part.id)") {{ o.say(part.id) | timerange }}
           th.c(:class="o.say_handle(part.id)")
-            abbr(:class="o.say_handle(part.id)") {{ o.sign }}
+            abbr(:class="o.say_handle(part.id)") {{ o.sign | decode }}
 
           th.c(:class="o.winner_id")
             abbr(v-if="o.request", :class="o.winner_id") {{ o.request.role.label }}
@@ -63,6 +64,8 @@
           td.c(:class="o.winner_id") {{ o.winner && o.winner.label }}
           td.c(:class="o.winner_id") {{ o.role_labels.join("、") }}
           td.l(:class="o.winner_id") {{ o.text }}
+          td.mention(:class="o.say_handle(part.id)")
+            component(v-bind="memo(o, part.id)")
           td.last
   transition-group.swipe.list(v-if="part" name="list" tag="div")
     table.fine(key="ids")
@@ -122,6 +125,10 @@ module.exports =
   }
 
   methods:
+    memo: (o, part_id)->
+      { log, deco } = context = o.side(part_id).max_is
+      { context, is: "g-sow", class: deco, value: log }
+
     potof_ids: (f)->
       @potofs
       .filter f
@@ -140,7 +147,12 @@ module.exports =
           @order = "asc"
 
 </script>
-<style lang="stylus" scoped>
+<style lang="sass" scoped>
+.mention
+  overflow: hidden
+  white-space: nowrap
+  text-overflow: ellipsis
+
 .potofs
   th, td
     border-radius: 0

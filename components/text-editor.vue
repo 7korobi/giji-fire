@@ -1,11 +1,16 @@
-<style lang="stylus" scoped>
+<style lang="sass" scoped>
 span
   margin: 2px 6px
+
+.mention
+  overflow: hidden
+  white-space: nowrap
+  text-overflow: ellipsis
 </style>
 
 <template lang="pug">
 .text-editor(@drop="drop")
-  textarea(ref="input" :value="value" :rows="areaRow" :placeholder="placeholder" @input="input" @focus="focus" @blur="blur")
+  textarea(ref="input" :value="value" :rows="areaRow" :placeholder="placeholder" @input="input" @focus="focus" @blur="blur" @keydown.ctrl.90="edit_history_back" @keydown.ctrl.89="edit_history_forward")
   div.form
     button(@click="submit" :class="{ ban, warn }")
       i.mdi(:class="mark")
@@ -15,8 +20,12 @@ span
         | {{row}}/
         sub {{maxRow}}行
     slot
-
+    
   div
+    span
+      check(v-model="shows" as="history")
+        i.mdi.mdi-history
+
     span(v-if="'giji' == deco")
       a.btn(@click='h2')
         i.mdi.mdi-format-header-2
@@ -30,7 +39,7 @@ span
         i.mdi.mdi-dice-3
 
       label.btn
-        input.btn(type="file" accept="image/*" @change="upload_btn" style="display: none")
+        input.btn(type="file" :accept="accept" @change="upload_btn" style="display: none")
         i.mdi.mdi-image
 
     span(v-if="'giji' == deco")
@@ -86,6 +95,9 @@ span
       a.btn(@click='ruby')
         ruby あ
           rt ○○
+  div(v-if="is_show.history")
+    hr
+    p.mention.fine(v-for="s in edit_history" @click="set_value(s)") {{ s }}
 
 </template>
 
@@ -106,246 +118,290 @@ caret = (cb)-> (...args)->
   value = @value
   after = cb value[...st], value[st...ed], value[ed...], ...args
   size = after.length - value.length
-  @$emit 'input', after
+  @set_value after
   @$nextTick ->
     input.selectionStart = input.selectionEnd = ed + size
+    input.focus()
 
 module.exports =
-  default:
-    props:
-      value:
-        type: String
-        required: true
-      deco:
-        type: String
-      rows:
-        type: Number
-        default: 0
-      maxSize:
-        type: Number
-        default: 100
-      maxRow:
-        type: Number
-        default: 1
-      minRow:
-        type: Number
-        default: 1
-      placeholder:
-        type: String
-        default: ""
-      is_ban:
-        type: Boolean
-        default: false
-      is_warn:
-        type: Boolean
-        default: false
+  props:
+    value:
+      type: String
+      required: true
+    deco:
+      type: String
+    rows:
+      type: Number
+      default: 0
+    maxSize:
+      type: Number
+      default: 100
+    maxRow:
+      type: Number
+      default: 1
+    minRow:
+      type: Number
+      default: 1
+    placeholder:
+      type: String
+      default: ""
+    is_ban:
+      type: Boolean
+      default: false
+    is_warn:
+      type: Boolean
+      default: false
 
-    data: ->
-      caret: {}
+  mixins: [
+    require("~/plugins/browser-store")
+      local:
+        edit_history: [""]
+  ]
 
-    methods:
-      blockquote:  caret (hd, text, tl)->
-        text = text
-        .split /\n/g
-        .map (line)-> "> #{line}"
-        .join "\n"
-        """#{hd}#{text}
-        #{tl}"""
+  data: ->
+    forward_history: []
+    shows: []
+    accept: [
+      "image/png"
+      "image/jpeg"
+      "image/gif"
+    ]
 
-      anker: caret (hd, text, tl)->
-        """[#{text}]: <#> "#{text}"
-        #{hd}[#{text}]#{tl}"""
-      ruby: caret (hd, text, tl)->
-        """*[#{text}]: ○
-        #{hd}#{text}#{tl}"""
-      hr: caret (hd, text, tl)->
-        """#{hd}
-        * * *
-        #{text}#{tl}"""
+  methods:
+    blockquote:  caret (hd, text, tl)->
+      text = text
+      .split /\n/g
+      .map (line)-> "> #{line}"
+      .join "\n"
+      """#{hd}#{text}
+      #{tl}"""
 
-      codeblock: caret (hd, text, tl)->
-        """#{hd}
-        ```
-        #{text}
-        ```
-        #{tl}"""
+    anker: caret (hd, text, tl)->
+      """[#{text}]: <#> "#{text}"
+      #{hd}[#{text}]#{tl}"""
+    ruby: caret (hd, text, tl)->
+      """*[#{text}]: ○
+      #{hd}#{text}#{tl}"""
+    hr: caret (hd, text, tl)->
+      """#{hd}
+      * * *
+      #{text}#{tl}"""
 
-      left: caret (hd, text, tl)->
-        """#{hd}
-        ::: left
-        #{text}
-        :::
-        #{tl}"""
+    codeblock: caret (hd, text, tl)->
+      """#{hd}
+      ```
+      #{text}
+      ```
+      #{tl}"""
 
-      center: caret (hd, text, tl)->
-        """#{hd}
-        ::: center
-        #{text}
-        :::
-        #{tl}"""
+    left: caret (hd, text, tl)->
+      """#{hd}
+      ::: left
+      #{text}
+      :::
+      #{tl}"""
 
-      right: caret (hd, text, tl)->
-        """#{hd}
-        ::: right
-        #{text}
-        :::
-        #{tl}"""
+    center: caret (hd, text, tl)->
+      """#{hd}
+      ::: center
+      #{text}
+      :::
+      #{tl}"""
 
-      table: caret (hd, text, tl)->
-        """#{hd}
+    right: caret (hd, text, tl)->
+      """#{hd}
+      ::: right
+      #{text}
+      :::
+      #{tl}"""
 
-        |     |     |
-        |:--- |:--- |
-        |#{text}||
-        #{tl}
-        """
+    table: caret (hd, text, tl)->
+      """#{hd}
 
-      text: caret (hd, _, tl, text)->
-        """#{hd}
-        * * *
-        #{text}
-        * * *
-        #{tl}"""
+      |     |     |
+      |:--- |:--- |
+      |#{text}||
+      #{tl}
+      """
 
-      h1: caret (hd, text, tl)->
-        """#{hd}#{text}
-        =====
-        #{tl}"""
-      h2: caret (hd, text, tl)->
-        """#{hd}#{text}
-        -----
-        #{tl}"""
-      h3: caret (hd, text, tl)->  """#{hd}### #{text}#{tl}"""
-      h4: caret (hd, text, tl)->  """#{hd}#### #{text}#{tl}"""
-      h5: caret (hd, text, tl)->  """#{hd}##### #{text}#{tl}"""
-      h6: caret (hd, text, tl)->  """#{hd}###### #{text}#{tl}"""
+    text: caret (hd, _, tl, text)->
+      """#{hd}
+      * * *
+      #{text}
+      * * *
+      #{tl}"""
 
-      sup: caret (hd, text, tl)-> """#{hd}^#{text}^#{tl}"""
-      sub: caret (hd, text, tl)-> """#{hd}~#{text}~#{tl}"""
-      del: caret (hd, text, tl)-> """#{hd}~~#{text}~~#{tl}"""
-      ins: caret (hd, text, tl)-> """#{hd}++#{text}++#{tl}"""
-      s:   caret (hd, text, tl)-> """#{hd}--#{text}--#{tl}"""
+    h1: caret (hd, text, tl)->
+      """#{hd}#{text}
+      =====
+      #{tl}"""
+    h2: caret (hd, text, tl)->
+      """#{hd}#{text}
+      -----
+      #{tl}"""
+    h3: caret (hd, text, tl)->  """#{hd}### #{text}#{tl}"""
+    h4: caret (hd, text, tl)->  """#{hd}#### #{text}#{tl}"""
+    h5: caret (hd, text, tl)->  """#{hd}##### #{text}#{tl}"""
+    h6: caret (hd, text, tl)->  """#{hd}###### #{text}#{tl}"""
 
-      ul: caret (hd, text, tl)->  """#{hd}* #{text}#{tl}"""
-      ol: caret (hd, text, tl)->  """#{hd}1. #{text}#{tl}"""
+    sup: caret (hd, text, tl)-> """#{hd}^#{text}^#{tl}"""
+    sub: caret (hd, text, tl)-> """#{hd}~#{text}~#{tl}"""
+    del: caret (hd, text, tl)-> """#{hd}~~#{text}~~#{tl}"""
+    ins: caret (hd, text, tl)-> """#{hd}++#{text}++#{tl}"""
+    s:   caret (hd, text, tl)-> """#{hd}--#{text}--#{tl}"""
 
-      strong: caret (hd, text, tl)-> """#{hd}**#{text}**#{tl}"""
-      abbr:   caret (hd, text, tl)-> """#{hd}==#{text}==#{tl}"""
-      code:   caret (hd, text, tl)-> """#{hd}``#{text}``#{tl}"""
+    ul: caret (hd, text, tl)->  """#{hd}* #{text}#{tl}"""
+    ol: caret (hd, text, tl)->  """#{hd}1. #{text}#{tl}"""
 
-      footnote:   caret (hd, text, tl)-> """#{hd}^[#{text}]#{tl}"""
+    strong: caret (hd, text, tl)-> """#{hd}**#{text}**#{tl}"""
+    abbr:   caret (hd, text, tl)-> """#{hd}==#{text}==#{tl}"""
+    code:   caret (hd, text, tl)-> """#{hd}``#{text}``#{tl}"""
 
-      set_voice_none:   caret (hd, text, tl)->
-        text = text.replace /([\u3041-\u3096\u309d\309f\u30a1-\u30fa\u30fd\u30fe\u30ff])|([\u3099\u309a])/g, (match, chr, cut)->
-          return "" if cut
-          chr = devoice[chr] ? chr
-          return chr
-        """#{hd}#{text}#{tl}"""
+    footnote:   caret (hd, text, tl)-> """#{hd}^[#{text}]#{tl}"""
 
-      set_voice_half:   caret (hd, text, tl)->
-        text = text.replace /([\u3041-\u3096\u309d\309f\u30a1-\u30fa\u30fd\u30fe\u30ff])|([\u3099\u309a])/g, (match, chr, cut)->
-          return "" if cut
-          chr = devoice[chr] ? chr
-          return chr + "\u309a"
-        text = text.replace /([ハヒフヘホ])[\u309a]/g, (match, chr)->
-          return String.fromCharCode chr.charCodeAt(0) + 2
-        """#{hd}#{text}#{tl}"""
+    set_voice_none:   caret (hd, text, tl)->
+      text = text.replace /([\u3041-\u3096\u309d\309f\u30a1-\u30fa\u30fd\u30fe\u30ff])|([\u3099\u309a])/g, (match, chr, cut)->
+        return "" if cut
+        chr = devoice[chr] ? chr
+        return chr
+      """#{hd}#{text}#{tl}"""
 
-      set_voice_full:   caret (hd, text, tl)->
-        text = text.replace /([\u3041-\u3096\u309d\309f\u30a1-\u30fa\u30fd\u30fe\u30ff])|([\u3099\u309a])/g, (match, chr, cut)->
-          return "" if cut
-          chr = devoice[chr] ? chr
-          return chr + "\u3099"
-        text = text.replace /([カキクケコサシスセソタチツテトハヒフヘホ])[\u309a]/g, (match, chr)->
-          return String.fromCharCode chr.charCodeAt(0) + 1
-        """#{hd}#{text}#{tl}"""
+    set_voice_half:   caret (hd, text, tl)->
+      text = text.replace /([\u3041-\u3096\u309d\309f\u30a1-\u30fa\u30fd\u30fe\u30ff])|([\u3099\u309a])/g, (match, chr, cut)->
+        return "" if cut
+        chr = devoice[chr] ? chr
+        return chr + "\u309a"
+      text = text.replace /([ハヒフヘホ])[\u309a]/g, (match, chr)->
+        return String.fromCharCode chr.charCodeAt(0) + 2
+      """#{hd}#{text}#{tl}"""
 
-      cnv_kana:   caret (hd, text, tl)->
-        # ひらがなをカタカナに、カタカナをひらがなに
-        text = text.replace /([\u3041-\u3096])|([\u30a1-\u30f6])/g, (match, hira, kata)->
-          if hira
-            return String.fromCharCode hira.charCodeAt(0) + 0x60
-          if kata
-            return String.fromCharCode kata.charCodeAt(0) - 0x60
-        """#{hd}#{text}#{tl}"""
+    set_voice_full:   caret (hd, text, tl)->
+      text = text.replace /([\u3041-\u3096\u309d\309f\u30a1-\u30fa\u30fd\u30fe\u30ff])|([\u3099\u309a])/g, (match, chr, cut)->
+        return "" if cut
+        chr = devoice[chr] ? chr
+        return chr + "\u3099"
+      text = text.replace /([カキクケコサシスセソタチツテトハヒフヘホ])[\u309a]/g, (match, chr)->
+        return String.fromCharCode chr.charCodeAt(0) + 1
+      """#{hd}#{text}#{tl}"""
 
-      image: caret (hd, text, tl, name, type)-> """#{hd}![#{text || type}](#{name})#{tl}"""
+    cnv_kana:   caret (hd, text, tl)->
+      # ひらがなをカタカナに、カタカナをひらがなに
+      text = text.replace /([\u3041-\u3096])|([\u30a1-\u30f6])/g, (match, hira, kata)->
+        if hira
+          return String.fromCharCode hira.charCodeAt(0) + 0x60
+        if kata
+          return String.fromCharCode kata.charCodeAt(0) - 0x60
+      """#{hd}#{text}#{tl}"""
 
-      nDm: caret (pre, select, post)-> "#{pre}[[#{select}]]#{post}"
+    image: caret (hd, text, tl, name, type)-> """#{hd}![#{text || type}](#{name})#{tl}"""
 
-      file: (file)->
-        { name, type } = file
-        switch
-          when file.type.match /// ^text/ ///
-            reader = new FileReader()
-            reader.onload = ({ target })=>
-              @text target.result
-            reader.readAsText(file)
-          when file.type.match /// ^image/ ///
-            @$emit "drop_image", file, (url)=>
-              @image url, type
+    nDm: caret (pre, select, post)-> "#{pre}[[#{select}]]#{post}"
 
-      upload_btn: (e)->
-        for file in e.target.files
-          @file file
-        e.target.files.length = 0
+    file: (file)->
+      { name, type } = file
+      switch
+        when file.type.match /// ^text/ ///
+          reader = new FileReader()
+          reader.onload = ({ target })=>
+            @text target.result
+          reader.readAsText(file)
+        when file.type.match /// ^image/ ///
+          @$emit "drop_image", file, (url)=>
+            @image url, type
 
-      drop: (e)->
-        e.stopPropagation()
-        e.preventDefault()
-        for item in e.dataTransfer.items
-          switch item.kind
-            when 'file'
-              1
-            when 'string'
-              item.getAsString (data)=>
-                console.log data
-            else
-              console.log item
-        for file in e.dataTransfer.files
-          @file file
+    upload_btn: (e)->
+      for file in e.target.files
+        @file file
+      e.target.files.length = 0
 
-      submit: _.debounce ->
-        return if @ban
-        @$emit 'submit', @value
-      , 3000,
-        leading: true
-        trailing: false
+    drop: (e)->
+      e.stopPropagation()
+      e.preventDefault()
+      for item in e.dataTransfer.items
+        switch item.kind
+          when 'file'
+            1
+          when 'string'
+            item.getAsString (data)=>
+              console.log data
+          else
+            console.log item
+      for file in e.dataTransfer.files
+        @file file
 
-      input: _.debounce (e)->
-        @$emit 'input', e.target.value
-      , 300
+    submit: _.debounce ->
+      return if @ban
+      @$emit 'submit', @value
+    , 3000,
+      leading: true
+      trailing: false
 
-      focus: -> @$emit 'icon', 'mdi-pen'
-      blur:  -> @$emit 'icon', 'mdi-access-point'
+    input: _.debounce (e)->
+      @set_value e.target.value
+    , 500
 
-    computed:
-      ban: ->
-        ban = false
-        ban ||= !( 2 <= @size <= @maxSize )
-        ban ||= !( @minRow <= @row <= @maxRow )
-        ban ||= @is_ban
-        ban
-      warn: ->
-        warn = false
-        warn ||=  @value.match /-/
-        warn ||= @is_warn
-        warn
+    focus: -> @$emit 'icon', 'mdi-pen'
+    blur:  -> @$emit 'icon', 'mdi-access-point'
 
-      mark: ->
-        m = "mdi-check-circle-outline"
-        m = "mdi-alert-circle-outline" if @warn
-        m = "mdi-cancel"               if @ban
-        [m]
+    set_value: (s)->
+      if s
+        @forward_history = []
+        @edit_history_top = s
+      @$emit 'input', s
 
-      size: ->
-        @value.length
-      row: ->
-        @value.split("\n").length
-      areaRow: ->
-        return @rows   if @rows
-        return @minRow if @row < @minRow
-        return @maxRow if @maxRow < @row
-        return @row
+    edit_history_forward: ->
+      if @forward_history.length
+        [head, ...@forward_history] = @forward_history
+        @set_value head
+
+    edit_history_back: ->
+      if @edit_history.length
+        [cut, ...@edit_history] = @edit_history
+        @forward_history = [cut, ...@forward_history]
+        @$emit 'input', @edit_history_top
+
+  computed:
+    ban: ->
+      ban = false
+      ban ||= !( 2 <= @size <= @maxSize )
+      ban ||= !( @minRow <= @row <= @maxRow )
+      ban ||= @is_ban
+      ban
+    warn: ->
+      warn = false
+      warn ||=  @value.match /-/
+      warn ||= @is_warn
+      warn
+
+    mark: ->
+      m = "mdi-check-circle-outline"
+      m = "mdi-alert-circle-outline" if @warn
+      m = "mdi-cancel"               if @ban
+      [m]
+
+    size: ->
+      @value.length
+    row: ->
+      @value.split("\n").length
+    areaRow: ->
+      return @rows   if @rows
+      return @minRow if @row < @minRow
+      return @maxRow if @maxRow < @row
+      return @row
+    
+    is_show: ->
+      history: 'history' in @shows
+
+    edit_history_top:
+      get: ->
+        @edit_history[0] || ""
+      set: (s)->
+        list = [s]
+        for item, idx in @edit_history when item != s
+          list.push item
+          if 100 < idx
+            break 
+        @edit_history = list
+
 
 </script>

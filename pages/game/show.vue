@@ -97,7 +97,7 @@ log-wiki
   c-report(handle="footer" deco="center")
     bread-crumb
 </template>
-<style lang="stylus" scoped>
+<style lang="sass" scoped>
 .large
   font-size: 2.5ex
 </style>

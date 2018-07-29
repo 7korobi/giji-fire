@@ -133,11 +133,9 @@ module.exports =
 
 </script>
 
-<style lang="stylus" scoped>
+<style lang="sass" scoped>
 td
   word-break: break-all
-:first-line
-  text-align: left
 .mdi
   line-height: 4rem
   font-size:   3rem

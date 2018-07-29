@@ -80,7 +80,7 @@ module.exports =
 
 </script>
 
-<style lang="stylus" scoped>
+<style lang="sass" scoped>
 th.t
   vertical-align: top
 label

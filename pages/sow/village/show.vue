@@ -3,7 +3,6 @@
 log-wiki
   template(slot="summary")
     d-mentions.inframe.mentions(v-bind="for_mentions" @anker="anker" key="1" v-if="is_show.mention")
-    d-side.inframe(v-bind="for_side" @anker="anker" key="2" v-if="is_show.side")
     .inframe.TITLE(v-if="is_show.toc")
       hr
       .swipe
@@ -16,9 +15,9 @@ log-wiki
 
   template(slot="icons")
     nuxt-link.item.active(replace, :to="back_url")
-      i.mdi.mdi-backspace(v-if="a.length")
+      i.mdi.mdi-backspace(v-if="$route.query.back")
       i.mdi.mdi-map-marker(v-else)
-    check.item(v-model="shows" as="side")
+    nuxt-link.item.active(push, :to="{ query: { idx, mode: 'memo' }}")
       i.mdi.mdi-notebook
     check.item(v-model="shows" as="mention")
       i.mdi.mdi-pin
@@ -76,7 +75,7 @@ log-wiki
 </template>
 
 
-<style lang="stylus" scoped>
+<style lang="sass" scoped>
 </style>
 
 <script lang="coffee">

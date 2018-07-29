@@ -167,7 +167,7 @@ module.exports =
 
 </script>
 
-<style lang="stylus" scoped>
+<style lang="sass" scoped>
 
 .calc
   td
@@ -203,15 +203,15 @@ module.exports =
   width: 4ex
   text-align: right
 .label2
-  width: "calc( %s -  4px )" % 16%
+  width: calc( #{ 16% } -  4px )
 .label3
-  width: "calc( %s -  4px )" % 24%
+  width: calc( #{ 24% } -  4px )
 .label4
-  width: "calc( %s -  4px )" % 32%
+  width: calc( #{ 32% } -  4px )
 .label5
-  width: "calc( %s -  4px )" % 40%
+  width: calc( #{ 40% } -  4px )
 .label6
-  width: "calc( %s -  4px )" % 48%
+  width: calc( #{ 48% } -  4px )
 
 </style>
 

@@ -4,7 +4,7 @@ c-report(handle="footer", :write_at="1169852700003")
   g-marked(v-model="text")
 
 </template>
-<style lang="stylus" scoped>
+<style lang="sass" scoped>
 
 article
   text-align: right

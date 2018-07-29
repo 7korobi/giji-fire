@@ -115,7 +115,7 @@ div
       .filmend
 
 </template>
-<style lang="stylus" scoped>
+<style lang="sass" scoped>
 .filmend-frame
   height: 0
   .inframe

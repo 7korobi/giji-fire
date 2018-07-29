@@ -1,7 +1,7 @@
 <script lang="coffee">
 module.exports = require("~/components/chat.coffee")()
 </script>
-<style lang="stylus" scoped>
+<style lang="sass" scoped>
 
 .hide
   height: 2px

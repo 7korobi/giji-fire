@@ -266,7 +266,7 @@ module.exports =
       .list
 
 </script>
-<style lang="stylus" scoped>
+<style lang="sass" scoped>
 .cards
   display: flex
   flex-direction:  row

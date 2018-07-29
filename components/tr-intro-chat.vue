@@ -1,13 +1,11 @@
 <script lang="coffee">
 module.exports = require("~/components/chat.coffee")()
 </script>
-<style lang="stylus" scoped>
-
+<style lang="sass" scoped>
 .mention
   overflow: hidden
   white-space: nowrap
   text-overflow: ellipsis
-
 </style>
 
 <template lang="pug">

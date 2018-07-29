@@ -46,6 +46,9 @@ store =
     chats: ->
       @now[@mode]
 
+    side_contents: ->
+      @now.memo(@part_id)
+
     page_all_contents: ->
       @chats(@part_id)
 

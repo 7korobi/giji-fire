@@ -146,7 +146,7 @@ module.exports =
 
 </script>
 
-<style lang="stylus">
+<style lang="sass">
 progress
   width: 100%
 .list

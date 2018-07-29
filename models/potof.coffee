@@ -80,6 +80,10 @@ new Rule("potof").schema ->
         ].join(" ")
 
   class @model extends @model
+    side: (part_id)->
+      for idx in ["SM", "S", "GM", "G", "VM", "V"] when o = @book.chats.reduce.side?["#{part_id}-#{idx}"]?[@id]
+        return o
+      max_is: {}
     say: (part_id)->
       for idx in ["SS", "S", "GS", "G", "VS", "V"] when o = @book.chats.reduce.potof?["#{part_id}-#{idx}"]?[@id]
         return o

@@ -20,7 +20,7 @@ table(@mouseleave="focus_on('','')")
         datum.r(:xo="xo" :yo="yo" :find="find" :data="data" :value="value" v-on="$listeners")
 
 </template>
-<style lang="stylus" scoped>
+<style lang="sass" scoped>
 table
   border-collapse: collapse
 .focus

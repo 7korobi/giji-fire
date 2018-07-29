@@ -86,7 +86,7 @@ module.exports =
 
 </script>
 
-<style lang="stylus" scoped>
+<style lang="sass" scoped>
 .chrblank
   a
     display: block

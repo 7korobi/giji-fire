@@ -111,7 +111,7 @@ module.exports =
   slot
   .filmline
 </template>
-<style lang="stylus" scoped>
+<style lang="sass" scoped>
 #export
   border-collapse: separate
   border-spacing: 3px

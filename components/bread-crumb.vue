@@ -18,7 +18,7 @@ ol.bread-crumb
   slot
 </template>
 
-<style lang="stylus">
+<style lang="sass">
 
 .bread-crumb > li + li:before
   content: "/"
