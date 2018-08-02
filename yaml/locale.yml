@@ -1,4 +1,10 @@
+regend:
+  sow_locale_id: regend
+  label: 議事☆伝承
+
+
 village:
+  sow_locale_id: all
   label: オール☆スター
   help: |-
     すべての役職、恩恵、事件を楽しむことができる、「全部入り」のセットです。
@@ -15,6 +21,7 @@ village:
 
 
 heavy:
+  sow_locale_id: heavy
   label: 絶望☠議事
   help: |-
     すべての役職、恩恵、事件を楽しむことができる、「全部入り」のセットです。
@@ -60,6 +67,7 @@ secret:
 
 
 complex:
+  sow_locale_id: complexx
   label: ParanoiA
   help: |-
     すべての役職、恩恵、事件を楽しむことができる、「全部入り」のセットです。
@@ -97,6 +105,7 @@ complex:
 
 
 orbit:
+  sow_locale_id: star
   label: Orbital☆Star
   help: |-
     宇宙時代に突入した「全部入り」のセットです。村落共同体は渓谷や高原ではなく、小惑星帯や移民船、軌道エレベーターの途中にあるでしょう。事件が始まるまでは、とても充実した近代的なインフラが整っていたのですが……

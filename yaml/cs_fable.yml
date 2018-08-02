@@ -2,10 +2,10 @@ chr_set:
   _id: fable
   admin: 混沌の海の寝返り
   maker: 日輪の煌めき
-  caption: エクスパンション・セット「幻日世界」
+  label: エクスパンション・セット「幻日世界」
 
 chr_npc:
-  - caption: エクスパンション・セット「幻日世界」
+  - label: エクスパンション・セット「幻日世界」
     csid: fable
     face_id: f000
     say_0: |-
