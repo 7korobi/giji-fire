@@ -30,29 +30,11 @@ module.exports = (title, ctx)->
     return { title, text }
 
   switch title
-    when 'coin'
-      i = _.random(0, 1000)
-      text =
-        if i
-          ["表","裏"][ i % 2 ]
-        else
-          "立った"
-      return { title, text }
-
-    when 'tarot'
-      { label, roman, hebrew } = _.sample Query.tarots.list
-      side = ["正","逆"][_.random(0,1)]
-      text = "#{side} #{roman}.#{label}"
-      return { title, text }
-
-    when 'trump'
-      { label } = _.sample Query.trumps.list
-      return { title, text: label }
-
     when 'role'
       { list } = Query.roles.where (o)-> !( o.group in ["SPECIAL", "EVENT"] )
       { label } = _.sample list
-      return { title, text: label }
+      text = label
+      return { title, text }
 
     when 'who'
       { book_id } = ctx
@@ -60,4 +42,10 @@ module.exports = (title, ctx)->
       return { title, text }
 
     else
-      "-該当なし-"
+      if Query.random.deck(title)
+        text = Query.random.choice(title)
+        return { title, text }
+
+      else
+        text = title
+        return { title, text }

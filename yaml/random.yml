@@ -1,0 +1,391 @@
+tarot:
+  jester:
+    name: Jester
+    label: 愚者
+    roman: ""
+    hebrew: א
+
+  magus:
+    name: Magus
+    label: 魔術師
+    roman: I
+    hebrew: ב
+
+  popess:
+    name: Popess
+    label: 女教皇
+    roman: II
+    hebrew: ג
+
+  empress:
+    name: Empress
+    label: 女帝
+    roman: III
+    hebrew: ד
+
+  emperor:
+    name: Emperor
+    label: 皇帝
+    roman: IV
+    hebrew: צ
+
+  pope:
+    name: Pope
+    label: 教皇
+    roman: V
+    hebrew: ו
+
+  lovers:
+    name: Lovers
+    label: 恋人
+    roman: VI
+    hebrew: ז
+
+  chariot:
+    name: Chariot
+    label: 戦車
+    roman: VII
+    hebrew: ח
+
+  justice:
+    name: Justice
+    label: 正義
+    roman: VIII
+    hebrew: ל
+
+  hermit:
+    name: Hermit
+    label: 隠者
+    roman: IX
+    hebrew: י
+
+  wheel:
+    name: Wheel of Fortune
+    label: 運命の輪
+    roman: X
+    hebrew: כ
+
+  fortitude:
+    name: Fortitude
+    label: 剛毅
+    roman: XI
+    hebrew: ט
+
+  hanged:
+    name: Hanged Man
+    label: 吊られ人
+    roman: XII
+    hebrew: מ
+
+  death:
+    name: Death
+    label: 死神
+    roman: XIII
+    hebrew: נ
+
+  temperance:
+    name: Temperance
+    label: 節制
+    roman: XIV
+    hebrew: ס
+
+  devil:
+    name: Devil
+    label: 悪魔
+    roman: XV
+    hebrew: ע
+
+  tower:
+    name: Tower
+    label: 塔
+    roman: XVI
+    hebrew: פ
+
+  star:
+    name: Star
+    label: 星
+    roman: XVII
+    hebrew: ה
+
+  moon:
+    name: Moon
+    label: 月
+    roman: XVIII
+    hebrew: ק
+
+  sun:
+    name: Sun
+    label: 太陽
+    roman: XIX
+    hebrew: ר
+
+  judgement:
+    name: Judgement
+    label: 審判
+    roman: XX
+    hebrew: ש
+
+  world:
+    name: World
+    label: 世界
+    roman: XXI
+    hebrew: ת
+
+
+zodiac:
+  aries:
+    symbol: ♈
+    label: 白羊宮
+    roman: I
+    hebrew: פ
+
+  taurus:
+    symbol: ♉
+    label: 金牛宮
+    roman: II
+    hebrew: א
+
+  gemini:
+    symbol: ♊️
+    label: 双児宮
+    roman: III
+    hebrew: ב
+
+  cancer:
+    symbol: ♋️
+    label: 巨蟹宮
+    roman: IV
+    hebrew: ג
+
+  leo:
+    symbol: ♌
+    label: 獅子宮
+    roman: V
+    hebrew: ד
+
+  virgo:
+    symbol: ️♍️
+    label: 処女宮
+    roman: VI
+    hebrew: ה
+
+  libra:
+    symbol: ♎️
+    label: 天秤宮
+    roman: VII
+    hebrew: ו
+
+  scorpius:
+    symbol: ♏️
+    label: 天蝎宮
+    roman: VIII
+    hebrew: י
+
+  sagittarius:
+    symbol: ♐️
+    label: 人馬宮
+    roman: IX
+    hebrew: כ
+
+  capricorn:
+    symbol: ♑️
+    label: 磨羯宮
+    roman: X
+    hebrew: ל
+
+  aquarius:
+    symbol: ♒️
+    label: 宝瓶宮
+    roman: XI
+    hebrew: מ
+
+  pisces:
+    symbol: ♓️
+    label: 双魚宮
+    roman: XII
+    hebrew: ס
+
+  ophiuchus:
+    symbol: ⛎
+    label: 蛇遣座
+    roman: XIII
+    hebrew: ""
+
+planet:
+  sun:
+    symbol: ☉
+    label: 太陽
+
+  mercury:
+    symbol: ☿
+    label: 水星
+
+  venus:
+    symbol: ♀
+    label: 金星
+
+  earth:
+    symbol: 🜨
+    label: 地球
+
+  moon:
+    symbol: ☾
+    label: 月
+
+  mars:
+    symbol: ♂
+    label: 火星
+
+  jupiter:
+    symbol: ♃
+    label: 木星
+
+  saturn:
+    symbol: ♄
+    label: 土星
+
+  uranus:
+    symbol: ⛢
+    label: 天王星
+
+  neptune:
+    symbol: ♆
+    label: 海王星
+
+  pluto:
+    symbol: ♇
+    label: 冥王星
+
+  ceres:
+    symbol: ⚳
+    label: ケレス
+
+  pallas:
+    symbol: ⚴
+    label: パラス
+
+  juno:
+    symbol: ⚵
+    label: ジュノー
+
+  vesta:
+    symbol: ⚶
+    label: ヴェスタ
+
+  chiron:
+    symbol: ⚷
+    label: キロン
+
+  lilith:
+    symbol: ⚸
+    label: リリス
+
+  dragonhead:
+    symbol: ☊
+    label: 羅睺
+
+  dragontail:
+    symbol: ☋
+    label: 計都
+
+  comet:
+    symbol: ☄
+    label: 彗星
+
+chess:
+  king:
+    ratio: 1
+    symbols: ♔♚
+    label: 王
+
+  queen:
+    ratio: 1
+    symbols: ♕♛
+    label: 妃
+
+  rook:
+    ratio: 2
+    symbols: ♖♜
+    label: 塔
+  
+  bishop:
+    ratio: 2
+    symbols: ♗♝
+    label: 僧
+  
+  knight:
+    ratio: 2
+    symbols: ♘♞
+    label: 騎
+
+  pawn:
+    ratio: 8
+    symbols: ♙♟
+    label: 兵
+
+weather:
+  fine:
+    ratio: 8
+    symbol: ☀
+    label: 晴天
+
+  partly:
+    ratio: 8
+    symbol: 🌤️
+    label: 曇晴
+
+  cloudy:
+    ratio: 8
+    symbol: ☁
+    label: 曇天
+
+  fog:
+    ratio: 1
+    symbol: 🌁
+    label: 霧中
+
+  rainy:
+    ratio: 8
+    symbol: ☂
+    label: 降雨
+
+  outrain:
+    ratio: 8
+    symbol: 🌂
+    label: 雨後
+
+  shower:
+    ratio: 8
+    symbol: ☔
+    label: 俄雨
+
+  thunder:
+    ratio: 1
+    symbol: ⚡
+    label: 落雷
+
+  twister:
+    ratio: 1
+    symbol: 🌪
+    label: 竜巻
+
+  thunderstorm:
+    ratio: 1
+    symbol: ⛈️
+    label: 雷雨
+
+  rainbow:
+    ratio: 2
+    symbol: 🌈
+    label: 虹天
+
+coin:
+  front:
+    ratio: 500
+    label: 表
+  back:
+    ratio: 500
+    label: 裏
+  stand:
+    ratio: 1
+    label: 立った
