@@ -25,7 +25,7 @@ div
     a(href="sow.cgi?cmd=trsdiff") 基本設定
     | を選んで「村の作成」を押すと、新しくゲームを作成できる。
 
-  c-post(handle="SSAY" deco="giji")
+  c-post(handle="SSAY" deco="giji" v-if="logined && can_make_vils")
     dt
       | 便利な
       a(href="http://jsfun525.gamedb.info/wiki/?%B4%EB%B2%E8%C2%BC%CD%BD%C4%EA%C9%BD") 企画村予定表
@@ -34,7 +34,7 @@ div
       input(type="checkbox" v-model="can_make")
       | 見たよ！今から、村を立てるよ！
 
-  c-post(handle="SSAY" deco="giji")
+  c-post(handle="SSAY" deco="giji" v-if="logined && can_make_vils && can_make")
     form(action="./sow.cgi" method="get" id="make_vil_form" @submit="can_make")
       input(type="hidden" name="cmd" value="makevilform")
       select(name="trsid" v-model="sow_locale_id")
@@ -42,6 +42,11 @@ div
       input(type="submit" value="村の作成")
       span あと{{ can_make_vils }}村が建てられます。
 
+  c-post(handle="SSAY" deco="giji" v-if="! can_make_vils")
+    | 現在稼働中の村の数が上限に達しているので、村を作成できません。
+
+  c-post(handle="TSAY" deco="giji" v-if="! logined")
+    | 村を作成する場合はログインしてください。
 
   c-report(handle="header")
     h2(class="center") キャラクター画像一覧
@@ -49,8 +54,7 @@ div
   .fullframe
     .portrates
       portrate(v-for="npc in chr_npcs" :face_id="npc.face_id" :key="npc.face_id")
-        p
-          a(:href="chrlist_url(npc.csid)") {{ npc.label.split(" ").join("\n") }}
+        a(:href="chrlist_url(npc.csid)") {{ chrlist_label(npc.label) }}
 
   c-report(handle="header")
     h2(class="center") ゲーム内での文章
@@ -84,6 +88,14 @@ div
       li #[a(href="http://straws.sakura.ne.jp/madb01/") MAD PEOPLE]
       li #[a(href="http://members.at.infoseek.co.jp/Paranoia_O/") PARANOIA O]
 </template>
+<style lang="sass" scoped>
+.portrates
+  .chrblank
+    a
+      display: block
+      text-align: center
+      white-space: pre
+</style>
 <script lang="coffee">
 { Query } = require "~/plugins/memory-record"
 module.exports =
@@ -93,7 +105,15 @@ module.exports =
   methods:
     chrlist_url: (csid)->
       "./sow.cgi?cmd=chrlist&csid=#{csid}"
+    chrlist_label: (label)->
+      label
+      .replace(/ +/g, "\n")
+      .replace(/（|「/g, "\n")
+      .replace(/）|」/g, "")
+      .replace(/エクスパンション・セット/, "Ex-Set")
   computed:
+    logined: ->
+      window.sow.logined
     can_make_vils: ->
       window.sow.can_make_vils
     sow_locales: ->
