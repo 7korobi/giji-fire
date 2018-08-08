@@ -85,6 +85,7 @@ Set.random.add
 
 for type, o of require '../yaml/random.yml'
   for key, oo of o
+    oo._id = "#{type}_#{key}"
     oo.type = type
     oo.ratio ?= 1
-  Set.random.merge o
+    Set.random.add oo

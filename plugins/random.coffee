@@ -42,8 +42,8 @@ module.exports = (title, ctx)->
       return { title, text }
 
     else
-      if Query.random.deck(title)
-        text = Query.random.choice(title)
+      if Query.randoms.deck(title)
+        text = Query.randoms.choice(title)
         return { title, text }
 
       else
