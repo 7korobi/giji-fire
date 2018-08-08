@@ -4,7 +4,7 @@ div(v-once)
 
 <script lang="coffee">
 
-if window?
+if window?.require?
   window.require.config
     paths:
       vs: 'https://s3-ap-northeast-1.amazonaws.com/giji-assets/nuxt/monaco-editor/vs'

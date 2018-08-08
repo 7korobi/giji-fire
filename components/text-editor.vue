@@ -5,7 +5,6 @@ span
 .mention
   overflow: hidden
   white-space: nowrap
-  text-overflow: ellipsis
 </style>
 
 <template lang="pug">
@@ -13,7 +12,7 @@ span
   textarea(ref="input" :value="value" :rows="areaRow" :placeholder="placeholder" @input="input" @focus="focus" @blur="blur" @keydown.ctrl.90="edit_history_back" @keydown.ctrl.89="edit_history_forward")
   div.form
     button(@click="submit" :class="{ ban, warn }")
-      i.mdi(:class="mark")
+      i.mdi(:class="mark" v-if="$listeners.submit")
       span
         | {{size}}/
         sub {{maxSize}}字
@@ -25,8 +24,9 @@ span
     span
       check(v-model="shows" as="history")
         i.mdi.mdi-history
+        sup(v-if="edit_history.length") {{ edit_history.length }}
 
-    span(v-if="'giji' == deco")
+    span(v-if="is_giji")
       a.btn(@click='h2')
         i.mdi.mdi-format-header-2
       a.btn(@click='h3')
@@ -34,15 +34,16 @@ span
       a.btn(@click='h4')
         i.mdi.mdi-format-header-4
 
-    span(v-if="'giji' == deco")
-      a.btn(@click="nDm")
-        i.mdi.mdi-dice-3
-
+    span(v-if="is_giji")
       label.btn
         input.btn(type="file" :accept="accept" @change="upload_btn" style="display: none")
         i.mdi.mdi-image
 
-    span(v-if="'giji' == deco")
+    span(v-if="is_giji")
+      a.btn(@click="nDm")
+        i.mdi.mdi-dice-3
+
+    span(v-if="is_giji")
       a.btn(@click='codeblock')
         i.mdi.mdi-code-braces
       a.btn(@click='blockquote')
@@ -54,7 +55,7 @@ span
       a.btn(@click='table')
         i.mdi.mdi-table
 
-    span(v-if="'giji' == deco")
+    span(v-if="is_giji")
       a.btn(@click='left')
         i.mdi.mdi-format-align-left
       a.btn(@click='center')
@@ -62,7 +63,7 @@ span
       a.btn(@click='right')
         i.mdi.mdi-format-align-right
 
-    span(v-if="'giji' == deco")
+    span(v-if="is_giji")
       a.btn(@click='hr')
         i.mdi.mdi-format-page-break
       a.btn(@click='footnote')
@@ -70,20 +71,20 @@ span
       a.btn(@click='anker')
         i.mdi.mdi-link-variant
 
-    span(v-if="'giji' == deco")
+    span(v-if="is_unicode")
       a.btn(@click='cnv_kana') あア
       a.btn(@click='set_voice_none') あ
       a.btn(@click='set_voice_full') あ゙
       a.btn(@click='set_voice_half') あ゚
 
 
-    span(v-if="'giji' == deco")
+    span(v-if="is_giji")
       a.btn(@click='sup')
         i.mdi.mdi-format-superscript
       a.btn(@click='sub')
         i.mdi.mdi-format-subscript
       a.btn(@click='s')
-        i.mdi.mdi-format-strikethrough-variant
+        s あ
       a.btn(@click='del')
         del あ
       a.btn(@click='ins')
@@ -97,7 +98,9 @@ span
           rt ○○
   div(v-if="is_show.history")
     hr
-    p.mention.fine(v-for="s in edit_history" @click="set_value(s)") {{ s }}
+    p.mention.fine(v-for="{ chrs, lines, head, tail, write_at } in edit_history_obj" @click="set_value(s)")
+      timeago(:since="write_at")
+      | 　{{ chrs }}字 {{ lines }}行 {{ head }}…{{ tail }}
 
 </template>
 
@@ -160,12 +163,17 @@ module.exports =
 
   data: ->
     forward_history: []
+    edit_history_at: {}
     shows: []
     accept: [
       "image/png"
       "image/jpeg"
       "image/gif"
     ]
+
+  mounted: ->
+    unless @value
+      @$emit 'input', @edit_history_top
 
   methods:
     blockquote:  caret (hd, text, tl)->
@@ -260,28 +268,30 @@ module.exports =
     footnote:   caret (hd, text, tl)-> """#{hd}^[#{text}]#{tl}"""
 
     set_voice_none:   caret (hd, text, tl)->
-      text = text.replace /([\u3041-\u3096\u309d\309f\u30a1-\u30fa\u30fd\u30fe\u30ff])|([\u3099\u309a])/g, (match, chr, cut)->
-        return "" if cut
-        chr = devoice[chr] ? chr
-        return chr
+      text = text.replace /([\u3099\u309a])/g, (match, cut)->
+        ""
+      text = text.replace /([\u3041-\u3096\u309d\309f\u30a1-\u30fa\u30fd\u30fe\u30ff])/g, (match, chr)->
+        devoice[chr] ? chr
       """#{hd}#{text}#{tl}"""
 
     set_voice_half:   caret (hd, text, tl)->
-      text = text.replace /([\u3041-\u3096\u309d\309f\u30a1-\u30fa\u30fd\u30fe\u30ff])|([\u3099\u309a])/g, (match, chr, cut)->
-        return "" if cut
+      text = text.replace /([\u3099\u309a])/g, (match, cut)->
+        ""
+      text = text.replace /([\u3041-\u3096\u309d\309f\u30a1-\u30fa\u30fd\u30fe\u30ff])/g, (match, chr)->
         chr = devoice[chr] ? chr
-        return chr + "\u309a"
+        chr + "\u309a"
       text = text.replace /([ハヒフヘホ])[\u309a]/g, (match, chr)->
-        return String.fromCharCode chr.charCodeAt(0) + 2
+        String.fromCharCode chr.charCodeAt(0) + 2
       """#{hd}#{text}#{tl}"""
 
     set_voice_full:   caret (hd, text, tl)->
-      text = text.replace /([\u3041-\u3096\u309d\309f\u30a1-\u30fa\u30fd\u30fe\u30ff])|([\u3099\u309a])/g, (match, chr, cut)->
-        return "" if cut
+      text = text.replace /([\u3099\u309a])/g, (match, cut)->
+        ""
+      text = text.replace /([\u3041-\u3096\u309d\309f\u30a1-\u30fa\u30fd\u30fe\u30ff])/g, (match, chr)->
         chr = devoice[chr] ? chr
-        return chr + "\u3099"
-      text = text.replace /([カキクケコサシスセソタチツテトハヒフヘホ])[\u309a]/g, (match, chr)->
-        return String.fromCharCode chr.charCodeAt(0) + 1
+        chr + "\u3099"
+      text = text.replace /([カキクケコサシスセソタチツテトハヒフヘホ])[\u3099]/g, (match, chr)->
+        String.fromCharCode chr.charCodeAt(0) + 1
       """#{hd}#{text}#{tl}"""
 
     cnv_kana:   caret (hd, text, tl)->
@@ -338,7 +348,7 @@ module.exports =
 
     input: _.debounce (e)->
       @set_value e.target.value
-    , 500
+    , 1000
 
     focus: -> @$emit 'icon', 'mdi-pen'
     blur:  -> @$emit 'icon', 'mdi-access-point'
@@ -352,7 +362,8 @@ module.exports =
     edit_history_forward: ->
       if @forward_history.length
         [head, ...@forward_history] = @forward_history
-        @set_value head
+        @edit_history_top = head
+        @$emit 'input', head
 
     edit_history_back: ->
       if @edit_history.length
@@ -388,19 +399,35 @@ module.exports =
       return @minRow if @row < @minRow
       return @maxRow if @maxRow < @row
       return @row
-    
+
+    is_unicode: ->
+      ['giji','sow'].includes @deco
+
+    is_giji: ->
+      ['giji'].includes @deco
+
     is_show: ->
       history: 'history' in @shows
+
+    edit_history_obj: ->
+      for s in @edit_history when s
+        text:  s
+        chrs:  s.length
+        lines: 1 + ( s.match(/\n/g)?.length || 0 ) 
+        head: s[  0 ..  9]
+        tail: s[-10 .. -1]
+        write_at: @edit_history_at[s] ||= new Date - 0
 
     edit_history_top:
       get: ->
         @edit_history[0] || ""
       set: (s)->
+        @edit_history_at[s] = new Date - 0
         list = [s]
-        for item, idx in @edit_history when item != s
+        for item, idx in @edit_history when item && item != s
           list.push item
-          if 100 < idx
-            break 
+          if 99 <= list.length
+            break
         @edit_history = list
 
 
