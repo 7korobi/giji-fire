@@ -2,12 +2,8 @@
 @import "./_tooltip.styl"
 @import "./_chat.styl"
 @import "./_frame.styl"
-// @import "./_mermaid.styl"
 @import "./_markdown.styl"
 @import "./_theme.styl"
 
-palette_single(title-bar, grass,  BROAD)
-
-palette(header,   ash)
 
 

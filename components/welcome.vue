@@ -4,7 +4,7 @@
 
 module.exports =
   default:
-    props: ["top"]
+    props: ["top", "title"]
 
     data: -> {
       ...State
@@ -103,10 +103,10 @@ module.exports =
           btn(v-model="export_to" as="progress") 進行中の村
       tr
         th.welcome-btns(colspan=4)
-          nuxt-link(to="/") 総合トップ
+          a(href="https://giji.f5.si/") 総合トップ
 
   h2.title-bar
-    nuxt-link(to="/") 人狼議事
+    nuxt-link(to="/") {{ title }}
 
   slot
   .filmline
@@ -140,13 +140,13 @@ module.exports =
 
 h2
   height: 130px
-  white-space: pre
   text-align: center
   transform-origin: center bottom
   font-size:    45px
   line-height: 130px
   a
     background-color: transparent !important
+    white-space: pre
     font-size:    45px
     line-height:  50px
 

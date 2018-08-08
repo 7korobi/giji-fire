@@ -78,7 +78,7 @@ themes = {
     N09:    MN09 TITLE
     SWEAT:  MSWEAT
     FOAM:   MP09
-    ELSE:   MP08 MAKER welcome-links
+    ELSE:   MP08 MAKER
     BRONZE: MP07
     ALIEN:  MP06
     P05:    MP05
@@ -106,7 +106,15 @@ themes = {
     BROAD:  DEL_S
     ALIEN:  suddendead leave
   }
-  header: {
+  headGrass: {
+    BROAD:  title-bar
+  }
+  headMetal: {
+    ELSE:   welcome-links
+    ALIEN:  progress
+    VBROAD: prologue
+  }
+  headAsh: {
     BRONZE: BRONZE footer header
     BROAD:  btns chrblank
     N09:    welcome-btns
@@ -556,9 +564,15 @@ palette_single($bgTheme, $backT, key)
       .actor
         stroke: $fine
         fill: $bgHi
-        
+
+    fieldset
+      body &.{theme}
+      .{theme} &
+        color:            $pen
+        border-color:     $edge
 
     input
+    select
     textarea
       body &.{theme}
       .{theme} &
@@ -640,10 +654,11 @@ palette_single($bgTheme, $backT, key)
       body &.{theme}
       .{theme} &
         color: $penHi
-        text-emphasis-color: $focus
-        text-decoration-color: $focus
+        text-emphasis-color: $emboss
+        text-decoration-color: $emboss
 
     del
+    legend
     .warn
     .name
     .date
@@ -675,7 +690,8 @@ palette_single($bgTheme, $backT, key)
         color: $pen
         background-color: $bgHi
 
-    select
+    input[type=submit]
+    input[type=button]
     button
     .btn
     [href]
@@ -700,8 +716,8 @@ palette_single($bgTheme, $backT, key)
     s
       body &.{theme}
       .{theme} &
-        text-decoration-color: $focus
-        text-emphasis-color: $focus
+        text-decoration-color: $emboss
+        text-emphasis-color: $emboss
 
     kbd
     code
@@ -721,6 +737,7 @@ palette_single($bgTheme, $backT, key)
     select
     button
     textarea
+    fieldset
     .btn
     [href]
     [title]
