@@ -273,7 +273,7 @@ palette_single($bgTheme, $backT, key)
   if pastel == $backT
     $bold = HSLA(key,40%,15%,1)
     $bg   = HSLA(key,75%,85%,1)
-    $edge = HSLA(key,50%,60%,1)
+    $edge = HSLA(key,66%,60%,1)
 
   if snow == $backT
     $bold = HSLA(key,99%,25%,1)
@@ -282,13 +282,13 @@ palette_single($bgTheme, $backT, key)
 
   if light == $backT
     $bold = HSLA(key,66%,10%,1)
-    $bg   = HSLA(key,35%,63%,1)
-    $edge = HSLA(key,50%,50%,1)
+    $bg   = HSLA(key,35%,65%,1)
+    $edge = HSLA(key,66%,40%,1)
 
   if white == $backT
     $bold = HSLA(key,99%,20%,1)
-    $bg   = HSLA(key,12%,63%,1)
-    $edge = HSLA(key,20%,50%,1)
+    $bg   = HSLA(key,12%,65%,1)
+    $edge = HSLA(key,20%,40%,1)
 
 
   if black == $backT
@@ -309,36 +309,35 @@ palette_single($bgTheme, $backT, key)
 
   if foot == $backT
     $bold = HSLA(key,66%,90%,1)
-    $bg   = HSLA(key,35%,28%,1)
-    $edge = HSLA(key,50%,50%,1)
+    $bg   = HSLA(key,35%,30%,1)
+    $edge = HSLA(key,66%,40%,1)
 
   if ash == $backT
     $bold = HSLA(key,75%,90%,1)
-    $bg   = HSLA(key,12%,28%,1)
-    $edge = HSLA(key,20%,50%,1)
+    $bg   = HSLA(key,12%,30%,1)
+    $edge = HSLA(key,20%,40%,1)
 
 
   if grass == $backT
     $bold = HSLA(key,66%,80%,1)
-    $bg   = HSLA(key,75%,28%,0.5)
-    $edge = HSLA(key,50%,50%,0.5)
+    $bg   = HSLA(key,75%,30%,0.5)
+    $edge = HSLA(key,66%,40%,0.5)
 
 
   $pen    = mix($bg,   $bold, 15%)
-  $hide   = mix($bg,   $bold, 50%) + 6deg
+  $hide   = mix($bg,   $bold, 40%) + 6deg
   $btn    = mix($bg,   $edge, 75%) - 6deg
-  $emboss = mix($edge, $bold, 75%) - 6deg
-  $penEmb = $bg
+  $emboss = mix($edge, $hide, 66%)
   $baloon = $bg
-  $bgLow  = fix($bg,   0,  -3) + 6deg
-  $bgHi   = fix($bg,   0,   3) + 6deg
+  $bgLow  = fix($bg,   0,  -3) +  6deg
+  $bgHi   = fix($bg,   0,   3) +  6deg
 
   $off    = fix($btn,  5, -20)
   $on     = fix($btn, 20,   0)
 
-  $shade  = fix($edge,40, -30) + 9deg
+  $shade  = fix($edge,40, -30) +  9deg
   $focus  = fix($edge,30, -10)
-  $edge   = $edge + 6deg
+  $edge   = $edge              -  6deg
   $fine   = fix($edge, 0,   0) + 12deg
   $line   = fix($edge, 0,   0) - 12deg
 
@@ -353,7 +352,7 @@ palette_single($bgTheme, $backT, key)
   if $backT in $pattern1
     $off   = fix($off, 0,  15)
     $on    = fix($on,  0,  15)
-    $shade = fix($edge,0,  30) + 9deg
+    $shade = fix($edge,0,  40) + 9deg
 
   if $backT in $pattern3
     $off   = fix($off, 0,   5)
@@ -588,22 +587,30 @@ palette_single($bgTheme, $backT, key)
     rt
       body &.{theme}
       .{theme} &
-        color: $bold 
         background-color: $bgHi
+        color: $bold 
 
     .ban
     abbr
+    abbr[cite]
       body &.{theme}
       .{theme} &
         background-color: $emboss
-        color: $penEmb
+        color: $bg
+
+    .name
+      body &.{theme}
+      .{theme} &
+        sup, sub
+          background-color: $emboss
+          color: $bg
 
     ins
       body &.{theme}
       .{theme} &
         color: $bold 
-        text-emphasis-color: $edge
-        text-decoration-color: $edge
+        text-emphasis-color: $line
+        text-decoration-color: $line
 
     del
     legend
@@ -661,11 +668,26 @@ palette_single($bgTheme, $backT, key)
         &:link
           color: $bold 
 
+    .btn
+    [href]
+      body &.{theme}
+      .{theme} &
+        sup, sub
+          background-color: $on
+          color: $off
+
+        &.nuxt-link-exact-active
+        &.active
+        &:checked
+          sup, sub
+            background-color: $off
+            color: $on
+
     s
       body &.{theme}
       .{theme} &
-        text-emphasis-color: $edge
-        text-decoration-color: $edge
+        text-emphasis-color: $line
+        text-decoration-color: $line
 
     kbd
     code
@@ -694,12 +716,4 @@ palette_single($bgTheme, $backT, key)
       .{theme}.focus &
         border-color: $focus
 
-    .name
-    .btn
-    [href]
-      body &.{theme}
-      .{theme} &
-        sup, sub
-          background-color: $emboss
-          color: $penEmb
 

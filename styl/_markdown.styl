@@ -63,9 +63,6 @@ rt
 sup.note
   font-weight: bold
 
-s
-  text-decoration-style: wavy
-
 strong
   -webkit-text-emphasis: sesame
   text-emphasis: sesame
@@ -103,6 +100,8 @@ button
 time
   border-width: 0
 
+s
+  text-decoration-style: double
 ins
   text-decoration-style: wavy
 
@@ -119,7 +118,7 @@ thead tr
 tbody tr
 th
 td
-  border-radius: 3px
+  border-radius: 9px
 
 thead tr
   border-style: solid
@@ -200,7 +199,7 @@ fieldset
   box-sizing: border-box
   text-decoration: none
   padding:   2px
-  border-radius: 5px
+  border-radius: 9px
   border-style: solid
   align-items: flex-start
   cursor: hand
@@ -230,7 +229,7 @@ textarea
     border: 0
 
   .focus &
-    border-radius: 0
+    border-radius: 3px
     transition-property: border-radius, border-color
     transition-duration: 1s
 
@@ -239,7 +238,7 @@ textarea
     border: 2px dashed
 
   &:hover
-    border-radius: 0
+    border-radius: 3px
     animation: border-hover .4s ease-in-out infinite normal
 
   &:focus
