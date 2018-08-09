@@ -1,0 +1,595 @@
+<!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta http-equiv="Content-Script-Type" content="text/javascript">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="Author" content="あず/asbntby">
+  <meta name="viewport" content="width=device-width, user-scalable=yes">
+  <link rel="shortcut icon" href="http://s3-ap-northeast-1.amazonaws.com/giji-assets/favicon.ico">
+  <link rel="Start" href="http://crazy-crazy.sakura.ne.jp/crazy/sow.cgi" title="人狼議事 crazy<br>- Role Play braid -">
+<title>村の作成 - 人狼議事 crazy<br>- Role Play braid -</title>
+</head>
+<body>
+
+
+<div class="page-active-bg">
+<div id="top"></div>
+<div class="page-active">
+<div id="floats"></div>
+
+<div id="outframe" class="outframe">
+<div id="contentframe" class="contentframe">
+<div class="inframe">
+
+<form action="./sow.cgi" method="post" class="chat post header">
+<p>
+  <input type="hidden" name="cmd" value="logout">
+  <input type="hidden" name="cmdfrom" value="makevilform">
+  <span class="mes_date">ログイン情報は2018/08/12(Sun) 01時半頃まで有効です。</span>
+  user id: <a href="http://giji.f5.si/users?user=7korobi">7korobi</a>
+  <input type="submit" value="ログアウト">
+</p>
+</form>
+<hr class="invisible_hr">
+
+<h2>村の作成</h2>
+
+<p class="chat report header">
+<a href="http://crazy-crazy.sakura.ne.jp/giji/?(Knowledge)Manual">村建てマニュアル</a>や同村者の意見を参考に、魅力的な村を作っていきましょう。
+募集期限は作成した日から5日間です。期限内に村が開始しなかった場合、廃村となります。
+</p>
+<form action="./sow.cgi" method="post">
+<div class="chat report SSAY">
+
+<fieldset>
+<legend>村の名前と説明</legend>
+<input id="vname" type="text" name="vname" value="" size="30">
+<br class="multicolumn_clear">
+<textarea id="vcomment" class="multicolumn_role" name="vcomment" cols="30" rows="10">（村のルールは、自由に編集できるよ！）
+■村のルール
+1.多重ログインをしない。
+2.システムの出力内容を、そのまま書き写さない。
+3.エピローグまで秘密を守る。参加中の村の内容は秘密だ。
+4.エピローグまで秘密を守る。希望した能力、画面を見ているきみが何者なのかは秘密だ。
+5.エピローグまで勝利を目指す。</textarea>
+</fieldset>
+<fieldset>
+<p class="multicolumn_role">
+■国のルール<br>1.ここは長期人狼サーバーだ。短期はできない。<br>2.情報ページ（ここ）を熟読する。<br>3.ルールを守り、つねに心構えに気を配る。<br>4.進行中は、どんな嘘でもＯＫ。<br>5.ただし、（村建て人）、（管理人）の発言では嘘をつかないこと。<br>6.突然死をしない。<br></p>
+</fieldset>
+<fieldset>
+<p class="tips">
+以上の項目が、<a href="./sow.cgi?cmd=rule">人狼議事のルール</a>なんだ。編集していい部分は、自由に変更してかまわない。
+</p>
+</fieldset>
+</div>
+<div class="chat report SSAY">
+<fieldset>
+<legend>基本設定</legend>
+
+<input type="hidden" name="trsid" value="all">
+<a href="sow.cgi?cmd=trsdiff&trsid=all">オール☆スター </a>
+<p class="multicolumn_role">
+すべての役職、恩恵、事件を楽しむことができる、「全部入り」のセットです。また、進行中以外はクローンにされたり、セキュリティ・クリアランスが変ったりします。
+</p>
+
+<label for="vplcnt" class="multicolumn_label" >定員：</label>
+<input id="vplcnt" class="multicolumn_left" type="text" name="vplcnt" value="8" size="5">人
+<br class="multicolumn_clear">
+
+<label for="vplcntstart" class="multicolumn_label" >最低人数：</label>
+<input id="vplcntstart" class="multicolumn_left" type="text" name="vplcntstart" value="8" size="5">人  ※開始方法が人狼BBS型の時のみ
+<br class="multicolumn_clear">
+
+<label for="updhour" class="multicolumn_label">更新時間：</label>
+<select id="updhour" name="hour" class="multicolumn_left">
+      <option value="0" selected>0時</option>
+      <option value="1">1時</option>
+      <option value="2">2時</option>
+      <option value="3">3時</option>
+      <option value="4">4時</option>
+      <option value="5">5時</option>
+      <option value="6">6時</option>
+      <option value="7">7時</option>
+      <option value="8">8時</option>
+      <option value="9">9時</option>
+      <option value="10">10時</option>
+      <option value="11">11時</option>
+      <option value="12">12時</option>
+      <option value="13">13時</option>
+      <option value="14">14時</option>
+      <option value="15">15時</option>
+      <option value="16">16時</option>
+      <option value="17">17時</option>
+      <option value="18">18時</option>
+      <option value="19">19時</option>
+      <option value="20">20時</option>
+      <option value="21">21時</option>
+      <option value="22">22時</option>
+      <option value="23">23時</option>
+</select>
+<select id="updminite" name="minite" class="multicolumn_left">
+      <option value="0" selected>00分</option>
+      <option value="30">30分</option>
+</select>に更新
+<br class="multicolumn_clear">
+
+<label for="updinterval" class="multicolumn_label">更新間隔：</label>
+<select id="updinterval" name="updinterval" class="multicolumn_left">
+      <option value="1" selected>24時間</option>
+      <option value="2">48時間</option>
+      <option value="3">72時間</option>
+</select>ごとに更新
+<br class="multicolumn_clear">
+
+<label for="votetype" class="multicolumn_label">投票方法：</label>
+<select id="votetype" name="votetype" class="multicolumn_left">
+<option value="anonymity" selected>無記名投票</option>
+<option value="sign">記名投票</option>
+</select>
+<br class="multicolumn_clear">
+
+<label for="roletable" class="multicolumn_label">役職配分：</label>
+<select id="roletable" name="roletable" class="multicolumn_left">
+      <option value="default">標準</option>
+      <option value="mistery">深い霧の夜</option>
+      <option value="wbbs_c">人狼BBS C国</option>
+      <option value="wbbs_f">人狼BBS F国</option>
+      <option value="wbbs_g">人狼BBS G国</option>
+      <option value="test1st">人狼審問 試験壱型</option>
+      <option value="test2nd">人狼審問 試験弐型</option>
+      <option value="custom">自由設定</option>
+</select>
+<br class="multicolumn_clear">
+</fieldset>
+
+<fieldset>
+<legend>役職配分自由設定</legend>
+<TABLE align=center class="multicolumn_role"><TBODY>
+
+
+<TR><TD colspan=4><h3>人間</h3><TR>
+ <TD nowrap align=right>
+<label for="cntvillager">村人</label>
+<input  id="cntvillager" type="text" name="cntvillager" size="3" value="0">人 
+<TD nowrap align=right>
+<label for="cntstigma">聖痕者</label>
+<input  id="cntstigma" type="text" name="cntstigma" size="3" value="0">人 
+<TD nowrap align=right>
+<label for="cntfm">結社員</label>
+<input  id="cntfm" type="text" name="cntfm" size="3" value="0">人 
+<TD nowrap align=right>
+<label for="cntsympathy">共鳴者</label>
+<input  id="cntsympathy" type="text" name="cntsympathy" size="3" value="0">人 
+
+
+<TR> <TD nowrap align=right>
+<label for="cntseer">占い師</label>
+<input  id="cntseer" type="text" name="cntseer" size="3" value="0">人 
+<TD nowrap align=right>
+<label for="cntseerwin">信仰占師</label>
+<input  id="cntseerwin" type="text" name="cntseerwin" size="3" value="0">人 
+<TD nowrap align=right>
+<label for="cntaura">気占師</label>
+<input  id="cntaura" type="text" name="cntaura" size="3" value="0">人 
+<TD nowrap align=right>
+<label for="cntseerrole">賢者</label>
+<input  id="cntseerrole" type="text" name="cntseerrole" size="3" value="0">人 
+
+
+<TR> <TD nowrap align=right>
+<label for="cntguard">守護者</label>
+<input  id="cntguard" type="text" name="cntguard" size="3" value="0">人 
+<TD nowrap align=right>
+<label for="cntmedium">霊能者</label>
+<input  id="cntmedium" type="text" name="cntmedium" size="3" value="0">人 
+<TD nowrap align=right>
+<label for="cntmediumwin">信仰霊能者</label>
+<input  id="cntmediumwin" type="text" name="cntmediumwin" size="3" value="0">人 
+<TD nowrap align=right>
+<label for="cntmediumrole">導師</label>
+<input  id="cntmediumrole" type="text" name="cntmediumrole" size="3" value="0">人 
+
+
+<TR> <TD nowrap align=right>
+<label for="cntnecromancer">降霊者</label>
+<input  id="cntnecromancer" type="text" name="cntnecromancer" size="3" value="0">人 
+<TD nowrap align=right>
+<label for="cntfollow">追従者</label>
+<input  id="cntfollow" type="text" name="cntfollow" size="3" value="0">人 
+<TD nowrap align=right>
+<label for="cntfan">煽動者</label>
+<input  id="cntfan" type="text" name="cntfan" size="3" value="0">人 
+<TD nowrap align=right>
+<label for="cnthunter">賞金稼</label>
+<input  id="cnthunter" type="text" name="cnthunter" size="3" value="0">人 
+
+
+<TR> <TD nowrap align=right>
+<label for="cntweredog">人犬</label>
+<input  id="cntweredog" type="text" name="cntweredog" size="3" value="0">人 
+<TD nowrap align=right>
+<label for="cntprince">王子様</label>
+<input  id="cntprince" type="text" name="cntprince" size="3" value="0">人 
+<TD nowrap align=right>
+<label for="cntrightwolf">狼血族</label>
+<input  id="cntrightwolf" type="text" name="cntrightwolf" size="3" value="0">人 
+<TD nowrap align=right>
+<label for="cntdoctor">医師</label>
+<input  id="cntdoctor" type="text" name="cntdoctor" size="3" value="0">人 
+
+
+<TR> <TD nowrap align=right>
+<label for="cntcurse">呪人</label>
+<input  id="cntcurse" type="text" name="cntcurse" size="3" value="0">人 
+<TD nowrap align=right>
+<label for="cntdying">預言者</label>
+<input  id="cntdying" type="text" name="cntdying" size="3" value="0">人 
+<TD nowrap align=right>
+<label for="cntinvalid">病人</label>
+<input  id="cntinvalid" type="text" name="cntinvalid" size="3" value="0">人 
+<TD nowrap align=right>
+<label for="cntalchemist">錬金術師</label>
+<input  id="cntalchemist" type="text" name="cntalchemist" size="3" value="0">人 
+
+
+<TR> <TD nowrap align=right>
+<label for="cntwitch">魔女</label>
+<input  id="cntwitch" type="text" name="cntwitch" size="3" value="0">人 
+<TD nowrap align=right>
+<label for="cntgirl">少女</label>
+<input  id="cntgirl" type="text" name="cntgirl" size="3" value="0">人 
+<TD nowrap align=right>
+<label for="cntscapegoat">生贄</label>
+<input  id="cntscapegoat" type="text" name="cntscapegoat" size="3" value="0">人 
+<TD nowrap align=right>
+<label for="cntelder">長老</label>
+<input  id="cntelder" type="text" name="cntelder" size="3" value="0">人 
+
+
+<TR> 
+
+<TR><TD colspan=4><h3>人狼側の人間</h3><TR>
+ <TD nowrap align=right>
+<label for="cntjammer">邪魔之民</label>
+<input  id="cntjammer" type="text" name="cntjammer" size="3" value="0">人 
+<TD nowrap align=right>
+<label for="cntsnatch">宿借之民</label>
+<input  id="cntsnatch" type="text" name="cntsnatch" size="3" value="0">人 
+<TD nowrap align=right>
+<label for="cntbat">念波之民</label>
+<input  id="cntbat" type="text" name="cntbat" size="3" value="0">人 
+<TD nowrap align=right>
+<label for="cntpossess">狂人</label>
+<input  id="cntpossess" type="text" name="cntpossess" size="3" value="0">人 
+
+
+<TR> <TD nowrap align=right>
+<label for="cntfanatic">狂信者</label>
+<input  id="cntfanatic" type="text" name="cntfanatic" size="3" value="0">人 
+<TD nowrap align=right>
+<label for="cntmuppeting">人形使い</label>
+<input  id="cntmuppeting" type="text" name="cntmuppeting" size="3" value="0">人 
+<TD nowrap align=right>
+<label for="cntwisper">囁き狂人</label>
+<input  id="cntwisper" type="text" name="cntwisper" size="3" value="0">人 
+<TD nowrap align=right>
+<label for="cntsemiwolf">半狼</label>
+<input  id="cntsemiwolf" type="text" name="cntsemiwolf" size="3" value="0">人 
+
+
+<TR> <TD nowrap align=right>
+<label for="cntoracle">魔神官</label>
+<input  id="cntoracle" type="text" name="cntoracle" size="3" value="0">人 
+<TD nowrap align=right>
+<label for="cntsorcerer">魔術師</label>
+<input  id="cntsorcerer" type="text" name="cntsorcerer" size="3" value="0">人 
+
+
+<TR><TD colspan=4><h3>人狼</h3><TR>
+ <TD nowrap align=right>
+<label for="cntheadless">首無騎士</label>
+<input  id="cntheadless" type="text" name="cntheadless" size="3" value="0">人 
+<TD nowrap align=right>
+<label for="cntwolf">人狼</label>
+<input  id="cntwolf" type="text" name="cntwolf" size="3" value="0">人 
+<TD nowrap align=right>
+<label for="cntintwolf">智狼</label>
+<input  id="cntintwolf" type="text" name="cntintwolf" size="3" value="0">人 
+<TD nowrap align=right>
+<label for="cntcursewolf">呪狼</label>
+<input  id="cntcursewolf" type="text" name="cntcursewolf" size="3" value="0">人 
+
+
+<TR> <TD nowrap align=right>
+<label for="cntwhitewolf">白狼</label>
+<input  id="cntwhitewolf" type="text" name="cntwhitewolf" size="3" value="0">人 
+<TD nowrap align=right>
+<label for="cntchildwolf">仔狼</label>
+<input  id="cntchildwolf" type="text" name="cntchildwolf" size="3" value="0">人 
+<TD nowrap align=right>
+<label for="cntdyingwolf">衰狼</label>
+<input  id="cntdyingwolf" type="text" name="cntdyingwolf" size="3" value="0">人 
+<TD nowrap align=right>
+<label for="cntsilentwolf">黙狼</label>
+<input  id="cntsilentwolf" type="text" name="cntsilentwolf" size="3" value="0">人 
+
+
+<TR> 
+
+<TR><TD colspan=4><h3>妖精</h3><TR>
+ <TD nowrap align=right>
+<label for="cnthamster">栗鼠妖精</label>
+<input  id="cnthamster" type="text" name="cnthamster" size="3" value="0">人 
+<TD nowrap align=right>
+<label for="cntmimicry">擬狼妖精</label>
+<input  id="cntmimicry" type="text" name="cntmimicry" size="3" value="0">人 
+<TD nowrap align=right>
+<label for="cntdyingpixi">風花妖精</label>
+<input  id="cntdyingpixi" type="text" name="cntdyingpixi" size="3" value="0">人 
+<TD nowrap align=right>
+<label for="cnttrickster">悪戯妖精</label>
+<input  id="cnttrickster" type="text" name="cnttrickster" size="3" value="0">人 
+
+
+<TR><TD colspan=4><h3>それ以外</h3><TR>
+ <TD nowrap align=right>
+<label for="cnthatedevil">邪気悪魔</label>
+<input  id="cnthatedevil" type="text" name="cnthatedevil" size="3" value="0">人 
+<TD nowrap align=right>
+<label for="cntloveangel">恋愛天使</label>
+<input  id="cntloveangel" type="text" name="cntloveangel" size="3" value="0">人 
+<TD nowrap align=right>
+<label for="cntpassion">片想い</label>
+<input  id="cntpassion" type="text" name="cntpassion" size="3" value="0">人 
+<TD nowrap align=right>
+<label for="cntlover">弟子</label>
+<input  id="cntlover" type="text" name="cntlover" size="3" value="0">人 
+
+
+<TR> <TD nowrap align=right>
+<label for="cntrobber">盗賊</label>
+<input  id="cntrobber" type="text" name="cntrobber" size="3" value="0">人 
+<TD nowrap align=right>
+<label for="cntlonewolf">一匹狼</label>
+<input  id="cntlonewolf" type="text" name="cntlonewolf" size="3" value="0">人 
+<TD nowrap align=right>
+<label for="cntguru">笛吹き</label>
+<input  id="cntguru" type="text" name="cntguru" size="3" value="0">人 
+<TD nowrap align=right>
+<label for="cntdish">鱗魚人</label>
+<input  id="cntdish" type="text" name="cntdish" size="3" value="0">人 
+
+
+<TR> <TD nowrap align=right>
+<label for="cntbitch">遊び人</label>
+<input  id="cntbitch" type="text" name="cntbitch" size="3" value="0">人 
+
+
+<TR><TD colspan=4><h3>恩恵</h3><TR>
+ <TD nowrap align=right>
+<label for="cntshield">光の輪</label>
+<input id="cntshield" type="text" name="cntshield" size="3" value="0">人 
+<TD nowrap align=right>
+<label for="cntglass">魔鏡</label>
+<input id="cntglass" type="text" name="cntglass" size="3" value="0">人 
+<TD nowrap align=right>
+<label for="cntogre">悪鬼</label>
+<input id="cntogre" type="text" name="cntogre" size="3" value="0">人 
+<TD nowrap align=right>
+<label for="cntfairy">妖精の子</label>
+<input id="cntfairy" type="text" name="cntfairy" size="3" value="0">人 
+
+
+<TR> <TD nowrap align=right>
+<label for="cntfink">半端者</label>
+<input id="cntfink" type="text" name="cntfink" size="3" value="0">人 
+<TD nowrap align=right>
+<label for="cntdecide">決定者</label>
+<input id="cntdecide" type="text" name="cntdecide" size="3" value="0">人 
+<TD nowrap align=right>
+<label for="cntseeronce">夢占師</label>
+<input id="cntseeronce" type="text" name="cntseeronce" size="3" value="0">人 
+<TD nowrap align=right>
+<label for="cntdipsy">酔払い</label>
+<input id="cntdipsy" type="text" name="cntdipsy" size="3" value="0">人 
+
+
+<TR> 
+
+<TR><TD colspan=4><h3>事件</h3><TR>
+ <TD nowrap align=right>
+<label for="cntnothing">普通の日</label>
+<input id="cntnothing" type="text" name="cntnothing" size="3" value="0">件
+<TD nowrap align=right>
+<label for="cntaprilfool">四月馬鹿</label>
+<input id="cntaprilfool" type="text" name="cntaprilfool" size="3" value="0">件
+<TD nowrap align=right>
+<label for="cntturnfink">二重スパイ</label>
+<input id="cntturnfink" type="text" name="cntturnfink" size="3" value="0">件
+<TD nowrap align=right>
+<label for="cntturnfairy">妖精の輪</label>
+<input id="cntturnfairy" type="text" name="cntturnfairy" size="3" value="0">件
+
+
+<TR> <TD nowrap align=right>
+<label for="cnteclipse">日蝕</label>
+<input id="cnteclipse" type="text" name="cnteclipse" size="3" value="0">件
+<TD nowrap align=right>
+<label for="cntcointoss">Sir Cointoss</label>
+<input id="cntcointoss" type="text" name="cntcointoss" size="3" value="0">件
+<TD nowrap align=right>
+<label for="cntforce">影響力</label>
+<input id="cntforce" type="text" name="cntforce" size="3" value="0">件
+<TD nowrap align=right>
+<label for="cntmiracle">奇跡</label>
+<input id="cntmiracle" type="text" name="cntmiracle" size="3" value="0">件
+
+
+<TR> <TD nowrap align=right>
+<label for="cntprophecy">聖者のお告げ</label>
+<input id="cntprophecy" type="text" name="cntprophecy" size="3" value="0">件
+<TD nowrap align=right>
+<label for="cntclamor">不満</label>
+<input id="cntclamor" type="text" name="cntclamor" size="3" value="0">件
+<TD nowrap align=right>
+<label for="cntfire">熱意</label>
+<input id="cntfire" type="text" name="cntfire" size="3" value="0">件
+<TD nowrap align=right>
+<label for="cntnightmare">悪夢</label>
+<input id="cntnightmare" type="text" name="cntnightmare" size="3" value="0">件
+
+
+<TR> <TD nowrap align=right>
+<label for="cntghost">亡霊</label>
+<input id="cntghost" type="text" name="cntghost" size="3" value="0">件
+<TD nowrap align=right>
+<label for="cntseance">降霊会</label>
+<input id="cntseance" type="text" name="cntseance" size="3" value="0">件
+<TD><TD></TABLE>
+</fieldset>
+<fieldset>
+<legend>参加制限</legend>
+<label><input type="radio" name="entrylimit" value="free" checked>制限なし</label><br>
+<label>
+<input type="radio" name="entrylimit" value="password">参加用パスワード必須（半角８文字以内）
+</label>
+<input type="password" name="entrypwd" maxlength="8" size="8" value="">
+<br class="multicolumn_clear">
+</fieldset>
+
+</div>
+<div class="chat report SSAY">
+
+<fieldset>
+<legend>拡張設定</legend>
+<label for="randomtarget" class="multicolumn_label">ランダム： </label>
+<input type="checkbox" id="randomtarget" class="multicolumn_left" name="randomtarget" value="on">投票・能力の対象に「ランダム」を含める
+<br class="multicolumn_clear">
+
+<label for="noselrole" class="multicolumn_label">役職希望： </label>
+<input type="checkbox" id="noselrole" class="multicolumn_left" name="noselrole" value="on">役職希望を無視する
+<br class="multicolumn_clear">
+
+<label for="undead" class="multicolumn_label">幽界トーク： </label>
+<input type="checkbox" id="undead" class="multicolumn_left" name="undead" value="on">狼・妖精と死者との間で、会話ができる
+<br class="multicolumn_clear">
+<label for="showid" class="multicolumn_label">ID公開： </label>
+<input type="checkbox" id="showid" class="multicolumn_left" name="showid" value="on">プレイヤーIDを公開する
+<br class="multicolumn_clear">
+
+<label for="game" class="multicolumn_label">ゲームルール： </label>
+<select id="game" name="game" class="multicolumn_left">
+<option value="TABULA">タブラの人狼</option>
+<option value="MILLERHOLLOW">ミラーズホロウ</option>
+<option value="TROUBLE">Trouble☆Aliens</option>
+<option value="MISTERY">深い霧の夜</option>
+</select>
+<br class="multicolumn_clear">
+<label for="rating" class="multicolumn_label">こだわり： </label>
+<select id="rating" name="rating" class="multicolumn_left" onFocus='javascript:chrImgChange(document.cd_img,this,"http://s3-ap-northeast-1.amazonaws.com/giji-assets/images/cd_","",".png")' onChange='javascript:chrImgChange(document.cd_img,this,"http://s3-ap-northeast-1.amazonaws.com/giji-assets/images/cd_","",".png")'>
+<option value="default"selected>とくになし</option>
+<option value="love">[愛] 恋愛を重視</option>
+<option value="sexy">[性] 性表現あり</option>
+<option value="sexylove">[性愛] 大人の恋愛</option>
+<option value="violence">[暴] 暴力、グロ</option>
+<option value="sexyviolence">[性暴] えろぐろ</option>
+<option value="teller">[怖] 恐怖を煽る</option>
+<option value="drunk">[楽] 享楽に耽る</option>
+<option value="gamble">[賭] 賭博に耽る</option>
+<option value="crime">[罪] 犯罪描写あり</option>
+<option value="drug">[薬] 薬物表現あり</option>
+<option value="word">[言] 殺伐、暴言あり</option>
+<option value="fireplace">[暢] のんびり雑談</option>
+<option value="appare">[遖] あっぱれネタ風味</option>
+<option value="ukkari">[張] うっかりハリセン</option>
+<option value="child">[全] 大人も子供も初心者も、みんな安心</option>
+<option value="biohazard">[危] 無茶ぶり上等</option>
+<option value=""></option>
+<option value="0"></option>
+<option value="r15"></option>
+<option value="r18"></option>
+<option value="gro"></option>
+<option value="view"></option>
+</select>
+<img name=cd_img src="http://s3-ap-northeast-1.amazonaws.com/giji-assets/images/cd_default.png">
+<br class="multicolumn_clear">
+<label for="csid" class="multicolumn_label">登場人物：</label>
+<select id="csid" name="csid" class="multicolumn_left">
+      <option value="ririnra"> 人狼議事</option>
+      <option value="ririnra_c05"> 人狼議事（キャサリン）</option>
+      <option value="ririnra_c08"> 人狼議事（ベネット）</option>
+      <option value="ririnra_c19"> 人狼議事（タバサ）</option>
+      <option value="ririnra_c67"> 人狼議事（ソフィア）</option>
+      <option value="ririnra_c68"> 人狼議事（ヨアヒム）</option>
+      <option value="ririnra_c72"> 人狼議事（ヴェスパタイン）</option>
+      <option value="ririnra_c51"> 人狼議事（ヨーランダ）</option>
+      <option value="ririnra_c20"> 人狼議事（グロリア）</option>
+      <option value="ririnra_c32"> 人狼議事（オスカー）</option>
+      <option value="all"> 人狼議事 ちゃんぷる</option>
+      <option value="mad"> エクスパンション・セット「狂騒議事」</option>
+      <option value="mad_mad05"> エクスパンション・セット「狂騒議事」（ヤヘイ）</option>
+      <option value="time"> エクスパンション・セット「帰還者議事」</option>
+      <option value="time_t44"> エクスパンション・セット「帰還者議事」（ナツミ）</option>
+      <option value="time_t48"> エクスパンション・セット「帰還者議事」（少年Ａ）</option>
+      <option value="time_t49"> エクスパンション・セット「帰還者議事」（少女Ａ）</option>
+      <option value="ger"> エクスパンション・セット「大陸議事」</option>
+      <option value="fable"> エクスパンション・セット「幻日世界」</option>
+      <option value="animal"> うきうきサバンナ</option>
+      <option value="school"> 私立七転学園</option>
+      <option value="changed"> とのさま広場</option>
+      <option value="changed_m05"> はおうの広場</option>
+      <option value="SF"> 明後日への道標</option>
+      <option value="SF_sf10"> 明後日への道標（ナユタ）</option>
+      <option value="SF_sf032"> 明後日への道標（ワクラバ）</option>
+      <option value="wa"> 和の国てやんでえ</option>
+      <option value="wa_w23"> 和の国てやんでえ（仁右衛門）</option>
+</select>
+<br class="multicolumn_clear">
+
+<label for="saycnttype" class="multicolumn_label">発言制限： </label>
+<select id="saycnttype" name="saycnttype" class="multicolumn_left">
+      <option value="infinity">むげん</option>
+</select>
+<br class="multicolumn_clear">
+
+<label for="starttype" class="multicolumn_label">開始方法： </label>
+<select id="starttype" name="starttype" class="multicolumn_left">
+      <option value="manual" selected>手動開始（開始ボタンを押したら開始）</option>
+      <option value="wbbs">人狼BBS型（更新時間が来たら開始）</option>
+</select>
+<br class="multicolumn_clear">
+
+<label for="cntmob" class="multicolumn_label">見物人： </label>
+<select id="mob" name="mob" class="multicolumn_left">
+<option value="alive">舞台（進行中会話は地上、墓下、両方と）</option>
+<option value="grave">裏方（進行中会話は墓下と）</option>
+<option value="visiter">客席（進行中会話は客席同士のみ）</option>
+<option value="juror">陪審（進行中会話は陪審同士のみ。陪審（＆決定者）だけが投票する。）</option>
+</select>に
+<input id="cntmob" type="text" name="cntmob" size="3" value="0">人 
+<br class="multicolumn_clear">
+</fieldset>
+
+</div>
+<div class="chat report SSAY center">
+<input type="hidden" name="cmd" value="makevil">
+<input type="submit" value="村の作成">
+</div>
+</form>
+
+<p class="chat post header">
+<a href="./sow.cgi?">トップページに戻る</a>
+</p>
+<hr class="invisible_hr">
+
+<div id="footer"></div>
+
+</div><!-- inframe footer -->
+</div><!-- contentframe footer -->
+</div>
+</body>
+<script type="text/javascript" src="https://api-project-54633717694.firebaseapp.com/sow/index.js" charset="UTF-8"></script>
+</html>

@@ -3,22 +3,22 @@
 _ = require "lodash"
 
 titles =
-  SS: ["SSAY", "通常の発言"]
-  SA: ["SSAY", "通常ACT"]
-  VS: ["VSAY", "見物人発言"]
-  VA: ["VSAY", "見物人のACT"]
-  TS: ["TSAY", "独り言/内緒話"]
-  TA: ["TSAY", "栞"]
-  GS: ["GSAY", "墓下の発言"]
-  GA: ["GSAY", "墓下のACT"]
-  PS: ["SPSAY", "共鳴の会話"]
-  PA: ["SPSAY", "共鳴のACT"]
-  WS: ["WSAY", "人狼のささやき"]
-  WA: ["WSAY", "人狼のACT"]
-  XS: ["XSAY", "念話（念波の民）"]
-  XA: ["XSAY", "念act（念波の民）"]
-  BS: ["BSAY", "念話（蝙蝠人間）"]
-  BA: ["BSAY", "念act（蝙蝠人間）"]
+  SS: ["SSAY",  "通常の発言"]
+  SA: ["SSAY",  "通常ACT"]
+  VS: ["VSSAY", "見物人発言"]
+  VA: ["VSSAY", "見物人のACT"]
+  TS: ["TSAY",  "独り言/内緒話"]
+  TA: ["TSAY",  "栞"]
+  GS: ["GSAY",  "墓下の発言"]
+  GA: ["GSAY",  "墓下のACT"]
+  PS: ["PSAY",  "共鳴の会話"]
+  PA: ["PSAY",  "共鳴のACT"]
+  WS: ["WSAY",  "人狼のささやき"]
+  WA: ["WSAY",  "人狼のACT"]
+  XS: ["XSAY",  "念話（念波の民）"]
+  XA: ["XSAY",  "念act（念波の民）"]
+  BS: ["XSAY",  "念話（蝙蝠人間）"]
+  BA: ["XSAY",  "念act（蝙蝠人間）"]
 
 module.exports =
   namespaced: true

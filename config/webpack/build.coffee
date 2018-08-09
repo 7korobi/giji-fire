@@ -3,6 +3,8 @@ ExtractTextPlugin = require 'extract-text-webpack-plugin'
 module.exports =
   extend: (config, { isDev, isClient })->
 
+  extractCSS: true
+
   publicPath: 'https://s3-ap-northeast-1.amazonaws.com/giji-assets/fire/'
 
   babel:

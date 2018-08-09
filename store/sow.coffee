@@ -15,7 +15,7 @@ attrs =
   VSSAY:  { mark: '@', label: '見物' }
   WSAY:   { mark: '*', label: '人狼' }
   GSAY:   { mark: '+', label: '墓下' }
-  SPSAY:  { mark: '=', label: '共鳴' }
+  PSAY:   { mark: '=', label: '共鳴' }
   XSAY:   { mark: '!', label: '念波' }
   VGSAY:  { mark: '@', label: '見物' }
 phase_attr = (self)->
@@ -104,6 +104,8 @@ module.exports =
       write_at = 0
 
       data.messages.map (o)->
+        o.name = o.name.replace /&#x([0-9A-F]+);/g, (str, code)-> String.fromCharCode parseInt code, 16
+          
         { face_id, to, log, date, csid } = o
         write_at = new Date(date) - 0
         csid = 'sf' if csid == 'SF'
@@ -199,6 +201,10 @@ module.exports =
             handle = "WSAY"
           when "VSAY"
             handle = "VSSAY"
+          when "BSAY"
+            handle = "XSAY"
+          when "SPSAY"
+            handle = "PSAY"
           when "SAY"
             handle = "SSAY"
         if to

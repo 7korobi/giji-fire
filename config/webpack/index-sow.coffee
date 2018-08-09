@@ -1,6 +1,18 @@
 path = require 'path'
 webpack = require 'webpack'
+# MiniCssExtractPlugin = require "mini-css-extract-plugin"
+#
+# stylesheet = new MiniCssExtractPlugin
+#   filename: 'css/sow.css'
+
 current = process.cwd()
+
+sass =
+  test: /\.sass/,
+  use: [
+    'css-loader'
+    'sass-loader'
+  ]
 
 coffee =
   test: /\.coffee$/,
@@ -24,6 +36,7 @@ module.exports =
   devtool: 'source-map'
   module:
     rules: [
+      sass
       coffee
       yml
       vue
