@@ -79,15 +79,15 @@ no-ssr
         abbr anker
 
     br
-    c-talk(:write_at="now - 20000", face_id="t10" head="ねるねるねるね ねる" sign="ななころび" handle="VSAY" deco="giji").
+    c-talk(:write_at="now - 20000", face_id="t10" head="ねるねるねるね ねる" sign="ななころび" handle="VSSAY" deco="giji").
       モブのセリフがちょっとなやむ。
-    c-post(:write_at="now - 3600000", head="ねるねるねるね ねる" sign="ななころび" handle="VSAY")
+    c-post(:write_at="now - 3600000", head="ねるねるねるね ねる" sign="ななころび" handle="VSSAY")
       nuxt-link(to="/demo/timeago") About page
 
     c-talk(:write_at="now - 20000", head="ねるねるねるね ねる" sign="ななころび" handle="GSAY" face_id="c31").
       ABCDEFGHIJKL MNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz
       ABCDEFGHIJKL MNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz
-    c-post(:write_at="now - 24 * 3600000", head="ねるねる" sign="ななころび" handle="SPSAY" deco="head").
+    c-post(:write_at="now - 24 * 3600000", head="ねるねる" sign="ななころび" handle="PSAY" deco="head").
       ABCDEFGHIJKL MNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz
       ABCDEFGHIJKL MNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz
     c-post(:write_at="now - 3600000", head="ねるねるねるね ねる" to="おきる" sign="ななころび" handle="AIM")
@@ -99,13 +99,13 @@ no-ssr
     c-talk(:write_at="now - 24 * 3600000", sign="ななころび" handle="XSAY" deco="mono" face_id="c91").
       123456789012345678901234567890123456789012345678901234567890
       123456789012345678901234567890123456789012345678901234567890
-    c-talk(:write_at="now - 24 * 3600000", sign="ななころび" handle="SPSAY" face_id="c101").
+    c-talk(:write_at="now - 24 * 3600000", sign="ななころび" handle="PSAY" face_id="c101").
       ABCDEFGHIJKL MNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz
       ABCDEFGHIJKL MNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz
     c-talk(:write_at="now - 24 * 3600000", sign="ななころび" handle="GSAY" face_id="c111").
       あいうえおかきくけこさしすせそたちつてとなにぬねのやゆよ
       あいうえおかきくけこさしすせそたちつてとなにぬねのやゆよ
-    c-talk(:write_at="now - 24 * 3600000", sign="ななころび" handle="VSAY" face_id="w30").
+    c-talk(:write_at="now - 24 * 3600000", sign="ななころび" handle="VSSAY" face_id="w30").
       アイウエオカキクケコサシスセソタチ、ツテトナニヌネノヤユヨ
       アイウエオカキクケコサシスセソタチ、ツテトナニヌネノヤユヨ
     c-post(:write_at="now - 3600000", head="ねるねるねるね ねる" to="おきる" sign="ななころび" handle="AIM").
@@ -129,7 +129,7 @@ module.exports =
       Date.now()
     
     says: ->
-      """WSAY N01 N02 N03 N04 N05 N06 N07 N08 N09 SWEAT P09 P08 P07 P06 P05 P04 P03 P02 P01 WSAY""".split /\s/
+      """N00 N01 N02 N03 N04 N05 N06 N07 N08 N09 SWEAT P09 P08 P07 P06 P05 P04 P03 P02 P01 P00""".split /\s/
     sepia: ->
       """S000 SN01 SN02 SN03 SN04 SN05 SN06 SN07 SN08 SN09 SSWEAT SP09 SP08 SP07 SP06 SP05 SP04 SP03 SP02 SP01 S000""".split /\s/
     world: ->

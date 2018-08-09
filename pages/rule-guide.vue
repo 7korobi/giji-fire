@@ -27,7 +27,7 @@ div
   c-report(v-for="o, idx in nation.list" deco="giji" handle="P01", :head="o.head", :log="o.log", :key="'nation-' + idx")
 
   c-report(handle="footer" id="village") {{ village.head }}
-  c-report(v-for="o, idx in village.list" deco="giji" handle="VSAY", :head="o.head", :log="o.log", :key="'village-' + idx")
+  c-report(v-for="o, idx in village.list" deco="giji" handle="VSSAY", :head="o.head", :log="o.log", :key="'village-' + idx")
 
   c-report(handle="MAKER") ルール違反があったら？
   c-report(handle="footer") はじめに
@@ -95,7 +95,7 @@ div
       そうだわ、ヌマタロウさんをお誘いして、そういう村を建ててみようかしらねえ。お茶受けは拳骨煎餅かしらねえ。
 
   c-report(handle="MAKER") 心構え
-  c-post(handle="VSAY") 心構えを守って、楽しく、強く遊ぼう。
+  c-post(handle="VSSAY") 心構えを守って、楽しく、強く遊ぼう。
 
   c-report(handle="footer" id="player") 遊びにきたかたへ
   c-report(v-for="o, idx in player.list" deco="giji" handle="SSAY", :head="o.head", :log="o.log", :key="'player-' + idx")

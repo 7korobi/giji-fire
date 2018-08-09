@@ -40,7 +40,6 @@
             btn(v-model="sort" as="role_labels", @toggle="reverse") 役割
           th
             btn(v-model="sort" as="text", @toggle="reverse") 補足
-          th メモ
           th
 
       transition-group.potofs.fine.tlist(name="list" tag="tbody")
@@ -64,8 +63,6 @@
           td.c(:class="o.winner_id") {{ o.winner && o.winner.label }}
           td.c(:class="o.winner_id") {{ o.role_labels.join("、") }}
           td.l(:class="o.winner_id") {{ o.text }}
-          td.mention(:class="o.say_handle(part.id)")
-            component(v-bind="memo(o, part.id)")
           td.last
   transition-group.swipe.list(v-if="part" name="list" tag="div")
     table.fine(key="ids")
@@ -78,7 +75,7 @@
           th
             btn(v-model="hide_ids", :as="full_on")  全表示
           th
-            btn(v-model="hide_ids", :as="full_off") クリア
+            btn(v-model="hide_ids", :as="invert") 反転
 
     portrate(v-for="o in potofs", :key="o.id", :face_id="o.face_id", :hide="o.hide", @click="toggle(o)")
       .bar(:class="bgc(o)")
@@ -97,7 +94,7 @@ module.exports =
     ...vuex_value "menu.potofs", ['order', 'sort', 'hide_ids']
 
     full_on:  ->  @potof_ids -> false
-    full_off: ->  @potof_ids -> true
+    invert:   ->  @potof_ids (o)-> ! o.hide
     live_on:  ->  @potof_ids (o)-> ! o.commit
     live_off: ->  @potof_ids (o)-> o.commit
 

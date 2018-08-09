@@ -2,6 +2,7 @@
 { url } = require "~/config/live.yml"
 
 module.exports =
+  props: ["title"]
   mixins: [
     require("~/plugins/browser-store")
       cookie:
@@ -93,7 +94,7 @@ module.exports =
 <template lang="pug">
 div
   no-ssr
-    welcome(:top="top")
+    welcome(:top="top" :title="title || '人狼議事'")
       .btns.form
         span.font
           btn(v-model="font" as="large") 大判

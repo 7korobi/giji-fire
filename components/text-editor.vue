@@ -98,7 +98,7 @@ span
           rt ○○
   div(v-if="is_show.history")
     hr
-    p.mention.fine(v-for="{ chrs, lines, head, tail, write_at } in edit_history_obj" @click="set_value(s)")
+    p.mention.fine(v-for="{ text, chrs, lines, head, tail, write_at } in edit_history_obj" @click="set_value(text)")
       timeago(:since="write_at")
       | 　{{ chrs }}字 {{ lines }}行 {{ head }}…{{ tail }}
 

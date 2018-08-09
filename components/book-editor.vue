@@ -71,8 +71,8 @@
               check.AIM(v-model="book.option" as="talk_aim" title="個人的な耳打ちができる。") 内緒話
               check.WSAY(v-model="book.option" as="talk_secret_grave" title="狼・妖精と死者との間で会話ができる。") 幽界トーク
             span
-              check.VSAY(v-model="book.option" as="talk_mob_grave" title="見物人と死者との間で会話ができる。") 裏方見物人
-              check.VSAY(v-model="book.option" as="talk_mob_alive" title="見物人と生存者、死者との間で会話ができる。") 舞台見物人
+              check.VSSAY(v-model="book.option" as="talk_mob_grave" title="見物人と死者との間で会話ができる。") 裏方見物人
+              check.VSSAY(v-model="book.option" as="talk_mob_alive" title="見物人と生存者、死者との間で会話ができる。") 舞台見物人
 
   c-post.form(handle="private" deco="giji")
     h4 設定-ゲーム

@@ -108,13 +108,13 @@ folder_handle =
   cabala:   'SSAY'
   morphe:   'SSAY'
 
-  rp:       'VSAY'
-  pretense: 'VSAY'
-  soybean:  'VSAY'
-  crazy:    'VSAY'
-  perjury:  'VSAY'
-  xebec:    'VSAY'
-  ciel:     'VSAY'
+  rp:       'VSSAY'
+  pretense: 'VSSAY'
+  soybean:  'VSSAY'
+  crazy:    'VSSAY'
+  perjury:  'VSSAY'
+  xebec:    'VSSAY'
+  ciel:     'VSSAY'
 
 module.exports =
   mixins: [

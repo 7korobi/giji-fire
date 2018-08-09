@@ -31,7 +31,7 @@ log-wiki
     chat(v-for="o in chats" @anker="anker" @focus="focus" :current="chat" :id="o.id", :key="o.id")
 
   div
-    c-post(handle="VSAY")
+    c-post(handle="VSSAY")
       article(v-if="! page_contents.length")
         blockquote.
           現在、この名前の項目はありません。
