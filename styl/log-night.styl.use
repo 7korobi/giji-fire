@@ -1,10 +1,7 @@
 @import "./_theme.styl"
 
-palette(world,  foot)
-palette(metal,   ash)
+palette(announce,  foot)
+palette(world,      ash)
 
 palette(say,   night)
 palette(note,  metal)
-
-palette(stat, foot)
-palette(leave, ash)

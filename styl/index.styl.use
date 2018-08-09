@@ -5,9 +5,12 @@
 @import "./_markdown.styl"
 @import "./_theme.styl"
 
-palette(headGrass, grass)
-palette(headMetal, metal)
-palette(headAsh,     ash)
+palette(grass, grass)
+palette(metal, metal)
+palette(ash,     ash)
+
+palette(stat, foot)
+palette(leave, ash)
 
 .potofs
   palette(say,  foot)

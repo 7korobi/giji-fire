@@ -1,10 +1,7 @@
 @import "./_theme.styl"
 
-palette(world, light)
-palette(metal, white)
+palette(announce, light)
+palette(world,    white)
 
 palette(say,  pastel)
 palette(note,   snow)
-
-palette(stat, pastel)
-palette(leave,  snow)

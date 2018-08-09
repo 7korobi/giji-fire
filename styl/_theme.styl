@@ -1,51 +1,3 @@
-/*
-  say: {
-    N01:    N01
-    N02:    N02
-    VLOVE:  N03
-    LOVE:   N04 AIM
-    N05:    N05
-    N06:    N06
-    VGRAVE: N07
-    GRAVE:  N08 VGSAY
-    N09:    N09 GSAY
-    SWEAT:  SWEAT
-    FOAM:   P09
-    ELSE:   P08 ELSE
-    BRONZE: P07
-    ALIEN:  P06
-    P05:    P05
-    P04:    P04
-    BROAD:  P03 SSAY MSAY
-    VBROAD: P02 VSSAY VSAY
-    LONE:   P01
-    WOLF:   P00 N00
-  }
-  note: {
-    N01:    SN01
-    N02:    SN02
-    VLOVE:  SN03 VPSAY
-    LOVE:   SN04 SPSAY PSAY
-    N05:    SN05
-    N06:    SN06
-    VGRAVE: SN07
-    GRAVE:  SN08
-    N09:    SN09
-    SWEAT:  SSWEAT
-    FOAM:   SP09 FSAY
-    ELSE:   SP08
-    BRONZE: SP07 hide
-    ALIEN:  SP06 XSAY BSAY
-    P05:    SP05
-    P04:    SP04
-    BROAD:  SP03
-    VBROAD: SP02 TSAY
-    LONE:   SP01
-    WOLF:   S000 WSAY
-  }
-
-*/
-
 themes = {
   say: {
     N01:    N01
@@ -92,7 +44,7 @@ themes = {
     WOLF:   S000
   }
 
-  world: {
+  announce: {
     N01:    WN01
     N02:    WN02
     VLOVE:  WN03
@@ -114,7 +66,7 @@ themes = {
     LONE:   WP01
     WOLF:   W000
   }
-  metal: {
+  world: {
     N01:    MN01
     N02:    MN02
     VLOVE:  MN03
@@ -154,15 +106,15 @@ themes = {
     BROAD:  DEL_S
     ALIEN:  suddendead leave
   }
-  headGrass: {
+  grass: {
     BROAD:  title-bar
   }
-  headMetal: {
+  metal: {
     ELSE:   welcome-links
     ALIEN:  progress
     VBROAD: prologue
   }
-  headAsh: {
+  ash: {
     BRONZE: BRONZE footer header
     BROAD:  btns chrblank
     N09:    welcome-btns
@@ -270,53 +222,54 @@ palette($themes, $backT)
     palette_single($bgTheme, $backT, key)
 
 palette_single($bgTheme, $backT, key)
-  if pastel == $backT
-    $bold = HSLA(key,40%,15%,1)
-    $bg   = HSLA(key,75%,85%,1)
-    $edge = HSLA(key,66%,60%,1)
 
   if snow == $backT
     $bold = HSLA(key,99%,25%,1)
-    $bg   = HSLA(key,12%,85%,1)
+    $bg   = HSLA(key,12%,80%,1)
     $edge = HSLA(key,20%,60%,1)
 
-  if light == $backT
-    $bold = HSLA(key,66%,10%,1)
-    $bg   = HSLA(key,35%,65%,1)
-    $edge = HSLA(key,66%,40%,1)
+  if pastel == $backT
+    $bold = HSLA(key,40%,15%,1)
+    $bg   = HSLA(key,75%,88%,1)
+    $edge = HSLA(key,66%,60%,1)
+
 
   if white == $backT
     $bold = HSLA(key,99%,20%,1)
-    $bg   = HSLA(key,12%,65%,1)
+    $bg   = HSLA(key,12%,60%,1)
     $edge = HSLA(key,20%,40%,1)
 
-
-  if black == $backT
-    $bold = HSLA(key,40%,80%,1)
-    $bg   = HSLA(key,35%,12%,1)
-    $edge = HSLA(key,66%,40%,1)
-
-  if night == $backT
-    $bold = HSLA(key,99%,80%,1)
-    $bg   = HSLA(key,35%,12%,1)
+  if light == $backT
+    $bold = HSLA(key,66%,10%,1)
+    $bg   = HSLA(key,35%,66%,1)
     $edge = HSLA(key,66%,40%,1)
 
 
   if metal == $backT
     $bold = HSLA(key,40%,90%,1)
-    $bg   = HSLA(key,12%,12%,1)
+    $bg   = HSLA(key,12%, 9%,1)
+    $edge = HSLA(key,20%,40%,1)
+
+  if black == $backT
+    $bold = HSLA(key,40%,80%,1)
+    $bg   = HSLA(key,35%,15%,1)
+    $edge = HSLA(key,66%,40%,1)
+
+  if night == $backT
+    $bold = HSLA(key,99%,80%,1)
+    $bg   = HSLA(key,35%,15%,1)
+    $edge = HSLA(key,66%,40%,1)
+
+
+  if ash == $backT
+    $bold = HSLA(key,75%,90%,1)
+    $bg   = HSLA(key,12%,27%,1)
     $edge = HSLA(key,20%,40%,1)
 
   if foot == $backT
     $bold = HSLA(key,66%,90%,1)
-    $bg   = HSLA(key,35%,30%,1)
+    $bg   = HSLA(key,35%,35%,1)
     $edge = HSLA(key,66%,40%,1)
-
-  if ash == $backT
-    $bold = HSLA(key,75%,90%,1)
-    $bg   = HSLA(key,12%,30%,1)
-    $edge = HSLA(key,20%,40%,1)
-
 
   if grass == $backT
     $bold = HSLA(key,66%,80%,1)
@@ -643,7 +596,7 @@ palette_single($bgTheme, $backT, key)
       .{theme} &
         text-shadow: none
         color: $pen
-        background-color: $bgHi
+        background-color: $edge
 
     input[type=submit]
     input[type=button]
