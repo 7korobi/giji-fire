@@ -324,10 +324,10 @@ palette_single($bgTheme, $backT, key)
     $edge = HSLA(key,50%,50%,0.5)
 
 
-  $pen    = mix($bg, $bold, 15%)
-  $hide   = mix($bg, $bold, 50%) + 6deg
-  $emboss = mix($bg, $bold, 75%) - 6deg
-  $btn    = mix($bg, $edge, 75%) - 6deg
+  $pen    = mix($bg,   $bold, 15%)
+  $hide   = mix($bg,   $bold, 50%) + 6deg
+  $btn    = mix($bg,   $edge, 75%) - 6deg
+  $emboss = mix($edge, $bold, 75%) - 6deg
   $penEmb = $bg
   $baloon = $bg
   $bgLow  = fix($bg,   0,  -3) + 6deg
