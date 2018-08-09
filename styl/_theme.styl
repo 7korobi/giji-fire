@@ -1,10 +1,58 @@
+/*
+  say: {
+    N01:    N01
+    N02:    N02
+    VLOVE:  N03
+    LOVE:   N04 AIM
+    N05:    N05
+    N06:    N06
+    VGRAVE: N07
+    GRAVE:  N08 VGSAY
+    N09:    N09 GSAY
+    SWEAT:  SWEAT
+    FOAM:   P09
+    ELSE:   P08 ELSE
+    BRONZE: P07
+    ALIEN:  P06
+    P05:    P05
+    P04:    P04
+    BROAD:  P03 SSAY MSAY
+    VBROAD: P02 VSSAY VSAY
+    LONE:   P01
+    WOLF:   P00 N00
+  }
+  note: {
+    N01:    SN01
+    N02:    SN02
+    VLOVE:  SN03 VPSAY
+    LOVE:   SN04 SPSAY PSAY
+    N05:    SN05
+    N06:    SN06
+    VGRAVE: SN07
+    GRAVE:  SN08
+    N09:    SN09
+    SWEAT:  SSWEAT
+    FOAM:   SP09 FSAY
+    ELSE:   SP08
+    BRONZE: SP07 hide
+    ALIEN:  SP06 XSAY BSAY
+    P05:    SP05
+    P04:    SP04
+    BROAD:  SP03
+    VBROAD: SP02 TSAY
+    LONE:   SP01
+    WOLF:   S000 WSAY
+  }
+
+*/
+
 themes = {
   say: {
     N01:    N01
     N02:    N02
-    VLOVE:  N03 AIM
-    LOVE:   N04 SPSAY PSAY
-    N05:    N05 VPSAY
+    VLOVE:  N03
+    LOVE:   N04 PSAY
+    N05:    N05
     N06:    N06
     VGRAVE: N07 VGSAY
     GRAVE:  N08 GSAY
@@ -17,15 +65,15 @@ themes = {
     P05:    P05
     P04:    P04
     BROAD:  P03 SSAY MSAY
-    VBROAD: P02 VSSAY VSAY
+    VBROAD: P02 VSSAY
     LONE:   P01
-    WOLF:   WSAY
+    WOLF:   P00 N00 WSAY
   }
   note: {
     N01:    SN01
     N02:    SN02
     VLOVE:  SN03
-    LOVE:   SN04
+    LOVE:   SN04 AIM
     N05:    SN05
     N06:    SN06
     VGRAVE: SN07
@@ -52,7 +100,7 @@ themes = {
     N05:    WN05
     N06:    WN06
     VGRAVE: WN07
-    GRAVE:  WN08 private
+    GRAVE:  WN08 
     N09:    WN09
     SWEAT:  WSWEAT
     FOAM:   WP09
@@ -61,8 +109,8 @@ themes = {
     ALIEN:  WP06
     P05:    WP05
     P04:    WP04
-    BROAD:  WP03 public
-    VBROAD: WP02
+    BROAD:  WP03
+    VBROAD: WP02 public
     LONE:   WP01
     WOLF:   W000
   }
@@ -84,7 +132,7 @@ themes = {
     P05:    MP05
     P04:    MP04
     BROAD:  MP03
-    VBROAD: MP02
+    VBROAD: MP02 private
     LONE:   MP01
     WOLF:   M000
   }
@@ -155,17 +203,17 @@ saturates = {
   VGRAVE: 113%
   GRAVE:  110%
   N09:    105%
-  SWEAT:   95%
-  FOAM:    95%
-  ELSE:    95%
-  BRONZE:  95%
-  ALIEN:   97%
-  P05:     99%
-  P04:    100%
+  SWEAT:   97%
+  FOAM:    94%
+  ELSE:    91%
+  BRONZE:  91%
+  ALIEN:   94%
+  P05:     97%
+  P04:     99%
   BROAD:  100%
-  VBROAD: 100%
-  LONE:   100%
-  WOLF:   105%
+  VBROAD: 104%
+  LONE:   107%
+  WOLF:   110%
 }
 
 lights = {
@@ -176,28 +224,34 @@ lights = {
   N05:    111%
   N06:    113%
   VGRAVE: 113%
-  GRAVE:  110%
-  N09:    105%
-  SWEAT:   95%
+  GRAVE:  109%
+  N09:    104%
+  SWEAT:   99%
   FOAM:    95%
-  ELSE:    95%
-  BRONZE:  95%
+  ELSE:    93%
+  BRONZE:  93%
   ALIEN:   97%
   P05:     99%
   P04:    100%
   BROAD:  100%
   VBROAD: 100%
   LONE:   100%
-  WOLF:   105%
+  WOLF:   100%
 }
 
 
-HSLA(key,SS,LL,AA = 1, hue_offset = 0)
-  HH = hues[key] + hue_offset
-  if 30% < SS && 30% < LL && LL < 70%
-    SS = SS * saturates[key] / 100
+HSLA(key,SS,LL,AA = 1)
+  HH = hues[key]
+  SS = SS * saturates[key] / 100
+  if 100% < SS
+    SS = 100%
+  if 30% < LL && LL < 70%
     LL = LL * lights[key]    / 100
+  
   hsla(HH,SS,LL,AA)
+
+fix(col, SS, LL)
+  lighten( saturate( col, SS ), LL )
 
 Bold(a, blur, col)
   b = 0 - a
@@ -210,202 +264,101 @@ Glowing(a, blur, col)
 Marker(size, col)
   background: linear-gradient(transparent size, col 0)
 
+
 palette($themes, $backT)
   for key, $bgTheme in themes[$themes]
     palette_single($bgTheme, $backT, key)
 
 palette_single($bgTheme, $backT, key)
   if pastel == $backT
-    $fine =   HSLA(key,50%,75%,1,  12deg)
-    $edge =   HSLA(key,50%,75%,1)
-    $line =   HSLA(key,50%,75%,1, -12deg)
-    $focus =  HSLA(key,75%,65%,1)
-
-    $emboss = HSLA(key,60%,65%,1)
-    $bgLow =  HSLA(key,50%,80%,1)
-    $bg =     HSLA(key,75%,85%,1)
-    $bgHi =   HSLA(key,50%,90%,1)
-    $off =    $bgLow
-    $on =     $bgHi
-    $shade =  HSLA(key,50%,95%,1)
-
-    $penEmb = $bgHi
-    $hide =   HSLA(key,  33%,55%,1)
-    $pen =    HSLA(key,  33%,33%,1)
-    $penHi =  HSLA(key,  33%,20%,1)
+    $bold = HSLA(key,40%,15%,1)
+    $bg   = HSLA(key,75%,85%,1)
+    $edge = HSLA(key,50%,60%,1)
 
   if snow == $backT
-    $fine =   HSLA(key,15%,75%,1,  12deg)
-    $edge =   HSLA(key,15%,75%,1)
-    $line =   HSLA(key,15%,75%,1, -12deg)
-    $focus =  HSLA(key,25%,65%,1)
-
-    $emboss = HSLA(key,15%,65%,1)
-    $bgLow =  HSLA(key,15%,80%,1)
-    $bg =     HSLA(key, 9%,85%,1)
-    $bgHi =   HSLA(key,15%,90%,1)
-    $off =    $bgLow
-    $on =     $bgHi
-    $shade =  HSLA(key,15%,95%,1)
-
-    $penEmb = $bgHi
-    $hide =   HSLA(key,  33%,55%,1)
-    $pen =    HSLA(key,  80%,33%,1)
-    $penHi =  HSLA(key,  80%,20%,1)
+    $bold = HSLA(key,99%,25%,1)
+    $bg   = HSLA(key,12%,85%,1)
+    $edge = HSLA(key,20%,60%,1)
 
   if light == $backT
-    $fine =   HSLA(key,50%,50%,1,  12deg)
-    $edge =   HSLA(key,50%,50%,1)
-    $line =   HSLA(key,50%,50%,1, -12deg)
-    $focus =  HSLA(key,75%,40%,1)
-
-    $emboss = HSLA(key,40%,50%,1)
-    $bgLow =  HSLA(key,50%,60%,1)
-    $bg =     HSLA(key,35%,63%,1)
-    $bgHi =   HSLA(key,50%,66%,1)
-    $off =    $bgLow
-    $on =     $bgHi
-    $shade =  HSLA(key,50%,80%,1)
-
-    $penEmb = $bgHi
-    $hide =   HSLA(key,  66%,35%,1)
-    $pen =    HSLA(key,  66%,15%,1)
-    $penHi =  HSLA(key,  66%, 0%,1)
+    $bold = HSLA(key,66%,10%,1)
+    $bg   = HSLA(key,35%,63%,1)
+    $edge = HSLA(key,50%,50%,1)
 
   if white == $backT
-    $fine =   HSLA(key,15%,50%,1,  12deg)
-    $edge =   HSLA(key,15%,50%,1)
-    $line =   HSLA(key,15%,50%,1, -12deg)
-    $focus =  HSLA(key,25%,40%,1)
+    $bold = HSLA(key,99%,20%,1)
+    $bg   = HSLA(key,12%,63%,1)
+    $edge = HSLA(key,20%,50%,1)
 
-    $emboss = HSLA(key,15%,45%,1)
-    $bgLow =  HSLA(key,15%,55%,1)
-    $bg =     HSLA(key, 9%,63%,1)
-    $bgHi =   HSLA(key,15%,80%,1)
-    $off =    $bgLow
-    $on =     $bgHi
-    $shade =  HSLA(key,15%,80%,1)
-
-    $penEmb = $bgHi
-    $hide =   HSLA(key,  33%,40%,1)
-    $pen =    HSLA(key,  80%,15%,1)
-    $penHi =  HSLA(key,  80%, 0%,1)
-
-  if foot == $backT
-    $fine =   HSLA(key,50%,50%,1,  12deg)
-    $edge =   HSLA(key,50%,50%,1)
-    $line =   HSLA(key,50%,50%,1, -12deg)
-    $focus =  HSLA(key,30%,45%,1)
-
-    $bgLow =  HSLA(key,40%,33%,1)
-    $bg =     HSLA(key,35%,28%,1)
-    $bgHi =   HSLA(key,66%,23%,1)
-    $emboss = HSLA(key,75%,15%,1)
-    $off =    $bgLow
-    $on =     $bgHi
-    $shade =  HSLA(key,99%,10%,1)
-
-    $penEmb = $bgLow
-    $hide =   HSLA(key,  30%,40%,1)
-    $pen =    HSLA(key,  20%,66%,1)
-    $penHi =  HSLA(key,  15%,90%,1)
-
-  if ash == $backT
-    $fine =   HSLA(key,15%,50%,1,  12deg)
-    $edge =   HSLA(key,15%,50%,1)
-    $line =   HSLA(key,15%,50%,1, -12deg)
-    $focus =  HSLA(key,25%,40%,1)
-
-    $bgLow =  HSLA(key,15%,33%,1)
-    $bg =     HSLA(key, 9%,28%,1)
-    $bgHi =   HSLA(key,15%,23%,1)
-    $emboss = HSLA(key,50%,15%,1)
-    $off =    $bgLow
-    $on =     $bgHi
-    $shade =  HSLA(key,99%,10%,1)
-
-    $penEmb = $bgLow
-    $hide =   HSLA(key,  20%,40%,1)
-    $pen =    HSLA(key,  25%,75%,1)
-    $penHi =  HSLA(key,  15%,90%,1)
 
   if black == $backT
-    $fine =   HSLA(key,66%,40%,1,  12deg)
-    $edge =   HSLA(key,66%,40%,1)
-    $line =   HSLA(key,66%,40%,1, -12deg)
-    $focus =  HSLA(key,80%,30%,1)
-
-    $emboss = HSLA(key,30%,30%,1)
-    $bgLow =  HSLA(key,50%,20%,1)
-    $bg =     HSLA(key,35%,15%,1)
-    $bgHi =   HSLA(key,99%,10%,1)
-    $off =    $bgLow
-    $on =     $bgHi
-    $shade =  HSLA(key,99%, 0%,1)
-
-    $penEmb = $bgHi
-    $hide =   HSLA(key,  30%,40%,1)
-    $pen =    HSLA(key,  20%,66%,1)
-    $penHi =  HSLA(key,  15%,90%,1)
-
-  if metal == $backT
-    $fine =   HSLA(key,15%,40%,1,  12deg)
-    $edge =   HSLA(key,15%,40%,1)
-    $line =   HSLA(key,15%,40%,1, -12deg)
-    $focus =  HSLA(key,25%,30%,1)
-
-    $emboss = HSLA(key,30%,30%,1)
-    $bgLow =  HSLA(key,20%,18%,1)
-    $bg =     HSLA(key,12%,12%,1)
-    $bgHi =   HSLA(key,20%, 6%,1)
-    $off =    $bgLow
-    $on =     $bgHi
-    $shade =  HSLA(key,99%, 0%,1)
-
-    $penEmb = $bgHi
-    $hide =   HSLA(key,  20%,40%,1)
-    $pen =    HSLA(key,  25%,75%,1)
-    $penHi =  HSLA(key,  15%,90%,1)
+    $bold = HSLA(key,40%,80%,1)
+    $bg   = HSLA(key,35%,12%,1)
+    $edge = HSLA(key,66%,40%,1)
 
   if night == $backT
-    $fine =   HSLA(key,66%,40%,1,  12deg)
-    $edge =   HSLA(key,66%,40%,1)
-    $line =   HSLA(key,66%,40%,1, -12deg)
-    $focus =  HSLA(key,80%,30%,1)
+    $bold = HSLA(key,99%,80%,1)
+    $bg   = HSLA(key,35%,12%,1)
+    $edge = HSLA(key,66%,40%,1)
 
-    $emboss = HSLA(key,50%,30%,1)
-    $bgLow =  HSLA(key,50%,18%,1)
-    $bg =     HSLA(key,35%,12%,1)
-    $bgHi =   HSLA(key,99%, 6%,1)
-    $off =    $bgLow
-    $on =     $bgHi
-    $shade =  HSLA(key,99%, 0%,1)
 
-    $penEmb = $bgHi
-    $hide =   HSLA(key,  30%,40%,1)
-    $pen =    HSLA(key,  75%,66%,1)
-    $penHi =  HSLA(key,  85%,90%,1)
+  if metal == $backT
+    $bold = HSLA(key,40%,90%,1)
+    $bg   = HSLA(key,12%,12%,1)
+    $edge = HSLA(key,20%,40%,1)
+
+  if foot == $backT
+    $bold = HSLA(key,66%,90%,1)
+    $bg   = HSLA(key,35%,28%,1)
+    $edge = HSLA(key,50%,50%,1)
+
+  if ash == $backT
+    $bold = HSLA(key,75%,90%,1)
+    $bg   = HSLA(key,12%,28%,1)
+    $edge = HSLA(key,20%,50%,1)
+
 
   if grass == $backT
-    $fine =   HSLA(key,50%,50%,1,  12deg)
-    $edge =   HSLA(key,50%,50%,1)
-    $line =   HSLA(key,50%,50%,1, -12deg)
-    $focus =  HSLA(key,99%,50%,0.3)
+    $bold = HSLA(key,66%,80%,1)
+    $bg   = HSLA(key,75%,28%,0.5)
+    $edge = HSLA(key,50%,50%,0.5)
 
-    $emboss = HSLA(key,40%,35%,1)
-    $bgLow =  HSLA(key,50%,50%,0.5)
-    $bg =     HSLA(key,70%,30%,0.5)
-    $bgHi =   HSLA(key,99%,20%,0.5)
-    $off =    transparent
-    $on =     HSLA(key,75%,70%,0.3)
-    $shade =  HSLA(key,99%,20%,1)
 
-    $penEmb = $bgHi
-    $hide =   HSLA(key,  20%,40%,1)
-    $pen =    HSLA(key,  25%,75%,1)
-    $penHi =  HSLA(key,  15%,90%,1)
-
+  $pen    = mix($bg, $bold, 15%)
+  $hide   = mix($bg, $bold, 50%) + 6deg
+  $emboss = mix($bg, $bold, 75%) - 6deg
+  $btn    = mix($bg, $edge, 75%) - 6deg
+  $penEmb = $bg
   $baloon = $bg
+  $bgLow  = fix($bg,   0,  -3) + 6deg
+  $bgHi   = fix($bg,   0,   3) + 6deg
+
+  $off    = fix($btn,  5, -20)
+  $on     = fix($btn, 20,   0)
+
+  $shade  = fix($edge,40, -30) + 9deg
+  $focus  = fix($edge,30, -10)
+  $edge   = $edge + 6deg
+  $fine   = fix($edge, 0,   0) + 12deg
+  $line   = fix($edge, 0,   0) - 12deg
+
+
+  $pattern1 = pastel snow light white
+  $pattern2 = black night
+  $pattern3 = foot ash metal
+
+  if grass == $backT
+    $off   = transparent
+
+  if $backT in $pattern1
+    $off   = fix($off, 0,  15)
+    $on    = fix($on,  0,  15)
+    $shade = fix($edge,0,  30) + 9deg
+
+  if $backT in $pattern3
+    $off   = fix($off, 0,   5)
+    $on    = fix($on,  0,   5)
+
   @keyframes {theme}-pulse
     0%   { text-shadow: 2px 0 1px $bgHi, -2px 0 1px $bgHi }
     0%   { text-shadow: 0 2px 1px $bgHi, 0 -2px 1px $bgHi }
@@ -421,7 +374,7 @@ palette_single($bgTheme, $backT, key)
       border-color:     $edge
 
       .head:first-line
-        color: $penHi
+        color: $bold 
 
       &.baloon
         border-color: $baloon
@@ -454,7 +407,7 @@ palette_single($bgTheme, $backT, key)
       .task.doneCrit4
       .task.doneCrit5
         fill: $bgLow
-        stroke: $penHi
+        stroke: $bold 
 
       .task.done0
       .task.done1
@@ -472,7 +425,7 @@ palette_single($bgTheme, $backT, key)
       .task.activeCrit4
       .task.activeCrit5
         fill: $bgHi
-        stroke: $penHi
+        stroke: $bold 
 
       .task.active0
       .task.active1
@@ -490,7 +443,7 @@ palette_single($bgTheme, $backT, key)
       .task.crit4
       .task.crit5
         fill: $emboss
-        stroke: $penHi
+        stroke: $bold 
 
       .task.task0
       .task.task1
@@ -520,7 +473,7 @@ palette_single($bgTheme, $backT, key)
       text.sectionTitle
       text.titleText
       text.loopText
-        fill: $penHi
+        fill: $bold 
 
       .note
         fill: $bgHi
@@ -591,7 +544,7 @@ palette_single($bgTheme, $backT, key)
     h6
       body &.{theme}
       .{theme} &
-        color: $penHi
+        color: $bold 
 
     h1
     h2
@@ -619,7 +572,7 @@ palette_single($bgTheme, $backT, key)
     th
       body &.{theme}
       .{theme} &
-        color: $penHi
+        color: $bold 
         border-color: $focus
 
     b
@@ -628,14 +581,14 @@ palette_single($bgTheme, $backT, key)
       body &.{theme}
       .{theme} &
         color: $pen
-        text-emphasis-color: $penHi
-        text-decoration-color: $penHi
+        text-emphasis-color: $bold 
+        text-decoration-color: $bold 
 
     label
     rt
       body &.{theme}
       .{theme} &
-        color: $penHi
+        color: $bold 
         background-color: $bgHi
 
     .ban
@@ -645,17 +598,12 @@ palette_single($bgTheme, $backT, key)
         background-color: $emboss
         color: $penEmb
 
-    .name
-    .date
-      .{theme}.focus &
-        color: $focus
-
     ins
       body &.{theme}
       .{theme} &
-        color: $penHi
-        text-emphasis-color: $emboss
-        text-decoration-color: $emboss
+        color: $bold 
+        text-emphasis-color: $edge
+        text-decoration-color: $edge
 
     del
     legend
@@ -711,26 +659,26 @@ palette_single($bgTheme, $backT, key)
           background-color: $on
         &:visited
         &:link
-          color: $penHi
+          color: $bold 
 
     s
       body &.{theme}
       .{theme} &
-        text-decoration-color: $emboss
-        text-emphasis-color: $emboss
+        text-emphasis-color: $edge
+        text-decoration-color: $edge
 
     kbd
     code
       body &.{theme}
       .{theme} &
         color: $pen
-        background-color: $on
+        background-color: $bgHi
 
     [title]
     [cite]
       body &.{theme}
       .{theme} &
-        color: $penHi
+        color: $bold 
         border-color: $on
 
     input

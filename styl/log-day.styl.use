@@ -1,9 +1,5 @@
 @import "./_theme.styl"
 
-palette(headGrass, grass)
-palette(headMetal, metal)
-palette(headAsh,     ash)
-
 palette(world,  black)
 palette(metal,  metal)
 
@@ -12,7 +8,3 @@ palette(note,  white)
 
 palette(stat, foot)
 palette(leave, ash)
-
-.potofs
-  palette(say,  foot)
-  palette(note,  ash)
