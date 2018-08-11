@@ -17,7 +17,7 @@
     "copy_all": "run-p -n copy:*",
     "copy_dist": "cp -ru static/* dist/",
     "copy:stylus": "ls styl/*.styl.use | xargs stylus --compress --out static/css/",
-    "copy:portrate": "cp /c/Dropbox/*/web_work/images/portrate/* static/images/portrate/.",
+    "copy:portrate": "cp -u /c/Dropbox/*/web_work/images/portrate/* static/images/portrate/.",
     "copy:monaco": "rm -rf static/lib/monaco-editor/min && cp -r node_modules/monaco-editor/min static/lib/monaco-editor/.",
     "copy:func": "webpack --config config/webpack/index-functions.coffee",
     "copy:sow": "webpack --config config/webpack/index-sow.coffee",
@@ -34,7 +34,8 @@
     "deploy:all": "firebase deploy",
     "deploy:host": "firebase deploy --only hosting",
     "deploy:func": "firebase deploy --only functions",
-    "install:global-msys": "pacman -S rsync",
+    "install": "run-p -n copy:*",
+    "install:global-msys": "pacman -S openssh rsync",
     "install:global-npm": "npm install -g aws-sdk firebase-tools"
   },
   "jest": {

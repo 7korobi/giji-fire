@@ -7,13 +7,13 @@ table(@mouseleave="focus_on('','')")
           i.mdi.mdi-eraser
       td.r(v-for="xo in x" @mouseover="focus_on(xo.id, '')")
         btn.r.fine(bool="include" @input="xon(xo.id)" @toggle="xoff(xo.id)" :value="value" :as="yall(xo.id)" :key="xo.id")
-          kbd(v-if="xo.count") {{ xo.count }}
+          sub(v-if="xo.count") {{ xo.count }}
           br
           | {{ xo.id }}
     tr(v-for="yo in y")
       td.r(@mouseover="focus_on('', yo.id)")
         btn.r.fine(bool="include" @input="yon(yo.id)" @toggle="yoff(yo.id)" :value="value" :as="xall(yo.id)" :key="yo.id")
-          kbd(v-if="yo.count") {{ yo.count }}
+          sub(v-if="yo.count") {{ yo.count }}
           br
           | {{ yo.id }}
       td.r(v-for="xo in x" @mouseover="focus_on(xo.id, yo.id)" :class="{ focus: focus_at.x === xo.id || focus_at.y === yo.id }")

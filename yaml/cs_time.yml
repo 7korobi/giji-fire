@@ -290,3 +290,19 @@ chr_job:
   - face_id: t60
     job: 大太刀源流
     comment: 由来：示現流
+
+  - face_id: t61
+    job: 愚連隊
+    comment: 由来：一般名詞の愚連隊
+
+  - face_id: t62
+    job: 頭蓋骨と骨
+    comment: 由来：スカル＆ボーンズ
+
+  - face_id: t63
+    job: 朝茶会
+    comment: 由来：朝活。朝茶をする集まり、みたいなイメージです。
+
+  - face_id: t64
+    job: 食養会
+    comment: 由来：食養会（まま）
