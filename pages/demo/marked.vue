@@ -11,7 +11,7 @@ div
       span
         btn.large(v-model="o.deco" as="giji")
           i.mdi.mdi-file-document
-        btn.large(v-model="o.deco" as="dagre")
+        btn.large(v-model="o.deco" as="diagram")
           i.mdi.mdi-file-image
       text-editor(v-model="o.log" :deco="o.deco" :rows="7" :maxRow="20" :maxSize="999")
 

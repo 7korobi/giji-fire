@@ -26,6 +26,18 @@ span
         i.mdi.mdi-history
         sup(v-if="edit_history.length") {{ edit_history.length }}
 
+    span(v-if="is_svg")
+      a.btn(@click='edge_solid')
+        | ↔
+      a.btn(@click='edge_wide')
+        | ⇔
+      a.btn(@click='edge_dotted')
+        | ↭
+
+    span(v-if="is_svg")
+      a.btn(@click='template_diagram')
+        i.mdi.mdi-sitemap
+
     span(v-if="is_giji")
       a.btn(@click='h2')
         i.mdi.mdi-format-header-2
@@ -176,6 +188,24 @@ module.exports =
       @$emit 'input', @edit_history_top
 
   methods:
+    edge_solid: caret (hd, text, tl)->
+      text = " o--><--o "
+      """#{hd}#{text}#{tl}"""
+    edge_wide: caret (hd, text, tl)->
+      text = " o==><==o "
+      """#{hd}#{text}#{tl}"""
+    edge_dotted: caret (hd, text, tl)->
+      text = " o..><..o "
+      """#{hd}#{text}#{tl}"""
+
+    template_diagram: caret (hd, text, tl)->
+      """
+      ## 工作部屋
+      ボリス 石
+
+      ボリス --> 石
+      """
+
     blockquote:  caret (hd, text, tl)->
       text = text
       .split /\n/g
@@ -354,9 +384,7 @@ module.exports =
     blur:  -> @$emit 'icon', 'mdi-access-point'
 
     set_value: (s)->
-      if s
-        @forward_history = []
-        @edit_history_top = s
+      @forward_history = []
       @$emit 'input', s
 
     edit_history_forward: ->
@@ -370,6 +398,11 @@ module.exports =
         [cut, ...@edit_history] = @edit_history
         @forward_history = [cut, ...@forward_history]
         @$emit 'input', @edit_history_top
+
+  watch:
+    value: (value)->
+      if value
+        @edit_history_top = value
 
   computed:
     ban: ->
@@ -399,6 +432,9 @@ module.exports =
       return @minRow if @row < @minRow
       return @maxRow if @maxRow < @row
       return @row
+
+    is_svg: ->
+      ['diagram'].includes @deco
 
     is_unicode: ->
       ['giji','sow'].includes @deco

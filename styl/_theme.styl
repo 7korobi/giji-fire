@@ -2,7 +2,7 @@ themes = {
   say: {
     N01:    N01
     N02:    N02
-    VLOVE:  N03
+    VLOVE:  N03 VPSAY
     LOVE:   N04 PSAY
     N05:    N05
     N06:    N06
@@ -15,8 +15,8 @@ themes = {
     BRONZE: P07
     ALIEN:  P06 XSAY
     P05:    P05
-    P04:    P04
-    BROAD:  P03 SSAY MSAY
+    MUPET:  P04 MSAY
+    BROAD:  P03 SSAY
     VBROAD: P02 VSSAY
     LONE:   P01
     WOLF:   P00 N00 WSAY
@@ -28,20 +28,20 @@ themes = {
     LOVE:   SN04 AIM
     N05:    SN05
     N06:    SN06
-    VGRAVE: SN07
-    GRAVE:  SN08
+    VGRAVE: SN07 GAIM
+    GRAVE:  SN08 
     N09:    SN09
     SWEAT:  SSWEAT
-    FOAM:   SP09
+    FOAM:   SP09 HSAY
     ELSE:   SP08
     BRONZE: SP07 hide
-    ALIEN:  SP06
+    ALIEN:  SP06 USAY
     P05:    SP05
-    P04:    SP04
-    BROAD:  SP03
+    MUPET:  SP04 YSAY
+    BROAD:  SP03 
     VBROAD: SP02 TSAY
-    LONE:   SP01
-    WOLF:   S000
+    LONE:   SP01 LSAY
+    WOLF:   S000 
   }
 
   announce: {
@@ -60,7 +60,7 @@ themes = {
     BRONZE: WP07
     ALIEN:  WP06
     P05:    WP05
-    P04:    WP04
+    MUPET:  WP04
     BROAD:  WP03
     VBROAD: WP02 public
     LONE:   WP01
@@ -82,7 +82,7 @@ themes = {
     BRONZE: MP07
     ALIEN:  MP06
     P05:    MP05
-    P04:    MP04
+    MUPET:  MP04
     BROAD:  MP03
     VBROAD: MP02 private
     LONE:   MP01
@@ -137,7 +137,7 @@ hues = {
   BRONZE:  7 * 18deg - 2deg 
   ALIEN:   6 * 18deg - 3deg
   P05:     5 * 18deg - 4deg
-  P04:     4 * 18deg - 5deg
+  MUPET:   4 * 18deg - 5deg
   BROAD:   3 * 18deg - 6deg
   VBROAD:  2 * 18deg - 5deg
   LONE:    1 * 18deg - 4deg
@@ -161,7 +161,7 @@ saturates = {
   BRONZE:  90%
   ALIEN:   95%
   P05:    100%
-  P04:    100%
+  MUPET:  100%
   BROAD:  100%
   VBROAD: 100%
   LONE:   100%
@@ -184,7 +184,7 @@ lights = {
   BRONZE:  93%
   ALIEN:   95%
   P05:     97%
-  P04:     97%
+  MUPET:   97%
   BROAD:  100%
   VBROAD: 100%
   LONE:   100%
@@ -340,135 +340,31 @@ palette_single($bgTheme, $backT, key)
       blockquote
         border-color: $edge
       
-      // mermaid
-      .section.section1
-      .section.section3
-      .section.section5
-      .section.section7
-        fill: $bgLow
-      .section.section0
-      .section.section2
-      .section.section4
-      .section.section6
-        fill: $bgHi
-
-      .task.doneCrit0
-      .task.doneCrit1
-      .task.doneCrit2
-      .task.doneCrit3
-      .task.doneCrit4
-      .task.doneCrit5
-        fill: $bgLow
-        stroke: $bold 
-
-      .task.done0
-      .task.done1
-      .task.done2
-      .task.done3
-      .task.done4
-      .task.done5
-        fill: $bgLow
-        stroke: $emboss
-
-      .task.activeCrit0
-      .task.activeCrit1
-      .task.activeCrit2
-      .task.activeCrit3
-      .task.activeCrit4
-      .task.activeCrit5
-        fill: $bgHi
-        stroke: $bold 
-
-      .task.active0
-      .task.active1
-      .task.active2
-      .task.active3
-      .task.active4
-      .task.active5
-        fill: $bgHi
-        stroke: $emboss
-
-      .task.crit0
-      .task.crit1
-      .task.crit2
-      .task.crit3
-      .task.crit4
-      .task.crit5
-        fill: $emboss
-        stroke: $bold 
-
-      .task.task0
-      .task.task1
-      .task.task2
-      .task.task3
-      .task.task4
-      .task.task5
-        fill: $emboss
-        stroke: $emboss
+      // SVG
+      rect.move
+      .move > rect
+        stroke: $focus
 
       rect.cluster
       .cluster > rect
-        fill: $bg
         stroke: $hide
-      text.labelText
-      text.labelText > tspan
-        fill: $hide
 
-      .grid
-        .tick > line
-        .tick > text
-        .domain
-          stroke: $hide
-          fill: $hide
-
-      .cluster > text
-      text.sectionTitle
-      text.titleText
-      text.loopText
-        fill: $bold 
-
-      .note
-        fill: $bgHi
-        stroke: $bgLow
-
-      .label
-        color: $pen
-      .edgeLabel
-        color: $pen
-        background-color: $bgLow
-      text.actor
-      text.actor > tspan
-      text.messageText
-      text.messageText > tspan
-      text.noteText
-      text.noteText > tspan
+      text.pen
+      text.pen > tspan
         fill: $pen
 
-      .messageLine0
-      .messageLine1
-      .edgePath > path.path
-      line.loopLine
-        stroke: $line
+      .edgePath
+        > circle
+        > path.fill
+          fill: $line
+        > path.path
+          stroke: $line
+        > rect.pen
+          fill: $bgHi
+        > text.pen
+          fill: $pen
 
-      polygon.labelBox
-        fill: $emboss
-        stroke: $line
 
-      .edgePath rect.path
-      .edgePath path.arrowheadPath
-      marker
-        fill: $line
-      marker#svg-marker-arrow
-        fill: $line
-        stroke: $line
-
-      .node > rect
-      .node > circle
-      .node > polygon
-      line.actor-line
-      .actor
-        stroke: $fine
-        fill: $bgHi
 
     fieldset
       body &.{theme}

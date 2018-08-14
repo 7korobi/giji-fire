@@ -306,3 +306,24 @@ chr_job:
   - face_id: t64
     job: 食養会
     comment: 由来：食養会（まま）
+
+  - face_id: t65
+    job: 啓明結社
+    comment: 由来：イルミナティ
+
+  - face_id: t66
+    job: 更なる前進
+    comment: 由来：PLUS ULTRA
+
+  - face_id: t67
+    job: 領事裁判所
+    comment: 由来：横浜英国領事裁判所
+
+  - face_id: t68
+    job: 天文学会
+    comment: 由来：公益社団法人 日本天文学会
+
+  - face_id: t69
+    job: 校庭番長
+    comment: 由来：番長学園！（TRPG）
+

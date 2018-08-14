@@ -77,7 +77,7 @@ log-wiki
   e-potof(v-if="user && is_creating" v-model="edit.potof")
   c-report(v-if="user && is_replacing" handle="header" deco="center") 編集中
 
-  chat(v-if="user && edit.potof.face_id" :id="edit.chat._id" :current="chat" @check="check_post")
+  chat(v-if="user && edit.potof.face_id" :id="edit.chat._id" :current="chat" @check="check_post" :edit="true")
   c-report(v-if="user && edit.potof.face_id" :handle="edit.chat.phase.handle")
     text-editor(v-model="edit.chat.log" v-bind="for_editor" @icon="icon_change" @drop_image="image_post" @submit="chat_post")
       select(v-if="is_creating" v-model="edit.phase.handle" key="handle")
@@ -92,7 +92,7 @@ log-wiki
         option(:value="edit.potof.head") 記名
       select(v-model="edit.chat.deco" key="deco")
         option(value="giji")  文字
-        option(value="dagre") 作図
+        option(value="diagram") 作図
       span.pull-right(v-if="is_replacing")
         a.btn.active(@click="create_mode")
           i.mdi.mdi-open-in-new

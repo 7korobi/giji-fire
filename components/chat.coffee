@@ -6,10 +6,11 @@ targets =
   sow:  'g-sow'
   head: 'g-sow'
   mono: 'g-sow'
-  dagre: 'g-dagre'
+  dagre: 'g-sow'
+  mermaid: 'g-sow'
   giji:   'g-marked'
   center: 'g-marked'
-  mermaid: 'g-sow'
+  diagram: 'g-marksvg'
 
 
 module.exports = ->
@@ -33,6 +34,10 @@ module.exports = ->
     log:
       type: String
       default: ""
+
+    edit:
+      type: Boolean
+      default: false
 
   methods:
     input: ({ target })->

@@ -88,14 +88,6 @@ div
       li #[a(href="http://straws.sakura.ne.jp/madb01/") MAD PEOPLE]
       li #[a(href="http://members.at.infoseek.co.jp/Paranoia_O/") PARANOIA O]
 </template>
-<style lang="sass" scoped>
-.portrates
-  .chrblank
-    a
-      display: block
-      text-align: center
-      white-space: pre
-</style>
 <script lang="coffee">
 { Query } = require "~/plugins/memory-record"
 module.exports =

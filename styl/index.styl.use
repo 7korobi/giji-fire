@@ -4,6 +4,7 @@
 @import "./_frame.styl"
 @import "./_markdown.styl"
 @import "./_theme.styl"
+@import "./_font.styl"
 
 palette(grass, grass)
 palette(metal, metal)
@@ -15,5 +16,35 @@ palette(leave, ash)
 .potofs
   palette(say,  foot)
   palette(note,  ash)
+
+
+.chrblank
+  inline(12px, 15px, sans-serif)
+
+  dfn
+  abbr
+  input
+  select
+  button
+  textarea
+  strong
+  time
+  code
+  kbd
+  em
+  a
+  b
+  p
+    inline(12px, 15px, sans-serif)
+
+  input
+  select
+  button
+  [href]
+  [cite]
+  [chat_id]
+  .btn
+    margin:  0
+    padding: 2px 0
 
 

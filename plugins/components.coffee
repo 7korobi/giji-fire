@@ -1,6 +1,7 @@
 Vue = require "vue"
-Marked = require('vue-markup/src/marked.vue').default
-Dagre  = require('vue-markup/src/dagre.vue').default
+
+MarkSVG = require('vue-markup/src/marksvg.vue').default
+Marked  = require('vue-markup/src/marked.vue').default
 
 { Query } = require "~/plugins/memory-record"
 { url } = require "~/config/live.yml"
@@ -27,10 +28,7 @@ Object.assign Marked.options.renderer,
   cite_exist: (cite)->
     Query.chats.find(cite)
 
-Object.assign Dagre.options.renderer,
-  node: (v, label)->
-    console.log { v, label }
-
+Object.assign MarkSVG.options.renderer,
   href: (key)->
     "#{url.assets}/images/portrate/#{ key }.jpg"
 
@@ -40,13 +38,15 @@ Object.assign Dagre.options.renderer,
     .list[0]
     switch
       when !! job?.face
-        ["icon", job.face.id, job.face.name]
+        for key in [ job.face.name, job.job ]
+          if key.includes v
+            v = key
+        ["icon", job.face.id, v]
       else
         ["box", v, v]
 
-
-Vue.component 'g-dagre',  Dagre
-Vue.component 'g-marked', Marked
+Vue.component 'g-marked',  Marked
+Vue.component 'g-marksvg', MarkSVG
 
 ctx = require.context "~/components", true, ///(.+)\.vue$///
 for fname in ctx.keys()

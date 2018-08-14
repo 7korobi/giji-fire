@@ -152,8 +152,12 @@ new Rule("chr_job").schema ->
     @q =
       search_words:
         if @face
-        then "#{@job} #{@face.name}"
-        else ""
+          if ["animal", "school"].includes @chr_set_id
+            @face.name
+          else
+            "#{@job} #{@face.name}"
+        else
+          ""
 
   @scope (all)->
     tag: (tag_id)->

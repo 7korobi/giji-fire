@@ -1,7 +1,7 @@
 @import "./_theme.styl"
 @import "./_theme_film.styl"
 
-palette_single(icons, metal, P04)
+palette_single(icons, metal, MUPET)
 
 .talk
   .chat

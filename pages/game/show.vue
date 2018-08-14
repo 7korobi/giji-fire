@@ -83,7 +83,7 @@ log-wiki
     span
       btn.large(v-model="edit.chat.deco" as="giji")
         i.mdi.mdi-file-document
-      btn.large(v-model="edit.chat.deco" as="dagre")
+      btn.large(v-model="edit.chat.deco" as="diagram")
         i.mdi.mdi-file-image
     span.pull-right(v-if="is_creating")
       btn(v-for="phase in phases" v-model="edit.phase.handle" :class="phase.handle" :key="phase.handle" :as="phase.handle") {{ phase.label }}

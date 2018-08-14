@@ -283,35 +283,50 @@ sub
   text-align: center
 
 // SVG section
+rect.move
+.move > rect
+  stroke-width: 1px
+  fill: none
 
-.edgePath 
-  > path.path.hide
-    stroke: none
-    stroke-width: 0
+rect.cluster
+.cluster > rect
+  stroke-width: 3px
+  fill: none
 
-  > path.path.wide
-    stroke-width: 6px
+rect.icon
+.icon > rect
 
-  > path.path.solid
-    stroke-width: 3px
+rect.point
+.point > rect
+  fill: none
+  stroke: none
 
-  > path.path.dotted
-    stroke-width: 3px
-    stroke-dasharray: 3px, 6px
+rect.box
+.box > rect
+  fill: black
+  stroke: black
 
+.edgePath
+  > path.path
+    fill: none
+    &.hide
+      stroke: none
+      stroke-width: 0
+    &.wide
+      stroke-width: 6px
+    &.solid
+      stroke-width: 3px
+    &.dotted
+      stroke-width: 3px
+      stroke-dasharray: 3px, 6px
+  > circle
+  > text
+    text-anchor: middle
 
-#svg-marker-arrow > path
+#svg-marker-arrow-end > path
+#svg-marker-arrow-start > path
   stroke-width: 1px
   stroke-dasharray: 1px, 0
 #svg-marker-cross > path
   stroke-width: 2px
   stroke-dasharray: 1px, 0
-
-rect.icon
-  fill:   black
-  stroke: black
-rect.cluster
-  stroke-width: 3px
-
-text.messageText
-  text-anchor: middle

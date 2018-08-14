@@ -86,9 +86,3 @@ module.exports =
 
 </script>
 
-<style lang="sass" scoped>
-.chrblank
-  a
-    display: block
-</style>
-

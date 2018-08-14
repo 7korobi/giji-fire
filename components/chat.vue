@@ -9,9 +9,12 @@ module.exports =
       required: true
     show: String
     current: Object
+    edit:
+      type: Boolean
+      default: false
 
   render: (m, ctx)->
-    { id, show, current } = ctx.props
+    { id, show, current, edit } = ctx.props
 
     chat = Query.chats.find id
     return [] unless chat
@@ -29,6 +32,6 @@ module.exports =
       write_at, deco, log, to
     } = chat
 
-    attrs = { current, show, id, face_id, write_at, sign, handle, deco, head, log, to }
+    attrs = { edit, current, show, id, face_id, write_at, sign, handle, deco, head, log, to }
     m "c-" + attrs.show, { attrs, key, on: ctx.data.on }, ctx.children
 </script>
