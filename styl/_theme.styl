@@ -13,7 +13,7 @@ themes = {
     FOAM:   P09 FSAY
     ELSE:   P08 ELSE
     BRONZE: P07
-    ALIEN:  P06 XSAY BSAY
+    ALIEN:  P06 XSAY
     P05:    P05
     P04:    P04
     BROAD:  P03 SSAY MSAY
@@ -122,69 +122,69 @@ themes = {
 }
 
 hues = {
-  N01:    19 * 18deg
-  N02:    18 * 18deg
+  N01:    19 * 18deg - 2deg
+  N02:    18 * 18deg - 1deg
   VLOVE:  17 * 18deg
   LOVE:   16 * 18deg
   N05:    15 * 18deg
-  N06:    14 * 18deg +  3deg
-  VGRAVE: 13 * 18deg +  6deg
-  GRAVE:  12 * 18deg +  9deg
-  N09:    11 * 18deg + 12deg
-  SWEAT:  10 * 18deg +  9deg
-  FOAM:    9 * 18deg +  6deg
-  ELSE:    8 * 18deg +  3deg
-  BRONZE:  7 * 18deg
-  ALIEN:   6 * 18deg 
-  P05:     5 * 18deg - 2deg
-  P04:     4 * 18deg - 4deg
+  N06:    14 * 18deg
+  VGRAVE: 13 * 18deg
+  GRAVE:  12 * 18deg
+  N09:    11 * 18deg
+  SWEAT:  10 * 18deg
+  FOAM:    9 * 18deg
+  ELSE:    8 * 18deg - 1deg
+  BRONZE:  7 * 18deg - 2deg 
+  ALIEN:   6 * 18deg - 3deg
+  P05:     5 * 18deg - 4deg
+  P04:     4 * 18deg - 5deg
   BROAD:   3 * 18deg - 6deg
-  VBROAD:  2 * 18deg - 3deg
-  LONE:    1 * 18deg
-  WOLF:    0
+  VBROAD:  2 * 18deg - 5deg
+  LONE:    1 * 18deg - 4deg
+  WOLF:    0         - 3deg
 }
 
 
 saturates = {
-  N01:    105%
-  N02:    105%
-  VLOVE:  105%
-  LOVE:   109%
-  N05:    111%
-  N06:    113%
-  VGRAVE: 113%
-  GRAVE:  110%
-  N09:    105%
-  SWEAT:   97%
-  FOAM:    94%
-  ELSE:    91%
-  BRONZE:  91%
-  ALIEN:   94%
-  P05:     97%
-  P04:     99%
+  N01:    100%
+  N02:    100%
+  VLOVE:  100%
+  LOVE:   100%
+  N05:    105%
+  N06:    110%
+  VGRAVE: 110%
+  GRAVE:  105%
+  N09:    100%
+  SWEAT:   90%
+  FOAM:    95%
+  ELSE:    95%
+  BRONZE:  90%
+  ALIEN:   95%
+  P05:    100%
+  P04:    100%
   BROAD:  100%
-  VBROAD: 104%
-  LONE:   107%
-  WOLF:   110%
+  VBROAD: 100%
+  LONE:   100%
+  WOLF:   100%
 }
 
 lights = {
-  N01:    105%
-  N02:    105%
-  VLOVE:  105%
-  LOVE:   109%
-  N05:    111%
-  N06:    113%
-  VGRAVE: 113%
-  GRAVE:  109%
-  N09:    104%
-  SWEAT:   99%
+  N01:    100%
+  N02:    100%
+  VLOVE:  100%
+  LOVE:   100%
+  N05:    103%
+  N06:    112%
+  VGRAVE: 112%
+  GRAVE:  100%
+  N09:     95%
+  SWEAT:   90%
   FOAM:    95%
   ELSE:    93%
   BRONZE:  93%
-  ALIEN:   97%
-  P05:     99%
-  P04:    100%
+  ALIEN:   95%
+  P05:     97%
+  P04:     97%
   BROAD:  100%
   VBROAD: 100%
   LONE:   100%
@@ -197,8 +197,8 @@ HSLA(key,SS,LL,AA = 1)
   SS = SS * saturates[key] / 100
   if 100% < SS
     SS = 100%
-  if 30% < LL && LL < 70%
-    LL = LL * lights[key]    / 100
+  if LL < 70% && 100% < lights[key]
+    LL = LL * lights[key]  / 100
   
   hsla(HH,SS,LL,AA)
 
@@ -224,7 +224,7 @@ palette($themes, $backT)
 palette_single($bgTheme, $backT, key)
 
   if snow == $backT
-    $bold = HSLA(key,99%,25%,1)
+    $bold = HSLA(key,99%,15%,1)
     $bg   = HSLA(key,12%,80%,1)
     $edge = HSLA(key,20%,60%,1)
 
@@ -235,44 +235,44 @@ palette_single($bgTheme, $backT, key)
 
 
   if white == $backT
-    $bold = HSLA(key,99%,20%,1)
+    $bold = HSLA(key,99%,15%,1)
     $bg   = HSLA(key,12%,60%,1)
     $edge = HSLA(key,20%,40%,1)
 
   if light == $backT
-    $bold = HSLA(key,66%,10%,1)
+    $bold = HSLA(key,66%,15%,1)
     $bg   = HSLA(key,35%,66%,1)
     $edge = HSLA(key,66%,40%,1)
 
 
   if metal == $backT
-    $bold = HSLA(key,40%,90%,1)
+    $bold = HSLA(key,40%,85%,1)
     $bg   = HSLA(key,12%, 9%,1)
     $edge = HSLA(key,20%,40%,1)
 
   if black == $backT
-    $bold = HSLA(key,40%,80%,1)
+    $bold = HSLA(key,40%,85%,1)
     $bg   = HSLA(key,35%,15%,1)
     $edge = HSLA(key,66%,40%,1)
 
   if night == $backT
-    $bold = HSLA(key,99%,80%,1)
+    $bold = HSLA(key,99%,85%,1)
     $bg   = HSLA(key,35%,15%,1)
     $edge = HSLA(key,66%,40%,1)
 
 
   if ash == $backT
-    $bold = HSLA(key,75%,90%,1)
+    $bold = HSLA(key,75%,85%,1)
     $bg   = HSLA(key,12%,27%,1)
     $edge = HSLA(key,20%,40%,1)
 
   if foot == $backT
-    $bold = HSLA(key,66%,90%,1)
+    $bold = HSLA(key,66%,85%,1)
     $bg   = HSLA(key,35%,35%,1)
     $edge = HSLA(key,66%,40%,1)
 
   if grass == $backT
-    $bold = HSLA(key,66%,80%,1)
+    $bold = HSLA(key,66%,85%,1)
     $bg   = HSLA(key,75%,30%,0.5)
     $edge = HSLA(key,66%,40%,0.5)
 
