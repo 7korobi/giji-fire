@@ -23,21 +23,7 @@ div
     nuxt-link.button(to="/sow/village/show?mode=full&idx=allstar-2-0") 村ログ(allstar-2)
   br
   c-post(handle="PSAY")
-    a(charset="Shift_JIS" href="/demo/sow/crazy-index.html") sow 修正テスト crazy-index
-  c-post(handle="PSAY")
-    a(charset="Shift_JIS" href="/demo/sow/crazy-makevilform.html") sow 修正テスト crazy-makevilform
-  c-post(handle="PSAY")
-    a(charset="Shift_JIS" href="/demo/sow/crazy-chrlist.html") sow 修正テスト crazy-chrlist
-  c-post(handle="PSAY")
-    a(charset="Shift_JIS" href="/demo/sow/crazy-oldlog.html") sow 修正テスト crazy-oldlog
-  c-post(handle="PSAY")
-    a(charset="Shift_JIS" href="/demo/sow/crazy-trslist.html") sow 修正テスト crazy-trslist
-  c-post(handle="PSAY")
-    a(charset="Shift_JIS" href="/demo/sow/xebec-279-0-entry.html") sow 修正テスト xebec-279-0-entry
-  c-post(handle="PSAY")
-    a(charset="Shift_JIS" href="/demo/sow/crazy-246-3.html") sow 修正テスト crazy-246-3
-  c-post(handle="PSAY")
-    a(charset="Shift_JIS" href="/demo/sow/crazy-246-3-b.html") sow 修正テスト crazy-246-3-b
+    a(href="/demo/sow.zip") 人狼議事ゲームサイト見た目修正案
 
   c-report(handle="footer" deco="center")
     bread-crumb
