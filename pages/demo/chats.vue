@@ -7,16 +7,14 @@ no-ssr
         li
           nuxt-link(to="/demo") 開発者用ページ
 
-    c-talk(:key="stylecheck" :face_id="f5", :write_at="now - 3600000", to="幻日世界" sign="ななころび" head="宝珠 コーラ" handle="SSAY")
-      code
-        pre
+    c-talk(key="stylecheck" face_id="f5", :write_at="now - 3600000", to="幻日世界" sign="ななころび" head="宝珠 コーラ" handle="SSAY")
+      pre
+        code
           | 123456789012345678901234567890123456789012345678901234567890
           | ABCDEFGHIJKL MNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz
           | アイウエオカキクケコサシスセソタチ、ツテトナニヌネノヤユヨ
+          | ～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～
       | 123456789012345678901234567890123456789012345678901234567890
-      | ABCDEFGHIJKL MNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz
-      | アイウエオカキクケコサシスセソタチ、ツテトナニヌネノヤユヨ
-      | ～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～
       blockquote
         | 123456789012345678901234567890123456789012345678901234567890
         | あいうえおかきくけこさしすせそたち、つてとなにぬねのやゆよ
@@ -102,7 +100,6 @@ no-ssr
             | {{handle}}
 
       c-post(:key="'P' + handle" :handle="handle" deco="giji")
-        hr
         | アクション、ト書きサンプル
 
     c-report(handle="footer" deco="center")
@@ -123,7 +120,7 @@ module.exports =
       Date.now()
     
     colors: ->
-      """DEL_M DEL_S ADMIN executed suicide victim cursed feared droop mob alive grave visiter juror live suddendead leave  LOVER HATER PIXI GURU EVIL LONEWOLF WOLF HUMAN DISH MOB NONE  FSAY LSAY ELSE hide GAIM  SSAY GSAY VSSAY VGSAY MSAY WSAY PSAY XSAY TSAY AIM public private MAKER TITLE""".split /\s+/
+      """DEL_M DEL_S ADMIN executed suicide victim cursed feared droop mob alive grave visiter juror live suddendead leave  LOVER HATER PIXI GURU EVIL LONEWOLF WOLF HUMAN DISH MOB NONE  FSAY LSAY hide GAIM  AIM MSAY SSAY VSSAY GSAY VGSAY WSAY PSAY XSAY TSAY public private MAKER TITLE""".split /\s+/
     hues: ->
       """P04 P03 P02 P01 P00 N01 N02 N03 N04 N05 N06 N07 N08 N09 N10 P09 P08 P07 P06 P05""".split /\s+/
     themes: ->

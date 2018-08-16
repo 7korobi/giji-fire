@@ -1,7 +1,7 @@
 @import "./_theme.styl"
 
-palette(announce,  black)
-palette(world,     metal)
+palette(announce,   neon)
+palette(world,     black)
 
 palette(yelp,    light)
 palette(friends, vivid)

@@ -10,7 +10,7 @@ div
     bread-crumb
   br
   c-report(handle="footer") 準備はいいかな？
-  c-talk(handle="ELSE" deco="sow" face_id="c96" head="学者 レオナルド", :write_at="1370662886001")
+  c-talk(handle="FSAY" deco="sow" face_id="c96" head="学者 レオナルド", :write_at="1370662886001")
     p.
       ようこそ。ここにはこのサイトを楽しむためのルールや心構えを綴ってある。
       暖炉のそばが開いているから、腰を下ろして熟読しよう。楽しいゲームは全員が対等で、全員が読んで理解しているルールがあって成り立つんだ。
@@ -24,14 +24,14 @@ div
 
   c-report(handle="MAKER") ルール
   c-report(handle="footer" id="nation") {{ nation.head }}
-  c-report(v-for="o, idx in nation.list" deco="giji" handle="P01", :head="o.head", :log="o.log", :key="'nation-' + idx")
+  c-report(v-for="o, idx in nation.list" deco="giji" handle="VSSAY", :head="o.head", :log="o.log", :key="'nation-' + idx")
 
   c-report(handle="footer" id="village") {{ village.head }}
-  c-report(v-for="o, idx in village.list" deco="giji" handle="VSSAY", :head="o.head", :log="o.log", :key="'village-' + idx")
+  c-report(v-for="o, idx in village.list" deco="giji" handle="SSAY", :head="o.head", :log="o.log", :key="'village-' + idx")
 
   c-report(handle="MAKER") ルール違反があったら？
   c-report(handle="footer") はじめに
-  c-talk(handle="ELSE" deco="sow" face_id="c96" head="学者 レオナルド", :write_at="1370662886002")
+  c-talk(handle="FSAY" deco="sow" face_id="c96" head="学者 レオナルド", :write_at="1370662886002")
     p.
       もし、ルールに違反してしまったとしたら？とても残念なことだけれど、まだ絶望しなくていい。
 
@@ -39,7 +39,7 @@ div
 
       真剣な話し合いが必要なときは、協力してそのための時間をなんとか捻り出してほしい。
       家に帰るまでが遠足なのと同じで、エピローグが済むまでがその村なんだ。
-  c-talk(handle="ELSE" deco="sow" face_id="c96" head="学者 レオナルド", :write_at="1370662886003")
+  c-talk(handle="FSAY" deco="sow" face_id="c96" head="学者 レオナルド", :write_at="1370662886003")
     p.
       エピローグでは全員が一同に介し、墓下と地上にわかれることなく、勝つための嘘もなく、より率直な話ができる。
       この特性から、人狼議事ではエピローグでの話し合いを推奨しているよ。
@@ -55,7 +55,7 @@ div
 
       みんな一生懸命がんばっているのに、そんなことで汚されるの、悔しいです！
 
-  c-talk(handle="ELSE" deco="sow" face_id="c96" head="学者 レオナルド", :write_at="1437461000000")
+  c-talk(handle="FSAY" deco="sow" face_id="c96" head="学者 レオナルド", :write_at="1437461000000")
     p.
       正解、国のルールだね。
       ただ、人狼議事では、１日間発言しない場合には２つの措置をとっている。
@@ -67,7 +67,7 @@ div
       僕らはここに遊びに来ているんだ。最後には笑い合って解散できることを目指そうね。
 
   c-report(handle="footer") どうすればいいの？
-  c-talk(handle="ELSE" deco="sow" face_id="c96" head="学者 レオナルド", :write_at="1437461000000")
+  c-talk(handle="FSAY" deco="sow" face_id="c96" head="学者 レオナルド", :write_at="1437461000000")
     p.
       ここでは、ルール違反についてとるべき対応を話そう。
 
@@ -98,7 +98,7 @@ div
   c-post(handle="VSSAY") 心構えを守って、楽しく、強く遊ぼう。
 
   c-report(handle="footer" id="player") 遊びにきたかたへ
-  c-report(v-for="o, idx in player.list" deco="giji" handle="SSAY", :head="o.head", :log="o.log", :key="'player-' + idx")
+  c-report(v-for="o, idx in player.list" deco="giji" handle="MSAY", :head="o.head", :log="o.log", :key="'player-' + idx")
 
   c-report(handle="footer" id="maker") {{ maker.head }}
   c-talk(handle="WSAY" deco="sow" face_id="t10" head="営利政府 トレイル", :write_at="1437461000000")
@@ -108,7 +108,7 @@ div
 
       村を建てるとき気をつけると良いことを心構えに纏めました。
       ぜひご覧ください。
-  c-report(v-for="o, idx in maker.list" deco="giji" handle="P01", :head="o.head", :log="o.log", :key="'maker-' + idx")
+  c-report(v-for="o, idx in maker.list" deco="giji" handle="VSSAY", :head="o.head", :log="o.log", :key="'maker-' + idx")
   c-post(handle="footer")
     bread-crumb
 

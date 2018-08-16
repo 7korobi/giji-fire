@@ -10,7 +10,7 @@ themes = {
     GRAVE:  YN08 GSAY
     N09:    YN09
     SWEAT:  YP10 YN10
-    FOAM:   YP09
+    FOAM:   YP09 FSAY
     ELSE:   YP08
     BRONZE: YP07
     ALIEN:  YP06
@@ -18,7 +18,7 @@ themes = {
     MUPET:  YP04 MSAY
     BROAD:  YP03 SSAY
     VBROAD: YP02 VSSAY
-    LONE:   YP01
+    LONE:   YP01 
     WOLF:   YP00 YN00
   }
   friends: {
@@ -28,11 +28,11 @@ themes = {
     LOVE:   FN04
     N05:    FN05
     N06:    FN06
-    VGRAVE: FN07
+    VGRAVE: FN07 GAIM
     GRAVE:  FN08
     N09:    FN09
     SWEAT:  FP10 FN10
-    FOAM:   FP09 FSAY
+    FOAM:   FP09
     ELSE:   FP08
     BRONZE: FP07
     ALIEN:  FP06
@@ -50,12 +50,12 @@ themes = {
     LOVE:   WN04 
     N05:    WN05
     N06:    WN06
-    VGRAVE: WN07 GAIM
+    VGRAVE: WN07
     GRAVE:  WN08
     N09:    WN09
     SWEAT:  WP10 WN10
     FOAM:   WP09
-    ELSE:   WP08 ELSE
+    ELSE:   WP08
     BRONZE: WP07
     ALIEN:  WP06 XSAY
     P05:    WP05
@@ -261,8 +261,8 @@ palette_single($bgTheme, $backT, key)
     $bg   = HSLA(key,12%,58%,1)
 
   if calm == $backT
-    $bold = HSLA(key,66%,15%,1)
-    $edge = HSLA(key,70%,35%,1)
+    $bold = HSLA(key,99%,15%,1)
+    $edge = HSLA(key,35%,50%,1)
     $bg   = HSLA(key,15%,75%,1)
 
   if light == $backT
@@ -271,30 +271,30 @@ palette_single($bgTheme, $backT, key)
     $bg   = HSLA(key,35%,66%,1)
 
   if vivid == $backT
-    $bold = HSLA(key,44%,15%,1)
+    $bold = HSLA(key,66%,15%,1)
     $edge = HSLA(key,60%,40%,1)
-    $bg   = HSLA(key,58%,62%,1)
+    $bg   = HSLA(key,55%,59%,1)
 
 
   if metal == $backT
-    $bold = HSLA(key,40%,85%,1)
+    $bold = HSLA(key,40%,80%,1)
     $edge = HSLA(key,20%,40%,1)
-    $bg   = HSLA(key,12%, 9%,1)
+    $bg   = HSLA(key,12%,18%,1)
 
   if black == $backT
-    $bold = HSLA(key,99%,85%,1)
-    $edge = HSLA(key,70%,35%,1)
-    $bg   = HSLA(key,15%,15%,1)
+    $bold = HSLA(key,55%,80%,1)
+    $edge = HSLA(key,35%,50%,1)
+    $bg   = HSLA(key,15%, 9%,1)
 
   if night == $backT
-    $bold = HSLA(key,99%,85%,1)
+    $bold = HSLA(key,70%,80%,1)
     $edge = HSLA(key,66%,40%,1)
-    $bg   = HSLA(key,35%,15%,1)
+    $bg   = HSLA(key,35%,12%,1)
 
   if neon == $backT
-    $bold = HSLA(key,66%,85%,1)
+    $bold = HSLA(key,99%,80%,1)
     $edge = HSLA(key,60%,40%,1)
-    $bg   = HSLA(key,58%,15%,1)
+    $bg   = HSLA(key,56%,15%,1)
 
 
   if ash == $backT
@@ -361,9 +361,9 @@ palette_single($bgTheme, $backT, key)
       background-color: $bg
       border-color:     $edge
 
-      .head:first-line
-        color: $bold 
-        Glowing(1.5px, 1.0px, $shade)
+      .text.head:first-line
+        color: $bold
+        font-weight: bold
 
       &.baloon
         border-color: $baloon

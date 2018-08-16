@@ -96,10 +96,10 @@
 _ = require "lodash"
 
 folder_handle =
-  offparty: 'ELSE'
-  lobby:    'ELSE'
-  test:     'ELSE'
-  pan:      'ELSE'
+  offparty: 'FSAY'
+  lobby:    'FSAY'
+  test:     'FSAY'
+  pan:      'FSAY'
 
   wolf:     'PSAY'
   allstar:  'PSAY'
