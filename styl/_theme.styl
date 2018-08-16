@@ -1,92 +1,119 @@
 themes = {
-  say: {
-    N01:    N01
-    N02:    N02
-    VLOVE:  N03 VPSAY
-    LOVE:   N04 PSAY
-    N05:    N05
-    N06:    N06
-    VGRAVE: N07 VGSAY
-    GRAVE:  N08 GSAY
-    N09:    N09
-    SWEAT:  SWEAT
-    FOAM:   P09 FSAY
-    ELSE:   P08 ELSE
-    BRONZE: P07
-    ALIEN:  P06 XSAY
-    P05:    P05
-    MUPET:  P04 MSAY
-    BROAD:  P03 SSAY
-    VBROAD: P02 VSSAY
-    LONE:   P01
-    WOLF:   P00 N00 WSAY
+  yelp: {
+    N01:    YN01
+    N02:    YN02
+    VLOVE:  YN03
+    LOVE:   YN04
+    N05:    YN05
+    N06:    YN06
+    VGRAVE: YN07 VGSAY
+    GRAVE:  YN08 GSAY
+    N09:    YN09
+    SWEAT:  YP10 YN10
+    FOAM:   YP09
+    ELSE:   YP08
+    BRONZE: YP07
+    ALIEN:  YP06
+    P05:    YP05
+    MUPET:  YP04 MSAY
+    BROAD:  YP03 SSAY
+    VBROAD: YP02 VSSAY
+    LONE:   YP01
+    WOLF:   YP00 YN00
   }
-  note: {
-    N01:    SN01
-    N02:    SN02
-    VLOVE:  SN03
-    LOVE:   SN04 AIM
-    N05:    SN05
-    N06:    SN06
-    VGRAVE: SN07 GAIM
-    GRAVE:  SN08 
-    N09:    SN09
-    SWEAT:  SSWEAT
-    FOAM:   SP09 HSAY
-    ELSE:   SP08
-    BRONZE: SP07 hide
-    ALIEN:  SP06 USAY
-    P05:    SP05
-    MUPET:  SP04 YSAY
-    BROAD:  SP03 
-    VBROAD: SP02 TSAY
-    LONE:   SP01 LSAY
-    WOLF:   S000 
+  friends: {
+    N01:    FN01
+    N02:    FN02
+    VLOVE:  FN03
+    LOVE:   FN04
+    N05:    FN05
+    N06:    FN06
+    VGRAVE: FN07
+    GRAVE:  FN08
+    N09:    FN09
+    SWEAT:  FP10 FN10
+    FOAM:   FP09 FSAY
+    ELSE:   FP08
+    BRONZE: FP07
+    ALIEN:  FP06
+    P05:    FP05
+    MUPET:  FP04
+    BROAD:  FP03 AIM
+    VBROAD: FP02
+    LONE:   FP01 LSAY
+    WOLF:   FP00 FN00 WSAY
   }
-
-  announce: {
+  whisper: {
     N01:    WN01
     N02:    WN02
-    VLOVE:  WN03
-    LOVE:   WN04
+    VLOVE:  WN03 PSAY
+    LOVE:   WN04 
     N05:    WN05
     N06:    WN06
-    VGRAVE: WN07
-    GRAVE:  WN08 
+    VGRAVE: WN07 GAIM
+    GRAVE:  WN08
     N09:    WN09
-    SWEAT:  WSWEAT
+    SWEAT:  WP10 WN10
     FOAM:   WP09
-    ELSE:   WP08
+    ELSE:   WP08 ELSE
     BRONZE: WP07
-    ALIEN:  WP06
+    ALIEN:  WP06 XSAY
     P05:    WP05
     MUPET:  WP04
     BROAD:  WP03
-    VBROAD: WP02 public
+    VBROAD: WP02
     LONE:   WP01
-    WOLF:   W000
+    WOLF:   WP00 WN00
+  }
+  twitter: {
+    N01:    TN01
+    N02:    TN02
+    VLOVE:  TN03
+    LOVE:   TN04
+    N05:    TN05
+    N06:    TN06
+    VGRAVE: TN07
+    GRAVE:  TN08 
+    N09:    TN09
+    SWEAT:  TP10 TN10
+    FOAM:   TP09 HSAY
+    ELSE:   TP08
+    BRONZE: TP07 hide
+    ALIEN:  TP06 USAY
+    P05:    TP05
+    MUPET:  TP04
+    BROAD:  TP03
+    VBROAD: TP02 TSAY private
+    LONE:   TP01
+    WOLF:   TP00 TN00 
+  }
+
+  announce: {
+    N01:    AN01
+    N02:    AN02
+    VLOVE:  AN03
+    LOVE:   AN04
+    N05:    AN05
+    N06:    AN06
+    VGRAVE: AN07
+    GRAVE:  AN08 
+    N09:    AN09
+    SWEAT:  AP10 AN10
+    FOAM:   AP09
+    ELSE:   AP08
+    BRONZE: AP07
+    ALIEN:  AP06
+    P05:    AP05
+    MUPET:  AP04
+    BROAD:  AP03
+    VBROAD: AP02 public
+    LONE:   AP01
+    WOLF:   AP00 AN00 
   }
   world: {
-    N01:    MN01
-    N02:    MN02
-    VLOVE:  MN03
-    LOVE:   MN04
-    N05:    MN05
-    N06:    MN06 ADMIN
-    VGRAVE: MN07
-    GRAVE:  MN08
-    N09:    MN09 TITLE
-    SWEAT:  MSWEAT
-    FOAM:   MP09
-    ELSE:   MP08 MAKER
-    BRONZE: MP07
-    ALIEN:  MP06
-    P05:    MP05
-    MUPET:  MP04
-    BROAD:  MP03
-    VBROAD: MP02 private
-    LONE:   MP01
-    WOLF:   M000
+    N06:    ADMIN
+    N09:    TITLE
+    ELSE:   MAKER
   }
 
   stat: {
@@ -194,12 +221,6 @@ lights = {
 
 HSLA(key,SS,LL,AA = 1)
   HH = hues[key]
-  SS = SS * saturates[key] / 100
-  if 100% < SS
-    SS = 100%
-  if LL < 70% && 100% < lights[key]
-    LL = LL * lights[key]  / 100
-  
   hsla(HH,SS,LL,AA)
 
 fix(col, SS, LL)
@@ -236,29 +257,44 @@ palette_single($bgTheme, $backT, key)
 
   if white == $backT
     $bold = HSLA(key,99%,15%,1)
-    $bg   = HSLA(key,12%,60%,1)
     $edge = HSLA(key,20%,40%,1)
+    $bg   = HSLA(key,12%,58%,1)
+
+  if calm == $backT
+    $bold = HSLA(key,66%,15%,1)
+    $edge = HSLA(key,70%,35%,1)
+    $bg   = HSLA(key,15%,75%,1)
 
   if light == $backT
     $bold = HSLA(key,66%,15%,1)
-    $bg   = HSLA(key,35%,66%,1)
     $edge = HSLA(key,66%,40%,1)
+    $bg   = HSLA(key,35%,66%,1)
+
+  if vivid == $backT
+    $bold = HSLA(key,44%,15%,1)
+    $edge = HSLA(key,60%,40%,1)
+    $bg   = HSLA(key,58%,62%,1)
 
 
   if metal == $backT
     $bold = HSLA(key,40%,85%,1)
-    $bg   = HSLA(key,12%, 9%,1)
     $edge = HSLA(key,20%,40%,1)
+    $bg   = HSLA(key,12%, 9%,1)
 
   if black == $backT
-    $bold = HSLA(key,40%,85%,1)
-    $bg   = HSLA(key,35%,15%,1)
-    $edge = HSLA(key,66%,40%,1)
+    $bold = HSLA(key,99%,85%,1)
+    $edge = HSLA(key,70%,35%,1)
+    $bg   = HSLA(key,15%,15%,1)
 
   if night == $backT
     $bold = HSLA(key,99%,85%,1)
-    $bg   = HSLA(key,35%,15%,1)
     $edge = HSLA(key,66%,40%,1)
+    $bg   = HSLA(key,35%,15%,1)
+
+  if neon == $backT
+    $bold = HSLA(key,66%,85%,1)
+    $edge = HSLA(key,60%,40%,1)
+    $bg   = HSLA(key,58%,15%,1)
 
 
   if ash == $backT
@@ -288,15 +324,15 @@ palette_single($bgTheme, $backT, key)
   $off    = fix($btn,  5, -20)
   $on     = fix($btn, 20,   0)
 
-  $shade  = fix($edge,40, -30) +  9deg
+  $shade  = fix($edge,40, -25) +  9deg
   $focus  = fix($edge,30, -10)
   $edge   = $edge              -  6deg
   $fine   = fix($edge, 0,   0) + 12deg
   $line   = fix($edge, 0,   0) - 12deg
 
 
-  $pattern1 = pastel snow light white
-  $pattern2 = black night
+  $pattern1 = light pastel light snow  vivid light calm white
+  $pattern2 = night neon black
   $pattern3 = foot ash metal
 
   if grass == $backT
@@ -305,7 +341,7 @@ palette_single($bgTheme, $backT, key)
   if $backT in $pattern1
     $off   = fix($off, 0,  15)
     $on    = fix($on,  0,  15)
-    $shade = fix($edge,0,  40) + 9deg
+    $shade = fix($edge,0,  35) + 9deg
 
   if $backT in $pattern3
     $off   = fix($off, 0,   5)
@@ -327,6 +363,7 @@ palette_single($bgTheme, $backT, key)
 
       .head:first-line
         color: $bold 
+        Glowing(1.5px, 1.0px, $shade)
 
       &.baloon
         border-color: $baloon

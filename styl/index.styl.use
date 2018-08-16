@@ -14,9 +14,9 @@ palette(stat, foot)
 palette(leave, ash)
 
 .potofs
-  palette(say,  foot)
-  palette(note,  ash)
-
+  palette(yelp,    foot)
+  palette(whisper,  ash)
+  palette(twitter,  ash)
 
 .chrblank
   inline(12px, 15px, sans-serif)

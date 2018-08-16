@@ -1,7 +1,9 @@
 @import "./_theme.styl"
 
-palette(announce, light)
+palette(announce,  calm)
 palette(world,    white)
 
-palette(say,  pastel)
-palette(note,   snow)
+palette(yelp,    light)
+palette(friends,pastel)
+palette(whisper, light)
+palette(twitter,  snow)

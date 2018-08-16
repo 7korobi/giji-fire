@@ -23,6 +23,8 @@ table(@mouseleave="focus_on('','')")
 <style lang="sass" scoped>
 table
   border-collapse: collapse
+  td
+    white-space: nowrap
 .focus
   border: 2px dotted
 </style>

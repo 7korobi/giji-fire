@@ -3,6 +3,7 @@
 palette(announce,  black)
 palette(world,     metal)
 
-palette(say,   light)
-palette(note,  white)
-
+palette(yelp,    light)
+palette(friends, vivid)
+palette(whisper,  calm)
+palette(twitter, white)

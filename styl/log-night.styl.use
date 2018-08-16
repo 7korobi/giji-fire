@@ -3,5 +3,7 @@
 palette(announce,  foot)
 palette(world,      ash)
 
-palette(say,   night)
-palette(note,  metal)
+palette(yelp,    night)
+palette(friends,  neon)
+palette(whisper, black)
+palette(twitter, metal)
