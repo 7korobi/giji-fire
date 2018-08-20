@@ -2,6 +2,9 @@
 .summary:hover
   width: "calc( 100vw - %s )" % 55px
 
+.banner
+  position: relative
+
 width($font, $center)
   $gap = 24px
   $limit1 = $center / 0.9
@@ -9,12 +12,20 @@ width($font, $center)
   $limit3 = $center + 2 * ( $gap + 160px )
   $half   = ( $center + $gap ) / 2
 
+  .banner
+    left:  $center + $gap
+    width: "calc( 50vw - %s )" % ($half + $gap)
+
   @media screen and (min-width: $limit3)
     .summary
       width: "calc( 50vw - %s )" % $half
+    .sideframe:hover
+      width: "calc( 50vw + %s )" % $half
   @media screen and (max-width: $limit3)
     .summary
       width: 160px
+    .sideframe:hover
+      width: "calc( 100vw - %s )" % 160px
 
   @media screen and (min-width: $limit2)
     .sideframe

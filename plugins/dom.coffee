@@ -1,8 +1,7 @@
 module.exports =
   adjust: ->
     { top, horizon, height } = @$store.state.menu
-    if window? && @$el
-      rect = @$el.getBoundingClientRect()
+    if window? && rect = @$el?.getBoundingClientRect?()
       my_top = rect.top
       my_btm = rect.height + my_top + 6
       switch

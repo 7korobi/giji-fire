@@ -1,9 +1,9 @@
 @import "./_theme.styl"
 
-palette(announce,   neon)
-palette(world,     black)
+palette(world,     'D',0)
+palette(announce,  'D',1)
 
-palette(yelp,    light)
-palette(friends, vivid)
-palette(whisper,  calm)
-palette(twitter, white)
+palette(friends,   'D',2)
+palette(twitter,   'D',3)
+palette(yelp,      'D',4)
+palette(whisper,   'D',5)

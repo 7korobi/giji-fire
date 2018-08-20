@@ -50,6 +50,22 @@ new Rule("chat").schema ->
       search_words: @log
 
   class @model extends @model
+    anker: (part_id)->
+      { mark, guide } = @phase
+      switch
+        when ! guide
+          ""
+        when  mark?
+          if part_id == @part_id
+            "#{mark}#{@idx}"
+          else
+            "#{mark}#{@part.idx}:#{@idx}"
+        else
+          if part_id == @part_id
+            @id[ @part_id.length ..]
+          else
+            @id[ @book_id.length ..]
+
     @map_reduce: (o, emit)->
       emit "last", o.q.group,
         max: o.write_at

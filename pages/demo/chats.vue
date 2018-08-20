@@ -7,9 +7,9 @@ no-ssr
         li
           nuxt-link(to="/demo") 開発者用ページ
 
-    c-talk(key="stylecheck" face_id="f5", :write_at="now - 3600000", to="幻日世界" sign="ななころび" head="宝珠 コーラ" handle="SSAY")
-      pre
-        code
+    c-talk(:key="stylecheck" :write_at="now - 3600000" face_id="f5" to="幻日世界" sign="ななころび" head="宝珠 コーラ" handle="SSAY")
+      code
+        pre
           | 123456789012345678901234567890123456789012345678901234567890
           | ABCDEFGHIJKL MNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz
           | アイウエオカキクケコサシスセソタチ、ツテトナニヌネノヤユヨ
@@ -122,9 +122,9 @@ module.exports =
     colors: ->
       """DEL_M DEL_S ADMIN executed suicide victim cursed feared droop mob alive grave visiter juror live suddendead leave  LOVER HATER PIXI GURU EVIL LONEWOLF WOLF HUMAN DISH MOB NONE  FSAY LSAY hide GAIM  AIM MSAY SSAY VSSAY GSAY VGSAY WSAY PSAY XSAY TSAY public private MAKER TITLE""".split /\s+/
     hues: ->
-      """P04 P03 P02 P01 P00 N01 N02 N03 N04 N05 N06 N07 N08 N09 N10 P09 P08 P07 P06 P05""".split /\s+/
+      [0..9]
     themes: ->
-      """F Y W T A""".split /\s+/
+      """O A F T Y W""".split /\s+/
     handles: ->
       list = []
       for hue in @hues

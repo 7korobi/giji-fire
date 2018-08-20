@@ -1,7 +1,7 @@
 @import "./_theme.styl"
 @import "./_theme_wood.styl"
 
-palette_single(icons, metal, MUPET)
+palette_single(icons, 'N',3, MUPET)
 
 .talk
   .chat

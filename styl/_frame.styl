@@ -62,9 +62,9 @@ IMG.hide
 .swipe
   overflow-y: hidden
   overflow-x: scroll
-  -ms-overflow-style: none
-  &::-webkit-scrollbar
-    display:none;
+  // -ms-overflow-style: none
+  // &::-webkit-scrollbar
+  //  display:none;
 
   table
     border-collapse: collapse
@@ -132,6 +132,10 @@ IMG.hide
       width:        88px
       border-radius: 9px
 
+.sideframe:not(:hover)
+.summary:not(:hover)
+  .detail
+    display: none
 
 .summary
 .inframe

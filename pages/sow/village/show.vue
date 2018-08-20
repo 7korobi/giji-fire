@@ -5,12 +5,11 @@ log-wiki
     d-mentions.inframe.mentions(v-bind="for_mentions" @anker="anker" key="1" v-if="is_show.mention")
     .inframe.TITLE(v-if="is_show.toc")
       hr
-      .swipe
-        d-mode.form(v-bind="for_mode" style="white-space: nowrap")
-        hr
-        search(v-model="search")
-        hr
-        d-toc(v-bind="for_toc" key="2")
+      d-mode.form(v-bind="for_mode" style="white-space: nowrap")
+      hr
+      search(v-model="search")
+      hr
+      d-toc(v-bind="for_toc" key="2")
     a-potofs(v-bind="for_potofs" key="3" v-if="is_show.potofs")
 
   template(slot="icons")
@@ -56,6 +55,7 @@ log-wiki
             span メモ掲載の一覧を表示しています。
 
         div(v-for="(chats, idx) in page_contents", :key="idx")
+          banner p{{ 1 + idx }}
           chat(v-for="o in chats" @anker="anker" @focus="focus" :current="chat" :id="o.id", :key="o.id")
 
         c-report.form(v-if="page_next_idx" handle="footer" key="limitup")

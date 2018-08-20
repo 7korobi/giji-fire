@@ -14,7 +14,7 @@ clicker($base, $inline, $family)
 inline($base, $inline, $family)
   font-family: $family
   if sans-serif == $family
-    font-family: Avenir, "Helvetica Neue", Helvetica, "游ゴシック", "Yu Gothic", sans-serif
+    font-family: Avenir, "Helvetica Neue", "游ゴシック", "Yu Gothic", sans-serif
   if serif == $family
     font-family: "花園明朝A", "花園明朝B", "HanaMinA", "HanaMinB", serif
 
@@ -30,6 +30,10 @@ font($small, $base, $family)
 
   $hr_top = $block / 4 - 4px
   $hr_btm = $block / 4
+
+  .banner
+    height: $block
+    margin-bottom: -1 * $block
 
   h1
     inline(2.50 * $base, 2.50 * $base, $family)
