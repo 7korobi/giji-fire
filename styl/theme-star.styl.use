@@ -10,6 +10,10 @@ palette_single(icons, 'N',1, FOAM)
     border-width: 0
     margin:  0 7px 0 0
 
+.contentframe
+  .baloon
+    border-style: solid
+
 .center-left
 .center-right
   border-color: hsla(190,96%,66%,1)

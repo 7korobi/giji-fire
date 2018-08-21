@@ -5,7 +5,7 @@ module.exports =
   props: ["title"]
   mixins: [
     require("~/plugins/browser-store")
-      cookie:
+      local:
         theme: "cinema"
         font:  "std"
       watch:
@@ -53,7 +53,7 @@ module.exports =
       switch @theme
         when "snow"
           "snow"
-        when "cinema", "wa"
+        when "cinema", "wa", "pop"
           "day"
         else
           "night"
@@ -104,6 +104,7 @@ div
 
         span.theme
           btn(v-model="theme" as="cinema") 煉瓦
+          btn(v-model="theme" as="pop")    噴出
           btn(v-model="theme" as="snow")   雪景
           btn(v-model="theme" as="star")   蒼穹
           btn(v-model="theme" as="night")  闇夜

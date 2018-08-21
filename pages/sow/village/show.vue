@@ -55,7 +55,8 @@ log-wiki
             span メモ掲載の一覧を表示しています。
 
         div(v-for="(chats, idx) in page_contents", :key="idx")
-          banner p{{ 1 + idx }}
+          banner
+            h2 p{{ 1 + idx }}
           chat(v-for="o in chats" @anker="anker" @focus="focus" :current="chat" :id="o.id", :key="o.id")
 
         c-report.form(v-if="page_next_idx" handle="footer" key="limitup")

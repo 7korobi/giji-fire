@@ -7,16 +7,16 @@
 @import "./_font.styl"
 
 palette(grass, 'G', 0)
-palette(metal, 'N', 3)
-palette(ash,   'N', 0)
+palette(metal, 'I', 2)
+palette(ash,   'I', 0)
 
-palette(stat,  'N', 1)
-palette(leave, 'N', 0)
+palette(stat,  'I', 1)
+palette(leave, 'I', 0)
 
 .potofs
-  palette(yelp,    'N',1)
-  palette(whisper, 'N',0)
-  palette(twitter, 'N',0)
+  palette(yelp,    'I',1)
+  palette(whisper, 'I',0)
+  palette(twitter, 'I',0)
 
 .chrblank
   inline(12px, 15px, sans-serif)

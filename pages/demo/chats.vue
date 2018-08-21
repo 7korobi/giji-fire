@@ -92,7 +92,9 @@ no-ssr
       .date
         abbr anker
 
-    div(v-for="handle in colors")
+    div(v-for="(handle, idx) in colors")
+      banner
+        h2 p{{ 1 + idx }}
       c-report(:key="'R' + handle" :handle="handle" deco="center")
         | 表題サンプル
         .date

@@ -1,18 +1,18 @@
 themes = {
   friends: {
-    VLOVE:  F9
+    LONE:   F9
     LOVE:   F8
     GRAVE:  F7
     VGRAVE: F6
     FOAM:   F5 FSAY
     ELSE:   F4
     MUPET:  F3
-    BROAD:  F2 AIM
-    LONE:   F1 LSAY
+    BROAD:  F2
+    MOB:    F1 LSAY
     WOLF:   F0 WSAY
   }
   yelp: {
-    VLOVE:  Y9
+    LONE:   Y9
     LOVE:   Y8
     GRAVE:  Y7 GSAY
     VGRAVE: Y6 VGSAY
@@ -20,23 +20,23 @@ themes = {
     ELSE:   Y4
     MUPET:  Y3 MSAY
     BROAD:  Y2 SSAY
-    LONE:   Y1 VSSAY
+    MOB:    Y1 VSSAY
     WOLF:   Y0
   }
   whisper: {
-    VLOVE:  W9
+    LONE:   W9
     LOVE:   W8 
     GRAVE:  W7
     VGRAVE: W6 GAIM
     FOAM:   W5
     ELSE:   W4 ELSE
     MUPET:  W3 XSAY
-    BROAD:  W2
-    LONE:   W1 PSAY
+    BROAD:  W2 AIM
+    MOB:    W1 PSAY
     WOLF:   W0
   }
   twitter: {
-    VLOVE:  T9
+    LONE:   T9
     LOVE:   T8
     GRAVE:  T7
     VGRAVE: T6 
@@ -44,11 +44,11 @@ themes = {
     ELSE:   T4
     MUPET:  T3 hide
     BROAD:  T2
-    LONE:   T1 TSAY private
+    MOB:    T1 TSAY private
     WOLF:   T0
   }
   announce: {
-    VLOVE:  A9
+    LONE:   A9
     LOVE:   A8
     GRAVE:  A7
     VGRAVE: A6 
@@ -56,11 +56,11 @@ themes = {
     ELSE:   A4
     MUPET:  A3
     BROAD:  A2 public
-    LONE:   A1
+    MOB:    A1
     WOLF:   A0
   }
   world: {
-    VLOVE:  O9
+    LONE:   O9
     LOVE:   O8 ADMIN
     GRAVE:  O7 
     VGRAVE: O6 TITLE
@@ -68,18 +68,19 @@ themes = {
     ELSE:   O4 MAKER
     MUPET:  O3
     BROAD:  O2
-    LONE:   O1
+    MOB:    O1
     WOLF:   O0
   }
 
   stat: {
+    LONE:   LONEWOLF
     LOVE:   LOVER
     GRAVE:  executed
     FOAM:   HATER
     ELSE:   PIXI GURU
     MUPET:  EVIL
     BROAD:  HUMAN live juror
-    LONE:   LONEWOLF NONE DISH MOB mob visiter grave alive
+    MOB:    NONE DISH MOB mob visiter grave alive
     WOLF:   WOLF suicide victim cursed feared droop
   }
   leave: {
@@ -93,7 +94,7 @@ themes = {
   metal: {
     ELSE:   welcome-links
     MUPET:  progress
-    LONE:   prologue
+    MOB:    prologue
   }
   ash: {
     ELSE:   BRONZE footer header
@@ -104,7 +105,7 @@ themes = {
 
 
 hues = {
-  VLOVE:  326deg // 赤紫
+  LONE:   326deg // 赤紫
   LOVE:   285deg // 紫
   GRAVE:  231deg // 青紫
   VGRAVE: 192deg // 青
@@ -112,12 +113,12 @@ hues = {
   ELSE:   140deg // 緑
   MUPET:   87deg // 黄緑
   BROAD:   49deg // 黄
-  LONE:    27deg // 橙
+  MOB:     27deg // 橙
   WOLF:   359deg // 赤
 }
 
 hues_d = {
-  VLOVE:  30deg // 赤紫
+  LONE:   30deg // 赤紫
   LOVE:   50deg // 紫
   GRAVE:  56deg // 青紫
   VGRAVE: 20deg // 青
@@ -125,34 +126,58 @@ hues_d = {
   ELSE:   51deg // 緑
   MUPET:  52deg // 黄緑
   BROAD:  22deg // 黄
-  LONE:   19deg // 橙
+  MOB:    19deg // 橙
   WOLF:   36deg // 赤
 }
 
 $bgs   = {}
+$btns  = {}
+$pens  = {}
+$lines = {}
 $bolds = {}
 $edges = {}
-for key, _ in themes.friends
-  HH = hues[key]
-  unless HH
-    error(key)
-  dd = hues_d[key]
-  unless dd
-    error(key)
+init()
+  for key, _ in themes.friends
+    _HH = hues[key]
+    unless _HH
+      error(join(" ", key, _HH))
+    _dd = hues_d[key]
+    unless _dd
+      error(join(" ", key, _dd))
+    _HP = _HH + 0.25 * _dd
+    _HN = _HH + 0.50 * _dd
 
-  $bolds['G' + key] = HSYA(HH,58%,85%)     HSYA(HH,58%,85%)
-  $bgs[  'G' + key] = HSYA(HH,75%,30%,0.5) HSYA(HH,75%,30%,0.5)
-  $edges['G' + key] = HSYA(HH,66%,40%,0.5) HSYA(HH,66%,40%,0.5)
+    $btns[ 'G' + key] = HSYA(_HP,75%,33%,0.5) HSYA(_HP,75%,33%,0.5)
+    $bgs[  'G' + key] = HSYA(_HH,75%,30%,0.5) HSYA(_HH,75%,30%,0.5)
+    $edges['G' + key] = HSYA(_HH,66%,40%,0.5) HSYA(_HH,66%,40%,0.5)
+    $pens[ 'G' + key] = HSYA(_HP,58%,85%)     HSYA(_HP,58%,85%)
+    $lines['G' + key] = HSYA(_HP,58%,85%)     HSYA(_HP,58%,85%)
+    $bolds['G' + key] = white                 white
 
-  //                  O                 A                 F                 T                 Y                 W
-  $bgs[  'D' + key] = HSYA(HH,11%, 5%)  HSYA(HH,58%,15%)  HSYA(HH,35%,43%)  HSYA(HH,20%,60%)  HSYA(HH,35%,70%)  HSYA(HH,35%,80%)
-  $bolds['D' + key] = HSYA(HH,22%,85%)  HSYA(HH,66%,85%)  HSYA(HH,22%, 5%)  HSYA(HH,99%,10%)  HSYA(HH,66%,10%)  HSYA(HH,66%,10%)
-  $edges['D' + key] = HSYA(HH,35%,50%)  HSYA(HH,60%,40%)  HSYA(HH,60%,40%)  HSYA(HH,20%,40%)  HSYA(HH,70%,35%)  HSYA(HH,70%,35%)
-  //                  O                 A                 F                 T                 Y                 W
-  $bgs[  'N' + key] = HSYA(HH,12%,30%)  HSYA(HH,35%,35%)  HSYA(HH,58%,15%)  HSYA(HH,35%,15%)  HSYA(HH,12%,15%)  HSYA(HH,11%, 5%)
-  $bolds['N' + key] = HSYA(HH,66%,85%)  HSYA(HH,66%,85%)  HSYA(HH,66%,85%)  HSYA(HH,44%,90%)  HSYA(HH,99%,85%)  HSYA(HH,22%,85%)
-  $edges['N' + key] = HSYA(HH,20%,40%)  HSYA(HH,66%,40%)  HSYA(HH,60%,40%)  HSYA(HH,20%,40%)  HSYA(HH,35%,50%)  HSYA(HH,66%,40%)
+    //                  ash leave          stat               metal
+    $btns[ 'I' + key] = HSYA(_HP,12%,33%)  HSYA(_HP,35%,48%)  HSYA(_HP,35%,18%) // bg  +3%l
+    $bgs[  'I' + key] = HSYA(_HH,12%,30%)  HSYA(_HH,35%,45%)  HSYA(_HH,35%,15%)
+    $edges['I' + key] = HSYA(_HH,25%,50%)  HSYA(_HH,75%,20%)  HSYA(_HH,20%,40%) // bg +20%s -25%l
+    $lines['I' + key] = HSYA(_HP,65%,40%)  HSYA(_HP,22%,10%)  HSYA(_HP,44%,90%) // pen and edge light
+    $pens[ 'I' + key] = HSYA(_HP,25%,80%)  HSYA(_HP,75%,10%)  HSYA(_HP,44%,90%) // blacky or whity
+    $bolds['I' + key] = white              black              white             // hardcore pen
 
+    //                  O                  A                  F                  T                  Y                  W
+    $btns[ 'D' + key] = HSYA(_HP,11%,15%)  HSYA(_HP,58%,27%)  HSYA(_HP,35%,48%)  HSYA(_HP,20%,63%)  HSYA(_HP,35%,73%)  HSYA(_HP,35%,83%) // bg  +3%l
+    $bgs[  'D' + key] = HSYA(_HH,11%, 5%)  HSYA(_HH,58%,20%)  HSYA(_HH,35%,45%)  HSYA(_HH,20%,60%)  HSYA(_HH,35%,70%)  HSYA(_HH,35%,80%)
+    $edges['D' + key] = HSYA(_HH,25%,40%)  HSYA(_HH,45%,40%)  HSYA(_HH,75%,20%)  HSYA(_HH,25%,25%)  HSYA(_HH,55%,42%)  HSYA(_HH,55%,40%) // bg +20%s -25%l
+    $lines['D' + key] = HSYA(_HN,65%,40%)  HSYA(_HN,65%,40%)  HSYA(_HN,75%,20%)  HSYA(_HN,65%,25%)  HSYA(_HN,65%,42%)  HSYA(_HN,65%,40%) // pen and edge light
+    $pens[ 'D' + key] = HSYA(_HP,25%,80%)  HSYA(_HP,65%,85%)  HSYA(_HP,22%,10%)  HSYA(_HP,65%,15%)  HSYA(_HP,65%,20%)  HSYA(_HP,65%,25%) // blacky or whity
+    $bolds['D' + key] = white              white              black              black              black              black             // hardcore pen
+
+    //                  O                  A                  F                  T                  Y                  W
+    $btns[ 'N' + key] = HSYA(_HH,30%,45%)  HSYA(_HH,40%,36%)  HSYA(_HH,58%,27%)  HSYA(_HH,35%,23%)  HSYA(_HH,58%,19%)  HSYA(_HH,11%,15%) // bg   +7%l
+    $bgs[  'N' + key] = HSYA(_HP,30%,40%)  HSYA(_HP,40%,30%)  HSYA(_HP,58%,20%)  HSYA(_HP,35%,15%)  HSYA(_HP,58%,10%)  HSYA(_HP,11%, 5%)
+    $edges['N' + key] = HSYA(_HH,55%,72%)  HSYA(_HH,65%,62%)  HSYA(_HH,85%,52%)  HSYA(_HH,60%,47%)  HSYA(_HH,45%,40%)  HSYA(_HH,25%,40%) // pen + little lighten
+    $lines['N' + key] = HSYA(_HN,55%,85%)  HSYA(_HN,65%,80%)  HSYA(_HN,85%,75%)  HSYA(_HN,60%,85%)  HSYA(_HN,75%,70%)  HSYA(_HN,85%,60%) // pen and edge light
+    $pens[ 'N' + key] = HSYA(_HH,25%,85%)  HSYA(_HH,50%,80%)  HSYA(_HH,65%,75%)  HSYA(_HH,25%,85%)  HSYA(_HH,75%,70%)  HSYA(_HH,85%,60%) // blacky or whity
+    $bolds['N' + key] = white              white              white              white              white              white             // hardcore pen
+init()
 
 Pr = 0.298912
 Pg = 0.586611
@@ -189,6 +214,7 @@ Y2L(HH,SS,YY)
   LL = 100% * L
 
 HSYA(HH,SS,YY,AA = 1)
+  HH = HH % 360
   LL = Y2L(HH,SS,YY)
   hsla(HH,SS,LL,AA)
 
@@ -226,44 +252,30 @@ palette($theme_id, $type, $idx)
     palette_single($bgTheme, $type, $idx, key)
 
 palette_single($bgTheme, $type, $idx, key)
-  d = 0.25 * hues_d[key]
+  dd = hues_d[key]
   $bg   = $bgs[  $type+key][$idx]
+  $pen  = $pens[ $type+key][$idx]
+  $line = $lines[$type+key][$idx]
   $bold = $bolds[$type+key][$idx]
+
   $edge = $edges[$type+key][$idx]
+  $emboss = $edge
+  $focus  = fix($edge, 0, -10)
 
-  $pen    = mix($bg,   $bold, 20%)
-  $hide   = mix($bg,   $bold, 50%)
-  $btn    = mix($bg,   $edge, 75%) - 1 * d
-  $emboss = mix($edge, $hide, 66%)
+  $bgHi  = $btns[$type+key][$idx]
+  $off   = fix($bgHi, 20, -10)
+  $on    = fix($bgHi, 20,  10)
+
+  if white == $bold
+    $shade = fix($bg,  0, -15)
+  if black == $bold
+    $shade = fix($bg,  0,  15)
+
   $baloon = $bg
-  $bgLow  = fix($bg,   0,  -3) + 1 * d 
-  $bgHi   = fix($bg,   0,   3) + 1 * d
-
-  $off    = fix($btn,  5, -20)
-  $on     = fix($btn, 20,   0)
-
-  $shade  = fix($edge,40, -25) + 3 * d
-  $focus  = fix($edge,30, -10)
-  $edge   = $edge              - 1 * d
-  $fine   = fix($edge, 0,   0) + 2 * d
-  $line   = fix($edge, 0,   0) - 2 * d
-
+  $hide   = mix($bg, $bold, 50%)
 
   if 'G' == $type
     $off   = transparent
-
-  if 'D' == $type
-    chk = 2 3 4 5
-    if $idx in chk
-      $off   = fix($off, 0,  15)
-      $on    = fix($on,  0,  15)
-      $shade = fix($edge,0,  35) + 1 * d
-
-  if 'N' == $type
-    chk = 0 1 3
-    if $idx in chk
-      $off   = fix($off, 0,   5)
-      $on    = fix($on,  0,   5)
 
   @keyframes {theme}-pulse
     0%   { text-shadow: 2px 0 1px $bgHi, -2px 0 1px $bgHi }
@@ -273,6 +285,11 @@ palette_single($bgTheme, $type, $idx, key)
   for theme in $bgTheme
     .{theme}.focus
       border-color:   $focus
+
+      hr
+      hr:after
+      hr:before
+        border-color: $focus
 
     .{theme}
       color:            $pen
@@ -290,7 +307,6 @@ palette_single($bgTheme, $type, $idx, key)
       hr:after
       hr:before
         border-color: $emboss
-        background-color: $bg
 
       blockquote
         border-color: $edge
@@ -387,8 +403,14 @@ palette_single($bgTheme, $type, $idx, key)
         text-emphasis-color: $bold 
         text-decoration-color: $bold 
 
-    label
     rt
+      body &.{theme}
+      .{theme} &
+        color: $bold 
+
+    label
+    label[title]
+    label[cite]
       body &.{theme}
       .{theme} &
         background-color: $bgHi
@@ -396,6 +418,7 @@ palette_single($bgTheme, $type, $idx, key)
 
     .ban
     abbr
+    abbr[title]
     abbr[cite]
       body &.{theme}
       .{theme} &
@@ -468,6 +491,7 @@ palette_single($bgTheme, $type, $idx, key)
         &.active
         &:checked
           background-color: $on
+
         &.in_range
         &:visited
         &:link
@@ -478,15 +502,8 @@ palette_single($bgTheme, $type, $idx, key)
       body &.{theme}
       .{theme} &
         sup, sub
-          background-color: $on
-          color: $off
-
-        &.nuxt-link-exact-active
-        &.active
-        &:checked
-          sup, sub
-            background-color: $off
-            color: $on
+          background-color: $emboss
+          color: $bg
 
     s
       body &.{theme}
@@ -505,18 +522,15 @@ palette_single($bgTheme, $type, $idx, key)
     [cite]
       body &.{theme}
       .{theme} &
-        color: $bold 
-        border-color: $on
+        color: $bold
 
+    hr
+    hr:after
+    hr:before
     input
     select
-    button
     textarea
     fieldset
-    .btn
-    [href]
-    [title]
-    [cite]
       body .focus &.{theme}
       .{theme}.focus &
         border-color: $focus
