@@ -56,7 +56,7 @@ log-wiki
 
         div(v-for="(chats, idx) in page_contents", :key="idx")
           banner
-            h2 p{{ 1 + idx }}
+            h2 p{{ 1 + page_idxs[idx] }}
           chat(v-for="o in chats" @anker="anker" @focus="focus" :current="chat" :id="o.id", :key="o.id")
 
         c-report.form(v-if="page_next_idx" handle="footer" key="limitup")
