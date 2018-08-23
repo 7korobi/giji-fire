@@ -2,3 +2,6 @@
 
 font(9px, 12px, sans-serif)
 
+.icons
+.stable
+  font(12px, 16px, sans-serif)

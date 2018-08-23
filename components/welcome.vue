@@ -70,7 +70,7 @@ module.exports =
 </script>
 <template lang="pug">
 #welcome(:style="welcome_style")
-  table.form#export
+  table.form#export(v-if="title")
     thead
       tr
         th.welcome-btns ロビー

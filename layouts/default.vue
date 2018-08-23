@@ -7,7 +7,7 @@ module.exports =
 </script>
 <template lang="pug">
 .page-active-bg
-  a-header
+  a-header(title="人狼議事")
   .page-active
     .outframe
       .sideframe

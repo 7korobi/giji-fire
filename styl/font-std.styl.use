@@ -1,3 +1,7 @@
 @import "./_font.styl"
 
 font(12px, 16px, sans-serif)
+
+.icons
+.stable
+  font(12px, 16px, sans-serif)

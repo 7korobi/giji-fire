@@ -1,15 +1,16 @@
 <template lang="pug">
 div(v-if="chat")
   .stable(:class="chat.phase.handle")
-    hr
-    p.left(v-if="sign") by {{ sign || '' }}
-    p.center
-      | {{ label }}
-      abbr.btn(v-if="anker" title="クリップボードへコピー" @click="clip") {{ anker || '' }}
-    p.right
-      timeago(v-if="chat.write_at" :since="chat.write_at")
-    p
-      abbr.btn(v-if="long_anker" title="クリップボードへコピー" @click="clip") {{ long_anker }}
+    article.text
+      hr
+      p.left(v-if="sign") by {{ sign || '' }}
+      p.center
+        | {{ label }}
+      p.right
+        timeago(v-if="chat.write_at" :since="chat.write_at")
+        abbr.btn(v-if="anker" title="クリップボードへコピー" @click="clip") {{ anker || '' }}
+      p
+        abbr.btn(v-if="long_anker" title="クリップボードへコピー" @click="clip") {{ long_anker }}
   .swipe
     div(:class="chat.phase.handle")
       hr

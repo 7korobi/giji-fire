@@ -95,7 +95,7 @@ module.exports =
 <template lang="pug">
 div
   no-ssr
-    welcome(:top="top" :title="title || '人狼議事'")
+    welcome(:top="top" :title="title")
       .btns.form
         span.font
           btn(v-model="font" as="large") 大判
