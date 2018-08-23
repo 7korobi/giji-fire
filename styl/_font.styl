@@ -16,12 +16,12 @@
 }
 
 inline($base, $inline, $family)
-  font-family: $family
   if sans-serif == $family
     font-family: 'Noto Sans CJK JP', 'Noto Sans JP', sans-serif
   if serif == $family
     font-family: 'Noto Serif CJK JP', 'Noto Serif JP', serif
-
+  if monospace == $family
+    font-family: 'Noto Sans Mono CJK JP', 'Mgen+ 1mn', 'mplus-1m', monospace
   font-size:   $base
   line-height: $inline
 
@@ -98,7 +98,7 @@ font($small, $base, $family)
 
   kbd
   code
-    inline($base,  $block, "'mplus-1m', monospace")
+    inline($base,  $block, monospace)
 
   .fine
   .date

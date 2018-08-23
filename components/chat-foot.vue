@@ -1,6 +1,6 @@
 <template lang="pug">
 .date(v-if="anker")
-  abbr.tap(v-if="chat_id" @click="open_mention") {{ anker || "" }}
+  abbr.(v-if="chat_id" @click="open_mention") {{ anker || "" }}
 </template>
 
 <script lang="coffee">
