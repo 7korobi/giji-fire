@@ -342,15 +342,18 @@ palette_single($bgTheme, $type, $idx, key)
 
     input
     select
+      body &.{theme}
+      .{theme} &
+        color:            $pen
+        background-color: $off
+        border-color:     $edge
+
     textarea
       body &.{theme}
       .{theme} &
         color:            $pen
         background-color: $bg
         border-color:     $edge
-        :hover
-        :focus
-          border-color: $focus
 
     b
     rt
@@ -523,9 +526,6 @@ palette_single($bgTheme, $type, $idx, key)
       .{theme} &
         color: $bold
 
-    hr
-    hr:after
-    hr:before
     input
     select
     textarea
@@ -534,3 +534,6 @@ palette_single($bgTheme, $type, $idx, key)
       .{theme}.focus &
         border-color: $focus
 
+    .{theme} :hover
+    .{theme} :focus
+        border-color: $focus

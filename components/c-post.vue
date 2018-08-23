@@ -9,5 +9,5 @@ module.exports = require("~/components/chat.coffee")()
   component.text(:value="log" :context="chat" :is="deco_target" :class="deco" :edit="edit")
   .text(v-if="$slots.default" :class="deco")
     slot
-  chat-foot(:part_id="part_id" :chat_id="id" :write_at="write_at")
+  chat-foot(:part_id="part_id" :chat_id="id")
 </template>

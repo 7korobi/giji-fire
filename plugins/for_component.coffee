@@ -11,7 +11,7 @@ module.exports =
     for_potofs: ->
       { @part }
     for_mentions: ->
-      { @chat_id, @page_idx }
+      { @part_id, @chat_id, @page_idx }
     for_side: ->
       { @side_contents }
     for_editor: ->

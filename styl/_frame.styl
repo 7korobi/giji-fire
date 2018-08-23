@@ -155,7 +155,6 @@ IMG.hide
 .sideframe
 .writeframe
   position: fixed
-  overflow-y: auto
   z-index: 10
   &:hover
     z-index: 30
@@ -177,23 +176,21 @@ IMG.hide
 .summary
   left:   0
   bottom: 0
-  overflow-x: hidden
+  .stable
+    width: 180px
 
 .sideframe
   right:  0
   bottom: 0
-  overflow-x: visible
 
 .editframe
   right: 0
   top:  0
-  overflow-x: hidden
 
 .sideframe
   .icons
-    width: 50px
+    width: 70px
     margin: 0 2px 6px auto
-    overflow: hidden
 
     display: flex
     flex-direction: column
@@ -206,10 +203,12 @@ IMG.hide
       box-sizing: content-box
       flex-basis: auto
       text-align: center
-      width:     40px
-      height:    60px
-      font-size: 40px
+      width:        60px
+      height:       90px
       border-radius: 5px
+      font-size:    20px
+      i
+        font-size:  50px
     .fa
       margin: 10px auto
     .mdi::before

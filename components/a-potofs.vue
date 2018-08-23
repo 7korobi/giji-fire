@@ -145,10 +145,9 @@ module.exports =
 
 </script>
 <style lang="sass" scoped>
-.mention
+h6
   overflow: hidden
   white-space: nowrap
-  text-overflow: ellipsis
 
 .potofs
   th, td

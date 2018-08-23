@@ -5,25 +5,28 @@ log-wiki
     d-mentions.inframe.mentions(v-bind="for_mentions" @anker="anker" key="1" v-if="is_show.mention")
     .inframe.TITLE(v-if="is_show.toc")
       hr
-      d-mode.form(v-bind="for_mode" style="white-space: nowrap")
+      d-toc(v-bind="for_toc" key="2")
       hr
       search(v-model="search")
       hr
-      d-toc(v-bind="for_toc" key="2")
+      d-mode.form(v-bind="for_mode" style="white-space: nowrap")
     a-potofs(v-bind="for_potofs" key="3" v-if="is_show.potofs")
 
   template(slot="icons")
-    nuxt-link.item.active(replace, :to="back_url")
-      i.mdi.mdi-backspace(v-if="$route.query.back")
-      i.mdi.mdi-map-marker(v-else)
-    nuxt-link.item.active(push, :to="{ query: { idx, mode: 'memo' }}")
-      i.mdi.mdi-notebook
-    check.item(v-model="shows" as="mention")
+    nuxt-link.item.active.tooltip-left(v-if="$route.query.back" replace :to="back_url" data-tooltip="以前の画面に戻る")
+      i.mdi.mdi-backspace
+      | BACK
+    nuxt-link.item.active(v-else replace :to="back_url" )
+      i.mdi.mdi-map-marker
+    check.item.tooltip-left(v-model="shows" as="mention" data-tooltip="今見ている投稿に関する情報")
       i.mdi.mdi-pin
-    check.item(v-model="shows" as="toc" v-if="! a.length")
+      | INFO
+    check.item.tooltip-left(v-model="shows" as="toc" v-if="! a.length" data-tooltip="他の日付へ移動、検索など")
       i.mdi.mdi-filmstrip
-    check.item(v-model="shows" as="potof")
+      | TOC
+    check.item.tooltip-left(v-model="shows" as="potof" data-tooltip="キャラクターの一覧、ステータス等を確認")
       i.mdi.mdi-account-multiple
+      | STAT
 
   c-post(handle="footer")
     bread-crumb
@@ -76,7 +79,6 @@ log-wiki
         nuxt-link(:to="folder_url") 終了した村一覧
 
 </template>
-
 
 <style lang="sass" scoped>
 </style>

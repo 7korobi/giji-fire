@@ -20,12 +20,15 @@ module.exports =
       @part_id && @now
 
 </script>
-
+<style lang="sass" scoped>
+.center
+  overflow: hidden
+</style>
 <template lang="pug">
 .center(v-if="show")
   span(v-if="secret")
     nuxt-link(:to="mode_to('memo')")
-      | メモ
+      i.mdi.mdi-notebook
       sup {{ now.memo(part_id).all }}
     nuxt-link(:to="mode_to('full')")
       | バレ
