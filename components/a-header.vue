@@ -80,8 +80,9 @@ module.exports =
   head: ->
     # https://materialdesignicons.com/
     link: [
-      { hid: 'hid2', rel: 'stylesheet', type: 'text/css', href: url.assets + '/css/index.styl.css' }
-      { hid: 'hid3', rel: 'stylesheet', type: 'text/css', href: 'https://cdn.materialdesignicons.com/2.3.54/css/materialdesignicons.min.css' }
+      { hid: 'hid10', rel: 'stylesheet', type: 'text/css', href: 'https://cdn.materialdesignicons.com/2.3.54/css/materialdesignicons.min.css' }
+      { hid: 'hid11', rel: 'stylesheet', type: 'text/css', href: "https://fonts.googleapis.com/earlyaccess/notosansjp.css" }
+      { hid: 'hid3', rel: 'stylesheet',   type: 'text/css', href: url.assets + '/css/index.styl.css' }
       { hid: 'hid4', rel: @new.rel.log,   type: 'text/css', href: @href.log }
       { hid: 'hid5', rel: @new.rel.font,  type: 'text/css', href: @href.font }
       { hid: 'hid6', rel: @new.rel.theme, type: 'text/css', href: @href.theme }

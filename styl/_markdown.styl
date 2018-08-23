@@ -1,3 +1,70 @@
+body
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+  -webkit-overflow-scrolling: touch
+  -webkit-touch-callout: none
+  text-size-adjust: 100%
+  user-select: none
+  overflow-wrap: break-word
+  word-wrap:     break-word
+  font-variant-numeric: tabular-nums
+  font-feature-settings: "palt"
+  font-smooth: antialiased
+  font-weight: 400
+  font-kerning: normal
+
+rt
+  text-shadow: none
+  font-variant-east-asian: ruby full-width simplified
+
+strong
+  -webkit-text-emphasis: sesame
+  text-emphasis: sesame
+
+b
+th
+strong
+  font-weight: 400
+
+abbr[title]
+del
+  text-decoration: none
+
+em
+  font-style: normal
+
+s
+  text-decoration-style: double
+ins
+  text-decoration-style: wavy
+
+pre
+.chat .text.mono
+  font-family: 'Noto Sans Mono CJK JP', 'Mgen+ 1mn', 'mplus-1m', monospace
+  font-variant-numeric: tabular-nums slashed-zero
+  font-feature-settings: "halt"
+
+textarea
+.text
+  text-align: start
+
+.btn
+[href]
+  sup, sub
+    font-weight: 900
+    font-family: 'Noto Sans CJK JP', 'Noto Sans JP', sans-serif
+
+[abbr]
+[title]
+  font-weight: 400
+  font-family: 'Noto Sans CJK JP', 'Noto Sans JP', sans-serif
+
+h1, h2, h3, h4, h5, h6
+[cite]
+.chat .text.head:first-line
+  font-weight: 900
+  font-family: 'Noto Sans CJK JP', 'Noto Sans JP', sans-serif
+
+
 hr
   clear: both
   display: block
@@ -27,6 +94,13 @@ hr:after
 hr.invisible_hr
   display: none
 
+[cite]
+  white-space: nowrap
+  b
+    transform: scale(0.8,1.6)
+    transform-origin: center center
+    vertical-align: bottom
+
 h1, h2, h3, h4, h5, h6
   box-sizing: border-box
   display: block
@@ -34,8 +108,10 @@ h1, h2, h3, h4, h5, h6
   transform-origin: center center
   margin: 0
 
+b
 p
-  margin: 0
+  margin:  0
+  padding: 0
 
 blockquote
   margin: 0
@@ -55,15 +131,7 @@ ul
 ol
   list-style-type: decimal
 
-rt
-  text-shadow: none
-
-sup.note
-  font-weight: bold
-
 strong
-  -webkit-text-emphasis: sesame
-  text-emphasis: sesame
   display: inline
 
 code
@@ -73,7 +141,6 @@ code
 
 
 pre
-  font-family: monospace
   margin: 0 -2px
   white-space: pre-wrap
 
@@ -95,20 +162,6 @@ select
 button
 time
   border-width: 0
-
-s
-  text-decoration-style: double
-ins
-  text-decoration-style: wavy
-
-strong
-del
-th
-em
-b
-  font-style: normal
-  font-weight: normal
-  text-decoration: none
 
 thead tr
 tbody tr
@@ -152,20 +205,25 @@ input[type=time]
   span
     margin: 0 6px
 
-.form
-  abbr
-  a
-  button
-  [href]
-    min-width:  30px
-    min-height: 36px
-    vertical-align: middle
-
 .tb-btn
   a
   button
   .btn
     writing-mode: tb-rl
+
+article
+.text
+  cursor: text
+  user-select: text
+
+[href]
+[cite]
+.tap
+.btn
+  cursor: pointer
+
+a
+  text-decoration: none
 
 input[type=time]
 input[type=number]
@@ -177,6 +235,7 @@ input[type=button]
 input[type=image]
 input[type=reset]
 [href]
+[cite]
 a
 b
 abbr
@@ -190,33 +249,42 @@ fieldset
 .btn
   display: inline-block
   box-sizing: border-box
-  text-decoration: none
-  padding:   2px
+  text-rendering: auto
+  align-items: flex-start
+
+input[type=time]
+input[type=number]
+input[type=checkbox]
+input[type=radio]
+input[type=color]
+input[type=submit]
+input[type=button]
+input[type=image]
+input[type=reset]
+[href]
+a
+abbr
+kbd
+code
+time
+select
+button
+textarea
+fieldset
+.note
+.btn
   border-radius: 9px
   border-style: solid
-  align-items: flex-start
-  cursor: hand
 
-  text-rendering: auto
-
-/*
-  user-select: none
-  vertical-align: baseline
-  letter-spacing: normal
-  word-spacing: normal
-  text-transform: none
-  text-shadow:    none
-  text-indent: 0px
- */
+textarea
+  border: 2px solid
 
 input
 select
 button
-textarea
-.btn
 [href]
+.btn
   border: 2px solid
-
   .date &
     border: 0
 
@@ -227,7 +295,7 @@ textarea
 
   &:hover
   &:focus
-    border: 2px dashed
+    border: 2px none
 
   &:hover
     border-radius: 3px
@@ -259,10 +327,16 @@ span
       overflow: hidden
 
 legend
+  border-radius: 3em
+  padding: 1px 6px
+  text-shadow: none
+
+.label
 label
 abbr
   border-radius: 3em
-  padding: 1px 6px
+  padding: 1px 0.4ex
+  margin:  0   0.1ex
   text-align: center
   text-shadow: none
 
@@ -272,12 +346,47 @@ abbr
   sup
   sub
     border-radius: 3em
-    padding: 1px 6px
+    padding: 0   0.4ex
+    margin: -1px 0.1ex
     text-align: center
     text-shadow: none
 
+.form
+  a
+  abbr
+  button
+  [href]
+  .btn
+    min-width:  30px
+    min-height: 36px
+    vertical-align: middle
+
+kbd
+code
+pre
+  padding: 1px 0.4ex
+  margin:  0px 0.1ex
+
+input
+select
+button
+[href]
+[cite]
+.btn
+  padding: 1px 0.4ex
+  margin:  0px 0.1ex
+
+  form &
+    padding: 1px 0.4ex
+    margin:  3px 0.1ex
+
 sup
+  vertical-align: super
+  display: inline-block
+  text-align: center
+
 sub
+  vertical-align: sub
   display: inline-block
   text-align: center
 

@@ -4,7 +4,5 @@
 </style>
 <template lang="pug">
 div.banner
-  .TITLE
-    article.text
-      slot
+  slot
 </template>

@@ -218,7 +218,7 @@ module.exports =
               _phase_idx = phase_idx[-2..][0] + 'M'
             _idx = Number($1)
             mention_ids.push _mention_id = [book_id, _part_idx, _phase_idx, _idx].join("-")
-            """<q cite="#{_mention_id}">»#{_code}</q>"""
+            """<q cite="#{_mention_id}"><b>&gt;&gt;</b>#{_code}</q>"""
         else
           log = "メモをはがした。"
           show = "post"

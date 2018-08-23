@@ -25,6 +25,9 @@ table
   border-collapse: collapse
   td
     white-space: nowrap
+    a
+      padding: 0 .25ex;
+      margin: 0;
 .focus
   border: 2px dotted
 </style>

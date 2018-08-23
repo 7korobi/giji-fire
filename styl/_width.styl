@@ -1,3 +1,5 @@
+//    .sideframe:hover
+//      width: "calc( 50vw + %s )" % $half
 
 .summary:hover
   width: "calc( 100vw - %s )" % 55px
@@ -19,13 +21,9 @@ width($font, $center)
   @media screen and (min-width: $limit3)
     .summary
       width: "calc( 50vw - %s )" % $half
-    .sideframe:hover
-      width: "calc( 50vw + %s )" % $half
   @media screen and (max-width: $limit3)
     .summary
       width: 160px
-    .sideframe:hover
-      width: "calc( 100vw - %s )" % 160px
 
   @media screen and (min-width: $limit2)
     .sideframe

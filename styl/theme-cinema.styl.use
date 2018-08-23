@@ -6,8 +6,7 @@ palette_single(icons, 'N', 1, MOB)
 .talk
   .chat
     margin:  0 7px 0 0
-    border-style: solid
-    border-width: 0 0 2px 0
+    box-shadow: 6px 4px 2px -2px #0d2f3c
 
 .center-left
 .center-right

@@ -69,15 +69,8 @@ module.exports = ->
     ...vuex_value 'menu.side',['shows']
     el_adjust: el.adjust
 
-    full: ->
-      false
-      # @current?.id == @chat?.id
-
-    anker: ->
-      if @chat
-        unless @chat.phase
-          console.log @chat
-        @chat.anker @current?.part_id
+    part_id: ->
+      @current?.part_id
 
     chat: ->
       if @id

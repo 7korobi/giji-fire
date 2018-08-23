@@ -23,10 +23,10 @@ sow = (log)->
   .replace ///^\s*([~=＝…ー－―‐-])\1{4,}\s*$///gm, "<hr>"
 
   .replace ///<strong>([^<]*?)<\/strong><sup>([^<]*?)</sup>///g, (tag, item, title, idx, src)->
-    """<abbr title="#{title}">#{item}</abbr>"""
+    """<kbd title="#{title}">#{item}</kbd>"""
 
   .replace ///<a\ title="([^"]*?)"><strong>([^<]*?)</strong></a>///g, (tag, title, item, idx, src)->
-    """<abbr title="#{title}">#{item}</abbr>"""
+    """<kbd title="#{title}">#{item}</kbd>"""
 
   .replace /// ((\/\*) ([\s\S]*?) (\*\/|$)) ///g, (human)->
     """<del>#{human}</del>"""

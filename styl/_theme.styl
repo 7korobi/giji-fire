@@ -144,8 +144,9 @@ init()
     _dd = hues_d[key]
     unless _dd
       error(join(" ", key, _dd))
-    _HP = _HH + 0.25 * _dd
-    _HN = _HH + 0.50 * _dd
+    _HB = _HH + 0.25 * _dd
+    _HP = _HH + 0.50 * _dd
+    _HN = _HH - 0.50 * _dd
 
     $btns[ 'G' + key] = HSYA(_HP,75%,33%,0.5) HSYA(_HP,75%,33%,0.5)
     $bgs[  'G' + key] = HSYA(_HH,75%,30%,0.5) HSYA(_HH,75%,30%,0.5)
@@ -163,7 +164,7 @@ init()
     $bolds['I' + key] = white              black              white             // hardcore pen
 
     //                  O                  A                  F                  T                  Y                  W
-    $btns[ 'D' + key] = HSYA(_HP,11%,15%)  HSYA(_HP,58%,27%)  HSYA(_HP,35%,48%)  HSYA(_HP,20%,63%)  HSYA(_HP,35%,73%)  HSYA(_HP,35%,83%) // bg  +3%l
+    $btns[ 'D' + key] = HSYA(_HP,40%,20%)  HSYA(_HP,65%,27%)  HSYA(_HP,35%,48%)  HSYA(_HP,20%,63%)  HSYA(_HP,35%,73%)  HSYA(_HP,50%,80%) // bg  +3%l
     $bgs[  'D' + key] = HSYA(_HH,11%, 5%)  HSYA(_HH,58%,20%)  HSYA(_HH,35%,45%)  HSYA(_HH,20%,60%)  HSYA(_HH,35%,70%)  HSYA(_HH,35%,80%)
     $edges['D' + key] = HSYA(_HH,25%,40%)  HSYA(_HH,45%,40%)  HSYA(_HH,75%,20%)  HSYA(_HH,25%,25%)  HSYA(_HH,55%,42%)  HSYA(_HH,55%,40%) // bg +20%s -25%l
     $lines['D' + key] = HSYA(_HN,65%,40%)  HSYA(_HN,65%,40%)  HSYA(_HN,75%,20%)  HSYA(_HN,65%,25%)  HSYA(_HN,65%,42%)  HSYA(_HN,65%,40%) // pen and edge light
@@ -171,8 +172,8 @@ init()
     $bolds['D' + key] = white              white              black              black              black              black             // hardcore pen
 
     //                  O                  A                  F                  T                  Y                  W
-    $btns[ 'N' + key] = HSYA(_HH,30%,45%)  HSYA(_HH,40%,36%)  HSYA(_HH,58%,27%)  HSYA(_HH,35%,23%)  HSYA(_HH,58%,19%)  HSYA(_HH,11%,15%) // bg   +7%l
-    $bgs[  'N' + key] = HSYA(_HP,30%,40%)  HSYA(_HP,40%,30%)  HSYA(_HP,58%,20%)  HSYA(_HP,35%,15%)  HSYA(_HP,58%,10%)  HSYA(_HP,11%, 5%)
+    $btns[ 'N' + key] = HSYA(_HH,30%,45%)  HSYA(_HH,40%,36%)  HSYA(_HH,65%,27%)  HSYA(_HH,55%,27%)  HSYA(_HH,65%,27%)  HSYA(_HH,40%,20%) // bg   +7%l
+    $bgs[  'N' + key] = HSYA(_HB,30%,40%)  HSYA(_HB,40%,30%)  HSYA(_HB,58%,20%)  HSYA(_HB,35%,15%)  HSYA(_HB,58%,10%)  HSYA(_HB,11%, 5%)
     $edges['N' + key] = HSYA(_HH,55%,72%)  HSYA(_HH,65%,62%)  HSYA(_HH,85%,52%)  HSYA(_HH,60%,47%)  HSYA(_HH,45%,40%)  HSYA(_HH,25%,40%) // pen + little lighten
     $lines['N' + key] = HSYA(_HN,55%,85%)  HSYA(_HN,65%,80%)  HSYA(_HN,85%,75%)  HSYA(_HN,60%,85%)  HSYA(_HN,75%,70%)  HSYA(_HN,85%,60%) // pen and edge light
     $pens[ 'N' + key] = HSYA(_HH,25%,85%)  HSYA(_HH,50%,80%)  HSYA(_HH,65%,75%)  HSYA(_HH,25%,85%)  HSYA(_HH,75%,70%)  HSYA(_HH,85%,60%) // blacky or whity
@@ -262,7 +263,8 @@ palette_single($bgTheme, $type, $idx, key)
   $emboss = $edge
   $focus  = fix($edge, 0, -10)
 
-  $bgHi  = $btns[$type+key][$idx]
+  $btn   = $btns[$type+key][$idx]
+  $bgHi  = $btn
   $off   = fix($bgHi, 20, -10)
   $on    = fix($bgHi, 20,  10)
 
@@ -276,10 +278,6 @@ palette_single($bgTheme, $type, $idx, key)
 
   if 'G' == $type
     $off   = transparent
-
-  @keyframes {theme}-pulse
-    0%   { text-shadow: 2px 0 1px $bgHi, -2px 0 1px $bgHi }
-    0%   { text-shadow: 0 2px 1px $bgHi, 0 -2px 1px $bgHi }
 
 
   for theme in $bgTheme
@@ -298,7 +296,6 @@ palette_single($bgTheme, $type, $idx, key)
 
       .text.head:first-line
         color: $bold
-        font-weight: bold
 
       &.baloon
         border-color: $baloon
@@ -349,12 +346,14 @@ palette_single($bgTheme, $type, $idx, key)
       body &.{theme}
       .{theme} &
         color:            $pen
-        background-color: $bgHi
+        background-color: $bg
         border-color:     $edge
         :hover
         :focus
           border-color: $focus
 
+    b
+    rt
     h1
     h2
     h3
@@ -363,7 +362,7 @@ palette_single($bgTheme, $type, $idx, key)
     h6
       body &.{theme}
       .{theme} &
-        color: $bold 
+        color: $bold
 
     h1
     h2
@@ -394,19 +393,13 @@ palette_single($bgTheme, $type, $idx, key)
         color: $bold 
         border-color: $focus
 
-    b
     em
     strong
       body &.{theme}
       .{theme} &
         color: $pen
-        text-emphasis-color: $bold 
-        text-decoration-color: $bold 
-
-    rt
-      body &.{theme}
-      .{theme} &
-        color: $bold 
+        text-emphasis-color: $pen
+        text-decoration-color: $pen
 
     label
     label[title]
@@ -438,6 +431,12 @@ palette_single($bgTheme, $type, $idx, key)
         color: $bold 
         text-emphasis-color: $line
         text-decoration-color: $line
+
+    .note
+      body &.{theme}
+      .{theme} &
+        color: $hide
+        border-color: $off
 
     del
     legend

@@ -1,22 +1,26 @@
 @import "./_width.styl"
 
+@font-face
+  font-family: 'Noto Serif JP'
+  font-style: normal
+  font-display: swap
+  font-weight: 400
+  src: url('https://giji.f5.si/font/NotoSerifJP-Regular.woff2') format('woff2')
 
-clicker($base, $inline, $family)
-  $gap = $inline - $base
-  $mu = $gap * -.5 + 1px
-  $md = $gap * -.5
-  $pu = $gap *  .5 - 3px
-  $pd = $gap *  .5 - 2px
-
-  margin:  $mu 2px $md 2px
-  padding: $pu $pd $pd $pd
+@font-face {
+  font-family: "mplus-1m"
+  font-style: normal
+  font-display: swap
+  font-weight: 400
+  src: url("https://giji.f5.si/font/circle-mplus-1m-regular.woff2") format("woff2")
+}
 
 inline($base, $inline, $family)
   font-family: $family
   if sans-serif == $family
-    font-family: Avenir, "Helvetica Neue", "游ゴシック", "Yu Gothic", sans-serif
+    font-family: 'Noto Sans CJK JP', 'Noto Sans JP', sans-serif
   if serif == $family
-    font-family: "花園明朝A", "花園明朝B", "HanaMinA", "HanaMinB", serif
+    font-family: 'Noto Serif CJK JP', 'Noto Serif JP', serif
 
   font-size:   $base
   line-height: $inline
@@ -36,17 +40,23 @@ font($small, $base, $family)
     margin-bottom: -1 * $block
 
   h1
-    inline(2.50 * $base, 2.50 * $base, $family)
+    font-size:   2.50 * $base
+    line-height: 2.50 * $base
   h2
-    inline(1.88 * $base, 1.88 * $base, $family)
+    font-size:   1.88 * $base
+    line-height: 1.88 * $base
   h3
-    inline(1.50 * $base, 1.50 * $base, $family)
+    font-size:   1.50 * $base
+    line-height: 1.50 * $base
   h4
-    inline(1.25 * $base, 1.25 * $base, $family)
+    font-size:   1.25 * $base
+    line-height: 1.25 * $base
   h5
-    inline(1.00 * $base, 1.00 * $base, $family)
+    font-size:   1.00 * $base
+    line-height: 1.00 * $base
   h6
-    inline(0.83 * $base, 0.83 * $base, $family)
+    font-size:   0.83 * $base
+    line-height: 0.83 * $base
 
   hr
     padding: $hr_top 0 $hr_btm 0
@@ -88,26 +98,7 @@ font($small, $base, $family)
 
   kbd
   code
-    inline($base,  $block, "monospace")
-
-  input
-  select
-  button
-  [href]
-  [cite]
-  [chat_id]
-  .btn
-    clicker($base,  $block,  $family)
-
-  .form
-    input
-    select
-    button
-    [href]
-    [cite]
-    [chat_id]
-    .btn
-      margin: 2px
+    inline($base,  $block, "'mplus-1m', monospace")
 
   .fine
   .date
@@ -128,12 +119,7 @@ font($small, $base, $family)
     p
       inline($small, $middle, $family)
 
-  .date
-    input
-    select
-    button
-    [href]
-    [cite]
-    [chat_id]
-    .btn
-      clicker($small, $block, $family)
+  [cite]
+    b
+      font-size:   $small
+      line-height: $block
