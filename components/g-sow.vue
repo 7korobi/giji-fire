@@ -20,8 +20,6 @@ sow = (log)->
   log
   .replace ///<br>///g, "\n"
 
-  .replace ///^\s*([~=＝…ー－―‐-])\1{4,}\s*$///gm, "<hr>"
-
   .replace ///<strong>([^<]*?)<\/strong><sup>([^<]*?)</sup>///g, (tag, item, title, idx, src)->
     """<kbd title="#{title}">#{item}</kbd>"""
 
