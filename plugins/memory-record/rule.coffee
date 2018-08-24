@@ -4,6 +4,7 @@ Mem = require "./index.coffee"
 Finder = require "./finder.coffee"
 Query  = require "./query.coffee"
 Model  = require "./model.coffee"
+List   = require "./list.coffee"
 Set    = require "./set.coffee"
 Map    = require "./map.coffee"
 
@@ -23,6 +24,7 @@ module.exports = class Rule
   constructor: (base, cb)->
     @$name = rename base
     @model = Model
+    @list  = List
     @set   = Set
     @map   = Map
 
@@ -59,7 +61,7 @@ module.exports = class Rule
             return true unless _.isEqual @[key], @$model[key]
           return false
 
-    @set_property =
+    @list_property =
       first:
         enumerable: false
         get: -> @[0]
@@ -91,6 +93,8 @@ module.exports = class Rule
                 (o)-> _.at(o, keys...)
           @constructor.bless @map cb
 
+    @set_property = {}
+
     @schema cb if cb
     return
 
@@ -99,6 +103,10 @@ module.exports = class Rule
     if @model == Model
       class @model extends @model
     Object.defineProperties @model::, @model_property
+
+    if @list == List
+      class @list extends @list
+    Object.defineProperties @list::, @list_property
 
     if @set == Set
       class @set extends @set
@@ -112,13 +120,15 @@ module.exports = class Rule
 
     Mem.Query[@$name.list] = @all
 
-    Mem.Set[@$name.base] = list = @set.bless []
-    list.all = @all
-    list.$name = @$name
+    Mem.Set[@$name.base] = _set = new @set
+    _set.all = @all
+    _set.$name = @$name
+    list = @list.bless [], @all
 
     Mem.Finder[@$name.base] = finder = @all._finder
     finder.set = @set
     finder.map = @map
+    finder.list = @list
     finder.model = @model
     finder.format = {}
     @

@@ -18,8 +18,11 @@ module.exports = class Map
     o = { item, $group: [] }
 
     model.$deploy item, parent
+    @$deploy_reduce model, item, format, o
+    @$deploy_sort   model, item, all
+    o
 
-    emit # for uglifyjs dummy.
+  @$deploy_reduce: (model, item, format, o)->
     emit = (keys..., cmd)=>
       path = ["_reduce", keys...].join('.')
       o.$group.push [path, cmd]
@@ -30,12 +33,12 @@ module.exports = class Map
       set:  item.id
     model.map_reduce item, emit
 
+  @$deploy_sort: (model, item, all)->
     emit = (keys..., cmd)->
       path = ["_reduce", keys...].join('.')
       all.$sort[path] = cmd
     emit "list", {}
     model.order item, emit
-    o
 
   @init: (o, map)->
     if map.id
@@ -49,7 +52,7 @@ module.exports = class Map
     if map.set
       o.hash = {}
 
-  @order: (from, map, set)->
+  @order: (from, map, list, cb)->
     o = from
     if Object == from.constructor
       if map.belongs_to
@@ -61,8 +64,8 @@ module.exports = class Map
 
     else
       if map.belongs_to
-        o = from.map (val)->
-          Query[map.belongs_to].find val.id
+        for val in from
+          val.__proto__ = Query[map.belongs_to].find val.id
 
     if map.sort
       o = _.orderBy o, map.sort...
@@ -71,39 +74,39 @@ module.exports = class Map
       o = o.map (val)->
         _.get val, map.pluck
 
+    if key = map.group_by
+      from = o
+      o = _.groupBy o, (oo)-> _.get oo, key
+      for a of o when a
+        cb a
+
     if per = map.page_by
       idx = 0
       from = o
-      groups = Object.values _.groupBy o, (o)->
+      o = Object.values _.groupBy o, (oo)->
         Math.floor(idx++ / per)
-      groups.all = idx
-      o = groups
+      o.all = idx
       o.page_idx = (item)->
         for a, page_idx in @ when item in a
           return page_idx
         null
-      Object.assign o, matrix
-      o.__proto__ = set::
       for a in o when a
-        a.__proto__ = set::
+        cb a
 
-    if map.index
+    if key = map.index
       counts = []
-      for key, oo of o
-        idx = _.get oo, map.index
+      for ___, oo of o
+        idx = _.get oo, key
         counts[idx] ?= []
         counts[idx].push oo
       o = counts
-      Object.assign o, matrix
-      o.__proto__ = set::
       for a in o when a
-        a.__proto__ = set::
+        cb a
 
-    o.from = from
-    o.__proto__ = set::
+    cb o
     o
 
-  @finish: (o, query, set)->
+  @finish: (o, query, list)->
     if o.hash
       o.set = Object.keys o.hash
     if o.count && o.pow?

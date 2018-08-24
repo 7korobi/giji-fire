@@ -9,6 +9,7 @@ browser = require("~/plugins/browser-store")
     page: ""
     search: ""
   push:
+    mode: 'full'
     a: []
 
   watch:
@@ -16,6 +17,9 @@ browser = require("~/plugins/browser-store")
       return unless window?
       unless window[@chat_id]
         @go_top()
+
+    mode: ->
+      @page_reset()
 
     page: ->
       if @page

@@ -35,7 +35,6 @@ module.exports =
 
     face: (state,{ id, data })->
       face = Query.faces.find id
-      console.log face, data
       face.aggregate.log = data.faces[0]
       face.aggregate.log.date_min = data.m_faces[0].date_min
       face.aggregate.sow_auths = _.sortBy data.sow_auths, (o)-> - o.story_ids.length

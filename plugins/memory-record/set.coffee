@@ -23,36 +23,7 @@ f_clear = ->
   @all._finder.clear_cach @all
 
 
-module.exports = class Set extends Array
-  @$deploy: (map, model, item, parent)->
-
-  @bless: (list)->
-    list.__proto__ = @::
-    list
-
-  sort: (sort...)->
-    o = _.orderBy @, sort...
-    o.__proto__ = @__proto__
-    o
-
-  group_by: (cb)->
-    o = _.groupBy @, cb
-    for key, oo of o
-      oo.__proto__ = @__proto__
-    o
-
-  page_by: (per)->
-    idx = 0
-    Object.values @group_by (o)->
-      Math.floor(idx++ / per)
-
-  where: (req)-> @query.where req
-  in:    (req)-> @query.in    req
-
-  update: (item, old)->
-  create: (item)->
-  delete: (old)->
-
+module.exports = class Set
   set:           f_reset
   reset:         f_reset
 

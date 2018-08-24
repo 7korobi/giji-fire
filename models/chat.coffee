@@ -50,6 +50,8 @@ new Rule("chat").schema ->
       search_words: @log
 
   class @model extends @model
+    @page_by = 30
+
     anker: (part_id)->
       { mark, guide } = @phase
       switch
@@ -106,10 +108,10 @@ new Rule("chat").schema ->
       emit "last",
         pluck: "max_is"
         sort: ["max_is.write_at", "desc"]
-        page_by: 25
+        page_by: @page_by
       emit "list",
         sort: ["write_at", "asc"]
-        page_by: 25
+        page_by: @page_by
       emit "mention", anker
       for mention_id in o.mention_ids
         emit "mention_to", mention_id, anker

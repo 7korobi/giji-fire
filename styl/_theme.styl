@@ -487,19 +487,26 @@ palette_single($bgTheme, $type, $idx, key)
         border-color:     $off
         background-color: $off
 
+        &:link
+          color: $pen
+
+        &.visited
+        &:visited
+          color: $pen
+
+        &.contain
+          color: $bold
+
+        &.hover
         &:hover
         &:focus
           border-color:  $focus
 
         &.nuxt-link-exact-active
         &.active
+        &:active
         &:checked
           background-color: $on
-
-        &.in_range
-        &:visited
-        &:link
-          color: $bold 
 
     .btn
     [href]

@@ -1,5 +1,5 @@
 <template lang="pug">
-div.form
+p.form
   label.mdi.mdi-magnify(for="search")
   input.search#search(size="30" :value="value" @input="input" @focus="focus")
   label.mdi.mdi-eraser(v-if="value !== ''" @click="clear")

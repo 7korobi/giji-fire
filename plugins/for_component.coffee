@@ -3,7 +3,7 @@ _ = require "lodash"
 module.exports =
   computed:
     for_toc: ->
-      { @book, @chats, @part_id, current: @chat }
+      { @book, @chats, @part_id, @search, @page_by, current: @chat }
     for_mode: ->
       { @now, @mode, @part_id, @chat_id }
     for_part: ->

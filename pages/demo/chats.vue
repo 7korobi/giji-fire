@@ -7,7 +7,7 @@ no-ssr
         li
           nuxt-link(to="/demo") 開発者用ページ
 
-    c-talk(:key="stylecheck" :write_at="now - 3600000" face_id="f5" to="幻日世界" sign="ななころび" head="宝珠 コーラ" handle="SSAY")
+    c-talk(key="stylecheck" :write_at="now - 3600000" face_id="f5" to="幻日世界" sign="ななころび" head="宝珠 コーラ" handle="SSAY")
       code
         pre
           | 123456789012345678901234567890123456789012345678901234567890

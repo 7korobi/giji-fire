@@ -5,7 +5,7 @@ module.exports =
   mixins: [
     require('~/plugins/pager')
   ]
-  props: ["book", "chats", "part_id", "current"]
+  props: ["search", "book", "chats", "part_id", "current"]
   methods:
     part_label: (part_id)->
       [ min,..., max ] = @chats(part_id)
@@ -21,7 +21,8 @@ module.exports =
     page_url: (part_id, page_idx)->
       return unless part_id && data = @chats(part_id)
       idx = part_id
-      query: { @mode, idx, page: page_idx + 1 }
+      page = 1 + page_idx
+      query: { @mode, idx, page, @search }
 
     page_label: (part_id, page_idx)->
       [ min,..., max ] = @chats(part_id)[page_idx]
@@ -36,9 +37,9 @@ module.exports =
       return [] unless @part_id == part_id
       switch
         when @page_idx == page_idx
-          ["nuxt-link-exact-active"]
+          ["active"]
         when @pager.head_idx <= page_idx <= @pager.tail_idx
-          ["in_range"]
+          ["contain"]
         else
           []
   computed:
@@ -66,6 +67,7 @@ table(v-if="show")
 <style lang="sass" scoped>
 .page
   text-align: center
+  width: 3.5ex
 
 .header
   padding-left: 20px

@@ -17,7 +17,9 @@ browser_store = bs = (method, browser_key)->
 
 get_value_by_store = (db, by_str, key, val)->
   o = by_str db.getItem key
-  o ? val
+  if o == o
+    o ? val
+  else val
 
 get_value_by_route = (src, by_url, key, val)->
   value = src.params[key] || src.query[key]

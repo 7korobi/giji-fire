@@ -51,15 +51,20 @@ module.exports = class Finder
         map.reduce item, o, a
 
     for path, o of paths
-      map.finish o, query, @set
+      map.finish o, query, @list
       _.set query, path, o
 
     for path, cmd of query.$sort when o = _.get(query, path)
-      o = map.order o, cmd, @set
+      o = map.order from = o, cmd, @list, (target)=>
+        @list.bless target, query
+      o.from = from
       _.set query, path, o
 
-  clear_cache: ->
+  clear_cache: (all = null)->
     State.step[@name.list] = ++$step
+    if all
+      for id, { item } of all._memory
+        @map.$deploy_sort @model, item, all
     return
 
   remove: (all, from)->

@@ -5,11 +5,17 @@ log-wiki
     d-mentions.inframe.mentions(v-bind="for_mentions" @anker="anker" key="1" v-if="is_show.mention")
     .inframe.TITLE(v-if="is_show.toc")
       hr
+      p.form
+        select(v-model="page_by")
+          option(:value="30") &emsp;30投稿/p
+          option(:value="100") &ensp;100投稿/p
+          option(:value="300") &ensp;300投稿/p
+          option(:value="1000") 1000投稿/p
       d-toc(v-bind="for_toc" key="2")
       hr
       search(v-model="search")
       hr
-      d-mode.form(v-bind="for_mode" style="white-space: nowrap")
+      d-mode(v-bind="for_mode" style="white-space: nowrap")
     a-potofs(v-bind="for_potofs" key="3" v-if="is_show.potofs")
 
   template(slot="icons")
@@ -40,8 +46,8 @@ log-wiki
       div(v-else)
         c-report.form(handle="footer" key="finder")
           search(v-model="search")
-          d-mode(v-bind="for_mode")
-          d-part(v-bind="for_part")
+          d-mode.center(v-bind="for_mode")
+          d-part.center(v-bind="for_part")
 
         div(v-if="mode == 'memo'")
           c-report.form(handle="footer")
@@ -69,8 +75,8 @@ log-wiki
             scroll-mine(@input="page_add", :as="page_next_idx") 次頁
 
         c-report.form(v-else handle="footer" key="limitup")
-          d-part(v-bind="for_part")
-          d-mode(v-bind="for_mode")
+          d-part.center(v-bind="for_part")
+          d-mode.center(v-bind="for_mode")
           search(v-model="search")
 
   c-post(handle="footer")
@@ -84,8 +90,18 @@ log-wiki
 </style>
 
 <script lang="coffee">
-{ Query, State } = require "~/plugins/memory-record"
+{ Query, State, Finder } = require "~/plugins/memory-record"
 { vuex_value } = require '~/plugins/struct'
+
+dic = '><&"\n'
+reg_dic = /[><\&\"\n]/g
+sow_dic = [
+  "&gt;"
+  "&lt;"
+  "&amp;"
+  "&quot;"
+  "<br>"
+]
 
 module.exports =
   mixins: [
@@ -94,11 +110,12 @@ module.exports =
     require('~/plugins/pager')
     require("~/plugins/book-show")
     require("~/plugins/browser-store")
-      push:
-        mode: 'full'
+      local:
+        page_by: 30
       watch:
-        mode: ->
-          @page_reset()
+        page_by: (newVal)->
+          Finder.chat.model.page_by = newVal
+          Finder.chat.clear_cache Query.chats
   ]
 
   layout: 'blank'
@@ -121,6 +138,11 @@ module.exports =
 
     page_idx: ->
       @page_all_contents?.page_idx?(@chat) ? 0
+
+    now: ->
+      search = @search.replace reg_dic, (chr)->
+        sow_dic[ dic.indexOf chr ]
+      Query.chats.now @hide_ids, search
 
     folder_url: ->
       "/sow/village?folder_id=#{@folder_id.toUpperCase()}"

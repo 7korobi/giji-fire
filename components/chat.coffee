@@ -72,6 +72,9 @@ module.exports = ->
     part_id: ->
       @current?.part_id
 
+    anker: ->
+      @chat?.anker @part_id
+
     chat: ->
       if @id
         Query.chats.find @id

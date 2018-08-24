@@ -6,7 +6,7 @@ div
   c-report(handle="header" deco="center")
     | ランダムで登場する要素
 
-  c-post.swipe(handle="SSAY" deco="giji" v-for="[id, count, deck] in decks")
+  c-post.swipe(handle="SSAY" deco="giji" v-for="[id, count, deck] in decks" :key="id")
     | [[{{ id }}]]     {{ count }}通り
     table
       thead
