@@ -61,6 +61,13 @@ try
   bs.session = window.sessionStorage
   bs.session.setItem test, test
   bs.session.removeItem test
+  window.addEventListener "storage", ({ key, url, storageArea, oldValue, newValue })->
+    console.log { key, oldValue, newValue, active_stores }
+    active_stores.forEach ($browser)->
+      console.log $browser
+      if key in Object.keys $browser
+        $browser[key] = newValue
+
   history || throw new Error "can't use history API."
 catch e
   console.error 'Local storage not supported by this browser'
@@ -72,6 +79,7 @@ catch e
 
 
 idx = 0
+active_stores = new Set
 module.exports = (args1)->
   browser_key = "$browser#{++idx}"
   $browser = {}
@@ -121,6 +129,7 @@ module.exports = (args1)->
   for method, args2 of args1
     for key, val of args2
       pack method, key, val
+  active_stores.add $browser
 
   data = ->
     oldVals =
