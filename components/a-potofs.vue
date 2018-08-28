@@ -26,18 +26,15 @@
             btn(v-model="sort" as="say.min", @toggle="reverse") 最初
             btn(v-model="sort" as="say.range", @toggle="reverse" title="最後 － 最初") 範囲
             btn(v-model="sort" as="say.max", @toggle="reverse") 最後
-          th
-            btn(v-model="sort" as="sign", @toggle="reverse")
-              i.mdi.mdi-account
 
-          th
-            btn(v-model="sort" as="request.role_id", @toggle="reverse") 希望
           th
             btn(v-model="sort" as="win", @toggle="reverse") 勝敗
           th
             btn(v-model="sort" as="winner_id", @toggle="reverse") 陣営
           th
             btn(v-model="sort" as="role_labels", @toggle="reverse") 役割
+          th
+            btn(v-model="sort" as="request.role_id", @toggle="reverse") 希望
           th
             btn(v-model="sort" as="text", @toggle="reverse") 補足
           th
@@ -54,14 +51,12 @@
           td.r(:class="o.say_handle(part.id)") {{ o.say(part.id).count  | currency("回") }}
           td.r(:class="o.say_handle(part.id)") {{ o.say(part.id).all    | currency("字") }}
           th.r(:class="o.say_handle(part.id)") {{ o.say(part.id) | timerange }}
-          th.c(:class="o.say_handle(part.id)")
-            abbr(:class="o.say_handle(part.id)") {{ o.sign | decode }}
 
-          th.c(:class="o.winner_id")
-            abbr(v-if="o.request", :class="o.winner_id") {{ o.request.role.label }}
           th.c(:class="o.winner_id") {{ o.win }}
           td.c(:class="o.winner_id") {{ o.winner && o.winner.label }}
           td.c(:class="o.winner_id") {{ o.role_labels.join("、") }}
+          th.c(:class="o.winner_id")
+            abbr(v-if="o.request", :class="o.winner_id") {{ o.request.role.label }}
           td.l(:class="o.winner_id") {{ o.text }}
           td.last
   transition-group.swipe.list(v-if="part" name="list" tag="div")
@@ -69,13 +64,21 @@
       tbody.TITLE.form.tb-btn
         tr
           th
-            btn(v-model="hide_ids", :as="live_on")  参加者
+            btn(v-model="hide_ids", :as="live_on") 
+              | 参加者
+              .badge {{ full_off.length - live_on.length }}
           th
-            btn(v-model="hide_ids", :as="live_off") リタイア
+            btn(v-model="hide_ids", :as="live_off")
+              | リタイア
+              .badge {{ full_off.length - live_off.length }}
           th
-            btn(v-model="hide_ids", :as="full_on")  全表示
+            btn(v-model="hide_ids", :as="full_on") 
+              | 全表示
+              .badge {{ full_off.length - full_on.length }}
           th
-            btn(v-model="hide_ids", :as="invert") 反転
+            btn(v-model="hide_ids", :as="invert") 
+              | 反転
+              .badge {{ full_off.length - invert.length }}
 
     portrate(v-for="o in potofs", :key="o.id", :face_id="o.face_id", :hide="o.hide", @click="toggle(o)")
       .bar(:class="bgc(o)")
@@ -93,10 +96,11 @@ module.exports =
   computed: {
     ...vuex_value "menu.potofs", ['order', 'sort', 'hide_ids']
 
-    full_on:  ->  @potof_ids -> false
-    invert:   ->  @potof_ids (o)-> ! o.hide
-    live_on:  ->  @potof_ids (o)-> ! o.commit
-    live_off: ->  @potof_ids (o)-> o.commit
+    full_off: ->  @potof_ids => true
+    full_on:  ->  @potof_ids => false
+    invert:   ->  @potof_ids (o)=> ! o.hide
+    live_on:  ->  @potof_ids (o)=> o.live?.date <= @part.idx
+    live_off: ->  @potof_ids (o)=> o.live?.date >  @part.idx
 
     potofs: ->
       if @part
@@ -115,7 +119,7 @@ module.exports =
         when "text", "role_labels", "winner_id", "win"
           (o)-> o.winner_id
         else
-          (o)-> o.live && o.live.role_id
+          (o)-> o.live?.role_id
 
     show: ->
       @part
