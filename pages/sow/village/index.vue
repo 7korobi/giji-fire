@@ -172,11 +172,10 @@ div
 <script lang="coffee">
 { State, Query } = require "~/plugins/memory-record"
 { url } = require "~/config/live.yml"
-mount = require "~/plugins/get-by-mount"
 
 module.exports =
   mixins: [
-    mount "1h", "sow/oldlog"
+    require("~/plugins/get-by-mount") -> [["sow/oldlog"]]
     require('~/plugins/pager')
     require("~/plugins/browser-store")
       replace:

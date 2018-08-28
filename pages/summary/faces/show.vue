@@ -118,7 +118,7 @@ folder_handle =
 
 module.exports =
   mixins: [
-    require("~/plugins/get-by-mount") "12h", "aggregate/face", -> @id
+    require("~/plugins/get-by-mount") -> [["aggregate/face", @id ]]
     require("~/plugins/browser-store")
       push:
         id:  "c41"

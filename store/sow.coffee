@@ -1,5 +1,6 @@
-{ State, Model, Query, Rule, Set, Finder } = Mem = require "~/plugins/memory-record"
+{ State, Model, Query, Rule, Set, Finder } = require "~/plugins/memory-record"
 { nation } = require "../yaml/rule.yml"
+{ caches } = require("~/plugins/get-by-mount")
 { url } = require "~/config/live.yml"
 _ = require "lodash"
 
@@ -28,7 +29,7 @@ module.exports =
   state: -> {}
 
   mutations:
-    join: (state, data)->
+    story: (state,{ data })->
       book_id = data.stories[0]._id
       potof_idx = 0
       for o, idx in data.potofs
@@ -312,11 +313,11 @@ module.exports =
           #{n_rules.join("\n")}
         """
 
-    progress: (state, data)->
+    progress: (state,{ data })->
       Set.sow_turn.merge    data.events
       Set.sow_village.merge data.stories
 
-    oldlog: (state, data)->
+    oldlog: (state,{ data })->
       Set.sow_village.merge data.stories
       console.log { data } unless data.faces
       for { _id, story_ids } in data.faces
@@ -324,15 +325,10 @@ module.exports =
           vil.aggregate.face_ids.push _id.face_id
       Finder.sow_village.clear_cache()
 
-  actions:
-    story: ({ state, commit, rootState }, story_id)->
-      res = await fetch "#{url.store}/sow/#{story_id}.json"
-      commit "join", await res.json()
-
-    progress: ({state, commit, rootState })->
-      res = await fetch "#{url.api}/story/progress"
-      commit "progress", await res.json()
-
-    oldlog: ({ state, commit, rootState })->
-      res = await fetch "#{url.store}/sow/index.json"
-      commit "oldlog", await res.json()
+  actions: {
+    ...caches "1h",
+      progress:  -> "#{url.api}/story/progress"
+      oldlog:    -> "#{url.store}/sow/index.json"
+    ...caches "30d",
+      story: (id)-> "#{url.store}/sow/#{id}.json"
+  }

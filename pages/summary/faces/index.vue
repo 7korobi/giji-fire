@@ -60,7 +60,7 @@ _ = require "lodash"
 
 module.exports =
   mixins: [
-    require("~/plugins/get-by-mount") "12h", "aggregate/faces"
+    require("~/plugins/get-by-mount") -> [["aggregate/faces"]]
     require("~/plugins/browser-store")
       replace:
         order: "date_max"

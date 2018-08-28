@@ -63,7 +63,7 @@ module.exports =
     long_anker: ->
       if @chat
         prefix = if @mark then '>>' else ''
-        "(#{@name || ''} #{prefix}#{@chat.anker() || ''} )"
+        "(#{prefix}#{@chat.anker() || ''} #{@name || ''})"
       else
         ""
 

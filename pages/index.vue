@@ -63,7 +63,7 @@ div
 
 module.exports =
   mixins: [
-    require("~/plugins/get-by-mount") "1h", "sow/progress"
+    require("~/plugins/get-by-mount") -> [["sow/progress"]]
   ]
   computed:
     user: ->

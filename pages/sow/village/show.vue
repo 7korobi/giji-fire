@@ -105,7 +105,7 @@ sow_dic = [
 
 module.exports =
   mixins: [
-    require("~/plugins/get-by-mount") "30d", "sow/story", -> @book_id
+    require("~/plugins/get-by-mount") -> [["sow/story", @book_id ]]
     require("~/plugins/for_component")
     require('~/plugins/pager')
     require("~/plugins/book-show")

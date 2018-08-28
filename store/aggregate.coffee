@@ -1,4 +1,5 @@
 { State, Model, Query, Rule, Finder } = require "~/plugins/memory-record"
+{ caches } = require("~/plugins/get-by-mount")
 { url } = require "~/config/live.yml"
 _ = require "lodash"
 
@@ -84,14 +85,8 @@ module.exports =
       face.aggregate.folders = _.sortBy folders, (list, key)-> - list.length
       Finder.face.clear_cache()
 
-  actions:
-    faces: ({ dispatch, state, commit, rootState })->
-      res = await fetch "#{url.store}/aggregate/faces/index.json"
-      commit "faces",
-        data: await res.json()
-
-    face: ({ state, commit, rootState }, id)->
-      res = await fetch "#{url.api}/aggregate/faces/#{id}"
-      commit "face",
-        id: id
-        data: await res.json()
+  actions: {
+    ...caches "12h",
+      faces:    -> "#{url.store}/aggregate/faces/index.json"
+      face: (id)-> "#{url.api}/aggregate/faces/#{id}"
+  }
