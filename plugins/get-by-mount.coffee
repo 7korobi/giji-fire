@@ -1,45 +1,57 @@
 { to_msec } = require "~/plugins/struct"
 { State } = require "~/plugins/memory-record"
 
+
 Vue = require 'vue'
 if Vue.default?
   Vue = Vue.default
 
 { step } = State
-manage =
-  read_at: {}
-  timer: {}
+manage = {}
 
-base = (timestr, name, opt)->
-  timeout = to_msec timestr
-
-  capture = (vue)->
-    if opt?.call
-      payload = opt.call vue
-      suffix = JSON.stringify payload
-    else
-      payload = null
-      suffix = ""
-    key = name + suffix
-    { payload, key, name }
-
+base = (opt)->
   data: ->
     { manage, step }
 
   mounted: ->
-    { timer, read_at } = @manage
-    { payload, key, name } = capture @
+    list = opt.call @
+    await Promise.all list.map ([name, id])=>
+      @$store.dispatch name, { id, name, @manage }
 
-    timer[key] = timeout
-    @manage.timer = timer
-    unless Date.now() - timeout < read_at[key]
-      await @$store.dispatch name, payload
-      read_at[key] = Date.now()
-      @manage.read_at = read_at
 
-base.plugin = (@arg)->
-  ({ commit, state })->
-    { timer, read_at } = state
-    base.root = { commit, timer, read_at }
+base.cache = (timestr, vuex_id, opt)->
+  timeout = to_msec timestr
+  ({ dispatch, state, commit, rootState }, { id, name, manage })->
+    return unless window.localStorage
+
+    cache_id = "#{name}(#{id || ''})"
+    at = Date.now() - timeout
+
+    unless at < manage[cache_id]?[0]
+      lc = JSON.parse window.localStorage.getItem cache_id
+      if at < lc?[0]
+        console.log "local cache hit"
+        data = lc[2]
+      else
+        console.log "local cache no."
+        res = await fetch opt id
+        data = await res.json()
+        lc = [
+          Date.now()
+          timestr
+          data
+        ]
+        window.localStorage.setItem cache_id, JSON.stringify lc
+      manage[cache_id] = lc
+      commit vuex_id, { id, data }
+    else
+      console.log "memory cache hit."
+
+
+
+base.caches = (timestr, opts)->
+  for key, cb of opts
+    opts[key] = base.cache timestr, key, cb
+  opts
 
 module.exports = base
