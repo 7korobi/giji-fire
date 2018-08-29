@@ -14,11 +14,12 @@ attrs =
   MAKER:  { mark: '#', label: '村建' }
   ADMIN:  { mark: '%', label: '管理' }
   VSSAY:  { mark: '@', label: '見物' }
+  VGSAY:  { mark: '@', label: '見物' }
+  MSAY:   { mark:  '', label: '会話' }
   WSAY:   { mark: '*', label: '人狼' }
   GSAY:   { mark: '+', label: '墓下' }
   PSAY:   { mark: '=', label: '共鳴' }
   XSAY:   { mark: '!', label: '念波' }
-  VGSAY:  { mark: '@', label: '見物' }
 phase_attr = (self)->
   if o = attrs[self.handle]
     Object.assign self, o
