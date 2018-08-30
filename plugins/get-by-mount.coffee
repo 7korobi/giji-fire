@@ -20,13 +20,9 @@ base = (opt)->
 
 base.cache = (timestr, vuex_id, opt)->
   ({ dispatch, state, commit, rootState }, { id, name })->
-    return unless window.localStorage
-
-
     res = await fetch opt id
     data = await res.json()
     commit vuex_id, { id, data }
-
 
 
 base.caches = (timestr, opts)->

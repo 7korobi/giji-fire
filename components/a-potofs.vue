@@ -4,7 +4,7 @@
     hr
     h6 {{ part.label }}の参加者
     hr
-  .swipe.fine
+  .swipe.fine(v-on="movespace()")
     table
       tfoot.TITLE.form.tb-btn
         tr
@@ -27,20 +27,19 @@
             btn(v-model="sort" as="say.range", @toggle="reverse" title="最後 － 最初") 範囲
             btn(v-model="sort" as="say.max", @toggle="reverse") 最後
 
-          th
+          th(ref="secret")
             btn(v-model="sort" as="win", @toggle="reverse") 勝敗
-          th
+          th(colspan="2")
             btn(v-model="sort" as="winner_id", @toggle="reverse") 陣営
-          th
             btn(v-model="sort" as="role_labels", @toggle="reverse") 役割
           th
             btn(v-model="sort" as="request.role_id", @toggle="reverse") 希望
           th
             btn(v-model="sort" as="text", @toggle="reverse") 補足
-          th
+          th.last
 
       transition-group.potofs.fine.tlist(name="list" tag="tbody")
-        tr(v-for="o in potofs", :key="o.id" v-if="! o.hide")
+        tr(v-for="(o, idx) in potofs", :key="o.id" v-if="! o.hide")
           td.c.mdi(:class="o.icon")
           th.r(:class="o.live && o.live.role_id") {{ o.job }}
           th.l(:class="o.live && o.live.role_id") {{ o.face && o.face.name }}
@@ -52,13 +51,16 @@
           td.r(:class="o.say_handle(part.id)") {{ o.say(part.id).all    | currency("字") }}
           th.r(:class="o.say_handle(part.id)") {{ o.say(part.id) | timerange }}
 
-          th.c(:class="o.winner_id") {{ o.win }}
-          td.c(:class="o.winner_id") {{ o.winner && o.winner.label }}
-          td.c(:class="o.winner_id") {{ o.role_labels.join("、") }}
-          th.c(:class="o.winner_id")
-            abbr(v-if="o.request", :class="o.winner_id") {{ o.request.role.label }}
-          td.l(:class="o.winner_id") {{ o.text }}
-          td.last
+          th.c(:class="o.winner_id" v-if="can_secret") {{ o.win }}
+          td.r(:class="o.winner_id" v-if="can_secret") {{ o.winner && o.winner.label }}
+          td.l(:class="o.winner_id" v-if="can_secret") {{ o.role_labels.join("、") }}
+
+          td.c.TSAY(v-if="can_secret")
+            span(v-if="o.request") {{ o.request.role.label }}
+          td.l.TSAY(v-if="can_secret" colspan="2") {{ o.text }}
+          td.l(v-else)
+            del ...
+
   transition-group.swipe.list(v-if="part" name="list" tag="div")
     table.fine(key="ids")
       tbody.TITLE.form.tb-btn
@@ -66,22 +68,22 @@
           th
             btn(v-model="hide_ids", :as="live_on") 
               | 参加者
-              .badge {{ full_off.length - live_on.length }}
+              .badge(style="display: none") {{ full_off.length - live_on.length }}
           th
             btn(v-model="hide_ids", :as="live_off")
               | リタイア
-              .badge {{ full_off.length - live_off.length }}
+              .badge(style="display: none") {{ full_off.length - live_off.length }}
           th
             btn(v-model="hide_ids", :as="full_on") 
               | 全表示
-              .badge {{ full_off.length - full_on.length }}
+              .badge(style="display: none") {{ full_off.length - full_on.length }}
           th
             btn(v-model="hide_ids", :as="invert") 
               | 反転
-              .badge {{ full_off.length - invert.length }}
+              .badge(style="display: none") {{ full_off.length - invert.length }}
 
-    portrate(v-for="o in potofs", :key="o.id", :face_id="o.face_id", :hide="o.hide", @click="toggle(o)")
-      .bar(:class="bgc(o)")
+    portrate(v-for="o in potofs" :key="o.id" :face_id="o.face_id" :hide="o.hide" @click="toggle(o)")
+      .bar.c(:class="bgc(o)" @click="only(o)") 注目
 </template>
 
 
@@ -91,7 +93,9 @@
 
 module.exports =
   props: ['part']
-  data: -> {}
+  data: ->
+    left: Infinity
+    pageX: 0
 
   computed: {
     ...vuex_value "menu.potofs", ['order', 'sort', 'hide_ids']
@@ -101,6 +105,8 @@ module.exports =
     invert:   ->  @potof_ids (o)=> ! o.hide
     live_on:  ->  @potof_ids (o)=> o.live?.date <= @part.idx
     live_off: ->  @potof_ids (o)=> o.live?.date >  @part.idx
+
+    can_secret: -> @left < @pageX
 
     potofs: ->
       if @part
@@ -116,7 +122,7 @@ module.exports =
 
     bgc: ->
       switch @sort
-        when "text", "role_labels", "winner_id", "win"
+        when "text", "request.role_id", "role_labels", "winner_id", "win"
           (o)-> o.winner_id
         else
           (o)-> o.live?.role_id
@@ -125,7 +131,17 @@ module.exports =
       @part
   }
 
+  mounted: ->
+    { @left } = @$refs.secret?.getClientRects?()?[0]
+
   methods:
+    movespace: ->
+      scroll: =>
+        { @left } = @$refs.secret?.getClientRects?()?[0]
+      touchmove: (e)=>
+        { @pageX } = e.changedTouches[0]
+      mousemove: ({ @pageX })=>
+
     memo: (o, part_id)->
       { log, deco } = context = o.side(part_id).max_is
       { context, is: "g-sow", class: deco, value: log }
@@ -135,6 +151,12 @@ module.exports =
       .filter f
       .map (o)-> o.id
       .sort()
+
+    only: (o)->
+      for oo in @potofs
+        oo.hide = true
+      o.hide = false
+      @hide_ids = @potof_ids (o)-> o.hide
 
     toggle: (o)->
       o.hide = ! o.hide
@@ -195,12 +217,11 @@ tfoot
     max-height:   65px
     height:       65px
   .bar
-    height:        3px
     border-radius: 3px
   .fine
     a
       flex-basis: auto
-      max-height:   68px
-      height:       68px
+      max-height:   85px
+      height:       85px
 </style>
 

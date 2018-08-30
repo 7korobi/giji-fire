@@ -29,6 +29,13 @@ new Rule("chat").schema ->
       ids = a.map (idx)-> book_id + idx
       all.where(_id: ids).sort("write_at", "desc")
 
+    sow_cite: (a)->
+      b = a.split('-')
+      b[3] = 'AIM' if 'TS' == b[3]
+      c = a.split('-')
+      c[2]-- if c[2]
+      all.find a, b.join('-'), c.join('-')
+
     now: (...args)->
       memo:   (part_id)-> all.memo(  ...args, part_id).reduce?.last ? blank
       memos:  (part_id)-> all.memo(  ...args, part_id).reduce?.list ? blank
@@ -51,6 +58,16 @@ new Rule("chat").schema ->
 
   class @model extends @model
     @page_by = 30
+
+    make_ankers: (...ids)->
+      { book_id } = @
+      ids.push @id
+      ids = Array.from new Set ids
+      [ book_id
+        ids.map (id)->
+          id[book_id.length ..] 
+      ]
+
 
     anker: (part_id)->
       { mark, guide } = @phase

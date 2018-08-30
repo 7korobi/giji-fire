@@ -44,10 +44,16 @@ module.exports =
         if Query.roles.find o.live
           date = o.deathday
           date = undefined unless 0 < o.deathday
-          Set.card.add
-            _id: "#{potof_id}-live"
-            role_id: o.live
-            date: date
+          if o.role[0] && o.live != "mob"
+            Set.card.add
+              _id: "#{potof_id}-live"
+              role_id: o.live
+              date: date
+          else
+            Set.card.add
+              _id: "#{potof_id}-live"
+              role_id: 'leave'
+              date: 0
 
         if Query.roles.find o.select
           Set.card.add
@@ -85,6 +91,7 @@ module.exports =
           pno:          o.pno
           face_id:  o.face_id
           sign: o.sow_auth_id
+          text: o.history?.replace /<[^>]+>/g, ""
 
       potofs = Query.potofs
       .where { book_id }
@@ -252,7 +259,7 @@ module.exports =
       Set.book.add
         _id: o._id
         label: o.name
-        winner_id: data.events[-1..][0].winner?[4..]
+        winner_id: null # data.events[-1..][0].winner?[4..]
         potof_size: potofs.list.length
         sign: sign
         write_at: chat_head.write_at - 4

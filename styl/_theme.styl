@@ -6,7 +6,7 @@ themes = {
     VGRAVE: F6
     FOAM:   F5 FSAY
     ELSE:   F4
-    MUPET:  F3
+    MUPET:  F3 XSAY
     BROAD:  F2
     MOB:    F1 LSAY
     WOLF:   F0 WSAY
@@ -30,7 +30,7 @@ themes = {
     VGRAVE: W6 GAIM
     FOAM:   W5
     ELSE:   W4 ELSE
-    MUPET:  W3 XSAY
+    MUPET:  W3 
     BROAD:  W2 AIM
     MOB:    W1 PSAY
     WOLF:   W0
@@ -426,7 +426,7 @@ palette_single($bgTheme, $type, $idx, key)
     .name
       body &.{theme}
       .{theme} &
-        sup, sub
+        sup, sub, .badge
           background-color: $emboss
           color: $bg
 
@@ -473,8 +473,8 @@ palette_single($bgTheme, $type, $idx, key)
       body &.{theme}
       .{theme} &
         text-shadow: none
-        color: $pen
-        background-color: $edge
+        color: $emboss
+        background-color: $bg
 
     input[type=submit]
     input[type=button]
@@ -512,7 +512,7 @@ palette_single($bgTheme, $type, $idx, key)
     [href]
       body &.{theme}
       .{theme} &
-        sup, sub
+        sup, sub, .badge
           background-color: $emboss
           color: $bg
 

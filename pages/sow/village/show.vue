@@ -5,17 +5,17 @@ log-wiki
     d-mentions.inframe.mentions(v-bind="for_mentions" @anker="anker" key="1" v-if="is_show.mention")
     .inframe.TITLE(v-if="is_show.toc")
       hr
-      p.form
+      d-toc(v-bind="for_toc" key="2")
+      d-mode(v-bind="for_mode" style="white-space: nowrap")
+      hr
+      div.swipe
+        span(style="width: 160px")
+          search(v-model="search")
         select(v-model="page_by")
           option(:value="30") &emsp;30投稿/p
           option(:value="100") &ensp;100投稿/p
           option(:value="300") &ensp;300投稿/p
           option(:value="1000") 1000投稿/p
-      d-toc(v-bind="for_toc" key="2")
-      hr
-      search(v-model="search")
-      hr
-      d-mode(v-bind="for_mode" style="white-space: nowrap")
     a-potofs(v-bind="for_potofs" key="3" v-if="is_show.potofs")
 
   template(slot="icons")

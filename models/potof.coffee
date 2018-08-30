@@ -40,36 +40,49 @@ new Rule("potof").schema ->
     @role_ids = Object.keys role_id_set
     @able_ids = Object.keys able_id_set
 
-    @role_labels = @roles.list.map (o)=>
-      stat = @stats.find("#{@_id}-#{o._id}")
-      head = stat?.label ? ""
-      "#{head}#{o.label}"
-
-    @live    = @cards.find("#{@_id}-live") ?
-    @request = @cards.find("#{@_id}-request")
-    @commit  = @stats.find("#{@_id}-commit")
-    @give    = @stats.find("#{@_id}-give")
-
-    @winner_id = @find @cards, ["bond", "gift", "role", "live"], (o)-> o.role.win
-
     if @live
-      @live_class = @live.role_id
       @live.date ?= Infinity
-      switch @live.role_id
-        when "suddendead", "leave"
-          @win = ""
-        else
-          if @book?.winner_id
-            if @book.winner_id == @winner_id
-              @win = "勝利"
-            else
-              @win = "敗北"
-          else
-            @win = "参加"
 
     @winner_id ?=  "NONE"
 
   @property 'model',
+    role_labels:
+      get: ->
+        for o in @roles.list when "LIVE" != o.group
+          stat = @stats.find("#{@_id}-#{o._id}")
+          head = stat?.label ? ""
+          "#{head}#{o.label}"
+    win:
+      get: ->
+        return "" if ["suddendead", "leave"].includes @live?.role_id
+        return ""　unless @
+        if @book?.winner_id
+          if @book.winner_id == @winner_id
+            "勝利"
+          else
+            "敗北"
+        else
+          "参加"
+
+    live:
+      get: ->
+        @cards.find("#{@_id}-live")
+
+    request:
+      get: ->
+        @cards.find("#{@_id}-request")
+
+    commit:
+      get: ->
+        @stats.find("#{@_id}-commit")
+
+    give:
+      get: ->
+        @stats.find("#{@_id}-give")
+
+    winner_id:
+      get: -> @find @cards, ["bond", "gift", "role", "live"], (o)-> o.role.win
+
     head:
       get: ->
         if @face?

@@ -14,7 +14,7 @@ module.exports =
     width:   0
 
     potofs:
-      sort: "live"
+      sort: "live.date"
       order: "asc"
       hide_ids: []
 
