@@ -35,5 +35,5 @@ module.exports =
 
     input: _.debounce (e)->
       @$emit 'input', e.target.value
-    , 300
+    , 1000
 </script>
