@@ -3,14 +3,15 @@
 el = require "~/plugins/dom"
 
 targets =
+  diagram: 'g-marksvg'
+  giji:   'g-marked'
+  center: 'g-marked'
   sow:  'g-sow'
   head: 'g-sow'
   mono: 'g-sow'
+
   dagre: 'g-sow'
   mermaid: 'g-sow'
-  giji:   'g-marked'
-  center: 'g-marked'
-  diagram: 'g-marksvg'
 
 
 module.exports = ->

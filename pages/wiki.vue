@@ -77,7 +77,7 @@ log-wiki
   e-potof(v-if="user && is_creating" v-model="edit.potof")
   c-report(v-if="user && is_replacing" handle="header" deco="center") 編集中
 
-  chat(v-if="user && edit.potof.face_id" :id="edit.chat._id" :current="chat" @check="check_post" :edit="true")
+  chat(v-if="user && edit.potof.face_id" :id="edit.chat._id" :current="chat" @check="check_post" :edit="true" v-model="edit.chat.log")
   c-report(v-if="user && edit.potof.face_id" :handle="edit.chat.phase.handle")
     text-editor(v-model="edit.chat.log" v-bind="for_editor" @icon="icon_change" @drop_image="image_post" @submit="chat_post")
       select(v-if="is_creating" v-model="edit.phase.handle" key="handle")
@@ -154,6 +154,7 @@ module.exports =
       label: 'wiki'
     Set.phase.merge [
       { update, guide, _id: @part_id + '-S', handle: 'SSAY',  label: '会話' }
+      { update, guide, _id: @part_id + '-S', handle: 'MSAY',  label: '人形' }
       { update, guide, _id: @part_id + '-W', handle: 'WSAY',  label: '人狼' }
       { update, guide, _id: @part_id + '-P', handle: 'PSAY',  label: '結社' }
       { update, guide, _id: @part_id + '-G', handle: 'GSAY',  label: '墓下' }
