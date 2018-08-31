@@ -152,11 +152,8 @@ module.exports =
       .map (o)-> o.id
       .sort()
 
-    only: (o)->
-      for oo in @potofs
-        oo.hide = true
-      o.hide = false
-      @hide_ids = @potof_ids (o)-> o.hide
+    only: (tgt)->
+      @hide_ids = @potof_ids (o)-> o != tgt
 
     toggle: (o)->
       o.hide = ! o.hide
