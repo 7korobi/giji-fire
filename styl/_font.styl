@@ -1,11 +1,30 @@
 @import "./_width.styl"
 
-@font-face
-  font-family: 'Noto Serif JP'
-  font-style: normal
-  font-display: swap
-  font-weight: 400
-  src: url('https://giji.f5.si/font/NotoSerifJP-Regular.woff2') format('woff2')
+
+
+for $weight in 300 400 500 700
+  @font-face
+    font-family: 'Fira Code WEB'
+    font-style: normal
+    font-display: swap
+    font-weight: $weight
+    src: "url('https://giji.f5.si/font/FiraCode-%s.woff2') format('woff2')" % $weight
+
+for $weight in 200 300 400 500 600 700 900
+  @font-face
+    font-family: 'Noto Serif JP'
+    font-style: normal
+    font-display: swap
+    font-weight: $weight
+    src: "url('https://giji.f5.si/font/NotoSerifJP-%s.woff2') format('woff2')" % $weight
+
+for $weight in 100 300 350 400 500 700 900
+  @font-face
+    font-family: 'Noto Sans JP'
+    font-style: normal
+    font-display: swap
+    font-weight: $weight
+    src: "url('https://giji.f5.si/font/NotoSansJP-%s.woff2') format('woff2')" % $weight
 
 @font-face {
   font-family: "mplus-1m"
@@ -15,13 +34,8 @@
   src: url("https://giji.f5.si/font/circle-mplus-1m-regular.woff2") format("woff2")
 }
 
+
 inline($base, $inline, $family)
-  if sans-serif == $family
-    font-family: 'Noto Sans CJK JP', 'Noto Sans JP', sans-serif
-  if serif == $family
-    font-family: 'Noto Serif CJK JP', 'Noto Serif JP', serif
-  if monospace == $family
-    font-family: 'Noto Sans Mono CJK JP', 'Mgen+ 1mn', 'mplus-1m', monospace
   font-size:   $base
   line-height: $inline
 

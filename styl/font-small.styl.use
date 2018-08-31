@@ -1,5 +1,13 @@
 @import "./_font.styl"
 
+body
+b
+th
+strong
+  font-weight: 400
+  font-family: 'Noto Sans CJK JP', 'Noto Sans JP', sans-serif
+
+
 font(9px, 12px, sans-serif)
 
 .icons

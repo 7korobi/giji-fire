@@ -9,7 +9,6 @@ body
   font-variant-numeric: tabular-nums
   font-feature-settings: "palt"
   font-smooth: antialiased
-  font-weight: 400
   font-kerning: normal
 
 rt
@@ -19,11 +18,6 @@ rt
 strong
   -webkit-text-emphasis: sesame
   text-emphasis: sesame
-
-b
-th
-strong
-  font-weight: 400
 
 abbr[title]
 del
@@ -37,15 +31,29 @@ s
 ins
   text-decoration-style: wavy
 
-pre
-.chat .text.mono
-  font-family: 'Noto Sans Mono CJK JP', 'Mgen+ 1mn', 'mplus-1m', monospace
-  font-variant-numeric: tabular-nums slashed-zero
-  font-feature-settings: "halt"
-
 textarea
 .text
   text-align: start
+
+tt
+code
+kbd
+samp
+pre
+textarea
+select
+button
+.chat .text.mono
+  font-weight: 400
+  font-family: 'Fira Code', 'Fira Code WEB', 'Noto Sans Mono CJK JP', 'Mgen+ 1mn', 'mplus-1m', monospace
+  font-variant-numeric: tabular-nums slashed-zero
+  font-feature-settings: "halt"
+
+[cite]
+[abbr]
+[title]
+  font-weight: 400
+  font-family: 'Noto Sans CJK JP', 'Noto Sans JP', sans-serif
 
 .btn
 [href]
@@ -54,15 +62,9 @@ textarea
     font-family: 'Noto Sans CJK JP', 'Noto Sans JP', sans-serif
 
 h1, h2, h3, h4, h5, h6
-[cite]
 .bold
 .chat .text.head:first-line
   font-weight: 700
-  font-family: 'Noto Sans CJK JP', 'Noto Sans JP', sans-serif
-
-[abbr]
-[title]
-  font-weight: 400
   font-family: 'Noto Sans CJK JP', 'Noto Sans JP', sans-serif
 
 hr

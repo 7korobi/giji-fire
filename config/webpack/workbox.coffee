@@ -41,8 +41,10 @@ api = (timer, c, u)->
 module.exports =
   dev: true
   runtimeCaching: [
-    asset '10y', '2018-08-29', 'https://api-project-54633717694.firebaseapp.com/images/portrate/*'
-    asset '10y', '2018-08-29', 'https://api-project-54633717694.firebaseapp.com/font/*.woff2'
+    asset '10y', '2018-08-29', 'https://giji.f5.si/images/*'
+    asset '10y', '2018-08-29', 'https://giji.f5.si/font/*.woff2'
+    api   '10y', '2018-08-30', 'https://giji.f5.si/css/*.css'
+    asset '10y', '2018-08-29', 'https://api-project-54633717694.firebaseapp.com/images/*'
     api   '10y', '2018-08-30', 'https://api-project-54633717694.firebaseapp.com/css/*.css'
     asset '10y', '2018-08-29', 'https://cdn.materialdesignicons.com/*/fonts/*'
 
