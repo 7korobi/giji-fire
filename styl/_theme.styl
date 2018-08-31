@@ -252,6 +252,12 @@ palette($theme_id, $type, $idx)
   for key, $bgTheme in themes[$theme_id]
     palette_single($bgTheme, $type, $idx, key)
 
+palette_bg($type, $idx, key)
+  $bg = $bgs[$type+key][$idx]
+
+palette_pen($type, $idx, key)
+  $pen = $pens[$type+key][$idx]
+
 palette_single($bgTheme, $type, $idx, key)
   dd = hues_d[key]
   $bg   = $bgs[  $type+key][$idx]
@@ -317,22 +323,12 @@ palette_single($bgTheme, $type, $idx, key)
       .cluster > rect
         stroke: $hide
 
-      text.pen
-      text.pen > tspan
-        fill: $pen
-
       .edgePath
         > circle
         > path.fill
           fill: $line
         > path.path
           stroke: $line
-        > rect.pen
-          fill: $bgHi
-        > text.pen
-          fill: $pen
-
-
 
     fieldset
       body &.{theme}

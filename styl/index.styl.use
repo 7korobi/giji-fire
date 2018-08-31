@@ -21,6 +21,16 @@ palette(leave, 'I', 0)
 .chrblank
   inline(12px, 15px, sans-serif)
 
+text.pen
+text.pen > tspan
+.edgePath > text.pen
+  inline(24px, 40px, sans-serif)
+  fill: palette_pen('I',0, BROAD)
+
+.edgePath > rect.pen
+  fill: palette_bg('I',0, BROAD)
+
+
   dfn
   abbr
   input

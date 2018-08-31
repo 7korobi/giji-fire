@@ -154,7 +154,7 @@ module.exports =
       label: 'wiki'
     Set.phase.merge [
       { update, guide, _id: @part_id + '-S', handle: 'SSAY',  label: '会話' }
-      { update, guide, _id: @part_id + '-S', handle: 'MSAY',  label: '人形' }
+      { update, guide, _id: @part_id + '-M', handle: 'MSAY',  label: '人形' }
       { update, guide, _id: @part_id + '-W', handle: 'WSAY',  label: '人狼' }
       { update, guide, _id: @part_id + '-P', handle: 'PSAY',  label: '結社' }
       { update, guide, _id: @part_id + '-G', handle: 'GSAY',  label: '墓下' }
