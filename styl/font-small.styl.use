@@ -4,6 +4,8 @@ body
 b
 th
 strong
+[title]:after
+[data-tooltip]:after
   font-weight: 400
   font-family: 'Noto Sans CJK JP', 'Noto Sans JP', sans-serif
 
