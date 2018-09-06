@@ -131,16 +131,20 @@ module.exports =
       @part
   }
 
-  mounted: ->
-    { @left } = @$refs.secret?.getClientRects?()?[0]
-
   methods:
     movespace: ->
       scroll: =>
-        { @left } = @$refs.secret?.getClientRects?()?[0]
+        @data_calc true
       touchmove: (e)=>
+        @data_calc !( @left < Infinity )
         { @pageX } = e.changedTouches[0]
       mousemove: ({ @pageX })=>
+        @data_calc !( @left < Infinity )
+    
+    data_calc: (force)->
+      if force
+        if rects = @$refs.secret.getClientRects()
+          { @left } = rects[0]
 
     memo: (o, part_id)->
       { log, deco } = context = o.side(part_id).max_is
