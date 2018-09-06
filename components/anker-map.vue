@@ -1,48 +1,23 @@
 <template lang="pug">
-div(v-if="chat")
-  .swipe
-    .TITLE
-      hr
-      h6 anker map
-      hr
-      anker-map(:part_id="part_id" :chat_id="chat_id" v-on="$listeners")
-  .stable(:class="chat.phase.handle")
-    article.text
-      hr
-      p.left(v-if="sign") by {{ sign || '' }}
-      p.center(v-if=" part && page ")
-        | {{ part }} {{ page }}
-      p.center(v-if=" phase && anker ")
-        | {{ phase }}
-        abbr.fine.btn(title="クリップボードへコピー" @click="clip") {{ anker || '' }}
-      p.right(v-if="at")
-        timeago(:since="at")
-      p(v-if="anker")
-        abbr.fine.btn(title="クリップボードへコピー" @click="clip") {{ long_anker }}
+table
+  tbody(v-on="popup()")
+    tr
+      td(v-for="ankers in anker_tree_map")
+        div(v-for="o in ankers" :key="o.id")
+          q(:cite="o.id" :class="o.phase.handle") {{ o.anker(part_id) || '' }}
+
 </template>
-
-<style lang="sass" scoped>
-abbr.btn
-  user-select: all
-
-p
-  padding: 0 2px
-  user-select: text
-</style>
 
 <script lang="coffee">
 { Query } = require "~/plugins/memory-record"
 _ = require "lodash"
 
 module.exports =
-  props: ['part_id', 'chat_id', 'page_idx']
+  mixins: [
+    require('~/plugins/popup-cite')
+  ]
+  props: ['part_id', 'chat_id']
   methods:
-    clip: (e)->
-      range = document.createRange()
-      range.selectNode e.target
-      window.getSelection().addRange range
-      document.execCommand 'copy'
-
     anker_go: (a)->
       if chat = Query.chats.sow_cite a
         @$emit "anker", ...chat.make_ankers @chat_id
@@ -93,17 +68,6 @@ module.exports =
       Query.chats.reduce?.mention_to?[id]
 
   computed:
-    chat: ->
-      Query.chats.find @chat_id
-    at: ->     @chat?.write_at
-    part: ->   @chat?.part?.label
-    phase: ->  @chat?.phase?.label
-    mark: ->   @chat?.phase?.mark
-    sign: ->   @chat?.potof?.sign
-    name: ->   @chat?.potof?.face?.name
-    anker: ->  @chat?.anker @part_id
-    page: ->   "p#{1 + @page_idx}"
-
     anker_tree_map: ->
       scan = {}
       @mention_up   [@chat_id], 0, scan
@@ -116,15 +80,5 @@ module.exports =
         tree[depth] ?= []
         tree[depth].push Query.chats.find id
       tree
-
-    long_anker: ->
-      if @chat
-        prefix = if @mark? then '>>' else ''
-        "(#{prefix}#{@chat.anker() || ''} #{@name || ''})"
-      else
-        ""
-
-    mentions: ->
-      @mention_children @chat_id
 
 </script>

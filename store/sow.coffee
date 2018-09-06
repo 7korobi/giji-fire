@@ -151,7 +151,7 @@ module.exports =
         phase_idx = o.logid[0..1]
         idx = Number o.logid[2..-1]
         if o.story_id && face_id
-          potof_id = Query.potofs.where(sign: o.sow_auth_id, face_id: face_id, book_id: o.story_id).list[0]?.id
+          potof_id = Query.potofs.sow_id o.story_id, face_id, o.sow_auth_id, o.story_id + "-0" != o.event_id
           unless potof_id
             potof_idx += 1
             Set.card.add
@@ -163,8 +163,8 @@ module.exports =
               said: 0
             Set.potof.add
               _id: [o.story_id, potof_idx].join("-")
-              face_id:  o.face_id
-              job: Query.chr_jobs.find([csid, o.face_id].join("_"))?.job
+              face_id:  face_id
+              job: Query.chr_jobs.find([csid, face_id].join("_"))?.job
               sign: o.sow_auth_id
               pno:  ""
             

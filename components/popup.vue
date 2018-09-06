@@ -1,0 +1,30 @@
+<template lang="pug">
+.contentframe(:style="style")
+  .chat.report.btns.center
+  .inframe
+    chat(v-on="$listeners" :current="current" :id="id")
+  .chat.report.btns.center
+</template>
+<style lang="sass" scoped>
+.report
+  margin-bottom: 0
+</style>
+<script lang="coffee">
+{ Query, State, Finder } = require "~/plugins/memory-record"
+
+module.exports =
+  props: ["id", "current", "pageY", "zIndex"]
+
+  data: ->
+    height: 0
+
+  computed:
+    style: ->
+      top = "#{ @pageY + 12 }px"
+      { top, @zIndex, position: "absolute" }
+
+  mounted: ->
+    if rects = @$el.getClientRects()
+      { @height } = rects[0]
+
+</script>

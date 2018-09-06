@@ -19,7 +19,11 @@ palette(leave, 'I', 0)
   palette(twitter, 'I',0)
 
 .chrblank
-  inline(12px, 15px, sans-serif)
+  &
+  a
+  p
+  time
+    inline(12px, 15px, sans-serif)
 
 text.pen
 text.pen > tspan

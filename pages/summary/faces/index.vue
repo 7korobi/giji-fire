@@ -12,16 +12,8 @@ div
       li ♥ いちばん沢山、そのキャラクターで遊んだプレイヤー
   c-report(handle="header" deco="center")
     tags(v-model="tag_id")
-
     hr
-    table(style="width: 100%")
-      tbody
-        tr
-          td
-            btn(as="" v-model="search")
-              | 検索
-          td
-            input(style="width: 97%; " v-model="search" size="10")
+    search(v-model="search")
 
   c-report(handle="header" deco="center")
     btn(as="order"        v-model="order") 基本

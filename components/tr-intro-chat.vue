@@ -10,7 +10,7 @@ module.exports = require("~/components/chat.coffee")()
 </style>
 
 <template lang="pug">
-tr.chat(@click="click" @input="input" :key="id" :class="classname")
+tr.chat(:key="id" :class="handle" v-on="article()")
   td
     q(v-if="id", :cite="id") {{ anker || '' }}
   td.mention

@@ -2,10 +2,10 @@
 <template lang="pug">
 log-wiki
   template(slot="summary")
-    d-mentions.inframe.mentions(v-bind="for_mentions" @anker="anker" key="1" v-if="is_show.mention")
+    d-mentions.inframe.mentions(v-bind="for_mentions" @anker="anker" @popup="popup" key="1" v-if="is_show.mention")
     .inframe.TITLE(v-if="is_show.toc")
       hr
-      d-toc(v-bind="for_toc" key="2")
+      d-toc(v-bind="for_toc" key="2" @popup="popup")
       d-mode(v-bind="for_mode" style="white-space: nowrap")
       hr
       div.swipe
@@ -39,10 +39,13 @@ log-wiki
       li
         nuxt-link(:to="folder_url") 終了した村一覧
 
+  template(slot="popup")
+    popup(v-for="o in floats" v-bind="o" :current="chat" @anker="anker" @popup="popup")
+
   no-ssr
     div
       div(v-if="a.length")
-        chat(v-for="o in cite_chats" @anker="anker" @focus="focus" :id="o.id" :key="o.id")
+        chat(v-for="o in cite_chats" @anker="anker" @focus="focus" @popup="popup" :id="o.id" :key="o.id")
       div(v-else)
         c-report.form(handle="footer" key="finder")
           search(v-model="search")
@@ -68,7 +71,7 @@ log-wiki
             .public
               article.text
                 h3 p{{ 1 + page_idxs[idx] }}
-          chat(v-for="o in chats" @anker="anker" @focus="focus" :current="chat" :id="o.id", :key="o.id")
+          chat(v-for="o in chats" @anker="anker" @focus="focus" @popup="popup" :current="chat" :id="o.id", :key="o.id")
 
         c-report.form(v-if="page_next_idx" handle="footer" key="limitup")
           .center
@@ -120,7 +123,8 @@ module.exports =
 
   layout: 'blank'
   data: ->
-    { step: State.step }
+    step: State.step
+    floats: {}
 
   head: ->
     labels = [@part, @book].map (o)-> o?.label

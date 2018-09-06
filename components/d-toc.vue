@@ -4,8 +4,10 @@ timerange = require "~/components/filters/timerange"
 module.exports =
   mixins: [
     require('~/plugins/pager')
+    require('~/plugins/popup-cite')
   ]
   props: ["search", "book", "chats", "part_id", "current"]
+
   methods:
     part_label: (part_id)->
       [ min,..., max ] = @chats(part_id)
@@ -30,8 +32,7 @@ module.exports =
       # max = max.write_at
       # range = max - min
       # timerange { min, max, range }
-      min?.anker()
-
+      min?.id
 
     page_btn_class: (part_id, page_idx)->
       return [] unless @part_id == part_id
@@ -52,15 +53,15 @@ module.exports =
 </script>
 
 <template lang="pug">
-table(v-if="show")
+table(v-if="show" v-on="popup()")
   tbody
     tr(v-for="(o, line) in book.parts.list", :key="o.id")
       th.r.form(style="white-space: nowrap")
-        nuxt-link.tooltip-top(replace, :to="page_url(o.id, 0)", :data-tooltip="part_label(o.id)", :class="{ active: o.id === part_id }")
+        nuxt-link.tooltip-top(replace, :to="page_url(o.id, 0)" :data-tooltip="part_label(o.id)" :class="{ active: o.id === part_id }")
           | {{o.label}}
           sup {{ chats(o.id).all }}
       th.l.form.detail
-        nuxt-link.page.tooltip-top(v-for="(_, page_idx) in chats(o.id)" replace, :to="page_url(o.id, page_idx)", :data-tooltip="page_label(o.id, page_idx)", :class="page_btn_class(o.id, page_idx)", :key=" o.id + page_idx ")
+        nuxt-link.page(v-for="(_, page_idx) in chats(o.id)" replace :to="page_url(o.id, page_idx)" :class="page_btn_class(o.id, page_idx)" :key=" o.id + page_idx " :cite="page_label(o.id, page_idx)")
           | {{ page_idx + 1 }}
 </template>
 

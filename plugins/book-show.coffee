@@ -66,6 +66,15 @@ store =
   methods:
     focus: (@idx)->
 
+    popup: ({ pageY, id, bye_id })->
+      if id
+        ++zIndex
+        key = id
+        @$set @floats, id, { id, key, pageY, zIndex }
+
+      if bye_id
+        @$delete @floats, bye_id
+
     anker: (book_id, a)->
       if @a.length
         @a = _.union @a, a
@@ -76,6 +85,7 @@ store =
     page_reset: ->
       return unless window?
       @page_idxs = [ @page_idx ]
+      @floats = {}
       { chat_id } = @
       @$nextTick =>
         if chat_id? && window[chat_id]
@@ -95,5 +105,7 @@ store =
       return unless part_id && data = @chats(part_id)
       idx = part_id
       query: { @mode, idx, page: page_idx + 1 }
+
+zIndex = 100
 
 module.exports = _.merge {}, browser, store

@@ -14,6 +14,9 @@ new Rule("potof").schema ->
   @habtm "ables"
 
   @scope (all)->
+    by_face: ( book_id, face_id )->
+      all.where({ face_id, book_id })
+
     my: (book_id, uid)->
       all.where({ book_id, uid }).order
         sort: ['write_at', 'desc']
@@ -25,6 +28,14 @@ new Rule("potof").schema ->
         sort = (o)-> o.say(part_id)[a2]
       Query.books.find(book_id).potofs.sort(sort, order)
 
+    sow_id: ( book_id, face_id, sign, is_merge )->
+      { list } = all.by_face book_id, face_id
+      for o in list when o.sign == sign
+        return o.id
+      if is_merge
+        for o in list when o.cards.list.length
+          return o.id
+      null
 
   @deploy ->
     role_id_set = {}
