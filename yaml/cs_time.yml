@@ -327,3 +327,26 @@ chr_job:
     job: 校庭番長
     comment: 由来：番長学園！（TRPG）
 
+  - face_id: t70
+    job: ラプター
+    comment: 由来：中世から続く、ロシアの球技
+
+  - face_id: t71
+    job: 月光学会
+    comment: 由来：ルナ・ソサイエティ
+
+  - face_id: t72
+    job: 公安部
+    comment: 由来：公安警察
+
+  - face_id: t73
+    job: 会堂長老会
+    comment: 由来：サンヘドリン
+
+  - face_id: t74
+    job: カミナリ族
+    comment: 由来：マフラー改造車での爆音走行
+
+  - face_id: t75
+    job: 珊瑚宮連邦
+    comment: 由来：海底都市、冷泉山龍宮寺、八尾比丘尼伝説
