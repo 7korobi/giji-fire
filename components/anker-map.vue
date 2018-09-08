@@ -1,10 +1,10 @@
 <template lang="pug">
 table
-  tbody(v-on="popup()")
+  tbody(v-on="markup_event('click')")
     tr
       td(v-for="ankers in anker_tree_map")
         div(v-for="o in ankers" :key="o.id")
-          q(:cite="o.id" :class="o.phase.handle") {{ o.anker(part_id) || '' }}
+          q.cite-in(:cite="o.id" :class="anker_class(o)") {{ o.anker() || '' }}
 
 </template>
 
@@ -14,10 +14,16 @@ _ = require "lodash"
 
 module.exports =
   mixins: [
-    require('~/plugins/popup-cite')
+    require('~/plugins/markup-event')
   ]
-  props: ['part_id', 'chat_id']
+  props: ['book_id', 'chat_id', 'a']
   methods:
+    anker_class: (chat)->
+      if @a.includes chat.id[ @book_id.length .. ]
+        [chat.phase.handle, 'bold']
+      else
+        [chat.phase.handle]
+
     anker_go: (a)->
       if chat = Query.chats.sow_cite a
         @$emit "anker", ...chat.make_ankers @chat_id
@@ -41,7 +47,6 @@ module.exports =
         done_ids = Object.keys ret
         if children
           ids = children.map (o)-> o.id
-          console.log { root_ids, depth, done_ids, ids }
           ids = _.difference ids, done_ids
           if ids?.length
             @mention_down ids, depth + 1, ret
@@ -68,6 +73,8 @@ module.exports =
       Query.chats.reduce?.mention_to?[id]
 
   computed:
+    id: ->
+      @chat_id
     anker_tree_map: ->
       scan = {}
       @mention_up   [@chat_id], 0, scan

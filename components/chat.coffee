@@ -41,33 +41,8 @@ module.exports = ->
       default: false
 
   mixins: [
-    require('~/plugins/popup-cite')
+    require('~/plugins/markup-event')
   ]
-  methods:
-    article: ->
-      Object.assign @popup(),
-        input: ({ target })=>
-          { type, value } = target.attributes
-          if type && type.value == 'checkbox'
-            @$emit "check", target.checked
-
-        click: ({ target })=>
-          cite  = target.attributes.cite
-          cite ?= target.parentElement.attributes.cite
-          if cite
-            if chat = Query.chats.sow_cite cite.value
-              @$emit "anker", ...chat.make_ankers @id
-
-          { href, chk, src, alt } = target.attributes
-          if href
-            url = href.value
-            check = chk?.value
-            if check == "confirm" && confirm "open?\n#{url}"
-              open url, "_blank"
-
-  watch:
-    hover: (id, bye_id)->
-      @$emit "popup", { @pageY, id, bye_id }
 
   computed: {
     ...vuex_value 'menu.side',['shows']

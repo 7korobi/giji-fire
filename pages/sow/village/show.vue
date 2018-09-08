@@ -19,6 +19,9 @@ log-wiki
     a-potofs(v-bind="for_potofs" key="3" v-if="is_show.potofs")
 
   template(slot="icons")
+    btn.item(v-if="is_floats" v-model="floats" :as="{}" data-tooltip="残ってしまったポップアップを消去")
+      i.mdi.mdi-filmstrip-off
+      | POP
     nuxt-link.item.active.tooltip-left(v-if="$route.query.back" replace :to="back_url" data-tooltip="以前の画面に戻る")
       i.mdi.mdi-backspace
       | BACK

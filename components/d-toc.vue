@@ -4,7 +4,7 @@ timerange = require "~/components/filters/timerange"
 module.exports =
   mixins: [
     require('~/plugins/pager')
-    require('~/plugins/popup-cite')
+    require('~/plugins/markup-event')
   ]
   props: ["search", "book", "chats", "part_id", "current"]
 
@@ -53,7 +53,7 @@ module.exports =
 </script>
 
 <template lang="pug">
-table(v-if="show" v-on="popup()")
+table(v-if="show" v-on="markup_event()")
   tbody
     tr(v-for="(o, line) in book.parts.list", :key="o.id")
       th.r.form(style="white-space: nowrap")
@@ -61,7 +61,7 @@ table(v-if="show" v-on="popup()")
           | {{o.label}}
           sup {{ chats(o.id).all }}
       th.l.form.detail
-        nuxt-link.page(v-for="(_, page_idx) in chats(o.id)" replace :to="page_url(o.id, page_idx)" :class="page_btn_class(o.id, page_idx)" :key=" o.id + page_idx " :cite="page_label(o.id, page_idx)")
+        nuxt-link.cite-in.page(v-for="(_, page_idx) in chats(o.id)" replace :to="page_url(o.id, page_idx)" :class="page_btn_class(o.id, page_idx)" :key=" o.id + page_idx " :cite="page_label(o.id, page_idx)")
           | {{ page_idx + 1 }}
 </template>
 

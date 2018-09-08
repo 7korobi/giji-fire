@@ -38,6 +38,10 @@ store =
 
   computed: {
     ...path "folder", "book", "part", "phase", "chat"
+
+    is_floats: ->
+      Object.keys @floats
+      .length
     page_idx: ->
       @page_all_contents?.page_idx?(@chat) ? 0
     cite_chats: ->
@@ -66,11 +70,11 @@ store =
   methods:
     focus: (@idx)->
 
-    popup: ({ pageY, id, bye_id })->
+    popup: ({ adjust, pageY, id, bye_id })->
       if id
         ++zIndex
         key = id
-        @$set @floats, id, { id, key, pageY, zIndex }
+        @$set @floats, id, { id, key, pageY, adjust, zIndex }
 
       if bye_id
         @$delete @floats, bye_id
@@ -79,8 +83,10 @@ store =
       if @a.length
         @a = _.union @a, a
       else
+        @floats = {}
+        idx = @book_id + a[-1..][0]
         @$router.push
-          query: { a, @back, idx: @part_id }
+          query: { a, @back, idx }
 
     page_reset: ->
       return unless window?

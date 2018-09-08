@@ -10,7 +10,7 @@ table.talk(:id="id" :key="id")
         portrate(:img_src="img_src", :face_id="face_id")
       td
         .baloon(:class="classname")
-        .chat(:key="id" :class="classname" v-on="article()")
+        .chat(:key="id" :class="classname" v-on="markup_event('markdown')")
           chat-head(v-if="head" :head="head" :to="to" :sign="sign")
           hr(v-if="head")
           component.text(:context="chat" :is="deco_target" :class="deco" :edit="edit" :value="log" v-on="$listeners")

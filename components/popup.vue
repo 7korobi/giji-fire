@@ -13,14 +13,18 @@
 { Query, State, Finder } = require "~/plugins/memory-record"
 
 module.exports =
-  props: ["id", "current", "pageY", "zIndex"]
+  props: ["id", "current", "adjust", "pageY", "zIndex"]
 
   data: ->
     height: 0
 
   computed:
     style: ->
-      top = "#{ @pageY + 12 }px"
+      switch @adjust
+        when "top"
+          top = "#{ @pageY - 12 - @height }px"
+        when "bottom"
+          top = "#{ @pageY + 12 }px"
       { top, @zIndex, position: "absolute" }
 
   mounted: ->

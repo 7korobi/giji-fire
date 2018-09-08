@@ -1,11 +1,5 @@
 <template lang="pug">
 div(v-if="chat")
-  .swipe
-    .TITLE
-      hr
-      h6 anker map
-      hr
-      anker-map(:part_id="part_id" :chat_id="chat_id" v-on="$listeners")
   .stable(:class="chat.phase.handle")
     article.text
       hr
@@ -19,6 +13,12 @@ div(v-if="chat")
         timeago(:since="at")
       p(v-if="anker")
         abbr.fine.btn(title="クリップボードへコピー" @click="clip") {{ long_anker }}
+  .swipe
+    .TITLE
+      hr
+      h6 anker map
+      hr
+      anker-map(v-bind="for_anker_map" v-on="$listeners")
 </template>
 
 <style lang="sass" scoped>
@@ -35,7 +35,7 @@ p
 _ = require "lodash"
 
 module.exports =
-  props: ['part_id', 'chat_id', 'page_idx']
+  props: ['book_id', 'chat_id', 'page_idx', 'a']
   methods:
     clip: (e)->
       range = document.createRange()
@@ -93,6 +93,8 @@ module.exports =
       Query.chats.reduce?.mention_to?[id]
 
   computed:
+    for_anker_map: ->
+      { @book_id, @chat_id, @a }
     chat: ->
       Query.chats.find @chat_id
     at: ->     @chat?.write_at
@@ -101,7 +103,7 @@ module.exports =
     mark: ->   @chat?.phase?.mark
     sign: ->   @chat?.potof?.sign
     name: ->   @chat?.potof?.face?.name
-    anker: ->  @chat?.anker @part_id
+    anker: ->  @chat?.anker()
     page: ->   "p#{1 + @page_idx}"
 
     anker_tree_map: ->
