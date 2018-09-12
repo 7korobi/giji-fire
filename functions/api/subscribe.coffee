@@ -31,11 +31,12 @@ module.exports =
 
   book_external:
     https.onRequest ({ query }, res)->
-      { mode, book_id, part_id, face_id } = query
-      message =
-        topic: mode
+      { mode, book_id, part_id, face_id, is_notice } = query
+      m_book =
+        topic: "init"
         notification: 
           title: '村の情報'
+          body: ""
         webpush:
           headers:
             TTL: '60'
@@ -47,25 +48,34 @@ module.exports =
           when "init"
             switch
               when !! face_id
-                message.notification.body = """
-                  #{book_id}
+                m_book.topic = book_id
+                m_book.notification.body = """
+                  #{part_id}
                   新しい参加者がいます。
                 """
-                await admin.messaging().send message
+                await admin.messaging().send m_book
 
               when !! part_id
-                message.notification.body = """
-                  #{book_id}
-                  日付が進みました。
-                """
-                await admin.messaging().send message
+                m_book.topic = book_id
+                if is_notice
+                  m_book.notification.body = """
+                    #{part_id}
+                    もうすぐ日付が進みます。
+                  """
+                else
+                  m_book.notification.body = """
+                    #{part_id}
+                    日付が進みました。
+                  """
+                await admin.messaging().send m_book
 
               else
-                message.notification.body = """
+                m_book.topic = mode
+                m_book.notification.body = """
                   #{book_id}
                   新しい村が現れました。
                 """
-                await admin.messaging().send message
+                await admin.messaging().send m_book
 
       res.status(201).send("OK.")
 

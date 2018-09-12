@@ -9,7 +9,7 @@ span
 
 <template lang="pug">
 .text-editor(@drop="drop")
-  textarea(ref="input" :value="value" :rows="areaRow" :placeholder="placeholder" @input="input" @focus="focus" @blur="blur" @keydown.ctrl.90="edit_history_back" @keydown.ctrl.89="edit_history_forward")
+  textarea(ref="input" :value="value" :rows="areaRow" :placeholder="placeholder" @input="input" @focus="focus" @blur="blur" @keydown.ctrl.90="history_back" @keydown.ctrl.89="history_forward")
   div.form
     button(@click="submit" :class="{ ban, warn }")
       i.mdi(:class="mark" v-if="$listeners.submit")
@@ -24,7 +24,7 @@ span
     span
       check(v-model="shows" as="history")
         i.mdi.mdi-history
-        sup(v-if="edit_history.length") {{ edit_history.length }}
+        sup(v-if="history.length") {{ history.length }}
 
     span(v-if="is_svg")
       a.btn(@click='edge_solid')
@@ -110,9 +110,9 @@ span
           rt ○○
   div(v-if="is_show.history")
     hr
-    p.mention.fine(v-for="{ text, chrs, lines, head, tail, write_at } in edit_history_obj" @click="set_value(text)")
-      timeago(:since="write_at")
-      | 　{{ chrs }}字 {{ lines }}行 {{ head }}…{{ tail }}
+    p.mention.fine(v-for="o in history_obj" @click="set_value(o.text)")
+      timeago(:since="o.write_at")
+      | 　{{ o.chrs }}字 {{ o.lines }}行 {{ o.head }}…{{ o.tail }}
 
 </template>
 
@@ -170,12 +170,16 @@ module.exports =
   mixins: [
     require("~/plugins/browser-store")
       local:
-        edit_history: [""]
+        history_giji:    [[1,""]]
+        history_sow:     [[1,""]]
+        history_diagram: [[1,""]]
   ]
 
   data: ->
-    forward_history: []
-    edit_history_at: {}
+    forward_history:
+      giji:    []
+      sow:     []
+      diagram: []
     shows: []
     accept: [
       "image/png"
@@ -185,7 +189,7 @@ module.exports =
 
   mounted: ->
     unless @value
-      @$emit 'input', @edit_history_top
+      @$emit 'input', @history_top
 
   methods:
     edge_solid: caret (hd, text, tl)->
@@ -371,6 +375,7 @@ module.exports =
 
     submit: _.debounce ->
       return if @ban
+      @forward_history[@deco] = []
       @$emit 'submit', @value
     , 3000,
       leading: true
@@ -384,25 +389,25 @@ module.exports =
     blur:  -> @$emit 'icon', 'mdi-access-point'
 
     set_value: (s)->
-      @forward_history = []
+      @forward_history[@deco] = []
       @$emit 'input', s
 
-    edit_history_forward: ->
-      if @forward_history.length
-        [head, ...@forward_history] = @forward_history
-        @edit_history_top = head
+    history_forward: ->
+      if @forward_history[@deco].length
+        [head, ...@forward_history[@deco]] = @forward_history[@deco]
+        @history_top = head
         @$emit 'input', head
 
-    edit_history_back: ->
-      if @edit_history.length
-        [cut, ...@edit_history] = @edit_history
-        @forward_history = [cut, ...@forward_history]
-        @$emit 'input', @edit_history_top
+    history_back: ->
+      if @history.length
+        [cut, ...@history] = @history
+        @forward_history[@deco] = [cut, ...@forward_history[@deco]]
+        @$emit 'input', @history_top
 
   watch:
     value: (value)->
       if value
-        @edit_history_top = value
+        @history_top = value
 
   computed:
     ban: ->
@@ -445,26 +450,29 @@ module.exports =
     is_show: ->
       history: 'history' in @shows
 
-    edit_history_obj: ->
-      for s in @edit_history when s
+    history:
+      get:    ->  @["history_#{@deco}"]
+      set: (a)->  @["history_#{@deco}"] = a
+
+    history_obj: ->
+      for [write_at, s] in @history when s
         text:  s
         chrs:  s.length
         lines: 1 + ( s.match(/\n/g)?.length || 0 ) 
         head: s[  0 ..  9]
         tail: s[-10 .. -1]
-        write_at: @edit_history_at[s] ||= new Date - 0
+        write_at: write_at
 
-    edit_history_top:
+    history_top:
       get: ->
-        @edit_history[0] || ""
+        @history[0][1] || ""
       set: (s)->
-        @edit_history_at[s] = new Date - 0
-        list = [s]
-        for item, idx in @edit_history when item && item != s
+        list = [[new Date - 0, s]]
+        for item, idx in @history when item && item[1] != s
           list.push item
           if 99 <= list.length
             break
-        @edit_history = list
+        @history = list
 
 
 </script>

@@ -39,17 +39,23 @@ div
     .card どこかの村で活躍したことのあるキャラクターはこちら。
 
   c-report(handle="footer" deco="giji")
+    h3.center 開始待ちの村／進行中の村
     div
       fcm(topic="init")
-      | 新しい村の作成、日程更新、参加について通知
-    h3.center 開始待ちの村／進行中の村
+      | 新しい村について通知を受ける。
+      br
+      | ※下の通知ボタンでは、日程更新、参加者についての通知を受けます。
 
   c-post(handle="EVIL", v-for="o in progress", :head="o.name", :key="o._id")
+    fcm(:topic="o.id")
+    | &nbsp;
     a(:href="o.folder.href") {{ o.folder.nation }}{{ o.vid }}
     | は、進行中だ。
     .date
       timeago(:since="o.timer.nextcommitdt")
   c-post(handle="MOB",  v-for="o in prologue", :head="o.name", :key="o._id")
+    fcm(:topic="o.id")
+    | &nbsp;
     a(:href="o.folder.href") {{ o.folder.nation }}{{ o.vid }}
     | は、開始が楽しみだ。
     .date

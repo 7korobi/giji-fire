@@ -68,7 +68,7 @@
 /***/ 6:
 /***/ (function(module, exports) {
 
-module.exports = {"cache":{"name":"cache-2018-08-28"},"game":{"folder_id":"beta"},"url":{"web":"https://giji.f5.si","api":"https://giji-api.duckdns.org/api","firebase":"https://api-project-54633717694.firebaseapp.com","assets":"https://api-project-54633717694.firebaseapp.com","store":"https://s3-ap-northeast-1.amazonaws.com/giji-assets","sow":"https://s3-ap-northeast-1.amazonaws.com/giji-assets/sow"},"firebase":{"projectId":"api-project-54633717694","storageBucket":"api-project-54633717694.appspot.com","authDomain":"api-project-54633717694.firebaseapp.com","databaseURL":"https://api-project-54633717694.firebaseio.com","messagingSenderId":"54633717694","apiKey":"AIzaSyAC3N874UpvVZTYmh88mDHkuWKfUDhj25o"}}
+module.exports = {"game":{"folder_id":"beta"},"url":{"web":"https://giji.f5.si","api":"https://giji-api.duckdns.org/api","firebase":"https://api-project-54633717694.firebaseapp.com","assets":"https://api-project-54633717694.firebaseapp.com","store":"https://s3-ap-northeast-1.amazonaws.com/giji-assets","sow":"https://s3-ap-northeast-1.amazonaws.com/giji-assets/sow"},"firebase":{"projectId":"api-project-54633717694","storageBucket":"api-project-54633717694.appspot.com","authDomain":"api-project-54633717694.firebaseapp.com","databaseURL":"https://api-project-54633717694.firebaseio.com","messagingSenderId":"54633717694","apiKey":"AIzaSyAC3N874UpvVZTYmh88mDHkuWKfUDhj25o"}}
 
 /***/ }),
 

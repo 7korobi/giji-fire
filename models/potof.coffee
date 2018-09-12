@@ -54,8 +54,6 @@ new Rule("potof").schema ->
     if @live
       @live.date ?= Infinity
 
-    @winner_id ?=  "NONE"
-
   @property 'model',
     role_labels:
       get: ->
@@ -92,7 +90,8 @@ new Rule("potof").schema ->
         @stats.find("#{@_id}-give")
 
     winner_id:
-      get: -> @find @cards, ["bond", "gift", "role", "live"], (o)-> o.role.win
+      get: ->
+        @find(@cards, ["bond", "gift", "role", "live"], (o)-> o.role.win ) ? "NONE"
 
     head:
       get: ->
