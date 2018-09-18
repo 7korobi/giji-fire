@@ -11,9 +11,14 @@ kbd_r = ///
 
 edit = require '~/models/editor'
 
-snap = (target, set)->
-  target.onSnapshot (q)=>
-    q.docChanges().forEach ({ newIndex, oldIndex, type, doc })=>
+
+snapDoc = (target, set)->
+  target.onSnapshot (doc)->
+    set.add doc.data()
+
+snap = (query, set)->
+  query.onSnapshot (q)=>
+    q.docChanges().forEach ({ newIndex, oldIndex, type, doc })->
       switch type
         when 'added', 'modified'
           set.add doc.data()
@@ -56,9 +61,6 @@ module.exports = (mode)->
       @phase?.fav
     can_update: ->
       @phase?.update
-
-    at_zero: ->
-      @page_all_contents[0]?[0]?.write_at ? 0
 
     _firestore: ->
       db = firebase.firestore()
@@ -119,6 +121,10 @@ module.exports = (mode)->
       return unless confirm "編集中の #{_id} を削除しますか？"
       await remove @_chats, { _id }
 
+      @$store.commit "menu/focus",
+        query: "#edit-edit-edit-edit-edit"
+        mode: 'center'
+
       return if potof.chats.ids.length
       { _id } = potof
       await remove @_potofs, { _id }
@@ -151,7 +157,9 @@ module.exports = (mode)->
       if @is_creating
         potof_id = @potof_id
         write_at = new Date - 0
-        _id = [@phase_id, @edit.chat.new_idx(@at_zero)].join('-')
+        phase = Query.phases.find @phase_id
+        idx = phase.chats.reduce?.say?.count ? 0
+        _id = [@phase_id, 1 + idx ].join('-')
         await post @_chats, { _id, potof_id, write_at, show, deco, head, to, log, random }
       else
         await post @_chats, { _id, show, deco, head, to, log, random }
@@ -201,12 +209,13 @@ module.exports = (mode)->
 
   mounted: ->
     @$detaches = [
-      snap @_potofs, Set.potof
-      snap @_cards,  Set.card
+      snapDoc @_book, Set.book
+      snap @_potofs,  Set.potof
+      snap @_cards,   Set.card
 
-      snap @_parts,  Set.part
-      snap @_phases, Set.phase
-      snap @_chats,  Set.chat
+      snap @_parts,   Set.part
+      snap @_phases,  Set.phase
+      snap @_chats,   Set.chat
     ]
 
   beforeDestroy: ->

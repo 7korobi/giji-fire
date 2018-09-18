@@ -1,7 +1,7 @@
 <template lang="pug">
 log-wiki
   template(slot="summary")
-    d-mentions.inframe.mentions(v-bind="for_mentions" key="1" @anker="anker")
+    d-mentions.inframe.mentions(v-bind="for_mentions" key="1" @anker="anker" @popup="popup")
     .inframe.TITLE
       hr
       .swipe
@@ -12,31 +12,43 @@ log-wiki
     .item
       i.c.mdi(:class="icon.icon")
     h6.c(:class="edit.chat.phase.handle" v-if="user && is_replacing") 編集
-    a.btn.item(:class="handle" @click="move" v-if="can_move")
+    a.btn.item.tooltip-left(:class="handle" @click="move" v-if="can_move" data-tooltip="編集中の投稿の並び順をこの上に")
       i.mdi.mdi-table-column-plus-before
-    a.btn.item(:class="handle" @click="replace_mode" v-if="can_update")
+    a.btn.item.tooltip-left(:class="handle" @click="replace_mode" v-if="can_update" data-tooltip="この投稿を編集")
       i.mdi.mdi-square-edit-outline
-    a.btn.item(:class="handle" @click="fav"  v-if="can_fav")
+
+    btn.item(v-if="is_floats" v-model="floats" :as="{}" data-tooltip="残ってしまったポップアップを消去")
+      i.mdi.mdi-filmstrip-off
+      | POP
+
+    a.btn.item.tooltip-left(:class="handle" @click="fav"  v-if="can_fav" data-tooltip="いいね！")
       i.mdi.mdi-heart-outline(v-if="true")
       i.mdi.mdi-heart(v-if="false")
     hr
-    nuxt-link.item.active(replace :class="handle" :to="back_url")
-      i.mdi.mdi-backspace(v-if="a.length")
-      i.mdi.mdi-map-marker(v-else)
+    nuxt-link.item.active.tooltip-left(v-if="$route.query.back" replace :to="back_url" data-tooltip="以前の画面に戻る")
+      i.mdi.mdi-backspace
+      | BACK
+    nuxt-link.item.active(v-else replace :to="back_url" )
+      i.mdi.mdi-map-marker
+
     check.item(v-model="shows" as="potof")
       i.mdi.mdi-account-multiple
+      | STAT
     hr
+
+  template(slot="popup")
+    popup(v-for="o in floats" v-bind="o" :current="chat" @anker="anker" @popup="popup")
 
   c-report(handle="footer" deco="center")
     bread-crumb
 
   div(v-if="a.length")
-    chat(v-for="o in cite_chats" @anker="anker" @focus="focus" :id="o.id" :key="o.id")
+    chat(v-for="o in cite_chats" @anker="anker" @focus="focus" @popup="popup" :id="o.id" :key="o.id")
   div(v-else)
     c-report.form(handle="footer" key="finder")
       search(v-model="search")
     div(v-for="(chats, idx) in page_contents", :key="idx")
-      chat(v-for="o in chats" @anker="anker" @focus="focus" :current="chat" :id="o.id", :key="o.id")
+      chat(v-for="o in chats" @anker="anker" @focus="focus" @popup="popup" :current="chat" :id="o.id", :key="o.id")
     div
       c-post(handle="VSSAY")
         article(v-if="! page_contents.length")
@@ -71,34 +83,9 @@ log-wiki
               fcm(:topic="book_id")
               | このページ内での新規投稿を通知
           br
-
   c-post(handle="TSAY")
     fire-oauth(style="white-space: nowrap")
-  e-potof(v-if="user && is_creating" v-model="edit.potof")
-  c-report(v-if="user && is_replacing" handle="header" deco="center") 編集中
-
-  chat(v-if="user && edit.potof.face_id" :id="edit.chat._id" :current="chat" @check="check_post" :edit="true" v-model="edit.chat.log")
-  c-report(v-if="user && edit.potof.face_id" :handle="edit.chat.phase.handle")
-    text-editor(v-model="edit.chat.log" v-bind="for_editor" @icon="icon_change" @drop_image="image_post" @submit="chat_post")
-      select(v-if="is_creating" v-model="edit.phase.handle" key="handle")
-        option(v-for="phase in phases" :value="phase.handle" :class="phase.handle" :key="phase.handle") ∞ {{ phase.label }}
-
-      select(v-model="edit.chat.show" key="show")
-        option(value="post")   描写
-        option(value="talk")   会話
-        option(value="report") 看板 
-      select(v-model="edit.chat.head" key="head")
-        option(value="") 無地
-        option(:value="edit.potof.head") 記名
-      select(v-model="edit.chat.deco" key="deco")
-        option(value="giji")  文字
-        option(value="diagram") 作図
-      span.pull-right(v-if="is_replacing")
-        a.btn.active(@click="create_mode")
-          i.mdi.mdi-open-in-new
-        a.btn.active(@click="remove")
-          i.mdi.mdi-comment-remove-outline
-
+  chat-editor(v-if="user" :part_id="part_id" :phases="phases" :current="chat" @icon="icon_change" @check="check_post" @drop_image="image_post" @submit="chat_post" @create_mode="create_mode" @remove="remove" @popup="popup")
   c-report(handle="footer" deco="center")
     bread-crumb
 </template>
@@ -118,7 +105,9 @@ module.exports =
   ]
   layout: 'blank'
   data: ->
-    { step: State.step, mode: 'wiki' }
+    step: State.step
+    mode: 'wiki' 
+    floats: {}
 
   head: ->
     labels = [@book_id, "人狼議事wiki"]

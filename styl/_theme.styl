@@ -132,6 +132,7 @@ hues_d = {
 
 $bgs   = {}
 $btns  = {}
+$grads = {}
 $pens  = {}
 $lines = {}
 $bolds = {}
@@ -146,9 +147,11 @@ init()
       error(join(" ", key, _dd))
     _HB = _HH + 0.25 * _dd
     _HP = _HH + 0.50 * _dd
+    _HR = _HH + 0.75 * _dd
     _HN = _HH - 0.50 * _dd
 
     $btns[ 'G' + key] = HSYA(_HP,75%,33%,0.5) HSYA(_HP,75%,33%,0.5)
+    $grads['G' + key] = HSYA(_HN,75%,33%,0.5) HSYA(_HN,75%,33%,0.5)
     $bgs[  'G' + key] = HSYA(_HH,75%,30%,0.5) HSYA(_HH,75%,30%,0.5)
     $edges['G' + key] = HSYA(_HH,66%,40%,0.5) HSYA(_HH,66%,40%,0.5)
     $pens[ 'G' + key] = HSYA(_HP,58%,85%)     HSYA(_HP,58%,85%)
@@ -157,6 +160,7 @@ init()
 
     //                  ash leave          stat               metal
     $btns[ 'I' + key] = HSYA(_HP,12%,33%)  HSYA(_HP,35%,48%)  HSYA(_HP,35%,18%) // bg  +3%l
+    $grads['I' + key] = HSYA(_HN,12%,33%)  HSYA(_HN,35%,48%)  HSYA(_HN,35%,18%) // bg  +3%l
     $bgs[  'I' + key] = HSYA(_HH,12%,30%)  HSYA(_HH,35%,45%)  HSYA(_HH,35%,15%)
     $edges['I' + key] = HSYA(_HH,25%,50%)  HSYA(_HH,75%,20%)  HSYA(_HH,20%,40%) // bg +20%s -25%l
     $lines['I' + key] = HSYA(_HP,65%,40%)  HSYA(_HP,22%,10%)  HSYA(_HP,44%,90%) // pen and edge light
@@ -165,6 +169,7 @@ init()
 
     //                  O                  A                  F                  T                  Y                  W
     $btns[ 'D' + key] = HSYA(_HP,40%,20%)  HSYA(_HP,65%,27%)  HSYA(_HP,35%,48%)  HSYA(_HP,20%,63%)  HSYA(_HP,35%,73%)  HSYA(_HP,50%,80%) // bg  +3%l
+    $grads['D' + key] = HSYA(_HN,40%,20%)  HSYA(_HN,65%,27%)  HSYA(_HN,35%,48%)  HSYA(_HN,20%,63%)  HSYA(_HN,35%,73%)  HSYA(_HN,50%,80%) // bg  +3%l
     $bgs[  'D' + key] = HSYA(_HH,11%, 5%)  HSYA(_HH,58%,20%)  HSYA(_HH,35%,45%)  HSYA(_HH,20%,60%)  HSYA(_HH,35%,70%)  HSYA(_HH,35%,80%)
     $edges['D' + key] = HSYA(_HH,25%,40%)  HSYA(_HH,45%,40%)  HSYA(_HH,75%,20%)  HSYA(_HH,25%,25%)  HSYA(_HH,55%,42%)  HSYA(_HH,55%,40%) // bg +20%s -25%l
     $lines['D' + key] = HSYA(_HN,65%,40%)  HSYA(_HN,65%,40%)  HSYA(_HN,75%,20%)  HSYA(_HN,65%,25%)  HSYA(_HN,65%,42%)  HSYA(_HN,65%,40%) // pen and edge light
@@ -173,6 +178,7 @@ init()
 
     //                  O                  A                  F                  T                  Y                  W
     $btns[ 'N' + key] = HSYA(_HH,30%,45%)  HSYA(_HH,40%,36%)  HSYA(_HH,65%,27%)  HSYA(_HH,55%,27%)  HSYA(_HH,65%,27%)  HSYA(_HH,40%,20%) // bg   +7%l
+    $grads['N' + key] = HSYA(_HR,30%,45%)  HSYA(_HR,40%,36%)  HSYA(_HR,65%,27%)  HSYA(_HR,55%,27%)  HSYA(_HR,65%,27%)  HSYA(_HR,40%,20%) // bg   +7%l
     $bgs[  'N' + key] = HSYA(_HB,30%,40%)  HSYA(_HB,40%,30%)  HSYA(_HB,58%,20%)  HSYA(_HB,35%,15%)  HSYA(_HB,58%,10%)  HSYA(_HB,11%, 5%)
     $edges['N' + key] = HSYA(_HH,55%,72%)  HSYA(_HH,65%,62%)  HSYA(_HH,85%,52%)  HSYA(_HH,60%,47%)  HSYA(_HH,45%,40%)  HSYA(_HH,25%,40%) // pen + little lighten
     $lines['N' + key] = HSYA(_HN,55%,85%)  HSYA(_HN,65%,80%)  HSYA(_HN,85%,75%)  HSYA(_HN,60%,85%)  HSYA(_HN,75%,70%)  HSYA(_HN,85%,60%) // pen and edge light
@@ -269,6 +275,10 @@ palette_single($bgTheme, $type, $idx, key)
   $emboss = $edge
   $focus  = fix($edge, 0, -10)
 
+  $grad  = $grads[$type+key][$idx]
+  $offG  = fix($grad, 20, -10)
+  $onG   = fix($grad, 20,  10)
+
   $btn   = $btns[$type+key][$idx]
   $bgHi  = $btn
   $off   = fix($bgHi, 20, -10)
@@ -295,6 +305,10 @@ palette_single($bgTheme, $type, $idx, key)
       hr:before
         border-color: $focus
 
+      .col2
+      .col3
+        column-rule-color: $focus
+
     .{theme}
       color:            $pen
       background-color: $bg
@@ -310,6 +324,10 @@ palette_single($bgTheme, $type, $idx, key)
       hr:after
       hr:before
         border-color: $emboss
+
+      .col2
+      .col3
+        column-rule-color: $emboss
 
       blockquote
         border-color: $edge
@@ -502,7 +520,7 @@ palette_single($bgTheme, $type, $idx, key)
         &.active
         &:active
         &:checked
-          background-color: $on
+          background: linear-gradient( 30deg, $onG, $on, $onG )
 
     .btn
     [href]

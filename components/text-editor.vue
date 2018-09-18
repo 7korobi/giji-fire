@@ -128,14 +128,15 @@ for voice_chr, idx in voice_chrs
 
 caret = (cb)-> (...args)->
   { input } = @$refs
-  st = input.selectionStart
-  ed = input.selectionEnd
+  st  = input.selectionStart
+  ed  = input.selectionEnd
+  dir = input.selectionDirection
   value = @value
   after = cb value[...st], value[st...ed], value[ed...], ...args
   size = after.length - value.length
   @set_value after
   @$nextTick ->
-    input.selectionStart = input.selectionEnd = ed + size
+    input.setSelectionRange ed + size, ed + size, dir
     input.focus()
 
 module.exports =
@@ -187,10 +188,6 @@ module.exports =
       "image/gif"
     ]
 
-  mounted: ->
-    unless @value
-      @$emit 'input', @history_top
-
   methods:
     edge_solid: caret (hd, text, tl)->
       text = " o--><--o "
@@ -222,7 +219,7 @@ module.exports =
       """[#{text}]: <#> "#{text}"
       #{hd}[#{text}]#{tl}"""
     ruby: caret (hd, text, tl)->
-      """*[#{text}]: ○
+      """《》 #{text.replace(/\s/g, '')}《○》
       #{hd}#{text}#{tl}"""
     hr: caret (hd, text, tl)->
       """#{hd}
@@ -339,7 +336,7 @@ module.exports =
 
     image: caret (hd, text, tl, name, type)-> """#{hd}![#{text || type}](#{name})#{tl}"""
 
-    nDm: caret (pre, select, post)-> "#{pre}[[#{select}]]#{post}"
+    nDm: caret (hd, text, tl)-> "#{hd}[[#{text}]]#{tl}"
 
     file: (file)->
       { name, type } = file
@@ -394,9 +391,9 @@ module.exports =
 
     history_forward: ->
       if @forward_history[@deco].length
-        [head, ...@forward_history[@deco]] = @forward_history[@deco]
-        @history_top = head
-        @$emit 'input', head
+        [[timestamp, value], ...@forward_history[@deco]] = @forward_history[@deco]
+        @history_top = value
+        @$emit 'input', value
 
     history_back: ->
       if @history.length
@@ -451,7 +448,7 @@ module.exports =
       history: 'history' in @shows
 
     history:
-      get:    ->  @["history_#{@deco}"]
+      get:    ->  @["history_#{@deco}"] || []
       set: (a)->  @["history_#{@deco}"] = a
 
     history_obj: ->

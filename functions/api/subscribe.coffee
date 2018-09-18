@@ -31,6 +31,7 @@ module.exports =
 
   book_external:
     https.onRequest ({ query }, res)->
+      console.log query
       { mode, book_id, part_id, face_id, is_notice } = query
       m_book =
         topic: "init"

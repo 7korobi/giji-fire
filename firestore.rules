@@ -1,7 +1,45 @@
 service cloud.firestore {
+  function is_auth() {
+    return request.auth != null;
+  }
+  function is_hot(o) {
+    return 25000 + o.write_at > request.time.toMillis()
+  }
+
   match /databases/{database}/documents {
-    match /{document=**} {
-      allow read, write;
+    match /wiki/{book_id} {
+      allow read;
+      allow write : if is_auth();
+      match /chats/{chat_id} {
+        allow read;
+        allow write : if is_auth();
+      }
+      match /parts/{part_id} {
+        allow read;
+        allow write : if is_auth();
+      }
+      match /potofs/{potof_id} {
+        allow read;
+        allow write : if is_auth();
+      }
+    }
+    match /game/{book_id} {
+      allow read;
+      allow write : if is_auth();
+      match /chats/{chat_id} {
+        allow read;
+        allow create : if is_auth();
+        allow update, delete : if is_hot(resource.data);
+      }
+      match /parts/{part_id} {
+        allow read;
+        allow write : if is_auth();
+      }
+      match /potofs/{potof_id} {
+        allow read;
+        allow write : if is_auth();
+      }
     }
   }
 }
+

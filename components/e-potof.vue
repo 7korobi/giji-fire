@@ -48,7 +48,7 @@ module.exports =
 
     set_face: (id)->
       @value.face_id = id
-      @value.job   = @job id
+      @value.job = @job id
       @$emit 'input', @value
       @is_open = false
 </script>

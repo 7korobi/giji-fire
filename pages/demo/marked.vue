@@ -8,12 +8,12 @@ div
   div(v-for="o in talks")
     chat(:id="o.id" :key="o.id")
     c-report(:head="o.deco" :handle="o.handle" :write_at="o.write_at")
-      span
-        btn.large(v-model="o.deco" as="giji")
-          i.mdi.mdi-file-document
-        btn.large(v-model="o.deco" as="diagram")
-          i.mdi.mdi-file-image
       text-editor(v-model="o.log" :deco="o.deco" :rows="7" :maxRow="20" :maxSize="999")
+        select(v-model="o.handle" key="handle")
+          option(v-for="phase in phases" :value="phase.handle" :class="phase.handle" :key="phase.handle") ∞ {{ phase.label }}
+        select(v-model="o.deco" key="deco")
+          option(value="giji")  文字
+          option(value="diagram") 作図
 
   c-report(handle="footer" deco="center")
     bread-crumb
@@ -29,10 +29,18 @@ module.exports =
     now = Date.now()
     idx = 0
 
-    Set.phase.add
-      _id: 'demo-1-1-SS'
+    Set.phase.merge phases = [
+      _id: 'demo-1-1-S'
+      handle: 'SSAY'
+      label: '会話'
+    ,
+      _id: 'demo-1-1-T'
+      handle: 'TSAY'
+      label: '独言'
+    ,
+    ]
     Set.chat.merge talks = [
-      _id: 'demo-1-1-SS-' + (++idx)
+      _id: 'demo-1-1-S-' + (++idx)
       head: ""
       deco: "giji"
       show: "talk"
@@ -49,7 +57,7 @@ module.exports =
       """
     ,
 
-      _id: 'demo-1-1-SS-' + (++idx)
+      _id: 'demo-1-1-S-' + (++idx)
       head: "発言レンダーてすと"
       deco: "giji"
       show: "talk"
@@ -73,7 +81,7 @@ module.exports =
       """
     ,
 
-      _id: 'demo-1-1-SS-' + (++idx)
+      _id: 'demo-1-1-S-' + (++idx)
       head: "発言レンダーてすと"
       deco: "giji"
       show: "talk"
@@ -81,9 +89,7 @@ module.exports =
       face_id: "c60"
       write_at: now - 1000000
       log: """
-        *[大丈夫]: だいじょうぶ
-        *[採用]: さいよう
-        *[立入禁止]: keep out
+        () 大丈夫(だいじょうぶ)　採用(さいよう)　立入禁止(keep out)
         ## ―コントロール--ルーム--―
 
         　これで大丈夫、かしら？
@@ -109,7 +115,7 @@ module.exports =
       """
     ,
 
-      _id: 'demo-1-1-SS-' + (++idx)
+      _id: 'demo-1-1-S-' + (++idx)
       head: "発言レンダーてすと"
       deco: "giji"
       show: "talk"
@@ -117,12 +123,7 @@ module.exports =
       face_id: "c101"
       write_at: now - 2000000
       log: """
-        *[振り仮名]: ふりがな
-        *[嬉]: うれ
-        *[思]: おも
-        *[使]: つか
-        *[幅]: はば
-        *[電脳都市]: ｴﾚｸﾄﾛ・ｼﾃｨ
+        () 振り仮名(ふりがな) 嬉(うれ) 思(おも) 使(つか) 幅(はば) 電脳都市(ｴﾚｸﾄﾛ・ｼﾃｨ)
         ―電脳都市―
         ===
         ―電脳都市―
@@ -139,7 +140,7 @@ module.exports =
         沢山使うと幅をとってしまうし、
       """
     ,
-      _id: 'demo-1-1-SS-' + (++idx)
+      _id: 'demo-1-1-S-' + (++idx)
       head: "発言レンダーてすと"
       deco: "giji"
       show: "talk"
@@ -147,10 +148,7 @@ module.exports =
       face_id: "c102"
       write_at: now - 3000000
       log: """
-        *[六弦]: ｷﾞﾀｰ
-        *[低音太鼓]: ﾊﾞｽﾄﾞﾗﾑ
-        *[拡声器]: ﾏｲｸ
-        *[紛]: まぎ
+        () 六弦(ｷﾞﾀｰ) 低音太鼓(ﾊﾞｽﾄﾞﾗﾑ) 拡声器(ﾏｲｸ) 紛(まぎ)
         [アンカー](http://google.com)と紛らわしいかもしれないけれど。
         などと。
         <auto@test.jp>
@@ -161,13 +159,13 @@ module.exports =
         >>> 鞭打つように唸る[六弦](五弦や四弦ではいかんのである。)に　
         >>> 熱狂の声は暫しの沈黙従順にも従う小悪魔達の顔を　一瞥　見渡して
 
-        >> 覚醒の時を待つ低音太鼓の　重低音に酔わされ
+        >> 覚醒の時を待つ低音太鼓の　重低音《じゅうていおん》に酔わされ
 
 
         > 唄の寵愛を受けし罪人は　拡声器を握る……
       """
     ,
-      _id: 'demo-1-1-SS-' + (++idx)
+      _id: 'demo-1-1-S-' + (++idx)
       head: "発言レンダーてすと"
       deco: "giji"
       show: "talk"
@@ -181,48 +179,15 @@ module.exports =
           1. ``コード``[[ブロック]]についてはよし。
           1. f*ck'n f*ck'n
       """
-    ,
-      _id: 'demo-1-1-SS-' + (++idx)
-      head: "発言レンダーてすと"
-      deco: "mermaid"
-      show: "talk"
-      handle: "TSAY"
-      face_id: "c104"
-      write_at: now - 5000000
-      log: """
-        graph LR
-          A[Square Rect] -- Link text --> B((Circle))
-          A --> C(Round Rect)
-          B --> D{Rhombus}
-          C --> D
-      """
-    ,
-      _id: 'demo-1-1-SS-' + (++idx)
-      head: "発言レンダーてすと"
-      deco: "mermaid"
-      show: "talk"
-      handle: "TSAY"
-      face_id: "c105"
-      write_at: now - 6000000
-      log: """
-        gantt
-          dateFormat YYYY-MM-DD
-
-          section 日程
-          プロローグ:  2018-03-01, 3d
-          1日目:                   2d
-          2日目:                   2d
-          3日目:                   2d
-          4日目:                   2d
-          5日目:                   2d
-          エピローグ:              3d
-      """
     ]
-    { talks }
+    { talks, phases }
 
   computed:
     now: ->
       Date.now()
+  methods:
+    console: ->
+      console.log arguments
 
 </script>
 

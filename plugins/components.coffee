@@ -9,6 +9,7 @@ Marked  = require('vue-markup/src/marked.vue').default
 if window?
   Vue = Vue.default
 
+Marked.options.langPrefix = '' 
 Object.assign Marked.options.renderer,
   url: (href)->
     switch

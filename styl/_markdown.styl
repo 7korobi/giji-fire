@@ -106,6 +106,7 @@ hr.invisible_hr
 h1, h2, h3, h4, h5, h6
   box-sizing: border-box
   display: block
+  column-span: all
   transform: scale( 1, 0.8)
   transform-origin: center center
   margin: 0
@@ -136,17 +137,18 @@ ol
 strong
   display: inline
 
-code
-  max-width: 100%
-  pre
-    max-width: 100%
-
-
 pre
+  max-width: 100%
   margin: 0 -2px
   white-space: pre-wrap
+  column-span: all
+  justify-content: center
+  display: flex
 
-  code.lang-copyright
+  code
+    max-width: 100%
+ 
+  code.copyright
     background-image: none
     background-color: ivory
     color: #A00
@@ -373,7 +375,6 @@ abbr
 
 kbd
 code
-pre
   padding: 1px 0.4ex
   margin:  0px 0.1ex
 
@@ -405,6 +406,28 @@ sub
   vertical-align: sub
   display: inline-block
   text-align: center
+
+// Testing
+.col2
+.col3
+  column-rule-width: 2px
+  column-rule-style: dashed
+  column-gap:  1ex
+
+.talk
+.post
+  .col2
+    columns: 2 24ex
+
+  .col3
+    columns: 3 16ex
+
+.report
+  .col2
+    columns: 2 34ex
+
+  .col3
+    columns: 3 22ex
 
 // SVG section
 rect.move

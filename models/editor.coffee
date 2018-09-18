@@ -1,3 +1,4 @@
+require "~/models/index"
 { Set } = require "~/plugins/memory-record"
 
 Base = (table)->
