@@ -70,42 +70,38 @@ module.exports =
 </script>
 <template lang="pug">
 #welcome(:style="welcome_style")
-  table.form#export(v-if="title")
-    thead
-      tr
-        th.welcome-btns ロビー
-        th.welcome-btns 夢の形
-        th.welcome-btns 陰謀
-        th.welcome-btns ＲＰ
-    tbody
-      tr
-        td.welcome-links.form
-          sow(folder_id="LOBBY")
-          sow(folder_id="OFFPARTY")
-        td.welcome-links.form
-          sow(folder_id="MORPHE")
-          sow(folder_id="CABALA") cafe
-        td.welcome-links.form
-          sow(folder_id="WOLF")
-          sow(folder_id="ULTIMATE")
-          sow(folder_id="ALLSTAR")
-        td.welcome-links.form
-          sow(folder_id="RP") role-play
-          sow(folder_id="PRETENSE") RP-advance
-          sow(folder_id="PERJURY")
-          sow(folder_id="XEBEC")
-          sow(folder_id="CRAZY")
-          sow(folder_id="CIEL")
-    tfoot
-      tr
-        th.welcome-btns(colspan=4)
-          btn(v-model="export_to" as="finish")   終了した村
-          btn(v-model="export_to" as="progress") 進行中の村
-      tr
-        th.welcome-btns(colspan=4)
-          a(href="https://giji.f5.si/") 総合トップ
+  .form#export(v-if="title")
+    .welcome-btns.cap ロビー
+    .welcome-btns.cap 夢の形
+    .welcome-btns.cap 陰謀
+    .welcome-btns.cap ＲＰ
 
-  h2.title-bar
+    .welcome-links.form
+      sow(folder_id="LOBBY")
+      sow(folder_id="OFFPARTY")
+    .welcome-links.form
+      sow(folder_id="MORPHE")
+      sow(folder_id="CABALA") cafe
+    .welcome-links.form
+      sow(folder_id="WOLF")
+      sow(folder_id="ULTIMATE")
+      sow(folder_id="ALLSTAR")
+    .welcome-links.form
+      sow(folder_id="RP") role-play
+      sow(folder_id="PRETENSE") RP-advance
+      sow(folder_id="PERJURY")
+      sow(folder_id="XEBEC")
+      sow(folder_id="CRAZY")
+      sow(folder_id="CIEL")
+
+    .welcome-btns.col4
+      btn(v-model="export_to" as="finish")   終了した村
+      btn(v-model="export_to" as="progress") 進行中の村
+
+    .welcome-btns.col4.shoe
+      a(href="https://giji.f5.si/") 総合トップ
+
+  h1.title-bar
     nuxt-link(to="/") {{ title }}
 
   slot
@@ -115,14 +111,33 @@ module.exports =
 #export
   border-collapse: separate
   border-spacing: 3px
-  padding: 30px
-  margin:   0px auto
+  padding: 40px 0
 
-  thead, tfoot
-    text-align: center
-  td
-    vertical-align: top
-    padding: 0 3px
+  display: grid
+  justify-content: center
+  grid-auto-columns: 14ex
+  grid-template-areas: ". . . ."
+  grid-gap: 0 4px
+
+.welcome-btns
+  text-align: center
+  background-color: rgba(64,82,80,0.8)
+
+.welcome-links
+  white-space: pre
+  vertical-align: top
+  padding: 0.5ex
+  background-color: rgba(23,47,31,0.4)
+
+.col4
+  grid-column: 1 / 5
+
+.cap
+  border-radius: 9px 9px 0 0
+
+.shoe
+  border-radius: 0 0 9px 9px
+  padding: 0.5ex
 
 #welcome
   object-fit: cover
@@ -135,19 +150,15 @@ module.exports =
   .contentframe
     background-image: none
 
-.welcome-links
-  white-space: pre
-
-h2
-  height: 130px
+h1
+  height: 140px
   text-align: center
   transform-origin: center bottom
-  font-size:    45px
-  line-height: 130px
+  line-height: 140px
   a
-    background-color: transparent !important
+    background: transparent !important
     white-space: pre
-    font-size:    45px
-    line-height:  50px
+    font-size:    55px
+    line-height:  55px
 
 </style>

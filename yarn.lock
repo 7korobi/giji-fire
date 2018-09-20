@@ -9041,9 +9041,9 @@ vue-loader@^13.7.2:
     vue-style-loader "^3.0.0"
     vue-template-es2015-compiler "^1.6.0"
 
-vue-markup@^0.0.50:
-  version "0.0.50"
-  resolved "https://registry.yarnpkg.com/vue-markup/-/vue-markup-0.0.50.tgz#5a5f1eb4cb354a024496e4f3d31c313b4db6ac0d"
+vue-markup@^0.0.53:
+  version "0.0.53"
+  resolved "https://registry.yarnpkg.com/vue-markup/-/vue-markup-0.0.53.tgz#3a6d2f6a93894230f201083bc8c8be901f209822"
   dependencies:
     dagre "^0.8.2"
     lodash "^4.17.10"

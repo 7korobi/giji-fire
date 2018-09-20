@@ -11,10 +11,16 @@ link = (href, title, text)->
       else
         """<q>#{text}</q>"""
     else
-      if title
-        """<b chk="confirm" href="#{href}" title="#{title}">#{text}</b>"""
+      if /\.(?:jpg|jpeg|png|gif|bmp)$/i.exec(href)
+        if title
+          """<img chk="confirm" href="#{href}" src="#{href}" title="#{title}">"""
+        else
+          """<img chk="confirm" href="#{href}" src="#{href}" title="#{text}">"""
       else
-        """<b chk="confirm" href="#{href}">#{text}</b>"""
+        if title
+          """<b chk="confirm" href="#{href}" title="#{title}">#{text}</b>"""
+        else
+          """<b chk="confirm" href="#{href}">#{text}</b>"""
 
 sow = (log)->
   log

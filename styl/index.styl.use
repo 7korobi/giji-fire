@@ -18,6 +18,15 @@ palette(leave, 'I', 0)
   palette(whisper, 'I',0)
   palette(twitter, 'I',0)
 
+.copyright
+  p
+    background-image: none
+    background-color: ivory
+    color: #A00
+    text-align: left
+    display: inline-block
+    border-radius: 9px
+
 .chrblank
   &
   a
