@@ -77,7 +77,7 @@ module.exports =
         if o.live == "live"
           Set.stat.add
             _id: "#{potof_id}-commit"
-            sw: true
+            sw: !! o.commit
 
         if o.zapcount
           job = ["IR", "R", "O", "Y", "G", "B", "I", "V", "UV"][o.clearance] + "-"

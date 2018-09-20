@@ -51,15 +51,20 @@ div
     | &nbsp;
     a(:href="o.folder.href") {{ o.folder.nation }}{{ o.vid }}
     | は、進行中だ。
-    .date
+    .date(v-if="is_full_commit")
+      | コミット時刻　
       timeago(:since="o.timer.nextcommitdt")
+    .date(v-else)
+      | 更新時刻　
+      timeago(:since="o.timer.nextupdatedt")
   c-post(handle="MOB",  v-for="o in prologue", :head="o.name", :key="o._id")
     fcm(:topic="o.id")
     | &nbsp;
     a(:href="o.folder.href") {{ o.folder.nation }}{{ o.vid }}
     | は、開始が楽しみだ。
     .date
-      timeago(:since="o.timer.nextcommitdt")
+      | 廃村期限　
+      timeago(:since="o.timer.scraplimitdt")
 
   c-report(handle="footer" deco="center")
     nuxt-link(to="/demo") 開発者用ページ
