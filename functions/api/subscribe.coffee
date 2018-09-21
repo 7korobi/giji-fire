@@ -58,16 +58,33 @@ module.exports =
 
               when !! part_id
                 m_book.topic = book_id
-                if is_notice
-                  m_book.notification.body = """
-                    #{part_id}
-                    もうすぐ日付が進みます。
-                  """
-                else
-                  m_book.notification.body = """
-                    #{part_id}
-                    日付が進みました。
-                  """
+                switch is_notice
+                  when undefined, null
+                    m_book.notification.body = """
+                      #{part_id}
+                      日付が進みました。
+                    """
+                  when 'scraplimitdt'
+                    m_book.notification.body = """
+                      #{part_id}
+                      もうすぐ廃村になります。
+                    """
+                  when 'nextcommitdt'
+                    m_book.notification.body = """
+                      #{part_id}
+                      全員がコミット済みです。もうすぐ日付が進みます。
+                    """
+                  when 'nextupdatedt'
+                    m_book.notification.body = """
+                      #{part_id}
+                      もうすぐ日付が進みます。
+                    """
+                  else
+                    m_book.notification.body = """
+                      #{part_id}
+                      もうすぐ日付が進むんじゃないかな。
+                    """
+
                 await admin.messaging().send m_book
 
               else

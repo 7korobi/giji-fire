@@ -44,7 +44,12 @@ div
       fcm(topic="init")
       | 新しい村について通知を受ける。
       br
-      | ※下の通知ボタンでは、日程更新、参加者についての通知を受けます。
+      | ※下の通知ボタンでは、こういった通知を受けます。
+      ul
+        li 全員コミットによる更新の一時間くらい前
+        li 日程更新の一時間くらい前
+        li 更新後
+        li 新しい参加者
 
   c-post(handle="EVIL", v-for="o in progress", :head="o.name", :key="o._id")
     fcm(:topic="o.id")
