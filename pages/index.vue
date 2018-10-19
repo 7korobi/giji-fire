@@ -56,7 +56,7 @@ div
     | &nbsp;
     a(:href="o.folder.href") {{ o.folder.nation }}{{ o.vid }}
     | は、進行中だ。
-    .date(v-if="is_full_commit")
+    .date(v-if="o.is_full_commit")
       | コミット時刻　
       timeago(:since="o.timer.nextcommitdt")
     .date(v-else)

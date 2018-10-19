@@ -14,10 +14,6 @@ sass =
     'sass-loader'
   ]
 
-coffee =
-  test: /\.coffee$/,
-  loader: 'babel-loader!coffee-loader'
-
 yml =
   test: /\.yml$/,
   loader: 'json-loader!yaml-loader'
@@ -25,6 +21,22 @@ yml =
 vue =
   test: /\.vue$/,
   loader: 'vue-loader'
+
+coffee =
+  test: /\.coffee$/
+  loader: 'coffee-loader'
+  options:
+    transpile:
+      presets: [
+        "vue-app",
+        [ "env"
+          targets:
+            browsers: [
+              "> 5%"
+            ]
+          forceAllTransforms: true
+        ]
+      ]
 
 module.exports =
   entry:

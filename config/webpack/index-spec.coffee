@@ -2,8 +2,18 @@ path = require 'path'
 current = process.cwd()
 
 coffee =
-  test: /\.coffee$/,
-  loader: 'babel-loader!coffee-loader'
+  test: /\.coffee$/
+  loader: 'coffee-loader'
+  options:
+    transpile:
+      presets: [
+        "vue-app",
+        [ "env",
+          targets:
+            node: "6.11.5"
+          forceAllTransforms: true
+        ]
+      ]
 
 yml =
   test: /\.yml$/,
@@ -15,9 +25,9 @@ vue =
 
 module.exports =
   entry:
-    spec: './spec/index.coffee'
+    model_spec: './__tests__/model-spec.coffee'
   output:
-    path: path.join current, '__test__'
+    path: path.join current, '__tests__'
     filename: '[name].js' # Important
     libraryTarget: 'this' # Important
 

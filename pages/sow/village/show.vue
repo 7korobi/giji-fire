@@ -43,7 +43,7 @@ log-wiki
         nuxt-link(:to="folder_url") 終了した村一覧
 
   template(slot="popup")
-    popup(v-for="o in floats" v-bind="o" :current="chat" @anker="anker" @popup="popup")
+    popup(v-for="o in floats" v-bind="o" :key="o.id" :current="chat" @anker="anker" @popup="popup")
 
   no-ssr
     div

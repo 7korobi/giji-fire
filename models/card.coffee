@@ -15,7 +15,7 @@ new Rule("card").schema ->
     for_phase: (phase_id)-> all.where { phase_id }
 
 new Rule("stat").schema ->
-  @path "folder", "book", "part", "potof"
+  @path "folder", "book", "potof"
   @belongs_to "able"
 
   @deploy ->

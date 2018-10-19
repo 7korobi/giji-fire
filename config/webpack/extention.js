@@ -1,7 +1,22 @@
 const loaders = {
   coffee: {
     test: /\.coffee$/,
-    loader: 'coffee-loader'
+    loader: 'coffee-loader',
+    options: {
+      transpile: {
+        presets: [
+          "vue-app",
+          [ "env", {
+            targets: {
+              browsers: [
+                "> 5%"
+              ]
+            },
+            forceAllTransforms: true
+          }]
+        ]
+      }
+    }
   },
   yml: {
     test: /\.yml$/,

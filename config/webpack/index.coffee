@@ -1,5 +1,9 @@
 module.exports =
-  head: require("./head.coffee")
+  head:     require "./head.coffee"
+  build:    require "./build.coffee"
+  generate: require "./generate.coffee"
+  router:   require "./router.coffee"
+  workbox:  require "./workbox.coffee"
 
   loading:
     color: '#3B8070'
@@ -11,13 +15,7 @@ module.exports =
   ]
 
   extensions: ['coffee', 'yml']
-  build: require("./build.coffee")
-  generate: require("./generate.coffee")
 
-  render: require("./render.coffee")
-  router: require("./router.coffee")
-
-  workbox: require("./workbox.coffee")
 
   manifest:
     name: '人狼議事'

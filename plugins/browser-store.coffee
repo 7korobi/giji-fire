@@ -41,7 +41,6 @@ router_store = (method, browser_key)->
         { location, href } = @$router.resolve relative_to @$route, o, true
         @$data[browser_key][key] = newVal
         history?["#{method}State"] null, null, href
-        @$route = { ...@$route, ...location }
 
 try
   test = '__vue-localstorage-test__'
@@ -131,6 +130,9 @@ module.exports = (args1)->
       pack method, key, val
   active_stores.add $browser
 
+  destroyed = ->
+    active_stores.delete $browser
+
   data = ->
     oldVals =
       for key of watch
@@ -152,7 +154,7 @@ module.exports = (args1)->
     o[browser_key] = $browser
     o
 
-  { watch, computed, methods, beforeRouteUpdate, data }
+  { watch, computed, methods, beforeRouteUpdate, data, destroyed }
 
 module.exports.capture = (req)->
   { cookie } = req.headers

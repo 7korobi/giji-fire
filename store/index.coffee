@@ -2,7 +2,7 @@ require "../models/index"
 Mem = require "~/plugins/memory-record"
 
 if window?
-  window.Mem = Mem
+  Object.assign window, { Mem }
 
 module.exports =
   state: ->
@@ -10,7 +10,7 @@ module.exports =
     env: {}
 
   actions:
-    nuxtServerInit: ({ commit }, { isDev, req, env })->
+    nuxtServerInit: ({ commit }, { req, env })->
       commit "update", { env }
 
 

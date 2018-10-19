@@ -10,10 +10,10 @@
     "logs": "firebase functions:log"
   },
   "dependencies": {
+    "date-fns": "^1.29.0",
     "firebase-admin": "^6.0.0",
     "firebase-functions": "^2.0.5",
-    "lodash": "^4.17.10",
-    "date-fns": "^1.29.0"
+    "lodash": "^4.17.10"
   },
   "devDependencies": {
     "eslint": "^4.12.0",

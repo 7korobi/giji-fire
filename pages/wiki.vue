@@ -37,7 +37,7 @@ log-wiki
     hr
 
   template(slot="popup")
-    popup(v-for="o in floats" v-bind="o" :current="chat" @anker="anker" @popup="popup")
+    popup(v-for="o in floats" v-bind="o" :key="o.id" :current="chat" @anker="anker" @popup="popup")
 
   c-report(handle="footer" deco="center")
     bread-crumb
