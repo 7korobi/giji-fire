@@ -48,14 +48,14 @@ module.exports = class Finder
       continue unless validate item, query._filters
       for [path, a] in $group
         o = paths[path] = cache[path]
-        map.reduce item, o, a
+        map.reduce query, path, item, o, a
 
     for path, o of paths
-      map.finish o, query, @list
+      map.finish query, path, o, @list
       _.set query, path, o
 
-    for path, cmd of query.$sort when o = _.get(query, path)
-      o = map.order from = o, cmd, @list, (target)=>
+    for path, cmd of query.$sort when o = from = _.get(query, path)
+      o = map.order query, path, o, cmd, @list, (target)=>
         @list.bless target, query
       o.from = from
       _.set query, path, o

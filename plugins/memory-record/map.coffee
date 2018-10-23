@@ -23,14 +23,15 @@ module.exports = class Map
     o
 
   @$deploy_reduce: (model, item, format, o)->
+    { id } = item
     emit = (keys..., cmd)=>
       path = ["_reduce", keys...].join('.')
       o.$group.push [path, cmd]
       map = format[path] ?= {}
       @init map, cmd
     emit
-      list: item
-      set:  item.id
+      list: id
+      set:  id
     model.map_reduce item, emit
 
   @$deploy_sort: (model, item, all)->
@@ -52,7 +53,7 @@ module.exports = class Map
     if map.set
       o.hash = {}
 
-  @order: (from, map, list, cb)->
+  @order: (query, path, from, map, list, cb)->
     o = from
     if Object == from.constructor
       if map.belongs_to
@@ -106,7 +107,7 @@ module.exports = class Map
     cb o
     o
 
-  @finish: (o, query, list)->
+  @finish: (query, path, o, list)->
     if o.hash
       o.set = Object.keys o.hash
     if o.count && o.pow?
@@ -118,7 +119,7 @@ module.exports = class Map
       if o.all
         o.density = o.all / o.range
 
-  @reduce: (item, o, map)->
+  @reduce: (query, path, item, o, map)->
     if map.count
       o.count += map.count
     if map.all
@@ -127,7 +128,7 @@ module.exports = class Map
       o.pow *= map.pow
 
     if map.list
-      o.list.push map.list
+      o.list.push item
 
     if map.set
       o.hash[map.set] = item

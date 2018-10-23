@@ -202,6 +202,7 @@ module.exports =
     mode: "oldlog"
     asc: "desc"
     drill: true
+    state_step: State.step
 
   methods:
     reset: ->

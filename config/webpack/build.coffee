@@ -5,8 +5,6 @@ module.exports =
 
   extractCSS: true
 
-  publicPath: 'https://s3-ap-northeast-1.amazonaws.com/giji-assets/fire/'
-
   babel:
     presets: [
       "vue-app"
