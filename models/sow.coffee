@@ -48,7 +48,6 @@ new Rule("sow_village").schema ->
     updated_at = new Date @timer.updateddt
 
     @write_at = updated_at
-    @query = Query.sow_villages.where({@id})
 
     in_month = format updated_at, 'MM月', { locale }
     yeary = format updated_at, 'YYYY年', { locale }
@@ -92,6 +91,9 @@ new Rule("sow_village").schema ->
       face_ids: []
 
   @property 'model',
+    query:
+      get: ->
+        Query.sow_villages.where({@id})
     roles:
       get: ->
         @query.reduce ? []
