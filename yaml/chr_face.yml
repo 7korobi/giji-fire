@@ -2840,6 +2840,57 @@
     tag_ids:
       - travel
 
+#########################
+# 2018-10-19
+
+-   _id: f13
+    name: ティム
+    comment: 冒険作家ティム・セヴェリン
+    order: 60013
+    tag_ids:
+      - fable
+
+-   _id: f14
+    name: インティJr
+    comment: 南米の太陽神「インティ」の息子、という意味のリングネーム
+    order: 60014
+    tag_ids:
+      - fable
+
+-   _id: fw04
+    name: ギョウブ
+    comment: 隠神刑部（ぎょうぶたぬき）
+    order: 61004
+    tag_ids:
+      - fable
+
+-   _id: fw05
+    name: イナリ
+    comment: 稲荷神社
+    order: 61005
+    tag_ids:
+      - fable
+
+-   _id: w56
+    name: 大八郎
+    comment: 江戸時代の実業家からもじって。
+    order: 90056
+    tag_ids:
+      - shoji
+
+-   _id: w57
+    name: 稲荷
+    comment: 稲荷神社
+    order: 90057
+    tag_ids:
+      - shoji
+
+-   _id: sf039
+    name: ハロウィン
+    comment: おまつり
+    order: 90057
+    tag_ids:
+      - stratos
 
 #########################
 # xxxx-xx-xx update
