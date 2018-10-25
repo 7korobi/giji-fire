@@ -23,16 +23,16 @@ module.exports = class Map
     o
 
   @$deploy_reduce: (model, item, format, o)->
-    { id } = item
-    emit = (keys..., cmd)=>
+    emit = (target)=> (keys..., cmd)=>
       path = ["_reduce", keys...].join('.')
-      o.$group.push [path, cmd]
+      target.push [path, cmd]
       map = format[path] ?= {}
       @init map, cmd
-    emit
-      list: id
-      set:  id
-    model.map_reduce item, emit
+    emit_group = emit o.$group
+    emit_group
+      list: true
+    model.map_partition item, emit_group
+    model.map_reduce    item, emit_group
 
   @$deploy_sort: (model, item, all)->
     emit = (keys..., cmd)->
@@ -72,8 +72,8 @@ module.exports = class Map
       o = _.orderBy o, map.sort...
     
     if map.pluck
-      o = o.map (val)->
-        _.get val, map.pluck
+      o = for oo in o when val = _.get oo, map.pluck
+        val
 
     if key = map.group_by
       from = o
@@ -81,14 +81,16 @@ module.exports = class Map
       for a of o when a
         cb a
 
-    if per = map.page_by
-      idx = 0
+    if map.page && per = query.$page_by
       from = o
-      o = Object.values _.groupBy o, (oo)->
-        Math.floor(idx++ / per)
-      o.all = idx
+      o = []
+      o.all = from.length
+      for oo, idx in from
+        unless idx % per
+          o.push c = []
+        c.push oo
       o.page_idx = (item)->
-        for a, page_idx in @ when item in a
+        for a, page_idx in @ when a.includes item
           return page_idx
         null
       for a in o when a

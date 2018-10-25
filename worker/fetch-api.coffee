@@ -193,18 +193,9 @@ module.exports =
     .where { book_id }
     .sort "live.date", "desc"
 
-    phases =
-      "#{book_id}-top-mA": phase_attr
-        handle: "MAKER"
-        group:  "A"
-        update: false
-        guide:  false
-      "#{book_id}-top-mS": phase_attr
-        handle: "TITLE"
-        group:  "A"
-        update: false
-        guide:  true
-
+    Set.part.add
+      _id: book_id + "-top"
+      label: "📖タイトル"
 
     write_at = 0
 
@@ -226,7 +217,8 @@ module.exports =
           |--:|:--|:-:|:-:|
           #{ list.join("\n") }
         """
-        phases[phase_id] ?= phase_attr
+        Set.phase.add phase_attr
+          _id: phase_id
           handle: 'TITLE'
           group:  'A'
           update: false
@@ -333,27 +325,23 @@ module.exports =
       deco = o.style ? "sow"
       head = potof_id && o.name
 
-      phases[phase_id] ?= phase_attr
-        handle: handle
-        guide: guide
-        type:  phase_type
-        group: phase_group
-        update: false
+      unless Query.phases._memory[phase_id]
+        Set.phase.add phase_attr
+          _id: phase_id
+          handle: handle
+          guide: guide
+          type:  phase_type
+          group: phase_group
+          update: false
       Set.chat.add { _id, potof_id, write_at, to, show, deco, log, head, handle, mention_ids }
       o
 
-    Set.phase.merge phases
-
-    Set.part.merge data.events.map (o)->
-      _id: o._id
-      label: o.name ? "#{o.turn}日目"
-
     o = data.stories[0]
     sign = o.sow_auth_id.replace(/\./g, '&#2e')
-    [[chat_head, ...], ..., [..., chat_foot]] = chats = Query.chats.where(book_id: o._id).list
+    [chat_head, ..., chat_foot] = Query.chats.where({ book_id }).list
 
     Set.book.add
-      _id: o._id
+      _id: book_id
       label: o.name
       winner_id: null # data.events[-1..][0].winner?[4..]
       potof_size: potofs.list.length
@@ -362,13 +350,26 @@ module.exports =
 
     [welcome = "", v_rules] = o.comment.split(/■村のルール<br>/)
 
-    Set.part.add
-      _id: o._id + "-top"
-      label: "📖タイトル"
+    Set.part.merge data.events.map (o)->
+      _id: o._id
+      label: o.name ? "#{o.turn}日目"
+
+    Set.phase.add phase_attr
+      _id: "#{book_id}-top-mA"
+      handle: "MAKER"
+      group:  "A"
+      update: false
+      guide:  false
+
+    Set.phase.add phase_attr
+      _id: "#{book_id}-top-mS"
+      handle: "TITLE"
+      group:  "A"
+      update: false
+      guide:  true
 
     Set.chat.add
-      _id: o._id + "-top-mS-title"
-      phase_id: o._id + "-top-mS"
+      _id: book_id + "-top-mS-title"
       write_at: chat_head.write_at - 4
       show: "report"
       deco: "center"
@@ -382,8 +383,7 @@ module.exports =
       """
 
     Set.chat.add
-      _id: o._id + "-top-mS-welcome"
-      phase_id: o._id + "-top-mS"
+      _id: book_id + "-top-mS-welcome"
       write_at: chat_head.write_at - 3
       show: "report"
       deco: "head"
@@ -392,8 +392,7 @@ module.exports =
 
     if v_rules
       Set.chat.add
-        _id: o._id + "-top-mS-vrule"
-        phase_id: o._id + "-top-mS"
+        _id: book_id + "-top-mS-vrule"
         write_at: chat_head.write_at - 2
         show: "report"
         deco: "giji"
@@ -406,8 +405,7 @@ module.exports =
     n_rules = for {head}, idx in nation.list
       "#{idx + 1}. #{head}"
     Set.chat.add
-      _id: o._id + "-top-mS-nrule"
-      phase_id: o._id + "-top-mS"
+      _id: book_id + "-top-mS-nrule"
       write_at: chat_head.write_at - 1
       show: "report"
       deco: "giji"

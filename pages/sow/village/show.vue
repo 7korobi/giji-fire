@@ -115,13 +115,6 @@ module.exports =
     require("~/plugins/for_component")
     require('~/plugins/pager')
     require("~/plugins/book-show")
-    require("~/plugins/browser-store")
-      local:
-        page_by: 30
-      watch:
-        page_by: (newVal)->
-          Finder.chat.model.page_by = newVal
-          Finder.chat.clear_cache Query.chats
   ]
 
   layout: 'blank'
@@ -146,10 +139,9 @@ module.exports =
     page_idx: ->
       @page_all_contents?.page_idx?(@chat) ? 0
 
-    now: ->
-      search = @search.replace reg_dic, (chr)->
+    search_words: ->
+      @search.replace reg_dic, (chr)->
         sow_dic[ dic.indexOf chr ]
-      Query.chats.now @hide_ids, search
 
     folder_url: ->
       "/sow/village?folder_id=#{@folder_id.toUpperCase()}"

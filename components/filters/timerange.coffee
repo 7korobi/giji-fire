@@ -11,8 +11,11 @@ to_time = (msec)->
   i = i / 24
   return "#{Math.ceil i}d"
 
-module.exports = ({ min, max, range })->
-  return "" unless range?
+module.exports = (o)->
+  return "" unless o
+  { min, max, range } = o
+  return "" unless min? && max? && range?
+
   min_str = format min, 'dd HH時', { locale }
   max_str = format max, 'dd HH時', { locale }
   if min_str == max_str

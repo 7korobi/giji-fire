@@ -1,14 +1,14 @@
 <script lang="coffee">
+{ Query } = require "~/plugins/memory-record"
+
 module.exports =
   mixins: [
     require('~/plugins/pager')
   ]
-  props: ["mode", "book", "chats", "part_id"]
+  props: ["mode", "book", "part_id"]
   methods:
-    page_url: (part_id, page_idx)->
-      return unless part_id && data = @chats(part_id)
-      idx = part_id
-      query: { @mode, idx, page: page_idx + 1 }
+    page_url: (idx)->
+      query: { @mode, idx, page: 1 }
 
     label: (part_id)->
       @book.parts.find(part_id)?.label
@@ -27,15 +27,15 @@ module.exports =
       ids[idx + 1]
 
     show: ->
-      @part_id && @book && @chats && @mode
+      @part_id && @book && @mode
 
 </script>
 
 <template lang="pug">
 p(v-if="show")
-  nuxt-link(v-if="part_prev_id" :to="page_url(part_prev_id, 0)") {{ label(part_prev_id) }}へ戻る
+  nuxt-link(v-if="part_prev_id" :to="page_url(part_prev_id)") {{ label(part_prev_id) }}へ戻る
   | &nbsp;
-  nuxt-link(v-if="part_next_id" :to="page_url(part_next_id, 0)") {{ label(part_next_id) }}へ進む
+  nuxt-link(v-if="part_next_id" :to="page_url(part_next_id)") {{ label(part_next_id) }}へ進む
 
 </template>
 

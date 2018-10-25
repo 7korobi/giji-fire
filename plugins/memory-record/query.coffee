@@ -32,7 +32,8 @@ module.exports = class Query
     _all_ids = _group = null
     _filters = []
     $sort = {}
-    new Query { _all_ids, _group, _filters, $sort }, ->
+    $partition = ["set"]
+    new Query { _all_ids, _group, _filters, $sort, $partition }, ->
       @all = @
       @_memory = OBJ()
 
@@ -41,7 +42,7 @@ module.exports = class Query
     @_copy base
     tap.call @
 
-  _copy: ({ @all, @_all_ids, @_group, @_filters, @$sort })->
+  _copy: ({ @all, @_all_ids, @_group, @_filters, @$sort, @$partition, @$page_by })->
 
   in: (req)->
     query_parser @, req, (q, target, req, path)->
@@ -64,6 +65,10 @@ module.exports = class Query
         else
           console.log { target, req, path }
           throw Error 'unimplemented'
+
+  partition: (...ary)->
+    new Query @, ->
+      @$partition = ary
 
   where: (req)->
     query_parser @, req, (q, target, req, path)->
@@ -114,7 +119,8 @@ module.exports = class Query
     @order { sort }
   
   page: (page_by)->
-    @order { page_by }
+    new Query @, ->
+      @$page_by = page_by
 
   form: (ids...)->
     oo = @find ...ids

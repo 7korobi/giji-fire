@@ -31,25 +31,37 @@ module.exports = class Finder
   calculate: (query, memory)->
     return unless query._step < State.step[@name.list]
 
-    cache = _.cloneDeep @format
-    @reduce @map, cache, query, memory
-    return
-
-  reduce: (map, cache, query, memory)->
+    delete query._reduce
     query._step = ++$step
+
+    cache = _.cloneDeep @format
     paths =
       _reduce:
         list: []
         hash: {}
-    delete query._reduce
-    for id in query._all_ids ? Object.keys memory
-      continue unless o = memory[id]
+
+    if query._all_ids
+      @reduce @map, cache, paths, query, memory, query._all_ids
+    else
+      if query == query.all
+        @reduce @map, cache, paths, query, memory, Object.keys memory
+      else
+        for partition in query.$partition
+          @reduce @map, cache, paths, query, memory, _.get query.all, "reduce.#{partition}"
+
+    @finish_order @map, cache, paths, query
+    return
+
+  reduce: (map, cache, paths, query, memory, ids)->
+    return unless ids
+    for id in ids when o = memory[id]
       { item, $group } = o
       continue unless validate item, query._filters
       for [path, a] in $group
         o = paths[path] = cache[path]
         map.reduce query, path, item, o, a
 
+  finish_order: (map, cache, paths, query)->
     for path, o of paths
       map.finish query, path, o, @list
       _.set query, path, o

@@ -5,26 +5,7 @@ new Rule("chat").schema ->
   @belongs_to "section"
   @belongs_to "potof"
 
-  blank = []
-  blank.all = 0
-  pages = (group, q)-> (hides, words, part_id)->
-    q
-    .where (o)-> part_id == o.part_id && !(o.potof_id in hides) && o.phase.group in group
-    .search words
   @scope (all)->
-    wiki: (hides, words, part_id)->
-      all
-      .where (o)-> part_id == o.part_id && !(o.potof_id in hides)
-      .search words
-    memo:   pages 'M',   all
-
-    full:   pages 'SAI', all
-    normal: pages 'SAI', all.where (o)-> o.phase.handle in ['SSAY', 'VSSAY', 'MAKER', 'ADMIN', 'public']
-
-    solo:   pages 'SAI', all.where (o)-> o.phase.handle in ['TSAY', 'private']
-    extra:  pages 'SAI', all.where (o)-> ! (o.phase.handle in ['SSAY', 'VSSAY', 'MAKER', 'ADMIN', 'dark', 'GSAY', 'TSAY', 'public'])
-    rest:   pages 'SAI', all.where (o)-> o.phase.handle in ['GSAY']
-
     ankers: (book_id, a)->
       ids = a.map (idx)-> book_id + idx
       all.where(_id: ids).sort("write_at", "desc")
@@ -36,15 +17,12 @@ new Rule("chat").schema ->
       c[2]-- if c[2]
       all.find a, b.join('-'), c.join('-')
 
-    now: (...args)->
-      memo:   (part_id)-> all.memo(  ...args, part_id).reduce?.last ? blank
-      memos:  (part_id)-> all.memo(  ...args, part_id).reduce?.list ? blank
-      full:   (part_id)-> all.full(  ...args, part_id).reduce?.list ? blank
-      normal: (part_id)-> all.normal(...args, part_id).reduce?.list ? blank
-      solo:   (part_id)-> all.solo(  ...args, part_id).reduce?.list ? blank
-      extra:  (part_id)-> all.extra( ...args, part_id).reduce?.list ? blank
-      rest:   (part_id)-> all.rest(  ...args, part_id).reduce?.list ? blank
-      wiki:   (part_id)-> all.wiki(  ...args, part_id).reduce?.list ? blank
+    now: (hides, words, page_by, mode, part_id)->
+      all
+      .partition "#{part_id}.#{mode}.set"
+      .where (o)-> !(o.potof_id in hides)
+      .search words
+      .page page_by
 
   anker =
     belongs_to: 'chats'
@@ -57,8 +35,6 @@ new Rule("chat").schema ->
       search_words: @log
 
   class @model extends @model
-    @page_by = 30
-
     make_ankers: (...ids)->
       { book_id } = @
       ids.push @id
@@ -84,6 +60,52 @@ new Rule("chat").schema ->
             @id[ @part_id.length ..]
           else
             @id[ @book_id.length ..]
+
+    @map_partition: (o, emit)->
+      { id, part_id } = o
+      emit
+        set: id
+
+      emit part_id, "wiki",
+        set: id
+
+      return unless o.phase
+      { group, handle } = o.phase
+      if   'M'.includes group
+        emit part_id, "memo",
+          set: id
+          max: o.write_at + 1
+          min: o.write_at
+
+      if 'SAI'.includes group
+        emit part_id, "full",
+          set: id
+          max: o.write_at + 1
+          min: o.write_at
+
+        if ['SSAY', 'VSSAY', 'MAKER', 'ADMIN', 'public'].includes handle
+          emit part_id, "normal",
+            set: id
+            max: o.write_at + 1
+            min: o.write_at
+
+        if ['TSAY', 'private'].includes handle
+          emit part_id, "solo",
+            set: id
+            max: o.write_at + 1
+            min: o.write_at
+
+        if ! ['SSAY', 'VSSAY', 'MAKER', 'ADMIN', 'dark', 'GSAY', 'TSAY', 'public'].includes handle
+          emit part_id, "extra",
+            set: id
+            max: o.write_at + 1
+            min: o.write_at
+
+        if ['GSAY'].includes handle
+          emit part_id, "rest",
+            set: id
+            max: o.write_at + 1
+            min: o.write_at
 
     @map_reduce: (o, emit)->
       emit "last", o.q.group,
@@ -125,10 +147,10 @@ new Rule("chat").schema ->
       emit "last",
         pluck: "max_is"
         sort: [["max_is.phase.id", "max_is.write_at"], ["desc", "desc"]]
-        page_by: @page_by
+        page: true
       emit "list",
         sort: ["write_at", "asc"]
-        page_by: @page_by
+        page: true
       emit "mention", anker
       for mention_id in o.mention_ids
         emit "mention_to", mention_id, anker

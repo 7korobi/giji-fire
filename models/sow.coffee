@@ -17,8 +17,8 @@ new Rule("sow_village").schema ->
   @belongs_to "game", target: "games", key: "q.game"
 
   @scope (all)->
-    prologue: all.where(mode: "prologue").sort "timer.nextcommitdt", "desc"
-    progress: all.where(mode: "progress").sort "timer.nextcommitdt", "desc"
+    prologue: all.partition("prologue.set").sort "timer.nextcommitdt", "desc"
+    progress: all.partition("progress.set").sort "timer.nextcommitdt", "desc"
 
     mode: ( mode )->
       all
@@ -33,13 +33,14 @@ new Rule("sow_village").schema ->
 
     all_contents: ( mode, query_in, query_where, search_word, order, asc )->
       all
-      .where { mode }
+      .partition "#{mode}.set"
       .in query_in
       .where query_where
       .search search_word
+      .page 25
       .order
         sort: [order, asc]
-        page_by: 25
+        page: true
 
   @deploy ->
     { interval, hour, minute } = @upd
@@ -121,8 +122,15 @@ new Rule("sow_village").schema ->
       emit "discard",     { sort: ['count', 'desc'], belongs_to: "roles"   }
       emit "config",      { sort: ['count', 'desc'], belongs_to: "roles"   }
 
+    @map_partition: (o, emit)->
+      { id, part_id } = o
+      emit
+        set: id
+
+      emit o.mode,
+        set: id
+
     @map_reduce: (o, emit)->
-      emit "mode", o.mode, o.q.folder_id,  cmd
       emit "in_month", o.q.in_month, cmd
       emit "yeary",    o.q.yeary,    cmd
       emit "monthry",  o.q.monthry,  cmd

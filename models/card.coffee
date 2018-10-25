@@ -33,7 +33,7 @@ new Rule("role").schema ->
   class @model extends @model
     @map_reduce: (o, emit)->
       emit "group", o.group,
-        list: o.id
+        list: true
 
 
 new Rule("trap").schema ->
@@ -47,7 +47,7 @@ new Rule("able").schema ->
   class @model extends @model
     @map_reduce: (o, emit)->
       emit "group", o.group,
-        list: o.id
+        list: true
 
 Set.role.set require '../yaml/set_roles.yml'
 Set.trap.set require '../yaml/set_traps.yml'

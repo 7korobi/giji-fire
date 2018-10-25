@@ -1,37 +1,32 @@
 <script lang="coffee">
 timerange = require "~/components/filters/timerange"
+{ Query } = require "~/plugins/memory-record"
 
 module.exports =
   mixins: [
     require('~/plugins/pager')
     require('~/plugins/markup-event')
   ]
-  props: ["search", "book", "chats", "part_id", "current"]
+  props: ["book", "chats", "mode", "part_id", "search", "page_by", "page_idx"]
 
   methods:
     part_label: (part_id)->
-      [ min,..., max ] = @chats(part_id)
-      return "" unless min
-      [ min, ...] = min
-      return "" unless max
-      [ ...,  max] = max
-      min = min.write_at
-      max = max.write_at
-      range = max - min
-      timerange { min, max, range }
+      timerange Query.chats.reduce[part_id][@mode]
+
+    page_all_idxs: (part_id)->
+      [0..(@page_size(part_id) / @page_by)]
+
+    page_size: (part_id)->
+      Query.chats.reduce[part_id][@mode]?.set?.length ? 0
 
     page_url: (part_id, page_idx)->
-      return unless part_id && data = @chats(part_id)
       idx = part_id
       page = 1 + page_idx
       query: { @mode, idx, page, @search }
 
     page_label: (part_id, page_idx)->
-      [ min,..., max ] = @chats(part_id)[page_idx]
-      # min = min.write_at
-      # max = max.write_at
-      # range = max - min
-      # timerange { min, max, range }
+      return null # stop show cite id. for speed up.
+      [ min,..., max ] = @chats(@mode, part_id)[page_idx]
       min?.id
 
     page_btn_class: (part_id, page_idx)->
@@ -44,9 +39,6 @@ module.exports =
         else
           []
   computed:
-    page_idx: ->
-      @chats(@part_id).page_idx @current
-
     show: ->
       @book?.parts.list.length
 
@@ -59,10 +51,10 @@ table(v-if="show" v-on="markup_event()")
       th.r.form(style="white-space: nowrap")
         nuxt-link.tooltip-top(replace, :to="page_url(o.id, 0)" :data-tooltip="part_label(o.id)" :class="{ active: o.id === part_id }")
           | {{o.label}}
-          sup {{ chats(o.id).all }}
+          sup {{ page_size(o.id) }}
       th.l.form.detail
-        nuxt-link.cite-in.page(v-for="(_, page_idx) in chats(o.id)" replace :to="page_url(o.id, page_idx)" :class="page_btn_class(o.id, page_idx)" :key=" o.id + page_idx " :cite="page_label(o.id, page_idx)")
-          | {{ page_idx + 1 }}
+        nuxt-link.cite-in.page(v-for="idx in page_all_idxs(o.id)" replace :to="page_url(o.id, idx)" :class="page_btn_class(o.id, idx)" :key=" o.id + idx " :cite="page_label(o.id, idx)")
+          | {{ idx + 1 }}
 </template>
 
 <style lang="sass" scoped>

@@ -8,6 +8,8 @@ browser = require("~/plugins/browser-store")
     idx: ""
     page: ""
     search: ""
+  local:
+    page_by: 30
   push:
     mode: 'full'
     a: []
@@ -30,6 +32,8 @@ browser = require("~/plugins/browser-store")
 
         @page = undefined
 
+blank = []
+blank.all = 0
 
 store =
   watch:
@@ -48,17 +52,11 @@ store =
       # todo @book_id ずれる
       Query.chats.ankers(@book_id, @a).list
 
-    now: ->
-      Query.chats.now(@hide_ids, @search)
-
-    chats: ->
-      @now[@mode]
-
     side_contents: ->
-      @now.memo(@part_id)
+      @chats "memo", @part_id
 
     page_all_contents: ->
-      @chats(@part_id)
+      @chats @mode, @part_id
 
     back: ->
       [ @chat_id || @part_id, @mode ].join(",")
@@ -66,8 +64,23 @@ store =
     back_url: ->
       [ idx, mode ] = (@$route.query.back ? @back).split(",")
       query: { idx, mode, page: 'back' }
+
+    search_words: ->
+      @search
+    chats: ->(mode, part_id)=>
+      q = Query
+          .chats
+          .now @hide_ids, @search_words, @page_by, mode, part_id
+          .reduce
+
+      switch mode
+        when 'memo'
+          q?.last ? blank
+        else
+          q?.list ? blank
   }
   methods:
+
     focus: (@idx)->
 
     popup: ({ adjust, pageY, id, bye_id })->
@@ -108,7 +121,7 @@ store =
         window.scrollTo 0, 0
 
     page_url: (part_id, page_idx)->
-      return unless part_id && data = @chats(part_id)
+      return unless part_id && data = @chats @mode, part_id
       idx = part_id
       query: { @mode, idx, page: page_idx + 1 }
 

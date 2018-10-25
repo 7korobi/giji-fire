@@ -26,6 +26,10 @@ module.exports = class Model
     (o, idx)->
   ]
 
+  @map_partition:  (item, emit)->
+    emit
+      set: item.id
+
   @map_reduce: (item, emit)->
     undefined
 

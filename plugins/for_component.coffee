@@ -3,11 +3,13 @@ _ = require "lodash"
 module.exports =
   computed:
     for_toc: ->
-      { @book, @chats, @part_id, @search, @page_by, current: @chat }
+      page_idx = @page_all_contents?.page_idx?(@chat) ? @pager.tail_idx
+
+      { @book, @chats, @mode, @part_id, @search, @page_by, page_idx }
     for_mode: ->
-      { @now, @mode, @part_id, @chat_id }
+      { @mode, @part_id, @chat_id }
     for_part: ->
-      { @mode, @book, @chats, @part_id }
+      { @mode, @book, @part_id }
     for_potofs: ->
       { @part }
     for_mentions: ->
