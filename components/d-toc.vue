@@ -9,10 +9,12 @@ div(v-on="movespace()")
         th.r.form(style="white-space: nowrap")
           nuxt-link.tooltip-top(replace, :to="page_url(o.id, 0)" :data-tooltip="part_label(o.id)" :class="{ active: o.id === part_id }")
             | {{o.label}}
-            sup {{ page_size(o.id) }}
-        th.l.form(v-if="on_curtain(0)")
+            sup {{ chat_size(o.id, mode) }}
+        th.l.form(v-if="in_curtain(0)")
           nuxt-link.cite-in.page(v-for="idx in page_all_idxs(o.id)" replace :to="page_url(o.id, idx)" :class="page_btn_class(o.id, idx)" :key=" o.id + idx " :cite="page_label(o.id, idx)")
             | {{ idx + 1 }}
+        tform(v-else)
+          del ...
 </template>
 
 <script lang="coffee">
@@ -23,21 +25,18 @@ module.exports =
   mixins: [
     require('~/plugins/pager')
     require('~/plugins/markup-event')
-    require("~/plugins/cartain") [
+    require("~/plugins/curtain") [
       "curtain0"
     ]
   ]
-  props: ["book", "chats", "mode", "part_id", "search", "page_by", "page_idx"]
+  props: ["book", "chats", "mode", "part_id", "search", "page_by", "page_idx", "chat_size"]
 
   methods:
     part_label: (part_id)->
       timerange Query.chats.reduce[part_id][@mode]
 
     page_all_idxs: (part_id)->
-      [0..(@page_size(part_id) / @page_by)]
-
-    page_size: (part_id)->
-      Query.chats.reduce[part_id][@mode]?.set?.length ? 0
+      [0..(@chat_size(part_id, @mode) / @page_by)]
 
     page_url: (part_id, page_idx)->
       idx = part_id
@@ -45,8 +44,7 @@ module.exports =
       query: { @mode, idx, page, @search }
 
     page_label: (part_id, page_idx)->
-      return null # stop show cite id. for speed up.
-      [ min,..., max ] = @chats(@mode, part_id)[page_idx]
+      [ min,..., max ] = @chats(@mode, part_id)[page_idx] ? []
       min?.id
 
     page_btn_class: (part_id, page_idx)->

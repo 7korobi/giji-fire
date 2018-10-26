@@ -46,14 +46,16 @@ store =
     is_floats: ->
       Object.keys @floats
       .length
-    page_idx: ->
-      @page_all_contents?.page_idx?(@chat) ? 0
+
     cite_chats: ->
       # todo @book_id ずれる
       Query.chats.ankers(@book_id, @a).list
 
     side_contents: ->
       @chats "memo", @part_id
+
+    page_idx: ->
+      @page_all_contents?.page_idx?(@chat) ? 0
 
     page_all_contents: ->
       @chats @mode, @part_id
@@ -67,6 +69,7 @@ store =
 
     search_words: ->
       @search
+
     chats: ->(mode, part_id)=>
       q = Query
           .chats
@@ -78,6 +81,13 @@ store =
           q?.last ? blank
         else
           q?.list ? blank
+
+    chat_size: ->(part_id, mode)=>
+      if "memo" == mode || @search.length || @hide_ids.length
+        @chats(mode, part_id)?.all ? 0
+      else
+        Query.chats.reduce[part_id]?[mode]?.set?.length ? 0
+
   }
   methods:
 

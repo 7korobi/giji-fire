@@ -46,18 +46,18 @@
           td.r(:class="o.live && o.live.role_id") {{ o.live && o.live.date           | currency("日") }}
           td.c(:class="o.live && o.live.role_id") {{ o.live && o.live.role.label }}
 
-          th.r(:class="o.say_handle(part.id)" v-if="on_curtain(0)") {{ o.give && o.give.give | currency("回") }}
-          td.r(:class="o.say_handle(part.id)" v-if="on_curtain(0)") {{ o.say(part.id).count  | currency("回") }}
-          td.r(:class="o.say_handle(part.id)" v-if="on_curtain(0)") {{ o.say(part.id).all    | currency("字") }}
-          th.r(:class="o.say_handle(part.id)" v-if="on_curtain(0)") {{ o.say(part.id) | timerange }}
+          th.r(:class="o.say_handle(part.id)" v-if="in_curtain(0)") {{ o.give && o.give.give | currency("回") }}
+          td.r(:class="o.say_handle(part.id)" v-if="in_curtain(0)") {{ o.say(part.id).count  | currency("回") }}
+          td.r(:class="o.say_handle(part.id)" v-if="in_curtain(0)") {{ o.say(part.id).all    | currency("字") }}
+          th.r(:class="o.say_handle(part.id)" v-if="in_curtain(0)") {{ o.say(part.id) | timerange }}
 
-          th.c(:class="o.winner_id" v-if="on_curtain(1)") {{ o.win }}
-          td.r(:class="o.winner_id" v-if="on_curtain(1)") {{ o.winner && o.winner.label }}
-          td.l(:class="o.winner_id" v-if="on_curtain(1)") {{ o.role_labels.join("、") }}
+          th.c(:class="o.winner_id" v-if="in_curtain(1)") {{ o.win }}
+          td.r(:class="o.winner_id" v-if="in_curtain(1)") {{ o.winner && o.winner.label }}
+          td.l(:class="o.winner_id" v-if="in_curtain(1)") {{ o.role_labels.join("、") }}
 
-          td.c.TSAY(v-if="on_curtain(1)")
+          td.c.TSAY(v-if="in_curtain(1)")
             span(v-if="o.request") {{ o.request.role.label }}
-          td.l.TSAY(v-if="on_curtain(1)" colspan="2") {{ o.text }}
+          td.l.TSAY(v-if="in_curtain(1)" colspan="2") {{ o.text }}
           td.l(v-else)
             del ...
 
@@ -93,7 +93,7 @@
 
 module.exports =
   mixins: [
-    require("~/plugins/cartain") [
+    require("~/plugins/curtain") [
       "curtain0"
       "curtain1"
     ]

@@ -1,9 +1,8 @@
 <script lang="coffee">
 { relative_to } = require "~/plugins/struct"
-{ Query } = require "~/plugins/memory-record"
 
 module.exports =
-  props: ["mode", "part_id", "chat_id"]
+  props: ["mode", "part_id", "chat_id", "chat_size"]
   methods:
     mode_to: (mode)->
       switch @mode
@@ -13,9 +12,6 @@ module.exports =
           idx = @part_id || @chat_id
       idx = @chat_id || @part_id
       relative_to @$route, { mode, idx }
-
-    size: (mode)->
-      Query.chats.reduce?[@part_id]?[mode]?.set.length
 
   computed:
     secret: ->
@@ -34,25 +30,25 @@ p(v-if="show")
     nuxt-link(:to="mode_to('memo')")
       i.mdi.mdi-notebook
       | メモ
-      sup {{ size("memo") }}
+      sup {{ chat_size(part_id, "memo") }}
     nuxt-link(:to="mode_to('full')")
       | バレ
-      sup {{ size("full") }}
+      sup {{ chat_size(part_id, "full") }}
   span(v-else)
   span
     nuxt-link(:to="mode_to('normal')")
       | 通常
-      sup {{ size("normal") }}
+      sup {{ chat_size(part_id, "normal") }}
   span(v-if="secret")
     nuxt-link(:to="mode_to('solo')")
       | 独り言
-      sup {{ size("solo") }}
+      sup {{ chat_size(part_id, "solo") }}
     nuxt-link(:to="mode_to('extra')")
       | 非日常
-      sup {{ size("extra") }}
+      sup {{ chat_size(part_id, "extra") }}
     nuxt-link(:to="mode_to('rest')")
       | 墓休み
-      sup {{ size("rest") }}
+      sup {{ chat_size(part_id, "rest") }}
   span
 </template>
 
