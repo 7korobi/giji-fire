@@ -62,50 +62,34 @@ new Rule("chat").schema ->
             @id[ @book_id.length ..]
 
     @map_partition: (o, emit)->
-      { id, part_id } = o
-      emit
-        set: id
+      { part_id } = o
+      it =
+        set: o.id
+        max: o.write_at + 1
+        min: o.write_at
 
-      emit part_id, "wiki",
-        set: id
+      emit it
+      emit part_id, "wiki", it
 
       return unless o.phase
       { group, handle } = o.phase
       if   'M'.includes group
-        emit part_id, "memo",
-          set: id
-          max: o.write_at + 1
-          min: o.write_at
+        emit part_id, "memo", it
 
       if 'SAI'.includes group
-        emit part_id, "full",
-          set: id
-          max: o.write_at + 1
-          min: o.write_at
+        emit part_id, "full", it
 
         if ['SSAY', 'VSSAY', 'MAKER', 'ADMIN', 'public'].includes handle
-          emit part_id, "normal",
-            set: id
-            max: o.write_at + 1
-            min: o.write_at
+          emit part_id, "normal", it
 
         if ['TSAY', 'private'].includes handle
-          emit part_id, "solo",
-            set: id
-            max: o.write_at + 1
-            min: o.write_at
+          emit part_id, "solo", it
 
         if ! ['SSAY', 'VSSAY', 'MAKER', 'ADMIN', 'dark', 'GSAY', 'TSAY', 'public'].includes handle
-          emit part_id, "extra",
-            set: id
-            max: o.write_at + 1
-            min: o.write_at
+          emit part_id, "extra", it
 
         if ['GSAY'].includes handle
-          emit part_id, "rest",
-            set: id
-            max: o.write_at + 1
-            min: o.write_at
+          emit part_id, "rest", it
 
     @map_reduce: (o, emit)->
       emit "last", o.q.group,
