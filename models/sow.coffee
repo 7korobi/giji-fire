@@ -131,6 +131,7 @@ new Rule("sow_village").schema ->
         set: id
 
     @map_reduce: (o, emit)->
+      emit "mode", o.mode, o.q.folder_id,  cmd
       emit "in_month", o.q.in_month, cmd
       emit "yeary",    o.q.yeary,    cmd
       emit "monthry",  o.q.monthry,  cmd
