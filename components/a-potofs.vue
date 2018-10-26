@@ -17,7 +17,7 @@
 
           th
             btn(v-model="sort" as="give.give", @toggle="reverse") 促
-          th(colspan="2")
+          th(ref="curtain0" colspan="2")
             btn(v-model="sort" as="say.count", @toggle="reverse") 回数
             btn(v-model="sort" as="say.avg", @toggle="reverse" title="字数 ÷ 回数") 平均
             btn(v-model="sort" as="say.all", @toggle="reverse") 字数
@@ -27,7 +27,7 @@
             btn(v-model="sort" as="say.range", @toggle="reverse" title="最後 － 最初") 範囲
             btn(v-model="sort" as="say.max", @toggle="reverse") 最後
 
-          th(ref="secret")
+          th(ref="curtain1")
             btn(v-model="sort" as="win", @toggle="reverse") 勝敗
           th(colspan="2")
             btn(v-model="sort" as="winner_id", @toggle="reverse") 陣営
@@ -46,18 +46,18 @@
           td.r(:class="o.live && o.live.role_id") {{ o.live && o.live.date           | currency("日") }}
           td.c(:class="o.live && o.live.role_id") {{ o.live && o.live.role.label }}
 
-          th.r(:class="o.say_handle(part.id)") {{ o.give && o.give.give | currency("回") }}
-          td.r(:class="o.say_handle(part.id)") {{ o.say(part.id).count  | currency("回") }}
-          td.r(:class="o.say_handle(part.id)") {{ o.say(part.id).all    | currency("字") }}
-          th.r(:class="o.say_handle(part.id)") {{ o.say(part.id) | timerange }}
+          th.r(:class="o.say_handle(part.id)" v-if="on_curtain(0)") {{ o.give && o.give.give | currency("回") }}
+          td.r(:class="o.say_handle(part.id)" v-if="on_curtain(0)") {{ o.say(part.id).count  | currency("回") }}
+          td.r(:class="o.say_handle(part.id)" v-if="on_curtain(0)") {{ o.say(part.id).all    | currency("字") }}
+          th.r(:class="o.say_handle(part.id)" v-if="on_curtain(0)") {{ o.say(part.id) | timerange }}
 
-          th.c(:class="o.winner_id" v-if="can_secret") {{ o.win }}
-          td.r(:class="o.winner_id" v-if="can_secret") {{ o.winner && o.winner.label }}
-          td.l(:class="o.winner_id" v-if="can_secret") {{ o.role_labels.join("、") }}
+          th.c(:class="o.winner_id" v-if="on_curtain(1)") {{ o.win }}
+          td.r(:class="o.winner_id" v-if="on_curtain(1)") {{ o.winner && o.winner.label }}
+          td.l(:class="o.winner_id" v-if="on_curtain(1)") {{ o.role_labels.join("、") }}
 
-          td.c.TSAY(v-if="can_secret")
+          td.c.TSAY(v-if="on_curtain(1)")
             span(v-if="o.request") {{ o.request.role.label }}
-          td.l.TSAY(v-if="can_secret" colspan="2") {{ o.text }}
+          td.l.TSAY(v-if="on_curtain(1)" colspan="2") {{ o.text }}
           td.l(v-else)
             del ...
 
@@ -92,10 +92,14 @@
 { vuex_value } = require '~/plugins/struct'
 
 module.exports =
+  mixins: [
+    require("~/plugins/cartain") [
+      "curtain0"
+      "curtain1"
+    ]
+  ]
   props: ['part']
-  data: ->
-    left: Infinity
-    pageX: 0
+  data: -> {}
 
   computed: {
     ...vuex_value "menu.potofs", ['order', 'sort', 'hide_ids']
@@ -105,8 +109,6 @@ module.exports =
     invert:   ->  @potof_ids (o)=> ! o.hide
     live_on:  ->  @potof_ids (o)=> o.live?.date <= @part.idx
     live_off: ->  @potof_ids (o)=> o.live?.date >  @part.idx
-
-    can_secret: -> @left < @pageX
 
     potofs: ->
       if @part
@@ -132,20 +134,6 @@ module.exports =
   }
 
   methods:
-    movespace: ->
-      scroll: =>
-        @data_calc true
-      touchmove: (e)=>
-        @data_calc !( @left < Infinity )
-        { @pageX } = e.changedTouches[0]
-      mousemove: ({ @pageX })=>
-        @data_calc !( @left < Infinity )
-    
-    data_calc: (force)->
-      if force
-        if rects = @$refs.secret.getClientRects()
-          { @left } = rects[0]
-
     memo: (o, part_id)->
       { log, deco } = context = o.side(part_id).max_is
       { context, is: "g-sow", class: deco, value: log }

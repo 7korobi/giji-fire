@@ -1,3 +1,20 @@
+<template lang="pug">
+div(v-on="movespace()")
+  table(v-if="show" v-on="markup_event()")
+    tbody
+      tr
+        th
+        th(ref="curtain0")
+      tr(v-for="(o, line) in book.parts.list", :key="o.id")
+        th.r.form(style="white-space: nowrap")
+          nuxt-link.tooltip-top(replace, :to="page_url(o.id, 0)" :data-tooltip="part_label(o.id)" :class="{ active: o.id === part_id }")
+            | {{o.label}}
+            sup {{ page_size(o.id) }}
+        th.l.form(v-if="on_curtain(0)")
+          nuxt-link.cite-in.page(v-for="idx in page_all_idxs(o.id)" replace :to="page_url(o.id, idx)" :class="page_btn_class(o.id, idx)" :key=" o.id + idx " :cite="page_label(o.id, idx)")
+            | {{ idx + 1 }}
+</template>
+
 <script lang="coffee">
 timerange = require "~/components/filters/timerange"
 { Query } = require "~/plugins/memory-record"
@@ -6,6 +23,9 @@ module.exports =
   mixins: [
     require('~/plugins/pager')
     require('~/plugins/markup-event')
+    require("~/plugins/cartain") [
+      "curtain0"
+    ]
   ]
   props: ["book", "chats", "mode", "part_id", "search", "page_by", "page_idx"]
 
@@ -43,20 +63,6 @@ module.exports =
       @book?.parts.list.length
 
 </script>
-
-<template lang="pug">
-table(v-if="show" v-on="markup_event()")
-  tbody
-    tr(v-for="(o, line) in book.parts.list", :key="o.id")
-      th.r.form(style="white-space: nowrap")
-        nuxt-link.tooltip-top(replace, :to="page_url(o.id, 0)" :data-tooltip="part_label(o.id)" :class="{ active: o.id === part_id }")
-          | {{o.label}}
-          sup {{ page_size(o.id) }}
-      th.l.form.detail
-        nuxt-link.cite-in.page(v-for="idx in page_all_idxs(o.id)" replace :to="page_url(o.id, idx)" :class="page_btn_class(o.id, idx)" :key=" o.id + idx " :cite="page_label(o.id, idx)")
-          | {{ idx + 1 }}
-</template>
-
 <style lang="sass" scoped>
 .page
   text-align: center
