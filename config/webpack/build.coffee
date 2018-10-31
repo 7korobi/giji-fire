@@ -18,9 +18,6 @@ module.exports =
     ]
 
   vendor: [
-    'lodash'
-    '~/plugins/components.coffee'
-    '~/plugins/memory-record.coffee'
   ]
 
   loaders: [
