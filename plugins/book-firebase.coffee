@@ -1,6 +1,6 @@
 firebase = require "firebase"
 RANDOM = require "~/plugins/random"
-{ Query, Set, State } = require "~/plugins/memory-record"
+{ Query, Set, State } = require "memory-orm"
 { vuex_value, path, relative_to } = require "~/plugins/struct"
 
 kbd_r = ///

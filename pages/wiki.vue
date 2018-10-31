@@ -94,7 +94,7 @@ log-wiki
   font-size: 2.5ex
 </style>
 <script lang="coffee">
-{ Query, Set, State } = require "~/plugins/memory-record"
+{ Query, Set, State } = require "memory-orm"
 { vuex_value } = require '~/plugins/struct'
 
 module.exports =

@@ -103,7 +103,7 @@ log-wiki
 </style>
 <script lang="coffee">
 firebase = require "firebase"
-{ Query, Set, State } = require "~/plugins/memory-record"
+{ Query, Set, State } = require "memory-orm"
 { vuex_value } = require '~/plugins/struct'
 
 remove = (target, doc)->

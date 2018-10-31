@@ -75,7 +75,7 @@ div
     nuxt-link(to="/demo") 開発者用ページ
 </template>
 <script lang="coffee">
-{ Step, Query } = require "~/plugins/memory-record"
+{ Step, Query } = require "memory-orm"
 
 module.exports =
   mixins: [

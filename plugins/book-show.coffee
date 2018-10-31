@@ -1,5 +1,5 @@
 _ = require "lodash"
-{ Query } = require "~/plugins/memory-record"
+{ Query } = require "memory-orm"
 { path, relative_to } = require "~/plugins/struct"
 
 

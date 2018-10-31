@@ -1,4 +1,4 @@
-{ State, Set, Model, Query, Rule, merge } = require "~/plugins/memory-record"
+{ State, Set, Model, Query, Rule, merge } = require "memory-orm"
 { url } = require "~/config/live.yml"
 
 module.exports =

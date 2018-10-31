@@ -44,7 +44,7 @@ div
 </template>
 <script lang="coffee">
 _ = require "lodash"
-{ Query } = require "~/plugins/memory-record"
+{ Query } = require "memory-orm"
 
 class Capture
   constructor: (@compare)->

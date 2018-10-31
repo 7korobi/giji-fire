@@ -1,4 +1,4 @@
-{ Query } = require "~/plugins/memory-record"
+{ Query } = require "memory-orm"
 { vuex_value } = require '~/plugins/struct'
 el = require "~/plugins/dom"
 

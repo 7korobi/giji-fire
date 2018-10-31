@@ -96,7 +96,7 @@ log-wiki
 </style>
 
 <script lang="coffee">
-{ Query, State, Finder } = require "~/plugins/memory-record"
+{ Query, State, Finder } = require "memory-orm"
 { vuex_value } = require '~/plugins/struct'
 
 dic = '><&"\n'

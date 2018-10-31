@@ -92,7 +92,7 @@
 </template>
 
 <script lang="coffee">
-{ Query } = require "~/plugins/memory-record"
+{ Query } = require "memory-orm"
 _ = require "lodash"
 
 folder_handle =

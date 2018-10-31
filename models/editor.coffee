@@ -1,5 +1,5 @@
 require "~/models/index"
-{ Set } = require "~/plugins/memory-record"
+{ Set } = require "memory-orm"
 
 Base = (table)->
   size = table.length

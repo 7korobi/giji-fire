@@ -19,7 +19,7 @@ div(v-on="movespace()")
 
 <script lang="coffee">
 timerange = require "~/components/filters/timerange"
-{ Query } = require "~/plugins/memory-record"
+{ Query } = require "memory-orm"
 
 module.exports =
   mixins: [

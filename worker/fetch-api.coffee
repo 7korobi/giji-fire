@@ -1,5 +1,5 @@
 require "../models/index"
-{ State, Model, Query, Rule, Set, Finder } = require "~/plugins/memory-record"
+{ State, Model, Query, Rule, Set, Finder } = require "memory-orm"
 { nation } = require "../yaml/rule.yml"
 
 

@@ -1,5 +1,5 @@
 <script lang="coffee">
-{ Query, State } = require "~/plugins/memory-record"
+{ Query, State } = require "memory-orm"
 { url } = require "~/config/live.yml"
 
 module.exports =

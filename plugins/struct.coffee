@@ -1,5 +1,5 @@
 _ = require "lodash"
-{ Query } = require "~/plugins/memory-record"
+{ Query } = require "memory-orm"
 
 to_x = (type, sp, nil)-> (u)->
   switch u?.constructor

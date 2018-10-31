@@ -88,7 +88,7 @@
 
 
 <script lang="coffee">
-{ Query } = require "~/plugins/memory-record"
+{ Query } = require "memory-orm"
 { vuex_value } = require '~/plugins/struct'
 
 module.exports =

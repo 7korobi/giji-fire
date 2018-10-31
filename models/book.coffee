@@ -1,4 +1,4 @@
-{ Model, Query, Rule, Set } = require "~/plugins/memory-record"
+{ Model, Query, Rule, Set } = require "memory-orm"
 { game } = require "~/config/live.yml"
 
 new Rule("book").schema ->

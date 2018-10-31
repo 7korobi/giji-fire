@@ -10,7 +10,7 @@
   margin-bottom: 0
 </style>
 <script lang="coffee">
-{ Query, State, Finder } = require "~/plugins/memory-record"
+{ Query, State, Finder } = require "memory-orm"
 
 module.exports =
   props: ["id", "current", "adjust", "pageY", "zIndex"]

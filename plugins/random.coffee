@@ -1,4 +1,4 @@
-{ Query, Set, State } = require "~/plugins/memory-record"
+{ Query, Set, State } = require "memory-orm"
 _ = require 'lodash'
 
 head = (o)->

@@ -3,7 +3,7 @@ Vue = require "vue"
 MarkSVG = require('vue-markup/src/marksvg.vue').default
 Marked  = require('vue-markup/src/marked.vue').default
 
-{ Query } = require "~/plugins/memory-record"
+{ Query } = require "memory-orm"
 { url } = require "~/config/live.yml"
 
 if window?

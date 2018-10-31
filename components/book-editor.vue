@@ -132,7 +132,7 @@
 
 </template>
 <script lang="coffee">
-{ Query } = require "~/plugins/memory-record"
+{ Query } = require "memory-orm"
 { nation, village } = require "../yaml/rule.yml"
 _ = require "lodash"
 

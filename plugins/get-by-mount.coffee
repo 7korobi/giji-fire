@@ -1,5 +1,5 @@
 { to_msec } = require "~/plugins/struct"
-{ State, Model, Query, Rule, Set, Finder } = require "~/plugins/memory-record"
+{ State, Model, Query, Rule, Set, Finder } = require "memory-orm"
 
 Vue = require 'vue'
 comidx = null

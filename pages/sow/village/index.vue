@@ -170,7 +170,7 @@ div
 
 </template>
 <script lang="coffee">
-{ State, Query } = require "~/plugins/memory-record"
+{ State, Query } = require "memory-orm"
 { url } = require "~/config/live.yml"
 
 module.exports =

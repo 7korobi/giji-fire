@@ -1,6 +1,6 @@
 Comlink = require 'comlink'
 
-{ State, Model, Query, Rule, Set, Finder } = require "~/plugins/memory-record"
+{ State, Model, Query, Rule, Set, Finder } = require "memory-orm"
 FetchApi = require "./fetch-api.coffee"
 
 broadcasts = []

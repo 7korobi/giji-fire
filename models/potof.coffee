@@ -1,5 +1,5 @@
 
-{ Set, Model, Query, Rule } = require "~/plugins/memory-record"
+{ Set, Model, Query, Rule } = require "memory-orm"
 
 new Rule("potof").schema ->
   @order "write_at"

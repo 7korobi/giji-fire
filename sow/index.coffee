@@ -1,7 +1,7 @@
 require "~/models/index"
 require '~/plugins/components'
 
-Mem = require "~/plugins/memory-record"
+Mem = require "memory-orm"
 
 Vue = require 'vue'
 Vuex = require 'vuex'
