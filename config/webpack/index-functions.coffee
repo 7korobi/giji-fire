@@ -25,6 +25,7 @@ vue =
   loader: 'vue-loader'
 
 module.exports =
+  mode: 'production'
   entry:
     'functions/index': './functions/api/index.coffee'
     'static/comlink':                './worker/comlink-index.coffee'

@@ -2,27 +2,26 @@
 { Query } = require "memory-orm"
 
 module.exports =
-  default:
-    props: ["value", "part_id"]
-    methods:
-      tap: (value)->
-        @$emit 'input', value
+  props: ["value", "part_id"]
+  methods:
+    tap: (value)->
+      @$emit 'input', value
 
-      phase_at: (xk, yk)->
-        Query.phases.where(part_id: @part_id, handle: xk, group: yk).list
-    computed:
-      group_calcs: ->
-        list = Query.phases.where(part_id: @part_id).reduce?.group.summary ? []
-        for o in list
-          o.phases ?= Query.phases.where(part_id: @part_id, group: o.id)
-          o.chats ?= Query.chats.where(part_id: @part_id, "phase.group": o.id)
-        list
-      handle_calcs: ->
-        list = Query.phases.where(part_id: @part_id).reduce?.handle.summary ? []
-        for o in list
-          o.phases ?= Query.phases.where(part_id: @part_id, handle: o.id)
-          o.chats ?= Query.chats.where(part_id: @part_id, "phase.handle": o.id)
-        list
+    phase_at: (xk, yk)->
+      Query.phases.where(part_id: @part_id, handle: xk, group: yk).list
+  computed:
+    group_calcs: ->
+      list = Query.phases.where(part_id: @part_id).reduce?.group.summary ? []
+      for o in list
+        o.phases ?= Query.phases.where(part_id: @part_id, group: o.id)
+        o.chats ?= Query.chats.where(part_id: @part_id, "phase.group": o.id)
+      list
+    handle_calcs: ->
+      list = Query.phases.where(part_id: @part_id).reduce?.handle.summary ? []
+      for o in list
+        o.phases ?= Query.phases.where(part_id: @part_id, handle: o.id)
+        o.chats ?= Query.chats.where(part_id: @part_id, "phase.handle": o.id)
+      list
 
 </script>
 

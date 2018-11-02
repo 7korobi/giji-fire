@@ -44,34 +44,33 @@ div(v-if="self")
 { Query } = require "memory-orm"
 
 module.exports =
-  default:
-    props: ["self_id"]
-    data: ->
-      text: ""
-      show: "talk"
-      deco: "head"
-      handle: "SSAY"
-      show: {}
+  props: ["self_id"]
+  data: ->
+    text: ""
+    show: "talk"
+    deco: "head"
+    handle: "SSAY"
+    show: {}
 
-    methods:
-      can_phase: (handle)->
-        Query.stats.find "#{@self_id}-#{handle}"
+  methods:
+    can_phase: (handle)->
+      Query.stats.find "#{@self_id}-#{handle}"
 
-    computed:
-      sayable: ->
-        @can_phase @handle
-      self: ->
-        Query.potofs.find @self_id
-      parts: ->
-        @$store.state.book.parts
-      part: ->
-        Query.parts.find @part_id
-      part_id: ->
-        @$store.state.book.part_id
-      phases: ->
-        @$store.state.book.phases
-      phase: ->
-        @show[@handle] = true
-        Query.phases.where({ @part_id, @handle }).list.first
+  computed:
+    sayable: ->
+      @can_phase @handle
+    self: ->
+      Query.potofs.find @self_id
+    parts: ->
+      @$store.state.book.parts
+    part: ->
+      Query.parts.find @part_id
+    part_id: ->
+      @$store.state.book.part_id
+    phases: ->
+      @$store.state.book.phases
+    phase: ->
+      @show[@handle] = true
+      Query.phases.where({ @part_id, @handle }).list.first
 
 </script>

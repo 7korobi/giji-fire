@@ -2,8 +2,7 @@
 require "~/plugins/components.coffee"
 
 module.exports =
-  default:
-    data: -> {}
+  data: -> {}
 
 </script>
 <template lang="pug">

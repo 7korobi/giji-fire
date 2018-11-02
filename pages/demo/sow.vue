@@ -18,7 +18,6 @@ div
 
 <script lang="coffee">
 module.exports =
-  default:
-    data: (req)->
-      text: ""
+  data: (req)->
+    text: ""
 </script>

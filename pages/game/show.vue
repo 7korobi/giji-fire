@@ -136,7 +136,7 @@ module.exports =
 
     part_id:  -> @book_id + '-top'
     page_all_contents: ->
-      Query.chats.wiki( @hide_ids, @part_id ).list
+      @chats "wiki", @part_id
     page_contents: ->
       @page_all_contents
   }

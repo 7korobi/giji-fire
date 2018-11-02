@@ -1,26 +1,25 @@
 <script lang="coffee">
 
 module.exports =
-  default:
-    props: ["top"]
-    data: ->
-      text: ""
+  props: ["top"]
+  data: ->
+    text: ""
 
-    computed:
-      text_rows: ->
-        rows = @text.split("\n").length
-        if 2 < rows
-          rows
-        else
-          3
+  computed:
+    text_rows: ->
+      rows = @text.split("\n").length
+      if 2 < rows
+        rows
+      else
+        3
 
-      show_write: ->
-        @$store.state.menu.target == 'comment'
-      show: ->
-        @show_write
-      style: ->
-        position: "absolute"
-        transform: "translateY(#{@top}px)"
+    show_write: ->
+      @$store.state.menu.target == 'comment'
+    show: ->
+      @show_write
+    style: ->
+      position: "absolute"
+      transform: "translateY(#{@top}px)"
 
 </script>
 

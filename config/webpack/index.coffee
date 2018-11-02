@@ -6,7 +6,7 @@ module.exports =
   workbox:  require "./workbox.coffee"
 
   loading:
-    color: '#3B8070'
+    color: '#fff'
   css: []
   plugins: []
   modules: [

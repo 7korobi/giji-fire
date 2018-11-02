@@ -24,6 +24,7 @@ vue =
   loader: 'vue-loader'
 
 module.exports =
+  mode: 'production'
   entry:
     model_spec: './__tests__/model-spec.coffee'
   output:

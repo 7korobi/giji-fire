@@ -24,21 +24,24 @@ vue =
 
 coffee =
   test: /\.coffee$/
-  loader: 'coffee-loader'
-  options:
-    transpile:
-      presets: [
-        "vue-app",
-        [ "env"
-          targets:
-            browsers: [
-              "> 5%"
-            ]
-          forceAllTransforms: true
+  use: [
+    loader: 'coffee-loader'
+    options:
+      transpile:
+        presets: [
+          "vue-app",
+          [ "env"
+            targets:
+              browsers: [
+                "> 5%"
+              ]
+            forceAllTransforms: true
+          ]
         ]
-      ]
+  ]
 
 module.exports =
+  mode: 'production'
   entry:
     'static/sow/index': './sow/index.coffee'
   output:

@@ -2,32 +2,10 @@ const loaders = {
   coffee: {
     test: /\.coffee$/,
     loader: 'coffee-loader',
-    options: {
-      transpile: {
-        presets: [
-          "vue-app",
-          [ "env", {
-            targets: {
-              browsers: [
-                "> 5%"
-              ]
-            },
-            forceAllTransforms: true
-          }]
-        ]
-      }
-    }
   },
   yml: {
     test: /\.yml$/,
     loader: 'json-loader!yaml-loader'
-  },
-  pug: {
-    test: /\.pug$/,
-    loader: 'pug-html-loader',
-    query: {
-      pretty: true
-    }
   },
   md: {
     test: /\.md$/,
@@ -50,16 +28,9 @@ const loaders = {
 
 module.exports = function (options) {
   // Add .coffee extension for store, middleware and more
-  this.nuxt.options.extensions.push('coffee', 'yml')
-
   // Extend build
   this.extendBuild(config => {
     config.resolve.extensions.push('.coffee', '.yml')
-    for(const rule of config.module.rules) {
-      if ('vue-loader' === rule.loader) {
-        Object.assign( rule.options.loaders, loaders )
-      }
-    }
     for (const key in loaders) {
       const loader = loaders[key]
       config.module.rules.push(loader)
