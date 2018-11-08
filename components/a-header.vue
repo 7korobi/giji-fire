@@ -8,6 +8,7 @@ module.exports =
       local:
         theme: "cinema"
         font:  "std"
+        zoom:  "0.5"
       watch:
         theme: ->
           return unless window?
@@ -80,17 +81,17 @@ module.exports =
   head: ->
     # https://materialdesignicons.com/
     meta: [
-      { name: 'view', content: "width=device-width, initial-scale=0.75, shrink-to-fit=no" }
+      { hid: 'viewport', name: 'viewport', content: "width=device-width, initial-scale=#{@zoom}, shrink-to-fit=no" }
     ]
     link: [
       { hid: 'hid10', rel: 'stylesheet', type: 'text/css', href: 'https://cdn.materialdesignicons.com/2.3.54/css/materialdesignicons.min.css' }
-      { hid: 'hid3', rel: 'stylesheet',   type: 'text/css', href: url.assets + '/css/index.styl.css' }
-      { hid: 'hid4', rel: @new.rel.log,   type: 'text/css', href: @href.log }
-      { hid: 'hid5', rel: @new.rel.font,  type: 'text/css', href: @href.font }
-      { hid: 'hid6', rel: @new.rel.theme, type: 'text/css', href: @href.theme }
-      { hid: 'hid7', rel: @old.rel.log,   type: 'text/css', href: @old.href.log }
-      { hid: 'hid8', rel: @old.rel.font,  type: 'text/css', href: @old.href.font }
-      { hid: 'hid9', rel: @old.rel.theme, type: 'text/css', href: @old.href.theme }
+      { hid: 'hid3',  rel: 'stylesheet',   type: 'text/css', href: url.assets + '/css/index.styl.css' }
+      { hid: 'hid4',  rel: @new.rel.log,   type: 'text/css', href: @href.log }
+      { hid: 'hid5',  rel: @new.rel.font,  type: 'text/css', href: @href.font }
+      { hid: 'hid6',  rel: @new.rel.theme, type: 'text/css', href: @href.theme }
+      { hid: 'hid7',  rel: @old.rel.log,   type: 'text/css', href: @old.href.log }
+      { hid: 'hid8',  rel: @old.rel.font,  type: 'text/css', href: @old.href.font }
+      { hid: 'hid9',  rel: @old.rel.theme, type: 'text/css', href: @old.href.theme }
     ]
 
 </script>
@@ -99,6 +100,11 @@ div
   no-ssr
     welcome(:top="top" :title="title")
       .btns.form
+        span.zoom
+          btn(v-model="zoom" as="1.0" ) １
+          btn(v-model="zoom" as="0.75") ¾
+          btn(v-model="zoom" as="0.5" ) ½
+
         span.font
           btn(v-model="font" as="large") 大判
           btn(v-model="font" as="novel") 明朝
