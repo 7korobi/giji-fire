@@ -14,13 +14,15 @@ module.exports =
       list = Query.phases.where(part_id: @part_id).reduce?.group.summary ? []
       for o in list
         o.phases ?= Query.phases.where(part_id: @part_id, group: o.id)
-        o.chats ?= Query.chats.where(part_id: @part_id, "phase.group": o.id)
+        o.chats ?= Query.chats.partition("group", @part_id, o.id)
+        o.phase_ids ?= o.phases.ids
       list
     handle_calcs: ->
       list = Query.phases.where(part_id: @part_id).reduce?.handle.summary ? []
       for o in list
         o.phases ?= Query.phases.where(part_id: @part_id, handle: o.id)
-        o.chats ?= Query.chats.where(part_id: @part_id, "phase.handle": o.id)
+        o.chats ?= Query.chats.partition("handle", @part_id, o.id)
+        o.phase_ids ?= o.phases.ids
       list
 
 </script>
@@ -32,13 +34,13 @@ div
       tr
         th
         th(v-for="xo in handle_calcs")
-          btn(@input="tap", :value="value", :as="xo.phases.pluck('id')")
+          btn(@input="tap", :value="value", :as="xo.phase_ids")
             | {{ xo.id }}
             sup {{ xo.chats.list.length }}
     tbody
       tr(v-for="yo in group_calcs", :key="yo.id")
         th
-          btn(@input="tap", :value="value", :as="yo.phases.pluck('id')")
+          btn(@input="tap", :value="value", :as="yo.phase_ids")
             | {{ yo.id }}
             sup {{ yo.chats.list.length }}
 

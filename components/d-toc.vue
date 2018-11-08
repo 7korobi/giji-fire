@@ -7,7 +7,7 @@ div(v-on="movespace()")
         th(ref="curtain0")
       tr(v-for="(o, line) in book.parts.list", :key="o.id")
         th.r.form(style="white-space: nowrap")
-          nuxt-link.tooltip-top(replace, :to="page_url(o.id, 0)" :data-tooltip="part_label(o.id)" :class="{ active: o.id === part_id }")
+          nuxt-link(replace, :to="page_url(o.id, 0)" :class="{ active: o.id === part_id }")
             | {{o.label}}
             sup {{ chat_size(o.id, mode) }}
         th.l.form(v-if="in_curtain(0)")

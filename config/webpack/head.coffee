@@ -10,7 +10,7 @@ module.exports =
   title: pkg.name
   meta: [
     { charset: 'utf-8' }
-    { name: 'viewport', content: 'width=device-width, initial-scale=0.5, shrink-to-fit=no' }
+    { name: 'view', content: 'width=device-width, initial-scale=0.5, shrink-to-fit=no' }
     { hid: 'description', content: pkg.description }
     { href: pkg.author }
   ]

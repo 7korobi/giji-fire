@@ -28,16 +28,16 @@ coffee =
     loader: 'coffee-loader'
     options:
       transpile:
-        presets: [
-          "vue-app",
-          [ "env"
+        plugins: [
+          "@babel/plugin-transform-modules-commonjs",
+        ],
+        presets: [[
+          "@nuxtjs/babel-preset-app",
             targets:
               browsers: [
-                "> 5%"
+                "last 3 versions"
               ]
-            forceAllTransforms: true
-          ]
-        ]
+        ]]
   ]
 
 module.exports =

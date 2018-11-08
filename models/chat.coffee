@@ -73,6 +73,9 @@ new Rule("chat").schema ->
 
       return unless o.phase
       { group, handle } = o.phase
+      emit "group",  part_id, group,  it
+      emit "handle", part_id, handle, it
+
       if   'M'.includes group
         emit part_id, "memo", it
 

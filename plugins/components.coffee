@@ -1,6 +1,7 @@
 Vue = require "vue"
 
-{ MarkSVG, Marked } = require '~/node_modules/vue-markup/src/index'
+#{ MarkSVG, Marked } = require '~/node_modules/vue-markup/src/index'
+{ MarkSVG, Marked } = require 'vue-markup'
 
 { Query } = require "memory-orm"
 { url } = require "~/config/live.yml"

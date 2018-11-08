@@ -19,10 +19,10 @@ new Rule("tag").schema ->
   @belongs_to "chr_set"
   @habtm "faces", reverse: true
   @tree()
-  @property 'model',
-    chr_job:
-      value: (face_id)->
-        Query.chr_jobs.find "#{@chr_set_id}_#{face_id}"
+
+  class @model extends @model
+    chr_job: (face_id)->
+      Query.chr_jobs.find "#{@chr_set_id}_#{face_id}"
   @scope (all)->
     enable: ->
       all.where (o)->
@@ -35,11 +35,7 @@ new Rule("face").schema ->
 
   @scope (all)->
     tag: (tag_id)->
-      switch tag_id
-        when "all"
-          all
-        else
-          all.in tag_ids: tag_id
+      all.partition "tag.#{tag_id}.set"
 
     name_blank: ->
       for idx in ["ア".charCodeAt(0) .. "ン".charCodeAt(0)]
@@ -77,6 +73,16 @@ new Rule("face").schema ->
         sort: ["id"]
         index: "set.length"
 
+    @map_partition: (o, emit)->
+      it =
+        set: o.id
+        count: 1
+      emit it
+      emit "tag","all", it
+
+      for tag_id in o.tag_ids
+        emit "tag", tag_id, it
+
     @map_reduce: (o, emit)->
       head = o.name[0]
       head = o.name[1] if ["†"].includes o.name[0]
@@ -84,11 +90,8 @@ new Rule("face").schema ->
       head = head.replace /[\u3041-\u3096]/g, (hira)->
         String.fromCharCode hira.charCodeAt(0) + 0x60
 
-      emit "all", "all", map
       emit "name_head", head,
         set: o.name
-      for tag in o.tag_ids
-        emit "tag", tag, map
 
   @property 'model',
     roles:

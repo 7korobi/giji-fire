@@ -24,18 +24,18 @@ c-post.form(handle="SSAY" deco="giji")
         td(colspan="5")
           span(v-if="book.game.vote === 'sign'") 記名
           span(v-if="book.game.vote === 'hide'") 匿名
-          span(v-if="-1 < book.option.indexOf('vote_entrust')") 委任
-          code(v-if="-1 < book.game.vote_by.indexOf('live')") 生存者
-          code.VSSAY(v-if="-1 < book.game.vote_by.indexOf('mob')") 見物人(陪審員)
-          code.GSAY(v-if="-1 < book.game.vote_by.indexOf('grave')") 墓下(陪審員)
+          span(v-if="book.option.includes('vote_entrust')") 委任
+          code(v-if="book.game.vote_by.includes('live')") 生存者
+          code.VSSAY(v-if="book.game.vote_by.includes('mob')") 見物人(陪審員)
+          code.GSAY(v-if="book.game.vote_by.includes('grave')") 墓下(陪審員)
   hr
-  code(v-if="0 < book.chat.password") 合言葉
-  code(v-if="-1 < book.option.indexOf('sign_show')") ID公開
-  code.AIM(v-if="-1 < book.option.indexOf('talk_aim')" title="個人的な耳打ちができる。") 内緒話
-  code.WSAY(v-if="-1 < book.option.indexOf('talk_secret_grave')" title="狼・妖精と死者との間で会話ができる。") 幽界トーク
-  code.VSSAY(v-if="-1 < book.option.indexOf('talk_mob_grave')" title="見物人と死者との間で会話ができる。") 裏方見物人
-  code.VSSAY(v-if="-1 < book.option.indexOf('talk_mob_alive')" title="見物人と生存者、死者との間で会話ができる。") 舞台見物人
-  code(v-if="-1 < book.option.indexOf('role_select')") 役職希望を募る
+  code(v-if="book.chat.password.length") 合言葉
+  code(v-if="book.option.includes('sign_show')") ID公開
+  code.AIM(v-if="book.option.includes('talk_aim')" title="個人的な耳打ちができる。") 内緒話
+  code.WSAY(v-if="book.option.includes('talk_secret_grave')" title="狼・妖精と死者との間で会話ができる。") 幽界トーク
+  code.VSSAY(v-if="book.option.includes('talk_mob_grave')" title="見物人と死者との間で会話ができる。") 裏方見物人
+  code.VSSAY(v-if="book.option.includes('talk_mob_alive')" title="見物人と生存者、死者との間で会話ができる。") 舞台見物人
+  code(v-if="book.option.includes('role_select')") 役職希望を募る
 
 </template>
 <script lang="coffee">

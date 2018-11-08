@@ -79,6 +79,9 @@ module.exports =
   
   head: ->
     # https://materialdesignicons.com/
+    meta: [
+      { name: 'view', content: "width=device-width, initial-scale=0.75, shrink-to-fit=no" }
+    ]
     link: [
       { hid: 'hid10', rel: 'stylesheet', type: 'text/css', href: 'https://cdn.materialdesignicons.com/2.3.54/css/materialdesignicons.min.css' }
       { hid: 'hid3', rel: 'stylesheet',   type: 'text/css', href: url.assets + '/css/index.styl.css' }

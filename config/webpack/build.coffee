@@ -2,17 +2,19 @@
 module.exports =
   extend: (config, { isDev, isClient })->
 
+
   extractCSS: true
 
   babel:
+    plugins: [
+      "@babel/plugin-transform-modules-commonjs"
+    ]
     presets: [
-      "vue-app"
-      [ "env"
+      [ "@nuxtjs/babel-preset-app",
         targets:
           browsers: [
-            "> 5%"
+            "last 1 versions"
           ]
-        forceAllTransforms: true
       ]
     ]
 

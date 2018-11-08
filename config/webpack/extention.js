@@ -2,6 +2,22 @@ const loaders = {
   coffee: {
     test: /\.coffee$/,
     loader: 'coffee-loader',
+    options: {
+      transpile: {
+        plugins: [
+          "@babel/plugin-transform-modules-commonjs",
+        ],
+        presets: [
+          [ "@nuxtjs/babel-preset-app", {
+            targets: {
+              browsers: [
+                "last 1 versions"
+              ]
+            }
+          }]
+        ]
+      }
+    }
   },
   yml: {
     test: /\.yml$/,

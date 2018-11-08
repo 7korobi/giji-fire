@@ -7,14 +7,14 @@ coffee =
   loader: 'coffee-loader'
   options:
     transpile:
-      presets: [
-        "vue-app",
-        [ "env",
+      plugins: [
+        "@babel/plugin-transform-modules-commonjs",
+      ],
+      presets: [[
+        "@nuxtjs/babel-preset-app",
           targets:
             node: "6.11.5"
-          forceAllTransforms: true
-        ]
-      ]
+      ]]
 
 yml =
   test: /\.yml$/,
@@ -27,7 +27,7 @@ vue =
 module.exports =
   mode: 'production'
   entry:
-    'functions/index': './functions/api/index.coffee'
+    'functions/index':               './functions/api/index.coffee'
     'static/comlink':                './worker/comlink-index.coffee'
     'static/firebase-messaging-sw':  './worker/firebase-messaging-index.coffee'
   output:

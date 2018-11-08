@@ -6,14 +6,14 @@ coffee =
   loader: 'coffee-loader'
   options:
     transpile:
-      presets: [
-        "vue-app",
-        [ "env",
+      plugins: [
+        "@babel/plugin-transform-modules-commonjs",
+      ],
+      presets: [[
+        "@nuxtjs/babel-preset-app",
           targets:
             node: "6.11.5"
-          forceAllTransforms: true
-        ]
-      ]
+      ]]
 
 yml =
   test: /\.yml$/,
