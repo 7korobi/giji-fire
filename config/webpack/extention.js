@@ -1,22 +1,51 @@
+const babel = {
+  plugins: [
+    "@babel/plugin-transform-modules-commonjs",
+  ],
+  presets: [
+    [ "@nuxtjs/babel-preset-app", {
+      targets: {
+        node: "6.11.5",
+        browsers: [
+          "last 1 versions"
+        ]
+      }
+    }]
+  ]
+}
+
+
+const whitelist = [
+  RegExp(`node_modules/quill-`),
+  RegExp(`\./nuxt/`),
+]
+const not_loaders = {
+  js: {
+    test: /\.js$/,
+    loader: 'babel-loader',
+    options: Object.assign({
+      include: (path)=> {
+        if ( whitelist[0].exec(path) ) {
+          throw new Error(JSON.stringify(path))
+        }
+        for ( const rule of whitelist ) {
+          if (rule.exec(path)){
+            return true
+          }
+        }
+        return false
+      },
+    }, babel),
+  },
+}
+
+
 const loaders = {
   coffee: {
     test: /\.coffee$/,
     loader: 'coffee-loader',
     options: {
-      transpile: {
-        plugins: [
-          "@babel/plugin-transform-modules-commonjs",
-        ],
-        presets: [
-          [ "@nuxtjs/babel-preset-app", {
-            targets: {
-              browsers: [
-                "last 1 versions"
-              ]
-            }
-          }]
-        ]
-      }
+      transpile: babel,
     }
   },
   yml: {

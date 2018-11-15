@@ -14,10 +14,13 @@ module.exports =
     { href: pkg.author }
   ]
   link: [
+    { rel: 'stylesheet', type: 'text/css', href: '/lib/quill/quill.bubble.css' }
     { rel: 'manifest', href: '/manifest.json'}
     { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     { href: pkg.author }
   ]
   script: [
-    { src: url.assets + '/lib/monaco-editor/min/vs/loader.js', type: 'text/javascript', charset: 'utf8' }
+    { src: '/lib/quill/quill.min.js', type: 'text/javascript', charset: 'utf8' }
+    { src: '/lib/quill/image-resize.min.js', type: 'text/javascript', charset: 'utf8' }
+    { src: '/lib/quill/image-drop.min.js', type: 'text/javascript', charset: 'utf8' }
   ]
