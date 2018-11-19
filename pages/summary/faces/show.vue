@@ -165,6 +165,9 @@ module.exports =
     face: ->
       Query.faces.find @id
 
+  head: ->
+    titleTemplate: "#{ @face.name }の活躍 - %s"
+
 </script>
 
 <style lang="sass" scoped>

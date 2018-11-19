@@ -122,11 +122,6 @@ module.exports =
     step: State.step
     floats: {}
 
-  head: ->
-    labels = [@part, @book].map (o)-> o?.label
-    labels.push "人狼議事"
-    title: labels.join(' ')
-
   computed: {
     ...vuex_value "menu.potofs", ['hide_ids']
     ...vuex_value "menu.side", ["shows"]
@@ -146,5 +141,9 @@ module.exports =
     folder_url: ->
       "/sow/village?folder_id=#{@folder_id.toUpperCase()}"
   }
+
+  head: ->
+    titleTemplate: "#{@part?.label ? ""} #{@book?.label ? ""} - %s"
+
 
 </script>

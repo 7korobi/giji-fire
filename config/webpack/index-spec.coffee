@@ -15,18 +15,25 @@ coffee =
             node: "6.11.5"
       ]]
 
+sass =
+  test: /\.sass$/
+  loader: 'sass-loader'
+
+pug =
+  test: /\.pug$/
+  loader: 'pug-plain-loader'
+
 yml =
-  test: /\.yml$/,
+  test: /\.yml$/
   loader: 'json-loader!yaml-loader'
 
 vue =
-  test: /\.vue$/,
-  loader: 'vue-loader'
+  test: /\.vue$/
+  loader: 'vue-jest'
 
 module.exports =
-  mode: 'production'
-  entry:
-    model_spec: './__tests__/model-spec.coffee'
+  transform:
+    '^.+\\.coffee$': 
   output:
     path: path.join current, '__tests__'
     filename: '[name].js' # Important
@@ -37,6 +44,8 @@ module.exports =
     rules: [
       coffee
       yml
+      sass
+      pug
       vue
     ]
 

@@ -37,4 +37,8 @@ module.exports =
       Query.randoms.reduce.type.map ({ count, id })->
         [ id, count, Query.randoms.deck id ]
 
+  head: ->
+    titleTemplate: "ランダムについて - %s"
+
+
 </script>

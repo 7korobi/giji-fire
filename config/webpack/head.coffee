@@ -7,7 +7,7 @@ pkg  = require '../../package'
 { url } = yaml.safeLoad fs.readFileSync "config/live.yml", 'utf8'
 
 module.exports =
-  title: pkg.name
+  title: pkg.description
   meta: [
     { charset: 'utf-8' }
     { hid: 'description', content: pkg.description }

@@ -76,5 +76,8 @@ module.exports =
       .sort("face.#{@order}", asc)
       .list
 
+  head: ->
+    titleTemplate: "#{ @set.label } - %s"
+
 </script>
 

@@ -19,7 +19,7 @@ div
     c-post(handle="SSAY" deco="giji")
       article
         | 好きなほうを選んでね。
-        progress(:value="done" :max="full") {{ parseInt( 100 * done / full ) }}%
+        progress(:value="done" :max="full") {{ full_per }}%
         hr
         transition-group.list
           portrate(@click="choice" :face_id="a" :key="a")
@@ -100,6 +100,9 @@ module.exports =
     full: ->
       @will + @done
     
+    full_per: ->
+      parseInt 100 * @done / @full 
+
     will: ->
       @count.false ? 0
 
@@ -143,6 +146,9 @@ module.exports =
           @cache["#{@b}-#{@a}"] = -1
       @cache = @cache
       @a = @b = @message = null
+
+  head: ->
+    titleTemplate: "#{ @full_per }% #{ @set.label } - %s"
 
 </script>
 

@@ -123,4 +123,8 @@ module.exports =
     @$store.commit "menu/focus",
       query: hash
       mode: 'top'
+
+  head: ->
+    titleTemplate: "%sのルール"
+
 </script>

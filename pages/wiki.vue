@@ -109,10 +109,6 @@ module.exports =
     mode: 'wiki' 
     floats: {}
 
-  head: ->
-    labels = [@book_id, "人狼議事wiki"]
-    title: labels.join(' ')
-
   computed: {
     ...vuex_value "menu.potofs", ['hide_ids']
     ...vuex_value "menu.side", ["shows"]
@@ -151,5 +147,7 @@ module.exports =
       { update, guide, _id: @part_id + '-X', handle: 'XSAY',  label: '妖精' }
       { update, guide, _id: @part_id + '-T', handle: 'TITLE', label: '黒地' }
     ]
+  head: ->
+    titleTemplate: "#{@book_id} %swiki"
 
 </script>

@@ -35,6 +35,10 @@ module.exports =
       .tag @tag_id
       .search @search
       .list
+  
+  head: ->
+    titleTemplate: "#{ @set.label } - %s"
+
 
 </script>
 

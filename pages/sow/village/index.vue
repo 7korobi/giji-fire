@@ -265,6 +265,9 @@ module.exports =
       .all_contents @mode, @query_in, @query_where, @search, @order, @asc
       .list
 
+  head: ->
+    titleTemplate: "終了した村一覧 - %s"
+
 </script>
 <style lang="sass" scoped>
 .cards
