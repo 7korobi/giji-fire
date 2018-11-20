@@ -71,17 +71,13 @@ div
       | 廃村期限　
       timeago(:since="o.timer.scraplimitdt")
   c-post(handle="TSAY",  v-for="o in plan", :head="o.name", :key="o._id")
-    h3
-      | {{ o.state }}　
-      a(:href="o.link") WIKI
+    | {{ o.state }}　
+    a(:href="o.link") WIKI
     .fine
       ul
         li(v-for="text in o.flavor") {{ text }}
         li.VSSAY(v-for="text in o.lock") {{ text }}
         li.VSSAY(v-for="text in o.card") {{ text }}
-        li {{ o.upd.description || [o.upd.interval, o.upd.time].join(" ") }}
-        li {{ o.upd.start }}
-
 
     .date
       | 企画更新　
