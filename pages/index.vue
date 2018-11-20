@@ -103,7 +103,7 @@ module.exports =
       return null unless @user?._id
       "mypage"
     plan: ->
-      Query.sow_village_plans.list
+      Query.sow_village_plans.sort('write_at','desc').list
     prologue: ->
       Query.sow_villages.prologue.list
     progress: ->
