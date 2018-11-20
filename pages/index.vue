@@ -71,7 +71,7 @@ div
       | 廃村期限　
       timeago(:since="o.timer.scraplimitdt")
   c-post(handle="TSAY",  v-for="o in plan", :head="o.name", :key="o._id")
-    | {{ o.state }}　
+    | {{ o.state || '（開催地不明）' }}　
     a(:href="o.link") WIKI
     .fine
       ul
