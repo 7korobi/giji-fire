@@ -1,16 +1,21 @@
 <template lang="pug">
-.page-active-bg(@drop="drop")
+.page-active-bg
   a-header
   .page-active
     .outframe
-      .sideframe
-        no-ssr
+      no-ssr
+        .toastframe
+          .inframe
+            .icons.form
+              slot(name="toasts")
+      no-ssr
+        .sideframe
           .inframe
             .icons.form
               slot(name="icons")
 
       no-ssr
-        .summary(name="list" tag="div" key="summary")
+        .summaryframe(:class="options" name="list" tag="div" key="summary")
           slot(name="summary")
 
       .center-left
@@ -26,11 +31,17 @@
 </style>
 
 <script lang="coffee">
+{ vuex_value } = require '~/plugins/struct'
+
 module.exports =
   methods:
     drop: (e)->
       e.stopPropagation()
       e.preventDefault()
       console.log "block drop"
+  
+  computed: {
+    ...vuex_value "menu.side", ["shows", "options"]
+  }
 
 </script>

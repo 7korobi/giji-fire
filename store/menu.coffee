@@ -19,6 +19,7 @@ module.exports =
       hide_ids: []
 
     side:
+      options: ["impose"] # impose
       shows: [] # pin, toc, potof, current, search
 
   mutations:

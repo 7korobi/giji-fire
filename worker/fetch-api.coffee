@@ -111,6 +111,10 @@ module.exports =
     face.aggregate.folders = _.sortBy folders, (list, key)-> - list.length
     ['faces']
 
+  'sow/plan': (url)->
+    data = await @fetch url
+    Set.sow_village_plan.merge data.plans
+
   'sow/progress': (url)->
     data = await @fetch url
     Set.sow_turn.merge    data.events

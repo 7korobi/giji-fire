@@ -39,7 +39,7 @@ div
     .card どこかの村で活躍したことのあるキャラクターはこちら。
 
   c-report(handle="footer" deco="giji")
-    h3.center 開始待ちの村／進行中の村
+    h3.center 企画村予定／開始待ちの村／進行中の村
     div
       fcm(topic="init")
       | 新しい村について通知を受ける。
@@ -70,6 +70,22 @@ div
     .date
       | 廃村期限　
       timeago(:since="o.timer.scraplimitdt")
+  c-post(handle="TSAY",  v-for="o in plan", :head="o.name", :key="o._id")
+    h3
+      | {{ o.state }}　
+      a(:href="o.link") WIKI
+    .fine
+      ul
+        li(v-for="text in o.flavor") {{ text }}
+        li.VSSAY(v-for="text in o.lock") {{ text }}
+        li.VSSAY(v-for="text in o.card") {{ text }}
+        li {{ o.upd.description || [o.upd.interval, o.upd.time].join(" ") }}
+        li {{ o.upd.start }}
+
+
+    .date
+      | 企画更新　
+      timeago(:since="o.write_at")
 
   c-report(handle="footer" deco="center")
     nuxt-link(to="/demo") 開発者用ページ
@@ -79,7 +95,10 @@ div
 
 module.exports =
   mixins: [
-    require("~/plugins/get-by-mount") -> [["sow/progress"]]
+    require("~/plugins/get-by-mount") ->
+      [ ["sow/plan"]
+        ["sow/progress"]
+      ]
   ]
   computed:
     user: ->
@@ -87,6 +106,8 @@ module.exports =
     mypage: ->
       return null unless @user?._id
       "mypage"
+    plan: ->
+      Query.sow_village_plans.list
     prologue: ->
       Query.sow_villages.prologue.list
     progress: ->

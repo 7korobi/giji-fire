@@ -13,7 +13,7 @@ div(v-on="movespace()")
         th.l.form(v-if="in_curtain(0)")
           nuxt-link.cite-in.page(v-for="idx in page_all_idxs(o.id)" replace :to="page_url(o.id, idx)" :class="page_btn_class(o.id, idx)" :key=" o.id + idx " :cite="page_label(o.id, idx)")
             | {{ idx + 1 }}
-        tform(v-else)
+        th.form(v-else)
           del ...
 </template>
 

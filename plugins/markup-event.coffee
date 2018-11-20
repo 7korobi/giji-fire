@@ -52,10 +52,10 @@ module.exports =
           @$emit "check", target.checked
 
       click = (e)=>
-        e.preventDefault()
         if chat = has_cite e.target
           @$emit "anker", ...chat.make_ankers @id
         if url = has_href e.target
+          e.preventDefault()
           open url, '_blank'
 
       o =

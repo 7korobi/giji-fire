@@ -11,8 +11,6 @@ div(v-if="self")
       btn(v-for="o in phases" v-model="show[o.handle]" @toggle="show[o.handle] = ! show[o.handle]", :as="true", :key="o.handle") {{ o.label }}
 
   div(v-if="sayable")
-    c-talk(:sign="self.sign", :face_id="self.face_id" head="monaco editor", :deco="deco", :handle="phase.handle" )
-      monaco-editor(v-model="text", :max-row="10")
     c-talk(:sign="self.sign", :face_id="self.face_id" head="発言投稿", :deco="deco", :handle="phase.handle" )
       text-editor(v-model="text", :max-row="10", :max-size="2000")
     c-post(:sign="self.sign", :face_id="self.face_id" head="ト書き投稿", :deco="deco", :handle="phase.handle" )

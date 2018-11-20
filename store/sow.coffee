@@ -7,6 +7,7 @@ module.exports =
   mutations: {}
   actions: {
     ...caches "1h",
+      plan:      -> "#{url.api}/plan/progress"
       progress:  -> "#{url.api}/story/progress"
       oldlog:    -> "#{url.store}/sow/index.json"
     ...caches "30d",

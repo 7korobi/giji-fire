@@ -25,7 +25,108 @@ IMG.hide
 .page_active-bg
   min-height: 100vh
 
-.summary
+
+.impose:hover
+  width: "calc( 100vw - %s )" % 95px
+
+.fullframe
+  margin: 0
+  margin-left: "calc( 50% - %s )" % 45vw
+  width: 90vw
+
+
+.writeframe
+.outframe
+  margin: 0 auto
+
+.writeframe
+  top: 0
+  box-sizing: content-box
+  .contentframe
+    background-attachment: scroll
+
+.contentframe
+  .inframe
+    padding: 10px 0
+
+
+.summaryframe
+  left:   0
+  bottom: 0
+  .stable
+    width: 160px
+
+.sideframe
+  right:  0
+  bottom: 0
+
+.toastframe
+  right: 0
+  top:  0
+
+.toastframe
+.sideframe
+  .icons
+    width: 42px
+    margin: 0 2px 6px auto
+
+    display: flex
+    flex-direction: column
+    flex-wrap:      nowrap
+    align-items:     center
+    align-content:   space-around
+    justify-content: space-around
+
+    .item
+      box-sizing: content-box
+      flex-basis: auto
+      text-align: center
+      width:        40px
+      height:       90px
+      border-radius: 5px
+      font-size:    12px
+      i
+        font-size:  40px
+    .fa
+      margin: 10px auto
+    .mdi::before
+      margin: 18px auto 4px auto
+
+.summaryframe
+  .swipe
+    td
+    th
+      padding: 0
+
+.toastframe:not(:hover)
+.sideframe:not(:hover)
+.summaryframe:not(:hover)
+  .detail
+    display: none
+
+.summaryframe
+.inframe
+.outframe
+.fullframe
+.contentframe
+  box-sizing: content-box
+
+.summaryframe
+.editframe
+.toastframe
+.sideframe
+.writeframe
+  position: fixed
+  z-index: 10
+  &:hover
+    z-index: 30
+  td
+  th
+    border-style: none
+    border-width: 0
+
+.summaryframe
+.toastframe
 .sideframe
 .writeframe
 .center-left
@@ -36,15 +137,25 @@ IMG.hide
 .inframe
   pointer-events: auto
 
+
+.center-left
+.center-right
+  position: fixed
+  top:  50vh
+  width: 4vw
+  border-bottom-width: 3px
+  border-bottom-style: solid
+
+.center-left
+  left:   0
+
+.center-right
+  right:   0
+
+
 .chat
   box-sizing: border-box
   display: block
-
-.summary
-  .swipe
-    td
-    th
-      padding: 0
 
 .mermaid
 .swipe
@@ -61,11 +172,6 @@ IMG.hide
     margin:  0
     white-space: nowrap
     vertical-align: center
-
-.fullframe
-  margin: 0
-  margin-left: "calc(50% - %s)" % 45vw
-  width: 90vw
 
 .chrblank
   background: #444844
@@ -119,100 +225,6 @@ IMG.hide
       max-width:    88px
       width:        88px
       border-radius: 9px
-
-.sideframe:not(:hover)
-.summary:not(:hover)
-  .detail
-    display: none
-
-.summary
-.inframe
-.outframe
-.fullframe
-.contentframe
-  box-sizing: content-box
-
-.writeframe
-.outframe
-  margin: 0 auto
-
-.center-left
-.center-right
-  position: fixed
-  top:  50vh
-  width: 4vw
-  border-bottom-width: 3px
-  border-bottom-style: solid
-
-.center-left
-  left:   0
-
-.center-right
-  right:   0
-
-.summary
-.editframe
-.sideframe
-.writeframe
-  position: fixed
-  z-index: 10
-  &:hover
-    z-index: 30
-  td
-  th
-    border-style: none
-    border-width: 0
-
-.contentframe
-  .inframe
-    padding: 10px 0
-
-.writeframe
-  top: 0
-  box-sizing: content-box
-  .contentframe
-    background-attachment: scroll
-
-.summary
-  left:   0
-  bottom: 0
-  .stable
-    width: 160px
-
-.sideframe
-  right:  0
-  bottom: 0
-
-.editframe
-  right: 0
-  top:  0
-
-.sideframe
-  .icons
-    width: 42px
-    margin: 0 2px 6px auto
-
-    display: flex
-    flex-direction: column
-    flex-wrap:      nowrap
-    align-items:     center
-    align-content:   space-around
-    justify-content: space-around
-
-    .item
-      box-sizing: content-box
-      flex-basis: auto
-      text-align: center
-      width:        40px
-      height:       90px
-      border-radius: 5px
-      font-size:    14px
-      i
-        font-size:  40px
-    .fa
-      margin: 10px auto
-    .mdi::before
-      margin: 18px auto 4px auto
 
 
 .post

@@ -10,18 +10,15 @@ module.exports =
   a-header
   .page-active
     .outframe
-
+      .toastframe
+        .inframe
+          no-ssr
+            .icons.form
       .sideframe
         .inframe
           no-ssr
             .icons.form
-      .summary(name="list" tag="div" key="summary")
-        no-ssr
-          .inframe.TITLE
-            hr
-            .swipe
-              fire-oauth(style="white-space: nowrap")
-            hr
+      .summaryframe(name="list" tag="div" key="summary")
 
       .center-left
       .center-right

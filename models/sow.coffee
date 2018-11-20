@@ -4,6 +4,8 @@ format = require 'date-fns/format'
 locale = require "date-fns/locale/ja"
 
 new Rule("sow_roletable").schema ->
+new Rule("sow_village_plan").schema ->
+
 
 new Rule("sow_turn").schema ->
   @order "turn", "asc"

@@ -15,7 +15,7 @@
     "generate:nuxt": "nuxt generate",
     "copy": "run-s copy_all copy_dist",
     "copy_all": "run-p -n copy:*",
-    "copy_dist": "cp -ru static/* dist/",
+    "copy_dist": "cp -r static/* dist/",
     "copy:stylus": "ls styl/*.styl.use | xargs stylus --compress --out static/css/",
     "copy:portrate": "cp  ../../*/web_work/images/portrate/* static/images/portrate/.",
     "copy:quill": "cp node_modules/quill/dist/*.css node_modules/quill/dist/quill*.min.js node_modules/quill-*/*.min.js static/lib/quill/.",
