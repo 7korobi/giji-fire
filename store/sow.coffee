@@ -6,10 +6,11 @@ module.exports =
   state: -> {}
   mutations: {}
   actions: {
-    ...caches "1h",
+    ...caches "10m",
       plan:      -> "#{url.api}/plan/progress"
       progress:  -> "#{url.api}/story/progress"
+    ...caches "6h",
       oldlog:    -> "#{url.store}/sow/index.json"
-    ...caches "30d",
+    ...caches "10y",
       story: (id)-> "#{url.store}/sow/#{id}.json"
   }

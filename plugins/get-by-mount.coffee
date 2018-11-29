@@ -78,24 +78,26 @@ base.cache = (timestr, vuex_id, opt)->
   ({ dispatch, state, commit, rootState }, { id, name, timers })->
     roop = ->
       url = opt id
-
-      if is_cache[url]
-        console.log { cache: 'memory',  timestr, id, name, url }
+      idx = [name, id].join("&")
+      now = new Date
+      expire = timeout + (now - 0)
+      if now < is_cache[idx]
+        console.log { cache: 'memory', timestr, name, id }
       else
-        meta = await lfs.meta.getItem url
-        is_cache[url] = true
+        meta = await lfs.meta.getItem idx
 
-        if new Date < meta?.expire 
-          console.log { cache: 'LF',  timestr, id, name, url }
-          pack = await lfs.data.getItem url
+        if now < meta?.expire 
+          console.log { cache: 'LF', timestr, name, id, url }
+          pack = await lfs.data.getItem idx
           State.store pack
 
         else
-          console.log { cache: false, timestr, id, name, url }
+          console.log { cache: false, timestr, name, id, url }
           pack = await FetchApi[name] url, id
-          lfs.data.setItem url, pack
-          lfs.meta.setItem url,
-            expire: timeout + (new Date - 0)
+          lfs.data.setItem idx, pack
+          lfs.meta.setItem idx, { expire }
+
+        is_cache[idx] = expire
 
       if timeout < 0x7fffffff  #  ほぼ25日
         timers[url] = setTimeout roop, timeout

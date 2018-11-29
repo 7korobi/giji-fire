@@ -1,4 +1,4 @@
-{ Set, Model, Query, Rule } = require "memory-orm"
+{ Set, Model, Query, Rule, State } = require "memory-orm"
 
 order = [
   "ririnra"
@@ -47,21 +47,6 @@ new Rule("face").schema ->
       all.tag(tag_id).reduce.name_head
 
   @deploy ->
-    @aggregate =
-      sow_auths: []
-      mestypes: []
-      folders: []
-      roles: []
-      lives: []
-      log:
-        date_min:   0xfffffffffffff
-        date_max:  -0xfffffffffffff
-        story_ids: []
-      fav:
-        _id:
-          sow_auth_id: null
-        count: 0
-    @summary_url = "/summary/faces/show?id=#{@_id}"
 
   map =
     count: 1
@@ -94,6 +79,9 @@ new Rule("face").schema ->
         set: o.name
 
   @property 'model',
+    summary_url:
+      get: ->
+        "/summary/faces/show?id=#{@_id}"
     roles:
       get: ->
         @aggregate.roles
@@ -179,29 +167,46 @@ new Rule("chr_job").schema ->
       emit "list",
         sort: ["face.order"]
 
+State.transaction ->
+  Set.tag.set  require "../yaml/chr_tag.yml"
 
-Set.tag.set  require "../yaml/chr_tag.yml"
-Set.face.set require "../yaml/chr_face.yml"
-for { face_id, say } in require "../yaml/npc.yml"
-  Query.faces.find(face_id).npc = { say }
+  Set.face.set faces = require "../yaml/chr_face.yml"
+  for o in faces
+    o.aggregate =
+      sow_auths: []
+      mestypes: []
+      folders: []
+      roles: []
+      lives: []
+      log:
+        date_min:   0xfffffffffffff
+        date_max:  -0xfffffffffffff
+        story_ids: []
+      fav:
+        _id:
+          sow_auth_id: null
+        count: 0
+
+  for { face_id, say } in require "../yaml/npc.yml"
+    Set.face.find(face_id).npc = { say }
 
 
-for key in order
-  o = require "../yaml/cs_#{key}.yml"
+  for key in order
+    o = require "../yaml/cs_#{key}.yml"
 
-  Set.chr_set.append o.chr_set
-  { chr_set_id } = o.chr_set
-  cs_key = { chr_set_id }
+    Set.chr_set.append o.chr_set
+    { chr_set_id } = o.chr_set
+    cs_key = { chr_set_id }
 
-  Set.chr_npc.merge o.chr_npc, cs_key
-  Set.chr_job.merge o.chr_job, cs_key
+    Set.chr_npc.merge o.chr_npc, cs_key
+    Set.chr_job.merge o.chr_job, cs_key
 
-list =
-  for face in Query.faces.list
-    chr_set_id = "all"
-    face_id = face._id
-    job = face.chr_jobs.list.sort("chr_set_idx")[0]?.job
-    continue unless job?
-    { chr_set_id, face_id, job }
+  list =
+    for face in faces
+      chr_set_id = "all"
+      face_id = face._id
+      job = face.chr_jobs.list.sort("chr_set_idx")[0]?.job
+      continue unless job?
+      { chr_set_id, face_id, job }
 
-Set.chr_job.merge list
+  Set.chr_job.merge list

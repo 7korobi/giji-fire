@@ -53,23 +53,19 @@ module.exports =
 
   'aggregate/faces': (url)->
     @fetch url, (data)->
-      for o in data.faces
-        Set.face.update o._id.face_id,
-          aggregate:
-            log: o
-      for o in data.m_faces
-        Set.face.update o._id.face_id,
-          aggregate:
-            log:
-              date_min: o.date_min
-      for o in data.sow_auths
-        Set.face.update o._id.face_id,
-          aggregate:
-            fav: o
+      for o in data.faces when face = Set.face.find o._id.face_id
+        face.aggregate.log = o
+      for o in data.m_faces when face = Set.face.find o._id.face_id
+        face.aggregate.log.date_min = o.date_min
+      for o in data.sow_auths when face = Set.face.find o._id.face_id
+        face.aggregate.fav = o
 
   'aggregate/face': (url, id)->
     @fetch url, (data)->
-      sow_auths = _.sortBy data.sow_auths, (o)-> - o.story_ids.length
+      return unless face = Set.face.find id
+
+      log = data.faces[0]
+      log.date_min = data.m_faces[0].date_min
 
       sum = 0
       lives = _.sortBy data.lives, (o)-> - o.story_ids.length
@@ -88,13 +84,6 @@ module.exports =
         o
       roles.sum = sum
 
-      log = data.faces[0]
-      log.date_min = data.m_faces[0].date_min
-      keys = log.story_ids
-      .map (key)-> key.split("-")
-      .filter (o)-> o[0] and o[1]
-
-      mestypes = _.keyBy data.mestypes, '_id.mestype'
       sum =
         handle: "dark"
         title: "－合計－"
@@ -102,6 +91,7 @@ module.exports =
         all: 0
         max: 0
         count: 0
+      mestypes = _.keyBy data.mestypes, '_id.mestype'
       mestypes =
         for loghd, [handle, title] of titles when o = mestypes[loghd]
           sum.all   += o.all
@@ -111,14 +101,19 @@ module.exports =
           _.merge { handle, title, per }, o
       mestypes.push sum
 
+      sow_auths = _.sortBy data.sow_auths, (o)-> - o.story_ids.length
+
+      keys = log.story_ids
+      .map (key)-> key.split("-")
+      .filter (o)-> o[0] and o[1]
+
       folders = _.groupBy keys, (o)-> o[0]
       for key, list of folders
         folders[key] = _.sortBy list, (o)-> o[1] - 0
         folders[key].nation = Query.folders.find(key.toUpperCase()).nation
       folders = _.sortBy folders, (list, key)-> - list.length
 
-      Set.face.update id,
-        aggregate: { lives, log, sow_auths, folders }
+      face.aggregate = { ...face.aggregate, lives, log, sow_auths, folders, mestypes }
 
   'sow/plan': (url)->
     @fetch url, (data)->
@@ -133,11 +128,8 @@ module.exports =
     @fetch url, (data)->
       Set.sow_village.merge data.stories
       for { _id, story_ids } in data.faces
-        for story_id in story_ids when vil = Query.sow_villages.find story_id
-          { face_ids } = vil.aggregate
-          face_ids.push _id.face_id
-          Set.sow_village.update vil.id,
-            aggregate: { face_ids }
+        for story_id in story_ids when vil = Set.sow_village.find story_id
+          vil.aggregate.face_ids.push _id.face_id
 
   'sow/story': (url)->
     @fetch url, (data)->
@@ -339,7 +331,7 @@ module.exports =
         deco = o.style ? "sow"
         head = potof_id && o.name
 
-        unless Query.phases.find phase_id
+        unless Set.phase.find phase_id
           Set.phase.add phase_attr
             _id: phase_id
             handle: handle
