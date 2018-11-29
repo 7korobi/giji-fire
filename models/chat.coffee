@@ -82,13 +82,13 @@ new Rule("chat").schema ->
       if 'SAI'.includes group
         emit part_id, "full", it
 
-        if ['SSAY', 'VSSAY', 'MAKER', 'ADMIN', 'public'].includes handle
+        if ['SSAY', 'VSSAY', 'TITLE', 'MAKER', 'ADMIN', 'public'].includes handle
           emit part_id, "normal", it
 
         if ['TSAY', 'private'].includes handle
           emit part_id, "solo", it
 
-        if ! ['SSAY', 'VSSAY', 'MAKER', 'ADMIN', 'dark', 'GSAY', 'TSAY', 'public'].includes handle
+        if ! ['SSAY', 'VSSAY', 'TITLE', 'MAKER', 'ADMIN', 'dark', 'GSAY', 'TSAY', 'public'].includes handle
           emit part_id, "extra", it
 
         if ['GSAY'].includes handle

@@ -1,24 +1,6 @@
 
 
-to_sec = (str)->
-  timeout = 0
-  str.replace /(\d+)(.)|0/g, (_, num, unit)->
-    return unless num = Number num
-    timeout +=
-      switch unit
-        when "s"
-          num
-        when "m"
-          60 * num
-        when "h"
-          3600 * num
-        when "d"
-          3600 * 24 * num
-        when "y"
-          3600 * 24 * 365 * num
-        else
-          throw new Error "#{timestr} at #{num}#{unit}"
-  timeout
+{ to_sec } = require "../../plugins/to.coffee"
 
 asset = (timer, c, u)->
   urlPattern: u
@@ -52,7 +34,8 @@ module.exports =
     asset  '6h', '2018-08-29', "https://s3-ap-northeast-1.amazonaws.com/giji-assets/sow/index.json"
     asset  '6h', '2018-08-29', "https://s3-ap-northeast-1.amazonaws.com/giji-assets/aggregate/faces/index.json"
     asset  '6h', '2018-08-29', "https://giji-api.duckdns.org/api/aggregate/faces/*"
-    api    '5m', '2018-08-29', "https://giji-api.duckdns.org/api/story/progress"
+    asset  '5m', '2018-08-29', "https://giji-api.duckdns.org/api/story/progress"
+    asset  '5m', '2018-08-29', "https://giji-api.duckdns.org/api/plan/progress"
   ]
   importScripts: [
     'firebase-messaging-sw.js'

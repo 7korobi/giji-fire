@@ -1,6 +1,7 @@
-{ to_msec } = require "~/plugins/struct"
+{ to_msec } = require "~/plugins/to"
 { State, Model, Query, Rule, Set, Finder } = require "memory-orm"
 
+LF = require "localforage"
 Vue = require 'vue'
 comidx = null
 
@@ -17,7 +18,25 @@ if window?
 ###
 
 { step } = State
+lfs = {}
 mounts = 0
+is_cache = {}
+
+if document?
+  LF.config
+    driver: LF.INDEXEDDB
+    name: 'giji'
+    version: 1.0
+    storeName: 'KVS'
+    description: '人狼議事'
+
+  lfs.meta = LF.createInstance { name: 'meta' }
+  lfs.data = LF.createInstance { name: 'data' }
+
+  document.addEventListener 'visibilitychange', ({ timeStamp })->
+    is_visible = document.visibilityState
+    console.log { timeStamp, is_visible }
+
 
 base = (opt)->
   data: ->
@@ -34,12 +53,16 @@ base = (opt)->
         comidx = idx
         Object.assign window, { comlink }
 ###
+
+    @timers = {}
     list = opt.call @
 
     await Promise.all list.map ([name, id])=>
-      @$store.dispatch name, { id, name }
+      @$store.dispatch name, { id, name, @timers }
 
   destroyed: ->
+    for key, val of @timers
+      clearTimeout val
 ### comlink-mode
     console.log { mounts, step }
     if 0 == mounts && window?
@@ -47,33 +70,46 @@ base = (opt)->
       await comlink.del comidx
 ###
 
+# memory -> LF -> workbox -> network
+
 base.cache = (timestr, vuex_id, opt)->
-  ({ dispatch, state, commit, rootState }, { id, name })->
-    url = opt id
-    console.log { vuex_id, id, name, url }
+  timeout = to_msec timestr
+  # console.log { timestr, timeout, url: opt('*') }
+  ({ dispatch, state, commit, rootState }, { id, name, timers })->
+    roop = ->
+      url = opt id
 
+      if is_cache[url]
+        console.log { cache: 'memory',  timestr, id, name, url }
+      else
+        meta = await lfs.meta.getItem url
+        is_cache[url] = true
 
-    copys = await FetchApi[name] url, id
-    for key in copys
-      Query[key]._finder.clear_cache()
+        if new Date < meta?.expire 
+          console.log { cache: 'LF',  timestr, id, name, url }
+          pack = await lfs.data.getItem url
+          State.store pack
+
+        else
+          console.log { cache: false, timestr, id, name, url }
+          pack = await FetchApi[name] url, id
+          lfs.data.setItem url, pack
+          lfs.meta.setItem url,
+            expire: timeout + (new Date - 0)
+
+      if timeout < 0x7fffffff  #  ほぼ25日
+        timers[url] = setTimeout roop, timeout
+    roop()
 
 ### comlink-mode
     copys = await comlink[name] url, id
     values = JSON.parse await comlink.copy ...copys
     for key, idx in copys
-      [ sort, format, memory ] = values[idx]
-      { model } = Query[key]._finder
-      for _id, o of memory
-        model.bless o.item
-      Query[key].$sort = sort
-      Query[key]._memory = memory
-      Query[key]._finder.format = format
-      Query[key]._finder.clear_cache()
+      ...
 ###
 
 base.caches = (timestr, opts)->
   for key, cb of opts
-    console.log { timestr, url: cb('*') }
     opts[key] = base.cache timestr, key, cb
   opts
 
