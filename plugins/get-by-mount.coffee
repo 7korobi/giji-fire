@@ -1,4 +1,4 @@
-{ to_msec } = require "~/plugins/to"
+{ to_tempo } = require "~/plugins/to"
 { State, Model, Query, Rule, Set, Finder } = require "memory-orm"
 
 LF = require "localforage"
@@ -73,32 +73,52 @@ base = (opt)->
 # memory -> LF -> workbox -> network
 
 base.cache = (timestr, vuex_id, opt)->
-  timeout = to_msec timestr
   # console.log { timestr, timeout, url: opt('*') }
   ({ dispatch, state, commit, rootState }, { id, name, timers })->
+    url = opt id
+    idx = [name, id].join("&")
+
     roop = ->
-      url = opt id
-      idx = [name, id].join("&")
-      now = new Date
-      expire = timeout + (now - 0)
-      if now < is_cache[idx]
-        console.log { cache: 'memory', timestr, name, id }
-      else
+      { last_at, write_at, next_at, timeout } = to_tempo timestr
+
+
+      get_pass = ->
+        wait = new Date - write_at
+        console.log { timestr, idx, wait, url: null }
+
+      get_by_lf = ->
+        pack = await lfs.data.getItem idx
+        State.store pack
+        wait = new Date - write_at 
+        console.log { timestr, idx, wait, url: '(LF)' }
+
+      get_by_network = ->
+        pack = await FetchApi[name] url, id
+        lfs.data.setItem idx, pack
+        wait = new Date - write_at
+        console.log { timestr, idx, wait, url }
+
+
+      if write_at < is_cache[idx]
+        get_pass()
+        return
+
+      unless 0 < is_cache[idx]
         meta = await lfs.meta.getItem idx
 
-        if now < meta?.expire 
-          console.log { cache: 'LF', timestr, name, id, url }
-          pack = await lfs.data.getItem idx
-          State.store pack
+      switch
+        when write_at < meta?.next_at
+          await get_by_lf()
+
+        when 0 < meta?.next_at
+          await get_by_lf()
+          await get_by_network()
 
         else
-          console.log { cache: false, timestr, name, id, url }
-          pack = await FetchApi[name] url, id
-          lfs.data.setItem idx, pack
-          lfs.meta.setItem idx, { expire }
+          await get_by_network()
+          lfs.meta.setItem idx, { next_at }
 
-        is_cache[idx] = expire
-
+      is_cache[idx] = next_at
       if timeout < 0x7fffffff  #  ほぼ25日
         timers[url] = setTimeout roop, timeout
     roop()

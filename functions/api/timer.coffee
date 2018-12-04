@@ -3,41 +3,18 @@ admin = require 'firebase-admin'
 format = require 'date-fns/format'
 locale = require "date-fns/locale/ja"
 
-msec = (timespan)->
-  since = parseFloat timespan
-  timespan.replace /week|day|hour|min|sec/, (unit, idx)->
-    switch unit
-      when "week"
-        since *= 7 * 24 * 60 * 60 * 1000
-      when "day"
-        since *=     24 * 60 * 60 * 1000
-      when "hour"
-        since *=          60 * 60 * 1000
-      when "min"
-        since *=               60 * 1000
-      when "sec"
-        since *=                    1000
-  parseInt since
-
-three_day = msec '3day'
-nine_hour = msec '9hour'
-timezone = -nine_hour
+{ to_msec, to_tempo } = require "../plugins/to"
 
 tempo = (doc)->
   return null unless doc?.tempo?[0]
 
-  since = msec doc.tempo[0] || '1day'
-  gap   = msec doc.tempo[1] || '0'
-  gap -= nine_hour
+  { last_at, write_at, next_at, now_idx, timezone } = to_tempo ...doc.tempo
 
-  now_idx = parseInt(( new Date - gap) / since)
   if now_idx != doc.last_idx
-    doc.write_at = new Date - 0
-    doc.last_at  = (now_idx + 0) * since + gap
-    doc.next_at  = (now_idx + 1) * since + gap
-    doc.write_time = format doc.write_at - timezone, "YYYY/MM/DD HH:mm:ss", { locale }
-    doc.next_time  = format doc.next_at  - timezone, "YYYY/MM/DD HH:mm:ss", { locale }
-    doc.last_time  = format doc.last_at  - timezone, "YYYY/MM/DD HH:mm:ss", { locale }
+    Object.assign doc, { last_at, write_at, next_at }
+    doc.write_time = format write_at - timezone, "YYYY/MM/DD HH:mm:ss", { locale }
+    doc.next_time  = format next_at  - timezone, "YYYY/MM/DD HH:mm:ss", { locale }
+    doc.last_time  = format last_at  - timezone, "YYYY/MM/DD HH:mm:ss", { locale }
     doc.last_idx = now_idx
   else
     null
