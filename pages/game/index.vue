@@ -260,16 +260,17 @@ module.exports =
       ['01月','02月','03月','04月','05月','06月','07月','08月','09月','10月','11月','12月']
     timer_length: ->
       @yeary.length + @in_month.length + @monthry.length
+
     query_in: ->
       obj = {}
-      for key in ["option", "event","discard","config"]
+      for key in ["option","event","discard","config"]
         continue unless @[key].length
         obj["card." + key] = @[key]
       obj
 
     query_where: ->
       obj = {}
-      for key in ["folder_id","yeary","monthry","in_month","upd_range","upd_at","sow_auth_id","rating","size","say","game"]
+      for key in ["yeary","monthry","in_month","upd_range","upd_at","sow_auth_id","rating","size","say","game"]
         continue unless @[key].length
         obj["q." + key] = @[key]
       obj
@@ -282,7 +283,7 @@ module.exports =
     page_all_contents: ->
       Query
       .sow_villages
-      .all_contents @mode, @query_in, @query_where, @search, @order, @asc
+      .all_contents @mode, @folder_id, @query_in, @query_where, @search, @order, @asc
       .reduce.list
 
 </script>

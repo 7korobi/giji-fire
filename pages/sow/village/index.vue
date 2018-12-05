@@ -179,7 +179,7 @@ module.exports =
     require('~/plugins/pager')
     require("~/plugins/browser-store")
       replace:
-        order:  "vid"
+        order:  "timer.updateddt"
         folder_id: []
         monthry: []
         upd_range: []
@@ -223,8 +223,11 @@ module.exports =
     summary: (key)->
       query_in    = { ...@query_in    }
       query_where = { ...@query_where }
+      { folder_id } = @
 
       switch key
+        when 'folder_id'
+          folder_id = []
         when 'yeary', 'monthry', 'in_month'
           delete query_where['q.yeary']
           delete query_where['q.monthry']
@@ -235,26 +238,26 @@ module.exports =
           delete query_where["q." + key]
       Query
       .sow_villages
-      .summary @mode, query_in, query_where, @search
+      .summary @mode, folder_id, query_in, query_where, @search
       .reduce?[key]
 
   computed:
     grid_data: ->
-      x: @summary('in_month')
-      y: @summary('yeary')
-      data: @summary('monthry')
+      x:    @summary 'in_month'
+      y:    @summary 'yeary'
+      data: @summary 'monthry'
       find: ( x, y )=> y + x
 
     query_in: ->
       obj = {}
-      for key in ["option", "event", "discard", "config"]
+      for key in ["option","event", "discard", "config"]
         continue unless @[key].length
         obj["card." + key] = @[key]
       obj
 
     query_where: ->
       obj = {}
-      for key in ["folder_id","monthry","upd_range","upd_at","sow_auth_id","rating","size","say","game"]
+      for key in ["monthry","upd_range","upd_at","sow_auth_id","rating","size","say","game"]
         continue unless @[key].length
         obj["q." + key] = @[key]
       obj
@@ -262,7 +265,7 @@ module.exports =
     page_all_contents: ->
       Query
       .sow_villages
-      .all_contents @mode, @query_in, @query_where, @search, @order, @asc
+      .all_contents @mode, @folder_id, @query_in, @query_where, @search, @order, @asc
       .list
 
   head: ->
