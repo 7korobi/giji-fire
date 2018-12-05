@@ -3,7 +3,7 @@ const babel = {
     "@babel/plugin-transform-modules-commonjs",
   ],
   presets: [
-    [ "@nuxtjs/babel-preset-app", {
+    [ "@nuxt/babel-preset-app", {
       targets: {
         node: "6.11.5",
         browsers: [

@@ -3,7 +3,7 @@ admin = require 'firebase-admin'
 format = require 'date-fns/format'
 locale = require "date-fns/locale/ja"
 
-{ to_msec, to_tempo } = require "../plugins/to"
+{ to_msec, to_tempo } = require "../../plugins/to"
 
 tempo = (doc)->
   return null unless doc?.tempo?[0]

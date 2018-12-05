@@ -32,7 +32,7 @@ coffee =
           "@babel/plugin-transform-modules-commonjs",
         ],
         presets: [[
-          "@nuxtjs/babel-preset-app",
+          "@nuxt/babel-preset-app",
             targets:
               browsers: [
                 "last 3 versions"
