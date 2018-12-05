@@ -113,7 +113,7 @@ module.exports =
         folders[key].nation = Query.folders.find(key.toUpperCase()).nation
       folders = _.sortBy folders, (list, key)-> - list.length
 
-      face.aggregate = { ...face.aggregate, lives, log, sow_auths, folders, mestypes }
+      face.aggregate = { ...face.aggregate, lives, roles, log, sow_auths, folders, mestypes }
 
   'sow/plan': (url)->
     @fetch url, (data)->

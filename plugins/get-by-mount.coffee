@@ -17,10 +17,10 @@ if window?
   comlink = Comlink.proxy (new _comlink).port
 ###
 
-{ step } = State
 lfs = {}
 mounts = 0
 is_cache = {}
+is_online = is_visible = false
 
 if document?
   LF.config
@@ -33,14 +33,10 @@ if document?
   lfs.meta = LF.createInstance { name: 'meta' }
   lfs.data = LF.createInstance { name: 'data' }
 
-  document.addEventListener 'visibilitychange', ({ timeStamp })->
-    is_visible = document.visibilityState
-    console.log { timeStamp, is_visible }
-
 
 base = (opt)->
   data: ->
-    { step }
+    step: State.step
 
   mounted: ->
 ### comlink-mode
@@ -55,14 +51,31 @@ base = (opt)->
 ###
 
     @timers = {}
-    list = opt.call @
-
-    await Promise.all list.map ([name, id])=>
-      @$store.dispatch name, { id, name, @timers }
-
+    window.addEventListener 'offline', @_waitwake
+    window.addEventListener 'online', @_waitwake
+    document.addEventListener 'visibilitychange', @_waitwake
+    @_waitwake()
+      
   destroyed: ->
+    window.removeEventListener 'offline', @_waitwake
+    window.removeEventListener 'online', @_waitwake
+    document.removeEventListener 'visibilitychange', @_waitwake
     for key, val of @timers
       clearTimeout val
+
+  methods:
+    _waitwake: ->
+      is_online  = window.navigator.onLine
+      is_visible = 'hidden' != document.visibilityState
+      is_ok = is_online && is_visible
+      if is_ok
+        list = opt.call @
+        await Promise.all list.map ([name, id])=>
+          @$store.dispatch name, { id, name, @timers }
+      else
+        for key, val of @timers
+          clearTimeout val
+
 ### comlink-mode
     console.log { mounts, step }
     if 0 == mounts && window?
@@ -101,22 +114,22 @@ base.cache = (timestr, vuex_id, opt)->
 
       if write_at < is_cache[idx]
         get_pass()
-        return
+      else
+        # lfs metadata not use if memory has past data, 
+        unless 0 < is_cache[idx]
+          meta = await lfs.meta.getItem idx
 
-      unless 0 < is_cache[idx]
-        meta = await lfs.meta.getItem idx
+        switch
+          when write_at < meta?.next_at
+            await get_by_lf()
 
-      switch
-        when write_at < meta?.next_at
-          await get_by_lf()
+          when 0 < meta?.next_at
+            await get_by_lf()
+            await get_by_network()
 
-        when 0 < meta?.next_at
-          await get_by_lf()
-          await get_by_network()
-
-        else
-          await get_by_network()
-          lfs.meta.setItem idx, { next_at }
+          else
+            await get_by_network()
+            lfs.meta.setItem idx, { next_at }
 
       is_cache[idx] = next_at
       if timeout < 0x7fffffff  #  ほぼ25日

@@ -3,6 +3,11 @@
 { url } = require "~/config/live.yml"
 
 module.exports =
+  mixins: [
+    require("~/plugins/get-by-mount") ->
+      [ ["sow/progress"]
+      ]
+  ]
   props: ["top", "title"]
 
   data: -> {

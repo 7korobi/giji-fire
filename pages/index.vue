@@ -93,7 +93,6 @@ module.exports =
   mixins: [
     require("~/plugins/get-by-mount") ->
       [ ["sow/plan"]
-        ["sow/progress"]
       ]
   ]
   computed:
