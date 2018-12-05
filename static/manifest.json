@@ -4,13 +4,14 @@
   "description": "人狼議事 総合トップページ",
   "icons": [
       {
-          "src": "/images/portrate/blank.jpg",
-          "sizes": "90x60",
-          "type": "image/jpg"
+        "src": "/images/icon/android-chrome-192x192.png",
+        "sizes": "192x192",
+        "type": "image/png"
       }
   ],
   "gcm_sender_id": "103953800507",
   "start_url": "/",
   "display": "standalone",
-  "theme_color": "#444444"
+  "theme_color": "#c1b57f",
+  "background_color": "#c1b57f"
 }
