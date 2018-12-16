@@ -7,7 +7,7 @@ div
 
   c-report(head="Quill TEST" sign="ななころび" handle="SSAY" style="z-index: 10")
     no-ssr
-      quill-editor(v-model="text")
+      quill-editor(v-model="text" @submit="console")
 
   c-report(head="Quill TEST result" sign="ななころび" handle="SSAY" v-html="text")
 
@@ -23,4 +23,7 @@ module.exports =
     text: ""
     chat:
       part_id: "edit-edit-edit"
+  methods:
+    console: ->
+      console.log arguments
 </script>

@@ -1,6 +1,5 @@
 <script lang="coffee">
 
-WordCount    = require "~/plugins/quill-word-count"
 mention      = require "quill-mention"
 { ImageDrop } = require "quill-image-drop-module"
 magic_url    = require("quill-magic-url").default
@@ -13,21 +12,22 @@ Quill.register
   'modules/autoformat': autoformat
   'modules/imageDrop': ImageDrop
   'modules/imageResize': image_resize
-  'modules/wordCount': WordCount
 
 console.log { mention, magic_url, autoformat, ImageDrop, image_resize }
 quill_paste = (newVal, oldVal)->
   return unless @quill
   if newVal
-    if newVal != @_content
-      @quill.pasteHTML @_content = newVal
+    if newVal != @html
+      @quill.pasteHTML @html = newVal
   else
     @quill.setText ''
 
 module.exports =
   data: ->
     _options: {}
-    _content: ''
+    html: ''
+    text: "\n"
+
     defaultOptions:
       modules:
         imageDrop: true
@@ -35,18 +35,15 @@ module.exports =
         history: true
         clipboard: true
         autoformat: true
-        wordCount:
-          unit: 'word'
-          container: '#counter'
         toolbar: [
           ['bold', 'italic', 'underline', 'strike']
           ['blockquote', 'code-block']
-          [{ 'list': 'ordered' }, { 'list': 'bullet' }]
-          [{ 'script': 'sub' }, { 'script': 'super' }]
-          [{ 'indent': '-1' }, { 'indent': '+1' }]
-          [{ 'size': ['small', false, 'large', 'huge'] }]
-          [{ 'header': [1, 2, 3, 4, 5, 6, false] }]
-          [{ 'align': [] }]
+          [{ list: 'ordered' }, { list: 'bullet' }]
+          [{ script: 'sub' },   { script: 'super' }]
+          [{ indent: '-1' },    { indent: '+1' }]
+          [{ size: ['small', false, 'large', 'huge'] }]
+          [{ header: [1, 2, 3, 4, 5, 6, false] }]
+          [{ align: [] }]
           ['clean']
           ['link', 'image', 'video']
 #          ['kana']
@@ -56,6 +53,26 @@ module.exports =
       theme: 'bubble'
 
   props:
+    is_ban:
+      type: Boolean
+      default: false
+    is_warn:
+      type: Boolean
+      default: false
+
+    maxSize:
+      type: Number
+      default: 100
+    maxWord:
+      type: Number
+      default: 10
+    maxRow:
+      type: Number
+      default: 1
+    minRow:
+      type: Number
+      default: 1
+
     content: String
     value: String
     disabled:
@@ -98,18 +115,46 @@ module.exports =
           @$emit 'blur',  @quill
 
       @quill.on 'text-change', (delta, oldDelta, source)=>
-        html = @$refs.editor.children[0].innerHTML
-        text = @quill.getText()
-
-        if '<p><br></p>' == html
-          html = ''
-        
-        @_content = html
-        console.log { delta, oldDelta, @_content }
-        @$emit 'input', @_content
-        @$emit 'change', { html, text, @quill }
+        @text = @quill?.getText()
+        @html = @$refs.editor.children[0].innerHTML
+        console.log { delta, oldDelta, @html, @text }
+        @$emit 'input', @html
+        @$emit 'change', { @html, @text, @quill }
 
       @$emit 'ready', @quill
+
+    submit: _.debounce ->
+      return if @ban
+      @$emit 'submit', @value
+    , 3000,
+      leading: true
+      trailing: false
+
+  computed:
+    lines: ->
+      @text.split("\n").length - 1
+    words: ->
+      @text.split(/[、。．.]\s*|\s+/).length - 1
+    chars: ->
+      @text.length - 1
+    ban: ->
+      ban = false
+      ban ||= !(       2 <= @chars <= @maxSize )
+      ban ||= !(       1 <= @words <= @maxWord )
+      ban ||= !( @minRow <= @lines <= @maxRow )
+      ban ||= @is_ban
+      ban
+    warn: ->
+      warn = false
+      warn ||= @value.match /-/
+      warn ||= @is_warn
+      warn
+
+    mark: ->
+      m = "mdi-check-circle-outline"
+      m = "mdi-alert-circle-outline" if @warn
+      m = "mdi-cancel"               if @ban
+      [m]
 
   watch:
     content: quill_paste
@@ -139,6 +184,16 @@ body
 <template lang="pug">
 div
   div(ref="editor")
-  slot(name="toolbar")
+  div.form
+    button(@click="submit" :class="{ ban, warn }")
+      i.mdi(:class="mark" v-if="$listeners.submit")
+      span
+        | {{chars}}/
+        sub {{maxSize}}字
+        | {{words}}/
+        sub {{maxWord}}文
+        | {{lines}}/
+        sub {{maxRow}}行
+    slot
 </template>
 
