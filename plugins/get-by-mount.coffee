@@ -1,7 +1,7 @@
 { to_tempo } = require "~/plugins/to"
 { State, Model, Query, Rule, Set, Finder } = require "memory-orm"
 
-LF = require "localforage"
+Dexie = require("dexie").default
 Vue = require 'vue'
 comidx = null
 
@@ -17,21 +17,17 @@ if window?
   comlink = Comlink.proxy (new _comlink).port
 ###
 
-lfs = {}
 mounts = 0
 is_cache = {}
 is_online = is_visible = false
 
 if document?
-  LF.config
-    driver: LF.INDEXEDDB
-    name: 'giji'
-    version: 1.0
-    storeName: 'KVS'
-    description: '人狼議事'
-
-  lfs.meta = LF.createInstance { name: 'meta' }
-  lfs.data = LF.createInstance { name: 'data' }
+  dexie = new Dexie 'giji'
+  dexie
+  .version(1)
+  .stores
+    meta: '&idx'
+    data: '&idx'
 
 
 base = (opt)->
@@ -100,14 +96,14 @@ base.cache = (timestr, vuex_id, opt)->
         console.log { timestr, idx, wait, url: null }
 
       get_by_lf = ->
-        pack = await lfs.data.getItem idx
+        { pack } = await dexie.data.get idx
         State.store pack
         wait = new Date - write_at 
         console.log { timestr, idx, wait, url: '(LF)' }
 
       get_by_network = ->
         pack = await FetchApi[name] url, id
-        lfs.data.setItem idx, pack
+        await dexie.data.put { idx, pack }
         wait = new Date - write_at
         console.log { timestr, idx, wait, url }
 
@@ -115,9 +111,9 @@ base.cache = (timestr, vuex_id, opt)->
       if write_at < is_cache[idx]
         get_pass()
       else
-        # lfs metadata not use if memory has past data, 
+        # IndexedDB metadata not use if memory has past data, 
         unless 0 < is_cache[idx]
-          meta = await lfs.meta.getItem idx
+          meta = await dexie.meta.get idx
 
         switch
           when write_at < meta?.next_at
@@ -129,7 +125,7 @@ base.cache = (timestr, vuex_id, opt)->
 
           else
             await get_by_network()
-            lfs.meta.setItem idx, { next_at }
+            dexie.meta.put { idx, next_at }
 
       is_cache[idx] = next_at
       if timeout < 0x7fffffff  #  ほぼ25日
