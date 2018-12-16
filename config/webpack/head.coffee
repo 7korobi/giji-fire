@@ -33,6 +33,4 @@ module.exports =
   ]
   script: [
     { src: '/lib/quill/quill.min.js', type: 'text/javascript', charset: 'utf8' }
-    { src: '/lib/quill/image-resize.min.js', type: 'text/javascript', charset: 'utf8' }
-    { src: '/lib/quill/image-drop.min.js', type: 'text/javascript', charset: 'utf8' }
   ]

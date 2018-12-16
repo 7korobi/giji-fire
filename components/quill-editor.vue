@@ -1,5 +1,21 @@
 <script lang="coffee">
 
+WordCount    = require "~/plugins/quill-word-count"
+mention      = require "quill-mention"
+{ ImageDrop } = require "quill-image-drop-module"
+magic_url    = require("quill-magic-url").default
+autoformat   = require("quill-autoformat").default
+image_resize = require("quill-image-resize-module").default
+
+Quill.register
+  'modules/mention':    mention
+  'modules/magicUrl':  magic_url
+  'modules/autoformat': autoformat
+  'modules/imageDrop': ImageDrop
+  'modules/imageResize': image_resize
+  'modules/wordCount': WordCount
+
+console.log { mention, magic_url, autoformat, ImageDrop, image_resize }
 quill_paste = (newVal, oldVal)->
   return unless @quill
   if newVal
@@ -16,7 +32,12 @@ module.exports =
       modules:
         imageDrop: true
         imageResize: {}
-          
+        history: true
+        clipboard: true
+        autoformat: true
+        wordCount:
+          unit: 'word'
+          container: '#counter'
         toolbar: [
           ['bold', 'italic', 'underline', 'strike']
           ['blockquote', 'code-block']
@@ -28,7 +49,7 @@ module.exports =
           [{ 'align': [] }]
           ['clean']
           ['link', 'image', 'video']
-          ['kana']
+#          ['kana']
         ]
       placeholder: 'Insert text here ...'
       readOnly: false
