@@ -15,19 +15,18 @@ rt
   text-shadow: none
   font-variant-east-asian: ruby full-width simplified
 
-strong
-  -webkit-text-emphasis: sesame
-  text-emphasis: sesame
-
 abbr[title]
 del
   text-decoration: none
 
 em
+  -webkit-text-emphasis: sesame
+  text-emphasis: sesame
   font-style: normal
 
 s
   text-decoration-style: double
+u
 ins
   text-decoration-style: wavy
 
@@ -41,6 +40,8 @@ kbd
 samp
 pre
 .chat .text.mono
+.ql-picker-item[data-value=monospace]::before
+.ql-font-monospace
   font-weight: 400
   font-family: 'Fira Code', 'Fira Code WEB', 'Noto Sans Mono CJK JP', 'Mgen+ 1mn', 'mplus-1m', monospace
   font-variant-numeric: tabular-nums slashed-zero
@@ -59,9 +60,11 @@ select
     font-weight: 700
     font-family: 'Noto Sans CJK JP', 'Noto Sans JP', sans-serif
 
+.ql-header .ql-picker-item[data-value]::before
 h1, h2, h3, h4, h5, h6
 rt
 button
+strong
 .bold
 .chat .text.head:first-line
   font-weight: 700
@@ -103,6 +106,7 @@ hr.invisible_hr
     transform: scale( 0.5, 1)
     transform-origin: right
 
+.ql-header .ql-picker-item[data-value]::before
 h1, h2, h3, h4, h5, h6
   box-sizing: border-box
   display: block
@@ -121,19 +125,9 @@ blockquote
   padding: 0  0.5ex 0  0.5ex
   border-style: none solid none solid
   border-width: 0 0.5ex 0 0.5ex
-
-li
-  margin:  0
-  padding: 0
-
 ol, ul
   margin:  0
-  padding: 0 0 0 4ex
-ul
-  list-style-type: circle
-ol
-  list-style-type: decimal
-
+  padding: 0
 strong
   display: inline
 
@@ -396,12 +390,16 @@ button
     margin:  0.1ex 0px
 
 sup
-  vertical-align: super
+  vertical-align:  0.4em
+  font-size:       0.75em
+  line-height:     0.85em
   display: inline-block
   text-align: center
 
 sub
-  vertical-align: sub
+  vertical-align: -0.4em
+  font-size:       0.75em
+  line-height:     0.85em
   display: inline-block
   text-align: center
 

@@ -9,7 +9,7 @@ div
     no-ssr
       quill-editor(v-model="text" @submit="console")
 
-  c-report(head="Quill TEST result" sign="ななころび" handle="SSAY" v-html="text")
+  c-report.ql-editor(head="Quill TEST result" sign="ななころび" handle="SSAY" v-html="text")
 
   c-report(handle="footer" deco="center")
     bread-crumb

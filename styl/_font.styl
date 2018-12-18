@@ -53,21 +53,27 @@ font($small, $base, $family)
     height: $block
     margin-bottom: -1 * $block
 
+  .ql-picker-item[data-value="1"]::before
   h1
     font-size:   2.50 * $base
     line-height: 2.50 * $base
+  .ql-picker-item[data-value="2"]::before
   h2
     font-size:   1.88 * $base
     line-height: 1.88 * $base
+  .ql-picker-item[data-value="3"]::before
   h3
     font-size:   1.50 * $base
     line-height: 1.50 * $base
+  .ql-picker-item[data-value="4"]::before
   h4
     font-size:   1.25 * $base
     line-height: 1.25 * $base
+  .ql-picker-item[data-value="5"]::before
   h5
     font-size:   1.00 * $base
     line-height: 1.00 * $base
+  .ql-picker-item[data-value="6"]::before
   h6
     font-size:   0.83 * $base
     line-height: 0.83 * $base
@@ -77,32 +83,11 @@ font($small, $base, $family)
 
   width($base, 28 * $base + 132)
 
-  sup
-    vertical-align: $small *  0.5
-    font-size:      $small
-    line-height:    $small + 2px
-
-  sub
-    vertical-align: $small * -0.5
-    font-size:      $small
-    line-height:    $small + 2px
-
-
   body
   .links
-  .name
-  .text
   dfn
-  abbr
-  input
-  select
-  button
   textarea
-  strong
-  time
-  em
-  a
-  b
+  p
     inline($base,  $block,  $family)
 
   [title]
@@ -118,17 +103,6 @@ font($small, $base, $family)
   .date
     inline($small, $middle, $family)
     dfn
-    abbr
-    input
-    select
-    button
     textarea
-    strong
-    time
-    code
-    kbd
-    em
-    a
-    b
     p
       inline($small, $middle, $family)

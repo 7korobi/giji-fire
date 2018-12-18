@@ -20,7 +20,6 @@ module.exports =
   ]
   link: [
     { href: pkg.author }
-    { rel: 'stylesheet', type: 'text/css', href: '/lib/quill/quill.bubble.css' }
     { rel: 'manifest', href: '/manifest.json'}
     { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     { rel: "apple-touch-icon",       sizes: "180x180", href: "/images/icon/apple-touch-icon.png" }

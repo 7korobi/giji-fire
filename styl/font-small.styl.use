@@ -3,7 +3,6 @@
 body
 b
 th
-strong
 textarea
 [title]:after
 [data-tooltip]:after

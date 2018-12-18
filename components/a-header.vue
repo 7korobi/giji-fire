@@ -1,6 +1,5 @@
 <script lang="coffee">
 { url } = require "~/config/live.yml"
-
 module.exports =
   props: ["title"]
   mixins: [
@@ -47,9 +46,9 @@ module.exports =
     center: ->
       @$store.commit "menu/center", { @top, @left, @height, @width }
     href: ->
-      log: url.assets + "/css/log-#{@log}.styl.css"
-      font: url.assets + "/css/font-#{@font}.styl.css"
-      theme: url.assets + "/css/theme-#{@theme}.styl.css"
+      log: url.style + "/css/log-#{@log}.styl.css"
+      font: url.style + "/css/font-#{@font}.styl.css"
+      theme: url.style + "/css/theme-#{@theme}.styl.css"
     log: ->
       switch @theme
         when "snow"
@@ -85,7 +84,7 @@ module.exports =
     ]
     link: [
       { hid: 'hid10', rel: 'stylesheet', type: 'text/css', href: 'https://cdn.materialdesignicons.com/2.3.54/css/materialdesignicons.min.css' }
-      { hid: 'hid3',  rel: 'stylesheet',   type: 'text/css', href: url.assets + '/css/index.styl.css' }
+      { hid: 'hid3',  rel: 'stylesheet',   type: 'text/css', href: url.style + '/css/index.styl.css' }
       { hid: 'hid4',  rel: @new.rel.log,   type: 'text/css', href: @href.log }
       { hid: 'hid5',  rel: @new.rel.font,  type: 'text/css', href: @href.font }
       { hid: 'hid6',  rel: @new.rel.theme, type: 'text/css', href: @href.theme }

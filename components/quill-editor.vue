@@ -1,19 +1,36 @@
 <script lang="coffee">
 
+ColorClass = Quill.import 'attributors/class/color'
+ColorClass.whitelist = ['Y0','Y1','Y2','Y4','Y6','Y8']
+
+BackgroundClass = Quill.import 'attributors/class/background'
+BackgroundClass.whitelist = ['Y0','Y1','Y2','Y4','Y6','Y8']
+
+FontClass = Quill.import 'attributors/class/font'
+FontClass.whitelist = ["monospace"]
+
+SizeClass = Quill.import 'attributors/class/size'
+SizeClass.whitelist = ["small", "large", "huge"]
+
 mention      = require "quill-mention"
 { ImageDrop } = require "quill-image-drop-module"
 magic_url    = require("quill-magic-url").default
 autoformat   = require("quill-autoformat").default
 image_resize = require("quill-image-resize-module").default
 
+console.log { SizeClass, ColorClass, BackgroundClass }
+
 Quill.register
+  'formats/background': BackgroundClass
+  'formats/color': ColorClass
+  'formats/font': FontClass
+  'formats/size': SizeClass
   'modules/mention':    mention
   'modules/magicUrl':  magic_url
   'modules/autoformat': autoformat
   'modules/imageDrop': ImageDrop
   'modules/imageResize': image_resize
-
-console.log { mention, magic_url, autoformat, ImageDrop, image_resize }
+, true
 quill_paste = (newVal, oldVal)->
   return unless @quill
   if newVal
@@ -29,6 +46,9 @@ module.exports =
     text: "\n"
 
     defaultOptions:
+      handlers:
+        kana: (value)->
+          console.log value
       modules:
         imageDrop: true
         imageResize: {}
@@ -36,17 +56,22 @@ module.exports =
         clipboard: true
         autoformat: true
         toolbar: [
-          ['bold', 'italic', 'underline', 'strike']
+          ['bold', 'underline', 'strike', 'code']
+          [{ script: 'sub' },   { script: 'super' }]
+
           ['blockquote', 'code-block']
           [{ list: 'ordered' }, { list: 'bullet' }]
-          [{ script: 'sub' },   { script: 'super' }]
           [{ indent: '-1' },    { indent: '+1' }]
+
           [{ size: ['small', false, 'large', 'huge'] }]
           [{ header: [1, 2, 3, 4, 5, 6, false] }]
-          [{ align: [] }]
+          [{ background: [false, 'Y0','Y1','Y2','Y4','Y6','Y8'] }
+           { color:      [false, 'Y0','Y1','Y2','Y4','Y6','Y8'] }
+          ]
+          [{ align: [false, 'center', 'justify', 'right'] }]
+          ['kana']
           ['clean']
           ['link', 'image', 'video']
-#          ['kana']
         ]
       placeholder: 'Insert text here ...'
       readOnly: false
@@ -115,9 +140,10 @@ module.exports =
           @$emit 'blur',  @quill
 
       @quill.on 'text-change', (delta, oldDelta, source)=>
-        @text = @quill?.getText()
+        @text = @quill.getText()
+        ops  = @quill.getContents()
         @html = @$refs.editor.children[0].innerHTML
-        console.log { delta, oldDelta, @html, @text }
+        console.log { ops, delta, oldDelta, @html, @text }
         @$emit 'input', @html
         @$emit 'change', { @html, @text, @quill }
 
@@ -164,23 +190,6 @@ module.exports =
       @quill.enable ! newVal
 
 </script>
-
-<style lang="sass">
-body
-  .ql-container
-    font-family: inherit
-    font-size: inherit
-    overflow-y: visible
-    margin:  0
-    padding: 0
-
-  .ql-editor
-    line-height: inherit
-    overflow-y: visible
-    margin:  0
-    padding: 0
-</style>
-
 <template lang="pug">
 div
   div(ref="editor")

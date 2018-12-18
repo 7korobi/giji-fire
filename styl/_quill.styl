@@ -1,0 +1,487 @@
+// BUBBLE
+themeName = 'bubble'
+activeColor = #fff
+borderColor = #777
+backgroundColor = #444
+inactiveColor = #ccc
+shadowColor = #ddd
+textColor = #fff
+arrowWidth = 6px
+
+.ql-bubble
+  .ql-toolbar
+    .ql-formats
+      margin: 8px 12px 8px 0px
+    .ql-formats:first-child
+      margin-left: 12px
+
+  .ql-color-picker
+    svg
+      margin: 1px
+    .ql-picker-item.ql-selected, .ql-picker-item:hover
+      border-color: activeColor
+
+.ql-bubble
+  .ql-tooltip
+    background-color: backgroundColor
+    border-radius: 25px
+    color: textColor
+  .ql-tooltip-arrow
+    border-left: arrowWidth solid transparent
+    border-right: arrowWidth solid transparent
+    content: " "
+    display: block
+    left: 50%
+    margin-left: -1 * arrowWidth
+    position: absolute
+  .ql-tooltip:not(.ql-flip) .ql-tooltip-arrow
+    border-bottom: arrowWidth solid backgroundColor
+    top: -1 * arrowWidth
+  .ql-tooltip.ql-flip .ql-tooltip-arrow
+    border-top: arrowWidth solid backgroundColor
+    bottom: -1 * arrowWidth
+
+  .ql-tooltip.ql-editing
+    .ql-tooltip-editor
+      display: block
+    .ql-formats
+      visibility: hidden
+
+  .ql-tooltip-editor
+    display: none
+    input[type=text]
+      background: transparent
+      border: none
+      color: textColor
+      font-size: 13px
+      height: 100%
+      outline: none
+      padding: 10px 20px
+      position: absolute
+      width: 100%
+    a
+      &:before
+        color: inactiveColor
+        content: "\00D7"
+        font-size: 16px
+        font-weight: bold
+      top: 10px
+      position: absolute
+      right: 20px
+
+.ql-container.ql-bubble:not(.ql-disabled)
+  a
+    position: relative
+    white-space: nowrap
+  a::before
+    background-color: #444
+    border-radius: 15px
+    top: -5px
+    font-size: 12px
+    color: #fff
+    content: attr(href)
+    font-weight: normal
+    overflow: hidden
+    padding: 5px 15px
+    text-decoration: none
+    z-index: 1
+  a::after
+    border-top: 6px solid #444
+    border-left: 6px solid transparent
+    border-right: 6px solid transparent
+    top: 0
+    content: " "
+    height: 0
+    width: 0
+  a::before, a::after
+    left: 0
+    margin-left: 50%
+    position: absolute
+    transform: translate(-50%, -100%)
+    transition: visibility 0s ease 200ms
+    visibility: hidden
+  a:hover::before, a:hover::after
+    visibility: visible
+
+// BASE Styles shared between snow and bubble
+
+controlHeight = 24px
+inputPaddingWidth = 5px
+inputPaddingHeight = 3px
+
+colorItemMargin = 2px
+colorItemSize = 16px
+colorItemsPerRow = 7
+
+
+.ql-{themeName}.ql-toolbar, .ql-{themeName} .ql-toolbar
+  &:after
+    clear: both
+    content: ''
+    display: table
+
+  button
+    background: none
+    border: none
+    cursor: pointer
+    display: inline-block
+    float: left
+    height: controlHeight
+    padding: inputPaddingHeight inputPaddingWidth
+    width: controlHeight + (inputPaddingWidth - inputPaddingHeight)*2
+
+    svg
+      float: left
+      height: 100%
+
+    &:active:hover
+      outline: none
+
+  input.ql-image[type=file]
+    display: none
+
+  button:hover, button:focus, button.ql-active,
+  .ql-picker-label:hover, .ql-picker-label.ql-active,
+  .ql-picker-item:hover, .ql-picker-item.ql-selected
+    color: activeColor
+    .ql-fill, .ql-stroke.ql-fill
+      fill: activeColor
+    .ql-stroke, .ql-stroke-miter
+      stroke: activeColor
+
+// Fix for iOS not losing hover on touch
+@media (pointer: coarse)
+  .ql-{themeName}.ql-toolbar, .ql-{themeName} .ql-toolbar
+    button:hover:not(.ql-active)
+      color: inactiveColor
+      .ql-fill, .ql-stroke.ql-fill
+        fill: inactiveColor
+      .ql-stroke, .ql-stroke-miter
+        stroke: inactiveColor
+
+.ql-{themeName}
+  box-sizing: border-box
+  *
+    box-sizing: border-box
+
+  .ql-hidden
+    display: none
+  .ql-out-bottom, .ql-out-top
+    visibility: hidden
+
+  .ql-tooltip
+    position: absolute
+    transform: translateY(10px)
+    a
+      cursor: pointer
+      text-decoration: none
+  .ql-tooltip.ql-flip
+    transform: translateY(-10px)
+
+  .ql-formats
+    &:after
+      clear: both
+      content: ''
+      display: table
+    display: inline-block
+    vertical-align: middle
+
+  .ql-stroke
+    fill: none
+    stroke: inactiveColor
+    stroke-linecap: round
+    stroke-linejoin: round
+    stroke-width: 2
+  .ql-stroke-miter
+    fill: none
+    stroke: inactiveColor
+    stroke-miterlimit: 10
+    stroke-width: 2
+
+  .ql-fill, .ql-stroke.ql-fill
+    fill: inactiveColor
+
+  .ql-empty
+    fill: none
+  .ql-even
+    fill-rule: evenodd
+  .ql-thin, .ql-stroke.ql-thin
+    stroke-width: 1
+  .ql-transparent
+    opacity: 0.4
+
+  .ql-direction
+    svg:last-child
+      display: none
+  .ql-direction.ql-active
+    svg:last-child
+      display: inline
+    svg:first-child
+      display: none
+
+  .ql-picker
+    color: inactiveColor
+    display: inline-block
+    float: left
+    font-size: 14px
+    font-weight: 500
+    height: controlHeight
+    position: relative
+    vertical-align: middle
+  .ql-picker-label
+    cursor: pointer
+    display: inline-block
+    height: 100%
+    padding-left: 8px
+    padding-right: 2px
+    position: relative
+    width: 100%
+    &::before
+      display: inline-block
+      line-height: 22px
+  .ql-picker-options
+    background-color: backgroundColor
+    display: none
+    min-width: 100%
+    padding: 4px 8px
+    position: absolute
+    white-space: nowrap
+    .ql-picker-item
+      cursor: pointer
+      display: block
+      padding-bottom: 5px
+      padding-top: 5px
+  .ql-picker.ql-expanded
+    .ql-picker-label
+      color: borderColor
+      z-index: 2
+      .ql-fill
+        fill: borderColor
+      .ql-stroke
+        stroke: borderColor
+    .ql-picker-options
+      display: block
+      margin-top: -1px
+      top: 100%
+      z-index: 1
+
+  .ql-color-picker, .ql-icon-picker
+    width: controlHeight + 4
+    .ql-picker-label
+      padding: 2px 4px
+      svg
+        right: 4px
+  .ql-icon-picker
+    .ql-picker-options
+      padding: 4px 0px
+    .ql-picker-item
+      height: controlHeight
+      width: controlHeight
+      padding: 2px 4px
+  .ql-color-picker
+    .ql-picker-options
+      padding: inputPaddingHeight inputPaddingWidth
+      width: (colorItemSize + 2*colorItemMargin) * colorItemsPerRow + 2*inputPaddingWidth + 2  // +2 for the border
+    .ql-picker-item
+      border: 1px solid transparent
+      float: left
+      height: colorItemSize
+      margin: colorItemMargin
+      padding: 0px
+      width: colorItemSize
+
+  .ql-picker:not(.ql-color-picker):not(.ql-icon-picker)
+    svg
+      position: absolute
+      margin-top: -9px
+      right: 0
+      top: 50%
+      width: 18px
+
+  .ql-picker.ql-header, .ql-picker.ql-font, .ql-picker.ql-size
+    .ql-picker-label[data-label]:not([data-label='']),
+    .ql-picker-item[data-label]:not([data-label=''])
+      &::before
+        content: attr(data-label)
+
+  .ql-picker.ql-header
+    width: 98px
+    .ql-picker-label::before,
+    .ql-picker-item::before
+      content: 'Normal'
+    for num in (1..6)
+      .ql-picker-label[data-value=\"{num}\"]::before,
+      .ql-picker-item[data-value=\"{num}\"]::before
+        content: 'Heading ' + num
+
+  .ql-picker.ql-font
+    width: 108px
+    .ql-picker-label::before,
+    .ql-picker-item::before
+      content: 'Sans Serif'
+    .ql-picker-label[data-value=serif]::before,
+    .ql-picker-item[data-value=serif]::before
+      content: 'Serif'
+    .ql-picker-label[data-value=monospace]::before,
+    .ql-picker-item[data-value=monospace]::before
+      content: 'Monospace'
+
+  .ql-picker.ql-size
+    width: 98px
+    .ql-picker-label::before,
+    .ql-picker-item::before
+      content: 'Normal'
+    .ql-picker-label[data-value=small]::before,
+    .ql-picker-item[data-value=small]::before
+      content: 'Small'
+    .ql-picker-label[data-value=large]::before,
+    .ql-picker-item[data-value=large]::before
+      content: 'Large'
+    .ql-picker-label[data-value=huge]::before,
+    .ql-picker-item[data-value=huge]::before
+      content: 'Huge'
+    .ql-picker-item[data-value=small]::before
+      font-size: 10px
+    .ql-picker-item[data-value=large]::before
+      font-size: 18px
+    .ql-picker-item[data-value=huge]::before
+      font-size: 32px
+
+// CORE Styles necessary for Quill
+
+LIST_STYLE = decimal lower-greek lower-roman
+LIST_STYLE_WIDTH  = 1.5em
+LIST_STYLE_MARGIN = 0.2em
+LIST_STYLE_OUTER_WIDTH = LIST_STYLE_MARGIN + LIST_STYLE_WIDTH
+MAX_INDENT = 9
+
+resets(arr)
+  unquote('list-' + join(' list-', arr))
+
+.ql-container
+  height: 100%
+  position: relative
+
+.ql-container.ql-disabled
+  .ql-tooltip
+    visibility: hidden
+  .ql-editor
+    ul[data-checked] > li::before
+      pointer-events: none
+
+.ql-clipboard
+  left: -100000px
+  height: 1px
+  overflow-y: hidden
+  position: absolute
+  top: 50%
+  p
+    margin: 0
+    padding: 0
+
+.ql-container
+  .ql-editor
+    height: 100%
+    outline: none
+    tab-size: 4
+    -moz-tab-size: 4
+    
+
+.ql-editor
+  text-align: left
+  > *
+    cursor: text
+
+  p, ol, ul, pre, blockquote, h1, h2, h3, h4, h5, h6
+    counter-reset: resets(1..MAX_INDENT)
+  ol > li, ul > li
+    list-style-type: none
+  ul > li::before
+    content: '\2022'
+  ul[data-checked=true],
+  ul[data-checked=false]
+    pointer-events: none
+    > li *
+      pointer-events: all
+    > li::before
+      color: #777
+      cursor: pointer
+      pointer-events: all
+  ul[data-checked=true] > li::before
+    content: '\2611'
+  ul[data-checked=false] > li::before
+    content: '\2610'
+  li::before
+    display: inline-block
+    white-space: nowrap
+    width: LIST_STYLE_WIDTH
+  li:not(.ql-direction-rtl)::before
+    margin-left: -1*LIST_STYLE_OUTER_WIDTH
+    margin-right: LIST_STYLE_MARGIN
+    text-align: right
+  li.ql-direction-rtl::before
+    margin-left: LIST_STYLE_MARGIN
+    margin-right: -1*LIST_STYLE_OUTER_WIDTH
+  ol, ul
+    li:not(.ql-direction-rtl)
+      padding-left: LIST_STYLE_OUTER_WIDTH
+    li.ql-direction-rtl
+      padding-right: LIST_STYLE_OUTER_WIDTH
+  ol
+    li
+      counter-reset: resets(1..MAX_INDENT)
+      counter-increment: unquote('list-0')
+      &:before
+        content: unquote('counter(list-0, ' + LIST_STYLE[0] + ')') '. '
+    for num in (1..MAX_INDENT)
+      li.ql-indent-{num}
+        counter-increment: unquote('list-' + num)
+        &:before
+          content: unquote('counter(list-' + num + ', ' + LIST_STYLE[num%3] + ')') '. '
+      if (num < MAX_INDENT)
+        li.ql-indent-{num}
+          counter-reset: resets((num+1)..MAX_INDENT)
+  for num in (1..MAX_INDENT)
+    .ql-indent-{num}:not(.ql-direction-rtl)
+      padding-left: LIST_STYLE_OUTER_WIDTH * (num)
+    li.ql-indent-{num}:not(.ql-direction-rtl)
+      padding-left: LIST_STYLE_OUTER_WIDTH * (num + 1)
+    .ql-indent-{num}.ql-direction-rtl.ql-align-right
+      padding-right: LIST_STYLE_OUTER_WIDTH * (num)
+    li.ql-indent-{num}.ql-direction-rtl.ql-align-right
+      padding-right: LIST_STYLE_OUTER_WIDTH * (num + 1)
+
+  .ql-video
+    display: block
+    max-width: 100%
+  .ql-video.ql-align-center
+    margin: 0 auto
+  .ql-video.ql-align-right
+    margin: 0 0 0 auto
+
+  .ql-size-small
+    font-size: 0.75rem
+  .ql-size-large
+    font-size: 1.5rem
+  .ql-size-huge
+    font-size: 2.5rem
+
+  .ql-direction-rtl
+    direction: rtl
+    text-align: inherit
+
+  .ql-align-center
+    text-align: center
+  .ql-align-justify
+    text-align: justify
+  .ql-align-right
+    text-align: right
+
+.ql-editor.ql-blank::before
+  color: rgba(0,0,0,0.6)
+  content: attr(data-placeholder)
+  font-style: italic
+  left: 15px
+  pointer-events: none
+  position: absolute
+  right: 15px

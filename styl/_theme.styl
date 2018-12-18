@@ -103,7 +103,6 @@ themes = {
   }
 }
 
-
 hues = {
   LONE:   326deg // 赤紫
   LOVE:   285deg // 紫
@@ -297,6 +296,21 @@ palette_single($bgTheme, $type, $idx, key)
 
 
   for theme in $bgTheme
+    .ql-color-{theme}
+      color: $line
+    .ql-bg-{theme}
+      background-color: $bg
+
+    .ql-bubble .ql-color-picker.ql-color .ql-picker-item
+      .{theme} &:not([data-value])
+      &[data-value={theme}]
+        background-color: $line
+
+    .ql-bubble .ql-color-picker.ql-background .ql-picker-item
+      .{theme} &:not([data-value])
+      &[data-value={theme}]
+        background-color: $bg
+
     .{theme}.focus
       border-color:   $focus
 
@@ -444,6 +458,7 @@ palette_single($bgTheme, $type, $idx, key)
           background-color: $emboss
           color: $bg
 
+    u
     ins
       body &.{theme}
       .{theme} &
