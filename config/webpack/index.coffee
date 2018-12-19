@@ -12,6 +12,7 @@ module.exports =
   modules: [
     '~/config/webpack/extention.js'
     ['@nuxtjs/pwa', { icon: false } ]
+    ['@nuxtjs/google-analytics', { id: 'UA-16547346-4' }]
   ]
 
   extensions: ['coffee', 'yml']

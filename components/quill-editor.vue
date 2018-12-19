@@ -1,36 +1,98 @@
 <script lang="coffee">
 
-ColorClass = Quill.import 'attributors/class/color'
-ColorClass.whitelist = ['Y0','Y1','Y2','Y4','Y6','Y8']
+###
+// https://github.com/quilljs/parchment/#blots
+import Quill from 'quill'
+let Inline = Quill.import('blots/inline')
 
-BackgroundClass = Quill.import 'attributors/class/background'
-BackgroundClass.whitelist = ['Y0','Y1','Y2','Y4','Y6','Y8']
+class SpellingBlot extends Inline {
+  static create(value) {
+    let node = super.create(value)
+    node.setAttribute('data-invalid-spelling', '')
+    node.setAttribute('data-alternative-spellings', [])
+    return node
+  }
 
-FontClass = Quill.import 'attributors/class/font'
-FontClass.whitelist = ["monospace"]
+  static formats(domNode) {
+    return {
+      isInvalidSpelling: domNode.hasAttribute('data-invalid-spelling'),
+      alternativeSpellings: domNode.getAttribute('data-alternative-spellings'),
+    }
+  }
+}
 
-SizeClass = Quill.import 'attributors/class/size'
-SizeClass.whitelist = ["small", "large", "huge"]
+SpellingBlot.blotName = 'spelling'
+SpellingBlot.className = 'spelling'
+SpellingBlot.tagName = 'SPAN'
 
-mention      = require "quill-mention"
-{ ImageDrop } = require "quill-image-drop-module"
-magic_url    = require("quill-magic-url").default
-autoformat   = require("quill-autoformat").default
-image_resize = require("quill-image-resize-module").default
+export default SpellingBlot
 
-console.log { SizeClass, ColorClass, BackgroundClass }
 
-Quill.register
-  'formats/background': BackgroundClass
-  'formats/color': ColorClass
-  'formats/font': FontClass
-  'formats/size': SizeClass
-  'modules/mention':    mention
-  'modules/magicUrl':  magic_url
-  'modules/autoformat': autoformat
-  'modules/imageDrop': ImageDrop
-  'modules/imageResize': image_resize
-, true
+Markup = Quill.import 'blots/'
+###
+
+if document?
+  window.Quill = Quill = require 'quill'
+  Color = Quill.import 'attributors/class/color'
+  Color.whitelist = ['Y0','Y1','Y2','Y4','Y6','Y8']
+
+  Background = Quill.import 'attributors/class/background'
+  Background.whitelist = ['Y0','Y1','Y2','Y4','Y6','Y8']
+
+  Font = Quill.import 'attributors/class/font'
+  Font.whitelist = ["monospace"]
+
+  Size = Quill.import 'attributors/class/size'
+  Size.whitelist = ["small", "large", "huge"]
+
+  { ImageDrop } = require "quill-image-drop-module"
+  { default: image_resize } = require "quill-image-resize-module"
+
+  class Link extends Quill.import 'formats/link'
+    @create: (value)->
+      node = super.create value
+      node.setAttribute 'chk', 'confirm'
+      node
+
+  Delta = require "quill-delta"
+  require "quill-magic-url"
+  class magic_url extends Quill.import 'modules/magicUrl'
+    textToUrl: (index, url)->
+      ops = new Delta()
+      .retain index + 1
+      .delete url.length
+      .insert "LINK",
+        link: @normalize url
+      @quill.updateContents ops
+
+  require "quill-mention/dist/quill.mention.min"
+  class mention extends Quill.import 'blots/embed'
+    @className: 'cite-bottom'
+    @tagName: 'q'
+    @blotName: 'mention'
+
+    @value: (node)-> node.dataset
+    @setDataValues: (elem, data)->
+      for key, val of data
+        elem.dataset[key] = val
+      elem
+    @create: (data)->
+      node = super.create("#{data.mark}#{data.id}")
+      node.setAttribute "cite", data.id
+      mention.setDataValues node, data
+
+  Quill.register
+    'formats/background': Background
+    'formats/color': Color
+    'formats/font': Font
+    'formats/size': Size
+    'formats/link': Link
+    'formats/mention': mention
+    'modules/magicUrl':  magic_url
+    'modules/imageDrop': ImageDrop
+    'modules/imageResize': image_resize
+  , true
+
 quill_paste = (newVal, oldVal)->
   return unless @quill
   if newVal
@@ -54,7 +116,31 @@ module.exports =
         imageResize: {}
         history: true
         clipboard: true
-        autoformat: true
+        magicUrl:
+          urlRegularExpression: /(https?:\/\/[\S]+)|(www.[\S]+)|(mailto:[\S]+)|(tel:[\S]+)/
+          globalRegularExpression: /(https?:\/\/|www\.|mailto:|tel:)[\S]+/g
+        mention:
+          dataAttributes: ['id', 'id', 'mark', 'link']
+          isolateCharacter:   true
+          fixMentionsToQuill: true
+          allowedChars: /^\S+$/
+          mentionDenotationChars: ["@","#","%"]
+          renderItem: (o, search)->
+            "#{o.id}"
+          source: (search, renderList, mark)->
+            values = [
+              { id: "aaa", mark }
+              { id: "abb", mark }
+              { id: "acc", mark }
+            ]
+            if search.length
+              matches =
+                for o in values when o.id.toLowerCase().includes search.toLowerCase()
+                  o
+              renderList matches, search
+            else
+              renderList values, search
+
         toolbar: [
           ['bold', 'underline', 'strike', 'code']
           [{ script: 'sub' },   { script: 'super' }]

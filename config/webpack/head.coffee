@@ -31,5 +31,4 @@ module.exports =
 
   ]
   script: [
-    { src: '/lib/quill/quill.min.js', type: 'text/javascript', charset: 'utf8' }
   ]

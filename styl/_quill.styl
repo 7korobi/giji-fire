@@ -1,3 +1,23 @@
+// Quill mention
+.ql-mention-list-container
+  border-radius: 4px
+
+.ql-mention-list
+  list-style: none
+  margin: 0
+  padding: 0
+  overflow: hidden
+
+.ql-mention-list-item
+  cursor: pointer
+  height:      2em
+  line-height: 2em
+  vertical-align: middle
+  padding: 0 0 0 1ex
+
+.ql-mention-list-item.selected
+  text-decoration: none
+
 // BUBBLE
 themeName = 'bubble'
 activeColor = #fff
@@ -387,95 +407,94 @@ resets(arr)
     -moz-tab-size: 4
     
 
-.ql-editor
-  text-align: left
-  > *
-    cursor: text
+text-align: left
+> *
+  cursor: text
 
-  p, ol, ul, pre, blockquote, h1, h2, h3, h4, h5, h6
+p, ol, ul, pre, blockquote, h1, h2, h3, h4, h5, h6
+  counter-reset: resets(1..MAX_INDENT)
+ol > li, ul > li
+  list-style-type: none
+ul > li::before
+  content: '\2022'
+ul[data-checked=true],
+ul[data-checked=false]
+  pointer-events: none
+  > li *
+    pointer-events: all
+  > li::before
+    color: #777
+    cursor: pointer
+    pointer-events: all
+ul[data-checked=true] > li::before
+  content: '\2611'
+ul[data-checked=false] > li::before
+  content: '\2610'
+li::before
+  display: inline-block
+  white-space: nowrap
+  width: LIST_STYLE_WIDTH
+li:not(.ql-direction-rtl)::before
+  margin-left: -1*LIST_STYLE_OUTER_WIDTH
+  margin-right: LIST_STYLE_MARGIN
+  text-align: right
+li.ql-direction-rtl::before
+  margin-left: LIST_STYLE_MARGIN
+  margin-right: -1*LIST_STYLE_OUTER_WIDTH
+ol, ul
+  li:not(.ql-direction-rtl)
+    padding-left: LIST_STYLE_OUTER_WIDTH
+  li.ql-direction-rtl
+    padding-right: LIST_STYLE_OUTER_WIDTH
+ol
+  li
     counter-reset: resets(1..MAX_INDENT)
-  ol > li, ul > li
-    list-style-type: none
-  ul > li::before
-    content: '\2022'
-  ul[data-checked=true],
-  ul[data-checked=false]
-    pointer-events: none
-    > li *
-      pointer-events: all
-    > li::before
-      color: #777
-      cursor: pointer
-      pointer-events: all
-  ul[data-checked=true] > li::before
-    content: '\2611'
-  ul[data-checked=false] > li::before
-    content: '\2610'
-  li::before
-    display: inline-block
-    white-space: nowrap
-    width: LIST_STYLE_WIDTH
-  li:not(.ql-direction-rtl)::before
-    margin-left: -1*LIST_STYLE_OUTER_WIDTH
-    margin-right: LIST_STYLE_MARGIN
-    text-align: right
-  li.ql-direction-rtl::before
-    margin-left: LIST_STYLE_MARGIN
-    margin-right: -1*LIST_STYLE_OUTER_WIDTH
-  ol, ul
-    li:not(.ql-direction-rtl)
-      padding-left: LIST_STYLE_OUTER_WIDTH
-    li.ql-direction-rtl
-      padding-right: LIST_STYLE_OUTER_WIDTH
-  ol
-    li
-      counter-reset: resets(1..MAX_INDENT)
-      counter-increment: unquote('list-0')
-      &:before
-        content: unquote('counter(list-0, ' + LIST_STYLE[0] + ')') '. '
-    for num in (1..MAX_INDENT)
-      li.ql-indent-{num}
-        counter-increment: unquote('list-' + num)
-        &:before
-          content: unquote('counter(list-' + num + ', ' + LIST_STYLE[num%3] + ')') '. '
-      if (num < MAX_INDENT)
-        li.ql-indent-{num}
-          counter-reset: resets((num+1)..MAX_INDENT)
+    counter-increment: unquote('list-0')
+    &:before
+      content: unquote('counter(list-0, ' + LIST_STYLE[0] + ')') '. '
   for num in (1..MAX_INDENT)
-    .ql-indent-{num}:not(.ql-direction-rtl)
-      padding-left: LIST_STYLE_OUTER_WIDTH * (num)
-    li.ql-indent-{num}:not(.ql-direction-rtl)
-      padding-left: LIST_STYLE_OUTER_WIDTH * (num + 1)
-    .ql-indent-{num}.ql-direction-rtl.ql-align-right
-      padding-right: LIST_STYLE_OUTER_WIDTH * (num)
-    li.ql-indent-{num}.ql-direction-rtl.ql-align-right
-      padding-right: LIST_STYLE_OUTER_WIDTH * (num + 1)
+    li.ql-indent-{num}
+      counter-increment: unquote('list-' + num)
+      &:before
+        content: unquote('counter(list-' + num + ', ' + LIST_STYLE[num%3] + ')') '. '
+    if (num < MAX_INDENT)
+      li.ql-indent-{num}
+        counter-reset: resets((num+1)..MAX_INDENT)
+for num in (1..MAX_INDENT)
+  .ql-indent-{num}:not(.ql-direction-rtl)
+    padding-left: LIST_STYLE_OUTER_WIDTH * (num)
+  li.ql-indent-{num}:not(.ql-direction-rtl)
+    padding-left: LIST_STYLE_OUTER_WIDTH * (num + 1)
+  .ql-indent-{num}.ql-direction-rtl.ql-align-right
+    padding-right: LIST_STYLE_OUTER_WIDTH * (num)
+  li.ql-indent-{num}.ql-direction-rtl.ql-align-right
+    padding-right: LIST_STYLE_OUTER_WIDTH * (num + 1)
 
-  .ql-video
-    display: block
-    max-width: 100%
-  .ql-video.ql-align-center
-    margin: 0 auto
-  .ql-video.ql-align-right
-    margin: 0 0 0 auto
+.ql-video
+  display: block
+  max-width: 100%
+.ql-video.ql-align-center
+  margin: 0 auto
+.ql-video.ql-align-right
+  margin: 0 0 0 auto
 
-  .ql-size-small
-    font-size: 0.75rem
-  .ql-size-large
-    font-size: 1.5rem
-  .ql-size-huge
-    font-size: 2.5rem
+.ql-size-small
+  font-size: 0.75rem
+.ql-size-large
+  font-size: 1.5rem
+.ql-size-huge
+  font-size: 2.5rem
 
-  .ql-direction-rtl
-    direction: rtl
-    text-align: inherit
+.ql-direction-rtl
+  direction: rtl
+  text-align: inherit
 
-  .ql-align-center
-    text-align: center
-  .ql-align-justify
-    text-align: justify
-  .ql-align-right
-    text-align: right
+.ql-align-center
+  text-align: center
+.ql-align-justify
+  text-align: justify
+.ql-align-right
+  text-align: right
 
 .ql-editor.ql-blank::before
   color: rgba(0,0,0,0.6)

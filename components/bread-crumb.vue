@@ -24,6 +24,9 @@ ol.bread-crumb
   content: "/"
 
 .bread-crumb
+  li:before
+    content: ""
+    text-align: center
   li
     display: inline-block
 

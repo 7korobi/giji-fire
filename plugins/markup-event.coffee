@@ -44,6 +44,8 @@ module.exports =
               @adjust = "top"
           if e.target.className.includes "cite-top"
             @adjust = "top"
+          if e.target.className.includes "cite-bottom"
+            @adjust = "bottom"
           return
         @hover = null
 
