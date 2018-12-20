@@ -5,11 +5,12 @@ div
       li
         nuxt-link(to="/demo") 開発者用ページ
 
-  c-report(head="Quill TEST" sign="ななころび" handle="SSAY" style="z-index: 10")
-    no-ssr
-      quill-editor(v-model="text" @submit="console")
+  no-ssr
+    div
+      c-report(head="Quill TEST" sign="ななころび" handle="SSAY" style="z-index: 10")
+        quill-editor(v-model="text" @submit="console")
 
-  c-report.ql-editor(head="Quill TEST result" sign="ななころび" handle="SSAY" v-html="text")
+      c-report(head="Quill TEST result" sign="ななころび" handle="SSAY" deco="ql-editor" :log="text")
 
   c-report(handle="footer" deco="center")
     bread-crumb

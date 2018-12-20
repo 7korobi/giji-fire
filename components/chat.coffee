@@ -9,6 +9,7 @@ targets =
   sow:  'g-sow'
   head: 'g-sow'
   mono: 'g-sow'
+  "ql-editor": 'g-quill'
 
   dagre: 'g-sow'
   mermaid: 'g-sow'

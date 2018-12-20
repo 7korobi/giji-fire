@@ -46,7 +46,26 @@ if document?
   Size.whitelist = ["small", "large", "huge"]
 
   { ImageDrop } = require "quill-image-drop-module"
-  { default: image_resize } = require "quill-image-resize-module"
+
+  Keyboard = Quill.import 'modules/keyboard'
+  Keyboard.DEFAULTS.bindings.tab.handler
+
+  class History extends Quill.import 'modules/history'
+    change: ->
+      super ...arguments
+      console.log "change", @stack
+    clear: ->
+      super ...arguments
+      console.log "clear",  @stack
+    record: ->
+      super ...arguments
+      console.log "record", @stack
+    transform: ->
+      super ...arguments
+      console.log "transform", @stack
+
+  class CodeBlock extends Quill.import 'formats/code-block'
+    @tagName: 'code'
 
   class Link extends Quill.import 'formats/link'
     @create: (value)->
@@ -77,8 +96,9 @@ if document?
         elem.dataset[key] = val
       elem
     @create: (data)->
-      node = super.create("#{data.mark}#{data.id}")
+      node = super.create()
       node.setAttribute "cite", data.id
+      node.innerText = "#{data.mark}#{data.id}"
       mention.setDataValues node, data
 
   Quill.register
@@ -87,10 +107,12 @@ if document?
     'formats/font': Font
     'formats/size': Size
     'formats/link': Link
+    'formats/code-block': CodeBlock
     'formats/mention': mention
+    'modules/keyboard': Keyboard
+    'modules/history': History
     'modules/magicUrl':  magic_url
     'modules/imageDrop': ImageDrop
-    'modules/imageResize': image_resize
   , true
 
 quill_paste = (newVal, oldVal)->
@@ -113,14 +135,13 @@ module.exports =
           console.log value
       modules:
         imageDrop: true
-        imageResize: {}
         history: true
         clipboard: true
         magicUrl:
           urlRegularExpression: /(https?:\/\/[\S]+)|(www.[\S]+)|(mailto:[\S]+)|(tel:[\S]+)/
           globalRegularExpression: /(https?:\/\/|www\.|mailto:|tel:)[\S]+/g
         mention:
-          dataAttributes: ['id', 'id', 'mark', 'link']
+          dataAttributes: ['id', 'id', 'mark']
           isolateCharacter:   true
           fixMentionsToQuill: true
           allowedChars: /^\S+$/
@@ -154,7 +175,7 @@ module.exports =
           [{ background: [false, 'Y0','Y1','Y2','Y4','Y6','Y8'] }
            { color:      [false, 'Y0','Y1','Y2','Y4','Y6','Y8'] }
           ]
-          [{ align: [false, 'center', 'justify', 'right'] }]
+          [{ align: [false, 'center', 'right'] }]
           ['kana']
           ['clean']
           ['link', 'image', 'video']
@@ -226,20 +247,27 @@ module.exports =
           @$emit 'blur',  @quill
 
       @quill.on 'text-change', (delta, oldDelta, source)=>
-        @text = @quill.getText()
-        ops  = @quill.getContents()
-        @html = @$refs.editor.children[0].innerHTML
-        console.log { ops, delta, oldDelta, @html, @text }
-        @$emit 'input', @html
-        @$emit 'change', { @html, @text, @quill }
+        @change()
 
       @$emit 'ready', @quill
+
+    change: _.debounce ->
+      { @redo, @undo } = @quill.history.stack
+      ops  = @quill.getContents()
+      @text = @quill.getText()
+      @html = @$refs.editor.children[0].innerHTML
+      console.log { @redo, @undo, ops, @html, @text }
+      @$emit 'input', @html
+      @$emit 'change', { @html, @text, @quill }
+    , 500,
+      leading:  false
+      trailing: true
 
     submit: _.debounce ->
       return if @ban
       @$emit 'submit', @value
     , 3000,
-      leading: true
+      leading:  true
       trailing: false
 
   computed:
