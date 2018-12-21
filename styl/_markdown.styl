@@ -96,6 +96,14 @@ hr:after
   border-style: none none dashed none
   border-width: 0 0 1px 0
 
+hr.footnote:before
+  border-style: dashed none none none
+  border-width: 1px 0 0 0
+
+hr.footnote:after
+  border-style: none none solid none
+  border-width: 0 0 1px 0
+
 hr.invisible_hr
   display: none
 
@@ -356,11 +364,12 @@ abbr
     min-height: 36px
     vertical-align: middle
 
+pre
 kbd
 code
   padding: 1px 0.4ex
   margin:  0px 0.1ex
-
+  font-size: inherit
 
 
 input
@@ -389,12 +398,14 @@ sup
   line-height:     1.1em
   display: inline-block
   text-align: center
+  font-size: inherit
 
 sub
   vertical-align: -0.4em
   line-height:     1.1em
   display: inline-block
   text-align: center
+  font-size: inherit
 
 // Testing
 .col2

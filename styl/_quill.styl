@@ -1,3 +1,19 @@
+button.ql-kana[value="invert"]:before
+  content: "ア"
+  margin-right: -0.8em
+button.ql-kana[value="invert"]:after
+  content: "あ"
+  margin-top:    0.2em
+button.ql-kana[value="none"]:after
+  content: "あ"
+button.ql-kana[value="half"]:after
+  content: "あ゚"
+button.ql-kana[value="full"]:after
+  content: "あ゙"
+
+.ql-palet .ql-picker-item:before
+  content: attr(data-value)
+
 // Quill mention
 .ql-mention-list-container
   border-radius: 4px
@@ -38,7 +54,7 @@ arrowWidth = 6px
   .ql-color-picker
     svg
       margin: 1px
-    .ql-picker-item.ql-selected, .ql-picker-item:hover
+    .:before.  content: attr(data-value)ql-selected, .ql-picker-item:hover
       border-color: activeColor
 
 .ql-bubble
@@ -160,14 +176,27 @@ colorItemsPerRow = 7
   input.ql-image[type=file]
     display: none
 
-  button:hover, button:focus, button.ql-active,
-  .ql-picker-label:hover, .ql-picker-label.ql-active,
-  .ql-picker-item:hover, .ql-picker-item.ql-selected
+  button:hover
+  button:focus
+  button.ql-active,
+  .ql-picker-label:hover
+  .ql-picker-label.ql-active,
+  .ql-picker-item:hover
+  .ql-picker-item.ql-selected
     color: activeColor
     .ql-fill, .ql-stroke.ql-fill
       fill: activeColor
     .ql-stroke, .ql-stroke-miter
       stroke: activeColor
+
+  button:before
+  button:after
+    color: inactiveColor
+
+  button:hover:before
+  button:hover:after
+    color: activeColor
+
 
 // Fix for iOS not losing hover on touch
 @media (pointer: coarse)
@@ -178,6 +207,9 @@ colorItemsPerRow = 7
         fill: inactiveColor
       .ql-stroke, .ql-stroke-miter
         stroke: inactiveColor
+      &:before
+      &:after
+        color: inactiveColor
 
 .ql-{themeName}
   box-sizing: border-box

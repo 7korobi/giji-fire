@@ -1,35 +1,12 @@
 <script lang="coffee">
+_ = require 'lodash'
+voice_chrs   = "がぎぐげござじずぜぞだぢづでどばびぶべぼぱぴぷぺぽゔゞガギグゲゴザジズゼゾダヂヅデドバビブベボパピプペポヴヷヸヹヺヾ"
+devoice_chrs = "かきくけこさしすせそたちつてとはひふへほはひふへほうゝカキクケコサシスセソタチツテトハヒフヘホハヒフヘホウワヰヱヲヽ"
+devoice = {}
+for voice_chr, idx in voice_chrs
+  devoice_chr = devoice_chrs[idx]
+  devoice[voice_chr] = devoice_chr
 
-###
-// https://github.com/quilljs/parchment/#blots
-import Quill from 'quill'
-let Inline = Quill.import('blots/inline')
-
-class SpellingBlot extends Inline {
-  static create(value) {
-    let node = super.create(value)
-    node.setAttribute('data-invalid-spelling', '')
-    node.setAttribute('data-alternative-spellings', [])
-    return node
-  }
-
-  static formats(domNode) {
-    return {
-      isInvalidSpelling: domNode.hasAttribute('data-invalid-spelling'),
-      alternativeSpellings: domNode.getAttribute('data-alternative-spellings'),
-    }
-  }
-}
-
-SpellingBlot.blotName = 'spelling'
-SpellingBlot.className = 'spelling'
-SpellingBlot.tagName = 'SPAN'
-
-export default SpellingBlot
-
-
-Markup = Quill.import 'blots/'
-###
 
 if document?
   window.Quill = Quill = require 'quill'
@@ -50,20 +27,6 @@ if document?
   Keyboard = Quill.import 'modules/keyboard'
   Keyboard.DEFAULTS.bindings.tab.handler
 
-  class History extends Quill.import 'modules/history'
-    change: ->
-      super ...arguments
-      console.log "change", @stack
-    clear: ->
-      super ...arguments
-      console.log "clear",  @stack
-    record: ->
-      super ...arguments
-      console.log "record", @stack
-    transform: ->
-      super ...arguments
-      console.log "transform", @stack
-
   class CodeBlock extends Quill.import 'formats/code-block'
     @tagName: 'code'
 
@@ -77,29 +40,31 @@ if document?
   require "quill-magic-url"
   class magic_url extends Quill.import 'modules/magicUrl'
     textToUrl: (index, url)->
+      link = @normalize url
+      protocol = link.split(":")[0]
+
       ops = new Delta()
       .retain index + 1
       .delete url.length
-      .insert "LINK",
-        link: @normalize url
+      .insert "#{protocol}:🔗", { link }
       @quill.updateContents ops
 
   require "quill-mention/dist/quill.mention.min"
+  class Mention extends Quill.import "modules/mention"
   class mention extends Quill.import 'blots/embed'
     @className: 'cite-bottom'
     @tagName: 'q'
     @blotName: 'mention'
 
     @value: (node)-> node.dataset
-    @setDataValues: (elem, data)->
-      for key, val of data
-        elem.dataset[key] = val
-      elem
+    @setDataValues: null
     @create: (data)->
-      node = super.create()
+      node = super.create("#{data.mark}#{data.id}")
       node.setAttribute "cite", data.id
       node.innerText = "#{data.mark}#{data.id}"
-      mention.setDataValues node, data
+      for key, val of data
+        node.dataset[key] = val
+      node
 
   Quill.register
     'formats/background': Background
@@ -109,8 +74,8 @@ if document?
     'formats/link': Link
     'formats/code-block': CodeBlock
     'formats/mention': mention
+    'modules/mention': Mention
     'modules/keyboard': Keyboard
-    'modules/history': History
     'modules/magicUrl':  magic_url
     'modules/imageDrop': ImageDrop
   , true
@@ -123,6 +88,23 @@ quill_paste = (newVal, oldVal)->
   else
     @quill.setText ''
 
+selected_change = (quill, cb)->
+  { index, length } = quill.getSelection()
+
+  delta = new Delta()
+  .retain index
+
+  text_list =
+    for { insert, attributes } in quill.getContents(index, length).ops when insert.length
+      delta.delete insert.length
+
+      insert = cb insert
+      delta.insert insert, attributes
+      insert
+
+  quill.updateContents delta
+  quill.setSelection index, text_list.join("").length
+
 module.exports =
   data: ->
     _options: {}
@@ -130,9 +112,6 @@ module.exports =
     text: "\n"
 
     defaultOptions:
-      handlers:
-        kana: (value)->
-          console.log value
       modules:
         imageDrop: true
         history: true
@@ -162,24 +141,63 @@ module.exports =
             else
               renderList values, search
 
-        toolbar: [
-          ['bold', 'underline', 'strike', 'code']
-          [{ script: 'sub' },   { script: 'super' }]
+        toolbar:
+          container: [
+            ['blockquote', 'code-block']
+            [{ list: 'ordered' }, { list: 'bullet' }]
+            [{ indent: '-1' },    { indent: '+1' }]
 
-          ['blockquote', 'code-block']
-          [{ list: 'ordered' }, { list: 'bullet' }]
-          [{ indent: '-1' },    { indent: '+1' }]
-
-          [{ size: ['small', false, 'large', 'huge'] }]
-          [{ header: [1, 2, 3, 4, 5, 6, false] }]
-          [{ background: [false, 'Y0','Y1','Y2','Y4','Y6','Y8'] }
-           { color:      [false, 'Y0','Y1','Y2','Y4','Y6','Y8'] }
+            [{ size: ['small', false, 'large', 'huge'] }]
+            [{ header: [1, 2, 3, 4, 5, 6, false] }]
+            [{ background: [false, 'Y0','Y1','Y2','Y4','Y6','Y8'] }
+             { color:      [false, 'Y0','Y1','Y2','Y4','Y6','Y8'] }
+            ]
+            [{ align: [false, 'center', 'right'] }]
+            ['clean']
+            ['link', 'image', 'video']
+            ['bold', 'underline', 'strike', 'code']
+            [{ script: 'sub' },   { script: 'super' }]
+            [{ kana: 'invert' }, { kana: 'none' }, { kana: 'half' }, { kana: 'full' }]
+            [{ palet: ["꧁꧂","†","𓆏","(｡ŏ﹏ŏ)","🀀🀁🀂🀃🀆🀅🀄🀇🀈🀉🀊🀋🀌🀍🀎🀏🀐🀑🀒🀓🀔🀕🀖🀗🀘🀙🀚🀛🀜🀝🀞🀟🀠🀡🀢🀣🀤🀥🀦🀧🀨🀩🀪🀫"] }]
           ]
-          [{ align: [false, 'center', 'right'] }]
-          ['kana']
-          ['clean']
-          ['link', 'image', 'video']
-        ]
+          handlers:
+            kana: (mode)->
+              switch mode
+                when 'invert'
+                  # ひらがなをカタカナに、カタカナをひらがなに
+                  selected_change @quill, (text)->
+                    text.replace /([\u3041-\u3096])|([\u30a1-\u30f6])/g, (match, hira, kata)->
+                      if hira
+                        return String.fromCharCode hira.charCodeAt(0) + 0x60
+                      if kata
+                        return String.fromCharCode kata.charCodeAt(0) - 0x60
+                when 'none'
+                  selected_change @quill, (text)->
+                    text = text.replace /([\u3099\u309a])/g, (match, cut)->
+                      ""
+                    text = text.replace /([\u3041-\u3096\u309d\309f\u30a1-\u30fa\u30fd\u30fe\u30ff])/g, (match, chr)->
+                      devoice[chr] ? chr
+                    text
+                when 'half'
+                  selected_change @quill, (text)->
+                    text = text.replace /([\u3099\u309a])/g, (match, cut)->
+                      ""
+                    text = text.replace /([\u3041-\u3096\u309d\309f\u30a1-\u30fa\u30fd\u30fe\u30ff])/g, (match, chr)->
+                      chr = devoice[chr] ? chr
+                      chr + "\u309a"
+                    text = text.replace /([はひふへほハヒフヘホ])[\u309a]/g, (match, chr)->
+                      String.fromCharCode chr.charCodeAt(0) + 2
+                    text
+                when 'full'
+                  selected_change @quill, (text)->
+                    text = text.replace /([\u3099\u309a])/g, (match, cut)->
+                      ""
+                    text = text.replace /([\u3041-\u3096\u309d\309f\u30a1-\u30fa\u30fd\u30fe\u30ff])/g, (match, chr)->
+                      chr = devoice[chr] ? chr
+                      chr + "\u3099"
+                    text = text.replace /([かきくけこさしすせそたちつてとはひふへほカキクケコサシスセソタチツテトハヒフヘホ])[\u3099]/g, (match, chr)->
+                      String.fromCharCode chr.charCodeAt(0) + 1
+                    text
       placeholder: 'Insert text here ...'
       readOnly: false
       theme: 'bubble'
@@ -231,7 +249,7 @@ module.exports =
   methods:
     initialize: ->
       return unless @$el && Quill
-      @_options = { ...{}, ...@defaultOptions, ...@globalOptions, ...@options }
+      @_options = _.merge {}, @defaultOptions, @globalOptions, @options
       @quill = new Quill @$refs.editor, @_options
       @quill.enable false
 
@@ -245,6 +263,7 @@ module.exports =
           @$emit 'focus', @quill
         else
           @$emit 'blur',  @quill
+        console.log range
 
       @quill.on 'text-change', (delta, oldDelta, source)=>
         @change()
@@ -253,10 +272,17 @@ module.exports =
 
     change: _.debounce ->
       { @redo, @undo } = @quill.history.stack
-      ops  = @quill.getContents()
-      @text = @quill.getText()
+      delta  = @quill.getContents()
+      textlist =
+        for op in delta.ops
+          switch
+            when 'string' == typeof op.insert 
+              op.insert
+            when o = op.insert.mention
+              "#{o.mark}#{o.id}"
+      @text = textlist.join("")
       @html = @$refs.editor.children[0].innerHTML
-      console.log { @redo, @undo, ops, @html, @text }
+      console.log { @redo, @undo, delta, @html, @text }
       @$emit 'input', @html
       @$emit 'change', { @html, @text, @quill }
     , 500,
@@ -307,6 +333,7 @@ module.exports =
 <template lang="pug">
 div
   div(ref="editor")
+  hr.footnote
   div.form
     button(@click="submit" :class="{ ban, warn }")
       i.mdi(:class="mark" v-if="$listeners.submit")
