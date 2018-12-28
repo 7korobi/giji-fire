@@ -6,6 +6,7 @@
 @import "./_markdown.styl"
 @import "./_theme.styl"
 @import "./_font.styl"
+@import "./_height.styl"
 
 palette(grass, 'G', 0)
 palette(metal, 'I', 2)

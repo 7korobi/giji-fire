@@ -165,6 +165,7 @@ colorItemsPerRow = 7
     height: controlHeight
     padding: inputPaddingHeight inputPaddingWidth
     width: controlHeight + (inputPaddingWidth - inputPaddingHeight)*2
+    font-size: 15px
 
     svg
       float: left
@@ -189,13 +190,19 @@ colorItemsPerRow = 7
     .ql-stroke, .ql-stroke-miter
       stroke: activeColor
 
-  button:before
-  button:after
-    color: inactiveColor
+  button:hover
+  button:focus
+  button.ql-active
+    & > *
+    &:before
+    &:after
+      color: activeColor
 
-  button:hover:before
-  button:hover:after
-    color: activeColor
+  button
+    & > *
+    &:before
+    &:after
+      color: inactiveColor
 
 
 // Fix for iOS not losing hover on touch
@@ -518,16 +525,16 @@ for num in (1..MAX_INDENT)
   direction: rtl
   text-align: inherit
 
+.ql-align-justify
+.left
+.l
+  text-align: justify
+
 .ql-align-center
 .center
 .c
   text-align: center
-.ql-align-justify
-  text-align: justify
-.ql-align-left
-.left
-.l
-  text-align: left
+
 .ql-align-right
 .right
 .r

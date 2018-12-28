@@ -10,7 +10,22 @@ body
   font-feature-settings: "palt"
   font-smooth: antialiased
   font-kerning: normal
+  text-align: justify
 
+[data-ruby]
+  position: relative
+  white-space: nowrap
+
+[data-ruby]:before
+  content: attr(data-ruby)
+  position: absolute
+  left:  0
+  right: 0
+  text-align: center
+  -webkit-text-emphasis: none
+  text-emphasis: none
+
+[data-ruby]:before
 rt
   text-shadow: none
   font-variant-east-asian: ruby full-width simplified
@@ -29,10 +44,6 @@ s
 u
 ins
   text-decoration-style: wavy
-
-textarea
-.text
-  text-align: start
 
 tt
 code
@@ -360,8 +371,6 @@ abbr
   button
   [href]
   .btn
-    min-width:  30px
-    min-height: 36px
     vertical-align: middle
 
 pre
@@ -394,15 +403,7 @@ button
     margin:  0.1ex 0px
 
 sup
-  vertical-align:  0.4em
-  line-height:     1.1em
-  display: inline-block
-  text-align: center
-  font-size: inherit
-
 sub
-  vertical-align: -0.4em
-  line-height:     1.1em
   display: inline-block
   text-align: center
   font-size: inherit

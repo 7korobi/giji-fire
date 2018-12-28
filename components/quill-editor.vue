@@ -10,6 +10,9 @@ for voice_chr, idx in voice_chrs
 
 if document?
   window.Quill = Quill = require 'quill'
+  Delta = require "quill-delta"
+  normalizeUrl = require "normalize-url"
+
   Color = Quill.import 'attributors/class/color'
   Color.whitelist = ['Y0','Y1','Y2','Y4','Y6','Y8']
 
@@ -22,39 +25,49 @@ if document?
   Size = Quill.import 'attributors/class/size'
   Size.whitelist = ["small", "large", "huge"]
 
-  { ImageDrop } = require "quill-image-drop-module"
-
   Keyboard = Quill.import 'modules/keyboard'
   Keyboard.DEFAULTS.bindings.tab.handler
 
-  class CodeBlock extends Quill.import 'formats/code-block'
-    @tagName: 'code'
+  icons = Quill.import 'ui/icons'
+  icons.italic = """<em>あ</em>"""
+  icons.ruby = """<ruby data-ruby="るび">文字</ruby>"""
 
-  class Link extends Quill.import 'formats/link'
+  class KBD extends Quill.import 'formats/code'
+    @tagName: 'KBD'
+    @blotName: 'kbd'
+
+  class Ruby extends Quill.import 'blots/inline'
+    @tagName:  'RUBY'
+    @blotName: 'ruby'
+    @className: 'ql-ruby'
     @create: (value)->
-      node = super.create value
-      node.setAttribute 'chk', 'confirm'
-      node
+      domNode = super.create value
+      return domNode unless value?.length
+      domNode.dataset.ruby = value
+      domNode
 
-  Delta = require "quill-delta"
-  require "quill-magic-url"
-  class magic_url extends Quill.import 'modules/magicUrl'
-    textToUrl: (index, url)->
-      link = @normalize url
-      protocol = link.split(":")[0]
+    @value: (domNode)->
+      console.log "value"
+      console.log domNode
+      domNode.dataset.ruby
 
-      ops = new Delta()
-      .retain index + 1
-      .delete url.length
-      .insert "#{protocol}:🔗", { link }
-      @quill.updateContents ops
+    @formats: (domNode)->
+      console.log "formats"
+      console.log domNode
+      domNode.dataset.ruby
+
+    format: (name, value)->
+      if name == @statics.blotName && value?.length
+        @domNode.dataset.ruby = value
+      else
+        super.format name, value
 
   require "quill-mention/dist/quill.mention.min"
   class Mention extends Quill.import "modules/mention"
   class mention extends Quill.import 'blots/embed'
-    @className: 'cite-bottom'
     @tagName: 'q'
     @blotName: 'mention'
+    @className: 'cite-bottom'
 
     @value: (node)-> node.dataset
     @setDataValues: null
@@ -71,20 +84,24 @@ if document?
     'formats/color': Color
     'formats/font': Font
     'formats/size': Size
-    'formats/link': Link
-    'formats/code-block': CodeBlock
+    'formats/ruby': Ruby
+    'formats/kbd':  KBD
     'formats/mention': mention
     'modules/mention': Mention
     'modules/keyboard': Keyboard
-    'modules/magicUrl':  magic_url
-    'modules/imageDrop': ImageDrop
-  , true
+
+hashcode = (str)->
+  hash = 5381
+  at = str.length
+  while at
+    hash = (hash * 33) ^ str.charCodeAt --at
+  hash >>> 0
 
 quill_paste = (newVal, oldVal)->
   return unless @quill
   if newVal
     if newVal != @html
-      @quill.pasteHTML @html = newVal
+      @quill.clipboard.dangerouslyPasteHTML 0, @html = newVal
   else
     @quill.setText ''
 
@@ -105,20 +122,57 @@ selected_change = (quill, cb)->
   quill.updateContents delta
   quill.setSelection index, text_list.join("").length
 
-module.exports =
-  data: ->
-    _options: {}
-    html: ''
-    text: "\n"
+readFiles = (files, cb)->
+  for file in files
+    return unless file.type.match /^image\/(gif|jpe?g|a?png|svg|webp|bmp|vnd\.microsoft\.icon)/i
+  reader = new FileReader()
+  reader.onload = (e)=>
+    cb e.target.result
+  blob =
+    if file.getAsFile
+      file.getAsFile()
+    else
+      file
+  if blob instanceof Blob
+    reader.readAsDataURL blob
 
+
+module.exports =
+  mixins: [
+    require("~/plugins/browser-store")
+      local:
+        html: ""
+  ]
+  data: ->
+    text: "\n"
+    index:  0
+    length: 0
+
+    _options: {}
     defaultOptions:
       modules:
-        imageDrop: true
         history: true
         clipboard: true
-        magicUrl:
-          urlRegularExpression: /(https?:\/\/[\S]+)|(www.[\S]+)|(mailto:[\S]+)|(tel:[\S]+)/
-          globalRegularExpression: /(https?:\/\/|www\.|mailto:|tel:)[\S]+/g
+        uploader:
+          handler: ( range, files )=>
+            images = await Promise.all files.map (file)->
+              new Promise (ok)=>
+                reader = new FileReader()
+                reader.onload = (e)=>
+                  code = hashcode e.target.result
+                  [ ext ] = file.name.match /\.[^.]+$/
+                  id = "#{code.toString(36)}#{ext}"
+                  console.log { code, ext, id }
+                  ok e.target.result
+                reader.readAsDataURL file
+
+            ops = new Delta()
+            .retain range.index
+            .delete range.length
+            for image in images
+              ops.insert { image }
+            @quill.updateContents ops
+            @quill.setSelection range.index + images.length
         mention:
           dataAttributes: ['id', 'id', 'mark']
           isolateCharacter:   true
@@ -143,7 +197,7 @@ module.exports =
 
         toolbar:
           container: [
-            ['blockquote', 'code-block']
+            ['blockquote']
             [{ list: 'ordered' }, { list: 'bullet' }]
             [{ indent: '-1' },    { indent: '+1' }]
 
@@ -154,13 +208,29 @@ module.exports =
             ]
             [{ align: [false, 'center', 'right'] }]
             ['clean']
-            ['link', 'image', 'video']
+#            ['formula']
+#            ['link', 'image', 'video']
             ['bold', 'underline', 'strike', 'code']
             [{ script: 'sub' },   { script: 'super' }]
+            ['kbd']
+            ['ruby']
+            ['italic']
             [{ kana: 'invert' }, { kana: 'none' }, { kana: 'half' }, { kana: 'full' }]
-            [{ palet: ["꧁꧂","†","𓆏","(｡ŏ﹏ŏ)","🀀🀁🀂🀃🀆🀅🀄🀇🀈🀉🀊🀋🀌🀍🀎🀏🀐🀑🀒🀓🀔🀕🀖🀗🀘🀙🀚🀛🀜🀝🀞🀟🀠🀡🀢🀣🀤🀥🀦🀧🀨🀩🀪🀫"] }]
+#            [{ palet: ["꧁꧂","†","𓆏","(｡ŏ﹏ŏ)","🀀🀁🀂🀃🀆🀅🀄🀇🀈🀉🀊🀋🀌🀍🀎🀏🀐🀑🀒🀓🀔🀕🀖🀗🀘🀙🀚🀛🀜🀝🀞🀟🀠🀡🀢🀣🀤🀥🀦🀧🀨🀩🀪🀫"] }]
           ]
           handlers:
+            kbd: ->
+            ruby: ->
+              return unless ruby = prompt("ふりがな")
+              { index, length } = @quill.getSelection()
+              text = @quill.getText(index, length)
+
+              ops = new Delta()
+              .retain index
+              .delete length
+              .insert text, { ruby }
+              @quill.updateContents ops
+
             kana: (mode)->
               switch mode
                 when 'invert'
@@ -253,11 +323,13 @@ module.exports =
       @quill = new Quill @$refs.editor, @_options
       @quill.enable false
 
-      if @value || @content
-        @quill.pasteHTML @value || @content
+      if html = @value || @content || @html
+        if @html
+          @change()
+        @quill.clipboard.dangerouslyPasteHTML 0, html
 
       @quill.enable ! @disabled
-      
+
       @quill.on 'selection-change', (range)=>
         if range
           @$emit 'focus', @quill
@@ -265,10 +337,56 @@ module.exports =
           @$emit 'blur',  @quill
         console.log range
 
-      @quill.on 'text-change', (delta, oldDelta, source)=>
+      @quill.on 'text-change', ({ ops }, oldDelta, source)=>
         @change()
+        return unless 1 <= ops?.length <= 2
+        [{ retain }, ..., { insert }] = ops
+        return unless insert
+
+        if insert.match /^\s$/
+          sel = @quill.getSelection()
+          # space input.
+          [leaf] = @quill.getLeaf sel.index
+          return unless leaf.text && leaf.parent.domNode.localName != 'a'
+          insert = leaf.text
+          index = sel.index - insert.length
+        else
+          # clipboard paste.
+          index = retain ? 0
+
+        return unless urlMatch = insert.match /([a-z]+ps?:\/\/[\S]+)|(www.[\S]+)|(mailto:[\S]+)|(tel:[\S]+)/
+        index += urlMatch.index
+
+        url = urlMatch[0]
+        ops = new Delta()
+        .retain index
+        .delete url.length
+
+        @insert_url ops, url
+
+        @quill.updateContents ops
 
       @$emit 'ready', @quill
+
+    insert_file: ( dataUrl )->
+      index = @quill.getSelection()?.index || @quill.getLength()
+      @quill.insertEmbed index, 'image', dataUrl, 'user'
+
+    insert_url: (ops, url)->
+      link =
+        if /([a-z]+ps?:\/\/[\S]+)|(www.[\S]+)/.test url
+          normalizeUrl url,
+            stripHash: false
+            stripWWW:  false
+        else
+          url
+      [__, protocol, ext] = link.match(/([^:]+):\/\/.+\.([^.]+)$/)
+
+      switch ext
+        when 'png', 'jpg', 'jpeg', 'gif'
+          ops.insert { image: link }
+        else
+          ops.insert "#{protocol}:🔗", { link }
 
     change: _.debounce ->
       { @redo, @undo } = @quill.history.stack
@@ -330,6 +448,12 @@ module.exports =
       @quill.enable ! newVal
 
 </script>
+<style lang="sass">
+button
+  i.mdi
+    font-size: 1.5em
+    vertical-align: middle
+</style>
 <template lang="pug">
 div
   div(ref="editor")

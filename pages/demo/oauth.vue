@@ -137,6 +137,6 @@ module.exports =
 td
   word-break: break-all
 .mdi
-  line-height: 4rem
+  padding:   0.5rem 0 
   font-size:   3rem
 </style>
