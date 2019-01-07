@@ -27,6 +27,7 @@ coffee =
   use: [
     loader: 'coffee-loader'
     options:
+      sourceMap: true
       transpile:
         plugins: [
           "@babel/plugin-transform-modules-commonjs",
@@ -34,9 +35,11 @@ coffee =
         presets: [[
           "@nuxt/babel-preset-app",
             targets:
-              browsers: [
-                "last 3 versions"
-              ]
+            browsers: [
+              ">0.5%",
+              "not ie 11",
+              "not op_mini all",
+            ]
         ]]
   ]
 

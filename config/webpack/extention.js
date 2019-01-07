@@ -1,3 +1,5 @@
+
+// see https://browserl.ist/?q=>0.5%%25%2c+not+ie+11%2c+not+op_mini+all
 const babel = {
   plugins: [
     "@babel/plugin-transform-modules-commonjs",
@@ -7,44 +9,21 @@ const babel = {
       targets: {
         node: "6.11.5",
         browsers: [
-          "last 1 versions"
-        ]
+          ">0.5%",
+          "not ie 11",
+          "not op_mini all",
+        ],
       }
     }]
-  ]
+  ],
 }
-
-
-const whitelist = [
-  RegExp(`node_modules/quill-`),
-  RegExp(`\./nuxt/`),
-]
-const not_loaders = {
-  js: {
-    test: /\.js$/,
-    loader: 'babel-loader',
-    options: Object.assign({
-      include: (path)=> {
-        if ( whitelist[0].exec(path) ) {
-          throw new Error(JSON.stringify(path))
-        }
-        for ( const rule of whitelist ) {
-          if (rule.exec(path)){
-            return true
-          }
-        }
-        return false
-      },
-    }, babel),
-  },
-}
-
 
 const loaders = {
   coffee: {
     test: /\.coffee$/,
     loader: 'coffee-loader',
     options: {
+      sourceMap: true,
       transpile: babel,
     }
   },
@@ -76,6 +55,19 @@ module.exports = function (options) {
   // Extend build
   this.extendBuild(config => {
     config.resolve.extensions.push('.coffee', '.yml')
+    for ( rule of config.module.rules) {
+      console.log(rule.test)
+      if ( rule.test.exec(".js") ){
+        console.log(rule.include)
+        console.log(rule.exclude.toString())
+        const super_call = rule.exclude
+        rule.exclude = (file) => {
+          if (/node_modules\/parchment/.test( file )) return false
+          if (/node_modules\/quill/    .test( file )) return false
+          return super_call( file )
+        }
+      }
+    }
     for (const key in loaders) {
       const loader = loaders[key]
       config.module.rules.push(loader)

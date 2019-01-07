@@ -5,6 +5,7 @@ coffee =
   test: /\.coffee$/
   loader: 'coffee-loader'
   options:
+    sourceMap: true
     transpile:
       plugins: [
         "@babel/plugin-transform-modules-commonjs",

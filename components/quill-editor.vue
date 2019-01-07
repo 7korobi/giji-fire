@@ -9,7 +9,7 @@ for voice_chr, idx in voice_chrs
 
 
 if document?
-  window.Quill = Quill = require 'quill'
+  window.Quill = Quill = require('quill/quill').default
   Delta = require "quill-delta"
   normalizeUrl = require "normalize-url"
 
@@ -36,6 +36,10 @@ if document?
     @tagName: 'KBD'
     @blotName: 'kbd'
 
+    constructor: (scroll, node)->
+      super(scroll, node)
+      console.log @
+
   class Ruby extends Quill.import 'blots/inline'
     @tagName:  'RUBY'
     @blotName: 'ruby'
@@ -56,6 +60,10 @@ if document?
       console.log domNode
       domNode.dataset.ruby
 
+    constructor: (scroll, node)->
+      super(scroll, node)
+      console.log @
+
     format: (name, value)->
       if name == @statics.blotName && value?.length
         @domNode.dataset.ruby = value
@@ -63,7 +71,7 @@ if document?
         super.format name, value
 
   require "quill-mention/dist/quill.mention.min"
-  class Mention extends Quill.import "modules/mention"
+  
   class mention extends Quill.import 'blots/embed'
     @tagName: 'q'
     @blotName: 'mention'
@@ -79,6 +87,10 @@ if document?
         node.dataset[key] = val
       node
 
+    constructor: (scroll, node)->
+      super(scroll, node)
+      console.log @
+
   Quill.register
     'formats/background': Background
     'formats/color': Color
@@ -87,7 +99,6 @@ if document?
     'formats/ruby': Ruby
     'formats/kbd':  KBD
     'formats/mention': mention
-    'modules/mention': Mention
     'modules/keyboard': Keyboard
 
 hashcode = (str)->

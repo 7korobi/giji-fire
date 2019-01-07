@@ -7,14 +7,15 @@ babel =
       targets:
         node: "6.11.5"
         browsers: [
-          "last 1 versions"
+          ">0.5%",
+#          "not ie 11",
+#          "not op_mini all",
         ]
     ]
   ]
 
 module.exports =
   extend: (config, { isDev, isClient, isServer, loaders })=>
-    console.log loaders
 
   extractCSS: true
   loaders:

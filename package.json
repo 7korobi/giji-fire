@@ -18,7 +18,6 @@
     "copy_dist": "cp -ru static/* dist/",
     "copy:stylus": "ls styl/*.styl.use | xargs stylus --compress --out static/css/",
     "copy:portrate": "cp -u ../../*/web_work/images/portrate/* static/images/portrate/.",
-    "copy:quill": "cp -u node_modules/quill/dist/*.css node_modules/quill/dist/quill*.min.js* node_modules/quill-*/*.min.js* static/lib/quill/.",
     "copy:func": "webpack --config config/webpack/index-functions.coffee",
     "-copy:sow": "webpack --config config/webpack/index-sow.coffee",
     "deploy": "run-s generate:nuxt deploy:test",
