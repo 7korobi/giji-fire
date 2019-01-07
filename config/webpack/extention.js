@@ -19,6 +19,15 @@ const babel = {
 }
 
 const loaders = {
+  svg: {
+    test: /\.svg$/,
+    use: [{
+      loader: 'html-loader',
+      options: {
+        minimize: true,
+      },
+    }]
+  },
   coffee: {
     test: /\.coffee$/,
     loader: 'coffee-loader',
@@ -57,6 +66,9 @@ module.exports = function (options) {
     config.resolve.extensions.push('.coffee', '.yml')
     for ( rule of config.module.rules) {
       console.log(rule.test)
+      if ( rule.test.exec(".svg") ){
+        rule.test = /\.(png|jpe?g|gif|webp)$/
+      }
       if ( rule.test.exec(".js") ){
         console.log(rule.include)
         console.log(rule.exclude.toString())
