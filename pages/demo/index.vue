@@ -10,6 +10,7 @@ div
     nuxt-link(to="/demo/marked2") marked
     nuxt-link(to="/demo/sow") sow
     nuxt-link(to="/demo/quill") Quill
+    nuxt-link(to="/demo/tiptap") tiptap
   c-post(handle="TSAY")
     nuxt-link(to="/demo/marked") Markdown Talk
   c-post(handle="TSAY")

@@ -1,5 +1,66 @@
 <script lang="coffee">
 _ = require 'lodash'
+{
+  Editor
+  EditorContent
+  EditorMenuBar
+  EditorMenuBubble
+  EditorFloatingMenu
+  Node
+  Mark
+} = require 'tiptap'
+{
+  markInputRule
+  wrappingInputRule
+  setBlockType
+  toggleWrap
+  toggleMark
+} = require 'tiptap-commands'
+{
+  Blockquote,
+  CodeBlock,
+  HardBreak,
+  Heading,
+  OrderedList,
+  BulletList,
+  ListItem,
+  TodoItem,
+  TodoList,
+  Bold,
+  Code,
+  Italic,
+  Link,
+  Table,
+  TableHeader,
+  TableCell,
+  TableRow,
+  Strike,
+  Underline,
+  History,
+} = require 'tiptap-extensions'
+{ default: TodoItemVue } = require '~/components/todo-item.vue'
+
+class KBD extends Mark
+  commands: ({ type })->
+    console.log { type }
+    toggleMark type
+Object.defineProperties KBD::,
+  name:
+    get: -> 'kbd'
+  schema:
+    get: ->
+      parseDOM: [
+        tag: 'kbd'
+      ]
+      toDOM: ->
+        ['kbd', 0]
+
+Object.defineProperties TodoItem::,
+  view:
+    get: -> TodoItemVue
+
+console.log TodoItem::view
+
 voice_chrs   = "がぎぐげござじずぜぞだぢづでどばびぶべぼぱぴぷぺぽゔゞガギグゲゴザジズゼゾダヂヅデドバビブベボパピプペポヴヷヸヹヺヾ"
 devoice_chrs = "かきくけこさしすせそたちつてとはひふへほはひふへほうゝカキクケコサシスセソタチツテトハヒフヘホハヒフヘホウワヰヱヲヽ"
 devoice = {}
@@ -8,7 +69,7 @@ for voice_chr, idx in voice_chrs
   devoice[voice_chr] = devoice_chr
 
 
-if document?
+if false
   window.Quill = Quill = require('quill/quill').default
   Delta = require "quill-delta"
   normalizeUrl = require "normalize-url"
@@ -32,11 +93,7 @@ if document?
   icons.italic = """<em>あ</em>"""
   icons.ruby = """<ruby data-ruby="るび">文字</ruby>"""
 
-  class KBD extends Quill.import 'formats/code'
-    @tagName: 'KBD'
-    @blotName: 'kbd'
-
-  class RUBY extends Quill.import 'blots/container'
+  class RUBY
     @tagName:  'RUBY'
     @blotName: 'ruby-container'
 
@@ -165,12 +222,34 @@ module.exports =
   mixins: [
     require("~/plugins/browser-store")
       local:
-        html: ""
+        html: "<p></p>"
   ]
+  components: {
+    EditorContent
+    EditorMenuBar
+    EditorMenuBubble
+    EditorFloatingMenu
+    Icon:
+      functional: true
+      props: ["name"]
+      render: (m, { props })->
+        { name } = props
+        if name
+          svg = require "~/assets/icons/#{name}.svg"
+          m "p",
+            domProps:
+              innerHTML: svg
+        else
+          ''
+
+
+  }
   data: ->
     text: "\n"
+    json: []
     index:  0
     length: 0
+    editor: null
 
     _options: {}
     defaultOptions:
@@ -334,64 +413,56 @@ module.exports =
       default: => {}
 
   mounted: ->
-    @initialize()
+    html = @value || @content || @html
+
+    @editor = new Editor
+      content: html
+      editable: ! @disabled
+      autoFocus: false
+      useBuiltInExtensions: true
+      dropCursor: {}
+      extensions: [
+        new History()
+
+        new Blockquote()
+        new CodeBlock()
+        new HardBreak()
+        new Heading( levels: [1, 2, 3, 4, 5, 6] )
+        new BulletList()
+        new OrderedList()
+        new ListItem()
+        new TodoItem()
+        new TodoList()
+
+        new KBD()
+        new Code()
+        new Bold()
+        new Italic()
+        new Link()
+        new Strike()
+        new Underline()
+
+        new Table()
+        new TableHeader()
+        new TableCell()
+        new TableRow()
+      ]
+      onInit: ({ state, view })=>
+        console.log 'onInit', { state, view }
+        @$emit 'ready', {}
+      onFocus: ({ event, state, view })=>
+        console.log 'onFocus', { event, state, view }
+        @$emit 'focus', {}
+      onBlur: ({ event, state, view })=>
+        console.log 'onBlur', { event, state, view }
+        @$emit 'blur', {}
+      onUpdate: (o)=>
+        @change(o)
 
   beforeDestroy: ->
-    @quill = null
-    delete @quill
+    @editor.destroy()
 
   methods:
-    initialize: ->
-      return unless @$el && Quill
-      @_options = _.merge {}, @defaultOptions, @globalOptions, @options
-      @quill = new Quill @$refs.editor, @_options
-      @quill.enable false
-
-      if html = @value || @content || @html
-        if @html
-          @change()
-        @quill.clipboard.dangerouslyPasteHTML 0, html
-
-      @quill.enable ! @disabled
-
-      @quill.on 'selection-change', (range)=>
-        if range
-          @$emit 'focus', @quill
-        else
-          @$emit 'blur',  @quill
-        console.log range
-
-      @quill.on 'text-change', ({ ops }, oldDelta, source)=>
-        @change()
-        return unless 1 <= ops?.length <= 2
-        [{ retain }, ..., { insert }] = ops
-        return unless insert
-
-        if insert.match /^\s$/
-          sel = @quill.getSelection()
-          # space input.
-          [leaf] = @quill.getLeaf sel.index
-          return unless leaf.text && leaf.parent.domNode.localName != 'a'
-          insert = leaf.text
-          index = sel.index - insert.length
-        else
-          # clipboard paste.
-          index = retain ? 0
-
-        return unless urlMatch = insert.match /([a-z]+ps?:\/\/[\S]+)|(www.[\S]+)|(mailto:[\S]+)|(tel:[\S]+)/
-        index += urlMatch.index
-
-        url = urlMatch[0]
-        ops = new Delta()
-        .retain index
-        .delete url.length
-
-        @insert_url ops, url
-
-        @quill.updateContents ops
-
-      @$emit 'ready', @quill
-
     insert_file: ( dataUrl )->
       index = @quill.getSelection()?.index || @quill.getLength()
       @quill.insertEmbed index, 'image', dataUrl, 'user'
@@ -412,21 +483,13 @@ module.exports =
         else
           ops.insert "#{protocol}:🔗", { link }
 
-    change: _.debounce ->
-      { @redo, @undo } = @quill.history.stack
-      delta  = @quill.getContents()
-      textlist =
-        for op in delta.ops
-          switch
-            when 'string' == typeof op.insert 
-              op.insert
-            when o = op.insert.mention
-              "#{o.mark}#{o.id}"
-      @text = textlist.join("")
-      @html = @$refs.editor.children[0].innerHTML
-      console.log { @redo, @undo, delta, @html, @text }
+    change: _.debounce ({ getHTML, getJSON, state, transaction })->
+      @html = getHTML()
+      @json = getJSON()
+
       @$emit 'input', @html
-      @$emit 'change', { @html, @text, @quill }
+      @$emit 'change', { @html, @json, @text, state }
+      console.log { @html, @json, @text, state }
     , 500,
       leading:  false
       trailing: true
@@ -472,26 +535,174 @@ module.exports =
       @quill.enable ! newVal
 
 </script>
-<style lang="sass">
+<style lang="sass" scoped>
+.form
+  position: relative
+
+  .menubar,
+  .bubble,
+  .float
+    transition: opacity 0.2s, visibility 0.2s
+    cursor: pointer
+    opacity: 0
+    visibility: hidden
+
+  .menubar.active,
+  .bubble.active,
+  .float.active
+    opacity: 1
+    visibility: visible
+
+  .bubble,
+  .float
+    position: absolute
+    display: flex
+    z-index: 20
+
+  .bubble
+    padding: .3rem
+    margin: 0 0 0.5rem 0
+    transform: translateX(-50%)
+
+  .float
+    margin: -0.25rem 0 0 0.5rem
+
+span
+  margin: 0 .5ex
+
 button
   i.mdi
     font-size: 1.5em
     vertical-align: middle
 </style>
+<style lang="sass">
+.ProseMirror
+  td
+    border: 1px dotted
+button
+  p, svg
+    width: 1rem
+</style>
 <template lang="pug">
-div
-  article(ref="editor")
-  hr.footnote
-  div.form
-    button(@click="submit" :class="{ ban, warn }")
-      i.mdi(:class="mark" v-if="$listeners.submit")
+div.form
+  editor-menu-bubble(:editor="editor")
+    label.bubble(slot-scope="{ commands, isActive, menu }" :style="`left: ${menu.left}px; bottom: ${menu.bottom}px;`" :class="{ active: menu.isActive }")
       span
-        | {{chars}}/
-        sub {{maxSize}}字
-        | {{words}}/
-        sub {{maxWord}}文
-        | {{lines}}/
-        sub {{maxRow}}行
-    slot
+        button(:class="{ 'active': isActive.bold() }" @click="commands.bold")
+          icon(name="bold")
+        button(:class="{ 'active': isActive.italic() }" @click="commands.italic")
+          em 字
+        button(:class="{ 'active': isActive.strike() }" @click="commands.strike")
+          s 字
+        button(:class="{ 'active': isActive.underline() }" @click="commands.underline")
+          u 字
+        button(:class="{ 'active': isActive.code() }" @click="commands.code")
+          code 字
+
+  editor-floating-menu(:editor="editor")
+    label.float(slot-scope="{ commands, isActive, menu }" :style="`top: ${menu.top}px;`" :class="{ active: menu.isActive }")
+      span
+        button(:class="{ 'active': isActive.paragraph() }" @click="commands.paragraph")
+          icon(name="paragraph")
+        button(:class="{ 'active': isActive.heading({ level: 1 }) }" @click="commands.heading({ level: 1 })")
+          | H1
+        button(:class="{ 'active': isActive.heading({ level: 1 }) }" @click="commands.heading({ level: 2 })")
+          | H2
+        button(:class="{ 'active': isActive.heading({ level: 1 }) }" @click="commands.heading({ level: 3 })")
+          | H3
+        button(:class="{ 'active': isActive.heading({ level: 1 }) }" @click="commands.heading({ level: 4 })")
+          | H4
+        button(:class="{ 'active': isActive.heading({ level: 1 }) }" @click="commands.heading({ level: 5 })")
+          | H5
+        button(:class="{ 'active': isActive.heading({ level: 1 }) }" @click="commands.heading({ level: 6 })")
+          | H6
+        button(:class="{ 'active': isActive.bullet_list() }" @click="commands.bullet_list")
+          icon(name="ul")
+        button(:class="{ 'active': isActive.ordered_list() }" @click="commands.ordered_list")
+          icon(name="ol")
+        button(:class="{ 'active': isActive.blockquote() }" @click="commands.blockquote")
+          icon(name="quote")
+        button(:class="{ 'active': isActive.code_block() }" @click="commands.code_block")
+          code 字
+
+  editor-content(:editor="editor")
+  hr.footnote
+  editor-menu-bar(:editor="editor")
+    div.menubar(slot-scope="{ commands, isActive, focused }" :class="{ active: true || focused }")
+      button(@click="submit" :class="{ ban, warn }")
+        i.mdi(:class="mark" v-if="$listeners.submit")
+        span
+          | {{chars}}/
+          sub {{maxSize}}字
+          | {{words}}/
+          sub {{maxWord}}文
+          | {{lines}}/
+          sub {{maxRow}}行
+
+      span
+        button(@click="commands.undo")
+          icon(name="undo")
+        button(@click="commands.redo")
+          icon(name="redo")
+      span
+        button(:class="{ 'active': isActive.bold() }" @click="commands.bold")
+          icon(name="bold")
+        button(:class="{ 'active': isActive.italic() }" @click="commands.italic" style="margin: -1rem 0")
+          em 字
+        button(:class="{ 'active': isActive.strike() }" @click="commands.strike")
+          s 字
+        button(:class="{ 'active': isActive.underline() }" @click="commands.underline")
+          u 字
+        button(:class="{ 'active': isActive.code() }" @click="commands.code")
+          code 字
+        button(:class="{ 'active': isActive.kbd() }" @click="commands.kbd")
+          kbd 🎲
+      span
+        button(:class="{ 'active': isActive.paragraph() }" @click="commands.paragraph")
+          icon(name="paragraph")
+        button(:class="{ 'active': isActive.heading({ level: 1 }) }" @click="commands.heading({ level: 1 })")
+          | H1
+        button(:class="{ 'active': isActive.heading({ level: 1 }) }" @click="commands.heading({ level: 2 })")
+          | H2
+        button(:class="{ 'active': isActive.heading({ level: 1 }) }" @click="commands.heading({ level: 3 })")
+          | H3
+        button(:class="{ 'active': isActive.heading({ level: 1 }) }" @click="commands.heading({ level: 4 })")
+          | H4
+        button(:class="{ 'active': isActive.heading({ level: 1 }) }" @click="commands.heading({ level: 5 })")
+          | H5
+        button(:class="{ 'active': isActive.heading({ level: 1 }) }" @click="commands.heading({ level: 6 })")
+          | H6
+        button(:class="{ 'active': isActive.bullet_list() }" @click="commands.bullet_list")
+          icon(name="ul")
+        button(:class="{ 'active': isActive.ordered_list() }" @click="commands.ordered_list")
+          icon(name="ol")
+        button(:class="{ 'active': isActive.todo_list() }" @click="commands.todo_list")
+          icon(name="checklist")
+        button(:class="{ 'active': isActive.blockquote() }" @click="commands.blockquote")
+          icon(name="quote")
+        button(:class="{ 'active': isActive.code_block() }" @click="commands.code_block")
+          icon(name="code")
+      span
+        button(@click="commands.createTable({rowsCount: 3, colsCount: 3, withHeaderRow: false })")
+          icon(name="table")
+
+      span(v-if="isActive.table()")
+        button(@click="commands.deleteTable")
+          icon(name="delete_table")
+        button(@click="commands.addColumnBefore")
+          icon(name="add_col_before")
+        button(@click="commands.addColumnAfter")
+          icon(name="add_col_after")
+        button(@click="commands.deleteColumn")
+          icon(name="delete_col")
+        button(@click="commands.addRowBefore")
+          icon(name="add_row_before")
+        button(@click="commands.addRowAfter")
+          icon(name="add_row_after")
+        button(@click="commands.deleteRow")
+          icon(name="delete_row")
+        button(@click="commands.toggleCellMerge")
+          icon(name="combine_cells")
+
 </template>
 

@@ -7,11 +7,11 @@ div
 
   no-ssr
     div
-      c-report(head="Quill TEST" sign="ななころび" handle="SSAY" style="z-index: 10")
-        quill-editor(v-model="text" @submit="console")
+      c-report(head="tiptap TEST" sign="ななころび" handle="SSAY" style="z-index: 10")
+        tiptap-editor(v-model="text" @submit="console")
 
-      c-report(head="Quill TEST result" sign="ななころび" handle="SSAY" deco="ql-editor" :log="text")
-      c-report(head="Quill TEST result" sign="ななころび" handle="SSAY" deco="ql-editor")
+      c-report(head="tiptap TEST result" sign="ななころび" handle="SSAY" deco="ql-editor" :log="text")
+      c-report(head="tiptap TEST result" sign="ななころび" handle="SSAY" deco="ql-editor")
         textarea(v-model="text")
 
   c-report(handle="footer" deco="center")
