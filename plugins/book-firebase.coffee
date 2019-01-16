@@ -3,12 +3,6 @@ RANDOM = require "~/plugins/random"
 { Query, Set, State } = require "memory-orm"
 { vuex_value, path, relative_to } = require "~/plugins/struct"
 
-kbd_r = ///
-  \[\[(?:
-    [^\]]|[^\]]\]|\][^\]]
-  )+\]\](?!\])
-///g
-
 edit = require '~/models/editor'
 
 
@@ -70,7 +64,7 @@ module.exports = (mode)->
     _storage: ->
       firebase.storage()
     _images: ->
-      @_storage.ref().child('images').child @part_id
+      @_storage.ref().child('images')
 
     potof_id: -> @book_id + '-' + @edit.potof.face_id
     phase_id: ->
@@ -133,8 +127,8 @@ module.exports = (mode)->
     check_post: (target)->
       console.log target
 
-    image_post: (file, next)->
-      ss = await @_images.child(file.name).put(file)
+    image_post: ({ id, file }, next)->
+      ss = await @_images.child(id).put(file)
       next await ss.ref.getDownloadURL()
 
     move: ->
@@ -144,15 +138,19 @@ module.exports = (mode)->
       write_at -= 10
       await post @_chats, { _id, write_at }
 
-    chat_post: (log)->
+    chat_post: (log, { attrs, html, text })->
       { _id, show, deco, head, to, random } = @edit.chat
 
+      for key, idx in attrs.random ? []
+        { title, text } = random[idx] ?= RANDOM key, { @book_id }
+
+
       idx = 0
-      log.replace kbd_r, ( str )->
-        key = str[2...-2]
-        random[idx] ?= RANDOM key, { @book_id }
+      log = log.replace /<kbd title="([^"]+)">([^<]+)<\/kbd>/g, (str, t1, v1)->
+        { title, text } = random[idx]
+        console.log { t1, v1, title, text }
         idx++
-        ''
+        """<kbd title="#{title}">#{text}</kbd>"""
 
       if @is_creating
         potof_id = @potof_id

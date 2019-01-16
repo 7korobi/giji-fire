@@ -1,5 +1,6 @@
 <script lang="coffee">
 _ = require 'lodash'
+
 voice_chrs   = "がぎぐげござじずぜぞだぢづでどばびぶべぼぱぴぷぺぽゔゞガギグゲゴザジズゼゾダヂヅデドバビブベボパピプペポヴヷヸヹヺヾ"
 devoice_chrs = "かきくけこさしすせそたちつてとはひふへほはひふへほうゝカキクケコサシスセソタチツテトハヒフヘホハヒフヘホウワヰヱヲヽ"
 devoice = {}
@@ -31,32 +32,45 @@ if document?
   icons = Quill.import 'ui/icons'
   icons.italic = """<em>あ</em>"""
   icons.ruby = """<ruby data-ruby="るび">文字</ruby>"""
+  icons.codeblock = icons.code = """<code>あ</code>"""
+  icons.abbr = """<abbr>あ</abbr>"""
+  icons.random = """🎲"""
 
-  class KBD extends Quill.import 'formats/code'
+  Inline = Quill.import 'blots/inline'
+  Inline.order.push 'abbr'
+
+  class ABBR extends Quill.import 'formats/code'
+    @tagName: 'ABBR'
+    @blotName: 'abbr'
+
+  class RANDOM extends Quill.import 'blots/inline'
     @tagName: 'KBD'
-    @blotName: 'kbd'
+    @blotName: 'random'
+    @create: (value)->
+      domNode = super.create value
+      return domNode unless value?.length
+      domNode.title = value
+      domNode
 
-  class RUBY extends Quill.import 'blots/container'
-    @tagName:  'RUBY'
-    @blotName: 'ruby-container'
+    @value: (domNode)->
+      domNode.title
 
-  class RT extends Quill.import 'blots/inline'
-    @tagName:  'RT'
-    @blotName: 'ruby'
-    @register: ->
-      Quill.register RUBY
+    @formats: (domNode)->
+      domNode.title
 
-  RT.requiredContainer = RUBY
-  RUBY.allowedChildren = [
-    RT
-    Quill.import 'blots/text'
-    Quill.import 'blots/break'
-  ]
+    constructor: (scroll, node)->
+      super(scroll, node)
+
+    format: (name, value)->
+      if name == @statics.blotName && value?.length
+        @domNode.title = value
+      else
+        super.format name, value
+
 
   class Ruby extends Quill.import 'blots/inline'
     @tagName:  'RUBY'
     @blotName: 'ruby'
-    @className: 'ql-ruby'
     @create: (value)->
       domNode = super.create value
       return domNode unless value?.length
@@ -75,7 +89,6 @@ if document?
 
     constructor: (scroll, node)->
       super(scroll, node)
-      console.log @
 
     format: (name, value)->
       if name == @statics.blotName && value?.length
@@ -109,8 +122,9 @@ if document?
     'formats/color': Color
     'formats/font': Font
     'formats/size': Size
-    'formats/ruby': RT
-    'formats/kbd':  KBD
+    'formats/abbr': ABBR
+    'formats/ruby': Ruby
+    'formats/random':  RANDOM
     'formats/mention': mention
     'modules/keyboard': Keyboard
 
@@ -169,6 +183,7 @@ module.exports =
   ]
   data: ->
     text: "\n"
+    attrs: {}
     index:  0
     length: 0
 
@@ -179,15 +194,16 @@ module.exports =
         clipboard: true
         uploader:
           handler: ( range, files )=>
-            images = await Promise.all files.map (file)->
+            images = await Promise.all files.map (file)=>
               new Promise (ok)=>
                 reader = new FileReader()
                 reader.onload = (e)=>
                   code = hashcode e.target.result
                   [ ext ] = file.name.match /\.[^.]+$/
                   id = "#{code.toString(36)}#{ext}"
-                  console.log { code, ext, id }
-                  ok e.target.result
+                  @$emit "drop_image", { id, file }, (url)=>
+                    console.log { id, url }
+                    ok url
                 reader.readAsDataURL file
 
             ops = new Delta()
@@ -202,7 +218,7 @@ module.exports =
           isolateCharacter:   true
           fixMentionsToQuill: true
           allowedChars: /^\S+$/
-          mentionDenotationChars: ["@","#","%"]
+          mentionDenotationChars: ["@","#","="]
           renderItem: (o, search)->
             "#{o.id}"
           source: (search, renderList, mark)->
@@ -221,29 +237,31 @@ module.exports =
 
         toolbar:
           container: [
-            ['codeblock','blockquote']
             [{ list: 'ordered' }, { list: 'bullet' }]
             [{ indent: '-1' },    { indent: '+1' }]
-
-            [{ size: ['small', false, 'large', 'huge'] }]
             [{ header: [1, 2, 3, 4, 5, 6, false] }]
-            [{ background: [false, 'Y0','Y1','Y2','Y4','Y6','Y8'] }
-             { color:      [false, 'Y0','Y1','Y2','Y4','Y6','Y8'] }
-            ]
-            [{ align: [false, 'center', 'right'] }]
+            ['blockquote']
+            [{ align: '' }, { align: 'center' }, { align: 'right' }]
+
             ['clean']
-#            ['formula']
-#            ['link', 'image', 'video']
-            ['bold', 'underline', 'strike', 'code']
-            [{ script: 'sub' },   { script: 'super' }]
-            ['kbd']
+            [{ size: ['small', false, 'large', 'huge'] }]
+            [{ script: 'sub' }, { script: 'super' }]
+            ['bold', 'underline', 'strike', 'abbr', 'code', 'random']
             ['ruby']
-            ['italic']
+            ['image'] # ['formula', 'link', 'video']
             [{ kana: 'invert' }, { kana: 'none' }, { kana: 'half' }, { kana: 'full' }]
-#            [{ palet: ["꧁꧂","†","𓆏","(｡ŏ﹏ŏ)","🀀🀁🀂🀃🀆🀅🀄🀇🀈🀉🀊🀋🀌🀍🀎🀏🀐🀑🀒🀓🀔🀕🀖🀗🀘🀙🀚🀛🀜🀝🀞🀟🀠🀡🀢🀣🀤🀥🀦🀧🀨🀩🀪🀫"] }]
           ]
           handlers:
-            kbd: ->
+            random: ->
+              { index, length } = @quill.getSelection()
+              random = @quill.getText(index, length)
+
+              ops = new Delta()
+              .retain index
+              .delete length
+              .insert "🎲", { random }
+              @quill.updateContents ops
+              
             ruby: ->
               return unless ruby = prompt("ふりがな")
               { index, length } = @quill.getSelection()
@@ -366,6 +384,7 @@ module.exports =
         return unless 1 <= ops?.length <= 2
         [{ retain }, ..., { insert }] = ops
         return unless insert
+        return if insert.image
 
         if insert.match /^\s$/
           sel = @quill.getSelection()
@@ -395,6 +414,9 @@ module.exports =
     insert_file: ( dataUrl )->
       index = @quill.getSelection()?.index || @quill.getLength()
       @quill.insertEmbed index, 'image', dataUrl, 'user'
+      @$emit "drop_image", file, (url)=>
+        @image url, type
+
 
     insert_url: (ops, url)->
       link =
@@ -415,16 +437,20 @@ module.exports =
     change: _.debounce ->
       { @redo, @undo } = @quill.history.stack
       delta  = @quill.getContents()
+      @attrs = {}
       textlist =
         for op in delta.ops
+          for attr, value of op.attributes when value?.length
+            @attrs[attr] ?= []
+            @attrs[attr].push value
           switch
-            when 'string' == typeof op.insert 
+            when 'string' == typeof op.insert
               op.insert
             when o = op.insert.mention
               "#{o.mark}#{o.id}"
       @text = textlist.join("")
       @html = @$refs.editor.children[0].innerHTML
-      console.log { @redo, @undo, delta, @html, @text }
+      console.log { @redo, @undo, delta, @html, @text, @attrs }
       @$emit 'input', @html
       @$emit 'change', { @html, @text, @quill }
     , 500,
@@ -433,7 +459,9 @@ module.exports =
 
     submit: _.debounce ->
       return if @ban
-      @$emit 'submit', @value
+      delta  = @quill.getContents()
+
+      @$emit 'submit', @value, { @attrs, @html, @text }
     , 3000,
       leading:  true
       trailing: false
@@ -447,6 +475,7 @@ module.exports =
       @text.length - 1
     ban: ->
       ban = false
+      ban ||= !( @value == @html )
       ban ||= !(       2 <= @chars <= @maxSize )
       ban ||= !(       1 <= @words <= @maxWord )
       ban ||= !( @minRow <= @lines <= @maxRow )

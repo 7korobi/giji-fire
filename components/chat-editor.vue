@@ -3,9 +3,8 @@ div
   e-potof(v-if="is_creating" v-model="edit.potof")
   c-report(v-if="is_replacing" handle="header" deco="center") 編集中
 
-  chat(v-if="edit.potof.face_id" :id="edit.chat._id" :current="current" :edit="true" v-model="edit.chat.log" v-on="$listeners")
-  c-report(v-if="edit.potof.face_id" :handle="edit.chat.phase.handle")
-    text-editor(v-model="edit.chat.log" v-bind="for_editor" v-on="$listeners")
+  chat(v-if="edit.potof.face_id" :id="edit.chat._id" :current="current" :edit="true")
+    quill-editor(v-model="edit.chat.log" v-bind="for_editor" v-on="$listeners")
       select(v-if="is_creating" v-model="edit.phase.handle" key="handle")
         option(v-for="phase in phases" :value="phase.handle" :class="phase.handle" :key="phase.handle") ∞ {{ phase.label }}
 
@@ -17,7 +16,7 @@ div
         option(value="") 無地
         option(:value="edit.potof.head") 記名
       select(v-model="edit.chat.deco" key="deco")
-        option(value="giji")  文字
+        option(value="quill")  文字
         option(value="diagram") 作図
       span.pull-right(v-if="is_replacing")
         a.btn.active(@click="$listeners.create_mode")

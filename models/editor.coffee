@@ -31,7 +31,7 @@ module.exports = edit =
     potof_id: "edit-edit-self"
     write_at: 0
     show: "talk"
-    deco: "giji"
+    deco: "quill"
     to: null
     head: ""
     log: ""

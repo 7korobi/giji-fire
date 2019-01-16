@@ -42,15 +42,11 @@ log-wiki
         ol
           li 下のアイコンから、ログインに使うサービスを選択。
           li 書き込みに使うキャラクターを選択。
-          li 枠形と色味を好みできめたら、
-          li
-            a(target="blank" href="https://ja.wikipedia.org/wiki/Markdown") Markdown形式
-            | で自由に書き込もう。
+          li 枠形と色味を好みできめたら、自由に書き込もう。
+          li 文字の一部分を選択すると、文字に装飾をつけることができるぞ！
       article(v-if="page_contents.length")
         ol
-          li
-            a(target="blank" href="https://ja.wikipedia.org/wiki/Markdown") Markdown形式
-            | で自由に書き込もう。
+          li 文字の一部分を選択すると、文字に装飾をつけることができるぞ！
       article
         ol(style="list-style-type: upper-latin")
           li 画像を書き込みフォームにDrag＆Dropすると、その画像を張り付けるぞ。

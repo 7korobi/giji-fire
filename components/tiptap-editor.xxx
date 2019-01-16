@@ -15,6 +15,7 @@ _ = require 'lodash'
   setBlockType
   toggleWrap
   toggleMark
+  replaceText
 } = require 'tiptap-commands'
 {
   Blockquote,
@@ -186,12 +187,21 @@ quill_paste = (newVal, oldVal)->
   else
     @quill.setText ''
 
-selected_change = (quill, cb)->
-  { index, length } = quill.getSelection()
+scan_tree =
 
-  delta = new Delta()
-  .retain index
-
+selected_change = (editor, cb)->
+  replaceText
+  console.log editor.__proto__
+  { from, to, head, empty } = editor.state.selection
+  res = editor.state.schema.text("NEWS")
+  t = editor.state.tr.replaceWith from, to, res
+  editor.state.applyTransaction t
+  for node in editor.state.doc.slice(from, to).content.content
+    node.descendants (node, pos)->
+      if node.isText
+        console.log { pos, node }
+  return if empty
+  return
   text_list =
     for { insert, attributes } in quill.getContents(index, length).ops when insert.length
       delta.delete insert.length
@@ -334,43 +344,6 @@ module.exports =
               .insert text, { ruby }
               @quill.updateContents ops
 
-            kana: (mode)->
-              switch mode
-                when 'invert'
-                  # ひらがなをカタカナに、カタカナをひらがなに
-                  selected_change @quill, (text)->
-                    text.replace /([\u3041-\u3096])|([\u30a1-\u30f6])/g, (match, hira, kata)->
-                      if hira
-                        return String.fromCharCode hira.charCodeAt(0) + 0x60
-                      if kata
-                        return String.fromCharCode kata.charCodeAt(0) - 0x60
-                when 'none'
-                  selected_change @quill, (text)->
-                    text = text.replace /([\u3099\u309a])/g, (match, cut)->
-                      ""
-                    text = text.replace /([\u3041-\u3096\u309d\309f\u30a1-\u30fa\u30fd\u30fe\u30ff])/g, (match, chr)->
-                      devoice[chr] ? chr
-                    text
-                when 'half'
-                  selected_change @quill, (text)->
-                    text = text.replace /([\u3099\u309a])/g, (match, cut)->
-                      ""
-                    text = text.replace /([\u3041-\u3096\u309d\309f\u30a1-\u30fa\u30fd\u30fe\u30ff])/g, (match, chr)->
-                      chr = devoice[chr] ? chr
-                      chr + "\u309a"
-                    text = text.replace /([はひふへほハヒフヘホ])[\u309a]/g, (match, chr)->
-                      String.fromCharCode chr.charCodeAt(0) + 2
-                    text
-                when 'full'
-                  selected_change @quill, (text)->
-                    text = text.replace /([\u3099\u309a])/g, (match, cut)->
-                      ""
-                    text = text.replace /([\u3041-\u3096\u309d\309f\u30a1-\u30fa\u30fd\u30fe\u30ff])/g, (match, chr)->
-                      chr = devoice[chr] ? chr
-                      chr + "\u3099"
-                    text = text.replace /([かきくけこさしすせそたちつてとはひふへほカキクケコサシスセソタチツテトハヒフヘホ])[\u3099]/g, (match, chr)->
-                      String.fromCharCode chr.charCodeAt(0) + 1
-                    text
       placeholder: 'Insert text here ...'
       readOnly: false
       theme: 'bubble'
@@ -455,6 +428,8 @@ module.exports =
         @$emit 'focus', {}
       onBlur: ({ event, state, view })=>
         console.log 'onBlur', { event, state, view }
+        { from, to, head } = state.selection
+        console.log { from, to, head }
         @$emit 'blur', {}
       onUpdate: (o)=>
         @change(o)
@@ -482,6 +457,44 @@ module.exports =
           ops.insert { image: link }
         else
           ops.insert "#{protocol}:🔗", { link }
+
+    kana: (mode)->
+      switch mode
+        when 'invert'
+          # ひらがなをカタカナに、カタカナをひらがなに
+          selected_change @editor, (text)->
+            text.replace /([\u3041-\u3096])|([\u30a1-\u30f6])/g, (match, hira, kata)->
+              if hira
+                return String.fromCharCode hira.charCodeAt(0) + 0x60
+              if kata
+                return String.fromCharCode kata.charCodeAt(0) - 0x60
+        when 'none'
+          selected_change @editor, (text)->
+            text = text.replace /([\u3099\u309a])/g, (match, cut)->
+              ""
+            text = text.replace /([\u3041-\u3096\u309d\309f\u30a1-\u30fa\u30fd\u30fe\u30ff])/g, (match, chr)->
+              devoice[chr] ? chr
+            text
+        when 'half'
+          selected_change @editor, (text)->
+            text = text.replace /([\u3099\u309a])/g, (match, cut)->
+              ""
+            text = text.replace /([\u3041-\u3096\u309d\309f\u30a1-\u30fa\u30fd\u30fe\u30ff])/g, (match, chr)->
+              chr = devoice[chr] ? chr
+              chr + "\u309a"
+            text = text.replace /([はひふへほハヒフヘホ])[\u309a]/g, (match, chr)->
+              String.fromCharCode chr.charCodeAt(0) + 2
+            text
+        when 'full'
+          selected_change @editor, (text)->
+            text = text.replace /([\u3099\u309a])/g, (match, cut)->
+              ""
+            text = text.replace /([\u3041-\u3096\u309d\309f\u30a1-\u30fa\u30fd\u30fe\u30ff])/g, (match, chr)->
+              chr = devoice[chr] ? chr
+              chr + "\u3099"
+            text = text.replace /([かきくけこさしすせそたちつてとはひふへほカキクケコサシスセソタチツテトハヒフヘホ])[\u3099]/g, (match, chr)->
+              String.fromCharCode chr.charCodeAt(0) + 1
+            text
 
     change: _.debounce ({ getHTML, getJSON, state, transaction })->
       @html = getHTML()
@@ -644,6 +657,12 @@ div.form
           icon(name="undo")
         button(@click="commands.redo")
           icon(name="redo")
+      span
+        button(@click='kana("invert")') あア
+        button(@click='kana("none")') あ
+        button(@click='kana("full")') あ゙
+        button(@click='kana("half")') あ゚
+
       span
         button(:class="{ 'active': isActive.bold() }" @click="commands.bold")
           icon(name="bold")

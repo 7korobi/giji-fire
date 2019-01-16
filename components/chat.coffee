@@ -3,16 +3,19 @@
 el = require "~/plugins/dom"
 
 targets =
-  diagram: 'g-marksvg'
-  giji:   'g-marked'
-  center: 'g-marked'
-  sow:  'g-sow'
-  head: 'g-sow'
-  mono: 'g-sow'
-  "ql-editor": 'g-quill'
+  diagram: 'marksvg-view'
 
-  dagre: 'g-sow'
-  mermaid: 'g-sow'
+  sow:  'sow-view'
+  head: 'sow-view'
+  mono: 'sow-view'
+
+  dagre:   'sow-view'
+  mermaid: 'sow-view'
+
+  quill:  'quill-view'
+  giji:   'quill-view'
+  center: 'quill-view'
+
 
 
 module.exports = ->

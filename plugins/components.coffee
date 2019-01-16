@@ -46,8 +46,7 @@ Object.assign MarkSVG.options.renderer,
       else
         ["box", v, v]
 
-Vue.component 'g-marked',  Marked
-Vue.component 'g-marksvg', MarkSVG
+Vue.component 'marksvg-view', MarkSVG
 
 ctx = require.context "~/components", true, ///(.+)\.vue$///
 for fname in ctx.keys()
