@@ -32,9 +32,13 @@ module.exports =
       true
     has_bookmark: ->
       @user?.uid && @book_id
+    has_label: ->
+      return false unless @has_bookmark
+      return true  unless @write_at
+      return false unless @bookmark?.write_at > @write_at
+      return true
     label: ->
-      return unless @has_bookmark
-      return unless @bookmark?.write_at > @write_at
+      return unless @has_label
       full: "読み進めた場所まで移動します。"
       mini: "Go"
     at: ->
@@ -47,9 +51,15 @@ module.exports =
   }
 
   watch:
-    write_at: ->
+    "bookmark": (newVal, oldVal)->
+      console.log JSON.stringify { newVal, oldVal }
+    write_at: _.debounce ->
       return unless @is_enable
       return unless ! @bookmark || @bookmark.write_at < @write_at
       @bookmark_add { @mode, @book_id, @chat_id, @write_at }
+    , 2000,
+      leading: false
+      trailing: true
+
 
 </script>

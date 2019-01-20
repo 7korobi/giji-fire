@@ -12,11 +12,12 @@ module.exports =
   methods:
     markup_event: (mode = "popup")->
       has_cite = (target)->
-        cite  = target.attributes.cite
-        cite ?= target.parentElement.attributes.cite
-        if cite
-          if chat = Query.chats.sow_cite cite.value
-            chat
+        if target
+          cite  = target.attributes.cite
+          cite ?= target.parentElement.attributes.cite
+          if cite
+            if chat = Query.chats.sow_cite cite.value
+              chat
 
       has_href = (target)->
         { href, chk, src, alt } = target.attributes
