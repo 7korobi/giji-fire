@@ -20,7 +20,7 @@ log-wiki
 
   template(slot="toasts")
     div
-      bookmark(:chat_id="chat_id" :write_at="chat && chat.write_at")
+      bookmark(v-if="! a.length" :mode="mode" :chat_id="chat_id" :write_at="chat && chat.write_at")
       btn.item.tooltip-left(v-if="is_floats" v-model="floats" :as="{}" data-tooltip="残ってしまったポップアップを消去")
         i.mdi.mdi-filmstrip-off
         | POP
@@ -43,13 +43,16 @@ log-wiki
       i.mdi.mdi-account-multiple
       | STAT
 
+  template(slot="popup")
+    popup(v-for="o in floats" v-bind="o" :key="o.id" :current="chat" @anker="anker" @popup="popup")
+
+  c-post(handle="TSAY")
+    fire-oauth(style="white-space: nowrap")
+
   c-post(handle="footer")
     bread-crumb
       li
         nuxt-link(:to="folder_url") 終了した村一覧
-
-  template(slot="popup")
-    popup(v-for="o in floats" v-bind="o" :key="o.id" :current="chat" @anker="anker" @popup="popup")
 
   no-ssr
     div

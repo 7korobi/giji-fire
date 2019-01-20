@@ -45,7 +45,7 @@ module.exports =
         when 'bottom'
           top += height
 
-      # console.log " go to #{id} as #{top}px"
+      console.log " go to #{query} as #{top}px"
       window.scrollBy 0, top
 
     update: (state, o)->

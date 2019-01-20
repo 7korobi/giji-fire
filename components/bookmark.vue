@@ -1,39 +1,55 @@
 <template lang="pug">
-.item.tooltip-left.active(v-if="has_bookmark" data-tooltip="読み進めた位置")
+nuxt-link.item.tooltip-left(v-if="label" :data-tooltip="label.full" :to="at")
   i.mdi.mdi-bookmark-check
-  | Bookmark
+  | {{ label.mini }}
 .item.tooltip-left(v-else)
 </template>
 <script lang="coffee">
 firebase = require "firebase"
-{ path, vuex_value } = require '~/plugins/struct'
-{ firebase_snaps } = require "~/plugins/firebase"
+{ path, vuex_readonly, relative_to } = require '~/plugins/struct'
+{ firebase_snap } = require "~/plugins/firebase"
 
 module.exports =
   mixins: [
-    firebase_snaps "bookmark", "has_bookmark", -> @_db.collection("user/#{ @user.uid }/bookmarks").where("book_id","==", @book_id )
+    firebase_snap "bookmark", "has_bookmark", (db)-> db.doc("user/#{ @user.uid }/bookmarks/#{ @book_id }")
   ]
 
-  props: ['chat_id', 'write_at']
+  props: ['mode', 'chat_id', 'write_at']
 
   data: ->
-    _bookmark:
+    bookmark:
+      mode:    ""
       book_id: ""
       chat_id: ""
       write_at: 0
 
   computed: {
-    ...vuex_value 'firebase',['user', 'bookmark']
+    ...vuex_readonly 'firebase',['user']
     book_id: ->
-      @chat_id.split("-")[0..1].join("-")
-    is_news: ->
-      @_bookmark.write_at < @write_at
+      @chat_id?.split("-")[0..1].join("-")
+    is_enable: ->
+      return false unless @chat_id && @write_at
+      true
     has_bookmark: ->
       @user?.uid && @book_id
+    label: ->
+      return unless @has_bookmark
+      return unless @bookmark?.write_at > @write_at
+      full: "読み進めた場所まで移動します。"
+      mini: "Go"
+    at: ->
+      { chat_id, mode } = @bookmark
+      idx = chat_id
+      page = "back"
+      o = relative_to @$route, { mode, idx, page }
+      console.log o
+      o
   }
+
   watch:
     write_at: ->
-      if @is_news
-        @bookmark
+      return unless @is_enable
+      return unless ! @bookmark || @bookmark.write_at < @write_at
+      @bookmark_add { @mode, @book_id, @chat_id, @write_at }
 
 </script>

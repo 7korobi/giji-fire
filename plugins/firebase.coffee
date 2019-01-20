@@ -2,6 +2,8 @@ firebase = require "firebase"
 { Set } = require "memory-orm"
 _ = require "lodash"
 
+time_limit = 2000
+
 firestore = ->
   store = firebase.firestore()
   store.settings
@@ -45,7 +47,8 @@ firebase_snap_base = (id, pk, snap, { del, add, shot })->
       else
         true
     [snap_id]: ->
-      snap.call @, @_firestore
+      if @[pk_id]
+        snap.call @, @_firestore
 
   watch:
     if pk
@@ -56,14 +59,20 @@ module.exports = m =
     snap_id = "#{id}_snap"
     set = Set[id[..-2]]
     firebase_snap_base id, pk, snap,
-      del: (_id)->
+      del: _.debounce (_id)->
         return unless _id
-        @[snap_id].doc(_id).delete()
-      add: (doc)->
+        @[snap_id]?.doc(_id).delete()
+      , time_limit,
+        leading: false
+        trailing: true
+      add: _.debounce (doc)->
         { _id } = doc
         return unless _id
-        @[snap_id].doc(_id).set doc,
+        @[snap_id]?.doc(_id).set doc,
           merge: true
+      , time_limit,
+        leading: false
+        trailing: true
       shot: (qs)->
         qs.docChanges().forEach ({ newIndex, oldIndex, type, doc })=>
           switch type
@@ -76,11 +85,17 @@ module.exports = m =
     snap_id = "#{id}_snap"
     set = Set[id]
     firebase_snap_base id, pk, snap,
-      del: ->
-        @[snap_id].delete()
-      add: (doc)->
-        @[snap_id].set doc,
+      del: _.debounce ->
+        @[snap_id]?.delete()
+      , time_limit,
+        leading: false
+        trailing: true
+      add: _.debounce (doc)->
+        @[snap_id]?.set doc,
           merge: true
+      , time_limit,
+        leading: false
+        trailing: true
       shot: (doc)->
         if o = doc.data()
           set.add o
@@ -90,14 +105,20 @@ module.exports = m =
   firebase_snaps: (id, pk, snap)->
     snap_id = "#{id}_snap"
     firebase_snap_base id, pk, snap,
-      del: (_id)->
+      del: _.debounce (_id)->
         return unless _id
-        @[snap_id].doc(_id).delete()
-      add: (doc)->
+        @[snap_id]?.doc(_id).delete()
+      , time_limit,
+        leading: false
+        trailing: true
+      add: _.debounce (doc)->
         { _id } = doc
         return unless _id
-        @[snap_id].doc(_id).set doc,
+        @[snap_id]?.doc(_id).set doc,
           merge: true
+      , time_limit,
+        leading: false
+        trailing: true
       shot: (qs)->
         qs.docChanges().forEach ({ newIndex, oldIndex, type, doc })=>
           switch type
@@ -110,11 +131,17 @@ module.exports = m =
   firebase_snap: (id, pk, snap)->
     snap_id = "#{id}_snap"
     firebase_snap_base id, pk, snap,
-      del: ->
-        @[snap_id].delete()
-      add: (doc)->
-        @[snap_id].set doc,
+      del: _.debounce ->
+        @[snap_id]?.delete()
+      , time_limit,
+        leading: false
+        trailing: true
+      add: _.debounce (doc)->
+        @[snap_id]?.set doc,
           merge: true
+      , time_limit,
+        leading: false
+        trailing: true
       shot: (doc)->
         @[id] = doc.data()
 
