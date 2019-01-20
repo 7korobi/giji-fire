@@ -23,8 +23,9 @@ module.exports =
       write_at: 0
 
   computed: {
-    ...path "folder", "book", "part", "phase", "chat"
     ...vuex_value 'firebase',['user', 'bookmark']
+    book_id: ->
+      @chat_id.split("-")[0..1].join("-")
     is_news: ->
       @_bookmark.write_at < @write_at
     has_bookmark: ->

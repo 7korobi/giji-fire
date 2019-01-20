@@ -217,11 +217,11 @@ module.exports =
           phase_id = "#{o.event_id}-mS"
           list =
             for [ sign, job, name, live ] in potofs.pluck('sign', 'job', 'face.name', 'live.role_id') when 'leave' != live
-              "| #{job} | #{name} | … | #{sign} |"
+              """<tr><td class="r"> #{job} <td class="l"> #{name} <td class="c"> … <td class="c"> #{sign} """
           log = """
-            |   |   |   |   |
-            |--:|:--|:-:|:-:|
+            <table><tbody>
             #{ list.join("\n") }
+            </tbody></table>
           """
           Set.phase.add phase_attr
             _id: phase_id
@@ -382,10 +382,9 @@ module.exports =
         sign: sign
         head: "#{ o.folder }-#{ o.vid } by #{ sign }"
         log: """
-
-          ## #{o.name}
-
-
+          <br>
+          <h2>#{o.name}</h2>
+          <br>
         """
 
       Set.chat.add
@@ -401,11 +400,10 @@ module.exports =
           _id: book_id + "-top-mS-vrule"
           write_at: chat_head.write_at - 2
           show: "report"
-          deco: "giji"
+          deco: "quill"
           sign: sign
           log: """
-            ### 村のルール
-            #{v_rules.split("<br>").join("\n")}
+            <h3>村のルール</h3>#{v_rules}
           """
 
       n_rules = for {head}, idx in nation.list
@@ -414,9 +412,8 @@ module.exports =
         _id: book_id + "-top-mS-nrule"
         write_at: chat_head.write_at - 1
         show: "report"
-        deco: "giji"
+        deco: "quill"
         sign: sign
         log: """
-          ### 国のルール
-          #{n_rules.join("\n")}
+          <h3>国のルール</h3>#{n_rules.join("<br>")}
         """
