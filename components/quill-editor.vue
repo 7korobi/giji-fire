@@ -176,12 +176,8 @@ readFiles = (files, cb)->
 
 
 module.exports =
-  mixins: [
-    require("~/plugins/browser-store")
-      local:
-        html: ""
-  ]
   data: ->
+    html: ""
     text: "\n"
     attrs: {}
     index:  0
@@ -310,7 +306,7 @@ module.exports =
                     text = text.replace /([かきくけこさしすせそたちつてとはひふへほカキクケコサシスセソタチツテトハヒフヘホ])[\u3099]/g, (match, chr)->
                       String.fromCharCode chr.charCodeAt(0) + 1
                     text
-      placeholder: 'Insert text here ...'
+      placeholder: @placeholder
       readOnly: false
       theme: 'bubble'
 
@@ -334,6 +330,10 @@ module.exports =
     minRow:
       type: Number
       default: 1
+
+    placeholder:
+      type: String
+      default: '入力はこちらに。'
 
     content: String
     value: String
@@ -386,8 +386,7 @@ module.exports =
         return unless insert
         return if insert.image
 
-        if insert.match /^\s$/
-          sel = @quill.getSelection()
+        if insert.match /^\s$/ && sel = @quill.getSelection()
           # space input.
           [leaf] = @quill.getLeaf sel.index
           return unless leaf.text && leaf.parent.domNode.localName != 'a'
@@ -470,7 +469,7 @@ module.exports =
     lines: ->
       @text.split("\n").length - 1
     words: ->
-      @text.split(/[、。．.]\s*|\s+/).length - 1
+      @text.split(/[\!\?！？「」『』、。．.]+\s*|\s+/).length - 1
     chars: ->
       @text.length - 1
     ban: ->
@@ -513,7 +512,7 @@ div
   hr.footnote
   div.form
     button(@click="submit" :class="{ ban, warn }")
-      i.mdi(:class="mark" v-if="$listeners.submit")
+      i.mdi(:class="mark")
       span
         | {{chars}}/
         sub {{maxSize}}字

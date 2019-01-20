@@ -22,4 +22,10 @@ module.exports =
       is_ban = false
       is_ban ||= !( head || log?.match /// #{ potof?.face?.name } ///)
       is_warn = false
-      { is_ban, is_warn, deco, rows: 7, maxRow: 20, maxSize: 999 }
+      { is_ban, is_warn, deco, rows: 7, maxRow: 20, maxWord: 200, maxSize: 999 }
+    for_profile: ->
+      deco = "quill"
+      is_ban = is_warn = false
+      is_ban ||= ! @user?.uid?
+      is_ban ||= ! @sign.sign
+      { is_ban, is_warn, deco, rows: 7, maxRow: 10, maxWord: 100, maxSize: 500 }

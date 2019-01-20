@@ -21,8 +21,13 @@ div
 <script lang="coffee">
 firebase = require "firebase"
 { vuex_value } = require '~/plugins/struct'
+{ firebase_snap } = require "~/plugins/firebase"
 
 module.exports =
+  mixins: [
+    firebase_snap "sign", "user.uid", (db)-> db.doc("user/#{ @user.uid }")
+    require("~/plugins/for_component")
+  ]
   data: ->
     code: null
     message: null
@@ -59,21 +64,13 @@ module.exports =
     .catch ({ @code, @message })=>
 
   computed: {
-    ...vuex_value 'firebase',['user', 'credential']
+    ...vuex_value 'firebase',['user', 'credential', 'sign']
 
     providerID: ->
       @credential?.providerId
 
     auth: ->
       firebase.auth()
-    db: ->
-      firebase.firestore()
-    messaging: ->
-      firebase.messaging()
-    collection: ->
-      @db.collection('test')
-    doc: ->
-      @db.doc('test/user-data')
   }
 
   methods:
@@ -90,8 +87,6 @@ module.exports =
       @auth.signInWithRedirect new firebase.auth.GithubAuthProvider()
     google: ->
       @auth.signInWithRedirect new firebase.auth.GoogleAuthProvider()
-
-
 
 </script>
 

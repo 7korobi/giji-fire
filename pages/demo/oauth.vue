@@ -86,6 +86,7 @@ div
 </template>
 <script lang="coffee">
 firebase = require "firebase"
+{ vuex_readonly } = require "~/plugins/struct"
 
 module.exports =
   data: -> {}
@@ -113,12 +114,8 @@ module.exports =
         # console.log doc.data()
         console.log doc.metadata
 
-  computed:
-    user: ->
-      @$store.state.firebase.user
-    credential: ->
-      @$store.state.firebase.credential
-
+  computed: {
+    ...vuex_readonly "firebase", ["user", "credential"]
     db: ->
       store = firebase.firestore()
       store.settings
@@ -130,6 +127,7 @@ module.exports =
       @db.collection('test')
     doc: ->
       @db.doc('test/user-data')
+  }
 
 </script>
 

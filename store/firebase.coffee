@@ -5,6 +5,7 @@ module.exports =
 
   state: ->
     fcm_token: null
+    sign: null
     user: null
     credential: null
 

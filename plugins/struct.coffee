@@ -1,7 +1,11 @@
 _ = require "lodash"
 { Query } = require "memory-orm"
 
-state_value = (mutation, getter, setter)->
+state_readonly = (getter)->
+  get: ->
+    _.get @$store.state, getter
+
+state_value = (getter, setter, mutation)->
   get: ->
     _.get @$store.state, getter
   set: (val)->
@@ -11,6 +15,14 @@ state_value = (mutation, getter, setter)->
 module.exports = m = {
   ...require './to'
 
+  vuex_readonly: (path, keys)->
+    dir = path.split('.')
+    o = {}
+    for key in keys
+      getter = [...dir[0..-1], key].join('.')
+      o[key] = state_readonly getter
+    o
+
   vuex_value: (path, keys)->
     dir = path.split('.')
     o = {}
@@ -18,7 +30,7 @@ module.exports = m = {
       mutation = "#{dir[0]}/update"
       getter = [...dir[0..-1], key].join('.')
       setter = [...dir[1..-1], key].join('.')
-      o[key] = state_value mutation, getter, setter
+      o[key] = state_value getter, setter, mutation
     o
 
   idx_id: (at, name)->

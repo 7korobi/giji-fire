@@ -46,6 +46,7 @@ new Rule("chat").schema ->
 
 
     anker: (part_id)->
+      console.log @
       { mark, guide } = @phase
       switch
         when ! guide
