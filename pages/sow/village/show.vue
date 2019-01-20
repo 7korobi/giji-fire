@@ -20,6 +20,7 @@ log-wiki
 
   template(slot="toasts")
     div
+      bookmark(:chat_id="chat_id" :write_at="chat && chat.write_at")
       btn.item.tooltip-left(v-if="is_floats" v-model="floats" :as="{}" data-tooltip="残ってしまったポップアップを消去")
         i.mdi.mdi-filmstrip-off
         | POP

@@ -24,17 +24,6 @@ is_online = is_visible = false
 if document?
   dexie = new Dexie 'giji'
   dexie
-  .version(2).stores
-    meta: '&idx'
-    data: '&idx'
-  .upgrade (tx)=>
-    tx.meta.toCollection().modify (meta, ref)=>
-      if idx.match /^sow\/story/
-        delete ref.value
-    tx.data.toCollection().modify (data, ref)=>
-      if idx.match /^sow\/story/
-        delete ref.value
-  dexie
   .version(1).stores
     meta: '&idx'
     data: '&idx'
