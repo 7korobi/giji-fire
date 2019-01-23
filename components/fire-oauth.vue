@@ -3,7 +3,7 @@ div
   p(v-if="user")
     span
       i.btn.mdi.mdi-logout(@click="signout")
-    nuxt-link(to="user/show")
+    nuxt-link(to="/user/show")
       img.oauth_icon(:src="user.photoURL")
       span
         div {{ providerID }}

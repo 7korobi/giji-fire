@@ -16,9 +16,14 @@ div
       c-report(handle="public")
         | {{ o.head }} プロローグ
       c-talk(handle="SSAY" :log="o.say_0" :face_id="o.face_id" :head="o.head")
+        .date
+          abbr.btn 0:0
+
       c-report(handle="public")
         | {{ o.head }} １日目
       c-talk(handle="SSAY" :log="o.say_1" :face_id="o.face_id" :head="o.head")
+        .date
+          abbr.btn 1:0
       c-post(handle="WSAY")
         | {{ o.face.name }}に牙を向けた。
       br

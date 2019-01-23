@@ -29,10 +29,13 @@ div
     .card 人狼議事を遊ぶとき、従うべきルールはこちら。
 
   c-post.form(handle="VSSAY")
-    nuxt-link(to="/chr/list")
-      | キャラクター御尊顔一覧
-    nuxt-link(to="/chr/npc")
-      | 最初の犠牲者一覧
+    | キャラクター
+    hr
+    .card
+      nuxt-link(to="/chr/list")
+        | キャラクター一覧
+      nuxt-link(to="/chr/npc")
+        | 最初の犠牲者一覧
     hr
     .card 人狼議事で遊ぶことができるキャラクターはこちら。
     hr
