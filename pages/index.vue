@@ -18,7 +18,7 @@ div
     a(href="https://github.com/7korobi/sow-giji/commits/cabala") ゲーム
     a(href="https://github.com/7korobi/sow-giji/commits/show-fix") ゲーム（新）
     hr
-    a(href="https://api-project-54633717694.firebaseapp.com/") テストサイト
+    a(href="https://giji-db923.firebaseapp.com/") テストサイト
 
   c-post.form(handle="SSAY")
     nuxt-link(to="/rule-guide") 人狼議事のルール

@@ -6,7 +6,7 @@ div
   c-post(handle="TSAY")
     fire-oauth(style="white-space: nowrap")
 
-  c-post(handle="SSAY" v-if="user")
+  c-post(handle="SSAY" v-if="user && sign")
     article
       table(style="width: 100%")
         tbody

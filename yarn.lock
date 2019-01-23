@@ -7111,10 +7111,10 @@ memory-fs@^0.4.0, memory-fs@^0.4.1, memory-fs@~0.4.1:
     errno "^0.1.3"
     readable-stream "^2.0.1"
 
-memory-orm@^0.1.10:
-  version "0.1.10"
-  resolved "https://registry.yarnpkg.com/memory-orm/-/memory-orm-0.1.10.tgz#9ade83e814679a2a2164869cfcaa6a85f45e662d"
-  integrity sha512-MgGFA6BkV7lsn4GT2Q3c5y50W8j91hpv/NIBV/1Drn2x6fo7YGvtkTk+/iQav4Qt59RshltDGwPhiHbXRZ5xkA==
+memory-orm@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/memory-orm/-/memory-orm-0.2.0.tgz#6281e437f579e140dabbd7e36991ef2a918accc4"
+  integrity sha512-g1DgkvR+JGZeGjSbZ7Pl6z1jMjwi8/A8KLO4T81UzE5AyJhkDi82KG8MOnEJdqTEYlb+Op6DQDFQWXi0LRGcaQ==
   dependencies:
     lodash "^4.17.11"
 

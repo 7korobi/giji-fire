@@ -19,6 +19,7 @@ joinSnapshot = (snap_id, shot)->
         ->
 
 firebase_snap_base = (id, pk, snap, { del, add, shot })->
+  default_id = "#{id}_default"
   snap_id = "#{id}_snap"
   join_id = "#{id}_join"
   add_id  = "#{id}_add"
@@ -27,6 +28,7 @@ firebase_snap_base = (id, pk, snap, { del, add, shot })->
   join = joinSnapshot snap_id, shot
 
   mounted: ->
+    @[default_id] = @[id]
     @[join_id] @[pk_id]
   
   beforeDestroy: ->
@@ -110,6 +112,7 @@ module.exports = m =
 
   firebase_snap: (id, pk, snap)->
     snap_id = "#{id}_snap"
+    default_id = "#{id}_default"
     firebase_snap_base id, pk, snap,
       del: ->
         @[snap_id]?.delete()
@@ -117,5 +120,8 @@ module.exports = m =
         @[snap_id]?.set doc,
           merge: true
       shot: (doc)->
-        @[id] = doc.data()
-
+        @[id] =
+          if doc.exists
+            doc.data()
+          else
+            @[default_id]

@@ -51,8 +51,6 @@ module.exports =
   }
 
   watch:
-    "bookmark": (newVal, oldVal)->
-      console.log JSON.stringify { newVal, oldVal }
     write_at: _.debounce ->
       return unless @is_enable
       return unless ! @bookmark || @bookmark.write_at < @write_at

@@ -6,7 +6,8 @@
   "functions": {
     "predeploy": [
       "run-s copy:func"
-    ]
+    ],
+    "source": "functions"
   },
   "hosting": {
     "public": "dist",

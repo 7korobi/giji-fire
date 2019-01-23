@@ -5,7 +5,7 @@ serviceAccount = require "~/config/service_account.yml"
 
 admin.initializeApp
   credential:  admin.credential.cert serviceAccount
-  databaseURL: "https://api-project-54633717694.firebaseio.com"
+  databaseURL: "https://giji-db923.firebaseapp.com"
 
 module.exports = {
   ...require './timer'
