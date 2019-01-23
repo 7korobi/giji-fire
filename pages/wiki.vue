@@ -42,6 +42,9 @@ log-wiki
   c-report(handle="footer" deco="center")
     bread-crumb
 
+  c-post(handle="TSAY")
+    fire-oauth(style="white-space: nowrap")
+
   div(v-if="a.length")
     chat(v-for="o in cite_chats" @anker="anker" @focus="focus" @popup="popup" :id="o.id" :key="o.id")
   div(v-else)
@@ -79,8 +82,6 @@ log-wiki
               fcm(:topic="book_id")
               | このページ内での新規投稿を通知
           br
-  c-post(handle="TSAY")
-    fire-oauth(style="white-space: nowrap")
   chat-editor(v-if="user" :part_id="part_id" :phases="phases" :current="chat" @icon="icon_change" @check="check_post" @drop_image="image_post" @submit="chat_post" @create_mode="create_mode" @remove="remove" @popup="popup")
   c-report(handle="footer" deco="center")
     bread-crumb

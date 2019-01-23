@@ -5,6 +5,9 @@ div
     p 祝！人狼議事10周年！
     app-logo
 
+  c-post(handle="TSAY")
+    fire-oauth(style="white-space: nowrap")
+
   c-report(handle="footer" deco="center" v-if="mypage") ロビー
   c-post.form(handle="TSAY" v-if="mypage")
     nuxt-link(:to="mypage") あなたの情報

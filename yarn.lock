@@ -11291,6 +11291,11 @@ vue-jest@^3.0.0:
     tsconfig "^7.0.0"
     vue-template-es2015-compiler "^1.6.0"
 
+vue-kawaii@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/vue-kawaii/-/vue-kawaii-0.1.2.tgz#ce6c1f172f1a843ffa75de1ee8f66c19eed14238"
+  integrity sha512-8d5Ka+WVnXm8tNnLX8ZxsXXz98uQJxh6hY8rZchkBQ7gHAB+v+HjanW7L0rrzYoGSGkMxflxelxYRm8vWR+puQ==
+
 vue-loader@^15.4.2:
   version "15.4.2"
   resolved "https://registry.yarnpkg.com/vue-loader/-/vue-loader-15.4.2.tgz#812bb26e447dd3b84c485eb634190d914ce125e2"
