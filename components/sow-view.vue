@@ -18,9 +18,9 @@ link = (href, title, text)->
           """<img chk="confirm" href="#{href}" src="#{href}" title="#{text}">"""
       else
         if title
-          """<b chk="confirm" href="#{href}" title="#{title}">#{text}</b>"""
+          """<a chk="confirm" href="#{href}" title="#{title}">#{text}</a>"""
         else
-          """<b chk="confirm" href="#{href}">#{text}</b>"""
+          """<a chk="confirm" href="#{href}">#{text}</a>"""
 
 sow = (log)->
   log
