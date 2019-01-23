@@ -62,7 +62,7 @@ chr_npc:
       <strong>（着信音）</strong>
 
   - label: "エクスパンション・セット「帰還者議事」（少女Ａ）"
-    csid: time
+    csid: time_t49
     face_id: t49
     say_0: |-
       次は私の順番ね。この教室で、ほんとうにあったはなし。

@@ -1,5 +1,26 @@
 { Query } = require "memory-orm"
 
+has_cite = (target)->
+  if target
+    cite  = target.attributes.cite
+    cite ?= target.parentElement.attributes.cite
+    if cite
+      if chat = Query.chats.sow_cite cite.value
+        chat
+
+has_href = (target)->
+  { href, chk, src, alt } = target.attributes
+  if href
+    url = href.value
+    check = chk?.value
+    if check == "confirm"
+      url
+
+has_checkbox = (target)->
+  { type, value } = target.attributes
+  if type && type.value == 'checkbox'
+    type.value
+
 module.exports =
   data: ->
     hover: null
@@ -11,28 +32,6 @@ module.exports =
 
   methods:
     markup_event: (mode = "popup")->
-      has_cite = (target)->
-        if target
-          cite  = target.attributes.cite
-          cite ?= target.parentElement.attributes.cite
-          if cite
-            if chat = Query.chats.sow_cite cite.value
-              chat
-
-      has_href = (target)->
-        { href, chk, src, alt } = target.attributes
-        if href
-          url = href.value
-          check = chk?.value
-          if check == "confirm" && confirm "open?\n#{url}"
-            url
-
-      has_checkbox = (target)->
-        { type, value } = target.attributes
-        if type && type.value == 'checkbox'
-          type.value
-
-
       hover = (e)=>
         if chat = has_cite e.target
           @hover = chat.id
@@ -56,10 +55,12 @@ module.exports =
 
       click = (e)=>
         if chat = has_cite e.target
+          e.preventDefault()
           @$emit "anker", ...chat.make_ankers @id
         if url = has_href e.target
           e.preventDefault()
-          open url, '_blank'
+          if confirm "open?\n#{url}"
+            open url, '_blank'
 
       o =
         touchmove: hover

@@ -43,55 +43,6 @@ module.exports =
       window.getSelection().addRange range
       document.execCommand 'copy'
 
-    anker_go: (a)->
-      if chat = Query.chats.sow_cite a
-        @$emit "anker", ...chat.make_ankers @chat_id
-
-    mention_up: (root_ids, depth, ret = {})->
-      for id in root_ids
-        ret[id] = depth
-
-        { mention_ids } = Query.chats.find id
-        done_ids = Object.keys ret
-        if mention_ids
-          ids = _.difference mention_ids, done_ids
-          if ids?.length
-            @mention_up ids, depth - 1, ret
-
-    mention_down: (root_ids, depth, ret = {})->
-      for id in root_ids
-        ret[id] = depth
-
-        children = @mention_children id
-        done_ids = Object.keys ret
-        if children
-          ids = children.map (o)-> o.id
-          console.log { root_ids, depth, done_ids, ids }
-          ids = _.difference ids, done_ids
-          if ids?.length
-            @mention_down ids, depth + 1, ret
-
-    mention_step: (root_ids, depth, ret = {})->
-      for id in root_ids
-        ret[id] = depth
-
-        children = @mention_children(id)
-        { mention_ids } = Query.chats.find id
-        done_ids = Object.keys ret
-        if mention_ids
-          ids = _.difference mention_ids, done_ids
-          if ids?.length
-            @mention_step ids, depth - 1, ret
-
-        if children
-          ids = children.map (o)-> o.id
-          ids = _.difference ids, done_ids
-          if ids?.length
-            @mention_step ids, depth + 1, ret
-
-    mention_children: (id)->
-      Query.chats.reduce?.mention_to?[id]
-
   computed:
     for_anker_map: ->
       { @book_id, @chat_id, @a }
@@ -125,8 +76,5 @@ module.exports =
         "(#{prefix}#{@chat.anker() || ''} #{@name || ''})"
       else
         ""
-
-    mentions: ->
-      @mention_children @chat_id
 
 </script>

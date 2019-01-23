@@ -30,26 +30,27 @@ module.exports =
 
     mention_up: (root_ids, depth, ret = {})->
       for id in root_ids
-        ret[id] = depth
-
-        { mention_ids } = Query.chats.find id
-        done_ids = Object.keys ret
-        if mention_ids
-          ids = _.difference mention_ids, done_ids
-          if ids?.length
-            @mention_up ids, depth - 1, ret
+        if chat = Query.chats.find id
+          ret[id] = depth
+          done_ids = Object.keys ret
+          { mention_ids } = chat
+          if mention_ids
+            ids = _.difference mention_ids, done_ids
+            if ids?.length
+              @mention_up ids, depth - 1, ret
 
     mention_down: (root_ids, depth, ret = {})->
       for id in root_ids
-        ret[id] = depth
+        if chat = Query.chats.find id
+          ret[id] = depth
+          done_ids = Object.keys ret
 
-        children = @mention_children id
-        done_ids = Object.keys ret
-        if children
-          ids = children.map (o)-> o.id
-          ids = _.difference ids, done_ids
-          if ids?.length
-            @mention_down ids, depth + 1, ret
+          children = @mention_children id
+          if children
+            ids = children.map (o)-> o.id
+            ids = _.difference ids, done_ids
+            if ids?.length
+              @mention_down ids, depth + 1, ret
 
     mention_step: (root_ids, depth, ret = {})->
       for id in root_ids
@@ -86,6 +87,7 @@ module.exports =
         depth = scan_depth - base_depth
         tree[depth] ?= []
         tree[depth].push Query.chats.find id
+      console.log tree
       tree
 
 </script>
