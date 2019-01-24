@@ -1,139 +1,9 @@
 <script lang="coffee">
 _ = require 'lodash'
-
-voice_chrs   = "がぎぐげござじずぜぞだぢづでどばびぶべぼぱぴぷぺぽゔゞガギグゲゴザジズゼゾダヂヅデドバビブベボパピプペポヴヷヸヹヺヾ"
-devoice_chrs = "かきくけこさしすせそたちつてとはひふへほはひふへほうゝカキクケコサシスセソタチツテトハヒフヘホハヒフヘホウワヰヱヲヽ"
-devoice = {}
-for voice_chr, idx in voice_chrs
-  devoice_chr = devoice_chrs[idx]
-  devoice[voice_chr] = devoice_chr
-
+Delta = require "quill-delta"
 
 if document?
-  window.Quill = Quill = require('quill/quill').default
-  Delta = require "quill-delta"
-  normalizeUrl = require "normalize-url"
-
-  Color = Quill.import 'attributors/class/color'
-  Color.whitelist = ['Y0','Y1','Y2','Y4','Y6','Y8']
-
-  Background = Quill.import 'attributors/class/background'
-  Background.whitelist = ['Y0','Y1','Y2','Y4','Y6','Y8']
-
-  Font = Quill.import 'attributors/class/font'
-  Font.whitelist = ["monospace"]
-
-  Size = Quill.import 'attributors/class/size'
-  Size.whitelist = ["small", "large", "huge"]
-
-  Keyboard = Quill.import 'modules/keyboard'
-  Keyboard.DEFAULTS.bindings.tab.handler
-
-  icons = Quill.import 'ui/icons'
-  icons.italic = """<em>あ</em>"""
-  icons.ruby = """<ruby data-ruby="るび">文字</ruby>"""
-  icons.codeblock = icons.code = """<code>あ</code>"""
-  icons.abbr = """<abbr>あ</abbr>"""
-  icons.random = """🎲"""
-
-  Inline = Quill.import 'blots/inline'
-  Inline.order.push 'abbr'
-
-  class ABBR extends Quill.import 'formats/code'
-    @tagName: 'ABBR'
-    @blotName: 'abbr'
-
-  class RANDOM extends Quill.import 'blots/inline'
-    @tagName: 'KBD'
-    @blotName: 'random'
-    @create: (value)->
-      domNode = super.create value
-      return domNode unless value?.length
-      domNode.title = value
-      domNode
-
-    @value: (domNode)->
-      domNode.title
-
-    @formats: (domNode)->
-      domNode.title
-
-    constructor: (scroll, node)->
-      super(scroll, node)
-
-    format: (name, value)->
-      if name == @statics.blotName && value?.length
-        @domNode.title = value
-      else
-        super.format name, value
-
-
-  class Ruby extends Quill.import 'blots/inline'
-    @tagName:  'RUBY'
-    @blotName: 'ruby'
-    @create: (value)->
-      domNode = super.create value
-      return domNode unless value?.length
-      domNode.dataset.ruby = value
-      domNode
-
-    @value: (domNode)->
-      console.log "value"
-      console.log domNode
-      domNode.dataset.ruby
-
-    @formats: (domNode)->
-      console.log "formats"
-      console.log domNode
-      domNode.dataset.ruby
-
-    constructor: (scroll, node)->
-      super(scroll, node)
-
-    format: (name, value)->
-      if name == @statics.blotName && value?.length
-        @domNode.dataset.ruby = value
-      else
-        super.format name, value
-
-  require "quill-mention/dist/quill.mention.min"
-  
-  class mention extends Quill.import 'blots/embed'
-    @tagName: 'q'
-    @blotName: 'mention'
-    @className: 'cite-bottom'
-
-    @value: (node)-> node.dataset
-    @setDataValues: null
-    @create: (data)->
-      node = super.create("#{data.mark}#{data.id}")
-      node.setAttribute "cite", data.id
-      node.innerText = "#{data.mark}#{data.id}"
-      for key, val of data
-        node.dataset[key] = val
-      node
-
-    constructor: (scroll, node)->
-      super(scroll, node)
-      console.log @
-
-  Quill.register
-    'formats/background': Background
-    'formats/color': Color
-    'formats/font': Font
-    'formats/size': Size
-    'formats/abbr': ABBR
-    'formats/ruby': Ruby
-    'formats/random':  RANDOM
-    'formats/mention': mention
-    'modules/keyboard': Keyboard
-
-hashcode = (str)->
-  hash = 5381
-  at = str.length
-  while at
-    hash = (hash * 33) ^ str.charCodeAt --at
-  hash >>> 0
+  require '~/plugins/quill'
 
 quill_paste = (newVal, oldVal)->
   return unless @quill
@@ -142,38 +12,6 @@ quill_paste = (newVal, oldVal)->
       @quill.clipboard.dangerouslyPasteHTML 0, @html = newVal
   else
     @quill.setText ''
-
-selected_change = (quill, cb)->
-  { index, length } = quill.getSelection()
-
-  delta = new Delta()
-  .retain index
-
-  text_list =
-    for { insert, attributes } in quill.getContents(index, length).ops when insert.length
-      delta.delete insert.length
-
-      insert = cb insert
-      delta.insert insert, attributes
-      insert
-
-  quill.updateContents delta
-  quill.setSelection index, text_list.join("").length
-
-readFiles = (files, cb)->
-  for file in files
-    return unless file.type.match /^image\/(gif|jpe?g|a?png|svg|webp|bmp|vnd\.microsoft\.icon)/i
-  reader = new FileReader()
-  reader.onload = (e)=>
-    cb e.target.result
-  blob =
-    if file.getAsFile
-      file.getAsFile()
-    else
-      file
-  if blob instanceof Blob
-    reader.readAsDataURL blob
-
 
 module.exports =
   data: ->
@@ -188,27 +26,8 @@ module.exports =
       modules:
         history: true
         clipboard: true
-        uploader:
-          handler: ( range, files )=>
-            images = await Promise.all files.map (file)=>
-              new Promise (ok)=>
-                reader = new FileReader()
-                reader.onload = (e)=>
-                  code = hashcode e.target.result
-                  [ ext ] = file.name.match /\.[^.]+$/
-                  id = "#{code.toString(36)}#{ext}"
-                  @$emit "drop_image", { id, file }, (url)=>
-                    console.log { id, url }
-                    ok url
-                reader.readAsDataURL file
-
-            ops = new Delta()
-            .retain range.index
-            .delete range.length
-            for image in images
-              ops.insert { image }
-            @quill.updateContents ops
-            @quill.setSelection range.index + images.length
+        uploader: 
+          handler: require("~/plugins/quill-uploader").bind @
         mention:
           dataAttributes: ['id', 'id', 'mark']
           isolateCharacter:   true
@@ -248,6 +67,7 @@ module.exports =
             [{ kana: 'invert' }, { kana: 'none' }, { kana: 'half' }, { kana: 'full' }]
           ]
           handlers:
+            kana: require '~/plugins/quill-kana'
             random: ->
               { index, length } = @quill.getSelection()
               random = @quill.getText(index, length)
@@ -269,43 +89,6 @@ module.exports =
               .insert text, { ruby }
               @quill.updateContents ops
 
-            kana: (mode)->
-              switch mode
-                when 'invert'
-                  # ひらがなをカタカナに、カタカナをひらがなに
-                  selected_change @quill, (text)->
-                    text.replace /([\u3041-\u3096])|([\u30a1-\u30f6])/g, (match, hira, kata)->
-                      if hira
-                        return String.fromCharCode hira.charCodeAt(0) + 0x60
-                      if kata
-                        return String.fromCharCode kata.charCodeAt(0) - 0x60
-                when 'none'
-                  selected_change @quill, (text)->
-                    text = text.replace /([\u3099\u309a])/g, (match, cut)->
-                      ""
-                    text = text.replace /([\u3041-\u3096\u309d\309f\u30a1-\u30fa\u30fd\u30fe\u30ff])/g, (match, chr)->
-                      devoice[chr] ? chr
-                    text
-                when 'half'
-                  selected_change @quill, (text)->
-                    text = text.replace /([\u3099\u309a])/g, (match, cut)->
-                      ""
-                    text = text.replace /([\u3041-\u3096\u309d\309f\u30a1-\u30fa\u30fd\u30fe\u30ff])/g, (match, chr)->
-                      chr = devoice[chr] ? chr
-                      chr + "\u309a"
-                    text = text.replace /([はひふへほハヒフヘホ])[\u309a]/g, (match, chr)->
-                      String.fromCharCode chr.charCodeAt(0) + 2
-                    text
-                when 'full'
-                  selected_change @quill, (text)->
-                    text = text.replace /([\u3099\u309a])/g, (match, cut)->
-                      ""
-                    text = text.replace /([\u3041-\u3096\u309d\309f\u30a1-\u30fa\u30fd\u30fe\u30ff])/g, (match, chr)->
-                      chr = devoice[chr] ? chr
-                      chr + "\u3099"
-                    text = text.replace /([かきくけこさしすせそたちつてとはひふへほカキクケコサシスセソタチツテトハヒフヘホ])[\u3099]/g, (match, chr)->
-                      String.fromCharCode chr.charCodeAt(0) + 1
-                    text
       placeholder: @placeholder
       readOnly: false
       theme: 'bubble'
@@ -409,13 +192,6 @@ module.exports =
         @quill.updateContents ops
 
       @$emit 'ready', @quill
-
-    insert_file: ( dataUrl )->
-      index = @quill.getSelection()?.index || @quill.getLength()
-      @quill.insertEmbed index, 'image', dataUrl, 'user'
-      @$emit "drop_image", file, (url)=>
-        @image url, type
-
 
     insert_url: (ops, url)->
       link =

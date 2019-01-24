@@ -10,12 +10,6 @@ if Vue.default?
 
 
 FetchApi = require "~/worker/fetch-api"
-### comlink-mode
-if window?
-  Comlink = require 'comlink'
-  _comlink = require "shared-worker-loader!~/worker/comlink-index"
-  comlink = Comlink.proxy (new _comlink).port
-###
 
 mounts = 0
 is_cache = {}
@@ -34,17 +28,6 @@ base = (opt)->
     step: State.step
 
   mounted: ->
-### comlink-mode
-    console.log { mounts, step }
-    if 0 == mounts && window?
-      mounts++
-      comlink.add Comlink.proxyValue (data)->
-        console.log data
-      .then (idx)->
-        comidx = idx
-        Object.assign window, { comlink }
-###
-
     @timers = {}
     window.addEventListener 'offline', @_waitwake
     window.addEventListener 'online', @_waitwake
@@ -70,15 +53,6 @@ base = (opt)->
       else
         for key, val of @timers
           clearTimeout val
-
-### comlink-mode
-    console.log { mounts, step }
-    if 0 == mounts && window?
-      --mounts
-      await comlink.del comidx
-###
-
-# memory -> LF -> workbox -> network
 
 base.cache = (timestr, vuex_id, opt)->
   # console.log { timestr, timeout, url: opt('*') }
@@ -130,13 +104,6 @@ base.cache = (timestr, vuex_id, opt)->
       if timeout < 0x7fffffff  #  ほぼ25日
         timers[url] = setTimeout roop, timeout
     roop()
-
-### comlink-mode
-    copys = await comlink[name] url, id
-    values = JSON.parse await comlink.copy ...copys
-    for key, idx in copys
-      ...
-###
 
 base.caches = (timestr, opts)->
   for key, cb of opts

@@ -5,10 +5,13 @@ div
       li
         nuxt-link(to="/demo") 開発者用ページ
 
+  c-post.TSAY
+    fire-oauth
+
   no-ssr
     div
       c-report(head="Quill TEST" sign="ななころび" :handle="chat.handle" style="z-index: 10")
-        quill-editor(v-model="text" @submit="console")
+        quill-editor(v-model="text" @submit="console" @drop_image="image_post")
           select(v-model="chat.handle" key="handle")
             option(value="SSAY") 発言
             option(value="WSAY") 囁き
@@ -25,6 +28,8 @@ div
 </template>
 
 <script lang="coffee">
+firebase = require "firebase"
+
 module.exports =
   mixins: [
     require('~/plugins/markup-event')
@@ -37,7 +42,17 @@ module.exports =
       handle: "SSAY"
       deco: "quill"
       part_id: "edit-edit-edit"
+
+  computed:
+    _storage: ->
+      firebase.storage()
+    _images: ->
+      @_storage.ref().child('images')
+
   methods:
+    image_post: ({ id, file }, next)->
+      ss = await @_images.child(id).put(file)
+      next await ss.ref.getDownloadURL()
     console: ->
       console.log arguments
 </script>
