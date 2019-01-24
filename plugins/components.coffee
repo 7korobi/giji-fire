@@ -1,33 +1,13 @@
 Vue = require "vue"
 
-#{ MarkSVG, Marked } = require '~/node_modules/vue-markup/src/index'
-{ MarkSVG, Marked } = require 'vue-markup'
+{ MarkSVG, Marked } = require '~/node_modules/vue-markup/src/index'
+# { MarkSVG, Marked } = require 'vue-markup'
 
 { Query } = require "memory-orm"
 { url } = require "~/config/live.yml"
 
 if window?
   Vue = Vue.default
-
-Marked.options.langPrefix = '' 
-Object.assign Marked.options.renderer,
-  url: (href)->
-    switch
-      when Query.faces.find(href)
-        "#{url.assets}/images/portrate/#{ href }.jpg"
-      else
-        href
-
-  kbd: (text, idx)->
-    { m, context } = @options
-    attrs = {}
-    if context?.random?
-      { title, text } = context.random[idx] ? { title: text, text: '🎲' }
-      attrs.title = title
-    m 'kbd', { attrs }, text
-
-  cite_exist: (cite)->
-    Query.chats.find(cite)
 
 Object.assign MarkSVG.options.renderer,
   href: (key)->
