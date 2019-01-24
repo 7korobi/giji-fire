@@ -1,26 +1,24 @@
 <script lang="coffee">
 { url } = require "~/config/live.yml"
+{ localStorage, sessionStorage } = require "~/plugins/browser-store"
+
 module.exports =
   props: ["title"]
   mixins: [
-    require("~/plugins/browser-store")
-      local:
-        theme: "cinema"
-        font:  "std"
-        zoom:  "0.5"
-      watch:
-        theme: ->
-          return unless window?
-          @use_style 'theme'
-          @use_style 'log'
-        font: ->
-          return unless window?
-          @use_style 'font'
+    localStorage "theme"
+    localStorage "font"
+    localStorage "zoom"
+    sessionStorage "old.href.log"
   ]
   data: ->
     top:    0
     width:  0
     height: 0
+
+    theme: "cinema"
+    font:  "std"
+    zoom:  "0.5"
+
     use: {}
     new:
       rel:
@@ -76,7 +74,16 @@ module.exports =
       @width = innerWidth
       @height = innerHeight
       requestAnimationFrame @poll
-  
+
+  watch:
+    theme: ->
+      return unless window?
+      @use_style 'theme'
+      @use_style 'log'
+    font: ->
+      return unless window?
+      @use_style 'font'
+
   head: ->
     # https://materialdesignicons.com/
     meta: [

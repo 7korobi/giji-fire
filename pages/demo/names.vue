@@ -22,13 +22,14 @@ div
 
 <script lang="coffee">
 { Query } = require "memory-orm"
+{ replaceState } = require "~/plugins/browser-store"
 
 module.exports =
   mixins: [
-    require("~/plugins/browser-store")
-      replace:
-        tag_id: "all"
+    replaceState "tag_id"
   ]
+  data: ->
+    tag_id: "all"
   computed:
     name_blanks: ->
       Query.faces.name_blank()

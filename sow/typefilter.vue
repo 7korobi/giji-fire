@@ -41,28 +41,18 @@ table
         a(:href="to_pno(-5)") 注目
 </template>
 <script lang="coffee">
+{ sessionStorage } = require "~/plugins/browser-store"
 _ = require "lodash"
 
 module.exports =
   mixins: [
-    require("~/plugins/browser-store")
-      session:
-        pnos: []
-        types: []
-      watch:
-        pnos: (news)->
-          for pno in @pno_full
-            o = window["pnofilter_#{pno}"].classList
-            if @pnos.includes pno
-              o.add("ban")
-            else
-              o.remove("ban")
-          @message_filter()
-        types: (news)->
-          @message_filter()
+    sessionStorage "pnos"
+    sessionStorage "types"
   ]
 
   data: ->
+    pnos: []
+    types: []
     pno_full: []
     pnos_by_live:
       mob: []
@@ -112,5 +102,17 @@ module.exports =
 
     to_pno: (type)->
       location.href + "&pno=#{type}"
+
+  watch:
+    pnos: (news)->
+      for pno in @pno_full
+        o = window["pnofilter_#{pno}"].classList
+        if @pnos.includes pno
+          o.add("ban")
+        else
+          o.remove("ban")
+      @message_filter()
+    types: (news)->
+      @message_filter()
 
 </script>

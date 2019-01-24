@@ -45,6 +45,7 @@ div
 <script lang="coffee">
 _ = require "lodash"
 { Query } = require "memory-orm"
+{ replaceState, localStorage } = require "~/plugins/browser-store"
 
 class Capture
   constructor: (@compare)->
@@ -77,14 +78,14 @@ sort_capture = new Capture (a, b)->
 
 module.exports =
   mixins: [
-    require("~/plugins/browser-store")
-      replace:
-        tag_id: "giji"
-      local:
-        cache: {}
+    replaceState "tag_id"
+    localStorage "cache"
   ]
 
   data: ->
+    console.log "data"
+    tag_id: "giji"
+    cache: {}
     a: null
     b: null
     message: null
@@ -144,7 +145,7 @@ module.exports =
         when @b
           @cache["#{@a}-#{@b}"] = +1
           @cache["#{@b}-#{@a}"] = -1
-      @cache = @cache
+      @cache = Object.assign {}, @cache
       @a = @b = @message = null
 
   head: ->

@@ -1,5 +1,7 @@
 <script lang="coffee">
 _ = require 'lodash'
+{ localStorage } = require "~/plugins/browser-store"
+
 {
   Editor
   EditorContent
@@ -230,9 +232,7 @@ readFiles = (files, cb)->
 
 module.exports =
   mixins: [
-    require("~/plugins/browser-store")
-      local:
-        html: "<p></p>"
+    localStorage "html"
   ]
   components: {
     EditorContent
@@ -255,6 +255,7 @@ module.exports =
 
   }
   data: ->
+    html: "<p></p>"
     text: "\n"
     json: []
     index:  0

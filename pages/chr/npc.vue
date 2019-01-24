@@ -34,14 +34,17 @@ div
 </template>
 <script lang="coffee">
 { Query } = require "memory-orm"
+{ replaceState } = require "~/plugins/browser-store"
 
 module.exports =
   mixins: [
-    require("~/plugins/browser-store")
-      replace:
-        chr_set_id: "ririnra"
-        search: ""
+    replaceState "chr_set_id"
+    replaceState "search"
   ]
+  data: ->
+    chr_set_id: "ririnra"
+    search: ""
+
   computed:
     chr_set: ->
       Query.chr_sets.find @chr_set_id

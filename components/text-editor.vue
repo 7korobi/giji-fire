@@ -118,6 +118,7 @@ span
 
 <script lang="coffee">
 _ = require "lodash"
+{ localStorage } = require "~/plugins/browser-store"
 
 voice_chrs   = "がぎぐげござじずぜぞだぢづでどばびぶべぼぱぴぷぺぽゔゞガギグゲゴザジズゼゾダヂヅデドバビブベボパピプペポヴヷヸヹヺヾ"
 devoice_chrs = "かきくけこさしすせそたちつてとはひふへほはひふへほうゝカキクケコサシスセソタチツテトハヒフヘホハヒフヘホウワヰヱヲヽ"
@@ -169,14 +170,15 @@ module.exports =
       default: false
 
   mixins: [
-    require("~/plugins/browser-store")
-      local:
-        history_giji:    [[1,""]]
-        history_sow:     [[1,""]]
-        history_diagram: [[1,""]]
+    localStorage "history_giji"
+    localStorage "history_sow"
+    localStorage "history_diagram"
   ]
 
   data: ->
+    history_giji:    [[1,""]]
+    history_sow:     [[1,""]]
+    history_diagram: [[1,""]]
     forward_history:
       giji:    []
       sow:     []

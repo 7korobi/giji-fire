@@ -47,18 +47,22 @@ div
 </template>
 
 <script lang="coffee">
+{ replaceState } = require "~/plugins/browser-store"
 { Query } = require "memory-orm"
 _ = require "lodash"
 
 module.exports =
   mixins: [
     require("~/plugins/get-by-mount") -> [["aggregate/faces"]]
-    require("~/plugins/browser-store")
-      replace:
-        order: "date_max"
-        tag_id:  "all"
-        search: ""
+    replaceState "order"
+    replaceState "tag_id"
+    replaceState "search"
   ]
+
+  data: ->
+    order: "date_max"
+    tag_id:  "all"
+    search: ""
 
   computed:
     set: ->

@@ -19,14 +19,18 @@ div
 </template>
 <script lang="coffee">
 { Query } = require "memory-orm"
+{ replaceState } = require "~/plugins/browser-store"
 
 module.exports =
   mixins: [
-    require("~/plugins/browser-store")
-      replace:
-        tag_id: "giji"
-        search: ""
+    replaceState "tag_id"
+    replaceState "search"
   ]
+
+  data: ->
+    tag_id: "giji"
+    search: ""
+
   computed:
     set: ->
       Query.tags.find @tag_id

@@ -172,33 +172,46 @@ div
 <script lang="coffee">
 { State, Query } = require "memory-orm"
 { url } = require "~/config/live.yml"
+{ replaceState } = require "~/plugins/browser-store"
 
 module.exports =
   mixins: [
     require("~/plugins/get-by-mount") -> [["sow/oldlog"]]
     require('~/plugins/pager')
-    require("~/plugins/browser-store")
-      replace:
-        order:  "timer.updateddt"
-        folder_id: []
-        monthry: []
-        upd_range: []
-        upd_at: []
-        sow_auth_id: []
-        rating: []
-        size: []
-        say: []
-        game: []
-        option: []
-        event: []
-        discard: []
-        config: []
-        search: ""
-      watch: ->
-        @page_idxs = [0]
+    replaceState "order"
+    replaceState "folder_id"
+    replaceState "monthry"
+    replaceState "upd_range"
+    replaceState "upd_at"
+    replaceState "sow_auth_id"
+    replaceState "rating"
+    replaceState "size"
+    replaceState "say"
+    replaceState "game"
+    replaceState "option"
+    replaceState "event"
+    replaceState "discard"
+    replaceState "config"
+    replaceState "search"
   ]
 
   data: ->
+    order:  "timer.updateddt"
+    folder_id: []
+    monthry: []
+    upd_range: []
+    upd_at: []
+    sow_auth_id: []
+    rating: []
+    size: []
+    say: []
+    game: []
+    option: []
+    event: []
+    discard: []
+    config: []
+    search: ""
+
     mode: "oldlog"
     asc: "desc"
     drill: true
@@ -263,6 +276,7 @@ module.exports =
       obj
 
     page_all_contents: ->
+      @page_idxs = [0]
       Query
       .sow_villages
       .all_contents @mode, @folder_id, @query_in, @query_where, @search, @order, @asc

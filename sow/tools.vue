@@ -24,6 +24,7 @@
 </template>
 
 <script lang="coffee">
+{ localStorage } = require "~/plugins/browser-store"
 
 regDEL = /(\/\*)(.*?)(\*\/|$)/g
 
@@ -88,17 +89,15 @@ deploy = (o, events)->
   else
     text
 
-
 module.exports =
   mixins: [
-    require("~/plugins/browser-store")
-      local:
-        clipboard: ""
+    localStorage "clipboard"
   ]
   data: ->
     clips_f: ["bm", "anchor"]
     clips: ["●","▼","■","【"]
     cliptext: ""
+    clipboard: ""
 
   mounted: ->
     console.log @$el

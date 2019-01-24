@@ -8,15 +8,17 @@ check.item(v-model="fcm_topics" :as="topic" :title="title")
 <script lang="coffee">
 { vuex_value } = require '~/plugins/struct'
 firebase = require "firebase"
+{ localStorage } = require "~/plugins/browser-store"
 
 module.exports =
   mixins: [
-    require("~/plugins/browser-store")
-      local:
-        fcm_topics: []
+    localStorage "fcm_topics"
   ]
 
   props: ['topic']
+
+  data: ->
+    fcm_topics: []
 
   computed: {
     ...vuex_value 'firebase',['fcm_token']
@@ -29,7 +31,7 @@ module.exports =
       else
         "通知を受け取りません。"
     checked: ->
-      @topic in @fcm_topics
+      @fcm_topics.includes @topic
     enable: ->
       @fcm_token and @checked
     _messaging: ->

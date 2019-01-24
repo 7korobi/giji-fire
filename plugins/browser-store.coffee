@@ -1,163 +1,147 @@
-_ = require "lodash"
+_ = require 'lodash'
+Cookie = require 'tiny-cookie'
 { types, relative_to } = require "~/plugins/struct"
-
-browser_store = bs = (method, browser_key)->
-  db: db = bs[method]
-  pack: (computed, {to_str}, key, val)->
-    computed[key] =
-      get: ->
-        @$data[browser_key][key]
-
-      set: (newVal)->
-        if newVal?
-          db.setItem key, to_str newVal
-        else
-          db.removeItem key
-        @$data[browser_key][key] = newVal
-
-get_value_by_store = (db, by_str, key, val)->
-  o = by_str db.getItem key
-  if o == o
-    o ? val
-  else val
-
-get_value_by_route = (src, by_url, key, val)->
-  value = src.params[key] || src.query[key]
-  if value
-    by_url value
-  else
-    val
-
-router_store = (method, browser_key)->
-  pack: (computed, {by_url}, key, val)->
-    computed[key] =
-      get: ->
-        @$data[browser_key][key]
-
-      set: (newVal)->
-        return if @[key] == newVal
-        o = {}
-        o[key] = newVal
-        { location, href } = @$router.resolve relative_to @$route, o, true
-        @$data[browser_key][key] = newVal
-        history?["#{method}State"] null, null, href
 
 try
   test = '__vue-localstorage-test__'
-  Cookie = require 'tiny-cookie'
 
-  bs.cookie =
-    getItem:    (key)->     Cookie.get(key) ? null
-    setItem:    (key, s)->  Cookie.set key, s, expires: '1M'
-    removeItem: (key)->     Cookie.remove key
-  bs.cookie.setItem test, test
-  bs.cookie.removeItem test
+  Cookie.set test, test, expres: '1M'
+  Cookie.remove test
 
-  bs.local = window.localStorage
-  bs.local.setItem test, test
-  bs.local.removeItem test
+  window.localStorage.setItem test, test
+  window.localStorage.removeItem test
 
-  bs.session = window.sessionStorage
-  bs.session.setItem test, test
-  bs.session.removeItem test
-  window.addEventListener "storage", ({ key, url, storageArea, oldValue, newValue })->
-    console.log { key, oldValue, newValue, active_stores }
-    active_stores.forEach ($browser)->
-      console.log $browser
-      if key in Object.keys $browser
-        $browser[key] = newValue
+  window.sessionStorage.setItem test, test
+  window.sessionStorage.removeItem test
 
   history || throw new Error "can't use history API."
 catch e
-  console.error 'Local storage not supported by this browser'
-  bs.cookie = bs.local = bs.session =
-    _data: {}
-    getItem:    (key)->    @_data[key] ? null
-    setItem:    (key, s)-> @_data[key] = s
-    removeItem: (key)->    delete @_data[key]
+  console.warn 'Local storage not supported by this browser'
 
 
-idx = 0
-active_stores = new Set
-module.exports = (args1)->
-  browser_key = "$browser#{++idx}"
-  $browser = {}
-  stores = {}
-  routes = {}
+module.exports = m =
+  replaceState: (id)->
+    default_id = "#{id}_default"
+    type_id = "#{id}_type"
 
-  computed = {}
-  methods = {}
-  watch = {}
+    created: ->
+      @[default_id] = _.get @, id
+      @[type_id] = types[@[default_id].constructor]
 
-  if args1.watch
-    unless args1.watch.call
-      watch = args1.watch
+    mounted: ->
+      newVal = @$route.params[id] || @$route.query[id]
+      newVal = @[type_id].by_url newVal
+      newVal ?= @[default_id]
+      @[id] = newVal
 
+    beforeRouteUpdate: (newRoute, oldRoute, next)->
+      next()
+      newVal = newRoute.params[id] || newRoute.query[id]
+      newVal = @[type_id].by_url newVal
+      newVal ?= @[default_id]
+      @[id] = newVal
 
-  beforeRouteUpdate = (newRoute, oldRoute, next)->
-    next()
-    for key, { by_url, value } of routes
-      newVal = get_value_by_route newRoute, by_url, key, value
-      $browser[key] = newVal
+    watch:
+      [id]: ( newVal )->
+        { location, href } = @$router.resolve relative_to @$route, { [id]: newVal }, true
+        history.replaceState null, null, href
 
-  pack = (method, key, value)->
-    type = types[value.constructor]
+  pushState: (id)->
+    default_id = "#{id}_default"
+    type_id = "#{id}_type"
 
-    switch method
-      when "watch"
-        return
+    created: ->
+      @[default_id] = _.get @, id
+      @[type_id] = types[@[default_id].constructor]
 
-      when "replace", "push"
-        setter = router_store method, browser_key
-        routes[key] =
-          by_url: type.by_url
-          value:  value
+    mounted: ->
+      newVal = @$route.params[id] || @$route.query[id]
+      newVal = @[type_id].by_url newVal
+      newVal ?= @[default_id]
+      @[id] = newVal
 
-      when "cookie", "local", "session"
-        setter = browser_store method, browser_key
-        stores[key] =
-          db: setter.db
-          by_str: type.by_str
-          value: value
+    beforeRouteUpdate: (newRoute, oldRoute, next)->
+      next()
+      newVal = newRoute.params[id] || newRoute.query[id]
+      newVal = @[type_id].by_url newVal
+      newVal ?= @[default_id]
+      @[id] = newVal
 
-    $browser[key] = value
-    setter.pack computed, type, key, value
-    if args1.watch?.call
-      watch[key] = args1.watch
+    watch:
+      [id]: ( newVal )->
+        s = @[type_id].to_str newVal
+        { location, href } = @$router.resolve relative_to @$route, { [id]: s }, true
+        history.pushState null, null, href
 
-  for method, args2 of args1
-    for key, val of args2
-      pack method, key, val
-  active_stores.add $browser
+  sessionStorage: (id)->
+    default_id = "#{id}_default"
+    type_id = "#{id}_type"
 
-  destroyed = ->
-    active_stores.delete $browser
+    created: ->
+      @[default_id] = _.get @, id
+      @[type_id] = types[@[default_id].constructor]
 
-  data = ->
-    oldVals =
-      for key of watch
-        [key, _.get($browser, key) ]
+    mounted: ->
+      newVal = window.sessionStorage.getItem id
+      if newVal?
+        @[id] = @[type_id].by_str newVal
 
-    for key, { db, by_str, value } of stores
-      oldVal = $browser[key]
-      $browser[key] = newVal = get_value_by_store db, by_str, key, value
+    watch:
+      [id]: ( newVal )->
+        if newVal?
+          s = @[type_id].to_str newVal
+          window.sessionStorage.setItem id, s
+        else
+          window.sessionStorage.removeItem id
 
-    for key, { by_url, value } of routes
-      oldVal = $browser[key]
-      $browser[key] = newVal = get_value_by_route @$route, by_url, key, value
+  localStorage: (id)->
+    default_id = "#{id}_default"
+    handle_id = "#{id}_handle"
+    type_id = "#{id}_type"
 
-    @$nextTick =>
-      for [key, oldVal] in oldVals
-        newVal = _.get $browser, key
-        watch[key].call @, newVal, oldVal, key
-    o = {}
-    o[browser_key] = $browser
-    o
+    created: ->
+      @[default_id] = _.get @, id
+      @[type_id] = types[@[default_id].constructor]
 
-  { watch, computed, methods, beforeRouteUpdate, data, destroyed }
+    mounted: ->
+      newVal = window.localStorage.getItem id
+      if newVal?
+        @[id] = @[type_id].by_str newVal
 
-module.exports.capture = (req)->
-  { cookie } = req.headers
-  if cookie
-    for s in cookie.split /; */
-      bs.cookie.setItem ...s.split /=/
+      @[handle_id] = ({ key, newVal })=>
+        if key == id
+          @[id] = @[type_id].by_str newVal
+      window.addEventListener "storage", @[handle_id]
+    
+    beforeDestroy: ->
+      window.removeEventListener "storage", @[handle_id]
+
+    watch:
+      [id]: ( newVal )->
+        if newVal?
+          s = @[type_id].to_str newVal
+          window.localStorage.setItem id, s
+        else
+          window.localStorage.removeItem id
+
+  cookie: (id, options = { expires: '1M' })->
+    default_id = "#{id}_default"
+    type_id = "#{id}_type"
+
+    created: ->
+      @[default_id] = _.get @, id
+      @[type_id] = types[@[default_id].constructor]
+
+    mounted: ->
+      newVal = Cookie.get id
+      if newVal?
+        @[id] = @[type_id].by_str newVal
+
+    watch:
+      [id]: ( newVal )->
+        if newVal?
+          s = @[type_id].to_str newVal
+          Cookie.set id, s, options
+        else
+          Cookie.remove id
+

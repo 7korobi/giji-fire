@@ -1,16 +1,27 @@
 _ = require "lodash"
 { Query } = require "memory-orm"
 { path, relative_to } = require "~/plugins/struct"
+{ replaceState, pushState, localStorage } = require "~/plugins/browser-store"
 
 
-browser = require("~/plugins/browser-store") 
-  replace:
+blank = []
+blank.all = 0
+
+store =
+  mixins: [
+    replaceState "idx"
+    replaceState "page"
+    replaceState "search"
+    localStorage "page_by"
+    pushState "mode"
+    pushState "a"
+  ]
+
+  data: ->
     idx: ""
     page: ""
     search: ""
-  local:
     page_by: 30
-  push:
     mode: 'full'
     a: []
 
@@ -32,11 +43,6 @@ browser = require("~/plugins/browser-store")
 
         @page = undefined
 
-blank = []
-blank.all = 0
-
-store =
-  watch:
     "step.chats": ->
       @page_reset()
 
@@ -137,4 +143,4 @@ store =
 
 zIndex = 100
 
-module.exports = _.merge {}, browser, store
+module.exports = _.merge {}, store

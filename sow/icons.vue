@@ -9,19 +9,21 @@
       hr
 </template>
 <script lang="coffee">
+{ sessionStorage } = require "~/plugins/browser-store"
+
 module.exports =
   mixins: [
-    require("~/plugins/browser-store")
-      session:
-        shows: []
-      watch:
-        shows: (news)->
-          for key in ["filters", "tools"]
-            if key in news
-              window[key]?.style.display = ""
-            else
-              window[key]?.style.display = "none"
+    sessionStorage "shows"
   ]
   data: ->
-    {}
+    shows: []
+
+  watch:
+    shows: (news)->
+      for key in ["filters", "tools"]
+        if key in news
+          window[key]?.style.display = ""
+        else
+          window[key]?.style.display = "none"
+
 </script>

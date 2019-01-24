@@ -89,6 +89,7 @@ div(v-if="face.story_length")
 </template>
 
 <script lang="coffee">
+{ pushState } = require "~/plugins/browser-store"
 { Query } = require "memory-orm"
 _ = require "lodash"
 
@@ -115,12 +116,14 @@ folder_handle =
 
 module.exports =
   mixins: [
+    pushState "id"
+    pushState "order"
     require("~/plugins/get-by-mount") -> [["aggregate/face", @id ]]
-    require("~/plugins/browser-store")
-      push:
-        id:  "c41"
-        order: "story_ids.length"
   ]
+
+  data: ->
+    id:  "c41"
+    order: "story_ids.length"
 
   methods:
     folder_handle: (folder_id)->

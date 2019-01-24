@@ -96,9 +96,9 @@ log-wiki
 
 module.exports =
   mixins: [
-    require("~/plugins/for_component")
     require("~/plugins/book-show")
     require("~/plugins/book-firebase") "wiki"
+    require("~/plugins/for_component")
   ]
   layout: 'blank'
   data: ->
