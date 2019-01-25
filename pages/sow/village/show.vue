@@ -19,20 +19,17 @@ log-wiki
     a-potofs(v-bind="for_potofs" key="3" v-if="is_show.potofs")
 
   template(slot="toasts")
-    div
-      bookmark(v-if="! a.length" :mode="mode" :chat_id="chat_id" :write_at="chat && chat.write_at")
-      btn.item.tooltip-left(v-if="is_floats" v-model="floats" :as="{}" data-tooltip="残ってしまったポップアップを消去")
-        i.mdi.mdi-filmstrip-off
-        | POP
-      check.item.tooltip-left(v-model="options" as="impose" data-tooltip="詳細情報を拡げる操作の ON / OFF")
-        i.mdi.mdi-arrow-expand-right
+    btn.item.tooltip-left(v-if="is_floats" v-model="floats" :as="{}" data-tooltip="残ってしまったポップアップを消去")
+      i.mdi.mdi-filmstrip-off
+      | POP
+    check.item.tooltip-left(v-model="options" as="impose" data-tooltip="詳細情報を拡げる操作の ON / OFF")
+      i.mdi.mdi-arrow-expand-right
 
   template(slot="icons")
     nuxt-link.item.active.tooltip-left(v-if="$route.query.back" replace :to="back_url" data-tooltip="以前の画面に戻る")
       i.mdi.mdi-backspace
       | BACK
-    nuxt-link.item.active(v-else replace :to="back_url" )
-      i.mdi.mdi-map-marker
+    btn-marker(v-else :back_url="back_url")
     check.item.tooltip-left(v-model="shows" as="mention" data-tooltip="今見ている投稿に関する情報")
       i.mdi.mdi-pin
       | INFO
@@ -153,7 +150,9 @@ module.exports =
   }
 
   head: ->
-    titleTemplate: "#{@part?.label ? ""} #{@book?.label ? ""} - %s"
+    anker  = @chat?.anker()
+    anker ?= @part?.label
+    titleTemplate: "#{ anker ? ""} #{@book?.label ? ""} - %s"
 
 
 </script>

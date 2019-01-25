@@ -57,19 +57,6 @@ module.exports =
     anker: ->  @chat?.anker()
     page: ->   "p#{1 + @page_idx}"
 
-    anker_tree_map: ->
-      scan = {}
-      @mention_up   [@chat_id], 0, scan
-      @mention_down [@chat_id], 0, scan
-      base_depth = Math.min ...Object.values scan
-      tree = []
-      for id, scan_depth of scan
-        
-        depth = scan_depth - base_depth
-        tree[depth] ?= []
-        tree[depth].push Query.chats.find id
-      tree
-
     long_anker: ->
       if @chat
         prefix = if @mark? then '>>' else ''

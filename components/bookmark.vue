@@ -7,11 +7,11 @@ nuxt-link.item.tooltip-left(v-if="label" :data-tooltip="label.full" :to="at")
 <script lang="coffee">
 firebase = require "firebase"
 { path, vuex_readonly, relative_to } = require '~/plugins/struct'
-{ firebase_snap } = require "~/plugins/firebase"
+{ firestore_doc } = require "~/plugins/firebase"
 
 module.exports =
   mixins: [
-    firebase_snap "bookmark", "has_bookmark", (db)-> db.doc("user/#{ @user.uid }/bookmarks/#{ @book_id }")
+    firestore_doc "bookmark", "has_bookmark", (db)-> db.doc("user/#{ @user.uid }/bookmarks/#{ @book_id }")
   ]
 
   props: ['mode', 'chat_id', 'write_at']
@@ -49,15 +49,5 @@ module.exports =
       console.log o
       o
   }
-
-  watch:
-    write_at: _.debounce ->
-      return unless @is_enable
-      return unless ! @bookmark || @bookmark.write_at < @write_at
-      @bookmark_add { @mode, @book_id, @chat_id, @write_at }
-    , 2000,
-      leading: false
-      trailing: true
-
 
 </script>

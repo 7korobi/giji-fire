@@ -8,29 +8,41 @@ firestore = ->
     timestampsInSnapshots: true
   store
 
-joinSnapshot = (snap_id, shot)->
+joinSnapshot = (shot)->
   eject = ->
-  (newVal)->
+  (query)->
     eject()
     eject =
-      if newVal
-        @[snap_id].onSnapshot shot.bind @
+      if query
+        query.onSnapshot shot.bind @
       else
         ->
 
-firebase_snap_base = (id, pk, snap, { del, add, shot })->
+firestore_base = (id, path, chk, query, { del, add, snap, shot })->
   default_id = "#{id}_default"
-  snap_id = "#{id}_snap"
+
+  query_id = "#{id}_query"
+  snap_id  = "#{id}_snap"
+  path_id  = "#{id}_path"
+  chk_id   = "#{id}_chk"
+
   join_id = "#{id}_join"
   add_id  = "#{id}_add"
   del_id  = "#{id}_del"
-  pk_id   = "#{id}_pk"
-  join = joinSnapshot snap_id, shot
+
+  snapshot =
+    if query
+      query_id
+    else
+      snap_id
+  join = joinSnapshot shot
+
+  data: ->
 
   mounted: ->
     @[default_id] = @[id]
-    @[join_id] @[pk_id]
-  
+    @[join_id] @[snapshot]
+
   beforeDestroy: ->
     @[join_id] undefined
 
@@ -40,25 +52,32 @@ firebase_snap_base = (id, pk, snap, { del, add, shot })->
     [del_id]: del
 
   computed:
-    _firestore: firestore
-    [pk_id]: ->
-      if pk
-        _.get @, pk
-      else
-        true
-    [snap_id]: ->
-      if @[pk_id]
-        snap.call @, @_firestore
+    if chk && query
+      _firestore: firestore
+      [path_id]: path
+      [chk_id]: chk
+      [snap_id]: ->
+        if @[path_id]
+          snap.call @, @[path_id]
+      [query_id]: ->
+        if @[chk_id] && @[snap_id]
+          query.call @, @[snap_id]
+    else
+      _firestore: firestore
+      [path_id]: path
+      [snap_id]: ->
+        if @[path_id]
+          snap.call @, @[path_id]
 
   watch:
-    if pk
-      [pk]: join
+    [snapshot]: join
+
 
 module.exports = m =
-  firebase_snap_to_models: (id, pk, snap)->
+  firestore_models: (id, path, chk, query)->
     snap_id = "#{id}_snap"
     set = Set[id[..-2]]
-    firebase_snap_base id, pk, snap,
+    firestore_base id, path, chk, query,
       del: (_id)->
         return unless _id
         @[snap_id]?.doc(_id).delete()
@@ -67,6 +86,8 @@ module.exports = m =
         return unless _id
         @[snap_id]?.doc(_id).set doc,
           merge: true
+      snap: (path)->
+        @_firestore.collection path
       shot: (qs)->
         qs.docChanges().forEach ({ newIndex, oldIndex, type, doc })=>
           switch type
@@ -75,24 +96,26 @@ module.exports = m =
             when 'removed'
               set.remove doc.id
 
-  firebase_snap_to_model: (id, pk, snap)->
+  firestore_model: (id, path)->
     snap_id = "#{id}_snap"
     set = Set[id]
-    firebase_snap_base id, pk, snap,
+    firestore_base id, path, null, null,
       del: ->
         @[snap_id]?.delete()
       add: (doc)->
         @[snap_id]?.set doc,
           merge: true
+      snap: (path)->
+        @_firestore.doc path
       shot: (doc)->
         if o = doc.data()
           set.add o
         else
           set.remove doc.id
 
-  firebase_snaps: (id, pk, snap)->
+  firestore_collection: (id, path, chk, query)->
     snap_id = "#{id}_snap"
-    firebase_snap_base id, pk, snap,
+    firestore_base id, path, chk, query,
       del: (_id)->
         return unless _id
         @[snap_id]?.doc(_id).delete()
@@ -101,6 +124,8 @@ module.exports = m =
         return unless _id
         @[snap_id]?.doc(_id).set doc,
           merge: true
+      snap: (path)->
+        @_firestore.collection path
       shot: (qs)->
         qs.docChanges().forEach ({ newIndex, oldIndex, type, doc })=>
           switch type
@@ -110,15 +135,17 @@ module.exports = m =
               console.log doc.data()
               delete @[id][doc.id]
 
-  firebase_snap: (id, pk, snap)->
+  firestore_doc: (id, path)->
     snap_id = "#{id}_snap"
     default_id = "#{id}_default"
-    firebase_snap_base id, pk, snap,
+    firestore_base id, path, null, null,
       del: ->
         @[snap_id]?.delete()
       add: (doc)->
         @[snap_id]?.set doc,
           merge: true
+      snap: (path)->
+        @_firestore.doc path
       shot: (doc)->
         @[id] =
           if doc.exists

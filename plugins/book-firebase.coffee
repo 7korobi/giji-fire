@@ -2,18 +2,18 @@ firebase = require "firebase"
 RANDOM = require "~/plugins/random"
 { Query, Set, State } = require "memory-orm"
 { vuex_value, path, relative_to } = require "~/plugins/struct"
-{ firebase_snap_to_model, firebase_snap_to_models } = require "~/plugins/firebase"
+{ firestore_model, firestore_models } = require "~/plugins/firebase"
 
 edit = require '~/models/editor'
 
 module.exports = (mode)->
   mixins: [
-    firebase_snap_to_model  "book",   "book_id", (db)-> db.doc "#{mode}/#{@book_id}"
-    firebase_snap_to_models "potofs", "book_id", (db)-> db.collection "#{mode}/#{@book_id}/potofs"
-    firebase_snap_to_models "cards",  "book_id", (db)-> db.collection "#{mode}/#{@book_id}/cards"
-    firebase_snap_to_models "parts",  "book_id", (db)-> db.collection "#{mode}/#{@book_id}/parts"
-    firebase_snap_to_models "phases", "book_id", (db)-> db.collection "#{mode}/#{@book_id}/phases"
-    firebase_snap_to_models "chats",  "book_id", (db)-> db.collection "#{mode}/#{@book_id}/chats"
+    firestore_model  "book",   -> "#{mode}/#{@book_id}"
+    firestore_models "potofs", -> "#{mode}/#{@book_id}/potofs"
+    firestore_models "cards",  -> "#{mode}/#{@book_id}/cards"
+    firestore_models "parts",  -> "#{mode}/#{@book_id}/parts"
+    firestore_models "phases", -> "#{mode}/#{@book_id}/phases"
+    firestore_models "chats",  -> "#{mode}/#{@book_id}/chats"
     require("~/plugins/for_component")
   ]
   data: ->

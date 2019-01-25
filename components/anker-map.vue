@@ -87,7 +87,6 @@ module.exports =
         depth = scan_depth - base_depth
         tree[depth] ?= []
         tree[depth].push Query.chats.find id
-      console.log tree
       tree
 
 </script>

@@ -25,11 +25,11 @@ div
 <script lang="coffee">
 firebase = require "firebase"
 { vuex_readonly } = require "~/plugins/struct"
-{ firebase_snap } = require "~/plugins/firebase"
+{ firestore_doc } = require "~/plugins/firebase"
 
 module.exports =
   mixins: [
-    firebase_snap "sign", "user.uid", (db)-> db.doc("user/#{ @user.uid }")
+    firestore_doc "sign", -> "user/#{ @user.uid }"
     require("~/plugins/for_component")
   ]
   data: ->

@@ -14,3 +14,5 @@ require "./chat"
 
 require "./editor"
 require "./sow"
+
+require "./marker"
