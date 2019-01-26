@@ -29,7 +29,7 @@ firebase = require "firebase"
 
 module.exports =
   mixins: [
-    firestore_doc "sign", -> "user/#{ @user.uid }"
+    firestore_doc "sign", -> @user && "user/#{ @user.uid }"
     require("~/plugins/for_component")
   ]
   data: ->
@@ -51,7 +51,7 @@ module.exports =
       url await ss.ref.getDownloadURL()
 
     submit: ->
-      await @sign_snap.set @sign
+      await @sign_add @sign
       @$router.push "/user/show"
 
 </script>

@@ -1,5 +1,5 @@
 firebase = require "firebase"
-{ Set } = require "memory-orm"
+{ State, Set } = require "memory-orm"
 _ = require "lodash"
 
 firestore = ->
@@ -8,13 +8,14 @@ firestore = ->
     timestampsInSnapshots: true
   store
 
-joinSnapshot = (shot)->
+joinSnapshot = (target, shot)->
   eject = ->
-  (query)->
+  (gate)->
     eject()
     eject =
-      if query
-        query.onSnapshot shot.bind @
+      if gate && @[target]
+        console.log "join", gate
+        @[target].onSnapshot shot.bind @
       else
         ->
 
@@ -23,21 +24,23 @@ firestore_base = (id, path, chk, query, { del, add, snap, shot })->
 
   query_id = "#{id}_query"
   snap_id  = "#{id}_snap"
-  path_id  = "#{id}_path"
-  chk_id   = "#{id}_chk"
+
+  chk_id  = "#{id}_chk"
+  path_id = "#{id}_path"
 
   join_id = "#{id}_join"
   add_id  = "#{id}_add"
   del_id  = "#{id}_del"
 
-  snapshot =
-    if query
-      query_id
+  [ snapshot, join_target ] =
+    if chk && query
+      [ chk_id, query_id ]
     else
-      snap_id
-  join = joinSnapshot shot
+      [ path_id, snap_id ]
+  join = joinSnapshot join_target, shot
 
   data: ->
+    step: State.step
 
   mounted: ->
     @[default_id] = @[id]
@@ -54,16 +57,19 @@ firestore_base = (id, path, chk, query, { del, add, snap, shot })->
   computed:
     if chk && query
       _firestore: firestore
+
       [path_id]: path
-      [chk_id]: chk
       [snap_id]: ->
         if @[path_id]
           snap.call @, @[path_id]
+
+      [chk_id]: chk
       [query_id]: ->
         if @[chk_id] && @[snap_id]
           query.call @, @[snap_id]
     else
       _firestore: firestore
+
       [path_id]: path
       [snap_id]: ->
         if @[path_id]
@@ -76,7 +82,7 @@ firestore_base = (id, path, chk, query, { del, add, snap, shot })->
 module.exports = m =
   firestore_models: (id, path, chk, query)->
     snap_id = "#{id}_snap"
-    set = Set[id[..-2]]
+    set_key = id[..-2]
     firestore_base id, path, chk, query,
       del: (_id)->
         return unless _id
@@ -90,15 +96,16 @@ module.exports = m =
         @_firestore.collection path
       shot: (qs)->
         qs.docChanges().forEach ({ newIndex, oldIndex, type, doc })=>
+          console.log { type, newIndex, oldIndex }
           switch type
             when 'added', 'modified'
-              set.add doc.data()
+              Set[set_key].add doc.data()
             when 'removed'
-              set.remove doc.id
+              Set[set_key].remove doc.id
 
   firestore_model: (id, path)->
     snap_id = "#{id}_snap"
-    set = Set[id]
+    set_key = id[..-2]
     firestore_base id, path, null, null,
       del: ->
         @[snap_id]?.delete()
@@ -109,9 +116,9 @@ module.exports = m =
         @_firestore.doc path
       shot: (doc)->
         if o = doc.data()
-          set.add o
+          Set[set_key].add o
         else
-          set.remove doc.id
+          Set[set_key].remove doc.id
 
   firestore_collection: (id, path, chk, query)->
     snap_id = "#{id}_snap"

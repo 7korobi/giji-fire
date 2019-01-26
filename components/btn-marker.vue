@@ -4,10 +4,9 @@ nuxt-link.item.active(replace :to="back_url" @click.native="bookmark")
   | {{ star }}
 </template>
 <script lang="coffee">
-firebase = require "firebase"
 { vuex_readonly, relative_to } = require '~/plugins/struct'
 { firestore_models } = require "~/plugins/firebase"
-{ State, Query } = require "memory-orm"
+{ Query } = require "memory-orm"
 
 module.exports =
   mixins: [
@@ -19,16 +18,14 @@ module.exports =
 
   props: ['back_url']
 
-  data: ->
-    step: State.step
-
   computed: {
     ...vuex_readonly 'firebase',['user']
     uid: ->
       @user?.uid
     _id: ->
       if @uid
-        @back_url?.query?.idx
+        idx = @back_url?.query?.idx
+        "#{idx}-#{@uid}"
     book_id: ->
       @_id?.split("-")?[0..1].join("-")
     part_id: ->
@@ -36,9 +33,9 @@ module.exports =
     url: ->
       relative_to @$route, @back_url.query
 
-    markers: -> Query.markers
+    markers: -> @uid && Query.markers.own(@uid)
     star: ->
-      if @markers.find(@_id)?.url then "⭐️" else ""
+      if @markers?.find(@_id)?.url then "⭐️" else ""
   }
 
   methods:
