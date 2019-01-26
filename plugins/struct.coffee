@@ -12,6 +12,10 @@ state_value = (getter, setter, mutation)->
     o = _.set {}, setter, val
     @$store.commit mutation, o
 
+idx_with_maker = (o, ary_id, name, idx)->
+  o["#{name}_id"] = ->
+    @[ary_id]?[0..idx].join("-")
+
 module.exports = m = {
   ...require './to'
 
@@ -39,8 +43,6 @@ module.exports = m = {
     _.set o, "#{key}.get", ->
       if at < @idx_a.length
         @idx_a[0..at].join("-")
-      else
-        null
     _.set o, "idx_a.get", ->
       @idx.split("-")
     o
@@ -51,6 +53,12 @@ module.exports = m = {
     list = "#{name}s"
     _.set o, "#{name}.get", ->
       Query[list].find @[key]
+    o
+
+  idx_with: (keys...)-> (ary_id)->
+    o = {}
+    for name, idx in keys when name
+      idx_with_maker o, ary_id, name, idx
     o
 
   path: (keys...)->
