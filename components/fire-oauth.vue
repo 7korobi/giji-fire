@@ -59,7 +59,7 @@ module.exports =
 
     .catch ({ @code, @message })=>
 
-    @auth.setPersistence(firebase.auth.Auth.Persistence.SESSION)
+    @auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
     .then ()=>
       console.log "session persistence"
     .catch ({ @code, @message })=>

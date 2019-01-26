@@ -7,6 +7,8 @@ div
 
   c-post(handle="TSAY")
     fire-oauth(style="white-space: nowrap")
+    p ログイン中にできること。
+    p #[i.mdi.mdi-map-marker]：過去ログビュアーでタップしたとき、栞を挟んで記録します。
 
   c-report(handle="footer" deco="center" v-if="mypage") ロビー
   c-post.form(handle="TSAY" v-if="mypage")
