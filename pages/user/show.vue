@@ -19,12 +19,11 @@ div
   c-report(handle="footer")
     | 栞
   div(v-if="uid")
-    c-post(v-for="({ _id, book_id, part_id, write_at, url }) in marker.list" :key="_id" handle="GAIM")
+    c-post(v-for="({ _id, book_id, part_id, log, write_at, url }) in marker.list" :key="_id" handle="GAIM")
       span {{ book_id }}
       abbr
         timeago(:since="write_at")
-      nuxt-link(:to="url")
-        i.mdi.mdi-map-marker {{ _id }}
+      nuxt-link(:to="url" v-html="log")
 
   c-report(handle="footer" deco="center")
     bread-crumb

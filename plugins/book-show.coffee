@@ -39,7 +39,8 @@ store =
         if Number(@page)
           @page_idxs = [@page - 1]
         else
-          @page_reset()
+          @$nextTick ->
+            @page_reset()
 
         @page = undefined
 
