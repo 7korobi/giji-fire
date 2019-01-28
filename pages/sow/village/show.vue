@@ -3,6 +3,10 @@
 log-wiki
   template(slot="summary")
     d-mentions.inframe.mentions(v-bind="for_mentions" @anker="anker" @popup="popup" key="1" v-if="is_show.mention")
+    .inframe.swipe(v-if="is_show.link")
+      .TITLE
+        anker-map(v-bind="for_mentions" @anker="anker" @popup="popup")
+
     .inframe.TITLE(v-if="is_show.toc")
       hr
       d-toc(v-bind="for_toc" key="2" @popup="popup")
@@ -33,6 +37,9 @@ log-wiki
     check.item.tooltip-left(v-model="shows" as="mention" data-tooltip="今見ている投稿に関する情報")
       i.mdi.mdi-pin
       | INFO
+    check.item.tooltip-left(v-model="shows" as="link" data-tooltip="今見ている投稿に関する情報")
+      i.mdi.mdi-link-variant
+      | LINK
     check.item.tooltip-left(v-model="shows" as="toc" v-if="! a.length" data-tooltip="他の日付へ移動、検索など")
       i.mdi.mdi-filmstrip
       | TOC
@@ -132,11 +139,12 @@ module.exports =
     ...vuex_value "menu.potofs", ['hide_ids']
     ...vuex_value "menu.side", ["shows", "options"]
     is_show: ->
-      impose:   "impose"   in @options
-      side:     "side"     in @shows && !( @mode in ["memo", "memos"] )
-      mention:  "mention"  in @shows
-      toc:      "toc"      in @shows && !( @a?.length )
-      potofs:   "potof"    in @shows
+      impose:   @options.includes("impose")
+      side:     @shows.includes("side") && !( ["memo", "memos"].includes(@mode) )
+      toc:      @shows.includes("toc")  && !( @a?.length )
+      link:     @shows.includes("link")    && @chat
+      mention:  @shows.includes("mention") && @chat
+      potofs:   @shows.includes("potof")
 
     page_idx: ->
       @page_all_contents?.page_idx?(@chat) ? 0

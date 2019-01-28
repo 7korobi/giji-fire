@@ -40,9 +40,12 @@ module.exports =
     bookmark: ->
       if @star
         @markers_del @_id
+        @$toasted.success "#{@idx} から栞をぬく"
       else
         write_at = new Date - 0
         log = @log.replace /(<br>|\n| )+/g, " "
         @markers_add { @_id, @uid, @book_id, @part_id, log, @url, write_at }
+        @$toasted.success "#{@idx} に栞をさす"
+
 
 </script>

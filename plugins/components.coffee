@@ -7,7 +7,22 @@ Vue = require "vue"
 { url } = require "~/config/live.yml"
 
 if window?
+  Toasted = require 'vue-toasted'
   Vue = Vue.default
+  Vue.use Toasted.default,
+    position: 'top-right'
+    duration: 3000
+    containerClass: 'toast'
+    iconPack: 'mdi'
+    theme: 'bubble'
+    singleton: false
+    fullWidth: false
+    closeOnSwipe: true
+
+  Vue.toasted.register 'client_error', (payload)=>
+    return payload.message || "Ooops.. Something Went Wrong.."
+  ,
+    position: 'top-left'
 
 Object.assign MarkSVG.options.renderer,
   href: (key)->

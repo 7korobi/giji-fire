@@ -49,9 +49,11 @@ module.exports =
     image_post: ({ id, file }, url)->
       ss = await @_images.child(id).put(file)
       url await ss.ref.getDownloadURL()
+      @$toasted.success "画像を投稿。"
 
     submit: ->
       await @sign_add @sign
+      @$toasted.success "ユーザー登録を更新。"
       @$router.push "/user/show"
 
 </script>

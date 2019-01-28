@@ -13,12 +13,6 @@ div(v-if="chat")
         timeago(:since="at")
       p(v-if="anker")
         abbr.fine.btn(title="クリップボードへコピー" @click="clip") {{ long_anker }}
-  .swipe
-    .TITLE
-      hr
-      h6 anker map
-      hr
-      anker-map(v-bind="for_anker_map" v-on="$listeners")
 </template>
 
 <style lang="sass" scoped>
