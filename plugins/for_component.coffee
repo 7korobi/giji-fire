@@ -12,6 +12,9 @@ module.exports =
       { @mode, @book, @part_id }
     for_potofs: ->
       { @part }
+    for_marker: ->
+      { log, write_at } = @chat ? {}
+      { log, write_at }
     for_mentions: ->
       { @book_id, @chat_id, @page_idx, @a }
     for_side: ->
