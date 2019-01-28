@@ -3,8 +3,9 @@
 log-wiki
   template(slot="summary")
     d-mentions.inframe.mentions(v-bind="for_mentions" @anker="anker" @popup="popup" key="1" v-if="is_show.mention")
-    .inframe.swipe(v-if="is_show.link")
+    .inframe.swipe.TITLE(v-if="is_show.link")
       .TITLE
+        hr
         anker-map(v-bind="for_mentions" @anker="anker" @popup="popup")
 
     .inframe.TITLE(v-if="is_show.toc")

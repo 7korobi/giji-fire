@@ -69,8 +69,7 @@ module.exports = m =
 
     watch:
       [id]: ( newVal )->
-        s = @[type_id].to_str newVal
-        { location, href } = @$router.resolve relative_to @$route, { [id]: s }, true
+        { location, href } = @$router.resolve relative_to @$route, { [id]: newVal }, true
         history.pushState null, null, href
 
   sessionStorage: (id)->
