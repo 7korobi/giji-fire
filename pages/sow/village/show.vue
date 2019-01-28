@@ -34,7 +34,7 @@ log-wiki
     nuxt-link.item.active.tooltip-left(v-if="$route.query.back" replace :to="back_url" data-tooltip="以前の画面に戻る")
       i.mdi.mdi-backspace
       | BACK
-    btn-marker(v-else :back_url="back_url" :log="chat && chat.log")
+    btn-marker(v-else :back_url="back_url" v-bind="chat || {}")
     check.item.tooltip-left(v-model="shows" as="mention" data-tooltip="今見ている投稿に関する情報")
       i.mdi.mdi-pin
       | INFO

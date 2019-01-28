@@ -18,7 +18,7 @@ module.exports =
       (ref)-> ref.where('uid','==', @uid ).where('part_id', '==', @part_id )
   ]
 
-  props: ['back_url', 'log']
+  props: ['back_url', 'log', 'write_at']
 
   computed: {
     ...vuex_readonly 'firebase', ['user']
@@ -42,9 +42,9 @@ module.exports =
         @markers_del @_id
         @$toasted.success "#{@idx} から栞をぬく"
       else
-        write_at = new Date - 0
+        mark_at = new Date - 0
         log = @log.replace /(<br>|\n| )+/g, " "
-        @markers_add { @_id, @uid, @book_id, @part_id, log, @url, write_at }
+        @markers_add { @_id, @uid, @book_id, @part_id, log, @url, @write_at, mark_at }
         @$toasted.success "#{@idx} に栞をさす"
 
 

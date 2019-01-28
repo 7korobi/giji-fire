@@ -17,14 +17,14 @@ div
     nuxt-link(to="/user/edit") 編集
 
   c-report(handle="footer")
-    | 栞
+    p #[i.mdi.mdi-map-marker] 栞
   div(v-if="uid")
-    c-post(v-for="({ _id, book_id, part_id, log, write_at, url }) in marker.list" :key="_id" handle="GAIM")
+    c-post(v-for="({ _id, book_id, part_id, log, write_at, mark_at, url }) in marker.list" :key="_id" handle="GAIM")
       article.marker
         nuxt-link(:to="url")
           span {{ part_id }}
           abbr.pull-right
-            timeago(:since="write_at")
+            timeago(:since="mark_at || write_at")
         span(v-html="log")
 
   c-report(handle="footer" deco="center")
