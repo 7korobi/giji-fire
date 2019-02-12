@@ -11,16 +11,18 @@ log-wiki
     .inframe.TITLE(v-if="is_show.toc")
       hr
       d-toc(v-bind="for_toc" key="2" @popup="popup")
-      d-mode(v-bind="for_mode" style="white-space: nowrap")
       hr
       div.swipe
-        span(style="width: 160px")
-          search(v-model="search")
         select(v-model="page_by")
           option(:value="30") &emsp;30投稿/p
           option(:value="100") &ensp;100投稿/p
           option(:value="300") &ensp;300投稿/p
           option(:value="1000") 1000投稿/p
+        check.tooltip-top(v-model="options" as="swipe_page" data-tooltip="ページ一覧を一列にする / 折り返す")
+          | 列
+        span.pull-left(style="width: 160px")
+          search(v-model="search")
+      d-mode(v-bind="for_mode" style="white-space: nowrap")
     a-potofs(v-bind="for_potofs" key="3" v-if="is_show.potofs")
 
   template(slot="toasts")
@@ -34,7 +36,8 @@ log-wiki
     nuxt-link.item.active.tooltip-left(v-if="$route.query.back" replace :to="back_url" data-tooltip="以前の画面に戻る")
       i.mdi.mdi-backspace
       | BACK
-    btn-marker(v-else :back_url="back_url" v-bind="for_marker")
+    btn-marker(v-if="$route.query.back" :back_url="{ query: $route.query }" v-bind="for_marker")
+    btn-marker(v-else                   :back_url="back_url" v-bind="for_marker")
     check.item.tooltip-left(v-model="shows" as="mention" data-tooltip="今見ている投稿に関する情報")
       i.mdi.mdi-pin
       | INFO
@@ -134,6 +137,7 @@ module.exports =
   layout: 'blank'
   data: ->
     step: State.step
+    page_view: 'wrap'
     floats: {}
 
   computed: {

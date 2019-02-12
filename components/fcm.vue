@@ -51,7 +51,6 @@ module.exports =
         @$toasted.info "FCM refresh"
         console.log await @_subscribe { @fcm_token, @fcm_topics }
       @fcm_token ?= await @_messaging.getToken()
-      @$toasted.info "FCM deploy"
 
     stop: ->
       await @_unsubscribe { @fcm_token, fcm_topics: [@topic] }

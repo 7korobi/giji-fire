@@ -1,20 +1,18 @@
 <template lang="pug">
-div(v-on="movespace()")
+div(:class="page_view" v-on="movespace()")
   table(v-if="show" v-on="markup_event()")
     tbody
       tr
         th
         th(ref="curtain0")
       tr(v-for="(o, line) in book.parts.list", :key="o.id")
-        th.r.form(style="white-space: nowrap")
+        th.r.form.TITLE(style="white-space: nowrap")
           nuxt-link(replace, :to="page_url(o.id, 0)" :class="{ active: o.id === part_id }")
             | {{o.label}}
             sup {{ chat_size(o.id, mode) }}
-        th.l.form(v-if="in_curtain(0)")
+        th.l.form.TITLE.pages
           nuxt-link.cite-in.page(v-for="idx in page_all_idxs(o.id)" replace :to="page_url(o.id, idx)" :class="page_btn_class(o.id, idx)" :key=" o.id + idx " :cite="page_label(o.id, idx)")
             | {{ idx + 1 }}
-        th.form(v-else)
-          del ...
 </template>
 
 <script lang="coffee">
@@ -29,7 +27,7 @@ module.exports =
       "curtain0"
     ]
   ]
-  props: ["book", "chats", "mode", "part_id", "search", "page_by", "page_idx", "chat_size"]
+  props: ["book", "chats", "mode", "part_id", "chat_size", "search", "page_by", "page_idx", "options"]
 
   methods:
     part_label: (part_id)->
@@ -57,11 +55,27 @@ module.exports =
         else
           []
   computed:
+    page_view: ->
+      if @options.includes("swipe_page")
+        "swipe"
+      else
+        "wrap"
+
     show: ->
       @book?.parts.list.length
 
 </script>
 <style lang="sass" scoped>
+.swipe tbody th:nth-of-type(1)
+  position: sticky
+  left: 0
+
+.pages
+  height: 1em
+
+.pages:hover
+  height: reset
+
 .page
   text-align: center
   width: 3.5ex

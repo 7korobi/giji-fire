@@ -5,7 +5,7 @@ module.exports =
     for_toc: ->
       page_idx = @page_all_contents?.page_idx?(@chat) ? @pager.tail_idx
 
-      { @book, @chats, @mode, @part_id, @search, @page_by, page_idx, @chat_size }
+      { @book, @chats, @mode, @part_id, @chat_size, @search, @page_by, page_idx, @options }
     for_mode: ->
       { @mode, @part_id, @chat_id, @chat_size }
     for_part: ->
