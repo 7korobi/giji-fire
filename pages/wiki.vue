@@ -8,29 +8,37 @@ log-wiki
         search(v-model="search")        
     a-potofs(v-bind="for_potofs" key="3" v-if="is_show.potofs")
 
+  template(slot="toasts")
+    check.item.tooltip-left(v-model="options" as="impose" data-tooltip="詳細情報を拡げる操作の ON / OFF")
+      i.mdi.mdi-arrow-expand-right
+    check.item.tooltip-left(v-model="options" as="swipe_page" data-tooltip="ページ一覧を一列にする / 折り返す")
+      i.mdi.mdi-gesture-swipe
+    btn.item.tooltip-left(v-if="is_floats" v-model="floats" :as="{}" data-tooltip="残ってしまったポップアップを消去")
+      i.mdi.mdi-filmstrip-off
+      | POP
+
   template(slot="icons")
     .item
       i.c.mdi(:class="icon.icon")
     h6.c(:class="edit.chat.phase.handle" v-if="user && is_replacing") 編集
     a.btn.item.tooltip-left(:class="handle" @click="move" v-if="can_move" data-tooltip="編集中の投稿の並び順をこの上に")
       i.mdi.mdi-table-column-plus-before
-    a.btn.item.tooltip-left(:class="handle" @click="replace_mode" v-if="can_update" data-tooltip="この投稿を編集")
-      i.mdi.mdi-square-edit-outline
 
-    btn.item(v-if="is_floats" v-model="floats" :as="{}" data-tooltip="残ってしまったポップアップを消去")
-      i.mdi.mdi-filmstrip-off
-      | POP
+    a.btn.item.tooltip-left(:class="handle" @click="replace_mode" v-if="can_update && is_creating" data-tooltip="この投稿を編集")
+      i.mdi.mdi-pencil
+    a.btn.item.tooltip-left(:class="handle" @click="create_mode" v-if="is_replacing" data-tooltip="この編集を取りやめる")
+      i.mdi.mdi-pencil-off
 
     a.btn.item.tooltip-left(:class="handle" @click="fav"  v-if="can_fav" data-tooltip="いいね！")
       i.mdi.mdi-heart-outline(v-if="true")
       i.mdi.mdi-heart(v-if="false")
     hr
+
     nuxt-link.item.active.tooltip-left(v-if="$route.query.back" replace :to="back_url" data-tooltip="以前の画面に戻る")
       i.mdi.mdi-backspace
       | BACK
-    nuxt-link.item.active(v-else replace :to="back_url" )
-      i.mdi.mdi-map-marker
-
+    btn-marker(v-if="$route.query.back" :back_url="{ query: $route.query }" v-bind="for_marker")
+    btn-marker(v-else                   :back_url="back_url" v-bind="for_marker")
     check.item(v-model="shows" as="potof")
       i.mdi.mdi-account-multiple
       | STAT
@@ -50,8 +58,9 @@ log-wiki
   div(v-else)
     c-report.form(handle="footer" key="finder")
       search(v-model="search")
-    div(v-for="(chats, idx) in page_contents", :key="idx")
-      chat(v-for="o in chats" @anker="anker" @focus="focus" @popup="popup" :current="chat" :id="o.id", :key="o.id")
+    div(v-for="(page_chats, idx) in page_contents", :key="idx")
+      div(v-for="o in page_chats")
+        chat-editor(:id="o.id" :part_id="part_id" :phases="phases" :current="chat" @icon="icon_change" @check="check_post" @drop_image="image_post" @submit="chat_post" @remove="remove" @popup="popup" @anker="anker" @focus="focus")
     div
       c-post(handle="VSSAY")
         article(v-if="! page_contents.length")
@@ -73,7 +82,7 @@ log-wiki
           ol(style="list-style-type: upper-latin")
             li 画像を書き込みフォームにDrag＆Dropすると、その画像を張り付けるぞ。
             li
-              abbr.mdi.mdi-square-edit-outline
+              abbr.mdi.mdi-pencil
               | 投稿済みのメッセージを編集できるぞ。
             li
               abbr.mdi.mdi-table-column-plus-before
@@ -82,7 +91,9 @@ log-wiki
               fcm(:topic="book_id")
               | このページ内での新規投稿を通知
           br
-  chat-editor(v-if="user" :part_id="part_id" :phases="phases" :current="chat" @icon="icon_change" @check="check_post" @drop_image="image_post" @submit="chat_post" @create_mode="create_mode" @remove="remove" @popup="popup")
+  div(v-if="is_creating")
+    e-potof(v-model="edit.potof")
+    chat-editor(id="edit-edit-edit-edit-edit" :part_id="part_id" :phases="phases" :current="chat" @icon="icon_change" @check="check_post" @drop_image="image_post" @submit="chat_post" @create_mode="create_mode" @remove="remove" @popup="popup")
   c-report(handle="footer" deco="center")
     bread-crumb
 </template>
@@ -93,11 +104,14 @@ log-wiki
 <script lang="coffee">
 { Query, Set, State } = require "memory-orm"
 { vuex_value } = require '~/plugins/struct'
+{ firestore_model, firestore_models } = require "~/plugins/firebase"
 
 module.exports =
   mixins: [
+    firestore_models "potofs", -> "wiki/#{@book_id}/potofs"
+    firestore_models "chats",  -> "wiki/#{@book_id}/chats"
     require("~/plugins/book-show")
-    require("~/plugins/book-firebase") "wiki"
+    require("~/plugins/book-firebase")
     require("~/plugins/for_component")
   ]
   layout: 'blank'
@@ -108,7 +122,7 @@ module.exports =
 
   computed: {
     ...vuex_value "menu.potofs", ['hide_ids']
-    ...vuex_value "menu.side", ["shows"]
+    ...vuex_value "menu.side", ["shows", "options"]
     is_show: ->
       magnify: "magnify" in @shows
       potofs:  "potof"   in @shows

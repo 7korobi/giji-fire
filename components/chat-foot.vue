@@ -4,7 +4,6 @@
 </template>
 
 <script lang="coffee">
-{ Query } = require "memory-orm"
 { vuex_value } = require '~/plugins/struct'
 module.exports =
   props: ["anker"]

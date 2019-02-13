@@ -2,20 +2,10 @@ firebase = require "firebase"
 RANDOM = require "~/plugins/random"
 { Query, Set, State } = require "memory-orm"
 { vuex_value, path, relative_to } = require "~/plugins/struct"
-{ firestore_model, firestore_models } = require "~/plugins/firebase"
 
 edit = require '~/models/editor'
 
-module.exports = (mode)->
-  mixins: [
-    firestore_model  "book",   -> "#{mode}/#{@book_id}"
-    firestore_models "potofs", -> "#{mode}/#{@book_id}/potofs"
-    firestore_models "cards",  -> "#{mode}/#{@book_id}/cards"
-    firestore_models "parts",  -> "#{mode}/#{@book_id}/parts"
-    firestore_models "phases", -> "#{mode}/#{@book_id}/phases"
-    firestore_models "chats",  -> "#{mode}/#{@book_id}/chats"
-    require("~/plugins/for_component")
-  ]
+module.exports =
   data: ->
     icon =
       _id: ''
@@ -25,6 +15,7 @@ module.exports = (mode)->
   computed: {
     ...vuex_value 'firebase',['user', 'credential']
     my: ->
+      return {} unless @book_id
       return {} unless @user
       { uid } = @user
       potof = Query.potofs.my( @book_id, uid )
@@ -32,6 +23,9 @@ module.exports = (mode)->
 
     is_creating: -> @edit.chat.potof_id == @edit.potof.id
     is_replacing: -> ! @is_creating
+
+    edit_id: ->
+      @user && @edit.potof.face_id && @edit.chat.id
 
     can_move: ->
       @is_replacing && @edit.chat.id != @chat_id
@@ -58,6 +52,7 @@ module.exports = (mode)->
       @chat?.handle ? @phase?.handle
 
     phases: ->
+      return [] unless @book_id
       Query.phases.where({ @book_id }).list
 
   }

@@ -1,8 +1,15 @@
 <template lang="pug">
 log-wiki
   template(slot="summary")
-    d-mentions.inframe.mentions(key="1" :page_idx="0" :chat_id="chat_id" @anker="anker")
+    d-mentions.inframe.mentions(key="1" :page_idx="0" :chat_id="chat_id" @anker="anker" @popup="popup")
     a-potofs(key="3" :part='part' v-if="is_show_potofs")
+
+  template(slot="toasts")
+    btn.item.tooltip-left(v-if="is_floats" v-model="floats" :as="{}" data-tooltip="残ってしまったポップアップを消去")
+      i.mdi.mdi-filmstrip-off
+      | POP
+    check.item.tooltip-left(v-model="options" as="impose" data-tooltip="詳細情報を拡げる操作の ON / OFF")
+      i.mdi.mdi-arrow-expand-right
 
   template(slot="icons")
     .item
@@ -101,6 +108,7 @@ log-wiki
 firebase = require "firebase"
 { Query, Set, State } = require "memory-orm"
 { vuex_value } = require '~/plugins/struct'
+{ firestore_model, firestore_models } = require "~/plugins/firebase"
 
 remove = (target, doc)->
   { _id } = doc
@@ -108,8 +116,15 @@ remove = (target, doc)->
 
 module.exports =
   mixins: [
+    firestore_model  "book",   -> "game/#{@book_id}"
+    firestore_models "potofs", -> "game/#{@book_id}/potofs"
+    firestore_models "cards",  -> "game/#{@book_id}/cards"
+    firestore_models "parts",  -> "game/#{@book_id}/parts"
+    firestore_models "phases", -> "game/#{@book_id}/phases"
+    firestore_models "chats",  -> "game/#{@book_id}/chats"
+    require("~/plugins/for_component")
     require("~/plugins/book-show")
-    require("~/plugins/book-firebase") "wiki"
+    require("~/plugins/book-firebase")
   ]
   layout: 'blank'
   data: ->

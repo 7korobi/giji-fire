@@ -105,7 +105,7 @@ module.exports = m =
 
   firestore_model: (id, path)->
     snap_id = "#{id}_snap"
-    set_key = id[..-2]
+    set_key = id
     firestore_base id, path, null, null,
       del: ->
         @[snap_id]?.delete()

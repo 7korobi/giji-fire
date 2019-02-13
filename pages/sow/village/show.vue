@@ -8,7 +8,7 @@ log-wiki
         hr
         anker-map(v-bind="for_mentions" @anker="anker" @popup="popup")
 
-    .inframe.TITLE(v-if="is_show.toc")
+    .inframe.TITLE.text(v-if="is_show.toc")
       hr
       d-toc(v-bind="for_toc" key="2" @popup="popup")
       hr
@@ -18,19 +18,19 @@ log-wiki
           option(:value="100") &ensp;100投稿/p
           option(:value="300") &ensp;300投稿/p
           option(:value="1000") 1000投稿/p
-        check.tooltip-top(v-model="options" as="swipe_page" data-tooltip="ページ一覧を一列にする / 折り返す")
-          | 列
         span.pull-left(style="width: 160px")
           search(v-model="search")
       d-mode(v-bind="for_mode" style="white-space: nowrap")
     a-potofs(v-bind="for_potofs" key="3" v-if="is_show.potofs")
 
   template(slot="toasts")
+    check.item-half.tooltip-left(v-model="options" as="impose" data-tooltip="詳細情報を拡げる操作の ON / OFF")
+      i.mdi.mdi-arrow-expand-right
+    check.item-half.tooltip-left(v-model="options" as="swipe_page" data-tooltip="ページ一覧を一列にする / 折り返す")
+      i.mdi.mdi-gesture-swipe
     btn.item.tooltip-left(v-if="is_floats" v-model="floats" :as="{}" data-tooltip="残ってしまったポップアップを消去")
       i.mdi.mdi-filmstrip-off
       | POP
-    check.item.tooltip-left(v-model="options" as="impose" data-tooltip="詳細情報を拡げる操作の ON / OFF")
-      i.mdi.mdi-arrow-expand-right
 
   template(slot="icons")
     nuxt-link.item.active.tooltip-left(v-if="$route.query.back" replace :to="back_url" data-tooltip="以前の画面に戻る")
@@ -38,6 +38,7 @@ log-wiki
       | BACK
     btn-marker(v-if="$route.query.back" :back_url="{ query: $route.query }" v-bind="for_marker")
     btn-marker(v-else                   :back_url="back_url" v-bind="for_marker")
+
     check.item.tooltip-left(v-model="shows" as="mention" data-tooltip="今見ている投稿に関する情報")
       i.mdi.mdi-pin
       | INFO

@@ -10,9 +10,11 @@ div(:class="page_view" v-on="movespace()")
           nuxt-link(replace, :to="page_url(o.id, 0)" :class="{ active: o.id === part_id }")
             | {{o.label}}
             sup {{ chat_size(o.id, mode) }}
-        th.l.form.TITLE.pages
+        th.l.form.TITLE.pages(v-if="is_swipe_page || in_curtain(0)")
           nuxt-link.cite-in.page(v-for="idx in page_all_idxs(o.id)" replace :to="page_url(o.id, idx)" :class="page_btn_class(o.id, idx)" :key=" o.id + idx " :cite="page_label(o.id, idx)")
             | {{ idx + 1 }}
+        th.form(v-else)
+          del ...
 </template>
 
 <script lang="coffee">
@@ -55,8 +57,10 @@ module.exports =
         else
           []
   computed:
+    is_swipe_page: ->
+      @options.includes("swipe_page")
     page_view: ->
-      if @options.includes("swipe_page")
+      if @is_swipe_page
         "swipe"
       else
         "wrap"

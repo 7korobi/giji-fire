@@ -111,7 +111,7 @@ module.exports =
     live_off: ->  @potof_ids (o)=> o.live?.date >  @part.idx
 
     potofs: ->
-      if @part
+      if @part?.book
         { list } = Query.potofs.catalog(@part.book_id, @part.id, @sort, @order)
         for o in list
           o.hide = false
