@@ -1,102 +1,98 @@
 <template lang="pug">
 log-wiki
   template(slot="summary")
-    d-mentions.inframe.mentions(key="1" :page_idx="0" :chat_id="chat_id" @anker="anker" @popup="popup")
-    a-potofs(key="3" :part='part' v-if="is_show_potofs")
+    d-mentions.inframe.mentions(v-bind="for_mentions" key="1" @anker="anker" @popup="popup")
+    .inframe.TITLE
+      hr
+      .swipe
+        search(v-model="search")        
+    a-potofs(v-bind="for_potofs" key="3" v-if="is_show.potofs")
 
   template(slot="toasts")
+    check.item.tooltip-left(v-model="options" as="impose" data-tooltip="詳細情報を拡げる操作の ON / OFF")
+      i.mdi.mdi-arrow-expand-right
+    check.item.tooltip-left(v-model="options" as="swipe_page" data-tooltip="ページ一覧を一列にする / 折り返す")
+      i.mdi.mdi-gesture-swipe
     btn.item.tooltip-left(v-if="is_floats" v-model="floats" :as="{}" data-tooltip="残ってしまったポップアップを消去")
       i.mdi.mdi-filmstrip-off
       | POP
-    check.item.tooltip-left(v-model="options" as="impose" data-tooltip="詳細情報を拡げる操作の ON / OFF")
-      i.mdi.mdi-arrow-expand-right
 
   template(slot="icons")
     .item
       i.c.mdi(:class="icon.icon")
-    h6.c(:class="edit.chat.phase.handle" v-if="user && is_replacing") 編集中
-    a.btn.item(:class="handle" @click="move" v-if="can_move")
+    h6.c(:class="edit.chat.phase.handle" v-if="user && is_replacing") 編集
+    a.btn.item.tooltip-left(:class="handle" @click="move" v-if="can_move" data-tooltip="編集中の投稿の並び順をこの上に")
       i.mdi.mdi-table-column-plus-before
-    a.btn.item(:class="handle" @click="replace_mode" v-if="can_update")
-      i.mdi.mdi-square-edit-outline
-    a.btn.item(:class="handle" @click="fav"  v-if="can_fav")
+
+    a.btn.item.tooltip-left(:class="handle" @click="replace_mode" v-if="can_update && is_creating" data-tooltip="この投稿を編集")
+      i.mdi.mdi-pencil
+    a.btn.item.tooltip-left(:class="handle" @click="create_mode" v-if="is_replacing" data-tooltip="この編集を取りやめる")
+      i.mdi.mdi-pencil-off
+
+    a.btn.item.tooltip-left(:class="handle" @click="fav"  v-if="can_fav" data-tooltip="いいね！")
       i.mdi.mdi-heart-outline(v-if="true")
       i.mdi.mdi-heart(v-if="false")
     hr
-    nuxt-link.item.active(replace :class="handle" :to="back_url")
-      i.mdi.mdi-map-marker
-    check.item(v-model="shows" as="magnify")
-      i.mdi.mdi-magnify
+
+    nuxt-link.item.active.tooltip-left(v-if="$route.query.back" replace :to="back_url" data-tooltip="以前の画面に戻る")
+      i.mdi.mdi-backspace
+      | BACK
+    btn-marker(v-if="$route.query.back" :back_url="{ query: $route.query }" v-bind="for_marker")
+    btn-marker(v-else                   :back_url="back_url" v-bind="for_marker")
     check.item(v-model="shows" as="potof")
       i.mdi.mdi-account-multiple
+      | STAT
     hr
+
+  template(slot="popup")
+    popup(v-for="o in floats" v-bind="o" :key="o.id" :current="chat" @anker="anker" @popup="popup")
 
   c-report(handle="footer" deco="center")
     bread-crumb
 
-  div(v-for="(chats, idx) in page_contents", :key="idx")
-    chat(v-for="o in chats" @anker="anker" @focus="focus" :current="chat" :id="o.id", :key="o.id")
-
-  div
-    c-post(handle="VSSAY")
-      article(v-if="! page_contents.length")
-        blockquote.
-          現在、この名前の項目はありません。
-          誰でも編集できます。
-        hr
-        br
-        h3 項目を新しく書くには
-        ol
-          li 下のアイコンから、ログインに使うサービスを選択。
-          li 書き込みに使うキャラクターを選択。
-          li 枠形と色味を好みできめたら、自由に書き込もう。
-          li 文字の一部分を選択すると、文字に装飾をつけることができるぞ！
-      article(v-if="page_contents.length")
-        ol
-          li 文字の一部分を選択すると、文字に装飾をつけることができるぞ！
-      article
-        ol(style="list-style-type: upper-latin")
-          li 画像を書き込みフォームにDrag＆Dropすると、その画像を張り付けるぞ。
-          li
-            abbr.mdi.mdi-square-edit-outline
-            | 投稿済みのメッセージを編集できるぞ。
-          li
-            abbr.mdi.mdi-table-column-plus-before
-            | 編集中のメッセージは、他のメッセージの上に移動できるぞ。
-          li
-            fcm(:topic="book_id") wikiへの新着情報を通知する？
-
-        br
-
   c-post(handle="TSAY")
     fire-oauth(style="white-space: nowrap")
-  e-potof(v-if="user && is_creating" v-model="edit.potof")
-  c-report(v-if="user && is_replacing" handle="header" deco="center") 編集中
 
-  chat(v-if="user && edit.potof.face_id" :id="edit.chat._id" :current="chat" @check="check_post")
-  c-report(v-if="user && edit.potof.face_id" :handle="edit.chat.phase.handle")
-    span
-      btn.large(v-model="edit.chat.show" as="post")
-        i.mdi.mdi-file-document-box
-      btn.large(v-model="edit.chat.show" as="talk") 
-        i.mdi.mdi-comment-text
-      btn.large(v-model="edit.chat.show" as="report")
-        i.mdi.mdi-note-text
-    | &nbsp;
-    span
-      btn.large(v-model="edit.chat.deco" as="giji")
-        i.mdi.mdi-file-document
-      btn.large(v-model="edit.chat.deco" as="diagram")
-        i.mdi.mdi-file-image
-    span.pull-right(v-if="is_creating")
-      btn(v-for="phase in phases" v-model="edit.phase.handle" :class="phase.handle" :key="phase.handle" :as="phase.handle") {{ phase.label }}
-    span.pull-right(v-if="is_replacing")
-      a.btn.active(@click="create_mode")
-        i.mdi.mdi-open-in-new
-      a.btn.active(@click="remove")
-        i.mdi.mdi-comment-remove-outline
-    text-editor(v-model="edit.chat.log" @icon="icon_change" @drop_image="image_post" @submit="chat_post" :deco="edit.chat.deco" :rows="7" :maxRow="20" :maxSize="999" :is_ban="is_ban" :is_warn="is_warn")
-
+  div(v-if="a.length")
+    chat(v-for="o in cite_chats" v-bind="for_chat(o.id)" v-on="for_chat_event(o.id)")
+  div(v-else)
+    c-report.form(handle="footer" key="finder")
+      search(v-model="search")
+    div(v-for="(page_chats, idx) in page_contents", :key="idx")
+      chat(v-for="o in page_chats" v-bind="for_chat(o.id)" v-on="for_chat_event(o.id)")
+    div
+      c-post(handle="VSSAY")
+        article(v-if="! page_contents.length")
+          blockquote.
+            現在、この名前の項目はありません。
+            誰でも編集できます。
+          hr
+          br
+          h3 項目を新しく書くには
+          ol
+            li 下のアイコンから、ログインに使うサービスを選択。
+            li 書き込みに使うキャラクターを選択。
+            li 枠形と色味を好みできめたら、自由に書き込もう。
+            li 文字の一部分を選択すると、文字に装飾をつけることができるぞ！
+        article(v-if="page_contents.length")
+          ol
+            li 文字の一部分を選択すると、文字に装飾をつけることができるぞ！
+        article
+          ol(style="list-style-type: upper-latin")
+            li 画像を書き込みフォームにDrag＆Dropすると、その画像を張り付けるぞ。
+            li
+              abbr.mdi.mdi-pencil
+              | 投稿済みのメッセージを編集できるぞ。
+            li
+              abbr.mdi.mdi-table-column-plus-before
+              | 編集中のメッセージは、他のメッセージの上に移動できるぞ。
+            li
+              fcm(:topic="book_id")
+              | このページ内での新規投稿を通知
+          br
+  div(v-if="is_creating")
+    e-potof(v-model="edit.potof")
+    chat(v-bind="for_chat_new" v-on="for_chat_event(edit.chat.id)")
   c-report(handle="footer" deco="center")
     bread-crumb
 </template>
@@ -105,14 +101,10 @@ log-wiki
   font-size: 2.5ex
 </style>
 <script lang="coffee">
-firebase = require "firebase"
 { Query, Set, State } = require "memory-orm"
 { vuex_value } = require '~/plugins/struct'
 { firestore_model, firestore_models } = require "~/plugins/firebase"
-
-remove = (target, doc)->
-  { _id } = doc
-  target.doc(_id).delete()
+edit = require '~/models/editor'
 
 module.exports =
   mixins: [
@@ -122,40 +114,26 @@ module.exports =
     firestore_models "parts",  -> "game/#{@book_id}/parts"
     firestore_models "phases", -> "game/#{@book_id}/phases"
     firestore_models "chats",  -> "game/#{@book_id}/chats"
-    require("~/plugins/for_component")
     require("~/plugins/book-show")
     require("~/plugins/book-firebase")
+    require("~/plugins/for_component")
   ]
   layout: 'blank'
   data: ->
-    { step: State.step, mode: 'full' }
+    edit: edit
+    step: State.step
+    mode: 'wiki' 
+    floats: {}
 
   computed: {
     ...vuex_value "menu.potofs", ['hide_ids']
-    ...vuex_value "menu.side", ["shows"]
-    is_show_magnify: ->
-      "magnify" in @shows
-    is_show_potofs: ->
-      "potof" in @shows
-
-    back: ->
-      [ @chat_id || @part_id, @$route.name ].join(",")
-    back_url: ->
-      [ idx, name ] = (@$route.query.back ? @back).split(",")
-      name: name
-      query: { idx, page: 'back' }
-
-    part_id:  -> @book_id + '-top'
-    page_all_contents: ->
-      @chats "wiki", @part_id
-    page_contents: ->
-      @page_all_contents
+    ...vuex_value "menu.side", ["shows", "options"]
+    is_show: ->
+      magnify: "magnify" in @shows
+      potofs:  "potof"   in @shows
   }
 
   methods:
-    icon_change: (icon)->
-      @icon = { icon, _id: @potof_id }
-
     focus: (@idx)->
       @icon_change 'mdi-access-point'
 
@@ -170,6 +148,7 @@ module.exports =
       label: 'wiki'
     Set.phase.merge [
       { update, guide, _id: @part_id + '-S', handle: 'SSAY',  label: '会話' }
+      { update, guide, _id: @part_id + '-M', handle: 'MSAY',  label: '人形' }
       { update, guide, _id: @part_id + '-W', handle: 'WSAY',  label: '人狼' }
       { update, guide, _id: @part_id + '-P', handle: 'PSAY',  label: '結社' }
       { update, guide, _id: @part_id + '-G', handle: 'GSAY',  label: '墓下' }

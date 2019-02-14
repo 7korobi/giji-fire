@@ -40,6 +40,7 @@ module.exports = ->
       type: String
       default: ""
 
+    phases: Array
     edit:
       type: Boolean
       default: false

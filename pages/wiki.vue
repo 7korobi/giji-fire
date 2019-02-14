@@ -54,13 +54,12 @@ log-wiki
     fire-oauth(style="white-space: nowrap")
 
   div(v-if="a.length")
-    chat(v-for="o in cite_chats" @anker="anker" @focus="focus" @popup="popup" :id="o.id" :key="o.id")
+    chat(v-for="o in cite_chats" v-bind="for_chat(o.id)" v-on="for_chat_event(o.id)")
   div(v-else)
     c-report.form(handle="footer" key="finder")
       search(v-model="search")
     div(v-for="(page_chats, idx) in page_contents", :key="idx")
-      div(v-for="o in page_chats")
-        chat-editor(:id="o.id" :part_id="part_id" :phases="phases" :current="chat" @icon="icon_change" @check="check_post" @drop_image="image_post" @submit="chat_post" @remove="remove" @popup="popup" @anker="anker" @focus="focus")
+      chat(v-for="o in page_chats" v-bind="for_chat(o.id)" v-on="for_chat_event(o.id)")
     div
       c-post(handle="VSSAY")
         article(v-if="! page_contents.length")
@@ -93,7 +92,7 @@ log-wiki
           br
   div(v-if="is_creating")
     e-potof(v-model="edit.potof")
-    chat-editor(id="edit-edit-edit-edit-edit" :part_id="part_id" :phases="phases" :current="chat" @icon="icon_change" @check="check_post" @drop_image="image_post" @submit="chat_post" @create_mode="create_mode" @remove="remove" @popup="popup")
+    chat(v-bind="for_chat_new" v-on="for_chat_event(edit.chat.id)")
   c-report(handle="footer" deco="center")
     bread-crumb
 </template>
@@ -105,6 +104,7 @@ log-wiki
 { Query, Set, State } = require "memory-orm"
 { vuex_value } = require '~/plugins/struct'
 { firestore_model, firestore_models } = require "~/plugins/firebase"
+edit = require '~/models/editor'
 
 module.exports =
   mixins: [
@@ -116,6 +116,7 @@ module.exports =
   ]
   layout: 'blank'
   data: ->
+    edit: edit
     step: State.step
     mode: 'wiki' 
     floats: {}

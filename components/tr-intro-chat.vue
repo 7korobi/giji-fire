@@ -14,7 +14,7 @@ tr.chat(:key="id" :class="handle" v-on="markup_event('click')")
   td
     q(v-if="id", :cite="id") {{ anker || '' }}
   td.mention
-    component(:value="log" :context="chat" :is="deco_target" :class="deco")
+    component(:value="log" :is="deco_target" :class="deco")
 
     slot
 </template>

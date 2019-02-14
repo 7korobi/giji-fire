@@ -15,7 +15,7 @@ tr.chat(@click="click" @input="input" :key="id" :class="classname")
   td
     q(v-if="id", :cite="id") {{ chat.head }}
   td.mention
-    component(:value="log" :context="chat" :is="deco_target" :class="deco")
+    component(:value="log" :is="deco_target" :class="deco")
 
     slot
 </template>
