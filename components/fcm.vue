@@ -6,22 +6,25 @@ check.item(v-model="fcm_topics" :as="topic" :title="title")
 <style lang="sass" scoped>
 </style>
 <script lang="coffee">
-{ vuex_value } = require '~/plugins/struct'
+_ = require "lodash"
 firebase = require "firebase"
+{ vuex_value } = require '~/plugins/struct'
 { localStorage } = require "~/plugins/browser-store"
 
 module.exports =
   mixins: [
     localStorage "fcm_topics"
+    localStorage "fcm_subscribes"
   ]
 
   props: ['topic']
 
   data: ->
     fcm_topics: []
+    fcm_subscribes: []
 
   computed: {
-    ...vuex_value 'firebase',['fcm_token']
+    ...vuex_value 'firebase', ['fcm_token']
     title: ->
       if @checked
         if @fcm_token
@@ -32,10 +35,14 @@ module.exports =
         "通知を受け取りません。"
     checked: ->
       @fcm_topics.includes @topic
+    subscribed: ->
+      @fcm_subscribes.includes @topic
     enable: ->
       @fcm_token and @checked
+    can: ->
+      @fcm_token and @subscribed
     _messaging: ->
-      firebase.messaging?() 
+      firebase.messaging?()
     _subscribe: ->
       firebase.functions().httpsCallable 'subscribe'
     _unsubscribe: ->
@@ -55,15 +62,12 @@ module.exports =
     stop: ->
       await @_unsubscribe { @fcm_token, fcm_topics: [@topic] }
       @$toasted.success "#{@topic} は購読しません"
+      @fcm_subscribes = _.difference @fcm_subscribes, [@topic]
 
     start: ->
       await @_subscribe { @fcm_token, fcm_topics: [@topic] }
       @$toasted.success "#{@topic} を購読します"
-
-  mounted: ->
-    return unless @_messaging
-    if @checked && ! @fcm_token
-      await @deploy()
+      @fcm_subscribes = _.union @fcm_subscribes, [@topic]
 
   watch:
     checked: ->
@@ -71,9 +75,11 @@ module.exports =
       try
         await @deploy()
         if @enable
-          await @start()
+          if ! @can
+            await @start()
         else
-          await @stop()
+          if @can
+            await @stop()
       catch e
         console.warn e
 

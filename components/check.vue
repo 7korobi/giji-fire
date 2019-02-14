@@ -9,7 +9,7 @@ module.exports =
 
   computed:
     equal: ->
-      ! _.xor(@value, @as).length    
+      ! _.xor(@value, @as).length
 
     tap_value: ->
       if @set
