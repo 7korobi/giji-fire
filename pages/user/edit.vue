@@ -24,11 +24,12 @@ div
 </template>
 <script lang="coffee">
 firebase = require "firebase"
-{ vuex_readonly } = require "~/plugins/struct"
 { firestore_doc } = require "~/plugins/firebase"
+{ vuex_read } = require "~/plugins/vue-struct"
 
 module.exports =
   mixins: [
+    vuex_read "firebase", ["user", "credential"]
     firestore_doc "sign", -> @user && "user/#{ @user.uid }"
     require("~/plugins/for_component")
   ]
@@ -37,13 +38,11 @@ module.exports =
       sign: ""
       introduction: ""
 
-  computed: {
-    ...vuex_readonly "firebase", ["user", "credential"]
+  computed:
     _storage: ->
       firebase.storage()
     _images: ->
       @_storage.ref().child('images')
-  }
 
   methods:
     image_post: ({ id, file }, url)->

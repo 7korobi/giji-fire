@@ -31,17 +31,16 @@
 </style>
 
 <script lang="coffee">
-{ vuex_value } = require '~/plugins/struct'
+{ vuex } = require "~/plugins/vue-struct"
 
 module.exports =
+  mixins: [
+    vuex "menu.side", ["shows", "options"]
+  ]
   methods:
     drop: (e)->
       e.stopPropagation()
       e.preventDefault()
       console.log "block drop"
-  
-  computed: {
-    ...vuex_value "menu.side", ["shows", "options"]
-  }
 
 </script>

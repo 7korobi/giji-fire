@@ -89,10 +89,11 @@
 
 <script lang="coffee">
 { Query } = require "memory-orm"
-{ vuex_value } = require '~/plugins/struct'
+{ vuex } = require "~/plugins/vue-struct"
 
 module.exports =
   mixins: [
+    vuex "menu.potofs", ['order', 'sort', 'hide_ids']
     require("~/plugins/curtain") [
       "curtain0"
       "curtain1"
@@ -101,9 +102,7 @@ module.exports =
   props: ['part']
   data: -> {}
 
-  computed: {
-    ...vuex_value "menu.potofs", ['order', 'sort', 'hide_ids']
-
+  computed:
     full_off: ->  @potof_ids => true
     full_on:  ->  @potof_ids => false
     invert:   ->  @potof_ids (o)=> ! o.hide
@@ -131,7 +130,6 @@ module.exports =
 
     show: ->
       @part
-  }
 
   methods:
     memo: (o, part_id)->

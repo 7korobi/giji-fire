@@ -4,13 +4,12 @@
 </template>
 
 <script lang="coffee">
-{ vuex_value } = require '~/plugins/struct'
+{ vuex } = require "~/plugins/vue-struct"
 module.exports =
+  mixins: [
+    vuex "menu.side", ["shows"]
+  ]
   props: ["anker"]
-  computed: {
-    ...vuex_value "menu.side", ["shows"]
-  }
-
   methods:
     open_mention: ->
       @shows = [...@shows, 'mention']

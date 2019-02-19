@@ -40,22 +40,21 @@ div
 </style>
 
 <script lang="coffee">
-{ vuex_readonly } = require "~/plugins/struct"
 { firestore_models } = require "~/plugins/firebase"
+{ vuex_read } = require "~/plugins/vue-struct"
 { Query } = require "memory-orm"
 
 module.exports =
   mixins: [
+    vuex_read "firebase", ["user", "credential", "sign"]
     firestore_models "markers",
       -> "marker"
       -> @uid
       (ref)-> ref.where('uid','==', @uid )
   ]
-  computed: {
-    ...vuex_readonly "firebase", ["user", "credential", "sign"]
+  computed:
     uid: -> @user?.uid
     marker: ->
       Query.markers.own(@uid)
-  }
 
 </script>

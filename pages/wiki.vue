@@ -102,7 +102,7 @@ log-wiki
 </style>
 <script lang="coffee">
 { Query, Set, State } = require "memory-orm"
-{ vuex_value } = require '~/plugins/struct'
+{ vuex } = require "~/plugins/vue-struct"
 { firestore_model, firestore_models } = require "~/plugins/firebase"
 edit = require '~/models/editor'
 
@@ -110,6 +110,8 @@ module.exports =
   mixins: [
     firestore_models "potofs", -> "wiki/#{@book_id}/potofs"
     firestore_models "chats",  -> "wiki/#{@book_id}/chats"
+    vuex "menu.potofs", ['hide_ids']
+    vuex "menu.side", ["shows", "options"]
     require("~/plugins/book-show")
     require("~/plugins/book-firebase")
     require("~/plugins/for_component")
@@ -121,9 +123,7 @@ module.exports =
     mode: 'wiki' 
     floats: {}
 
-  computed: {
-    ...vuex_value "menu.potofs", ['hide_ids']
-    ...vuex_value "menu.side", ["shows", "options"]
+  computed:
     is_show: ->
       magnify: "magnify" in @shows
       potofs:  "potof"   in @shows
@@ -134,7 +134,6 @@ module.exports =
 
     page_contents: ->
       @page_all_contents
-  }
 
   methods:
     focus: (@idx)->

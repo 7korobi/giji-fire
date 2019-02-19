@@ -1,5 +1,5 @@
 { Query } = require "memory-orm"
-{ vuex_value } = require '~/plugins/struct'
+{ vuex } = require "~/plugins/vue-struct"
 el = require "~/plugins/dom"
 
 targets =
@@ -46,11 +46,11 @@ module.exports = ->
       default: false
 
   mixins: [
+    vuex 'menu.side', ['shows']
     require('~/plugins/markup-event')
   ]
 
-  computed: {
-    ...vuex_value 'menu.side',['shows']
+  computed:
     el_adjust: el.adjust
 
     part_id: ->
@@ -73,4 +73,3 @@ module.exports = ->
       targets[@deco] + "-input"
     deco_target: ->
       targets[@deco] + "-view"
-  }

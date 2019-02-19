@@ -8,11 +8,16 @@ check.item(v-model="fcm_topics" :as="topic" :title="title")
 <script lang="coffee">
 _ = require "lodash"
 firebase = require "firebase"
-{ vuex_value } = require '~/plugins/struct'
 { localStorage } = require "~/plugins/browser-store"
+{ vuex } = require "~/plugins/vue-struct"
+
+store =
+  fcm_topics: []
+  fcm_subscribes: []
 
 module.exports =
   mixins: [
+    vuex 'firebase', ['fcm_token']
     localStorage "fcm_topics"
     localStorage "fcm_subscribes"
   ]
@@ -20,11 +25,9 @@ module.exports =
   props: ['topic']
 
   data: ->
-    fcm_topics: []
-    fcm_subscribes: []
+    store
 
-  computed: {
-    ...vuex_value 'firebase', ['fcm_token']
+  computed:
     title: ->
       if @checked
         if @fcm_token
@@ -47,7 +50,6 @@ module.exports =
       firebase.functions().httpsCallable 'subscribe'
     _unsubscribe: ->
       firebase.functions().httpsCallable 'unsubscribe'
-  }
 
   methods:
     deploy: ->
@@ -59,27 +61,30 @@ module.exports =
         console.log await @_subscribe { @fcm_token, @fcm_topics }
       @fcm_token ?= await @_messaging.getToken()
 
-    stop: ->
-      await @_unsubscribe { @fcm_token, fcm_topics: [@topic] }
-      @$toasted.success "#{@topic} は購読しません"
-      @fcm_subscribes = _.difference @fcm_subscribes, [@topic]
+    merge: ->
+      add = _.difference @fcm_topics, @fcm_subscribes
+      del = _.difference @fcm_subscribes, @fcm_topics
+      if add.length
+        await @_subscribe { @fcm_token, fcm_topics: add }
+        for topic in add
+          @$toasted.success "#{topic} を購読します"
+      if del.length
+        await @_unsubscribe { @fcm_token, fcm_topics: del }
+        for topic in del
+          @$toasted.success "#{@topic} は購読しません"
+      @fcm_subscribes = @fcm_topics
 
-    start: ->
-      await @_subscribe { @fcm_token, fcm_topics: [@topic] }
-      @$toasted.success "#{@topic} を購読します"
-      @fcm_subscribes = _.union @fcm_subscribes, [@topic]
+  mounted: ->
+    if @checked
+      await @deploy()
 
   watch:
     checked: ->
       return unless @_messaging
       try
         await @deploy()
-        if @enable
-          if ! @can
-            await @start()
-        else
-          if @can
-            await @stop()
+        if (!! @enable) == (! @can)
+          await @merge()
       catch e
         console.warn e
 

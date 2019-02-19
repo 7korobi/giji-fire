@@ -115,7 +115,7 @@ log-wiki
 
 <script lang="coffee">
 { Query, State, Finder } = require "memory-orm"
-{ vuex_value } = require '~/plugins/struct'
+{ vuex } = require "~/plugins/vue-struct"
 
 dic = '><&"\n'
 reg_dic = /[><\&\"\n]/g
@@ -133,6 +133,8 @@ module.exports =
     require("~/plugins/get-by-mount") -> [["sow/story", @book_id ]]
     require('~/plugins/pager')
     require("~/plugins/for_component")
+    vuex "menu.potofs", ['hide_ids']
+    vuex "menu.side", ["shows", "options"]
   ]
 
   layout: 'blank'
@@ -141,9 +143,7 @@ module.exports =
     page_view: 'wrap'
     floats: {}
 
-  computed: {
-    ...vuex_value "menu.potofs", ['hide_ids']
-    ...vuex_value "menu.side", ["shows", "options"]
+  computed:
     is_show: ->
       impose:   @options.includes("impose")
       side:     @shows.includes("side") && !( ["memo", "memos"].includes(@mode) )
@@ -161,7 +161,6 @@ module.exports =
 
     folder_url: ->
       "/sow/village?folder_id=#{@folder_id.toUpperCase()}"
-  }
 
   head: ->
     anker  = @chat?.anker()

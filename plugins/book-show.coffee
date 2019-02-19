@@ -1,6 +1,7 @@
 _ = require "lodash"
 { Query } = require "memory-orm"
 { path, relative_to } = require "~/plugins/struct"
+{ path_by } = require "~/plugins/vue-struct"
 { replaceState, pushState, localStorage } = require "~/plugins/browser-store"
 
 
@@ -15,6 +16,7 @@ store =
     localStorage "page_by"
     pushState "mode"
     pushState "a"
+    path_by "idx", ["folder", "book", "part", "phase", "chat"]
   ]
 
   data: ->
@@ -47,9 +49,7 @@ store =
     "step.chats": ->
       @page_reset()
 
-  computed: {
-    ...path "folder", "book", "part", "phase", "chat"
-
+  computed:
     is_floats: ->
       Object.keys @floats
       .length
@@ -95,7 +95,6 @@ store =
       else
         Query.chats.reduce[part_id]?[mode]?.set?.length ? 0
 
-  }
   methods:
 
     focus: (@idx)->

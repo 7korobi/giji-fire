@@ -1,19 +1,22 @@
 firebase = require "firebase"
 RANDOM = require "~/plugins/random"
 { Query, Set, State } = require "memory-orm"
-{ vuex_value, path, relative_to } = require "~/plugins/struct"
+{ vuex } = require "~/plugins/vue-struct"
+{ path, relative_to } = require "~/plugins/struct"
 
 edit = require '~/models/editor'
 
 module.exports =
+  mixins: [
+    vuex 'firebase',['user', 'credential']
+  ]
   data: ->
     icon =
       _id: ''
       icon: ''
     { edit, icon, tag_ids: [], step: State.step }
 
-  computed: {
-    ...vuex_value 'firebase',['user', 'credential']
+  computed:
     my: ->
       return {} unless @book_id
       return {} unless @user
@@ -54,8 +57,6 @@ module.exports =
     phases: ->
       return [] unless @book_id
       Query.phases.where({ @book_id }).list
-
-  }
 
   methods:
     _func: (name, o)->

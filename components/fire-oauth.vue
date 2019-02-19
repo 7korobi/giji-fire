@@ -21,11 +21,12 @@ div
 </template>
 <script lang="coffee">
 firebase = require "firebase"
-{ vuex_value } = require '~/plugins/struct'
+{ vuex } = require "~/plugins/vue-struct"
 { firestore_doc } = require "~/plugins/firebase"
 
 module.exports =
   mixins: [
+    vuex 'firebase', ['user', 'credential', 'sign']
     firestore_doc "sign", -> @user && "user/#{ @user.uid }"
     require("~/plugins/for_component")
   ]
@@ -64,15 +65,12 @@ module.exports =
       console.log "session persistence"
     .catch ({ @code, @message })=>
 
-  computed: {
-    ...vuex_value 'firebase',['user', 'credential', 'sign']
-
+  computed:
     providerID: ->
       @credential?.providerId
 
     auth: ->
       firebase.auth()
-  }
 
   methods:
     signout: ->
