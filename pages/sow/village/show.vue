@@ -66,7 +66,7 @@ log-wiki
   no-ssr
     div
       div(v-if="a.length")
-        chat(v-for="o in cite_chats" v-bind="for_chat(o.id)" v-on="for_chat_event(o.id)")
+        chat(v-for="o in cite_chats" :key="o.id" v-bind="for_chat(o.id)" v-on="for_chat_event(o.id)")
       div(v-else)
         c-report.form(handle="footer" key="finder")
           search(v-model="search")
@@ -92,7 +92,7 @@ log-wiki
             .public
               article.text
                 h3 p{{ 1 + page_idxs[idx] }}
-          chat(v-for="o in page_chats" v-bind="for_chat(o.id)" v-on="for_chat_event(o.id)")
+          chat(v-for="o in page_chats" :key="o.id" v-bind="for_chat(o.id)" v-on="for_chat_event(o.id)")
 
         c-report.form(v-if="page_next_idx" handle="footer" key="limitup")
           .center

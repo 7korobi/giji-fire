@@ -1,7 +1,5 @@
 Vue = require "vue"
-
-{ MarkSVG, Marked } = require '~/node_modules/vue-markup/src/index'
-# { MarkSVG, Marked } = require 'vue-markup'
+MarkSVG = require '~/components/marksvg-view.vue'
 
 { Query } = require "memory-orm"
 { url } = require "~/config/live.yml"
@@ -40,8 +38,6 @@ Object.assign MarkSVG.options.renderer,
         ["icon", job.face.id, v]
       else
         ["box", v, v]
-
-Vue.component 'marksvg-view', MarkSVG
 
 ctx = require.context "~/components", true, ///(.+)\.vue$///
 for fname in ctx.keys()

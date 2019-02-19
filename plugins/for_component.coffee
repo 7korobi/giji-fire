@@ -3,9 +3,8 @@ _ = require "lodash"
 module.exports =
   methods:
     for_chat: (id)->
-      key = id
       edit = id == @edit?.chat.id
-      { id, key, edit, @part_id, @phases, current: @chat }
+      { id, edit, @part_id, @phases, current: @chat }
 
     for_chat_event: (id)->
       edit = id == @edit?.chat.id
@@ -30,9 +29,9 @@ module.exports =
 
   computed:
     for_chat_new: ->
-      key = id = "edit-edit-edit-edit-edit"
+      id = "edit-edit-edit-edit-edit"
       edit = true
-      { id, key, edit, @part_id, @phases, current: @chat }
+      { id, edit, @part_id, @phases, current: @chat }
 
     for_toc: ->
       page_idx = @page_all_contents?.page_idx?(@chat) ? @pager.tail_idx

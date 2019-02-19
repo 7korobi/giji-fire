@@ -3,18 +3,18 @@
 el = require "~/plugins/dom"
 
 targets =
-  diagram: 'marksvg-view'
+  diagram: 'marksvg'
 
-  sow:  'sow-view'
-  head: 'sow-view'
-  mono: 'sow-view'
+  sow:  'sow'
+  head: 'sow'
+  mono: 'sow'
 
-  dagre:   'sow-view'
-  mermaid: 'sow-view'
+  dagre:   'sow'
+  mermaid: 'sow'
 
-  quill:  'quill-view'
-  giji:   'quill-view'
-  center: 'quill-view'
+  quill:  'quill'
+  giji:   'quill'
+  center: 'quill'
 
 
 
@@ -69,6 +69,8 @@ module.exports = ->
         @$emit "focus", id
       [@handle, @el_adjust]
 
+    edit_target: ->
+      targets[@deco] + "-input"
     deco_target: ->
-      targets[@deco]
+      targets[@deco] + "-view"
   }
