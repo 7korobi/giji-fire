@@ -42,6 +42,18 @@ base = (opt)->
       clearTimeout val
 
   methods:
+    get_by_network: ->
+      for key, val of @timers
+        clearTimeout val
+
+      list = opt.call @
+      list.map ([name, id])=>
+        idx = [name, id].join("&")
+        dexie.meta.delete idx
+        dexie.data.delete idx
+        is_cache[idx] = 0
+      @_waitwake()
+
     _waitwake: ->
       is_online  = window.navigator.onLine
       is_visible = 'hidden' != document.visibilityState

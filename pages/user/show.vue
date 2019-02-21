@@ -19,13 +19,16 @@ div
   c-report(handle="footer")
     p #[i.mdi.mdi-map-marker] 栞
   div(v-if="uid")
-    c-post(v-for="({ _id, book_id, part_id, log, write_at, mark_at, url }) in marker.list" :key="_id" handle="GAIM")
-      article.marker
-        nuxt-link(:to="url")
-          span {{ part_id }}
-          abbr.pull-right
+    div(v-for="({ id }) in mark_at")
+      c-post(handle="GAIM")
+        | {{ id }}
+        button.pull-right(@click="del_marker(id)")
+          i.mdi.mdi-delete-forever
+        hr
+        article.marker(v-for="({ _id, book_id, part_id, log, write_at, mark_at, url }) in marker_for(id).list" :key="_id")
+          nuxt-link(:to="url")
             timeago(:since="mark_at || write_at")
-        span(v-html="log")
+          span(v-html="log")
 
   c-report(handle="footer" deco="center")
     bread-crumb
@@ -36,7 +39,7 @@ div
   overflow: hidden
   white-space: nowrap
   a
-    width: 12em
+    width: 5em
 </style>
 
 <script lang="coffee">
@@ -54,7 +57,13 @@ module.exports =
   ]
   computed:
     uid: -> @user?.uid
-    marker: ->
-      Query.markers.own(@uid)
+    mark_at: ->
+      Query.markers.own(@uid).reduce?.mark_at ? {}
+  methods:
+    del_marker: (id)->
+      for { _id } in @marker_for(id).list
+        @markers_del _id
+    marker_for: (book_id)->
+      Query.markers.where({ @uid, book_id })
 
 </script>

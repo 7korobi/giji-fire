@@ -128,18 +128,17 @@ new Rule("chr_set").schema ->
 new Rule("chr_npc").schema ->
   @order "label"
   @belongs_to "chr_set"
+  @belongs_to "chr_job"
   @belongs_to "face"
   @deploy ->
-    @_id = "#{@chr_set_id}_#{@face_id}"
+    @chr_job_id = "#{@chr_set_id}_#{@face_id}"
+    @_id ?= @chr_job_id
     @chr_set_idx = order.indexOf @chr_set_id
 
   @property 'model',
     head:
       get: ->
         "#{@chr_job.job} #{@face.name}"
-    chr_job:
-      get: ->
-        Query.chr_jobs.find @id
 
 new Rule("chr_job").schema ->
   @belongs_to "chr_set"

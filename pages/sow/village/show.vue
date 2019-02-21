@@ -62,6 +62,9 @@ log-wiki
     bread-crumb
       li
         nuxt-link(:to="folder_url") 終了した村一覧
+      .pull-right
+        button(@click="get_by_network")
+          i.mdi.mdi-reload
 
   no-ssr
     div
