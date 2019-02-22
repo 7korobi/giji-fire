@@ -23,15 +23,18 @@ module.exports =
     new:
       rel:
         log: "stylesheet"
+        zoom: "stylesheet"
         font: "stylesheet"
         theme: "stylesheet"
     old:
       rel:
         log: "stylesheet"
+        zoom: "stylesheet"
         font: "stylesheet"
         theme: "stylesheet"
       href:
         log: ""
+        zoom: ""
         font: ""
         theme: ""
 
@@ -45,6 +48,7 @@ module.exports =
       @$store.commit "menu/center", { @top, @left, @height, @width }
     href: ->
       log: url.style + "/css/log-#{@log}.styl.css"
+      zoom: url.style + "/css/zoom-#{@zoom}.styl.css"
       font: url.style + "/css/font-#{@font}.styl.css"
       theme: url.style + "/css/theme-#{@theme}.styl.css"
     log: ->
@@ -93,9 +97,11 @@ module.exports =
       { hid: 'hid10', rel: 'stylesheet', type: 'text/css', href: 'https://cdn.materialdesignicons.com/3.4.93/css/materialdesignicons.min.css' }
       { hid: 'hid3',  rel: 'stylesheet',   type: 'text/css', href: url.style + '/css/index.styl.css' }
       { hid: 'hid4',  rel: @new.rel.log,   type: 'text/css', href: @href.log }
+      { hid: 'hidA',  rel: @new.rel.zoom,  type: 'text/css', href: @href.zoom }
       { hid: 'hid5',  rel: @new.rel.font,  type: 'text/css', href: @href.font }
       { hid: 'hid6',  rel: @new.rel.theme, type: 'text/css', href: @href.theme }
       { hid: 'hid7',  rel: @old.rel.log,   type: 'text/css', href: @old.href.log }
+      { hid: 'hidB',  rel: @old.rel.zoom,  type: 'text/css', href: @old.href.zoom }
       { hid: 'hid8',  rel: @old.rel.font,  type: 'text/css', href: @old.href.font }
       { hid: 'hid9',  rel: @old.rel.theme, type: 'text/css', href: @old.href.theme }
     ]

@@ -1,7 +1,7 @@
 <template lang="pug">
 div
   p(v-if="user")
-    span
+    span.tap
       i.btn.mdi.mdi-logout(@click="signout")
     nuxt-link(to="/user/show")
       img.oauth_icon(:src="user.photoURL")
@@ -10,7 +10,7 @@ div
         div {{ user.displayName }}
 
   p(v-if=" ! user")
-    span
+    span.tap
       i.btn.mdi.mdi-facebook-box(@click="facebook")
       i.btn.mdi.mdi-twitter(@click="twitter")
       i.btn.mdi.mdi-google(@click="google")
@@ -90,12 +90,4 @@ module.exports =
 </script>
 
 <style lang="sass" scoped>
-.oauth_icon
-  padding:    0 .5rem 0 .5rem
-  max-width:  2.50rem
-  max-height: 2.50rem
-
-.mdi
-  line-height: 4rem
-  font-size:   3rem
 </style>

@@ -80,7 +80,7 @@ module.exports =
     .welcome-btns.cap 陰謀
     .welcome-btns.cap ＲＰ
 
-    .welcome-links.form
+    .welcome-links.form.tap
       sow(folder_id="LOBBY")
       sow(folder_id="OFFPARTY")
     .welcome-links.form
@@ -119,7 +119,6 @@ module.exports =
 
   display: grid
   justify-content: center
-  grid-auto-columns: 14ex
   grid-template-areas: ". . . ."
   grid-gap: 0 4px
 

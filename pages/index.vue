@@ -33,13 +33,11 @@ div
   c-post.form(handle="VSSAY")
     | キャラクター
     hr
-    .card
-      nuxt-link(to="/chr/list")
-        | キャラクター一覧
-      nuxt-link(to="/chr/npc")
-        | 最初の犠牲者一覧
-    hr
-    .card 人狼議事で遊ぶことができるキャラクターはこちら。
+    nuxt-link(to="/chr/list")
+      | キャラクター一覧
+    nuxt-link(to="/chr/npc")
+      | 最初の犠牲者一覧
+    .card 人狼議事を遊ぶ参考にどうぞ。
     hr
     nuxt-link(to="/chr/sort") キャラクター並べ替えゲーム
     br
