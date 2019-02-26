@@ -12,6 +12,7 @@ module.exports =
     { charset: 'utf-8' }
     { href: pkg.author }
     { hid: 'description', content: pkg.description }
+    { name: "google-site-verification", content: "Yrpo5-YleKjRAidW8yT7TXWCfKlgi5gEppIoqc_-xio" }
     { name: "apple-mobile-web-app-title", content: pkg.description }
     { name: "application-name", content: pkg.description }
     { name: "msapplication-TileColor", content: "#c1b57f"}
