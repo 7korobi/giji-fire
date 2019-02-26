@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AFooter snapshot 1`] = `
+"<c-report handle=\\"footer\\" write_at=\\"1169852700003\\"><article>人狼議事キャラセット by りりんら
+管理<q class=\\"btn\\">sol・la</q><a href=\\"mailto:7korobi@gmail.com\\" title=\\"mailto:7korobi@gmail.com\\" class=\\"btn\\">ななころび</a><div class=\\"copyright\\"><p>下記の場所以外では、人狼議事内キャラチップ
+の利用を許諾しておりません。ご了承ください。</p></div><div class=\\"copyright\\"><p>議事総合トップ
+人狼議事lobby
+人狼議事morphe
+人狼議事cafe
+人狼議事perjury
+人狼議事xebec
+人狼議事crazy
+人狼議事ciel
+
+SoyBean
+Sangria
+@7korobi</p></div></article></c-report>"
+`;
+
+exports[`AHeader snapshot 1`] = `"<div><no-ssr><welcome top=\\"0\\" title=\\"人狼議事\\"><div class=\\"btns form\\"><span class=\\"zoom\\"><btn as=\\"1.0\\">１</btn><btn as=\\"0.75\\">¾</btn><btn as=\\"0.5\\">½</btn></span><span class=\\"font\\"><btn as=\\"large\\">大判</btn><btn as=\\"novel\\">明朝</btn><btn as=\\"std\\">ゴシック</btn><btn as=\\"small\\">繊細</btn></span><span class=\\"theme\\"><btn as=\\"cinema\\">煉瓦</btn><btn as=\\"pop\\">   噴出</btn><btn as=\\"snow\\">  雪景</btn><btn as=\\"star\\">  蒼穹</btn><btn as=\\"night\\"> 闇夜</btn><btn as=\\"moon\\">  月夜</btn><btn as=\\"wa\\">  和の国</btn></span></div></welcome></no-ssr><div class=\\"outframe filmend-frame\\"><div class=\\"contentframe\\"><div class=\\"filmend\\"></div></div></div></div>"`;
+
+exports[`AppLogo snapshot 1`] = `"<div class=\\"VueToNuxtLogo\\"><div class=\\"Triangle Triangle--two\\"></div> <div class=\\"Triangle Triangle--one\\"></div> <div class=\\"Triangle Triangle--three\\"></div> <div class=\\"Triangle Triangle--four\\"></div></div>"`;
+
+exports[`BreadCrumb snapshot 1`] = `"<ol class=\\"bread-crumb\\"><li><nuxt-link to=\\"/\\">Top</nuxt-link></li></ol>"`;
+
+exports[`Btn 1 snapshot 1`] = `"<a class=\\"btn\\"></a>"`;
+
+exports[`Btn 1 snapshot 2`] = `"<a class=\\"btn\\"></a>"`;
+
+exports[`BtnMarker snapshot 1`] = `"<nuxt-link replace=\\"replace\\" to=\\"[object Object]\\" class=\\"item active\\"><i class=\\"mdi mdi-map-marker\\"></i></nuxt-link>"`;
+
+exports[`ChatFoot snapshot 1`] = `"<div class=\\"date\\"><abbr class=\\"btn\\">*TEST*</abbr></div>"`;
+
+exports[`ChatHead sign snapshot 1`] = `"<div class=\\"name\\"><sup class=\\"pull-right\\">7korobi</sup>おなまえ</div>"`;
+
+exports[`ChatHead to snapshot 1`] = `"<div class=\\"name center\\"><span class=\\"pull-right\\">おあいて</span>▷<span class=\\"pull-left\\">おなまえ</span></div>"`;

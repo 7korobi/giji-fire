@@ -40,12 +40,14 @@
     "g:npm": "npm install -g aws-sdk firebase-tools npm-check-updates typesync"
   },
   "jest": {
-    "testRegex": "/__tests__/.*\\.coffee$",
+    "testRegex": "/__tests__/.*\\-spec.coffee$",
     "moduleFileExtensions": [
       "coffee",
       "js",
       "json",
-      "vue"
+      "vue",
+      "pug",
+      "yml"
     ],
     "moduleNameMapper": {
       "^~/(.*)$": "<rootDir>/$1",
@@ -56,8 +58,10 @@
       "."
     ],
     "transform": {
-      "^.+\\.coffee$": "<rootDir>/config/coffee-preprocessor.js",
+      "^.+\\.coffee$": "<rootDir>/config/coffee-jest.js",
       "^.+\\.js$": "babel-jest",
+      "^.+\\.yml$": "yaml-jest",
+      "^.+\\.pug$": "pug-jest",
       "^.+\\.vue$": "vue-jest"
     }
   },
@@ -106,17 +110,19 @@
   "devDependencies": {
     "@types/node": "^11.9.5",
     "@vue/test-utils": "^1.0.0-beta.29",
+    "babel-core": "^6.26.3",
     "babel-jest": "^24.1.0",
     "comlink": "^3.2.0",
     "comlink-loader": "^1.1.0",
     "jest": "^24.1.0",
-    "jest-preset-coffeescript": "^1.0.0",
     "mini-css-extract-plugin": "^0.5.0",
     "nodemon": "^1.18.10",
+    "pug-jest": "^1.0.1",
     "shared-worker-loader": "^0.2.0",
     "ts-loader": "^5.3.3",
     "typescript": "^3.3.3333",
     "vue-jest": "^3.0.3",
-    "webpack-cli": "^3.2.3"
+    "webpack-cli": "^3.2.3",
+    "yaml-jest": "^1.0.5"
   }
 }
