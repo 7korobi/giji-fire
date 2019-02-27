@@ -8,7 +8,7 @@
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "jest": "jest -u",
+    "jest": "jest -u --config config/jest.js --rootDir .",
     "test": "run-s jest",
     "func": "run-s copy:func deploy:func",
     "precommit": "yarn",
@@ -38,32 +38,6 @@
     "g": "run-p -n g:*",
     "g:msys": "pacman -S openssh rsync",
     "g:npm": "npm install -g aws-sdk firebase-tools npm-check-updates typesync"
-  },
-  "jest": {
-    "testRegex": "/__tests__/.*\\-spec.coffee$",
-    "moduleFileExtensions": [
-      "coffee",
-      "js",
-      "json",
-      "vue",
-      "pug",
-      "yml"
-    ],
-    "moduleNameMapper": {
-      "^~/(.*)$": "<rootDir>/$1",
-      "^@/(.*)$": "<rootDir>/$1"
-    },
-    "moduleDirectories": [
-      "node_modules",
-      "."
-    ],
-    "transform": {
-      "^.+\\.coffee$": "<rootDir>/config/coffee-jest.js",
-      "^.+\\.js$": "babel-jest",
-      "^.+\\.yml$": "yaml-jest",
-      "^.+\\.pug$": "pug-jest",
-      "^.+\\.vue$": "vue-jest"
-    }
   },
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.3.4",

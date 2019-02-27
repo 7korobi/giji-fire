@@ -1,6 +1,6 @@
 <script lang="coffee">
 { url } = require "~/config/live.yml"
-{ localStorage, sessionStorage } = require "vue-petit-store"
+{ localStorage } = require "vue-petit-store"
 
 module.exports =
   props: ["title"]
@@ -8,7 +8,6 @@ module.exports =
     localStorage "theme"
     localStorage "font"
     localStorage "zoom"
-    sessionStorage "old.href.log"
   ]
   data: ->
     top:    0
@@ -22,10 +21,10 @@ module.exports =
     use: {}
     new:
       rel:
-        log: "stylesheet"
-        zoom: "stylesheet"
-        font: "stylesheet"
-        theme: "stylesheet"
+        log: "prefetch"
+        zoom: "prefetch"
+        font: "prefetch"
+        theme: "prefetch"
     old:
       rel:
         log: "stylesheet"
@@ -42,6 +41,12 @@ module.exports =
     return unless window?
     document.ontouchstart = ->
     @poll()
+
+  mounted: ->
+    return unless window?
+    requestAnimationFrame =>
+      log = zoom = font = theme = "stylesheet"
+      Object.assign @new.rel, { log, zoom, font, theme }
 
   computed:
     center: ->

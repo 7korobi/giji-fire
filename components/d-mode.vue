@@ -20,12 +20,8 @@ module.exports =
       @part_id
 
 </script>
-<style lang="sass" scoped>
-p
-  overflow: hidden
-</style>
 <template lang="pug">
-p(v-if="show")
+p(v-if="show" style="overflow: hidden")
   span(v-if="secret")
     nuxt-link(:to="mode_to('memo')")
       i.mdi.mdi-notebook
