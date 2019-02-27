@@ -96,9 +96,9 @@ new Rule("potof").schema ->
     head:
       get: ->
         if @face?
-          { job, name } = @face
+          { name } = @face
         [
-          @job  || job
+          @job
           @name || name
         ].join(" ")
 

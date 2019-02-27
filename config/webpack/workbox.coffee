@@ -1,6 +1,6 @@
 
 
-{ to_sec } = require "../../plugins/to.coffee"
+{ to_sec } = require "vue-petit-store"
 
 asset = (timer, c, u)->
   urlPattern: u
