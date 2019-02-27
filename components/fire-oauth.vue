@@ -20,9 +20,11 @@ div
   p(v-if="message") {{ message }}
 </template>
 <script lang="coffee">
-firebase = require "firebase"
-{ vuex } = require "vue-petit-store"
-{ firestore_doc } = require "vue-petit-store"
+{ vuex, firestore_doc } = require "vue-petit-store"
+
+if window?
+  firebase = require "firebase"
+
 
 module.exports =
   mixins: [

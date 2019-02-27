@@ -21,10 +21,10 @@ module.exports =
     use: {}
     new:
       rel:
-        log: "prefetch"
-        zoom: "prefetch"
-        font: "prefetch"
-        theme: "prefetch"
+        log: "stylesheet"
+        zoom: "stylesheet"
+        font: "stylesheet"
+        theme: "stylesheet"
     old:
       rel:
         log: "stylesheet"
@@ -41,12 +41,6 @@ module.exports =
     return unless window?
     document.ontouchstart = ->
     @poll()
-
-  mounted: ->
-    return unless window?
-    requestAnimationFrame =>
-      log = zoom = font = theme = "stylesheet"
-      Object.assign @new.rel, { log, zoom, font, theme }
 
   computed:
     center: ->

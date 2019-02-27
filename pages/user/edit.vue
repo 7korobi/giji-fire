@@ -23,9 +23,11 @@ div
     bread-crumb
 </template>
 <script lang="coffee">
-firebase = require "firebase"
-{ firestore_doc } = require "vue-petit-store"
-{ vuex_read } = require "vue-petit-store"
+{ firestore_doc, vuex_read } = require "vue-petit-store"
+
+if window?
+  firebase = require "firebase"
+
 
 module.exports =
   mixins: [

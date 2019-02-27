@@ -4,9 +4,8 @@ nuxt-link.item.active(replace :to="back_url" @click.native="bookmark")
   | {{ star }}
 </template>
 <script lang="coffee">
-{ relative_to } = require 'vue-petit-store'
-{ firestore_models } = require "vue-petit-store"
-{ vuex_read, path_by } = require "vue-petit-store"
+{ relative_to, firestore_models, vuex_read, path_by } = require "vue-petit-store"
+
 { Query } = require "memory-orm"
 
 module.exports =

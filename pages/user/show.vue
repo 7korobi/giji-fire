@@ -43,8 +43,7 @@ div
 </style>
 
 <script lang="coffee">
-{ firestore_models } = require "vue-petit-store"
-{ vuex_read } = require "vue-petit-store"
+{ firestore_models, vuex_read } = require "vue-petit-store"
 { Query } = require "memory-orm"
 
 module.exports =

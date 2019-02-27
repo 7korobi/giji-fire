@@ -28,7 +28,9 @@ div
 </template>
 
 <script lang="coffee">
-firebase = require "firebase"
+
+if window?
+  firebase = require "firebase"
 
 module.exports =
   mixins: [

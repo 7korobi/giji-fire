@@ -1,8 +1,6 @@
 _ = require "lodash"
 { Query } = require "memory-orm"
-{ path, relative_to } = require "vue-petit-store"
-{ path_by } = require "vue-petit-store"
-{ replaceState, pushState, localStorage } = require "vue-petit-store"
+{ path_by, replaceState, pushState, localStorage } = require "vue-petit-store"
 
 
 blank = []

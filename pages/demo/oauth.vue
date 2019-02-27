@@ -85,8 +85,10 @@ div
 
 </template>
 <script lang="coffee">
-firebase = require "firebase"
 { vuex_read } = require "vue-petit-store"
+
+if window?
+  firebase = require "firebase"
 
 module.exports =
   mixins: [
@@ -120,8 +122,7 @@ module.exports =
   computed:
     db: ->
       store = firebase.firestore()
-      store.settings
-        timestampsInSnapshots: true
+      store.settings {}
       store
     messaging: ->
       firebase.messaging()

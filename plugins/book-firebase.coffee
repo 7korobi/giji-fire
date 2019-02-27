@@ -1,10 +1,12 @@
-firebase = require "firebase"
 RANDOM = require "~/plugins/random"
 { Query, Set, State } = require "memory-orm"
-{ vuex } = require "vue-petit-store"
-{ path, relative_to } = require "vue-petit-store"
+{ vuex, relative_to } = require "vue-petit-store"
 
 edit = require '~/models/editor'
+
+if window?
+  firebase = require "firebase"
+
 
 module.exports =
   mixins: [

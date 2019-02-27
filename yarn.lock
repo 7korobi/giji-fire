@@ -11307,10 +11307,10 @@ vue-no-ssr@^1.1.0:
   resolved "https://registry.yarnpkg.com/vue-no-ssr/-/vue-no-ssr-1.1.0.tgz#b323807112f676324d9d7cfde85d7831ced11dd9"
   integrity sha512-prJ9czuPrVu0GhUZKTS/epFfM15QjLuG6wt61g0nyixPXk0g6eY7wNF4RKIqJsxomOiuSYTv3Zo8A43Vi93xfw==
 
-vue-petit-store@^0.3.2:
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/vue-petit-store/-/vue-petit-store-0.3.2.tgz#d79b036569fc13c07188d0759be5c5b273e44fbc"
-  integrity sha512-OGm5+24KgB1eaeZ34NvSJoB59Odv1tFgLqqmxskloHZk8mPgqGR9C/toPP5gx1xn3bLD9X0iWmd3dmiE24pUNg==
+vue-petit-store@^0.3.6:
+  version "0.3.6"
+  resolved "https://registry.yarnpkg.com/vue-petit-store/-/vue-petit-store-0.3.6.tgz#0e4a73298cfdd43d274e532cdd7dccc7457d85ca"
+  integrity sha512-0khyOopxbnY5VM915ga6F1wNsQ2Ap910czlClyNpVyVzIF+lLfg7dkSPitLcQew7L8M8A/rXuZn6n7Ynp8GVhw==
   dependencies:
     firebase "^5.8.4"
     memory-orm "^0.2.0"

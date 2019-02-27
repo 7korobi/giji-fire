@@ -28,8 +28,6 @@ div
 </template>
 <script lang="coffee">
 
-firebase = require "firebase"
-
 module.exports =
   head: ->
     title: '人狼議事 - 開発者用ページ'
