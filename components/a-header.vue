@@ -1,6 +1,6 @@
 <script lang="coffee">
 { url } = require "~/config/live.yml"
-{ localStorage, sessionStorage } = require "~/plugins/browser-store"
+{ localStorage, sessionStorage } = require "vue-petit-store"
 
 module.exports =
   props: ["title"]

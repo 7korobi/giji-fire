@@ -89,7 +89,7 @@ div(v-if="face.story_length")
 </template>
 
 <script lang="coffee">
-{ pushState } = require "~/plugins/browser-store"
+{ pushState } = require "vue-petit-store"
 { Query } = require "memory-orm"
 _ = require "lodash"
 

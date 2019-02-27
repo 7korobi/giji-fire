@@ -86,7 +86,7 @@ div
 </template>
 <script lang="coffee">
 firebase = require "firebase"
-{ vuex_read } = require "~/plugins/vue-struct"
+{ vuex_read } = require "vue-petit-store"
 
 module.exports =
   mixins: [

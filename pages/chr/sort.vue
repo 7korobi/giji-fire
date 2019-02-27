@@ -45,7 +45,7 @@ div
 <script lang="coffee">
 _ = require "lodash"
 { Query } = require "memory-orm"
-{ replaceState, localStorage } = require "~/plugins/browser-store"
+{ replaceState, localStorage } = require "vue-petit-store"
 
 class Capture
   constructor: (@compare)->

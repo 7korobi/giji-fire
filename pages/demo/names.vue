@@ -22,7 +22,7 @@ div
 
 <script lang="coffee">
 { Query } = require "memory-orm"
-{ replaceState } = require "~/plugins/browser-store"
+{ replaceState } = require "vue-petit-store"
 
 module.exports =
   mixins: [

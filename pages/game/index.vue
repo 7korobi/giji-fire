@@ -169,7 +169,7 @@ div
 <script lang="coffee">
 { State, Query } = require "memory-orm"
 { url } = require "~/config/live.yml"
-{ replaceState } = require "~/plugins/browser-store"
+{ replaceState } = require "vue-petit-store"
 
 module.exports =
   mixins: [

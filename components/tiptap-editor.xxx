@@ -1,6 +1,6 @@
 <script lang="coffee">
 _ = require 'lodash'
-{ localStorage } = require "~/plugins/browser-store"
+{ localStorage } = require "vue-petit-store"
 
 {
   Editor

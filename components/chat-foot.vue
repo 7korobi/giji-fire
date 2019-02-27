@@ -4,7 +4,7 @@
 </template>
 
 <script lang="coffee">
-{ vuex } = require "~/plugins/vue-struct"
+{ vuex } = require "vue-petit-store"
 module.exports =
   mixins: [
     vuex "menu.side", ["shows"]

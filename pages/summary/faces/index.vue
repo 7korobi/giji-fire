@@ -47,7 +47,7 @@ div
 </template>
 
 <script lang="coffee">
-{ replaceState } = require "~/plugins/browser-store"
+{ replaceState } = require "vue-petit-store"
 { Query } = require "memory-orm"
 _ = require "lodash"
 

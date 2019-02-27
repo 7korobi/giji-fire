@@ -24,8 +24,8 @@ div
 </template>
 <script lang="coffee">
 firebase = require "firebase"
-{ firestore_doc } = require "~/plugins/firebase"
-{ vuex_read } = require "~/plugins/vue-struct"
+{ firestore_doc } = require "vue-petit-store"
+{ vuex_read } = require "vue-petit-store"
 
 module.exports =
   mixins: [

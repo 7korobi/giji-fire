@@ -41,7 +41,7 @@ table
         a(:href="to_pno(-5)") 注目
 </template>
 <script lang="coffee">
-{ sessionStorage } = require "~/plugins/browser-store"
+{ sessionStorage } = require "vue-petit-store"
 _ = require "lodash"
 
 module.exports =

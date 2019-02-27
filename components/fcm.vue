@@ -8,8 +8,8 @@ check.item(v-model="fcm_topics" :as="topic" :title="title")
 <script lang="coffee">
 _ = require "lodash"
 firebase = require "firebase"
-{ localStorage } = require "~/plugins/browser-store"
-{ vuex } = require "~/plugins/vue-struct"
+{ localStorage } = require "vue-petit-store"
+{ vuex } = require "vue-petit-store"
 
 store =
   fcm_topics: []

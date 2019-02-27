@@ -102,8 +102,8 @@ log-wiki
 </style>
 <script lang="coffee">
 { Query, Set, State } = require "memory-orm"
-{ vuex } = require "~/plugins/vue-struct"
-{ firestore_model, firestore_models } = require "~/plugins/firebase"
+{ vuex } = require "vue-petit-store"
+{ firestore_model, firestore_models } = require "vue-petit-store"
 edit = require '~/models/editor'
 
 module.exports =

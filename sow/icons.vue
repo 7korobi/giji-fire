@@ -9,7 +9,7 @@
       hr
 </template>
 <script lang="coffee">
-{ sessionStorage } = require "~/plugins/browser-store"
+{ sessionStorage } = require "vue-petit-store"
 
 module.exports =
   mixins: [

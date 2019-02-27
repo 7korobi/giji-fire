@@ -1,6 +1,6 @@
 _ = require 'lodash'
 Cookie = require 'tiny-cookie'
-{ types, relative_to } = require "~/plugins/struct"
+{ types, relative_to } = require "vue-petit-store"
 
 try
   test = '__vue-localstorage-test__'

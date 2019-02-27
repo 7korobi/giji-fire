@@ -1,5 +1,5 @@
 <script lang="coffee">
-{ relative_to } = require "~/plugins/struct"
+{ relative_to } = require "vue-petit-store"
 
 module.exports =
   props: ["mode", "part_id", "chat_id", "chat_size"]

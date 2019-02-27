@@ -1,5 +1,5 @@
 { Query } = require "memory-orm"
-{ vuex } = require "~/plugins/vue-struct"
+{ vuex } = require "vue-petit-store"
 el = require "~/plugins/dom"
 
 targets =

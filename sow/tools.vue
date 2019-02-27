@@ -24,7 +24,7 @@
 </template>
 
 <script lang="coffee">
-{ localStorage } = require "~/plugins/browser-store"
+{ localStorage } = require "vue-petit-store"
 
 regDEL = /(\/\*)(.*?)(\*\/|$)/g
 

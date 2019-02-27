@@ -1,8 +1,8 @@
 firebase = require "firebase"
 RANDOM = require "~/plugins/random"
 { Query, Set, State } = require "memory-orm"
-{ vuex } = require "~/plugins/vue-struct"
-{ path, relative_to } = require "~/plugins/struct"
+{ vuex } = require "vue-petit-store"
+{ path, relative_to } = require "vue-petit-store"
 
 edit = require '~/models/editor'
 

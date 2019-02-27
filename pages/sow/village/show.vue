@@ -118,7 +118,7 @@ log-wiki
 
 <script lang="coffee">
 { Query, State, Finder } = require "memory-orm"
-{ vuex } = require "~/plugins/vue-struct"
+{ vuex } = require "vue-petit-store"
 
 dic = '><&"\n'
 reg_dic = /[><\&\"\n]/g

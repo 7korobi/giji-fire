@@ -118,7 +118,7 @@ span
 
 <script lang="coffee">
 _ = require "lodash"
-{ localStorage } = require "~/plugins/browser-store"
+{ localStorage } = require "vue-petit-store"
 
 voice_chrs   = "がぎぐげござじずぜぞだぢづでどばびぶべぼぱぴぷぺぽゔゞガギグゲゴザジズゼゾダヂヅデドバビブベボパピプペポヴヷヸヹヺヾ"
 devoice_chrs = "かきくけこさしすせそたちつてとはひふへほはひふへほうゝカキクケコサシスセソタチツテトハヒフヘホハヒフヘホウワヰヱヲヽ"
