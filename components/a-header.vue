@@ -90,11 +90,11 @@ module.exports =
       handler: ->
         return unless window?
         @use_style 'font'
-    log:
+    zoom:
       immediate: true
       handler: ->
         return unless window?
-        @use_style 'log'
+        @use_style 'zoom'
 
   head: ->
     # https://materialdesignicons.com/

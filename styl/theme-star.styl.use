@@ -32,6 +32,7 @@ palette_single(icons, 'N',1, FOAM)
   background-position: right top
   background-image: url("//s3-ap-northeast-1.amazonaws.com/giji-assets/images/bg/jupiter.png")
   background-color: hsla(210,96%,10%,1)
+  background-attachment: fixed
 
 .contentframe
   background-color: hsla(170,90%,75%,0.20)

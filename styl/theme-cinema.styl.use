@@ -21,6 +21,6 @@ palette_single(icons, 'N', 1, MOB)
 .contentframe
   background-repeat: repeat
   background-position: right
-  background-attachment: fixed
   background-image: url("//s3-ap-northeast-1.amazonaws.com/giji-assets/images/bg/renga.png")
+  background-attachment: fixed
 
