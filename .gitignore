@@ -1,5 +1,6 @@
 # settings
 firebase.crashreporting.json
+config/*.zip
 config/service_account.yml
 config/live.yml
 config/default.yml
