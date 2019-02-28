@@ -21,10 +21,10 @@ module.exports =
     use: {}
     new:
       rel:
-        log: "stylesheet"
-        zoom: "stylesheet"
-        font: "stylesheet"
-        theme: "stylesheet"
+        log: "prefetch"
+        zoom: "prefetch"
+        font: "prefetch"
+        theme: "prefetch"
     old:
       rel:
         log: "stylesheet"
@@ -79,13 +79,17 @@ module.exports =
       requestAnimationFrame @poll
 
   watch:
-    theme: ->
-      return unless window?
-      @use_style 'theme'
-      @use_style 'log'
-    font: ->
-      return unless window?
-      @use_style 'font'
+    theme:
+      immediate: true
+      handler: ->
+        return unless window?
+        @use_style 'theme'
+        @use_style 'log'
+    font:
+      immediate: true
+      handler: ->
+        return unless window?
+        @use_style 'font'
 
   head: ->
     # https://materialdesignicons.com/
