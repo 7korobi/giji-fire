@@ -90,7 +90,7 @@ div(v-if="face.story_length")
 
 <script lang="coffee">
 { pushState } = require "vue-petit-store"
-{ Query } = require "memory-orm"
+{ Query } = require 'memory-orm'
 _ = require "lodash"
 
 folder_handle =

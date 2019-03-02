@@ -88,7 +88,7 @@
 
 
 <script lang="coffee">
-{ Query } = require "memory-orm"
+{ Query } = require 'memory-orm'
 { vuex } = require "vue-petit-store"
 
 module.exports =

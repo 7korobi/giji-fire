@@ -39,7 +39,7 @@ div(v-if="self")
 </style>
 
 <script lang="coffee">
-{ Query } = require "memory-orm"
+{ Query } = require 'memory-orm'
 
 module.exports =
   props: ["self_id"]

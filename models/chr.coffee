@@ -1,4 +1,4 @@
-{ Set, Model, Query, Rule, State } = require "memory-orm"
+{ Set, Model, Query, Rule, State } = require 'memory-orm'
 
 order = [
   "ririnra"

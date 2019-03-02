@@ -167,7 +167,7 @@ div
 
 </template>
 <script lang="coffee">
-{ State, Query } = require "memory-orm"
+{ State, Query } = require 'memory-orm'
 { url } = require "~/config/live.yml"
 { replaceState } = require "vue-petit-store"
 

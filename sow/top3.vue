@@ -89,7 +89,7 @@ div
       li #[a(href="http://members.at.infoseek.co.jp/Paranoia_O/") PARANOIA O]
 </template>
 <script lang="coffee">
-{ Query } = require "memory-orm"
+{ Query } = require 'memory-orm'
 module.exports =
   data: ->
     can_make: false

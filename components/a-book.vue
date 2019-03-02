@@ -39,7 +39,7 @@ c-post.form(handle="SSAY" deco="giji")
 
 </template>
 <script lang="coffee">
-{ Query } = require "memory-orm"
+{ Query } = require 'memory-orm'
 { nation, village } = require "../yaml/rule.yml"
 _ = require "lodash"
 

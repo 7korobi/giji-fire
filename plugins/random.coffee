@@ -1,4 +1,4 @@
-{ Query, Set, State } = require "memory-orm"
+{ Query, Set, State } = require 'memory-orm'
 _ = require 'lodash'
 
 head = (o)->

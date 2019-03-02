@@ -44,7 +44,7 @@ div
 
 <script lang="coffee">
 { firestore_models, vuex_read } = require "vue-petit-store"
-{ Query } = require "memory-orm"
+{ Query } = require 'memory-orm'
 
 module.exports =
   mixins: [

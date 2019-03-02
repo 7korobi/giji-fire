@@ -1,4 +1,4 @@
-{ Model, Query, Rule } = require "memory-orm"
+{ Model, Query, Rule } = require 'memory-orm'
 
 new Rule("part").schema ->
   @path "folder", "book"

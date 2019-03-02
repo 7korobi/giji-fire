@@ -1,7 +1,7 @@
 Vue = require "vue"
 MarkSVG = require '~/components/marksvg-view.vue'
 
-{ Query } = require "memory-orm"
+{ Query } = require 'memory-orm'
 { url } = require "~/config/live.yml"
 
 if window?

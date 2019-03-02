@@ -48,7 +48,7 @@ div
 
 <script lang="coffee">
 { replaceState } = require "vue-petit-store"
-{ Query } = require "memory-orm"
+{ Query } = require 'memory-orm'
 _ = require "lodash"
 
 module.exports =

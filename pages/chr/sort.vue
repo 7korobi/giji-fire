@@ -44,7 +44,7 @@ div
 </template>
 <script lang="coffee">
 _ = require "lodash"
-{ Query } = require "memory-orm"
+{ Query } = require 'memory-orm'
 { replaceState, localStorage } = require "vue-petit-store"
 
 class Capture

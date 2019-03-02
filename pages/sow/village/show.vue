@@ -117,7 +117,7 @@ log-wiki
 </style>
 
 <script lang="coffee">
-{ Query, State, Finder } = require "memory-orm"
+{ Query, State, Finder } = require 'memory-orm'
 { vuex } = require "vue-petit-store"
 
 dic = '><&"\n'

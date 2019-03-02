@@ -1,4 +1,4 @@
-{ Set, Model, Query, Rule } = Mem = require "memory-orm"
+{ Set, Model, Query, Rule } = Mem = require 'memory-orm'
 { url } = require "~/config/live.yml"
 format = require 'date-fns/format'
 locale = require "date-fns/locale/ja"

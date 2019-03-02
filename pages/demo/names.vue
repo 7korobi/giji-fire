@@ -21,7 +21,7 @@ div
 </template>
 
 <script lang="coffee">
-{ Query } = require "memory-orm"
+{ Query } = require 'memory-orm'
 { replaceState } = require "vue-petit-store"
 
 module.exports =

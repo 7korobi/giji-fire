@@ -101,7 +101,7 @@ log-wiki
   font-size: 2.5ex
 </style>
 <script lang="coffee">
-{ Query, Set, State } = require "memory-orm"
+{ Query, Set, State } = require 'memory-orm'
 { vuex, firestore_model, firestore_models } = require "vue-petit-store"
 edit = require '~/models/editor'
 

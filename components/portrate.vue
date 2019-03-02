@@ -1,5 +1,5 @@
 <script lang="coffee">
-{ Query } = require "memory-orm"
+{ Query } = require 'memory-orm'
 { url } = require "~/config/live.yml"
 
 module.exports =

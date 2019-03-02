@@ -1,5 +1,5 @@
 RANDOM = require "~/plugins/random"
-{ Query, Set, State } = require "memory-orm"
+{ Query, Set, State } = require 'memory-orm'
 { vuex, relative_to } = require "vue-petit-store"
 
 edit = require '~/models/editor'

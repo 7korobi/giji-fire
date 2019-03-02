@@ -16,7 +16,7 @@ div
         p {{ chr.name }}
 </template>
 <script lang="coffee">
-{ Query } = require "memory-orm"
+{ Query } = require 'memory-orm'
 
 module.exports =
   data: ->

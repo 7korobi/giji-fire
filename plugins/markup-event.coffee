@@ -1,4 +1,4 @@
-{ Query } = require "memory-orm"
+{ Query } = require 'memory-orm'
 
 has_cite = (target)->
   if target

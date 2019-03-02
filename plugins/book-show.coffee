@@ -1,5 +1,5 @@
 _ = require "lodash"
-{ Query } = require "memory-orm"
+{ Query } = require 'memory-orm'
 { path_by, replaceState, pushState, localStorage } = require "vue-petit-store"
 
 

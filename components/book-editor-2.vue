@@ -29,7 +29,7 @@
 
 </template>
 <script lang="coffee">
-{ Query } = require "memory-orm"
+{ Query } = require 'memory-orm'
 { nation, village } = require "../yaml/rule.yml"
 NPC = require "../yaml/npc.yml"
 

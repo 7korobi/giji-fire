@@ -1,11 +1,17 @@
 {
   "plugins": [
-    "@babel/plugin-transform-modules-commonjs"
+    "@babel/plugin-transform-modules-commonjs",
   ],
-  "presets": [["@nuxt/babel-preset-app", { "modules": false }]],
-  "env": {
-    "test": {
-      "presets": [["@nuxt/babel-preset-app", { "targets": { "node": "current" } }]]
-    }
-  }
+  "presets": [
+    [ "@nuxt/babel-preset-app", {
+      "targets": {
+        "node": "6.11.5",
+        "browsers": [
+          ">0.5%",
+          "not ie 11",
+          "not op_mini all",
+        ],
+      }
+    }]
+  ],
 }

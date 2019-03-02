@@ -25,7 +25,7 @@ p
 </style>
 
 <script lang="coffee">
-{ Query } = require "memory-orm"
+{ Query } = require 'memory-orm'
 _ = require "lodash"
 
 module.exports =

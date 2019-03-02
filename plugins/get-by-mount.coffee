@@ -1,5 +1,5 @@
 { to_tempo } = require "vue-petit-store"
-{ State, Model, Query, Rule, Set, Finder } = require "memory-orm"
+{ State, Model, Query, Rule, Set, Finder } = require 'memory-orm'
 
 Dexie = require("dexie").default
 Vue = require 'vue'

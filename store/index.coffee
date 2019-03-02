@@ -1,5 +1,5 @@
 require "../models/index"
-Mem = require "memory-orm"
+Mem = require 'memory-orm'
 
 if window?
   Object.assign window, { Mem }

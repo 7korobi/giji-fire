@@ -22,7 +22,7 @@ div
 </template>
 
 <script lang="coffee">
-{ Set, Query } = require "memory-orm"
+{ Set, Query } = require 'memory-orm'
 
 module.exports =
   data: ->

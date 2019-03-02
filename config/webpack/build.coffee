@@ -8,8 +8,8 @@ babel =
         node: "6.11.5"
         browsers: [
           ">0.5%",
-#          "not ie 11",
-#          "not op_mini all",
+          "not ie 11",
+          "not op_mini all",
         ]
     ]
   ]

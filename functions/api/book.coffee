@@ -3,7 +3,7 @@ admin = require 'firebase-admin'
 { startGM, deployGM, executionGM, checkGM } = require './game/progress'
 
 require "~/models/index"
-{ Query } = require "memory-orm"
+{ Query } = require 'memory-orm'
 
 
 ref_for = ( mode, type, doc )->

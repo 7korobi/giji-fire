@@ -1,4 +1,4 @@
-{ Query } = require "memory-orm"
+{ Query } = require 'memory-orm'
 { vuex } = require "vue-petit-store"
 el = require "~/plugins/dom"
 
