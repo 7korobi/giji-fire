@@ -6,3 +6,4 @@ describe 'AppLogo', =>
     wrapper = mount Logo,
       propsData: {}
     expect( wrapper.isVueInstance() ).toBeTruthy()
+  undefined

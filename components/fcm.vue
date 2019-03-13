@@ -69,11 +69,12 @@ module.exports =
         await @_subscribe { @fcm_token, fcm_topics: add }
         for topic in add
           @$toasted.success "#{topic} を購読します"
+        @fcm_subscribes = _.union add, @fcm_topics
       if del.length
         await @_unsubscribe { @fcm_token, fcm_topics: del }
         for topic in del
           @$toasted.success "#{@topic} は購読しません"
-      @fcm_subscribes = @fcm_topics
+        @fcm_subscribes = _.difference @fcm_topics, del
 
   mounted: ->
     if @checked

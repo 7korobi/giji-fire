@@ -31,12 +31,17 @@
 </style>
 
 <script lang="coffee">
-{ vuex } = require "vue-petit-store"
+{ localStorage } = require "vue-petit-store"
 
 module.exports =
   mixins: [
-    vuex "menu.side", ["shows", "options"]
+    localStorage "shows"
+    localStorage "options"
   ]
+  data: ->
+    options: ["impose"] # impose
+    shows: [] # pin, toc, potof, current, search
+
   methods:
     drop: (e)->
       e.stopPropagation()

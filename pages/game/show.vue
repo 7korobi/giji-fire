@@ -102,7 +102,7 @@ log-wiki
 </style>
 <script lang="coffee">
 { Query, Set, State } = require 'memory-orm'
-{ vuex, firestore_model, firestore_models } = require "vue-petit-store"
+{ vuex, localStorage, firestore_model, firestore_models } = require "vue-petit-store"
 edit = require '~/models/editor'
 
 module.exports =
@@ -114,7 +114,8 @@ module.exports =
     firestore_models "phases", -> "game/#{@book_id}/phases"
     firestore_models "chats",  -> "game/#{@book_id}/chats"
     vuex "menu.potofs", ['hide_ids']
-    vuex "menu.side", ["shows", "options"]
+    localStorage "shows"
+    localStorage "options"
     require("~/plugins/book-show")
     require("~/plugins/book-firebase")
     require("~/plugins/for_component")
@@ -125,6 +126,8 @@ module.exports =
     step: State.step
     mode: 'wiki' 
     floats: {}
+    options: ["impose"] # impose
+    shows: [] # pin, toc, potof, current, search
 
   computed:
     is_show: ->

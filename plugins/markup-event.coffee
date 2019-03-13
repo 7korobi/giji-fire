@@ -3,7 +3,7 @@
 has_cite = (target)->
   if target
     cite  = target.attributes.cite
-    cite ?= target.parentElement.attributes.cite
+    cite ?= target.parentElement?.attributes.cite
     if cite
       if chat = Query.chats.sow_cite cite.value
         chat

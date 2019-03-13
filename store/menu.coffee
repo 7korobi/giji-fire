@@ -18,10 +18,6 @@ module.exports =
       order: "asc"
       hide_ids: []
 
-    side:
-      options: ["impose"] # impose
-      shows: [] # pin, toc, potof, current, search
-
   mutations:
     center: (state, { top, left, height, width })->
       state.height  = parseInt height

@@ -311,6 +311,7 @@ exports[`Chat 1 snapshot 2`] = `
             class="text quill"
             part_id="test-1-1"
             phases=""
+            value=""
           />
           <!---->
           <chat-foot
@@ -390,6 +391,7 @@ exports[`Chat 2 snapshot 2`] = `
             class="text quill"
             part_id="test-1-1"
             phases=""
+            value=""
           />
           <!---->
           <chat-foot
@@ -437,6 +439,7 @@ exports[`Chat 3 snapshot 2`] = `
     class="text quill"
     part_id="test-1-1"
     phases=""
+    value=""
   />
   <!---->
   <chat-foot
@@ -480,6 +483,7 @@ exports[`Chat 4 snapshot 2`] = `
     class="text quill"
     part_id="test-1-1"
     phases=""
+    value=""
   />
   <!---->
   <chat-foot

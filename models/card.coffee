@@ -23,7 +23,7 @@ new Rule("stat").schema ->
   @property 'model',
     card:
       get: ->
-        Query.stats.find("#{@potof_id}-#{@idx}")
+        Query.cards.find("#{@potof_id}-#{@idx}")
 
 
 

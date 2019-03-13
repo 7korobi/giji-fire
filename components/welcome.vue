@@ -22,7 +22,7 @@ module.exports =
     export_style: ->
       height = @$el?.clientHeight ? 500
       switch
-        when           0   <= @top < height * 0.5
+        when 0 <= @top < height * 0.5
           opacity: 1
         else
           opacity: 0

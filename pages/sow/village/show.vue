@@ -118,7 +118,7 @@ log-wiki
 
 <script lang="coffee">
 { Query, State, Finder } = require 'memory-orm'
-{ vuex } = require "vue-petit-store"
+{ vuex, localStorage } = require "vue-petit-store"
 
 dic = '><&"\n'
 reg_dic = /[><\&\"\n]/g
@@ -137,7 +137,8 @@ module.exports =
     require('~/plugins/pager')
     require("~/plugins/for_component")
     vuex "menu.potofs", ['hide_ids']
-    vuex "menu.side", ["shows", "options"]
+    localStorage "shows"
+    localStorage "options"
   ]
 
   layout: 'blank'
@@ -145,6 +146,8 @@ module.exports =
     step: State.step
     page_view: 'wrap'
     floats: {}
+    options: ["impose"] # impose
+    shows: [] # pin, toc, potof, current, search
 
   computed:
     is_show: ->

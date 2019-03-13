@@ -215,14 +215,6 @@ module.exports =
         o.event_id ?= o._id.split("-")[0..2].join("-")
         if "*CAST*" == log
           phase_id = "#{o.event_id}-mS"
-          list =
-            for [ sign, job, name, live ] in potofs.pluck('sign', 'job', 'face.name', 'live.role_id') when 'leave' != live
-              """<tr><td class="r"> #{job} <td class="l"> #{name} <td class="c"> … <td class="c"> #{sign} """
-          log = """
-            <table><tbody>
-            #{ list.join("\n") }
-            </tbody></table>
-          """
           Set.phase.add phase_attr
             _id: phase_id
             handle: 'TITLE'
@@ -234,7 +226,7 @@ module.exports =
             phase_id: phase_id
             write_at: write_at
             show: "report"
-            deco: "giji"
+            deco: "cast"
             log: log
           return
 

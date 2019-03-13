@@ -15,3 +15,9 @@ new Rule("marker").schema ->
 
       emit "list",
         sort: ["write_at", "desc"]
+
+new Rule("icon").schema ->
+  @belongs_to "potof"
+
+  @scope (all)->
+    own: ( _id )-> all.where { _id }

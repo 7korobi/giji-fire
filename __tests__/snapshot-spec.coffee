@@ -16,7 +16,7 @@ snap = ({ module, name, propsData, store })->
     test 'snapshot', =>
       wrapper = mount module, { propsData, store, localVue, router }
       expect( wrapper.vm.$el ).toMatchSnapshot()
-
+    undefined
 snap
   name: 'AppLogo'
   module: require '~/components/AppLogo.vue'

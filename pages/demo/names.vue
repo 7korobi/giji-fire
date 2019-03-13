@@ -32,7 +32,7 @@ module.exports =
     tag_id: "all"
   computed:
     name_blanks: ->
-      Query.faces.name_blank()
+      @name_counts.from.remain
 
     name_counts: ->
       Query.faces.name_head(@tag_id)

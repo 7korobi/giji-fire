@@ -4,12 +4,14 @@
 </template>
 
 <script lang="coffee">
-{ vuex } = require "vue-petit-store"
+{ localStorage } = require "vue-petit-store"
 module.exports =
   mixins: [
-    vuex "menu.side", ["shows"]
+    localStorage "shows"
   ]
   props: ["anker"]
+  data: ->
+    shows: [] # pin, toc, potof, current, search
   methods:
     open_mention: ->
       @shows = [...@shows, 'mention']
