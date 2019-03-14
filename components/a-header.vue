@@ -1,6 +1,6 @@
 <script lang="coffee">
 { url } = require "~/config/live.yml"
-{ localStorage } = require "vue-petit-store"
+{ scroll, geo, localStorage } = require "vue-petit-store"
 
 module.exports =
   props: ["title"]
@@ -8,12 +8,10 @@ module.exports =
     localStorage "theme"
     localStorage "font"
     localStorage "zoom"
+    scroll()
+    geo()
   ]
   data: ->
-    top:    0
-    width:  0
-    height: 0
-
     theme: "cinema"
     font:  "std"
     zoom:  "0.5"
@@ -40,11 +38,8 @@ module.exports =
   created: ->
     return unless window?
     document.ontouchstart = ->
-    @poll()
 
   computed:
-    center: ->
-      @$store.commit "menu/center", { @top, @left, @height, @width }
     href: ->
       log: url.style + "/css/log-#{@log}.styl.css"
       zoom: url.style + "/css/zoom-#{@zoom}.styl.css"
@@ -69,16 +64,13 @@ module.exports =
         , 100
       , 100
 
-    poll: ->
-      if @top == scrollY && @left == scrollX
-        @center
-      @top = scrollY
-      @left = scrollX
-      @width = innerWidth
-      @height = innerHeight
-      requestAnimationFrame @poll
-
   watch:
+    scroll:
+      immediate: true
+      deep: true
+      handler: (newVal, oldVal)->
+        @$store.commit "menu/center", @scroll
+
     theme:
       immediate: true
       handler: ->
@@ -118,7 +110,7 @@ module.exports =
 <template lang="pug">
 div
   no-ssr
-    welcome(:top="top" :title="title")
+    welcome(:top="scroll.top" :title="title")
       .btns.form
         span.zoom
           btn(v-model="zoom" as="1.0" ) １
