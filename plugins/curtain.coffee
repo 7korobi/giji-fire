@@ -12,21 +12,26 @@ module.exports = (curtain_names)->
       @lefts[idx] < @pageX
 
     movespace: ->
+      enter = =>
+        @data_calc()
       leave = =>
         @pageX = 0
       move = (e)=>
         @pageX = e.pageX ? e.changedTouches?[0]?.pageX
 
-      scroll: =>
-        @data_calc()
+      scroll: enter
+      touchenter: enter
       touchmove:  move
       touchleave: leave
+      mouseenter: enter
       mousemove:  move
       mouseleave: leave
     
     data_calc: ->
-      refs = curtain_names.map (key)=> @$refs[key]
       @lefts =
-        for o, idx in refs when rects = o.getClientRects()
-          rects[0].left
+        for key, idx in curtain_names
+          if rect = @$refs[key]?.getClientRects()?[0]
+            rect.left
+          else
+            Infinity
 
