@@ -1,5 +1,8 @@
-require "../models/index"
+require "~/models/index"
 Mem = require 'memory-orm'
+
+{ poll } = require "vue-petit-store"
+poll.api require "~/worker/fetch-api"
 
 if window?
   Object.assign window, { Mem }

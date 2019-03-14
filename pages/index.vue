@@ -97,12 +97,11 @@ div
 </template>
 <script lang="coffee">
 { Step, Query } = require 'memory-orm'
+{ poll } = require "vue-petit-store"
 
 module.exports =
   mixins: [
-    require("~/plugins/get-by-mount") ->
-      [ ["sow/plan"]
-      ]
+    poll -> [["sow/plan"]]
   ]
   computed:
     user: ->

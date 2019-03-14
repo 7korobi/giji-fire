@@ -45,12 +45,6 @@ phase_attr = (self)->
 
 
 module.exports =
-  fetch: (url, cb)->
-    res = await fetch url
-    data = await res.json()
-    State.transaction ->
-      cb data
-
   'aggregate/faces': (url)->
     @fetch url, (data)->
       for o in data.faces when face = Set.face.find o._id.face_id

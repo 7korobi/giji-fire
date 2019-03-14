@@ -118,7 +118,7 @@ log-wiki
 
 <script lang="coffee">
 { Query, State, Finder } = require 'memory-orm'
-{ vuex, localStorage } = require "vue-petit-store"
+{ poll, vuex, localStorage } = require "vue-petit-store"
 
 dic = '><&"\n'
 reg_dic = /[><\&\"\n]/g
@@ -133,9 +133,9 @@ sow_dic = [
 module.exports =
   mixins: [
     require("~/plugins/book-show")
-    require("~/plugins/get-by-mount") -> [["sow/story", @book_id ]]
     require('~/plugins/pager')
     require("~/plugins/for_component")
+    poll -> [["sow/story", @book_id ]]
     vuex "menu.potofs", ['hide_ids']
     localStorage "shows"
     localStorage "options"

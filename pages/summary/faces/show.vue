@@ -89,7 +89,7 @@ div(v-if="face.story_length")
 </template>
 
 <script lang="coffee">
-{ pushState } = require "vue-petit-store"
+{ poll, pushState } = require "vue-petit-store"
 { Query } = require 'memory-orm'
 _ = require "lodash"
 
@@ -118,7 +118,7 @@ module.exports =
   mixins: [
     pushState "id"
     pushState "order"
-    require("~/plugins/get-by-mount") -> [["aggregate/face", @id ]]
+    poll -> [["aggregate/face", @id ]]
   ]
 
   data: ->

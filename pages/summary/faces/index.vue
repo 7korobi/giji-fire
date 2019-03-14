@@ -47,13 +47,13 @@ div
 </template>
 
 <script lang="coffee">
-{ replaceState } = require "vue-petit-store"
+{ poll, replaceState } = require "vue-petit-store"
 { Query } = require 'memory-orm'
 _ = require "lodash"
 
 module.exports =
   mixins: [
-    require("~/plugins/get-by-mount") -> [["aggregate/faces"]]
+    poll -> [["aggregate/faces"]]
     replaceState "order"
     replaceState "tag_id"
     replaceState "search"

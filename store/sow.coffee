@@ -1,4 +1,4 @@
-{ caches } = require("~/plugins/get-by-mount")
+{ poll } = require("vue-petit-store")
 { url } = require "~/config/live.yml"
 
 module.exports =
@@ -6,11 +6,11 @@ module.exports =
   state: -> {}
   mutations: {}
   actions: {
-    ...caches "10m",
+    ...poll.caches "10m",
       plan:      -> "#{url.api}/plan/progress"
       progress:  -> "#{url.api}/story/progress"
-    ...caches "6h",
+    ...poll.caches "6h",
       oldlog:    -> "#{url.store}/sow/index.json"
-    ...caches "10y",
+    ...poll.caches "10y",
       story: (id)-> "#{url.store}/sow/#{id}.json"
   }

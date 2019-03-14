@@ -1,12 +1,11 @@
 <script lang="coffee">
+{ poll } = require 'vue-petit-store'
 { Query, State } = require 'memory-orm'
 { url } = require "~/config/live.yml"
 
 module.exports =
   mixins: [
-    require("~/plugins/get-by-mount") ->
-      [ ["sow/progress"]
-      ]
+    poll -> [["sow/progress"]]
   ]
   props: ["top", "title"]
 

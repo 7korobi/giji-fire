@@ -172,12 +172,12 @@ div
 <script lang="coffee">
 { State, Query } = require 'memory-orm'
 { url } = require "~/config/live.yml"
-{ replaceState } = require "vue-petit-store"
+{ poll, replaceState } = require "vue-petit-store"
 
 module.exports =
   mixins: [
-    require("~/plugins/get-by-mount") -> [["sow/oldlog"]]
     require('~/plugins/pager')
+    poll -> [["sow/oldlog"]]
     replaceState "order"
     replaceState "folder_id"
     replaceState "monthry"
