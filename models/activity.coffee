@@ -17,6 +17,7 @@ new Rule("marker").schema ->
         sort: ["write_at", "desc"]
 
 new Rule("icon").schema ->
+  @belongs_to "book"
   @belongs_to "potof"
 
   @scope (all)->

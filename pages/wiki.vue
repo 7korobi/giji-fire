@@ -19,7 +19,7 @@ log-wiki
 
   template(slot="icons")
     .item
-      i.c.mdi(:class="icon.icon")
+      i.c.mdi(:class="edit.icon.mdi")
     h6.c(:class="edit.chat.phase.handle" v-if="user && is_replacing") 編集
     a.btn.item.tooltip-left(:class="handle" @click="move" v-if="can_move" data-tooltip="編集中の投稿の並び順をこの上に")
       i.mdi.mdi-table-column-plus-before
@@ -103,12 +103,11 @@ log-wiki
 <script lang="coffee">
 { Query, Set, State } = require 'memory-orm'
 { vuex, localStorage, firestore_model, firestore_models } = require "vue-petit-store"
-edit = require '~/models/editor'
 
 module.exports =
   mixins: [
-    firestore_models "potofs", -> "wiki/#{@book_id}/potofs"
-    firestore_models "chats",  -> "wiki/#{@book_id}/chats"
+    firestore_models "potofs", -> @book_id && "wiki/#{@book_id}/potofs"
+    firestore_models "chats",  -> @book_id && "wiki/#{@book_id}/chats"
     vuex "menu.potofs", ['hide_ids']
     localStorage "shows"
     localStorage "options"
@@ -118,7 +117,6 @@ module.exports =
   ]
   layout: 'blank'
   data: ->
-    edit: edit
     step: State.step
     mode: 'wiki' 
     floats: {}
@@ -137,9 +135,7 @@ module.exports =
     page_contents: ->
       @page_all_contents
 
-  methods:
-    focus: (@idx)->
-      @icon_change 'mdi-access-point'
+  methods: {}
 
   mounted: ->
     guide = true

@@ -24,6 +24,15 @@ chr_npc:
       だが、それでも。
       信じて待てば、かならず――
 
+  - label: エクスパンション・セット「幻日世界」（ソランジュ）
+    csid: fable
+    face_id: f8
+    say_0: |-
+      ...
+
+    say_1: |-
+      ...
+
 chr_job:
   - face_id: f000
     job: 日輪代理

@@ -1,3 +1,4 @@
+const path = require('path')
 
 // see https://browserl.ist/?q=>0.5%%25%2c+not+ie+11%2c+not+op_mini+all
 const babel = {
@@ -9,7 +10,7 @@ const babel = {
       targets: {
         node: "6.11.5",
         browsers: [
-          ">0.5%",
+          ">1%",
           "not ie 11",
           "not op_mini all",
         ],
@@ -70,14 +71,18 @@ module.exports = function (options) {
         rule.test = /\.(png|jpe?g|gif|webp)$/
       }
       if ( rule.test.exec(".js") ){
-        console.log(rule.include)
         console.log(rule.exclude.toString())
+
         const super_call = rule.exclude
         rule.exclude = (file) => {
           if (/node_modules\/parchment/.test( file )) return false
-          if (/node_modules\/quill/    .test( file )) return false
+          if (/node_modules\/quill/    .test( file )) {
+            console.log( file )
+            return false 
+          }
           return super_call( file )
         }
+        rule.use[0].options = babel
       }
     }
     for (const key in loaders) {

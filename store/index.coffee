@@ -7,7 +7,15 @@ poll.api require "~/worker/fetch-api"
 if window?
   Object.assign window, { Mem }
 
+
 module.exports =
+  modules:
+    sow:       require './sow'
+    book:      require './book'
+    menu:      require './menu'
+    firebase:  require './firebase'
+    aggregate: require './aggregate'
+
   state: ->
     user: null
     env: {}

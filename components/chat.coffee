@@ -1,5 +1,5 @@
 { Query } = require 'memory-orm'
-{ vuex } = require "vue-petit-store"
+{ localStorage } = require "vue-petit-store"
 el = require "~/plugins/dom"
 
 targets =
@@ -16,6 +16,7 @@ targets =
   giji:   'quill'
   center: 'quill'
 
+  cast: 'cast'
 
 
 module.exports = ->
@@ -46,9 +47,12 @@ module.exports = ->
       default: false
 
   mixins: [
-    vuex 'menu.side', ['shows']
+    localStorage "shows"
     require('~/plugins/markup-event')
   ]
+
+  data: ->
+    shows: [] # pin, toc, potof, current, search
 
   computed:
     el_adjust: el.adjust
@@ -69,7 +73,11 @@ module.exports = ->
         @$emit "focus", id
       [@handle, @el_adjust]
 
-    edit_target: ->
-      targets[@deco] + "-input"
-    deco_target: ->
-      targets[@deco] + "-view"
+    for_body: ->
+      target = targets[@deco]
+      if @edit
+        value = @log
+        { value, @part_id, @phases, class: @deco, is: "#{target}-input" }
+      else
+        value = @log
+        { value, class: @deco, is: "#{target}-view" }

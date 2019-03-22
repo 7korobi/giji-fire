@@ -19,7 +19,7 @@ log-wiki
 
   template(slot="icons")
     .item
-      i.c.mdi(:class="icon.icon")
+      i.c.mdi(:class="icon.mdi")
     h6.c(:class="edit.chat.phase.handle" v-if="user && is_replacing") 編集
     a.btn.item.tooltip-left(:class="handle" @click="move" v-if="can_move" data-tooltip="編集中の投稿の並び順をこの上に")
       i.mdi.mdi-table-column-plus-before
@@ -136,7 +136,6 @@ module.exports =
 
   methods:
     focus: (@idx)->
-      @icon_change 'mdi-access-point'
 
   mounted: ->
     guide = true

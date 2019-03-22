@@ -40,7 +40,7 @@
 
       transition-group.potofs.fine.tlist(name="list" tag="tbody")
         tr(v-for="(o, idx) in potofs", :key="o.id" v-if="! o.hide")
-          td.c.mdi(:class="o.icon")
+          td.c.mdi(:class="o.icon_mdi")
           th.r(:class="o.live && o.live.role_id") {{ o.job }}
           th.l(:class="o.live && o.live.role_id") {{ o.face && o.face.name }}
           td.r(:class="o.live && o.live.role_id") {{ o.live && o.live.date           | currency("日") }}
