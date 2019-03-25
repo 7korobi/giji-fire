@@ -18,19 +18,105 @@ div
     bread-crumb
       li
         nuxt-link(to="/demo") 開発者用ページ
-</template>
 
+  .fullframe.VSSAY
+    | いつも見ている人名辞典を検索可能にしてみました。
+    hr
+    article.fine.column
+      div(v-for="o in countries")
+        btn(:class="{ PSAY: work_names[o.id] }" v-model="spot_id" :as="o.id") {{ o.id }}
+        | {{ o.country.join(" / ") }}
+      span
+        btn(v-model="spot_id" as="all") ---
+  br
+  .fullframe.VSSAY
+    search(v-model="search")
+    article.fine.column(v-if="work_names_size < 1500")
+      div(v-for="id in work_names_order" :style="work_names_style")
+        btn(v-model="spot_id" :as="id") {{ id }}
+        table
+          tbody
+            tr(v-for="oo in work_names[id].list")
+              td {{ oo.name }}
+              td {{ oo.spell }}
+    article.fine.column(v-else)
+      | ({{ work_names_size }}) ※ 検索結果が多すぎます。
+
+  c-report(handle="footer" deco="center")
+    bread-crumb
+      li
+        nuxt-link(to="/demo") 開発者用ページ
+</template>
+<style lang="sass">
+.fullframe
+  .column
+    column-width: 25ex
+    column-rule-style: dashed
+    column-rule-width: 1px
+
+    table
+      width: 100%
+      tbody
+        width: 100%
+        tr
+          td
+            padding: 0
+
+</style>
 <script lang="coffee">
-{ Query } = require 'memory-orm'
-{ replaceState } = require "vue-petit-store"
+{ Set, Query } = require 'memory-orm'
+{ pushState, replaceState } = require "vue-petit-store"
+
+{ country, name } = require '~/yaml/work_namedb.yml'
+
+Set.work_country.set country
+Set.work_name.set name
 
 module.exports =
   mixins: [
     replaceState "tag_id"
+    pushState "spot_id"
+    pushState "search"
   ]
   data: ->
     tag_id: "all"
+    spot_id: "all"
+    search: ""
   computed:
+    work_names_size: ->
+      @work_names_query.list.length
+
+    work_names_query: ->
+      if @spot_id != "all"
+        Query.work_names
+        .partition "spot.#{@spot_id}.set"
+        .search(@search)
+      else
+        Query.work_names
+        .search(@search)
+
+    work_names_order: ->
+      (@work_names_query.reduce.spot_size || []).map (o)-> o.id
+
+    work_names: ->
+      @work_names_query.reduce.spot || {}
+
+    work_names_style: ->
+      spots = @work_names_query.reduce.spot_size
+      top   = spots[0].count
+      width = spots.length
+      full  = @work_names_query.reduce.list.length
+      return {} if width < 3
+
+      console.log { full, top, width: width, is_large: full / 3, is: (full / 3) < top }
+      if (full / 3) < top
+        {}
+      else
+        breakInside: "avoid"
+
+    countries: ->
+      Query.work_countrys.list
+
     name_blanks: ->
       @name_counts.from.remain
 
