@@ -10,9 +10,11 @@ new Rule("work_country").schema ->
       emit "list",
         sort: ["country.length", "desc"]
 
+idx = 0
 new Rule("work_name").schema ->
   @belongs_to "work_country"
   @deploy ->
+    @_id = "#{@key}-#{++idx}"
     @work_country_id = @key
     @ascii = @spell.normalize('NFKD').replace /[\u0300-\u036F]/g, ''
     @head = "<" + @name[..0]
