@@ -31,7 +31,13 @@ div
   br
   .fullframe.VSSAY
     search(v-model="search")
-    article.fine.column(v-if="work_names_size < 1500")
+    article.fine
+      | ({{ work_names_size }})件hit
+      btn(v-model="limit" :as="1000") 1K
+      btn(v-model="limit" :as="3000") 3K
+      btn(v-model="limit" :as="5000") 5K
+      btn(v-model="limit" :as="9000") 9K
+    article.fine.column(v-if="work_names_size < limit")
       div(v-for="id in work_names_order" :style="work_names_style")
         btn(v-model="spot_id" :as="id") {{ id }}
         table
@@ -40,7 +46,7 @@ div
               td {{ oo.name }}
               td {{ oo.spell }}
     article.fine.column(v-else)
-      | ({{ work_names_size }}) ※ 検索結果が多すぎます。
+      | ※ 検索結果が多すぎます。
 
   c-report(handle="footer" deco="center")
     bread-crumb
@@ -67,14 +73,16 @@ div
 { Set, Query } = require 'memory-orm'
 { pushState, replaceState } = require "vue-petit-store"
 
-{ country, name } = require '~/yaml/work_namedb.yml'
+{ country, name, timestamp } = require '~/yaml/work_namedb.yml'
 
+console.log timestamp
 Set.work_country.set country
 Set.work_name.set name
 
 module.exports =
   mixins: [
     replaceState "tag_id"
+    replaceState "limit"
     pushState "spot_id"
     pushState "search"
   ]
@@ -82,18 +90,13 @@ module.exports =
     tag_id: "all"
     spot_id: "all"
     search: ""
+    limit: 1500
   computed:
     work_names_size: ->
       @work_names_query.list.length
 
     work_names_query: ->
-      if @spot_id != "all"
-        Query.work_names
-        .partition "spot.#{@spot_id}.set"
-        .search(@search)
-      else
-        Query.work_names
-        .search(@search)
+      Query.work_names.by_page @spot_id, @search
 
     work_names_order: ->
       (@work_names_query.reduce.spot_size || []).map (o)-> o.id
@@ -108,7 +111,6 @@ module.exports =
       full  = @work_names_query.reduce.list.length
       return {} if width < 3
 
-      console.log { full, top, width: width, is_large: full / 3, is: (full / 3) < top }
       if (full / 3) < top
         {}
       else
