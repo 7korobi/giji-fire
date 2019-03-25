@@ -20,7 +20,7 @@ new Rule("work_name").schema ->
     @head = "<" + @name[..0]
     @tail = @name[-1..] +  ">"
     @q =
-      search_words: [@head, @name, @tail, @ascii].join(" ")
+      search_words: ["<#{@name}>", "<#{@ascii}>"].join(" ")
   
   class @model extends @model
     @map_partition: (o, emit)->
