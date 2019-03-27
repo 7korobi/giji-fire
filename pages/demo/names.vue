@@ -6,12 +6,16 @@ div
         nuxt-link(to="/demo") 開発者用ページ
   c-report(handle="header" deco="center")
     tags(v-model="tag_id")
-  c-report(handle="header" deco="center") 0人
+  c-report(handle="header" deco="center")
+    p 0人
+    article.fine(v-if="name_blanks") {{ name_blanks.map(c=> `<${c} `).join("") }}
   c-post(handle="TSAY")
     span(v-for="name in name_blanks") <{{name}}>
   div(v-for="group, count in name_counts" v-if="0 < count", :key="count")
     transition-group.posts(name="list" tag="div")
-      c-report(handle="header" deco="center", :key="'h'+count") {{count}}人
+      c-report(handle="header" deco="center", :key="'h'+count")
+        p {{count}}人
+        article.fine(v-if="group") {{ group.map(o=> `<${o.id} `).join("") }}
       c-post(v-for="map in group" handle="SSAY", :key="map.id")
         | <{{map.id}}> {{ map.set.join("、") }}
   c-report(handle="footer" deco="center")
@@ -53,22 +57,6 @@ div
       li
         nuxt-link(to="/demo") 開発者用ページ
 </template>
-<style lang="sass">
-.fullframe
-  .column
-    column-width: 25ex
-    column-rule-style: dashed
-    column-rule-width: 1px
-
-    table
-      width: 100%
-      tbody
-        width: 100%
-        tr
-          td
-            padding: 0
-
-</style>
 <script lang="coffee">
 { Set, Query } = require 'memory-orm'
 { pushState, replaceState } = require "vue-petit-store"
@@ -90,7 +78,7 @@ module.exports =
     tag_id: "all"
     spot_id: "all"
     search: ""
-    limit: 1500
+    limit: 1000
   computed:
     work_names_size: ->
       @work_names_query.list.length
@@ -125,4 +113,7 @@ module.exports =
     name_counts: ->
       Query.faces.name_head(@tag_id)
 
+  watch:
+    limit: (n, o)->
+      console.log { o, n, @limit, @limit_type, @limit_default }
 </script>

@@ -1,6 +1,6 @@
 RANDOM = require "~/plugins/random"
 { Query, Set, State } = require 'memory-orm'
-{ vuex, relative_to } = require "vue-petit-store"
+{ vuex, relative_to, firestore_models } = require "vue-petit-store"
 
 edit = require '~/models/editor'
 
@@ -10,27 +10,34 @@ if window?
 
 module.exports =
   mixins: [
-    vuex 'firebase',['user', 'credential']
+    vuex "user", on: "firebase"
+    vuex "sign", on: "firebase"
+    firestore_models "icons",
+      -> "icon"
+      -> @book_id
+      (ref)-> ref.where("book_id","==",@book_id)
   ]
   data: ->
-    icon =
-      _id: ''
-      icon: ''
-    { edit, icon, tag_ids: [], step: State.step }
+    edit_chat = edit.chat
+    { edit_chat, tag_ids: [], step: State.step }
+
+      # return {} unless @sign
+      # sign.draft sign.introduction
 
   computed:
-    my: ->
-      return {} unless @book_id
-      return {} unless @user
-      { uid } = @user
-      potof = Query.potofs.my( @book_id, uid )
-      { potof }
+    edit: ->
+      return edit unless @book_id
+      return edit unless @user
 
-    is_creating: -> @edit.chat.potof_id == @edit.potof.id
+      icon = Query.icons.find @user.uid, edit.icon.id
+      { chat } = edit
+      { phase } = chat
+      { potof } = icon
+      console.log { potof, phase, chat, icon }
+      { potof, phase, chat, icon }
+
+    is_creating: -> true
     is_replacing: -> ! @is_creating
-
-    edit_id: ->
-      @user && @edit.potof.face_id && @edit.chat.id
 
     can_move: ->
       @is_replacing && @edit.chat.id != @chat_id
@@ -46,7 +53,11 @@ module.exports =
       @_storage.ref().child('images')
 
     potof_id: ->
-      @book_id + '-' + @edit.potof.face_id
+      if @book_id && @edit.potof?.face_id
+        "#{@book_id}-#{@edit.potof.face_id}"
+      else
+        edit.potof.id
+
     phase_id: ->
       { list } = Query.phases.where({ @part_id, handle: @edit.phase.handle })
       list[0]?._id
@@ -63,27 +74,31 @@ module.exports =
   methods:
     _func: (name, o)->
       firebase.functions().httpsCallable( name )( o )
-    
-    icon_change: (icon)->
-      @icon = { icon, _id: @potof_id }
+
+    icon_change: (mdi = @edit.icon.mdi)->
+      return unless @user
+      return unless @sign
+      o =
+        mdi: mdi
+        _id:  @user.uid
+        sign: @sign.sign
+        book_id: @book_id
+        potof_id: @potof_id
+        write_at: new Date - 0
+      @icons_add o
 
     focus: (@idx)->
-      @icon_change 'mdi-access-point'
 
     fav: ->
     create_mode: ->
-      @edit.chat = Query.chats.find @edit.phase.id + '-edit'
+      @edit_chat = edit.chat
     replace_mode: ->
-      @edit.chat = Query.chats.find @chat_id
+      @edit_chat = Query.chats.find @chat_id
 
     remove: ->
       { _id, potof } = @edit.chat
       return unless confirm "編集中の #{_id} を削除しますか？"
       await @chats_del _id
-
-      @$store.commit "menu/focus",
-        query: "#edit-edit-edit-edit-edit"
-        mode: 'center'
 
       return if potof.chats.ids.length
       { _id } = potof
@@ -132,50 +147,31 @@ module.exports =
       @edit.chat.log = ''
 
   watch:
-    user: ->
-      if @user
-        { displayName, uid } = @user
-      else
-        displayName = null
-        uid = null
-        @icon_change ""
-      @edit.potof.sign = displayName
-      @edit.potof.uid = uid
+    'user.uid': (uid, oldVal)->
+      @icon_change ""
+      return unless oldVal
+      @icons_del oldVal
 
-    'my.potof.face_id': ->
-      return unless @my.potof
-      { face_id, tag_id, job, sign, uid } = @my.potof
-      Object.assign @edit.potof, { face_id, tag_id, job, sign, uid }
+    'sign.sign': (sign)->
+      @icon_change()
 
-    'edit.potof.face_id': ->
-      return unless @edit.potof
-      { face_id, tag_id, head, job, sign, uid } = @edit.potof
-      @edit.chat.head = head
-      _id = @potof_id
-      icon = 'mdi-access-point'
-      write_at = new Date - 0
+    'edit.icon.id': (uid, oldVal)->
+      console.log { uid, oldVal }, @edit.icon
 
-      await @potofs_add { _id, face_id, tag_id, job, write_at, sign, uid },
-        merge: true
-        
-      @icon_change icon
+    'edit.potof.id': (potof_id)->
+      return unless potof_id
+      edit.chat.potof_id = potof_id
+      @icon_change()
 
-    'icon._id': (_id, old_id)->
-      return unless Query.potofs.find @icon._id
-      await Promise.all [
-        await @potofs_add @icon
-        await @potofs_add
-          _id: old_id
-          icon: ""
-      ]
+    'edit.potof.face_id': (face_id)->
+      mdi =
+        if face_id
+          'mdi-account'
+      @icon_change mdi
 
-    'icon.icon': (icon)->
-      return unless Query.potofs.find @icon._id
-      await @potofs_add @icon
+    'idx': (idx)->
+
 
   beforeDestroy: ->
-    @icon.icon = ""
-    if Query.potofs.find @icon._id
-      await @potofs_add @icon
-      console.log "clear icon"
-    console.log "unsubscribed"
+    return unless @user
+    @icon_change ""

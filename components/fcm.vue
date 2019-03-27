@@ -18,7 +18,7 @@ store =
 
 module.exports =
   mixins: [
-    vuex 'firebase', ['fcm_token']
+    vuex         'fcm_token', on: 'firebase'
     localStorage "fcm_topics"
     localStorage "fcm_subscribes"
   ]

@@ -10,6 +10,7 @@ new Rule("potof").schema ->
   @has_many "cards"
   @has_many "stats"
   @has_many "chats"
+  @has_many "icons"
   @habtm "roles"
   @habtm "ables"
 
@@ -17,11 +18,6 @@ new Rule("potof").schema ->
     by_face: ( book_id, face_id )->
       all.where({ face_id, book_id })
 
-    my: (book_id, uid)->
-      all.where({ book_id, uid }).order
-        sort: ['write_at', 'desc']
-      .list[0]
-    
     catalog: (book_id, part_id, sort, order)->
       [a1, a2] = sort.split(".")
       if "say" == a1
@@ -101,6 +97,10 @@ new Rule("potof").schema ->
           @job
           @name || name
         ].join(" ")
+
+    icon_mdi:
+      get: ->
+        @icons.list[0]?.mdi
 
   class @model extends @model
     side: (part_id)->

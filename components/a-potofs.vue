@@ -93,7 +93,9 @@
 
 module.exports =
   mixins: [
-    vuex "menu.potofs", ['order', 'sort', 'hide_ids']
+    vuex "order",    on: "menu.potofs"
+    vuex "sort",     on: "menu.potofs"
+    vuex "hide_ids", on: "menu.potofs"
     require("~/plugins/curtain") [
       "curtain0"
       "curtain1"

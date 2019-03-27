@@ -136,7 +136,7 @@ module.exports =
     require('~/plugins/pager')
     require("~/plugins/for_component")
     poll -> [["sow/story", @book_id ]]
-    vuex "menu.potofs", ['hide_ids']
+    vuex "hide_ids", on: "menu.potofs"
     localStorage "shows"
     localStorage "options"
   ]

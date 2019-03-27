@@ -11,7 +11,7 @@ nuxt-link.item.active(replace :to="back_url" @click.native="bookmark")
 module.exports =
   mixins: [
     path_by "idx", [null, 'book', 'part']
-    vuex_read 'firebase', ['user']
+    vuex_read 'user', on: 'firebase'
     firestore_models "markers",
       -> "marker"
       -> @uid && @part_id

@@ -113,7 +113,7 @@ module.exports =
     firestore_models "parts",  -> "game/#{@book_id}/parts"
     firestore_models "phases", -> "game/#{@book_id}/phases"
     firestore_models "chats",  -> "game/#{@book_id}/chats"
-    vuex "menu.potofs", ['hide_ids']
+    vuex "hide_ids", on: "menu.potofs"
     localStorage "shows"
     localStorage "options"
     require("~/plugins/book-show")

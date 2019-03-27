@@ -48,7 +48,9 @@ div
 
 module.exports =
   mixins: [
-    vuex_read "firebase", ["user", "credential", "sign"]
+    vuex_read 'user',       on: "firebase"
+    vuex_read 'credential', on: "firebase"
+    vuex_read 'sign',       on: "firebase"
     firestore_models "markers",
       -> "marker"
       -> @uid

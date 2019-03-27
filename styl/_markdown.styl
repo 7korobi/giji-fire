@@ -410,15 +410,25 @@ sub
   text-align: center
   font-size: inherit
 
-// Testing
+// multi-column
 .col2
 .col3
+.colX
+.column
   column-rule-width: 2px
   column-rule-style: dashed
   column-gap:  1ex
+  table
+    width: 100%
+    tbody
+      width: 100%
+      tr
+        td
+          padding: 0
 
 .talk
 .post
+  .column
   .col2
     columns: 2 24ex
 
@@ -429,8 +439,14 @@ sub
   .col2
     columns: 2 34ex
 
+  .column
   .col3
     columns: 3 22ex
+
+.fullframe
+  .column
+  .colX
+    column-width: 25ex
 
 // SVG section
 rect.move

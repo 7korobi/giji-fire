@@ -20,20 +20,11 @@ quill-editor(v-model="edit.chat.log" v-bind="for_editor" v-on="$listeners")
 </template>
 
 <script lang="coffee">
-edit = require '~/models/editor'
-
 module.exports =
   mixins: [
     require("~/plugins/for_component")
   ]
-  props: ["part_id", "phases"]
-  data: ->
-    edit.org_chat.part_id = @part_id
-    { edit }
-
-  watch:
-    part_id: ->
-      @edit.org_chat.part_id = @part_id
+  props: ["part_id", "phases", "edit"]
 
   computed:
     is_creating: -> @edit.chat.potof_id == @edit.potof.id

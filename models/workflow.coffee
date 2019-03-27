@@ -24,7 +24,7 @@ new Rule("work_name").schema ->
     by_page: (spot_id, search)->
       q =
         if spot_id != "all"
-          all.partition "spot.#{@spot_id}.set"
+          all.partition "spot.#{spot_id}.set"
         else
           all
       q.search search

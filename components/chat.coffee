@@ -1,6 +1,7 @@
 { Query } = require 'memory-orm'
 { localStorage } = require "vue-petit-store"
 el = require "~/plugins/dom"
+edit = require '~/models/editor'
 
 targets =
   diagram: 'marksvg'
@@ -77,7 +78,7 @@ module.exports = ->
       target = targets[@deco]
       if @edit
         value = @log
-        { value, @part_id, @phases, class: @deco, is: "#{target}-input" }
+        { value, @part_id, @phases, class: @deco, edit, is: "#{target}-input" }
       else
         value = @log
         { value, class: @deco, is: "#{target}-view" }

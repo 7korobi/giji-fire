@@ -108,7 +108,7 @@ module.exports =
   mixins: [
     firestore_models "potofs", -> @book_id && "wiki/#{@book_id}/potofs"
     firestore_models "chats",  -> @book_id && "wiki/#{@book_id}/chats"
-    vuex "menu.potofs", ['hide_ids']
+    vuex "hide_ids", on: "menu.potofs"
     localStorage "shows"
     localStorage "options"
     require("~/plugins/book-show")

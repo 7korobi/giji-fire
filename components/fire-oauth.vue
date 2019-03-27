@@ -28,7 +28,9 @@ if window?
 
 module.exports =
   mixins: [
-    vuex 'firebase', ['user', 'credential', 'sign']
+    vuex 'user',       on: 'firebase'
+    vuex 'credential', on: 'firebase'
+    vuex 'sign',       on: 'firebase'
     firestore_doc "sign", -> @user && "user/#{ @user.uid }"
     require("~/plugins/for_component")
   ]
