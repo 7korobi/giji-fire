@@ -2914,6 +2914,140 @@
       - middle
       - farm
 
+#########################
+# 2019-04-01
+
+-   _id: c132
+    name: ルイン
+    comment: 
+    order: 132
+    tag_ids:
+      - giji
+      - young
+      - road
+
+-   _id: c133
+    name: クレステフ
+    comment: 
+    order: 133
+    tag_ids:
+      - giji
+      - middle
+      - road
+
+-   _id: c134
+    name: ズッテル
+    comment: 
+    order: 134
+    tag_ids:
+      - giji
+      - young
+      - river
+
+-   _id: f15
+    name: ケトゥートゥ
+    comment: インドネシア人名。（いろんなものとの）お友達感を狙う。
+    order: 60015
+    tag_ids:
+      - fable
+
+-   _id: f16
+    name: イェンキンス
+    comment: スイス人名。おにっこは従者寄りにしていこう。
+    order: 60016
+    tag_ids:
+      - fable
+
+-   _id: fw06
+    name: ストラピタカ
+    comment: 守敏's コレクションという解説から。三蔵のひとつ、経蔵（スートラ・ピタカ）
+    order: 61006
+    tag_ids:
+      - fable
+
+-   _id: f17
+    name: モイ
+    comment: アイスランド人名。雪景色の中、火のまほうが灯っている喜び。
+    order: 60017
+    tag_ids:
+      - fable
+
+-   _id: f18
+    name: ミタシュ
+    comment: チェコ人名。被造物（神によるものではなく）らしさを。
+    order: 60018
+    tag_ids:
+      - fable
+
+-   _id: g09
+    name: チトフ
+    comment: ロシア人名。末っ子の可愛らしさを。
+    order: 10009
+    tag_ids:
+      - asia
+
+-   _id: t76
+    name: タカモト
+    comment: 塚原新右衛門高幹（塚原卜伝）。
+    order: 30076
+    tag_ids:
+      - travel
+
+-   _id: t77
+    name: ヨーコ
+    comment: オノヨーコさんを参照。
+    order: 30077
+    tag_ids:
+      - travel
+
+-   _id: t78
+    name: ヤン
+    comment: 中国人名。
+    order: 30078
+    tag_ids:
+      - travel
+
+-   _id: t79
+    name: ヒイラギ
+    comment: 
+    order: 30079
+    tag_ids:
+      - travel
+
+-   _id: t80
+    name: ナオシゲ
+    comment: 
+    order: 30080
+    tag_ids:
+      - travel
+
+-   _id: t81
+    name: ケント
+    comment: アメリカ人名。WASPっぽくしたかったのです。
+    order: 30081
+    tag_ids:
+      - travel
+
+-   _id: t82
+    name: サガタ
+    comment: 個人が善意で行なう喜捨。をあらわすアラビア語
+    order: 30082
+    tag_ids:
+      - travel
+
+-   _id: t83
+    name: キョウスケ
+    comment: 魔毛狂介から。
+    order: 30083
+    tag_ids:
+      - travel
+
+-   _id: t84
+    name: アリババ
+    comment: アリババと４０人の盗賊。
+    order: 30084
+    tag_ids:
+      - travel
 
 #########################
 # xxxx-xx-xx update
@@ -2961,6 +3095,7 @@
 #   19K           ：14K
 #   ウンモ星人    ：http://ufojikenbo.blogspot.com/2016/06/ummo.html
 #
+#
 # 音声ＡＩ
 #   AIさくらさん,
 #   Siri, Alexa, Clova, Coltana, OK!Google.
@@ -2996,6 +3131,15 @@
 #               ：核戦争跡（BC2000年頃） モヘンジョダロ
 #               ：ストーンヘンジ（BC3000年） イギリス ソールズベリー傍
 #               ：ピラミッド 中央ボスニア 
+#
+# 惑星
+#               ：ウンモ星
+#               ：ニビル星 
+#               ：マルドゥク星 
+#               ：ティアマト星
+#               ：
+#               ：
+#
 #
 # 大陸議事
 #  弁当配達
@@ -3039,3 +3183,7 @@
 # http://cjjc.weblio.jp/
 # http://ja.wikipedia.org/wiki/十五少年漂流記
 # http://sougouranking.net/
+#
+# https://ameblo.jp/sumire93/
+# https://seesaawiki.jp/transact/
+# https://www.y-history.net/appendix/appendix-list.html#wh0603_1-a

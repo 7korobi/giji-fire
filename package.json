@@ -5,7 +5,7 @@
   "author": "7korobi@gmail.com",
   "private": true,
   "scripts": {
-    "dev": "nuxt -spa",
+    "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
     "jest": "jest -u --config config/jest.js --rootDir .",

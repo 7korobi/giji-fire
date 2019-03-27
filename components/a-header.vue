@@ -9,7 +9,7 @@ module.exports =
     localStorage "font"
     localStorage "zoom"
     scroll()
-    geo()
+    # geo()
   ]
   data: ->
     theme: "cinema"

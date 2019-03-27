@@ -1,4 +1,6 @@
 module.exports =
+  mode: 'spa'
+  modern: 'client'
   head:     require "./head.coffee"
   build:    require "./build.coffee"
   generate: require "./generate.coffee"
