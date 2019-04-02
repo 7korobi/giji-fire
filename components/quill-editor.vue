@@ -149,18 +149,14 @@ module.exports =
       @quill.enable false
 
       if html = @value || @content || @html
-        if @html
+        if html
           @change()
         @quill.clipboard.dangerouslyPasteHTML 0, html
 
       @quill.enable ! @disabled
 
       @quill.on 'selection-change', (range)=>
-        if range
-          @$emit 'focus', @quill
-        else
-          @$emit 'blur',  @quill
-        console.log range
+        @$emit 'selection', range, @quill
 
       @quill.on 'text-change', ({ ops }, oldDelta, source)=>
         @change()

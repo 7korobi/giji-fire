@@ -5,11 +5,12 @@ div
     a.btn(@click="is_open = true")
       p(v-if="set && name") {{ value.job }} {{ name }}
       p(v-else) (キャラクターを選ぶ。)
+  
   c-report(v-if="is_open" handle="header" deco="center")
-    tags(v-model="value.tag_id")
+    tags(v-model="tag_id")
     sub(style="width: 100%" v-if="set")
       | {{ chrs.length }}人の{{ set.long }}を表示しています。
-  .fullframe(v-if="is_open && value.tag_id")
+  .fullframe(v-if="is_open && tag_id")
     transition-group.portrates(name="list" tag="div")
       portrate(v-for="chr in chrs", :face_id="chr._id", :key="chr._id" @click="set_face")
         p {{ job(chr._id) }}
@@ -20,10 +21,10 @@ div
 
 module.exports =
   data: ->
+    tag_id: ""
     is_open: false
-  props:
-    value:
-      required: true
+  props: ['value', 'potofs']
+      
   computed:
     name: ->
       if face = Query.faces.find @value.face_id
@@ -35,7 +36,7 @@ module.exports =
       .find @value.tag_id
     chrs: ->
       Query.faces
-      .tag @value.tag_id
+      .tag @tag_id
       .list
 
   methods:
@@ -46,10 +47,10 @@ module.exports =
       else
         ""
 
-    set_face: (id)->
-      @value.face_id = id
-      @value.job = @job id
-      @$emit 'input', @value
+    set_face: (face_id)->
+      job = @job face_id
+      o = { @tag_id, job, face_id }
+      @$emit 'input', o
       @is_open = false
 </script>
 

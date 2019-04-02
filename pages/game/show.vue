@@ -103,7 +103,6 @@ log-wiki
 <script lang="coffee">
 { Query, Set, State } = require 'memory-orm'
 { vuex, localStorage, firestore_model, firestore_models } = require "vue-petit-store"
-edit = require '~/models/editor'
 
 module.exports =
   mixins: [
@@ -122,7 +121,6 @@ module.exports =
   ]
   layout: 'blank'
   data: ->
-    edit: edit
     step: State.step
     mode: 'wiki' 
     floats: {}

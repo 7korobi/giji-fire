@@ -1,8 +1,7 @@
+require "~/models/index"
 RANDOM = require "~/plugins/random"
 { Query, Set, State } = require 'memory-orm'
 { vuex, relative_to, firestore_models } = require "vue-petit-store"
-
-edit = require '~/models/editor'
 
 if window?
   firebase = require "firebase"
@@ -18,52 +17,76 @@ module.exports =
       (ref)-> ref.where("book_id","==",@book_id)
   ]
   data: ->
-    edit_chat = edit.chat
-    { edit_chat, tag_ids: [], step: State.step }
+    edit_base:
+      icon:
+        _id: 'anonymousicon'
+        sign: ""
+        mdi: "mdi-account"
+        potof_id: 'edit-edit-self'
+      potof:
+        _id: 'edit-edit-self'
+        tag_id: ""
+        face_id: ""
+        job: ""
+        sign: "ななころび"
+      phase: {}
+      chat:
+        potof_id: "edit-edit-self"
+        write_at: 0
+    step: State.step
 
-      # return {} unless @sign
-      # sign.draft sign.introduction
+  created: ->
+    @create_mode()
+    Set.icon.add  @edit_base.icon
+    Set.potof.add @edit_base.potof
+    Set.phase.add @edit_base.phase
+    Set.chat.add  @edit_base.chat
 
   computed:
-    edit: ->
-      return edit unless @book_id
-      return edit unless @user
-
-      icon = Query.icons.find @user.uid, edit.icon.id
-      { chat } = edit
-      { phase } = chat
-      { potof } = icon
-      console.log { potof, phase, chat, icon }
-      { potof, phase, chat, icon }
-
-    is_creating: -> true
-    is_replacing: -> ! @is_creating
-
-    can_move: ->
-      @is_replacing && @edit.chat.id != @chat_id
-
-    can_fav: ->
-      @phase?.fav
-    can_update: ->
-      @phase?.update
-
     _storage: ->
       firebase.storage()
     _images: ->
       @_storage.ref().child('images')
 
-    potof_id: ->
-      if @book_id && @edit.potof?.face_id
-        "#{@book_id}-#{@edit.potof.face_id}"
-      else
-        edit.potof.id
+    edit: ->
+      { icon, potof, phase, chat } = @edit_base
+      console.log o = {
+        @is_creating
+        @is_replacing
+        @can_move
+        @can_update
+        @phases
+        icon
+        potof
+        phase
+        chat
+      }
+      o
 
-    phase_id: ->
-      { list } = Query.phases.where({ @part_id, handle: @edit.phase.handle })
-      list[0]?._id
-      
-    phase: ->
-      @chat?.phase
+    my_icon:  -> Query.icons.find  @my_icon_id
+    my_potof: -> Query.potofs.find @my_potof_id
+    my_chat:  -> Query.chats.find  @my_chat_id
+    my_phase: -> Query.phases.find @my_phase_id
+
+    my_icon_id:  -> @user?.uid || @edit_base.icon._id
+    my_potof_id: -> @my_icon?.potof_id || @edit_base.potof._id
+    my_chat_id:  -> @edit_base.chat._id
+    my_phase_id: -> @edit_base.chat.phase_id
+    
+    is_creating: ->
+      'edit-edit-edit-edit-edit' == @my_chat_id
+    is_replacing: ->
+      'edit-edit-edit-edit-edit' != @my_chat_id
+
+    can_move: ->
+      @is_replacing && @chat_id != @my_chat_id
+    can_fav: ->
+      @edit_base.chat.phase?.fav
+    can_update: ->
+      return false unless @chat
+      { phase, potof } = @chat
+      phase?.update
+
     handle: ->
       @chat?.handle ? @phase?.handle
 
@@ -75,25 +98,57 @@ module.exports =
     _func: (name, o)->
       firebase.functions().httpsCallable( name )( o )
 
-    icon_change: (mdi = @edit.icon.mdi)->
+    my_icon_change: (mdi = @my_icon?.mdi, potof_id = @my_potof_id)->
       return unless @user
       return unless @sign
-      o =
-        mdi: mdi
+      return unless @book_id?
+      return unless potof_id?
+      return unless mdi?
+      o = {
+        @book_id
+        potof_id
+        mdi
         _id:  @user.uid
         sign: @sign.sign
-        book_id: @book_id
-        potof_id: @potof_id
         write_at: new Date - 0
+      }
       @icons_add o
 
-    focus: (@idx)->
+    my_potof_change: (o)->
+      _id = "#{@book_id}-#{o.face_id}"
+      { uid } = @user
+      Object.assign o, { _id, uid, @book_id }
+      @potofs_add o
+      @my_icon_change @icon.mdi, _id
+
+    selection: (range)->
+      if range
+        @my_icon_change "mdi-pen"
+      else
+        @my_icon_change "mdi-account"
+
+    create_mode: ->
+      Object.assign @edit_base.phase,
+        _id: 'edit-edit-edit-edit'
+        handle: 'SSAY'
+
+      Object.assign @edit_base.chat,
+        _id: 'edit-edit-edit-edit-edit'
+        show: "talk"
+        deco: "quill"
+        to: null
+        head: ""
+        log: ""
+        random: []
+      @$nextTick ->
+        console.log [@is_creating, @is_replacing, @edit]
+
+    replace_mode: ->
+      Object.assign @edit_base.chat, @chat
+      @$nextTick ->
+        console.log [@is_creating, @is_replacing, @edit]
 
     fav: ->
-    create_mode: ->
-      @edit_chat = edit.chat
-    replace_mode: ->
-      @edit_chat = Query.chats.find @chat_id
 
     remove: ->
       { _id, potof } = @edit.chat
@@ -124,13 +179,11 @@ module.exports =
 
       for key, idx in attrs.random ? []
         { title, text } = random[idx] ?= RANDOM key, { @book_id }
+        console.log { key, title, text }
 
-
-      idx = 0
       log = log.replace /<kbd title="([^"]+)">([^<]+)<\/kbd>/g, (str, t1, v1)->
         { title, text } = random[idx]
         console.log { t1, v1, title, text }
-        idx++
         """<kbd title="#{title}">#{text}</kbd>"""
 
       if @is_creating
@@ -143,35 +196,26 @@ module.exports =
       else
         await @chats_add { _id, show, deco, head, to, log, random }
       @create_mode()
-      @edit.chat.random = []
-      @edit.chat.log = ''
 
   watch:
     'user.uid': (uid, oldVal)->
-      @icon_change ""
+      @my_icon_change ""
       return unless oldVal
       @icons_del oldVal
 
     'sign.sign': (sign)->
-      @icon_change()
-
-    'edit.icon.id': (uid, oldVal)->
-      console.log { uid, oldVal }, @edit.icon
-
-    'edit.potof.id': (potof_id)->
-      return unless potof_id
-      edit.chat.potof_id = potof_id
-      @icon_change()
-
-    'edit.potof.face_id': (face_id)->
-      mdi =
-        if face_id
-          'mdi-account'
-      @icon_change mdi
+      @my_icon_change()
 
     'idx': (idx)->
 
+    'my_potof.id': (id)->
+      return unless id
+      @edit.chat.potof_id = id
+      @edit.chat.head = @my_potof.head
+
+      Object.assign @edit.potof, @my_potof
+      @my_icon_change()
 
   beforeDestroy: ->
     return unless @user
-    @icon_change ""
+    @my_icon_change ""

@@ -20,7 +20,7 @@ log-wiki
   template(slot="icons")
     .item
       i.c.mdi(:class="edit.icon.mdi")
-    h6.c(:class="edit.chat.phase.handle" v-if="user && is_replacing") 編集
+    h6.c(:class="edit.chat.phase.handle" v-if="is_replacing") 編集
     a.btn.item.tooltip-left(:class="handle" @click="move" v-if="can_move" data-tooltip="編集中の投稿の並び順をこの上に")
       i.mdi.mdi-table-column-plus-before
 
@@ -91,7 +91,7 @@ log-wiki
               | このページ内での新規投稿を通知
           br
   div(v-if="is_creating")
-    e-potof(v-model="edit.potof")
+    e-potof(:value="my_potof" @input="my_potof_change")
     chat(v-bind="for_chat_new" v-on="for_chat_event(edit.chat.id)")
   c-report(handle="footer" deco="center")
     bread-crumb

@@ -1,7 +1,6 @@
 { Query } = require 'memory-orm'
 { localStorage } = require "vue-petit-store"
 el = require "~/plugins/dom"
-edit = require '~/models/editor'
 
 targets =
   diagram: 'marksvg'
@@ -23,6 +22,7 @@ targets =
 module.exports = ->
   props:
     current: Object
+    edit: Object
 
     id: String
     write_at: [Date, Number]
@@ -42,10 +42,6 @@ module.exports = ->
       type: String
       default: ""
 
-    phases: Array
-    edit:
-      type: Boolean
-      default: false
 
   mixins: [
     localStorage "shows"
@@ -76,9 +72,8 @@ module.exports = ->
 
     for_body: ->
       target = targets[@deco]
-      if @edit
-        value = @log
-        { value, @part_id, @phases, class: @deco, edit, is: "#{target}-input" }
+      value = @log
+      if @id && @edit && @id == @edit.chat.id
+        { value, @edit, class: @deco, is: "#{target}-input" }
       else
-        value = @log
         { value, class: @deco, is: "#{target}-view" }

@@ -75,11 +75,13 @@ module.exports = function (options) {
 
         const super_call = rule.exclude
         rule.exclude = (file) => {
+/*
           if (/node_modules\/parchment/.test( file )) return false
-          if (/node_modules\/quill/    .test( file )) {
-            console.log( file )
-            return false 
+          if (/node_modules\/quill/.test(file)) {
+            console.log(file);
+            return super_call(file);
           }
+ */ 
           return super_call( file )
         }
         rule.use[0].options = babel

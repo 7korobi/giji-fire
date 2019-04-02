@@ -12,7 +12,6 @@ require "./phase"
 require "./section"
 require "./chat"
 
-require "./editor"
 require "./sow"
 
 

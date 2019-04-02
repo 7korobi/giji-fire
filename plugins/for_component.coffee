@@ -3,18 +3,17 @@ _ = require "lodash"
 module.exports =
   methods:
     for_chat: (id)->
-      edit = id == @edit?.chat.id
-      { id, edit, @part_id, @phases, current: @chat }
+      { id, @edit, current: @chat }
 
     for_chat_event: (id)->
-      edit = id == @edit?.chat.id
-      if edit
+      if id == @edit?.chat.id
         {
           @anker
           @popup
           @create_mode
           @remove
-          icon:      @icon_change
+          @selection
+          icon:   @my_icon_change
           drop_image: @image_post
           check:      @check_post
           submit:      @chat_post
@@ -30,8 +29,7 @@ module.exports =
   computed:
     for_chat_new: ->
       id = "edit-edit-edit-edit-edit"
-      edit = true
-      { id, edit, @part_id, @phases, current: @chat }
+      { id, @edit, current: @chat }
 
     for_toc: ->
       page_idx = @page_all_contents?.page_idx?(@chat) ? @pager.tail_idx
