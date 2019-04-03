@@ -33,7 +33,7 @@ module.exports =
         ""
     set: ->
       Query.tags
-      .find @value.tag_id
+      .find @tag_id || @value.tag_id
     chrs: ->
       Query.faces
       .tag @tag_id
@@ -41,8 +41,10 @@ module.exports =
 
   methods:
     job: (face_id)->
+      
       if @set
-        @set.chr_job face_id
+        @set
+        .chr_job face_id
         .job
       else
         ""
@@ -51,7 +53,10 @@ module.exports =
       job = @job face_id
       o = { @tag_id, job, face_id }
       @$emit 'input', o
+
       @is_open = false
+      @tag_id = ""
+
 </script>
 
 <style lang="sass">

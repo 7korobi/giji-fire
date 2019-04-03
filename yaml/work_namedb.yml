@@ -2854,6 +2854,9 @@ name:
 - spell: Redgrave
   name: レッドグレイヴ
   key: USA
+- spell: Redhawk
+  name: レッドホーク
+  key: USA
 - spell: Reding
   name: レディング
   key: USA
@@ -5835,6 +5838,9 @@ name:
   key: USA
 - spell: Sarandon
   name: サランドン
+  key: USA
+- spell: Sarcinelli
+  name: サルシネリ
   key: USA
 - spell: Sardi
   name: サーディ
@@ -8937,6 +8943,9 @@ name:
   key: USA
 - spell: Smallman
   name: スモールマン
+  key: USA
+- spell: Smalls
+  name: スモールス
   key: USA
 - spell: Smallwood
   name: スモールウッド
@@ -21307,6 +21316,9 @@ name:
 - spell: Lexie
   name: レクシー
   key: USA
+- spell: Lexington
+  name: レクシントン
+  key: USA
 - spell: Lexy
   name: レクシー
   key: USA
@@ -33120,6 +33132,9 @@ name:
   key: USA
 - spell: Pinky
   name: ピンキー
+  key: USA
+- spell: Pinn
+  name: ピン
   key: USA
 - spell: Pinner
   name: ピナー
@@ -60133,6 +60148,9 @@ name:
 - spell: Calhoun
   name: キャルフーン
   key: USA
+- spell: Caliber
+  name: キャリバー
+  key: USA
 - spell: Calico
   name: キャリコ
   key: USA
@@ -62259,6 +62277,9 @@ name:
   key: USA
 - spell: Chucky
   name: チャッキー
+  key: USA
+- spell: Chudabala
+  name: チュダボーラ
   key: USA
 - spell: Chudnow
   name: チャドナウ
@@ -66843,6 +66864,9 @@ name:
   key: USA
 - spell: Devane
   name: ディヴェイン
+  key: USA
+- spell: Devanny
+  name: デヴァニー
   key: USA
 - spell: DeVargas
   name: デヴァーガス
@@ -72910,6 +72934,9 @@ name:
 - spell: Agut
   name: アグト
   key: ESP
+- spell: Ahued
+  name: アウエド
+  key: ESP
 - spell: Aída
   name: アイーダ
   key: ESP
@@ -76863,6 +76890,9 @@ name:
   key: ESP
 - spell: Fondari
   name: フォンダリ
+  key: ESP
+- spell: Fonseca
+  name: フォンセーカ
   key: ESP
 - spell: Font
   name: フォント
@@ -81271,6 +81301,9 @@ name:
 - spell: Plácido
   name: プラシド
   key: ESP
+- spell: Placiencia
+  name: プラシエンシア
+  key: ESP
 - spell: Plana
   name: プラナ
   key: ESP
@@ -81279,6 +81312,9 @@ name:
   key: ESP
 - spell: Planes
   name: プラネス
+  key: ESP
+- spell: Plascencia
+  name: プラセンシア
   key: ESP
 - spell: Plaza
   name: プラサ
@@ -86581,6 +86617,9 @@ name:
 - spell: "Zegara\x10"
   name: ゼガラッチ
   key: CRO
+- spell: Zekavica
+  name: ゼカヴィツァ
+  key: CRO
 - spell: Zelenovic
   name: ゼレノヴィッチ
   key: CRO
@@ -87387,9 +87426,6 @@ name:
   key: POR
 - spell: Fomm
   name: フォム
-  key: POR
-- spell: Fonseca
-  name: フォンセーカ
   key: POR
 - spell: Fontana
   name: フォンタナ
@@ -110188,6 +110224,9 @@ name:
 - spell: Akinshina
   name: アキンシナ
   key: RUS
+- spell: Aksenova
+  name: アクショーノヴァ
+  key: RUS
 - spell: Aksyonova
   name: アクショーノヴァ
   key: RUS
@@ -110413,6 +110452,9 @@ name:
 - spell: Aripov
   name: アリポフ
   key: RUS
+- spell: Aristarkh
+  name: アリスタルフ
+  key: RUS
 - spell: Aristov
   name: アリストフ
   key: RUS
@@ -110487,6 +110529,9 @@ name:
   key: RUS
 - spell: Assadulin
   name: アサドゥリン
+  key: RUS
+- spell: Astakhov
+  name: アスターホフ
   key: RUS
 - spell: Auer
   name: オウア
@@ -110727,6 +110772,9 @@ name:
   key: RUS
 - spell: Bogomolov
   name: ボゴモロフ
+  key: RUS
+- spell: Boguslavskiy
+  name: ボグスラフスキー
   key: RUS
 - spell: Boklan
   name: ボクラン
@@ -111019,6 +111067,9 @@ name:
 - spell: Churina
   name: チュリーナ
   key: RUS
+- spell: Chursin
+  name: チュルシン
+  key: RUS
 - spell: Chursina
   name: チュルシナ
   key: RUS
@@ -111264,6 +111315,9 @@ name:
   key: RUS
 - spell: Durasova
   name: ドゥラーソヴァ
+  key: RUS
+- spell: Duvbanov
+  name: デュヴバノフ
   key: RUS
 - spell: Duzhev
   name: ジュゼフ
@@ -115492,6 +115546,9 @@ name:
 - spell: Venediktov
   name: ヴェニェディクトフ
   key: RUS
+- spell: Venes
+  name: ヴィェネス
+  key: RUS
 - spell: Vengerov
   name: ヴェンゲロフ
   key: RUS
@@ -116061,6 +116118,9 @@ name:
   key: RUS
 - spell: Zoya
   name: ゾーヤ
+  key: RUS
+- spell: Zubko
+  name: ズブコ
   key: RUS
 - spell: Zubkov
   name: ズブコフ
@@ -117192,6 +117252,9 @@ name:
   key: GER
 - spell: Benrath
   name: ベンラート
+  key: GER
+- spell: Bentz
+  name: ベンツ
   key: GER
 - spell: Berben
   name: ベルベン
@@ -164923,6 +164986,9 @@ name:
 - spell: Boevski
   name: ボーエフスキ
   key: BUL
+- spell: Boneva
+  name: ボネヴァ
+  key: BUL
 - spell: Boyan
   name: ボヤン
   key: BUL
@@ -165597,6 +165663,9 @@ name:
   key: POL
 - spell: Biskupski
   name: ビスクプスキ
+  key: POL
+- spell: Blak
+  name: ブラック
   key: POL
 - spell: Blecka
   name: ブエンツカ
@@ -169304,24 +169373,24 @@ country:
     _id: MGL
 timestamp:
   NOR.htm: 2019-04-01 04:45:15.000000000 Z
-  USA.htm: 2019-04-01 19:44:02.000000000 Z
+  USA.htm: 2019-04-02 18:57:27.000000000 Z
   USA2.htm: 2019-04-01 19:44:03.000000000 Z
-  USA3.htm: 2019-04-01 19:44:04.000000000 Z
-  USA4.htm: 2019-04-01 19:44:05.000000000 Z
+  USA3.htm: 2019-04-02 18:57:28.000000000 Z
+  USA4.htm: 2019-04-02 18:57:29.000000000 Z
   GEO.htm: 2019-03-24 11:49:03.000000000 Z
   IRI.htm: 2019-03-24 11:49:04.000000000 Z
   EGY.htm: 2019-03-24 11:49:01.000000000 Z
-  ESP.htm: 2019-04-01 19:43:56.000000000 Z
-  CRO.htm: 2019-04-01 19:43:55.000000000 Z
-  POR.htm: 2019-03-22 20:01:44.000000000 Z
+  ESP.htm: 2019-04-02 18:57:23.000000000 Z
+  CRO.htm: 2019-04-02 18:57:23.000000000 Z
+  POR.htm: 2019-04-02 18:57:25.000000000 Z
   ISR.htm: 2019-03-18 19:07:27.000000000 Z
   ITA.htm: 2019-04-01 19:44:00.000000000 Z
   IND.htm: 2019-04-01 19:43:59.000000000 Z
   INA.htm: 2019-04-01 04:45:13.000000000 Z
   KEN.htm: 2019-04-01 19:44:00.000000000 Z
-  RUS.htm: 2019-03-22 20:01:45.000000000 Z
+  RUS.htm: 2019-04-02 18:57:25.000000000 Z
   EST.htm: 2019-03-13 18:38:22.000000000 Z
-  GER.htm: 2019-04-01 19:43:59.000000000 Z
+  GER.htm: 2019-04-02 18:57:24.000000000 Z
   NED.htm: 2019-04-01 04:45:15.000000000 Z
   CHN.htm: 2019-04-01 04:45:09.000000000 Z
   THA.htm: 2019-04-01 04:45:16.000000000 Z
@@ -169334,7 +169403,7 @@ timestamp:
   TUR.htm: 2019-03-11 11:21:18.000000000 Z
   HUN.htm: 2019-03-01 17:28:18.000000000 Z
   FIN.htm: 2019-03-20 13:09:10.000000000 Z
-  BUL.htm: 2019-03-20 13:09:10.000000000 Z
-  POL.htm: 2019-03-24 11:49:05.000000000 Z
+  BUL.htm: 2019-04-02 18:57:22.000000000 Z
+  POL.htm: 2019-04-02 18:57:25.000000000 Z
   ROM.htm: 2019-03-25 07:01:56.000000000 Z
   MGL.htm: 2018-10-23 19:46:21.000000000 Z

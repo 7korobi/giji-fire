@@ -20,13 +20,13 @@ log-wiki
   template(slot="icons")
     .item
       i.c.mdi(:class="icon.mdi")
-    h6.c(:class="edit.chat.phase.handle" v-if="user && is_replacing") 編集
-    a.btn.item.tooltip-left(:class="handle" @click="move" v-if="can_move" data-tooltip="編集中の投稿の並び順をこの上に")
+    h6.c(:class="edit.chat.phase.handle" v-if="user && edit.is_replacing") 編集
+    a.btn.item.tooltip-left(:class="handle" @click="move" v-if="edit.is_moving" data-tooltip="編集中の投稿の並び順をこの上に")
       i.mdi.mdi-table-column-plus-before
 
-    a.btn.item.tooltip-left(:class="handle" @click="replace_mode" v-if="can_update && is_creating" data-tooltip="この投稿を編集")
+    a.btn.item.tooltip-left(:class="handle" @click="replace_mode" v-if="can_update && edit.is_creating" data-tooltip="この投稿を編集")
       i.mdi.mdi-pencil
-    a.btn.item.tooltip-left(:class="handle" @click="create_mode" v-if="is_replacing" data-tooltip="この編集を取りやめる")
+    a.btn.item.tooltip-left(:class="handle" @click="create_mode" v-if="edit.is_replacing" data-tooltip="この編集を取りやめる")
       i.mdi.mdi-pencil-off
 
     a.btn.item.tooltip-left(:class="handle" @click="fav"  v-if="can_fav" data-tooltip="いいね！")
@@ -90,9 +90,8 @@ log-wiki
               fcm(:topic="book_id")
               | このページ内での新規投稿を通知
           br
-  div(v-if="is_creating")
-    e-potof(v-model="edit.potof")
-    chat(v-bind="for_chat_new" v-on="for_chat_event(edit.chat.id)")
+  e-potof(v-if="edit.is_entry" v-model="edit.potof")
+  chat(v-if="edit.is_creating" v-bind="for_chat_new" v-on="for_chat_event(edit.chat.id)")
   c-report(handle="footer" deco="center")
     bread-crumb
 </template>

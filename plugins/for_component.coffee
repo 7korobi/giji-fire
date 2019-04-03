@@ -13,7 +13,6 @@ module.exports =
           @create_mode
           @remove
           @selection
-          icon:   @my_icon_change
           drop_image: @image_post
           check:      @check_post
           submit:      @chat_post

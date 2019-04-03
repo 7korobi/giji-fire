@@ -283,7 +283,7 @@ div
   article(ref="editor")
   hr.footnote
   div.form
-    button(@click="submit" :class="{ ban, warn }")
+    button.fine(@click="submit" :class="{ ban, warn }")
       i.mdi(:class="mark")
       span
         | {{chars}}/

@@ -1,16 +1,16 @@
 <template lang="pug">
 quill-editor(v-model="edit.chat.log" v-bind="for_editor" v-on="$listeners")
-  select(v-if="edit.is_creating" v-model="edit.phase.handle" key="handle")
-    option(v-for="phase in edit.phases" :value="phase.handle" :class="phase.handle" :key="phase.handle") ∞ {{ phase.label }}
+  select(v-if="edit.is_creating" @input="input('phase_id', $event.target.value)" :value="edit.chat.phase_id" key="handle")
+    option(v-for="phase in edit.phases" :value="phase.id" :class="phase.handle" :key="phase.handle") ∞ {{ phase.label }}
 
-  select(v-model="edit.chat.show" key="show")
+  select(@input="input('show', $event.target.value)" :value="edit.chat.show" key="show")
     option(value="post")   描写
     option(value="talk")   会話
     option(value="report") 看板 
-  select(v-model="edit.chat.head" key="head")
+  select(@input="input('head', $event.target.value)" :value="edit.chat.head" key="head")
     option(value="") 無地
     option(:value="edit.potof.head") 記名
-  select(v-model="edit.chat.deco" key="deco")
+  select(@input="input('deco', $event.target.value)" :value="edit.chat.deco" key="deco")
     option(value="quill")  文字
     option(value="diagram") 作図
   span.pull-right(v-if="edit.is_replacing")
@@ -28,6 +28,9 @@ module.exports =
     value: String
     edit: Object
 
+  methods:
+    input: (key, val)->
+      console.log { key, val }
   computed: {}
 
 </script>
