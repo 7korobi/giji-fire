@@ -13,6 +13,7 @@ module.exports =
           @create_mode
           @remove
           @selection
+          input:      @chat_input
           drop_image: @image_post
           check:      @check_post
           submit:      @chat_post

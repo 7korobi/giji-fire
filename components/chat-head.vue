@@ -4,11 +4,11 @@
   | ▷
   span.pull-left {{ head }}
 .name(v-else)
-  sup.pull-right(v-if="full && sign") {{ sign }}
+  sup.pull-right(v-if="label") {{ label }}
   | {{ head }}
 </template>
 
 <script lang="coffee">
 module.exports =
-  props: ["full","head", "to", "sign"]
+  props: ["full","head", "to", "label"]
 </script>

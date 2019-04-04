@@ -17,30 +17,26 @@ module.exports =
       (ref)-> ref.where("book_id","==",@book_id)
   ]
   data: ->
-    edit_base:
-      icon:
-        _id: 'anonymous'
-        sign: ""
-        mdi: "mdi-account"
-        potof_id: 'edit-edit-self'
-      potof:
-        _id: 'edit-edit-self'
-        tag_id: ""
-        face_id: ""
-        job: ""
-        sign: "ななころび"
-      phase: {}
-      chat:
-        potof_id: "edit-edit-self"
-        write_at: 0
-    step: State.step
+    Set.icon.add icon =
+      _id: 'anonymous'
+      sign: ""
+      mdi: "mdi-account"
+      potof_id: 'edit-edit-self'
 
-  created: ->
-    @create_mode()
-    Set.icon.add  @edit_base.icon
-    Set.potof.add @edit_base.potof
-    Set.phase.add @edit_base.phase
-    Set.chat.add  @edit_base.chat
+    Set.potof.add potof = 
+      _id: 'edit-edit-self'
+      tag_id: ""
+      face_id: ""
+      job: ""
+      sign: "ななころび"
+
+    @create_mode chat =
+      potof_id: "edit-edit-self"
+      write_at: 0
+    Set.chat.add chat
+
+    step: State.step
+    edit_base: { icon, potof, chat }
 
   computed:
     _storage: ->
@@ -58,13 +54,16 @@ module.exports =
         is_replacing = ! is_creating
 
       is_moving = is_replacing && @chat_id != @my_chat_id
+      can_update = @chat?.phase?.update
+      can_fav = @my_phase?.fav
 
       { ...@edit_base
         is_entry
         is_creating
         is_replacing
         is_moving
-        @can_update
+        can_update
+        can_fav
         @phases
       }
 
@@ -79,17 +78,9 @@ module.exports =
     my_potof_id: -> @my_icon?.potof_id || @edit_base.potof._id
     my_chat_id:  -> @edit_base.chat._id
     my_phase_id: -> @edit_base.chat.phase_id
-    
-
-    can_fav: ->
-      @edit_base.chat.phase?.fav
-    can_update: ->
-      return false unless @chat
-      { phase, potof } = @chat
-      phase?.update
 
     handle: ->
-      @chat?.handle ? @phase?.handle
+      @chat?.handle || @phase?.handle
 
     phases: ->
       return [] unless @book_id
@@ -132,12 +123,9 @@ module.exports =
       else
         @my_icon_change { mdi: "mdi-account" }
 
-    create_mode: ->
-      Object.assign @edit_base.phase,
-        _id: 'edit-edit-edit-edit'
-        handle: 'SSAY'
-
-      Object.assign @edit_base.chat,
+    create_mode: (tgt = @edit_base.chat)->
+      console.log tgt
+      Object.assign tgt,
         _id: 'edit-edit-edit-edit-edit'
         show: "talk"
         deco: "quill"
@@ -197,6 +185,10 @@ module.exports =
       else
         await @chats_add { _id, show, deco, head, to, log, random }
       @create_mode()
+    
+    chat_input: (key, val)->
+      @edit_base.chat[key] = val
+      @$forceUpdate()
 
   watch:
     'user.uid':
@@ -214,7 +206,6 @@ module.exports =
     'my_potof_id':
       immediate: true
       handler: (id)->
-        console.log "my_potof_id"
         @edit_base.chat.potof_id = id
         Object.assign @edit_base.potof, @my_potof
         @my_icon_change {}
@@ -223,7 +214,6 @@ module.exports =
     'my_potof.head':
       immediate: true
       handler: (head)->
-        console.log "my_potof.head"
         @edit_base.chat.head = head
 
     'phases':

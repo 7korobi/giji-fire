@@ -206,6 +206,8 @@ module.exports =
           ops.insert "#{protocol}:🔗", { link }
 
     change: _.debounce ->
+      return unless @$refs
+      return unless @quill
       { @redo, @undo } = @quill.history.stack
       delta  = @quill.getContents()
       @attrs = {}

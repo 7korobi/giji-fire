@@ -11,7 +11,7 @@ table.talk(:id="id" :key="id")
       td
         .baloon(:class="classname")
         .chat(:key="id" :class="classname" v-on="markup_event('click')")
-          chat-head(v-if="head" :head="head" :to="to" :sign="sign")
+          chat-head(v-if="head" :head="head" :to="to" :label="label")
           hr(v-if="head")
           component.text(v-bind="for_body" v-on="$listeners")
           .text(v-if="$slots.default" :class="deco")

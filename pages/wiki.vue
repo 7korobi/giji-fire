@@ -24,12 +24,12 @@ log-wiki
     a.btn.item.tooltip-left(:class="handle" @click="move" v-if="edit.is_moving" data-tooltip="編集中の投稿の並び順をこの上に")
       i.mdi.mdi-table-column-plus-before
 
-    a.btn.item.tooltip-left(:class="handle" @click="replace_mode" v-if="can_update && edit.is_creating" data-tooltip="この投稿を編集")
+    a.btn.item.tooltip-left(:class="handle" @click="replace_mode()" v-if="edit.can_update && edit.is_creating" data-tooltip="この投稿を編集")
       i.mdi.mdi-pencil
-    a.btn.item.tooltip-left(:class="handle" @click="create_mode" v-if="edit.is_replacing" data-tooltip="この編集を取りやめる")
+    a.btn.item.tooltip-left(:class="handle" @click="create_mode()" v-if="edit.is_replacing" data-tooltip="この編集を取りやめる")
       i.mdi.mdi-pencil-off
 
-    a.btn.item.tooltip-left(:class="handle" @click="fav"  v-if="can_fav" data-tooltip="いいね！")
+    a.btn.item.tooltip-left(:class="handle" @click="fav"  v-if="edit.can_fav" data-tooltip="いいね！")
       i.mdi.mdi-heart-outline(v-if="true")
       i.mdi.mdi-heart(v-if="false")
     hr

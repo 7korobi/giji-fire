@@ -27,6 +27,8 @@ module.exports = ->
     id: String
     write_at: [Date, Number]
 
+    phase_id: String
+    show: String
     sign: String
     head: String
     to: String
@@ -63,6 +65,9 @@ module.exports = ->
     chat: ->
       if @id
         Query.chats.find @id
+    
+    label: ->
+      ""
 
     classname: ->
       { id } = @
@@ -73,7 +78,7 @@ module.exports = ->
     for_body: ->
       target = targets[@deco]
       value = @log
-      if @id && @edit && @id == @edit.chat.id
-        { value, @edit, class: @deco, is: "#{target}-input" }
+      if @edit
+        { value, @log, @show, @head, @deco, @phase_id, @edit, class: @deco, is: "#{target}-input" }
       else
         { value, class: @deco, is: "#{target}-view" }

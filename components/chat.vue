@@ -12,10 +12,15 @@ module.exports =
     edit: Object
 
   render: (m, ctx)->
-    { id, show, current, edit, phases } = ctx.props
+    { id, show, current, edit } = ctx.props
 
     chat = Query.chats.find id
     return [] unless chat
+
+    if id && edit && id == edit.chat.id
+      chat = edit.chat
+    else
+      edit = undefined
 
     if o = chat.phase
       { handle } = o
@@ -27,9 +32,9 @@ module.exports =
     
     key = id
     { face_id = face_id, show = show, handle = handle, head = head,
-      write_at, deco, log, to
+      write_at, phase_id, deco, log, to
     } = chat
 
-    attrs = { current, show, id, face_id, write_at, sign, handle, deco, head, log, to, edit, phases }
+    attrs = { current, show, id, phase_id, face_id, write_at, sign, handle, deco, head, log, to, edit }
     m "c-" + attrs.show, { attrs, key, on: ctx.data.on }, ctx.children
 </script>
