@@ -47,8 +47,10 @@ div
         table
           tbody
             tr(v-for="oo in work_names[id].list")
-              td {{ oo.name }}
-              td {{ oo.spell }}
+              td
+                component(:is="oo.is_used ? 's' : 'span'") {{ oo.name }}
+              td
+                component(:is="oo.is_used ? 's' : 'span'") {{ oo.spell }}
     article.fine.column(v-else)
       | ※ 検索結果が多すぎます。
 
@@ -62,10 +64,16 @@ div
 { pushState, replaceState } = require "vue-petit-store"
 
 { country, name, timestamp } = require '~/yaml/work_namedb.yml'
-
 console.log timestamp
+
+names = Query.faces.pluck("name")
+
 Set.work_country.set country
 Set.work_name.set name
+Query.work_names
+.where (o)-> names.includes o.name
+.list.forEach (o)->
+  o.is_used = true
 
 module.exports =
   mixins: [

@@ -74,6 +74,7 @@ new Rule("face").schema ->
       head = o.name[0]
       head = o.name[1] if ["†"].includes o.name[0]
       head = o.name[2] if ["D."].includes o.name[0..1]
+      head = o.name[3] if ["Dr."].includes o.name[0..2]
       head = head.replace /[\u3041-\u3096]/g, (hira)->
         String.fromCharCode hira.charCodeAt(0) + 0x60
 

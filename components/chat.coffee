@@ -3,7 +3,7 @@
 el = require "~/plugins/dom"
 
 targets =
-  diagram: 'marksvg'
+  diagram: 'diagram'
 
   sow:  'sow'
   head: 'sow'
