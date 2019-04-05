@@ -32,6 +32,8 @@ div
         | {{ o.country.join(" / ") }}
       span
         btn(v-model="spot_id" as="all") ---
+      span
+        check(v-model="options" as="is_used") 採用済
   br
   .fullframe.VSSAY
     search(v-model="search")
@@ -83,16 +85,25 @@ module.exports =
     pushState "search"
   ]
   data: ->
+    options: []
     tag_id: "all"
     spot_id: "all"
     search: ""
     limit: 1000
   computed:
+    is_used: ->
+      @options.includes 'is_used'
     work_names_size: ->
       @work_names_query.list.length
 
     work_names_query: ->
-      Query.work_names.by_page @spot_id, @search
+      if @is_used
+        Query.work_names
+        .by_page @spot_id, @search
+        .where({ @is_used })
+      else
+        Query.work_names
+        .by_page @spot_id, @search
 
     work_names_order: ->
       (@work_names_query.reduce.spot_size || []).map (o)-> o.id

@@ -52,60 +52,6 @@ class SvgRenderer
   is_cluster: (v)->
     @data.rects[v]?.class == 'cluster'
 
-  label: (v, label, pos, x, y)->
-    return unless label
-
-    { rx, ry } = @options.style
-
-    # text
-    key = "label-#{v}"
-    label ?= "   "
-    className = "pen"
-    @data.texts[v] = { class: className, "text-anchor": pos, key, label, x, y }
-
-    # label
-    # x, y, width, height は後で。
-    { rx, ry } = @options.style
-    key = "rect-label-#{v}"
-    @data.labels[v] = { class: className, key, rx, ry } 
-
-  edge: (v, w, line, start, end, headpos, tailpos, label)->
-    weight = line.length
-    start = marker start
-    end   = marker end
-    className =
-      switch line[0]
-        when '='
-          'wide'
-        when '-'
-          'solid'
-        when '.'
-          'dotted'
-        else
-          'hide'
-
-    vw  = [v,w].join("+")
-    key = "path=#{vw}"
-
-    vo = @data.rects[v]
-    wo = @data.rects[w]
-    vp = @pos vo, headpos
-    wp = @pos wo, tailpos
-
-    cvpx = vp.x + vp.vx
-    cvpy = vp.y + vp.vy
-    cwpx = wp.x + wp.vx
-    cwpy = wp.y + wp.vy
-    lx = parseInt 0.5 * (cvpx + cwpx)
-    ly = parseInt 0.5 * (cvpy + cwpy)
-    d  = "M#{ vp.x },#{ vp.y }C#{ cvpx },#{ cvpy },#{ cwpx },#{ cwpy },#{ wp.x },#{ wp.y }"
-
-    # path
-    @data.paths[vw] = { class: className, key, d, "marker-start": start, "marker-end": end }
-
-    # x, y は中点
-    @label vw, label, 'middle', lx, ly
-
   auto_xy: (x, y)->
     return [parseInt(x), parseInt(y)] if x? && y?
 
@@ -122,8 +68,9 @@ class SvgRenderer
 options =
   style:
     gap_size:     50
-    icon_width:   90
-    icon_height: 130
+    icon:
+      width:      90
+      height:    130
     label_height: 28
     border_width:  5
     rx:            3
@@ -297,13 +244,10 @@ module.exports =
       [ x, y, is_h, is_v ]
 
     cover: (vos)->
-      { label_height, icon_width } = @options.style
+      { label_height, icon } = @options.style
       unless vos.length
-        vos.push
-          x: label_height
-          y: label_height
-          width:  icon_width
-          height: icon_width
+        x = y = label_height
+        vos.push { ...icon, x, y }
 
       xmin = Math.min ...vos.map (o)-> o.x
       xmax = Math.max ...vos.map (o)-> o.x + o.width
@@ -317,123 +261,119 @@ module.exports =
       { x, y, width, height }
 
   computed:
-    root: ->
-      @cover @rects
-
     view_box: ->
       "#{@root.x} #{@root.y} #{@root.width} #{@root.height}"
-    
-    rects: ->
-      o = {}
-      for { vs, label } in @clusters
-        { x, y, width, height } = @cover vs
-        { label_height, rx, ry } = options.style
-        o[label] = { class: "cluster", key: "rect=#{label}", fill: 'none', width, height, x, y, rx, ry }
 
-      for { v, label, roll, x, y } in @icons
-        { border_width, label_height, icon_width, icon_height, rx, ry } = options.style
-        is_horizontal = @by_roll(roll)[3]
-        width  = icon_width
-        height = icon_height
-        if is_horizontal
-          [width, height] = [height, width]
-
-        width  += 2 * border_width
-        height += 2 * border_width + label_height
-        o[v] = { class: 'box', key: "rect=#{v}", width, height, x, y, rx, ry }
-      o
+    root: ->
+      @cover Object.values @rects
 
     images: ->
       o = {}
       for { v, label, roll, x, y } in @icons
-        { border_width, icon_width, icon_height, rx, ry } = options.style
+        { border_width, icon, rx, ry } = options.style
+        { width, height } = icon
         [ extrax, extray, ... ] = @by_roll roll
 
         href = v
         x += border_width
-        y += border_height
-        width  = icon_width
-        height = icon_height
+        y += border_width
         extrax *= height - width
         extray *= height - width
         transform = "rotate(#{roll}, #{x + extrax + 0.5 * width}, #{y + extray + 0.5 * height})"
         o[v] = { class: "icon", key: "image=#{v}", href, transform, width, height, rx, ry, x, y }
       o
 
-    paths: ->
+    rects: ->
+      o = {}
+      for { v, label, roll, x, y } in @icons
+        { border_width, label_height, icon, rx, ry } = options.style
+        { width, height } = icon
+        is_horizontal = @by_roll(roll)[3]
+
+        if is_horizontal
+          [width, height] = [height, width]
+
+        width  += 2 * border_width
+        height += 2 * border_width + label_height
+        o[v] = { class: 'box', key: "rect=#{v}", width, height, x, y, rx, ry }
+
+      for { vs, label } in @clusters
+        { rx, ry } = options.style
+        { x, y, width, height } = @cover vs.map (v)=> o[v]
+        o[label] = { class: "cluster", key: "rect=#{label}", fill: 'none', width, height, x, y, rx, ry }
+      o
+
+    calcs: ->
       o = {}
       for { v, w, line, start, end, headpos, tailpos, label } in @lines
         vw  = [v,w].join("+")
-        
+
         vo = @rects[v]
         wo = @rects[w]
         vp = @pos vo, headpos
         wp = @pos wo, tailpos
 
-        cvpx = vp.x + vp.vx
-        cvpy = vp.y + vp.vy
-        cwpx = wp.x + wp.vx
-        cwpy = wp.y + wp.vy
-        d  = "M#{ vp.x },#{ vp.y }C#{ cvpx },#{ cvpy },#{ cwpx },#{ cwpy },#{ wp.x },#{ wp.y }"
+        cvp =
+          x: vp.x + vp.vx
+          y: vp.y + vp.vy
+        cwp =
+          x: wp.x + wp.vx
+          y: wp.y + wp.vy
+        cp =
+          x: parseInt 0.5 * (cvp.x + cwp.x)
+          y: parseInt 0.5 * (cvp.y + cwp.y)
 
-        o[vw] = { class: line, key: "path=#{vw}", d, "marker-start": start, "marker-end": end }
+        o[vw] = { vp, cvp, cwp, wp, cp }
       o
+
+    paths: ->
+      o = {}
+      for { v, w, line, start, end, headpos, tailpos, label } in @lines
+        vw  = [v,w].join("+")
+        { vp, cvp, cwp, wp, cp } = @calcs[vw]
+        d  = "M#{ vp.x },#{ vp.y }C#{ cvp.x },#{ cvp.y },#{ cwp.x },#{ cwp.y },#{ wp.x },#{ wp.y }"
+
+        o[vw] = { class: line, key: "path=#{vw}", "marker-start": start, "marker-end": end, d }
+      o
+
     texts: ->
       o = {}
       for { vs, label } in @clusters
-        { x, y, width, height } = @cover vs
         { label_height, rx, ry } = options.style
+        { x, y, width } = @calcs[label]
         # x, y は右上
         x += 1.0 * width
         y += 0.5 * label_height 
         o[label] = { class: "pen", key: "label-#{label}", "text-anchor": "end", label, x, y }
 
       for { v, label, roll, x, y } in @icons
-        { label_height, rx, ry } = options.style
+        { border_width, rx, ry } = options.style
         # x, y はボトム
         x += 0.5 * width
         y += 1.0 * height - 2 * border_width
-        o[v] = { class: "pen", key: "label-#{label}", "text-anchor": "middle", label, x, y }
+        o[v] = { class: "pen", key: "label-#{v}", "text-anchor": "middle", label, x, y }
 
       for { v, w, line, start, end, headpos, tailpos, label } in @lines
         vw  = [v,w].join("+")
-
-        # x, y は中点
-        lx = parseInt 0.5 * (cvpx + cwpx)
-        ly = parseInt 0.5 * (cvpy + cwpy)
-        o[vw] = { class: "pen", key: "label-#{label}", "text-anchor": "middle", label, x, y }
-      a
+        { x, y }= @calcs[vw].cp
+        o[vw] = { class: "pen", key: "label-#{vw}", "text-anchor": "middle", label, x, y }
+      o
 
     labels: ->
-      a = []
-      for key, { vs, label } of @clusters
+      o = {}
+      for { vs, label } in @clusters
         { rx, ry } = options.style
-        a.push { class: "pen", key: "rect-label-#{label}", rx , ry }
+        o[label] = { class: "pen", key: "rect-label-#{label}", rx , ry }
 
-      for v, { v, label, roll, x, y } of @icons
+      for { v, label, roll, x, y } in @icons
         { rx, ry } = options.style
-        a.push { class: "pen", key: "rect-label-#{label}", rx , ry }
+        o[v] = { class: "pen", key: "rect-label-#{v}", rx , ry }
 
-      for key, { label } of @lines
+      for { v, w, line, start, end, headpos, tailpos, label } in @lines
         { rx, ry } = options.style
-        a.push { class: "pen", key: "rect-label-#{label}", rx , ry }
-      a
+        vw  = [v,w].join("+")
+        o[vw] = { class: "pen", key: "rect-label-#{vw}", rx , ry }
+      o
+
 
 </script>
-    # cluster { vs, label }
-    @rects[label] = { class: className, key, fill, width, height, x, y, rx, ry }
-
-    # line { v, w, className, start, end, headpos, tailpos, label }
-    @paths[vw] = { class: className, key, d, "marker-start": start, "marker-end": end }
-
-    # box　{ v, label, x, y }
-    @rects[v] = { class: className, key, width, height, x, y, rx, ry }
-
-    # icon { v, label, x, y, roll }
-    @images[v] = { class: className, key, href, transform, width, height, rx, ry, x: x + border_width , y: y + border_width }
-    @rects[v] = { class: className, key, width, height, x, y, rx, ry }
-
-    # すべて { v, label, x, y }
-    @texts[v] = { class: className, "text-anchor": "middle", key, label, x, y }
-    @labels[v] = { class: className, key, rx, ry } 
-
