@@ -2,9 +2,9 @@
 article
   table
     tbody
-      tr(v-for="{ sign, job, name, live } in potofs")
+      tr(v-for="{ sign, job, face, live } in potofs")
         td.r {{ job }}
-        td.l {{ name }}
+        td.l {{ face && face.name }}
         td.c …
         td.c {{ sign }}
 </template>
