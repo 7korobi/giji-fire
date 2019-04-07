@@ -31,10 +31,10 @@ module.exports =
       { face_id, head, sign } = o
     
     key = id
-    { face_id = face_id, show = show, handle = handle, head = head,
-      write_at, phase_id, deco, log, to
+    { face_id = face_id, handle = handle, show = show, head = head,
+      write_at, log, deco, to, phase_id, data
     } = chat
 
-    attrs = { current, show, id, phase_id, face_id, write_at, sign, handle, deco, head, log, to, edit }
+    attrs = { id, face_id, handle, log, show, head, deco, to, phase_id, current, data, edit }
     m "c-" + attrs.show, { attrs, key, on: ctx.data.on }, ctx.children
 </script>

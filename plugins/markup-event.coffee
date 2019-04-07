@@ -49,10 +49,6 @@ module.exports =
           return
         @hover = null
 
-      input = (e)=>
-        if has_checkbox e.target
-          @$emit "check", target.checked
-
       click = (e)=>
         if chat = has_cite e.target
           e.preventDefault()
@@ -70,8 +66,5 @@ module.exports =
       switch mode
         when 'click'
           o.click = click
-        when 'markdown'
-          o.click = click
-          o.input = input
       o
 

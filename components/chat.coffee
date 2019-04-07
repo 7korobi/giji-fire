@@ -2,52 +2,31 @@
 { localStorage } = require "vue-petit-store"
 el = require "~/plugins/dom"
 
-targets =
-  diagram: 'diagram'
-
-  sow:  'sow'
-  head: 'sow'
-  mono: 'sow'
-
-  dagre:   'sow'
-  mermaid: 'sow'
-
-  quill:  'quill'
-  giji:   'quill'
-  center: 'quill'
-
-  cast: 'cast'
-
-
 module.exports = ->
   props:
-    current: Object
-    edit: Object
-
-    id: String
-    write_at: [Date, Number]
-
-    phase_id: String
-    show: String
-    sign: String
-    head: String
-    to: String
+    id:      String
 
     face_id: String
     img_src: String
 
-    handle: String
-    deco:
-      type: String
-      default: "giji"
-    log:
-      type: String
-      default: ""
+    handle:  String
+
+    log:  String
+    show: String
+    head: String
+    deco: String
+    to:   String
+
+
+    phase_id: String
+
+    current: Object
+    data:    Object
+    edit:    Object
 
 
   mixins: [
     localStorage "shows"
-    require('~/plugins/markup-event')
   ]
 
   data: ->
@@ -70,15 +49,10 @@ module.exports = ->
       ""
 
     classname: ->
-      { id } = @
-      if id && "focus" == @el_adjust
-        @$emit "focus", id
+      if @id && "focus" == @el_adjust
+        @$emit "focus", @id
       [@handle, @el_adjust]
 
     for_body: ->
-      target = targets[@deco]
-      value = @log
-      if @edit
-        { value, @log, @show, @head, @deco, @phase_id, @edit, class: @deco, is: "#{target}-input" }
-      else
-        { value, class: @deco, is: "#{target}-view" }
+      { @id, @label, @anker, @log, @show, @head, @deco, @to, @phase_id, @data, @edit, class: @classname }
+

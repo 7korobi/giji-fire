@@ -132,7 +132,14 @@ module.exports =
         to: null
         head: ""
         log: ""
-        random: []
+        data:
+          icons: [
+            { "c10", "御尊顔", 0,  10, 10 }
+            { "c20", "御尊顔", 0, 110, 10 }
+          ]
+          lines: []
+          clusters: []
+          random: []
 
     replace_mode: ->
       Object.assign @edit_base.chat, @chat
@@ -164,7 +171,8 @@ module.exports =
       await @chats_add { _id, write_at }
 
     chat_post: (log, { attrs, html, text })->
-      { _id, show, deco, head, to, random } = @edit.chat
+      { _id, show, deco, head, to, data } = @edit.chat
+      { random, clusters, icons, lines } = data
 
       for key, idx in attrs.random ? []
         { title, text } = random[idx] ?= RANDOM key, { @book_id }
@@ -175,15 +183,16 @@ module.exports =
         console.log { t1, v1, title, text }
         """<kbd title="#{title}">#{text}</kbd>"""
 
+      data = { random, clusters, icons, lines }
       if @is_creating
         potof_id = @potof_id
         write_at = new Date - 0
         phase = Query.phases.find @phase_id
         idx = phase.chats.reduce?.say?.count ? 0
         _id = [@phase_id, 1 + idx ].join('-')
-        await @chats_add { _id, potof_id, write_at, show, deco, head, to, log, random }
+        await @chats_add { _id, potof_id, write_at, show, deco, head, to, log, data }
       else
-        await @chats_add { _id, show, deco, head, to, log, random }
+        await @chats_add { _id, show, deco, head, to, log, data }
       @create_mode()
     
     chat_input: (key, val)->

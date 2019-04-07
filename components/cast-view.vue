@@ -10,12 +10,22 @@ article
 </template>
 
 <script lang="coffee">
+{ Query, State } = require 'memory-orm'
+{ localStorage, path_by } = require "vue-petit-store"
 
 module.exports =
+  mixins: [
+    path_by "value", [null, 'book']
+  ]
   props: ["value"]
+
+  data: ->
+    step: State.step
+
   computed:
     potofs: ->
-      # where (o)-> 'leave' != o.live
-      []
+      Query.potofs
+      .cast @book_id
+      .list
 
 </script>

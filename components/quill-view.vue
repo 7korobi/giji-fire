@@ -4,11 +4,10 @@ module.exports =
   props: ["value"]
 
   render: (m)->
-    { value } = @
-    if value
+    if @value
       m "article",
         domProps:
-          innerHTML: value
+          innerHTML: @value
     else
       ''
 

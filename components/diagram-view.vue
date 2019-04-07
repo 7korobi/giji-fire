@@ -24,57 +24,32 @@ article
 <script lang="coffee">
 # inspired by https://github.com/wakufactory/MarkDownDiagram
 
-marker = (key)->
+marker: (key)->
   switch key
-    when '<', '('
+    when '<'
       'url(#svg-marker-arrow-start)'
-    when '>', ')'
+    when '>'
       'url(#svg-marker-arrow-end)'
-    when 'O', 'o'
+    when 'o'
       'url(#svg-marker-circle)'
-    when 'X', 'x'
+    when 'x'
       'url(#svg-marker-cross)'
     else
       null
 
-class SvgRenderer
+auto_xy: (x, y)->
+  return [parseInt(x), parseInt(y)] if x? && y?
 
-  newline: ->
-  error: (line)->
-    @data.errors.push line
+  { icon_width, gap_size } = @style
+  xs =
+    for key, { x } of @data.rects
+      x
+  xs.push -( icon_width + gap_size )
+  x  = Math.max ...xs
+  x += icon_width + gap_size
+  y  = gap_size
+  [x, y]
 
-  href: (key)-> key
-  dic: (v)-> ['icon', v, v]
-
-  node: (name, v)->
-    @data.nodes[name] = @data.rects[v]
-
-  is_cluster: (v)->
-    @data.rects[v]?.class == 'cluster'
-
-  auto_xy: (x, y)->
-    return [parseInt(x), parseInt(y)] if x? && y?
-
-    { icon_width, gap_size } = @options.style
-    xs =
-      for key, { x } of @data.rects
-        x
-    xs.push -( icon_width + gap_size )
-    x  = Math.max ...xs
-    x += icon_width + gap_size
-    y  = gap_size
-    [x, y]
-
-options =
-  style:
-    gap_size:     50
-    icon:
-      width:      90
-      height:    130
-    label_height: 28
-    border_width:  5
-    rx:            3
-    ry:            3
 
 parse_touch = (e)->
   { pageX, pageY } = e.changedTouches[0]
@@ -82,9 +57,19 @@ parse_touch = (e)->
   { pageX, pageY, target }
 
 module.exports =
-  name: 'DiagramView'
-  props: ["value", "edit"]
+  props:
+    log:  String
+    show: String
+    head: String
+    deco: String
+
+    phase_id: String
+
+    data: Object
+    edit: Object
+
   data: ->
+    zoom: 1.0
     move:
       id: null
       x:  0
@@ -98,31 +83,18 @@ module.exports =
       ry: 0
       width:  0
       height: 0
-    zoom: 1.0
-    clusters: []
-    lines: []
-    icons: []
+    style:
+      icon:
+        width:      90
+        height:    130
+      gap_size:     50
+      label_height: 28
+      border_width:  5
+      rx:            3
+      ry:            3
+
 
   methods:
-    do_graph: ->
-      @$nextTick =>
-        return unless width = @$refs.root?.getClientRects?()?[0]?.width
-        @zoom = @root.width / width
-        for key of @texts
-          tk =      'label-' + key
-          lk = 'rect-label-' + key
-          continue unless box = @$refs[tk]?[0]?.getBBox?()
-
-          { width, height, x, y } = box
-          { border_width } = options.style
-          width  += 4 * border_width
-          height += 2 * border_width
-          x -= 2 * border_width
-          y -= 1 * border_width
-          options.style.label_height = height
-          for key, val of { x, y, width, height }
-            @$refs[lk][0].setAttribute key, val
-
     move_xy: ->
       { x, y, dx, dy } = @move
       x = parseInt Math.max 0, x + dx
@@ -182,23 +154,18 @@ module.exports =
 
     do_move: (id)->
       return unless @edit
-      Object.assign @rects[id], @move_xy()
-      @$emit 'input', id, @rects[id]
+      o = @data.icons.find (icon)-> icon.v == id
+      Object.assign o, @move_xy()
+      @$emit 'input', id, o
     
     do_roll: (id)->
       return unless @edit
-      { key } = @rects[id]
-      sides = ' >v<^>'
-      side = key[0]
-      idx = 1 + sides.indexOf side
-      key = sides[idx] + key[1..]
-      @rects[id].key = key
-      @$emit 'input', id, @rects[id]
-
-    nop: -> false
+      o = @data.icons.find (icon)-> icon.v == id
+      o.roll = o.roll + 90 % 360
+      @$emit 'input', id, o
 
     pos: ({ x, y, width, height }, mark)->
-      { gap_size } = options.style
+      { gap_size } = @style
       curve = 1 * gap_size
       switch mark
         when '^','u'
@@ -244,7 +211,7 @@ module.exports =
       [ x, y, is_h, is_v ]
 
     cover: (vos)->
-      { label_height, icon } = @options.style
+      { label_height, icon } = @style
       unless vos.length
         x = y = label_height
         vos.push { ...icon, x, y }
@@ -269,8 +236,8 @@ module.exports =
 
     images: ->
       o = {}
-      for { v, label, roll, x, y } in @icons
-        { border_width, icon, rx, ry } = options.style
+      for { v, label, roll, x, y } in @data.icons
+        { border_width, icon, rx, ry } = @style
         { width, height } = icon
         [ extrax, extray, ... ] = @by_roll roll
 
@@ -285,8 +252,8 @@ module.exports =
 
     rects: ->
       o = {}
-      for { v, label, roll, x, y } in @icons
-        { border_width, label_height, icon, rx, ry } = options.style
+      for { v, label, roll, x, y } in @data.icons
+        { border_width, label_height, icon, rx, ry } = @style
         { width, height } = icon
         is_horizontal = @by_roll(roll)[3]
 
@@ -297,15 +264,15 @@ module.exports =
         height += 2 * border_width + label_height
         o[v] = { class: 'box', key: "rect=#{v}", width, height, x, y, rx, ry }
 
-      for { vs, label } in @clusters
-        { rx, ry } = options.style
+      for { vs, label } in @data.clusters
+        { rx, ry } = @style
         { x, y, width, height } = @cover vs.map (v)=> o[v]
         o[label] = { class: "cluster", key: "rect=#{label}", fill: 'none', width, height, x, y, rx, ry }
       o
 
     calcs: ->
       o = {}
-      for { v, w, line, start, end, headpos, tailpos, label } in @lines
+      for { v, w, line, start, end, headpos, tailpos, label } in @data.lines
         vw  = [v,w].join("+")
 
         vo = @rects[v]
@@ -328,7 +295,7 @@ module.exports =
 
     paths: ->
       o = {}
-      for { v, w, line, start, end, headpos, tailpos, label } in @lines
+      for { v, w, line, start, end, headpos, tailpos, label } in @data.lines
         vw  = [v,w].join("+")
         { vp, cvp, cwp, wp, cp } = @calcs[vw]
         d  = "M#{ vp.x },#{ vp.y }C#{ cvp.x },#{ cvp.y },#{ cwp.x },#{ cwp.y },#{ wp.x },#{ wp.y }"
@@ -338,39 +305,59 @@ module.exports =
 
     texts: ->
       o = {}
-      for { vs, label } in @clusters
-        { label_height, rx, ry } = options.style
+      for { vs, label } in @data.clusters
+        { label_height, icon, rx, ry } = @style
+        { width, height } = icon
         { x, y, width } = @calcs[label]
         # x, y は右上
         x += 1.0 * width
         y += 0.5 * label_height 
         o[label] = { class: "pen", key: "label-#{label}", "text-anchor": "end", label, x, y }
 
-      for { v, label, roll, x, y } in @icons
-        { border_width, rx, ry } = options.style
+      for { v, label, roll, x, y } in @data.icons
+        { border_width, rx, ry } = @style
         # x, y はボトム
         x += 0.5 * width
         y += 1.0 * height - 2 * border_width
         o[v] = { class: "pen", key: "label-#{v}", "text-anchor": "middle", label, x, y }
 
-      for { v, w, line, start, end, headpos, tailpos, label } in @lines
+      for { v, w, line, start, end, headpos, tailpos, label } in @data.lines
         vw  = [v,w].join("+")
         { x, y }= @calcs[vw].cp
         o[vw] = { class: "pen", key: "label-#{vw}", "text-anchor": "middle", label, x, y }
       o
 
     labels: ->
+      root_width = @root.width
+      @$nextTick =>
+        return unless width = @$refs.root?.getClientRects?()?[0]?.width
+        @zoom = root_width / width
+        for key of @texts
+          tk =      'label-' + key
+          lk = 'rect-label-' + key
+          continue unless box = @$refs[tk]?[0]?.getBBox?()
+
+          { width, height, x, y } = box
+          { border_width } = @style
+          width  += 4 * border_width
+          height += 2 * border_width
+          x -= 2 * border_width
+          y -= 1 * border_width
+          @style.label_height = height
+          for key, val of { x, y, width, height }
+            @$refs[lk][0].setAttribute key, val
+
       o = {}
-      for { vs, label } in @clusters
-        { rx, ry } = options.style
+      for { vs, label } in @data.clusters
+        { rx, ry } = @style
         o[label] = { class: "pen", key: "rect-label-#{label}", rx , ry }
 
-      for { v, label, roll, x, y } in @icons
-        { rx, ry } = options.style
+      for { v, label, roll, x, y } in @data.icons
+        { rx, ry } = @style
         o[v] = { class: "pen", key: "rect-label-#{v}", rx , ry }
 
-      for { v, w, line, start, end, headpos, tailpos, label } in @lines
-        { rx, ry } = options.style
+      for { v, w, line, start, end, headpos, tailpos, label } in @data.lines
+        { rx, ry } = @style
         vw  = [v,w].join("+")
         o[vw] = { class: "pen", key: "rect-label-#{vw}", rx , ry }
       o

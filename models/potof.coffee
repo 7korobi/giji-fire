@@ -18,11 +18,20 @@ new Rule("potof").schema ->
     by_face: ( book_id, face_id )->
       all.where({ face_id, book_id })
 
+    cast: (book_id)->
+      sort = (o)-> o.say("#{book_id}-top").all
+      Query.books.find(book_id)
+      .potofs
+      .where (o)-> 'leave' != o.live
+      .sort(sort, "desc")
+
     catalog: (book_id, part_id, sort, order)->
       [a1, a2] = sort.split(".")
       if "say" == a1
         sort = (o)-> o.say(part_id)[a2]
-      Query.books.find(book_id).potofs.sort(sort, order)
+      Query.books.find(book_id)
+      .potofs
+      .sort(sort, order)
 
     sow_id: ( book_id, face_id, sign, is_merge )->
       { list } = all.by_face book_id, face_id

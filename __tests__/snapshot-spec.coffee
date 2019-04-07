@@ -198,6 +198,16 @@ Set.chat.set chats = [
   deco: 'quill'
   log: 'テスト<strong>文字列</strong>'
   write_at: 5
+,
+  _id: 'test-1-1-ss-6'
+  potof_id: 'test-1-1'
+  show: 'hide'
+  deco: 'diagram'
+  data:
+    clusters: []
+    icons: []
+    lines: []
+  write_at: 6
 ]
 
 chat = (chat, opt)->
