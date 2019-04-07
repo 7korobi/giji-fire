@@ -30,19 +30,17 @@
   .text(v-if="$slots.default" :class="deco")
     slot
   .date(v-if="anker")
-    check(v-model="shows" as="mention") {{ anker || "" }}
+    span.btn {{ anker || "" }}
 
 
 </template>
 
 <script lang="coffee">
 { Query } = require 'memory-orm'
-{ localStorage } = require "vue-petit-store"
 
 
 module.exports =
   mixins: [
-    localStorage "shows"
     require('~/plugins/markup-event')
   ]
   props:
@@ -62,13 +60,11 @@ module.exports =
     data: Object
     edit: Object
 
-  data: ->
-    shows: [] # pin, toc, potof, current, search
-
   methods:
     input: (key, val)->
       val = val?.target?.value ? val
       @$emit 'input', key, val
+
   computed:
     for_target: ->
       switch @deco

@@ -164,10 +164,11 @@ h6
   overflow: hidden
   white-space: nowrap
 
-.potofs
-  th, td
-    border-radius: 0
-    padding: 0 0.5ex
+.swipe
+  .potofs
+    th, td
+      border-radius: 0
+      padding: 0 0.5ex
 
 .r
   text-align: right
