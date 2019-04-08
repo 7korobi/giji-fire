@@ -1,3 +1,25 @@
+<style lang="sass">
+button
+  i.mdi
+    font-size: 1.5em
+    vertical-align: middle
+</style>
+<template lang="pug">
+div
+  article(ref="editor")
+  hr.footnote
+  div.form
+    button.fine(@click="submit" :class="{ ban, warn }")
+      i.mdi(:class="mark")
+      span
+        | {{chars}}/
+        sub {{maxSize}}字
+        | {{words}}/
+        sub {{maxWord}}文
+        | {{lines}}/
+        sub {{maxRow}}行
+    slot
+</template>
 <script lang="coffee">
 _ = require 'lodash'
 Delta = require "quill-delta"
@@ -274,26 +296,4 @@ module.exports =
       @quill.enable ! newVal
 
 </script>
-<style lang="sass">
-button
-  i.mdi
-    font-size: 1.5em
-    vertical-align: middle
-</style>
-<template lang="pug">
-div
-  article(ref="editor")
-  hr.footnote
-  div.form
-    button.fine(@click="submit" :class="{ ban, warn }")
-      i.mdi(:class="mark")
-      span
-        | {{chars}}/
-        sub {{maxSize}}字
-        | {{words}}/
-        sub {{maxWord}}文
-        | {{lines}}/
-        sub {{maxRow}}行
-    slot
-</template>
 

@@ -18,7 +18,7 @@ log-wiki
           option(:value="100") &ensp;100投稿/p
           option(:value="300") &ensp;300投稿/p
           option(:value="1000") 1000投稿/p
-        span.pull-left(style="width: 160px")
+        span.pull-left(style="width: 150px")
           search(v-model="search")
       d-mode(v-bind="for_mode" style="white-space: nowrap")
     a-potofs(v-bind="for_potofs" key="3" v-if="is_show.potofs")

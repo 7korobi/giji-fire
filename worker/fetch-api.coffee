@@ -111,10 +111,12 @@ module.exports =
 
   'sow/plan': (url)->
     @fetch url, (data)->
-      Set.sow_village_plan.merge data.plans
+      Set.sow_village_plan.reset data.plans
 
   'sow/progress': (url)->
     @fetch url, (data)->
+      Set.sow_village.reject Query.sow_villages.prologue.list
+      Set.sow_village.reject Query.sow_villages.progress.list
       Set.sow_turn.merge    data.events
       Set.sow_village.merge data.stories
 

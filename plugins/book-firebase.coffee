@@ -134,11 +134,20 @@ module.exports =
         log: ""
         data:
           icons: [
-            { "c10", "御尊顔", 0,  10, 10 }
-            { "c20", "御尊顔", 0, 110, 10 }
+            { v: "t10", label: "御尊顔", roll: 0, x:   10, y:  10 }
+            { v: "t20", label: "御尊顔", roll: 0, x:  710, y: 210 }
+            { v: "t30", label: "御尊顔", roll: 0, x:  210, y: 410 }
+            { v: "t40", label: "御尊顔", roll: 0, x:  510, y: 610 }
           ]
-          lines: []
-          clusters: []
+          lines: [
+            { v: "t10", w: "t20", line: "wide",   start: 'o', end: 'o', headpos: '>', tailpos: '<', label: '同志' }
+            { v: "t10", w: "t30", line: "dotted", start: '<', end: '>', headpos: 'v', tailpos: '^', label: '師匠' }
+            { v: "t20", w: "t40", line: "solid",  start: 'x', end: 'x', headpos: 'v', tailpos: '^', label: 'ライヴァル' }
+            { v: "t30", w: "t40", line: "hide",   start: '',  end: '',  headpos: '>', tailpos: '<', label: '' }
+          ]
+          clusters: [
+            { vs: ["t10", "t20"], label: "ふじょし" }
+          ]
           random: []
 
     replace_mode: ->
