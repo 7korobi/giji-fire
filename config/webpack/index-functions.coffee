@@ -2,20 +2,23 @@ nodeExternals = require 'webpack-node-externals'
 path = require 'path'
 current = process.cwd()
 
+babel =
+  plugins: [
+    "@babel/plugin-transform-modules-commonjs"
+  ]
+  presets: [
+    [ "@nuxt/babel-preset-app",
+      targets:
+        node: "6.11.5"
+    ]
+  ]
+
 coffee =
   test: /\.coffee$/
   loader: 'coffee-loader'
   options:
     sourceMap: true
-    transpile:
-      plugins: [
-        "@babel/plugin-transform-modules-commonjs",
-      ],
-      presets: [[
-        "@nuxt/babel-preset-app",
-          targets:
-            node: "6.11.5"
-      ]]
+    transpile: babel
 
 yml =
   test: /\.yml$/,
