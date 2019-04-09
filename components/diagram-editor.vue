@@ -6,7 +6,7 @@ div
         circle(cx="5" cy="5" r="4")
       marker.edgePath#svg-marker-arrow-start(viewBox="0 0 10 10" markerUnits="userSpaceOnUse" markerWidth="20" markerHeight="20" refX="3" refY="5" orient="auto")
         path.fill(d="M10,0 L0,5 L10,10 z")
-      marker.edgePath#svg-marker-arrow-end(viewBox="0 0 10 10" markerUnits="userSpaceOnUse" markerWidth="20" markerHeight="20" refX="3" refY="5" orient="auto")
+      marker.edgePath#svg-marker-arrow-end(viewBox="0 0 10 10" markerUnits="userSpaceOnUse" markerWidth="20" markerHeight="20" refX="7" refY="5" orient="auto")
         path.fill(d="M0,0 L10,5 L0,10 z")
       marker.edgePath#svg-marker-cross(viewBox="0 0 10 10" markerUnits="userSpaceOnUse" markerWidth="20" markerHeight="20" refX="5" refY="5" orient="0")
         path.path(d="M0,0 L10,10 M0,10 L10,0 z")
@@ -14,9 +14,9 @@ div
         rect( v-for="(o, key) in rects"  v-if="o" v-bind="o" v-on="draggable(key, o)")
         image(v-for="(o, key) in images" v-if="o" v-bind="o" v-on="draggable(key, o)")
       g.edgePath
-        path.path(v-for="(o, key) in paths" fill="none" v-if="o" v-bind="o" @click="do_tap(key)")
-        rect(v-for="(o, key) in labels"  v-if="o" v-bind="o" :ref="o.key" @click="do_tap(key)")
-        text(v-for="(o, key) in texts" v-if="o" v-bind="o" :ref="o.key" @click="do_tap(key)")
+        path.path(v-for="(o, key) in paths" fill="none" v-if="o" v-bind="o" @click="pin_id = key")
+        rect(v-for="(o, key) in labels"  v-if="o" v-bind="o" :ref="o.key" @click="pin_id = key")
+        text(v-for="(o, key) in texts" v-if="o" v-bind="o" :ref="o.key" @click="pin_id = key")
           | {{ o.label }}
       g(v-if="move.id")
         rect.move(v-bind="moved")
@@ -30,9 +30,63 @@ div
         | {{words}}/
         sub {{maxWord}}文
         | {{lines}}/
-        sub {{maxRow}}行
+        sub {{maxRow}}人
     slot
-    div {{ pin }}
+    div(v-if="pin_icon")
+      a.btn(@click="del_icon") DEL
+      input(v-model="pin_icon.v" key="v" style="width: 3em")
+      select(v-model="pin_icon.roll" key="roll")
+        option(:value="  0") ↑
+        option(:value=" 90") →
+        option(:value="180") ↓
+        option(:value="270") ←
+      input(v-model="pin_icon.label" key="label")
+    div(v-else)
+      a.btn(@click="add_icon") ADD
+    div(v-if="pin_line")
+      a.btn(@click="del_line") DEL
+      input(v-model="pin_line.v" key="v" style="width: 3em")
+      select(v-model="pin_line.start" key="start")
+        option(value="o") ●
+        option(value="<") ◀︎
+        option(value="x") ❌
+        option(value="")
+      select(v-model="pin_line.vpos" key="vpos")
+        option(:value="  0") ↑
+        option(:value=" 90") →
+        option(:value="180") ↓
+        option(:value="270") ←
+      select(v-model="pin_line.line" key="line")
+        option(value="wide"  ) ━
+        option(value="solid" ) ─
+        option(value="dotted") …
+        option(value="hide"  )
+      select(v-model="pin_line.wpos" key="wpos")
+        option(:value="  0") ↑
+        option(:value=" 90") →
+        option(:value="180") ↓
+        option(:value="270") ←
+      select(v-model="pin_line.end" key="end")
+        option(value="o") ●
+        option(value=">") ▶︎
+        option(value="x") ❌
+        option(value="")
+      input(v-model="pin_line.w" key="w" style="width: 3em")
+      input(v-model="pin_line.label" key="label")
+    div(v-else)
+      a.btn(@click="add_line") ADD
+    div(v-if="pin_cluster")
+      a.btn(@click="del_cluster") DEL
+      input(
+        v-for="(v, index) in pin_cluster.vs"
+        v-model="pin_cluster.vs[index]"
+        :key="`vs.${index}`"
+        style="width: 3em"
+      )
+      input(v-model="pin_cluster.vs[pin_cluster.vs.length]" key="label" style="width: 3em")
+      input(v-model="pin_cluster.label" key="label")
+    div(v-else)
+      a.btn(@click="add_cluster") ADD
 </template>
 
 <script lang="coffee">
@@ -126,10 +180,23 @@ module.exports =
         height:    130
       gap_size:     50
       label_height: 28
+      line_slide:   15
       border_width:  5
       rx:            3
       ry:            3
 
+  directives:
+    agent:
+      bind: (el, { def, value, arg, modifiers, expression }, { context, data } )->
+        console.log 'bind', value, data.on
+      inserted: (el, { def, value, oldValue, arg, modifiers, expression }, vnode )->
+        #console.log 'inserted', value, vnode
+      update: (el, { def, value, oldValue, arg, modifiers, expression }, vnode, oldVnode )->
+        #console.log 'update', value, vnode, oldVnode
+      componentUpdated: (el, { def, value, oldValue, arg, modifiers, expression }, vnode, oldVnode )->
+        #console.log 'componentUpdated', value, vnode, oldVnode
+      unbind: (el, { def, value, oldValue, arg, modifiers, expression }, vnode, _, is_unbind )->
+        #console.log 'unbind', value, vnode, is_unbind
 
   methods:
     submit: _.debounce ->
@@ -139,6 +206,26 @@ module.exports =
     , 3000,
       leading:  true
       trailing: false
+
+    add_icon: ->
+    add_line: ->
+    add_cluster: ->
+    
+    del_icon: ->
+    del_line: ->
+    del_cluster: ->
+
+    input: (value, $event)->
+      $event = $event?.target?.value ? $event
+      console.log value, $event
+      _.set @value, value.join("."), $event
+
+    do_move: (id)->
+      for o, idx in @value.icons when o.v == id
+        Object.assign o, @move_xy()
+        @$emit "input", "icons.#{idx}.x", o.x
+        @$emit "input", "icons.#{idx}.y", o.y
+        return
 
     move_xy: ->
       { x, y, dx, dy } = @move
@@ -161,21 +248,26 @@ module.exports =
           dx = (pageX - px)
           dy = (pageY - py)
           if dx == dy == 0
-            @do_tap  @move.id
+            @pin_id = @move.id
           else
             @move.dx = @zoom * dx
             @move.dy = @zoom * dy
             @do_move @move.id
           @move.id = null
 
+      up = (o)=>
+        unless @move.id
+          @pin_id = null
+        finish(o)
+
       cb =
         touchend: (e)=>
-          finish parse_touch e
+          up parse_touch e
         touchleave: (e)=>
           finish parse_touch e
         touchmove: (e)=>
           move parse_touch e
-        mouseup: finish
+        mouseup: up
         mouseleave: finish
         mousemove: move
 
@@ -196,43 +288,35 @@ module.exports =
     recalc: ->
       Object.assign @moved, @move_xy()
 
-    do_move: (id)->
-      o = @value.icons.find (icon)-> icon.v == id
-      Object.assign o, @move_xy()
-      @$emit 'input', id, o
-    
-    do_roll: (id)->
-      o = @value.icons.find (icon)-> icon.v == id
-      o.roll = ( o.roll + 90 ) % 360
-      @$emit 'input', id, o
-
-    do_tap: (@pin_id)->
-
-    pos: ({ x, y, width, height }, mark)->
+    pos: ({ x, y, width, height }, roll)->
       { gap_size } = @style
-      curve = 1 * gap_size
-      switch mark
-        when '^','u'
+      curve = 2 * gap_size
+      switch roll
+        when 0
           x += 0.5 * width 
           # y origin
           vx =  0
           vy = -curve
-        when 'v','d'
-          x += 0.5 * width
-          y += 1.0 * height
-          vx =  0
-          vy =  curve
-        when '<','l'
-          # x origin
-          y += 0.5 * height
-          vx = -curve
-          vy =  0
-        when '>','r'
+        when 90
           x += 1.0 * width
           y += 0.5 * height
           vx =  curve
           vy =  0
-      { x, y, vx, vy }
+        when 180
+          x += 0.5 * width
+          y += 1.0 * height
+          vx =  0
+          vy =  curve
+        when 270
+          # x origin
+          y += 0.5 * height
+          vx = -curve
+          vy =  0
+      c =
+        x: x + vx
+        y: y + vy
+
+      { x, y, vx, vy, c }
 
     by_roll: (roll)->
       switch roll
@@ -256,6 +340,7 @@ module.exports =
 
     cover: (vos)->
       { label_height, icon } = @style
+      vos = vos.filter (o)-> o
       unless vos.length
         x = y = @label_height
         vos.push { ...icon, x, y }
@@ -329,10 +414,17 @@ module.exports =
       m = "mdi-cancel"               if @ban
       [m]
 
-    pin: ->
-      return res if res = @value.icons.find (o)=> o.v == @pin_id
-      return res if res = @value.lines.find (o)=> "#{o.v}+#{o.w}" == @pin_id
-      return res if res = @value.clusters.find (o)=> o.label == @pin_id
+    pin_idx: ->
+      for o, idx in @value.icons when o.v == @pin_id
+        return ['icons', idx]
+      for o, idx in @value.lines when "#{o.v}+#{o.w}" == @pin_id
+        return ['lines', idx]
+      for o, idx in @value.clusters when o.label == @pin_id
+        return ['clusters', idx]
+
+    pin_icon:    -> @value.icons.find (o)=> o.v == @pin_id
+    pin_line:    -> @value.lines.find (o)=> "#{o.v}+#{o.w}" == @pin_id
+    pin_cluster: -> @value.clusters.find (o)=> o.label == @pin_id
 
     zoom: ->
       return 1.0 unless width = @$refs.root?.getClientRects?()?[0]?.width
@@ -347,8 +439,8 @@ module.exports =
 
     images: ->
       o = {}
+      { border_width, icon, rx, ry } = @style
       for { v, label, roll, x, y } in @value.icons
-        { border_width, icon, rx, ry } = @style
         { width, height } = icon
         [ extrax, extray, ... ] = @by_roll roll
 
@@ -369,40 +461,64 @@ module.exports =
 
     rects: ->
       o = {}
+      { border_width, label_height, icon, rx, ry } = @style
       for { v, label, roll, x, y } in @value.icons
-        { border_width, label_height, icon, rx, ry } = @style
         { width, height } = icon
         is_horizontal = @by_roll(roll)[2]
 
         if is_horizontal
           [width, height] = [height, width]
 
+        if label
+          height += label_height
         width  += 2 * border_width
-        height += 2 * border_width + label_height
+        height += 2 * border_width
         o[v] = { class: 'box', key: "rect=#{v}", width, height, x, y, rx, ry }
 
       for { vs, label } in @value.clusters
-        { rx, ry } = @style
         { x, y, width, height } = @cover vs.map (v)=> o[v]
         o[label] = { class: "cluster", key: "rect=#{label}", fill: 'none', width, height, x, y, rx, ry }
       o
 
     calcs: ->
+      { line_slide, gap_size, icon, rx, ry } = @style
+      slide = (a, b)->
+        if a.vy && a.x < b.x + line_slide * 5
+          a.x   += line_slide
+          a.c.x += line_slide * 3
+        if a.vy && b.x < a.x + line_slide * 5
+          a.x   -= line_slide
+          a.c.x -= line_slide * 3
+        if a.vx && a.y < b.y + line_slide * 5
+          a.y   += line_slide
+          a.c.y += line_slide * 3
+        if a.vx && b.y < a.y + line_slide * 5
+          a.y   -= line_slide
+          a.c.y -= line_slide * 3
       o = {}
-      for { v, w, line, start, end, headpos, tailpos, label } in @value.lines
-        vw  = [v,w].join("+")
-
+      for { v, w, line, start, end, vpos, wpos, label } in @value.lines
+        vw  = "#{v}+#{w}"
         vo = @rects[v]
         wo = @rects[w]
-        vp = @pos vo, headpos
-        wp = @pos wo, tailpos
+        unless vo
+          vo = wo
+        unless wo
+          wo = vo
+        vp = @pos vo, vpos
+        wp = @pos wo, wpos
 
-        cvp =
-          x: vp.x + vp.vx
-          y: vp.y + vp.vy
-        cwp =
-          x: wp.x + wp.vx
-          y: wp.y + wp.vy
+        slide vp, wp.c
+        slide wp, vp.c
+
+        dx = vp.x - wp.x
+        dy = vp.y - wp.y
+        if dx * dx + dy * dy < 16 * gap_size * gap_size
+          cvp = vp
+          cwp = wp
+        else
+          cvp = vp.c
+          cwp = wp.c
+
         cp =
           x: parseInt 0.5 * (cvp.x + cwp.x)
           y: parseInt 0.5 * (cvp.y + cwp.y)
@@ -412,28 +528,27 @@ module.exports =
 
     paths: ->
       o = {}
-      for { v, w, line, start, end, headpos, tailpos, label } in @value.lines
-        vw  = [v,w].join("+")
+      for { v, w, line, start, end, vpos, wpos, label } in @value.lines
+        vw  = "#{v}+#{w}"
         start = marker start
         end   = marker end
         { vp, cvp, cwp, wp, cp } = @calcs[vw]
-        d  = "M#{ vp.x },#{ vp.y }C#{ cvp.x },#{ cvp.y },#{ cwp.x },#{ cwp.y },#{ wp.x },#{ wp.y }"
+        d  = "M#{ vp.x },#{ vp.y }Q#{ cvp.x },#{ cvp.y },#{ cp.x },#{ cp.y }Q#{cwp.x},#{cwp.y},#{ wp.x },#{ wp.y }"
         o[vw] = { class: line, key: "path=#{vw}", "marker-start": start, "marker-end": end, d }
       o
 
     texts: ->
       o = {}
+      { label_height, border_width, icon, rx, ry } = @style
       for { vs, label } in @value.clusters
-        { label_height, icon, rx, ry } = @style
         { width, height } = icon
         { x, y, width } = @rects[label]
         # x, y は右上
         x += 1.0 * width
-        y += 0.5 * label_height
+        y += 0.3 * label_height
         o[label] = { class: "pen", key: "label-#{label}", "text-anchor": "end", label, x, y }
 
-      for { v, label, roll, x, y } in @value.icons
-        { border_width } = @style
+      for { v, label, roll, x, y } in @value.icons when label
         { width, height, x, y } = @rects[v]
 
         # x, y はボトム
@@ -441,30 +556,28 @@ module.exports =
         y += 1.0 * height - 3 * border_width
         o[v] = { class: "pen", key: "label-#{v}", "text-anchor": "middle", label, x, y }
 
-      for { v, w, line, start, end, headpos, tailpos, label } in @value.lines
-        vw  = [v,w].join("+")
+      for { v, w, line, start, end, vpos, wpos, label } in @value.lines when label
+        vw  = "#{v}+#{w}"
         { x, y }= @calcs[vw].cp
+        y += 0.3 * label_height
         o[vw] = { class: "pen", key: "label-#{vw}", "text-anchor": "middle", label, x, y }
       o
 
     labels: ->
       o = {}
-      { label_height } = @style
+      { label_height, rx, ry } = @style
       @$nextTick ->
         for key, val of o
           @label_draw key
 
       for { vs, label } in @value.clusters
-        { rx, ry } = @style
         o[label] = { class: "pen", key: "rect-label-#{label}", rx , ry }
 
-      for { v, label, roll, x, y } in @value.icons
-        { rx, ry } = @style
+      for { v, label, roll, x, y } in @value.icons when label
         o[v] = { class: "pen", key: "rect-label-#{v}", rx , ry }
 
-      for { v, w, line, start, end, headpos, tailpos, label } in @value.lines
-        { rx, ry } = @style
-        vw  = [v,w].join("+")
+      for { v, w, line, start, end, vpos, wpos, label } in @value.lines when label
+        vw  = "#{v}+#{w}"
         o[vw] = { class: "pen", key: "rect-label-#{vw}", rx , ry }
       o
 
