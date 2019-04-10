@@ -140,10 +140,10 @@ module.exports =
             { v: "t40", label: "御尊顔", roll: 0, x:  510, y: 610 }
           ]
           lines: [
-            { v: "t10", w: "t20", line: "wide",   start: 'o', end: 'o', vpos:  90, wpos: 270, label: '同志' }
-            { v: "t10", w: "t30", line: "dotted", start: '<', end: '>', vpos: 180, wpos:   0, label: '師匠' }
-            { v: "t20", w: "t40", line: "solid",  start: 'x', end: 'x', vpos: 180, wpos:   0, label: 'ライヴァル' }
-            { v: "t30", w: "t40", line: "hide",   start: '',  end: '',  vpos:  90, wpos: 270, label: '' }
+            { v: "t10", w: "t20", line: "o=o", vpos:  90, wpos: 270, label: '同志' }
+            { v: "t10", w: "t30", line: "<.>", vpos: 180, wpos:   0, label: '師匠' }
+            { v: "t20", w: "t40", line: "x-x", vpos: 180, wpos:   0, label: 'ライヴァル' }
+            { v: "t30", w: "t40", line: "   ", vpos:  90, wpos: 270, label: '' }
           ]
           clusters: [
             { vs: ["t10", "t20"], label: "ふじょし" }
