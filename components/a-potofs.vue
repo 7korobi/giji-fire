@@ -170,12 +170,6 @@ h6
       border-radius: 0
       padding: 0 0.5ex
 
-.r
-  text-align: right
-.l
-  text-align: left
-.c
-  text-align: center
 .last
   min-width: 150vw
 

@@ -57,7 +57,7 @@ div(v-if="face.story_length")
   c-talk.form(v-for="folder in face.folders" :handle="folder_handle(folder[0][0])", :face_id="face.id", :head="folder.nation", :key="folder[0][0]")
     | {{ folder.length }}回登場しました
     .flex
-      nuxt-link.label-mini(v-for="id in folder", :to="book_url(id,'normal')", :key="id.join('-')") {{ id[1] }}
+      nuxt-link.label-mini.r(v-for="id in folder", :to="book_url(id,'normal')", :key="id.join('-')") {{ id[1] }}
 
 
   c-report.form(handle="VGSAY" deco="center", :head="face.name + 'で活躍した人達'")
@@ -204,7 +204,6 @@ module.exports =
 
 .label-mini
   width: 4ex
-  text-align: right
 .label2
   width: calc( #{ 16% } -  4px )
 .label3

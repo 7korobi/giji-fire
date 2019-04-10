@@ -43,17 +43,19 @@ div
       btn(v-model="limit" :as="3000") 3K
       btn(v-model="limit" :as="5000") 5K
       btn(v-model="limit" :as="9000") 9K
-    article.fine.column(v-if="work_names_size < limit")
+    article.fine.col_wide(v-if="work_names_size < limit")
       div(v-for="id in work_names_order" :style="work_names_style")
         btn(v-model="spot_id" :as="id") {{ id }}
         table
           tbody
             tr(v-for="oo in work_names[id].list")
+              td.r
+                component(:is="oo.is_used ? 's' : 'span'").fine {{ oo.head_used || "" }}
               td
                 component(:is="oo.is_used ? 's' : 'span'") {{ oo.name }}
               td
                 component(:is="oo.is_used ? 's' : 'span'") {{ oo.spell }}
-    article.fine.column(v-else)
+    article.fine.col_wide(v-else)
       | ※ 検索結果が多すぎます。
 
   c-report(handle="footer" deco="center")
@@ -72,10 +74,11 @@ names = Query.faces.pluck("name")
 
 Set.work_country.set country
 Set.work_name.set name
-Query.work_names
-.where (o)-> names.includes o.name
-.list.forEach (o)->
-  o.is_used = true
+for o in Query.work_names.list
+  o.head_used = Query.faces.reduce.name_head.from[o.name[0]]?.set.length
+  if names.includes o.name
+    o.is_used = true
+
 
 module.exports =
   mixins: [

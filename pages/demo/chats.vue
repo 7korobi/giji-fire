@@ -42,14 +42,14 @@ div
       thead
         tr
           th Tables
-          th(style="text-align: center;") Are
-          th(style="text-align: right;") Cool
+          th.c Are
+          th.r Cool
       tbody
         tr
           td
             label
               | form
-          td(style="text-align: center;")
+          td.c
             input(style="width: 3em" type="text")
             input(style="width: 3em" type="number")
             select
@@ -57,11 +57,11 @@ div
               option 2
             input(type="checkbox")
             input(type="radio")
-          td(style="text-align: right;") $1600
+          td.r $1600
         tr
           td row 3
           td(style="text-align: center;")
-          td(style="text-align: right;") $12
+          td.r $12
     .date
       abbr anker
 

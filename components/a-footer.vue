@@ -1,7 +1,7 @@
 <template lang="pug">
 
 c-report(handle="footer", :write_at="1169852700003")
-  article
+  article.r
     | 人狼議事キャラセット by りりんら
     | 管理
     q.btn
@@ -27,12 +27,6 @@ c-report(handle="footer", :write_at="1169852700003")
         Sangria
         @7korobi
 </template>
-<style lang="sass" scoped>
-
-article
-  text-align: right
-
-</style>
 <script lang="coffee">
 
 module.exports = {}
