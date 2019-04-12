@@ -24,7 +24,7 @@
     "dist:brotli": "find dist -type f -not -name \"*.br\" | grep -v \"dist/font\" | xargs -L1  brotli -Z -f -k",
     "deploy": "run-s generate:nuxt deploy:test backup",
     "deploy:test": "run-p -n deploy:host deploy:aws",
-    "deploy:live": "run-s -n dist:brotli deploy:rsync deploy:aws",
+    "deploy:live": "run-s -n dist:brotli deploy:rsync deploy:aws deploy:aws_img",
     "deploy:styl": "run-s copy:stylus dist:copy deploy:test",
     "deploy:sow": "run-s copy:sow dist:copy deploy:test",
     "deploy:img": "run-s copy:portrate dist:copy deploy:test",

@@ -3129,7 +3129,7 @@
 -   _id: t85
     name: ミサ
     comment: 由来：弥 海砂
-    order: 30087
+    order: 30085
     tag_ids:
       - travel
 
@@ -3143,7 +3143,7 @@
 -   _id: t87
     name: レイ
     comment: 由来：綾波レイ
-    order: 30085
+    order: 30087
     tag_ids:
       - travel
 
@@ -3165,6 +3165,22 @@
       - giji
       - young
       - office
+
+-   _id: c139
+    name: ヨリック
+    order: 139
+    tag_ids:
+      - giji
+      - young
+      - ecclesia
+      - kid
+
+-   _id: t88
+    name: アトレイユ
+    order: 30088
+    tag_ids:
+      - travel
+      - student
 
 #########################
 # xxxx-xx-xx update
