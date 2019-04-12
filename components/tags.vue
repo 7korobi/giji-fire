@@ -8,8 +8,8 @@ p.form
     tag#stratos
     tag#fable
     tag#myth
-    tag#asia
     tag#marchen
+    tag#asia
 
   span.tag
     tag#animal
@@ -25,11 +25,15 @@ p.form
     tag#elder
 
   span.tag
+    tag#student
+
+  span.tag
     tag#river
     tag#road
     tag#immoral
 
   span.tag
+    tag#office
     tag#guild
     tag#elegant
     tag#ecclesia

@@ -93,6 +93,14 @@ pair:
   tag_id: pair
   chr_set_id: all
 
+
+student:
+  label: -学徒-
+  long: 学園で学ぶ人
+  tag_id: travel
+  chr_set_id: time
+
+
 river:
   label: -運河-
   long: 往く人来る人休む人
@@ -111,10 +119,15 @@ immoral:
   tag_id: giji
   chr_set_id: ririnra
 
-
 guild:
   label: -商工会-
   long: 商人と職人の集うギルド
+  tag_id: giji
+  chr_set_id: ririnra
+
+office:
+  label: -事務所-
+  long: 帳簿と写本と印刷と
   tag_id: giji
   chr_set_id: ririnra
 

@@ -8,6 +8,7 @@
       - school
       - giji
       - guild
+      - ecclesia
       - young
 -   _id: c38
     order: 2
@@ -28,6 +29,7 @@
       - servant
       - road
       - farm
+      - kid
       - young
 -   _id: c35
     order: 4
@@ -66,7 +68,7 @@
       - school
       - giji
       - government
-      - guild
+      - office
       - young
 -   _id: c36
     order: 8.1
@@ -115,7 +117,7 @@
       - animal
       - school
       - giji
-      - guild
+      - office
       - young
 -   _id: c12
     order: 12
@@ -133,7 +135,6 @@
       - animal
       - school
       - giji
-      - apartment
       - market
       - medical
       - young
@@ -167,7 +168,7 @@
       - school
       - giji
       - elegant
-      - apartment
+      - office
       - kid
 -   _id: c10
     order: 17
@@ -178,6 +179,7 @@
       - animal
       - school
       - giji
+      - farm
       - apartment
       - kid
 -   _id: c70
@@ -306,7 +308,7 @@
       - animal
       - school
       - giji
-      - apartment
+      - office
       - medical
       - young
       - middle
@@ -335,7 +337,6 @@
       - animal
       - school
       - giji
-#      - elegant
       - market
       - young
       - pair
@@ -346,7 +347,6 @@
       - animal
       - school
       - giji
-#      - elegant
       - market
       - middle
       - pair
@@ -590,7 +590,7 @@
       - animal
       - school
       - giji
-      - guild
+      - office
       - young
 -   _id: c19
     order: 67
@@ -707,7 +707,6 @@
       - school
       - giji
       - road
-      - apartment
       - young
 -   _id: c96
     name: "レオナルド"
@@ -719,6 +718,7 @@
       - giji
       - government
       - ecclesia
+      - office
       - middle
 -   _id: c95
     name: "モリス"
@@ -728,7 +728,7 @@
       - animal
       - school
       - giji
-      - guild
+      - office
       - road
       - young
 -   _id: c97
@@ -796,7 +796,6 @@
       - animal
       - school
       - giji
-#      - elegant
       - servant
       - market
       - middle
@@ -923,6 +922,7 @@
       - school
       - giji
       - guild
+      - office
       - young
       - pair
 -   _id: c76
@@ -983,7 +983,6 @@
       - school
       - giji
       - immoral
-      - apartment
       - middle
 -   _id: c83
     order: 900.240
@@ -994,8 +993,8 @@
       - school
       - giji
       - road
+      - office
       - medical
-      - market
       - young
 -   _id: c31
     order: 900.250
@@ -1004,8 +1003,7 @@
       - animal
       - school
       - giji
-      - guild
-      - apartment
+      - office
       - young
 -   _id: c99
     order: 900.260
@@ -1084,12 +1082,14 @@
     _id: t01
     tag_ids:
       - travel
+      - student
 -   name: "リッキィ"
     comment: "夏への扉"
     order: 30002
     _id: t02
     tag_ids:
       - travel
+      - student
 -   name: "ミナカタ"
     comment: "ー仁ー"
     order: 900.156
@@ -1102,6 +1102,7 @@
     _id: t04
     tag_ids:
       - travel
+      - student
 -   name: "ジェニファー"
     comment: "バック・トゥ・ザ・フューチャー"
     order: 30005
@@ -1626,6 +1627,7 @@
     order: 30006
     tag_ids:
       - travel
+      - student
 
 -   _id: t07
     name: "アカリ"
@@ -1633,6 +1635,7 @@
     order: 30019
     tag_ids:
       - travel
+      - student
 
 -   _id: t08
     name: "ミルフィ"
@@ -1640,6 +1643,7 @@
     order: 900.224
     tag_ids:
       - travel
+      - student
 
 -   _id: t09
     name: "ゴロウ"
@@ -1654,6 +1658,7 @@
     order: 30010
     tag_ids:
       - travel
+      - student
 
 -   _id: t11
     name: "マドカ"
@@ -1661,6 +1666,7 @@
     order: 30019
     tag_ids:
       - travel
+      - student
 
 -   _id: t12
     name: "フランク"
@@ -1686,7 +1692,6 @@
       - animal
       - school
       - giji
-      - apartment
       - ecclesia
       - young
 -   _id: c104
@@ -1739,7 +1744,6 @@
       - animal
       - school
       - giji
-#      - elegant
       - market
       - elder
 -   _id: c107
@@ -1774,6 +1778,7 @@
     order: 30014
     tag_ids:
       - travel
+      - student
 
 -   _id: t15
     name: "ガーディ"
@@ -1781,6 +1786,7 @@
     order: 30015
     tag_ids:
       - travel
+      - student
 
 
 #########################
@@ -1842,6 +1848,7 @@
     order: 30018
     tag_ids:
       - travel
+      - student
 
 -   _id: t18
     name: "マユミ"
@@ -1849,6 +1856,7 @@
     order: 30018
     tag_ids:
       - travel
+      - student
 
 
 #########################
@@ -1861,7 +1869,6 @@
     tag_ids:
       - giji
       - immoral
-      - apartment
       - young
 
 -   _id: t19
@@ -1870,6 +1877,7 @@
     order: 30017
     tag_ids:
       - travel
+      - student
 
 
 #########################
@@ -1936,6 +1944,7 @@
     order: 30022
     tag_ids:
       - travel
+      - student
 
 #########################
 # 2014-08-23 update
@@ -1993,6 +2002,7 @@
     tag_ids:
       - giji
       - guild
+      - office
       - road
       - kid
 
@@ -2002,6 +2012,7 @@
     order: 30019
     tag_ids:
       - travel
+      - student
 
 -   _id: t22
     name: "ケイイチ"
@@ -2009,6 +2020,7 @@
     order: 30021
     tag_ids:
       - travel
+      - student
 
 -   _id: w53
     name: "おもん"
@@ -2113,6 +2125,7 @@
     order: 30023
     tag_ids:
       - travel
+      - student
 
 -   _id: t24
     name: "キルロイ"
@@ -2120,6 +2133,7 @@
     order: 30024
     tag_ids:
       - travel
+      - student
 
 -   _id: t25
     name: "ミサキ"
@@ -2127,6 +2141,7 @@
     order: 30025
     tag_ids:
       - travel
+      - student
 
 -   _id: t26
     name: "アツタネ"
@@ -2148,6 +2163,7 @@
     order: 30028
     tag_ids:
       - travel
+      - student
 
 -   _id: t29
     name: "ヒナコ"
@@ -2155,6 +2171,7 @@
     order: 30020
     tag_ids:
       - travel
+      - student
 
 -   _id: t30
     name: "ワタヌキ"
@@ -2169,6 +2186,7 @@
     order: 900.158
     tag_ids:
       - travel
+      - student
 
 -   _id: t32
     name: "トヨタ"
@@ -2335,6 +2353,7 @@
     order: 30036
     tag_ids:
       - travel
+      - student
 
 -   _id: t37
     name: "シュンタロ"
@@ -2342,6 +2361,7 @@
     order: 30009  # 素顔的なこだわり
     tag_ids:
       - travel
+      - student
 
 -   _id: t38
     name: "スズキ"
@@ -2356,6 +2376,7 @@
     order: 30018.1  # 聖戦士はみんなここ
     tag_ids:
       - travel
+      - student
 
 #########################
 # 2018-03-24 update
@@ -2385,6 +2406,7 @@
     tag_ids:
       - giji
       - middle
+      - office
       - government
 
 -   _id: c125
@@ -2419,6 +2441,7 @@
     order: 30041
     tag_ids:
       - travel
+      - student
 
 -   _id: t42
     name: レン
@@ -2426,6 +2449,7 @@
     order: 30042
     tag_ids:
       - travel
+      - student
 
 -   _id: t43
     name: こころ
@@ -2433,6 +2457,7 @@
     order: 30043
     tag_ids:
       - travel
+      - student
 
 -   _id: t44
     name: ナツミ
@@ -2440,6 +2465,7 @@
     order: 30044
     tag_ids:
       - travel
+      - student
 
 -   _id: t45
     name: クロエ
@@ -2447,6 +2473,7 @@
     order: 30018.1  # 聖戦士はみんなここ
     tag_ids:
       - travel
+      - student
 
 -   _id: t46
     name: サダミツ
@@ -2454,6 +2481,7 @@
     order: 30046
     tag_ids:
       - travel
+      - student
 
 -   _id: t47
     name: ノッカ
@@ -2461,6 +2489,7 @@
     order: 30047
     tag_ids:
       - travel
+      - student
 
 -   _id: t48
     name: Ａ
@@ -2468,6 +2497,7 @@
     order: 30048
     tag_ids:
       - travel
+      - student
 
 -   _id: t49
     name: Ａ
@@ -2475,6 +2505,7 @@
     order: 30049
     tag_ids:
       - travel
+      - student
 
 -   _id: t50
     name: ヨスガ
@@ -2482,6 +2513,7 @@
     order: 30050
     tag_ids:
       - travel
+      - student
       - pair
 
 -   _id: t51
@@ -2490,6 +2522,7 @@
     order: 30051
     tag_ids:
       - travel
+      - student
       - pair
 
 -   _id: t52
@@ -2498,6 +2531,7 @@
     order: 30052
     tag_ids:
       - travel
+      - student
 
 -   _id: t53
     name: ツヅラ
@@ -2512,6 +2546,7 @@
     order: 30054
     tag_ids:
       - travel
+      - student
 
 -   _id: t55
     name: セイカ
@@ -2519,6 +2554,7 @@
     order: 30055
     tag_ids:
       - travel
+      - student
 
 -   _id: t56
     name: ヤスリ
@@ -2526,6 +2562,7 @@
     order: 30056
     tag_ids:
       - travel
+      - student
 
 -   _id: t57
     name: はのん
@@ -2533,6 +2570,7 @@
     order: 30057
     tag_ids:
       - travel
+      - student
 
 -   _id: t58
     name: シンイチ
@@ -2540,6 +2578,7 @@
     order: 30058
     tag_ids:
       - travel
+      - student
 
 #########################
 # 2018-06-23 
@@ -2552,6 +2591,7 @@
       - giji
       - young
       - servant
+      - ecclesia
 
 -   _id: w55
     name: 網斎
@@ -2573,6 +2613,7 @@
     order: 30059
     tag_ids:
       - travel
+      - student
 
 -   _id: t60
     name: タツミ
@@ -2709,7 +2750,7 @@
     tag_ids:
       - giji
       - young
-      - guild
+      - office
 
 -   _id: t61
     name: ムギタ
@@ -2717,6 +2758,7 @@
     order: 30061
     tag_ids:
       - travel
+      - student
 
 -   _id: t62
     name: ヘイタロウ
@@ -2724,6 +2766,7 @@
     order: 30062
     tag_ids:
       - travel
+      - student
 
 -   _id: t63
     name: ソウスケ
@@ -2769,6 +2812,7 @@
     order: 30068
     tag_ids:
       - travel
+      - student
 
 -   _id: t69
     name: ヤマト
@@ -2776,6 +2820,7 @@
     order: 30069
     tag_ids:
       - travel
+      - student
 
 -   _id: c128
     name: ペトラ
@@ -2804,6 +2849,7 @@
     order: 30070
     tag_ids:
       - travel
+      - student
 
 -   _id: t71
     name: ワカバヤシ
@@ -2811,6 +2857,7 @@
     order: 30071
     tag_ids:
       - travel
+      - student
 
 -   _id: t72
     name: カガ
@@ -2825,6 +2872,7 @@
     order: 30073
     tag_ids:
       - travel
+      - student
 
 -   _id: t74
     name: フウタ
@@ -2832,6 +2880,7 @@
     order: 30074
     tag_ids:
       - travel
+      - student
 
 -   _id: t75
     name: ルリ
@@ -2839,6 +2888,7 @@
     order: 30075
     tag_ids:
       - travel
+      - student
 
 #########################
 # 2018-10-19
@@ -2903,6 +2953,7 @@
       - giji
       - young
       - government
+      - office
       - elegant
 
 -   _id: c131
@@ -2992,6 +3043,7 @@
     order: 30076
     tag_ids:
       - travel
+      - student
 
 -   _id: t77
     name: ヨーコ
@@ -3013,6 +3065,7 @@
     order: 30079
     tag_ids:
       - travel
+      - student
 
 -   _id: t80
     name: ナオシゲ
@@ -3027,6 +3080,7 @@
     order: 30081
     tag_ids:
       - travel
+      - student
 
 -   _id: t82
     name: サガタ
@@ -3041,6 +3095,7 @@
     order: 30083
     tag_ids:
       - travel
+      - student
 
 -   _id: t84
     name: アリババ
@@ -3060,6 +3115,7 @@
       - giji
       - young
       - river
+      - farm
 
 -   _id: c136
     name: レナータ
@@ -3068,7 +3124,7 @@
     tag_ids:
       - giji
       - young
-      - river
+      - farm
 
 -   _id: t85
     name: ミサ
@@ -3090,6 +3146,25 @@
     order: 30085
     tag_ids:
       - travel
+
+#########################
+# 2019-04-12
+
+-   _id: c137
+    name: デリクソン
+    order: 137
+    tag_ids:
+      - giji
+      - young
+      - river
+
+-   _id: c138
+    name: レックス
+    order: 138
+    tag_ids:
+      - giji
+      - young
+      - office
 
 #########################
 # xxxx-xx-xx update
