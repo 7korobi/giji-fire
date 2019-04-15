@@ -205,14 +205,11 @@ module.exports =
       if @edit.is_creating
         potof_id = @my_potof_id
         write_at = new Date - 0
-        phase = Query.phases.find @phase_id
-        idx = phase.chats.reduce?.say?.count ? 0
+        idx = Query.chats.reduce?.index?[@phase_id]?.max ? 0
         _id = [@phase_id, 1 + idx ].join('-')
-        console.log { @_id }
         await @chats_add o = { _id, potof_id, write_at, show, deco, head, to, log, data }
       else
         await @chats_add o = { _id, show, deco, head, to, log, data }
-      console.log o
       @create_mode()
 
   watch:

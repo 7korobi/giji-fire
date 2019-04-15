@@ -1,25 +1,24 @@
 <template lang="pug">
-div
-  article
-    svg(:style="`max-width: 100%; width: ${root.width}px;`" :viewBox="view_box" :ref="'root'" v-on="movespace()")
-      marker.edgePath#svg-marker-circle(viewBox="0 0 10 10" markerUnits="userSpaceOnUse" markerWidth="20" markerHeight="20" refX="5" refY="5" orient="auto")
-        circle(cx="5" cy="5" r="4")
-      marker.edgePath#svg-marker-arrow-start(viewBox="0 0 10 10" markerUnits="userSpaceOnUse" markerWidth="20" markerHeight="20" refX="3" refY="5" orient="auto")
-        path.fill(d="M10,0 L0,5 L10,10 z")
-      marker.edgePath#svg-marker-arrow-end(viewBox="0 0 10 10" markerUnits="userSpaceOnUse" markerWidth="20" markerHeight="20" refX="7" refY="5" orient="auto")
-        path.fill(d="M0,0 L10,5 L0,10 z")
-      marker.edgePath#svg-marker-cross(viewBox="0 0 10 10" markerUnits="userSpaceOnUse" markerWidth="20" markerHeight="20" refX="5" refY="5" orient="0")
-        path.path(d="M0,0 L10,10 M0,10 L10,0 z")
-      g
-        rect( v-for="(o, key) in rects"  v-if="o" v-bind="o" v-on="draggable(key, o)")
-        image(v-for="(o, key) in images" v-if="o" v-bind="o" v-on="draggable(key, o)")
-      g.edgePath
-        path.path(v-for="(o, key) in paths" fill="none" v-if="o" v-bind="o")
-        rect(v-for="(o, key) in labels" v-if="o" v-bind="o" :ref="o.key")
-        text(v-for="(o, key) in texts" v-if="o" v-bind="o" :ref="o.key" @click="pin_id = key")
-          | {{ o.label }}
-      g(v-if="move.id")
-        rect.move(v-bind="moved")
+article
+  svg(:style="`max-width: 100%; width: ${root.width}px;`" :viewBox="view_box" :ref="'root'" v-on="movespace()")
+    marker.edgePath#svg-marker-circle(viewBox="0 0 10 10" markerUnits="userSpaceOnUse" markerWidth="20" markerHeight="20" refX="5" refY="5" orient="auto")
+      circle(cx="5" cy="5" r="4")
+    marker.edgePath#svg-marker-arrow-start(viewBox="0 0 10 10" markerUnits="userSpaceOnUse" markerWidth="20" markerHeight="20" refX="3" refY="5" orient="auto")
+      path.fill(d="M10,0 L0,5 L10,10 z")
+    marker.edgePath#svg-marker-arrow-end(viewBox="0 0 10 10" markerUnits="userSpaceOnUse" markerWidth="20" markerHeight="20" refX="7" refY="5" orient="auto")
+      path.fill(d="M0,0 L10,5 L0,10 z")
+    marker.edgePath#svg-marker-cross(viewBox="0 0 10 10" markerUnits="userSpaceOnUse" markerWidth="20" markerHeight="20" refX="5" refY="5" orient="0")
+      path.path(d="M0,0 L10,10 M0,10 L10,0 z")
+    g
+      rect( v-for="(o, key) in rects"  v-if="o" v-bind="o" v-on="draggable(key, o)")
+      image(v-for="(o, key) in images" v-if="o" v-bind="o" v-on="draggable(key, o)")
+    g.edgePath
+      path.path(v-for="(o, key) in paths" fill="none" v-if="o" v-bind="o")
+      rect(v-for="(o, key) in labels" v-if="o" v-bind="o" :ref="o.key")
+      text(v-for="(o, key) in texts" v-if="o" v-bind="o" :ref="o.key" @click="set_pin(key)")
+        | {{ o.label }}
+    g(v-if="move.id")
+      rect.move(v-bind="moved")
 </template>
 
 <script lang="coffee">
@@ -29,7 +28,6 @@ _ = require 'lodash'
 
 { Query, State } = require "memory-orm"
 { url } = require "~/config/live.yml"
-editor = require './editor'
 
 id_line = ({ v, w, vpos, wpos })->
   "#{[v,w]}=#{[vpos,wpos]}"
@@ -41,13 +39,13 @@ parse_touch = (e)->
   { target } = e
   { pageX, pageY, target }
 
-module.exports = editor
+module.exports =
   props:
-    value: Object
+    value:  Object
+    pin_id: String
 
   data: ->
     step: State.step
-    pin_id: ''
     move:
       id: null
       x:  0
@@ -73,10 +71,14 @@ module.exports = editor
       ry:           10
 
   methods:
+    set_pin: (key)->
+      @$emit 'update:pin_id', key
+
     do_move: (id)->
       for o, idx in @value.icons when o.v == id
         Object.assign o, @move_xy()
         @$emit 'input', @value
+        return
 
     move_xy: ->
       { x, y, dx, dy } = @move
@@ -99,7 +101,7 @@ module.exports = editor
           dx = (pageX - px)
           dy = (pageY - py)
           if dx == dy == 0
-            @pin_id = @move.id
+            @set_pin @move.id
           else
             @move.dx = @zoom * dx
             @move.dy = @zoom * dy
@@ -108,7 +110,7 @@ module.exports = editor
 
       up = (o)=>
         unless @move.id
-          @pin_id = null
+          @set_pin null
         finish(o)
 
       cb =
@@ -180,36 +182,6 @@ module.exports = editor
         tgt.setAttribute key, val
 
   computed:
-    meta: ->
-      words = 0
-      chars = 0
-      for key, list of @value
-        for { label } in list when label
-          words += 1 if label.length
-          chars += label.length
-      size = [
-        @value.icons.length
-        words
-        chars
-      ]
-      attrs = {}
-      { attrs, size }
-
-    line_styles: ->
-      a = []
-      for c, j in " .-="
-        cc = " ╍─━"[j]
-        for l, i in " <ox"
-          ll = " ◀●✖"[i]
-          for r, k in " >ox"
-            rr = " ▶●✖"[k]
-            a.push ["#{l}#{c}#{r}", "#{ll}#{cc}#{rr}"]
-      a
-
-    pin_icon:    -> @value.icons   .find (o)=> @pin_id == o.v
-    pin_line:    -> @value.lines   .find (o)=> @pin_id == id_line o
-    pin_cluster: -> @value.clusters.find (o)=> @pin_id == id_cluster o
-
     zoom: ->
       return 1.0 unless width = @$refs.root?.getClientRects?()?[0]?.width
       @root.width / width
