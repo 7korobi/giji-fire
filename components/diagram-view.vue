@@ -1,75 +1,53 @@
 <template lang="pug">
-article
-  svg(:style="`max-width: 100%; width: ${root.width}px;`" :viewBox="view_box" :ref="'root'" v-on="movespace()")
-    marker.edgePath#svg-marker-circle(viewBox="0 0 10 10" markerUnits="userSpaceOnUse" markerWidth="20" markerHeight="20" refX="5" refY="5" orient="auto")
-      circle(cx="5" cy="5" r="4")
-    marker.edgePath#svg-marker-arrow-start(viewBox="0 0 10 10" markerUnits="userSpaceOnUse" markerWidth="20" markerHeight="20" refX="3" refY="5" orient="auto")
-      path.fill(d="M10,0 L0,5 L10,10 z")
-    marker.edgePath#svg-marker-arrow-end(viewBox="0 0 10 10" markerUnits="userSpaceOnUse" markerWidth="20" markerHeight="20" refX="3" refY="5" orient="auto")
-      path.fill(d="M0,0 L10,5 L0,10 z")
-    marker.edgePath#svg-marker-cross(viewBox="0 0 10 10" markerUnits="userSpaceOnUse" markerWidth="20" markerHeight="20" refX="5" refY="5" orient="0")
-      path.path(d="M0,0 L10,10 M0,10 L10,0 z")
-    g
-      rect( v-for="(o, key) in rects"  v-if="o" v-bind="o" v-on="draggable(key, o)")
-      image(v-for="(o, key) in images" v-if="o" v-bind="o" v-on="draggable(key, o)")
-    g.edgePath
-      path.path(v-for="(o, key) in paths" fill="none" v-if="o" v-bind="o")
-      rect(v-for="(o, key) in labels"  v-if="o" v-bind="o" :ref="o.key")
-      text(v-for="(o, key) in texts" v-if="o" v-bind="o" :ref="o.key")
-        | {{ o.label }}
-    g(v-if="move.id")
-      rect.move(v-bind="moved")
+div
+  article
+    svg(:style="`max-width: 100%; width: ${root.width}px;`" :viewBox="view_box" :ref="'root'" v-on="movespace()")
+      marker.edgePath#svg-marker-circle(viewBox="0 0 10 10" markerUnits="userSpaceOnUse" markerWidth="20" markerHeight="20" refX="5" refY="5" orient="auto")
+        circle(cx="5" cy="5" r="4")
+      marker.edgePath#svg-marker-arrow-start(viewBox="0 0 10 10" markerUnits="userSpaceOnUse" markerWidth="20" markerHeight="20" refX="3" refY="5" orient="auto")
+        path.fill(d="M10,0 L0,5 L10,10 z")
+      marker.edgePath#svg-marker-arrow-end(viewBox="0 0 10 10" markerUnits="userSpaceOnUse" markerWidth="20" markerHeight="20" refX="7" refY="5" orient="auto")
+        path.fill(d="M0,0 L10,5 L0,10 z")
+      marker.edgePath#svg-marker-cross(viewBox="0 0 10 10" markerUnits="userSpaceOnUse" markerWidth="20" markerHeight="20" refX="5" refY="5" orient="0")
+        path.path(d="M0,0 L10,10 M0,10 L10,0 z")
+      g
+        rect( v-for="(o, key) in rects"  v-if="o" v-bind="o" v-on="draggable(key, o)")
+        image(v-for="(o, key) in images" v-if="o" v-bind="o" v-on="draggable(key, o)")
+      g.edgePath
+        path.path(v-for="(o, key) in paths" fill="none" v-if="o" v-bind="o")
+        rect(v-for="(o, key) in labels" v-if="o" v-bind="o" :ref="o.key")
+        text(v-for="(o, key) in texts" v-if="o" v-bind="o" :ref="o.key" @click="pin_id = key")
+          | {{ o.label }}
+      g(v-if="move.id")
+        rect.move(v-bind="moved")
 </template>
 
 <script lang="coffee">
 # inspired by https://github.com/wakufactory/MarkDownDiagram
 
-marker: (key)->
-  switch key
-    when '<'
-      'url(#svg-marker-arrow-start)'
-    when '>'
-      'url(#svg-marker-arrow-end)'
-    when 'o'
-      'url(#svg-marker-circle)'
-    when 'x'
-      'url(#svg-marker-cross)'
-    else
-      null
+_ = require 'lodash'
 
-auto_xy: (x, y)->
-  return [parseInt(x), parseInt(y)] if x? && y?
+{ Query, State } = require "memory-orm"
+{ url } = require "~/config/live.yml"
+editor = require './editor'
 
-  { icon_width, gap_size } = @style
-  xs =
-    for key, { x } of @data.rects
-      x
-  xs.push -( icon_width + gap_size )
-  x  = Math.max ...xs
-  x += icon_width + gap_size
-  y  = gap_size
-  [x, y]
-
+id_line = ({ v, w, vpos, wpos })->
+  "#{[v,w]}=#{[vpos,wpos]}"
+id_cluster = ({ vs })->
+  "#{vs}"
 
 parse_touch = (e)->
   { pageX, pageY } = e.changedTouches[0]
   { target } = e
   { pageX, pageY, target }
 
-module.exports =
+module.exports = editor
   props:
-    log:  String
-    show: String
-    head: String
-    deco: String
-
-    phase_id: String
-
-    data: Object
-    edit: Object
+    value: Object
 
   data: ->
-    zoom: 1.0
+    step: State.step
+    pin_id: ''
     move:
       id: null
       x:  0
@@ -89,16 +67,21 @@ module.exports =
         height:    130
       gap_size:     50
       label_height: 28
+      line_slide:   25
       border_width:  5
-      rx:            3
-      ry:            3
-
+      rx:           10
+      ry:           10
 
   methods:
+    do_move: (id)->
+      for o, idx in @value.icons when o.v == id
+        Object.assign o, @move_xy()
+        @$emit 'input', @value
+
     move_xy: ->
       { x, y, dx, dy } = @move
-      x = parseInt Math.max 0, x + dx
-      y = parseInt Math.max 0, y + dy
+      x = parseInt x + dx
+      y = parseInt y + dy
       { x, y }
 
     movespace: ->
@@ -116,24 +99,29 @@ module.exports =
           dx = (pageX - px)
           dy = (pageY - py)
           if dx == dy == 0
-            @do_roll @move.id
+            @pin_id = @move.id
           else
             @move.dx = @zoom * dx
             @move.dy = @zoom * dy
             @do_move @move.id
           @move.id = null
 
+      up = (o)=>
+        unless @move.id
+          @pin_id = null
+        finish(o)
+
       cb =
         touchend: (e)=>
-          finish parse_touch e
+          up parse_touch e
         touchleave: (e)=>
           finish parse_touch e
         touchmove: (e)=>
           move parse_touch e
-        mouseup: finish
+        mouseup: up
         mouseleave: finish
         mousemove: move
-        
+
     draggable: (id)->
       start = ({ pageX, pageY, target })=>
         { x, y, rx, ry, width, height } = @rects[id]
@@ -149,217 +137,325 @@ module.exports =
           start e
     
     recalc: ->
-      return unless @edit
       Object.assign @moved, @move_xy()
 
-    do_move: (id)->
-      return unless @edit
-      o = @data.icons.find (icon)-> icon.v == id
-      Object.assign o, @move_xy()
-      @$emit 'input', id, o
-    
-    do_roll: (id)->
-      return unless @edit
-      o = @data.icons.find (icon)-> icon.v == id
-      o.roll = o.roll + 90 % 360
-      @$emit 'input', id, o
-
-    pos: ({ x, y, width, height }, mark)->
-      { gap_size } = @style
-      curve = 1 * gap_size
-      switch mark
-        when '^','u'
-          x += 0.5 * width 
-          # y origin
-          vx =  0
-          vy = -curve
-        when 'v','d'
-          x += 0.5 * width
-          y += 1.0 * height
-          vx =  0
-          vy =  curve
-        when '<','l'
-          # x origin
-          y += 0.5 * height
-          vx = -curve
-          vy =  0
-        when '>','r'
-          x += 1.0 * width
-          y += 0.5 * height
-          vx =  curve
-          vy =  0
-      { x, y, vx, vy }
-
-    by_roll: (roll)->
-      switch roll
-        when 0
-          is_v = true
-          x =  0
-          y =  0
-        when 180
-          is_v = true
-          x =  0
-          y =  0
-        when 270
-          is_h = true
-          x =  0
-          y = -0.5
-        when 90
-          is_h = true
-          x =  0.5
-          y =  0
-      [ x, y, is_h, is_v ]
-
     cover: (vos)->
-      { label_height, icon } = @style
+      { gap_size, icon } = @style
+      vos = vos.filter (o)-> o
       unless vos.length
-        x = y = label_height
+        x = y = gap_size
         vos.push { ...icon, x, y }
 
       xmin = Math.min ...vos.map (o)-> o.x
-      xmax = Math.max ...vos.map (o)-> o.x + o.width
+      xmax = Math.max ...vos.map (o)-> o.x + ( o.width  || 0 )
       ymin = Math.min ...vos.map (o)-> o.y
-      ymax = Math.max ...vos.map (o)-> o.y + o.height
-      width  = xmax - xmin + label_height
-      height = ymax - ymin + label_height
-      x = xmin - 0.5 * label_height
-      y = ymin - 0.5 * label_height
+      ymax = Math.max ...vos.map (o)-> o.y + ( o.height || 0 )
+      width  = xmax - xmin + gap_size
+      height = ymax - ymin + gap_size
+      x = xmin - 0.5 * gap_size
+      y = ymin - 0.5 * gap_size
 
       { x, y, width, height }
 
+    label_height_update: (height)->
+      d = height - @style.label_height
+      if 4 < d * d
+        @style.label_height = parseInt height
+        console.log height, d * d
+
+    label_draw: (key)->
+      return unless tgt = @$refs['rect-label-' + key]?[0]
+      return unless box = @$refs[     'label-' + key]?[0]?.getBBox?()
+      { width, height, x, y } = box
+      return unless height
+      return unless width
+
+      { border_width } = @style
+      width  = parseInt width  + 4 * border_width
+      height = parseInt height + 2 * border_width
+      x = parseInt x - 2 * border_width
+      y = parseInt y - 1 * border_width
+      @label_height_update height, key
+      for key, val of { x, y, width, height }
+        tgt.setAttribute key, val
+
   computed:
+    meta: ->
+      words = 0
+      chars = 0
+      for key, list of @value
+        for { label } in list when label
+          words += 1 if label.length
+          chars += label.length
+      size = [
+        @value.icons.length
+        words
+        chars
+      ]
+      attrs = {}
+      { attrs, size }
+
+    line_styles: ->
+      a = []
+      for c, j in " .-="
+        cc = " ╍─━"[j]
+        for l, i in " <ox"
+          ll = " ◀●✖"[i]
+          for r, k in " >ox"
+            rr = " ▶●✖"[k]
+            a.push ["#{l}#{c}#{r}", "#{ll}#{cc}#{rr}"]
+      a
+
+    pin_icon:    -> @value.icons   .find (o)=> @pin_id == o.v
+    pin_line:    -> @value.lines   .find (o)=> @pin_id == id_line o
+    pin_cluster: -> @value.clusters.find (o)=> @pin_id == id_cluster o
+
+    zoom: ->
+      return 1.0 unless width = @$refs.root?.getClientRects?()?[0]?.width
+      @root.width / width
+
     view_box: ->
       "#{@root.x} #{@root.y} #{@root.width} #{@root.height}"
 
     root: ->
       @cover Object.values @rects
 
+    calcs: ->
+      o = {}
+      { border_width, label_height, gap_size, icon } = @style
+
+      by_roll = (roll)->
+        switch roll
+          when  0, 180
+            false
+          when 90, 270
+            true
+
+      pos = ({ x, y, width, height }, roll)->
+        curve = parseInt Math.min width, height, icon.height
+        switch roll
+          when 0
+            dx = 0.5 * width 
+            dy = 0
+            vx =  0
+            vy = -curve
+          when 90
+            dx = 1.0 * width
+            dy = 0.5 * height
+            vx =  curve
+            vy =  0
+          when 180
+            dx = 0.5 * width
+            dy = 1.0 * height
+            vx =  0
+            vy =  curve
+          when 270
+            dx = 0
+            dy = 0.5 * height
+            vx = -curve
+            vy =  0
+
+        x = parseInt x + dx
+        y = parseInt y + dy
+        c =
+          x: x + vx
+          y: y + vy
+
+        { x, y, vx, vy, c }
+
+      calc_size = (a, b, max)->
+        size = parseInt 0.3 * ( b - a )
+        return [  max, size ] if  max < size
+        return [ -max, size ] if size < -max
+        [ size, size ]
+
+      slide = (a, b)->
+        if a.vy
+          [ size, curve ] = calc_size a.x, b.x, 0.5 * icon.width
+          a.x   += size
+          a.c.x += curve
+        if a.vx
+          [ size, curve ] = calc_size a.y, b.y, 0.5 * icon.height
+          a.y   += size
+          a.c.y += curve
+
+      for { v, label, roll, x, y } in @value.icons
+        { width, height } = icon
+        is_horizontal = by_roll roll
+
+        if is_horizontal
+          [width, height] = [height, width]
+
+        if label
+          height += label_height
+        width  += 2 * border_width
+        height += 2 * border_width
+        o[v] = { class: 'box', width, height, x, y, label }
+
+      for { vs, label } in @value.clusters
+        { x, y, width, height } = @cover vs.map (v)=> o[v]
+        o[vs] = { class: "cluster", width, height, x, y, label }
+
+      for oo in @value.lines
+        vw = id_line oo
+        { v, w, line, vpos, wpos, label } = oo
+        vo = o[v]
+        wo = o[w]
+        unless vo
+          vo = wo
+        unless wo
+          wo = vo
+        vp = pos vo, vpos
+        wp = pos wo, wpos
+
+        slide vp, wp
+        slide wp, vp
+
+        cvp = vp.c
+        cwp = wp.c
+        x    = parseInt Math.min vp.x, cvp.x, cwp.x, wp.x
+        y    = parseInt Math.min vp.y, cvp.y, cwp.y, wp.y
+        xmax = parseInt Math.max vp.x, cvp.x, cwp.x, wp.x
+        ymax = parseInt Math.max vp.y, cvp.y, cwp.y, wp.y
+        width  = xmax - x
+        height = ymax - y
+        if width * width + height * height < 16 * gap_size * gap_size
+          cvp = vp
+          cwp = wp
+        cp =
+          x: parseInt 0.5 * (cvp.x + cwp.x)
+          y: parseInt 0.5 * (cvp.y + cwp.y)
+
+        o[vw] = { class: "hide", width, height, x, y, vp, cvp, cwp, wp, cp, label }
+
+      o
+
+    rects: ->
+      o = {}
+      { rx, ry } = @style
+      for key, calc of @calcs
+        { x, y, width, height } = calc
+        o[key] = { class: calc.class, key: "rect=#{key}", rx, ry, width, height, x, y }
+      o
+
+    paths: ->
+      o = {}
+
+      marker = (key)->
+        switch key
+          when '<'
+            'url(#svg-marker-arrow-start)'
+          when '>'
+            'url(#svg-marker-arrow-end)'
+          when 'o'
+            'url(#svg-marker-circle)'
+          when 'x'
+            'url(#svg-marker-cross)'
+          else
+            null
+
+      border = (key)->
+        switch key
+          when '='
+            'wide'
+          when '-'
+            'solid'
+          when '.'
+            'dotted'
+          else
+            'hide'
+
+      line_style = ([st,c,ed])->
+        class: border c
+        "marker-start": marker st
+        "marker-end":   marker ed
+
+      for oo in @value.lines
+        vw = id_line oo
+        { v, w, line, vpos, wpos, label } = oo
+        style = line_style line
+        { vp, cvp, cwp, wp, cp } = @calcs[vw]
+        d = "M#{ vp.x },#{ vp.y }Q#{ cvp.x },#{ cvp.y },#{ cp.x },#{ cp.y }Q#{ cwp.x },#{ cwp.y },#{ wp.x },#{ wp.y }"
+        o[vw] = { ...style, key: "path=#{vw}", d }
+        # d = "M#{ cvp.x },#{ cvp.y }L#{ cwp.x },#{ cwp.y }"
+        # o[vw + 'sub'] = { class: 'dotted', key: "path=#{vw}sub", d }
+      o
+
+    texts: ->
+      o = {}
+      { label_height, border_width, icon } = @style
+      for { vs, label } in @value.clusters
+        { width } = icon
+        { x, y, width } = @calcs[vs]
+        # x, y は右上
+        x = parseInt x + 1.0 * width
+        y = parseInt y + 0.3 * label_height
+        o[vs] = { class: "pen", key: "label-#{vs}", "text-anchor": "end", label, x, y }
+
+      for { v, label, roll, x, y } in @value.icons when label
+        { width, height, x, y } = @calcs[v]
+
+        # x, y はボトム
+        x = parseInt x + 0.5 * width
+        y = parseInt y + 1.0 * height - 3 * border_width
+        o[v] = { class: "pen", key: "label-#{v}", "text-anchor": "middle", label, x, y }
+
+      for oo in @value.lines when oo.label
+        vw = id_line oo
+        { v, w, line, vpos, wpos, label } = oo
+        { x, y }= @calcs[vw].cp
+        y = parseInt y + 0.3 * label_height
+        o[vw] = { class: "pen", key: "label-#{vw}", "text-anchor": "middle", label, x, y }
+      o
+
+    labels: ->
+      o = {}
+      { rx, ry, label_height } = @style
+      @$nextTick ->
+        for key, val of o
+          @label_draw key
+
+      for { vs, label } in @value.clusters when label
+        o[vs] = { class: "pen", key: "rect-label-#{vs}", rx , ry }
+
+      for { v, label, roll, x, y } in @value.icons when label
+        o[v] = { class: "pen", key: "rect-label-#{v}", rx , ry }
+
+      for oo in @value.lines when oo.label
+        vw = id_line oo
+        o[vw] = { class: "pen", key: "rect-label-#{vw}", rx , ry }
+      o
+
     images: ->
       o = {}
-      for { v, label, roll, x, y } in @data.icons
-        { border_width, icon, rx, ry } = @style
-        { width, height } = icon
-        [ extrax, extray, ... ] = @by_roll roll
+      { border_width, icon, rx, ry } = @style
 
-        href = v
+      by_roll = (roll)->
+        switch roll
+          when 0, 180
+            [ 0, 0 ]
+          when 270
+            [ 0, -0.5 ]
+          when 90
+            [ 0.5,  0 ]
+
+      for { v, label, roll, x, y } in @value.icons
+        { width, height } = icon
+        [ extrax, extray ] = by_roll roll
+
+        face = Query.faces.find v
+        if face 
+          href = "#{url.assets}/images/portrate/#{ face.id }.#{face.format ? 'jpg'}"
+        else
+          href = "#{url.assets}/images/portrate/undef.jpg"
+
+
         x += border_width
         y += border_width
         extrax *= height - width
         extray *= height - width
         transform = "rotate(#{roll}, #{x + extrax + 0.5 * width}, #{y + extray + 0.5 * height})"
         o[v] = { class: "icon", key: "image=#{v}", href, transform, width, height, rx, ry, x, y }
-      o
-
-    rects: ->
-      o = {}
-      for { v, label, roll, x, y } in @data.icons
-        { border_width, label_height, icon, rx, ry } = @style
-        { width, height } = icon
-        is_horizontal = @by_roll(roll)[3]
-
-        if is_horizontal
-          [width, height] = [height, width]
-
-        width  += 2 * border_width
-        height += 2 * border_width + label_height
-        o[v] = { class: 'box', key: "rect=#{v}", width, height, x, y, rx, ry }
-
-      for { vs, label } in @data.clusters
-        { rx, ry } = @style
-        { x, y, width, height } = @cover vs.map (v)=> o[v]
-        o[label] = { class: "cluster", key: "rect=#{label}", fill: 'none', width, height, x, y, rx, ry }
-      o
-
-    calcs: ->
-      o = {}
-      for { v, w, line, start, end, headpos, tailpos, label } in @data.lines
-        vw  = [v,w].join("+")
-
-        vo = @rects[v]
-        wo = @rects[w]
-        vp = @pos vo, headpos
-        wp = @pos wo, tailpos
-
-        cvp =
-          x: vp.x + vp.vx
-          y: vp.y + vp.vy
-        cwp =
-          x: wp.x + wp.vx
-          y: wp.y + wp.vy
-        cp =
-          x: parseInt 0.5 * (cvp.x + cwp.x)
-          y: parseInt 0.5 * (cvp.y + cwp.y)
-
-        o[vw] = { vp, cvp, cwp, wp, cp }
-      o
-
-    paths: ->
-      o = {}
-      for { v, w, line, start, end, headpos, tailpos, label } in @data.lines
-        vw  = [v,w].join("+")
-        { vp, cvp, cwp, wp, cp } = @calcs[vw]
-        d  = "M#{ vp.x },#{ vp.y }C#{ cvp.x },#{ cvp.y },#{ cwp.x },#{ cwp.y },#{ wp.x },#{ wp.y }"
-
-        o[vw] = { class: line, key: "path=#{vw}", "marker-start": start, "marker-end": end, d }
-      o
-
-    texts: ->
-      o = {}
-      for { vs, label } in @data.clusters
-        { label_height, icon, rx, ry } = @style
-        { width, height } = icon
-        { x, y, width } = @calcs[label]
-        # x, y は右上
-        x += 1.0 * width
-        y += 0.5 * label_height 
-        o[label] = { class: "pen", key: "label-#{label}", "text-anchor": "end", label, x, y }
-
-      for { v, label, roll, x, y } in @data.icons
-        { border_width, rx, ry } = @style
-        # x, y はボトム
-        x += 0.5 * width
-        y += 1.0 * height - 2 * border_width
-        o[v] = { class: "pen", key: "label-#{v}", "text-anchor": "middle", label, x, y }
-
-      for { v, w, line, start, end, headpos, tailpos, label } in @data.lines
-        vw  = [v,w].join("+")
-        { x, y }= @calcs[vw].cp
-        o[vw] = { class: "pen", key: "label-#{vw}", "text-anchor": "middle", label, x, y }
-      o
-
-    labels: ->
-      root_width = @root.width
-      @$nextTick =>
-        return unless width = @$refs.root?.getClientRects?()?[0]?.width
-        @zoom = root_width / width
-        for key of @texts
-          tk =      'label-' + key
-          lk = 'rect-label-' + key
-          continue unless box = @$refs[tk]?[0]?.getBBox?()
-
-          { width, height, x, y } = box
-          { border_width } = @style
-          width  += 4 * border_width
-          height += 2 * border_width
-          x -= 2 * border_width
-          y -= 1 * border_width
-          @style.label_height = height
-          for key, val of { x, y, width, height }
-            @$refs[lk][0].setAttribute key, val
-
-      o = {}
-      for { vs, label } in @data.clusters
-        { rx, ry } = @style
-        o[label] = { class: "pen", key: "rect-label-#{label}", rx , ry }
-
-      for { v, label, roll, x, y } in @data.icons
-        { rx, ry } = @style
-        o[v] = { class: "pen", key: "rect-label-#{v}", rx , ry }
-
-      for { v, w, line, start, end, headpos, tailpos, label } in @data.lines
-        { rx, ry } = @style
-        vw  = [v,w].join("+")
-        o[vw] = { class: "pen", key: "rect-label-#{vw}", rx , ry }
       o
 
 

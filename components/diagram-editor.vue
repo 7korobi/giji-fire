@@ -32,6 +32,7 @@ div
         | {{lines}}/
         sub {{maxRow}}人
     slot
+  div
     div(v-if="pin_icon")
       a.btn(@click="del_icon(pin_icon)") DEL
       input(v-model="pin_icon.v" key="v" style="width: 3em")
@@ -40,7 +41,7 @@ div
         option(:value=" 90") →
         option(:value="180") ↓
         option(:value="270") ←
-      input(v-model="pin_icon.label" key="label")
+      input(v-model.trim="pin_icon.label" key="label")
     div(v-if="pin_line")
       a.btn(@click="del_line(pin_line)") DEL
       select(v-model="pin_line.v" key="v")
@@ -59,7 +60,7 @@ div
         option(:value="270") ←
       select(v-model="pin_line.w" key="w")
         option(v-for="(o, key) in calcs" v-if="'hide' != o.class" :value="key") {{key}}
-      input(v-model="pin_line.label" key="label")
+      input(v-model.trim="pin_line.label" key="label")
     div(v-if="pin_cluster && pin_cluster.vs")
       a.btn(@click="del_cluster(pin_cluster)") DEL
       | &emsp;
@@ -71,7 +72,7 @@ div
       select(v-model="pin_cluster.vs[pin_cluster.vs.length]" key="vs.new")
         option(:value="undefined") (追加)
         option(v-for="(o, key) in calcs" v-if="'box' == o.class" :value="key") {{key}}
-      input(v-model="pin_cluster.label" key="label")
+      input(v-model.trim="pin_cluster.label" key="label")
     fieldset
       legend 追加
       a.btn(v-if="pin_icon || pin_cluster" @click="add_line(pin_id)") line
@@ -86,43 +87,21 @@ _ = require 'lodash'
 
 { Query, State } = require "memory-orm"
 { url } = require "~/config/live.yml"
+editor = require './editor'
 
-line_id = ({ v, w, vpos, wpos })->
-  "#{v}=#{vpos}+#{w}=#{wpos}"
+id_line = ({ v, w, vpos, wpos })->
+  "#{[v,w]}=#{[vpos,wpos]}"
+id_cluster = ({ vs })->
+  "#{vs}"
 
 parse_touch = (e)->
   { pageX, pageY } = e.changedTouches[0]
   { target } = e
   { pageX, pageY, target }
 
-module.exports =
+module.exports = editor
   props:
     value: Object
-
-    is_ban:
-      type: Boolean
-      default: false
-
-    is_warn:
-      type: Boolean
-      default: false
-
-    maxSize:
-      type: Number
-      default: 100
-    maxWord:
-      type: Number
-      default: 10
-    maxRow:
-      type: Number
-      default: 1
-    minRow:
-      type: Number
-      default: 1
-
-    disabled:
-      type: Boolean
-      default: false
 
   data: ->
     step: State.step
@@ -148,8 +127,8 @@ module.exports =
       label_height: 28
       line_slide:   25
       border_width:  5
-      rx:            3
-      ry:            3
+      rx:           10
+      ry:           10
 
   directives:
     agent:
@@ -165,33 +144,18 @@ module.exports =
         #console.log 'unbind', value, vnode, is_unbind
 
   methods:
-    submit: _.debounce ->
-      return if @ban
-
-      @$emit 'submit', @value
-    , 3000,
-      leading:  true
-      trailing: false
-
     add_icon: ()->
     add_line: (v, w = v)-> @value.lines.push { v, w, line: "o=o", vpos: 0, wpos: 90, label: "line" }
     add_cluster: (...vs)-> @value.clusters.push { vs, label: "cluster" }
 
     del_icon:    -> @value.icons    = ( o for o in @value.icons    when @pin_id != o.v )
-    del_line:    -> @value.lines    = ( o for o in @value.lines    when @pin_id != line_id o )
-    del_cluster: -> @value.clusters = ( o for o in @value.clusters when @pin_id != o.vs.join(',') )
-
-    input: (value, $event)->
-      $event = $event?.target?.value ? $event
-      console.log value, $event
-      _.set @value, value.join("."), $event
+    del_line:    -> @value.lines    = ( o for o in @value.lines    when @pin_id != id_line o )
+    del_cluster: -> @value.clusters = ( o for o in @value.clusters when @pin_id != id_cluster o )
 
     do_move: (id)->
       for o, idx in @value.icons when o.v == id
         Object.assign o, @move_xy()
-        @$emit "input", "icons.#{idx}.x", o.x
-        @$emit "input", "icons.#{idx}.y", o.y
-        return
+        @$emit 'input', @value
 
     move_xy: ->
       { x, y, dx, dy } = @move
@@ -255,20 +219,20 @@ module.exports =
       Object.assign @moved, @move_xy()
 
     cover: (vos)->
-      { label_height, icon } = @style
+      { gap_size, icon } = @style
       vos = vos.filter (o)-> o
       unless vos.length
-        x = y = @label_height
+        x = y = gap_size
         vos.push { ...icon, x, y }
 
       xmin = Math.min ...vos.map (o)-> o.x
       xmax = Math.max ...vos.map (o)-> o.x + ( o.width  || 0 )
       ymin = Math.min ...vos.map (o)-> o.y
       ymax = Math.max ...vos.map (o)-> o.y + ( o.height || 0 )
-      width  = xmax - xmin + label_height
-      height = ymax - ymin + label_height
-      x = xmin - 0.5 * label_height
-      y = ymin - 0.5 * label_height
+      width  = xmax - xmin + gap_size
+      height = ymax - ymin + gap_size
+      x = xmin - 0.5 * gap_size
+      y = ymin - 0.5 * gap_size
 
       { x, y, width, height }
 
@@ -295,40 +259,20 @@ module.exports =
         tgt.setAttribute key, val
 
   computed:
-    lines: ->
-      @value.icons.length
-    words: ->
-      length = 0
+    meta: ->
+      words = 0
+      chars = 0
       for key, list of @value
-        for { label } in list
-          length += 1 if label.length
-      length
-    chars: ->
-      length = 0
-      for key, list of @value
-        for { label } in list
-          length += label.length
-      length
-
-    ban: ->
-      ban = false
-      ban ||= !( @value == @html )
-      ban ||= !(       2 <= @chars <= @maxSize )
-      ban ||= !(       1 <= @words <= @maxWord )
-      ban ||= !( @minRow <= @lines <= @maxRow )
-      ban ||= @is_ban
-      ban
-
-    warn: ->
-      warn = false
-      warn ||= @is_warn
-      warn
-
-    mark: ->
-      m = "mdi-check-circle-outline"
-      m = "mdi-alert-circle-outline" if @warn
-      m = "mdi-cancel"               if @ban
-      [m]
+        for { label } in list when label
+          words += 1 if label.length
+          chars += label.length
+      size = [
+        @value.icons.length
+        words
+        chars
+      ]
+      attrs = {}
+      { attrs, size }
 
     line_styles: ->
       a = []
@@ -342,8 +286,8 @@ module.exports =
       a
 
     pin_icon:    -> @value.icons   .find (o)=> @pin_id == o.v
-    pin_line:    -> @value.lines   .find (o)=> @pin_id == line_id o
-    pin_cluster: -> @value.clusters.find (o)=> @pin_id == o.vs.join(',')
+    pin_line:    -> @value.lines   .find (o)=> @pin_id == id_line o
+    pin_cluster: -> @value.clusters.find (o)=> @pin_id == id_cluster o
 
     zoom: ->
       return 1.0 unless width = @$refs.root?.getClientRects?()?[0]?.width
@@ -432,7 +376,7 @@ module.exports =
         o[vs] = { class: "cluster", width, height, x, y, label }
 
       for oo in @value.lines
-        vw = line_id oo
+        vw = id_line oo
         { v, w, line, vpos, wpos, label } = oo
         vo = o[v]
         wo = o[w]
@@ -470,7 +414,7 @@ module.exports =
       { rx, ry } = @style
       for key, calc of @calcs
         { x, y, width, height } = calc
-        o[key] = { class: calc.class, key: "rect=#{key}", width, height, x, y }
+        o[key] = { class: calc.class, key: "rect=#{key}", rx, ry, width, height, x, y }
       o
 
     paths: ->
@@ -506,7 +450,7 @@ module.exports =
         "marker-end":   marker ed
 
       for oo in @value.lines
-        vw = line_id oo
+        vw = id_line oo
         { v, w, line, vpos, wpos, label } = oo
         style = line_style line
         { vp, cvp, cwp, wp, cp } = @calcs[vw]
@@ -536,7 +480,7 @@ module.exports =
         o[v] = { class: "pen", key: "label-#{v}", "text-anchor": "middle", label, x, y }
 
       for oo in @value.lines when oo.label
-        vw = line_id oo
+        vw = id_line oo
         { v, w, line, vpos, wpos, label } = oo
         { x, y }= @calcs[vw].cp
         y = parseInt y + 0.3 * label_height
@@ -557,7 +501,7 @@ module.exports =
         o[v] = { class: "pen", key: "rect-label-#{v}", rx , ry }
 
       for oo in @value.lines when oo.label
-        vw = line_id oo
+        vw = id_line oo
         o[vw] = { class: "pen", key: "rect-label-#{vw}", rx , ry }
       o
 

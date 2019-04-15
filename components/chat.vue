@@ -14,18 +14,17 @@ module.exports =
   render: (m, ctx)->
     { id, show, current, edit } = ctx.props
 
-    chat = Query.chats.find id
-    return [] unless chat
+    target = Query.chats.find id
+    return [] unless target
 
     if id && edit && id == edit.chat.id
-      chat = edit.chat
+      target = edit.chat
     else
       edit = undefined
 
-    if o = chat.phase
+    if o = target.phase
       { handle } = o
-
-    if o = chat.potof
+    if o = target.potof
       if o.hide
         show = "hide"
       { face_id, head, sign } = o
@@ -33,8 +32,10 @@ module.exports =
     key = id
     { face_id = face_id, handle = handle, show = show, head = head,
       write_at, log, deco, to, phase_id, data
-    } = chat
+    } = target
+    attrs = {
+      current, target, edit,
+      id, face_id, handle, log, data, show, head, deco, to, phase_id }
 
-    attrs = { id, face_id, handle, log, show, head, deco, to, phase_id, current, data, edit }
     m "c-" + attrs.show, { attrs, key, on: ctx.data.on }, ctx.children
 </script>

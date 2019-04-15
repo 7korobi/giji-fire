@@ -295,6 +295,7 @@ palette_single($bgTheme, $type, $idx, key)
     $off   = transparent
 
 
+  themeName = 'bubble'
   for theme in $bgTheme
     .ql-color-{theme}
       color: $line
@@ -366,6 +367,112 @@ palette_single($bgTheme, $type, $idx, key)
           fill: $line
         > path.path
           stroke: $line
+
+      // Quill
+      .ql-bubble
+        .ql-color-picker
+          .:before.  content: attr(data-value)ql-selected, .ql-picker-item:hover
+            border-color: $bold
+        .ql-tooltip
+          background-color: $bgHi
+          color: $pen
+        .ql-tooltip:not(.ql-flip) .ql-tooltip-arrow
+          border-bottom-color: $bgHi
+        .ql-tooltip.ql-flip .ql-tooltip-arrow
+          border-top-color: $bgHi
+        .ql-tooltip-editor
+          input[type=text]
+            color: $pen
+          a
+            &:before
+              color: $hide
+
+      .ql-container.ql-bubble:not(.ql-disabled)
+        a::before
+          background-color: $bg
+          color: $pen
+        a::after
+          border-top-color: $bg
+
+      .ql-{themeName}.ql-toolbar, .ql-{themeName} .ql-toolbar
+        button
+          background-color: $bg
+          abbr
+            background-color: $emboss
+            color: $bg
+        button:hover
+        button:focus
+        button.ql-active,
+        .ql-picker-label:hover
+        .ql-picker-label.ql-active,
+        .ql-picker-item:hover
+        .ql-picker-item.ql-selected
+          color: $bold
+          .ql-fill, .ql-stroke.ql-fill
+            fill: $bold
+          .ql-stroke, .ql-stroke-miter
+            stroke: $bold
+
+        button:hover
+        button:focus
+        button.ql-active
+          & > *
+          &:before
+          &:after
+            color: $bold
+
+        button
+          & > *
+          &:before
+          &:after
+            color: $hide
+
+
+      // Fix for iOS not losing hover on touch
+      @media (pointer: coarse)
+        .ql-{themeName}.ql-toolbar, .ql-{themeName} .ql-toolbar
+          button:hover:not(.ql-active)
+            color: $hide
+            .ql-fill, .ql-stroke.ql-fill
+              fill: $hide
+            .ql-stroke, .ql-stroke-miter
+              stroke: $hide
+            &:before
+            &:after
+              color: $hide
+
+      .ql-{themeName}
+        .ql-stroke
+          stroke: $hide
+        .ql-stroke-miter
+          stroke: $hide
+        .ql-fill, .ql-stroke.ql-fill
+          fill: $hide
+
+        .ql-picker
+          color: $hide
+          background-color: $off
+          border-color:     $edge
+        .ql-picker-options
+          background-color: $off
+          border-color:     $edge
+
+        .ql-picker.ql-expanded
+          .ql-picker-label
+            color: $edge
+            .ql-fill
+              fill: $edge
+            .ql-stroke
+              stroke: $edge
+
+      ul[data-checked=true],
+      ul[data-checked=false]
+        pointer-events: none
+        > li::before
+          color: #777
+
+      .ql-editor.ql-blank::before
+        color: rgba(0,0,0,0.6)
 
     fieldset
       body &.{theme}

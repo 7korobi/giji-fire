@@ -36,32 +36,20 @@ button.ql-kana[value="full"]:after
 
 // BUBBLE
 themeName = 'bubble'
-activeColor = #fff
-borderColor = #777
-backgroundColor = #444
-inactiveColor = #ccc
-shadowColor = #ddd
-textColor = #fff
 arrowWidth = 6px
 
 .ql-bubble
   .ql-toolbar
     .ql-formats
-      margin: 8px 12px 8px 0px
-    .ql-formats:first-child
-      margin-left: 12px
+      margin: 4px 0px 2px 7px
 
   .ql-color-picker
     svg
       margin: 1px
-    .:before.  content: attr(data-value)ql-selected, .ql-picker-item:hover
-      border-color: activeColor
 
 .ql-bubble
   .ql-tooltip
-    background-color: backgroundColor
     border-radius: 25px
-    color: textColor
   .ql-tooltip-arrow
     border-left: arrowWidth solid transparent
     border-right: arrowWidth solid transparent
@@ -71,10 +59,10 @@ arrowWidth = 6px
     margin-left: -1 * arrowWidth
     position: absolute
   .ql-tooltip:not(.ql-flip) .ql-tooltip-arrow
-    border-bottom: arrowWidth solid backgroundColor
+    border-bottom: arrowWidth solid
     top: -1 * arrowWidth
   .ql-tooltip.ql-flip .ql-tooltip-arrow
-    border-top: arrowWidth solid backgroundColor
+    border-top: arrowWidth solid
     bottom: -1 * arrowWidth
 
   .ql-tooltip.ql-editing
@@ -88,7 +76,6 @@ arrowWidth = 6px
     input[type=text]
       background: transparent
       border: none
-      color: textColor
       font-size: 13px
       height: 100%
       outline: none
@@ -97,7 +84,6 @@ arrowWidth = 6px
       width: 100%
     a
       &:before
-        color: inactiveColor
         content: "\00D7"
         font-size: 16px
         font-weight: bold
@@ -110,11 +96,9 @@ arrowWidth = 6px
     position: relative
     white-space: nowrap
   a::before
-    background-color: #444
     border-radius: 15px
     top: -5px
     font-size: 12px
-    color: #fff
     content: attr(href)
     font-weight: normal
     overflow: hidden
@@ -122,7 +106,7 @@ arrowWidth = 6px
     text-decoration: none
     z-index: 1
   a::after
-    border-top: 6px solid #444
+    border-top: 6px solid
     border-left: 6px solid transparent
     border-right: 6px solid transparent
     top: 0
@@ -157,19 +141,16 @@ colorItemsPerRow = 7
     display: table
 
   button
-    background: none
     border: none
     cursor: pointer
     display: inline-block
     float: left
-    height: controlHeight
-    padding: inputPaddingHeight inputPaddingWidth
-    width: controlHeight + (inputPaddingWidth - inputPaddingHeight)*2
     font-size: 15px
-
+    height: controlHeight + 6
     svg
       float: left
-      height: 100%
+      height: controlHeight
+      width: controlHeight
 
     &:active:hover
       outline: none
@@ -177,46 +158,6 @@ colorItemsPerRow = 7
   input.ql-image[type=file]
     display: none
 
-  button:hover
-  button:focus
-  button.ql-active,
-  .ql-picker-label:hover
-  .ql-picker-label.ql-active,
-  .ql-picker-item:hover
-  .ql-picker-item.ql-selected
-    color: activeColor
-    .ql-fill, .ql-stroke.ql-fill
-      fill: activeColor
-    .ql-stroke, .ql-stroke-miter
-      stroke: activeColor
-
-  button:hover
-  button:focus
-  button.ql-active
-    & > *
-    &:before
-    &:after
-      color: activeColor
-
-  button
-    & > *
-    &:before
-    &:after
-      color: inactiveColor
-
-
-// Fix for iOS not losing hover on touch
-@media (pointer: coarse)
-  .ql-{themeName}.ql-toolbar, .ql-{themeName} .ql-toolbar
-    button:hover:not(.ql-active)
-      color: inactiveColor
-      .ql-fill, .ql-stroke.ql-fill
-        fill: inactiveColor
-      .ql-stroke, .ql-stroke-miter
-        stroke: inactiveColor
-      &:before
-      &:after
-        color: inactiveColor
 
 .ql-{themeName}
   box-sizing: border-box
@@ -247,18 +188,13 @@ colorItemsPerRow = 7
 
   .ql-stroke
     fill: none
-    stroke: inactiveColor
     stroke-linecap: round
     stroke-linejoin: round
     stroke-width: 2
   .ql-stroke-miter
     fill: none
-    stroke: inactiveColor
     stroke-miterlimit: 10
     stroke-width: 2
-
-  .ql-fill, .ql-stroke.ql-fill
-    fill: inactiveColor
 
   .ql-empty
     fill: none
@@ -279,7 +215,6 @@ colorItemsPerRow = 7
       display: none
 
   .ql-picker
-    color: inactiveColor
     display: inline-block
     float: left
     font-size: 14px
@@ -299,7 +234,6 @@ colorItemsPerRow = 7
       display: inline-block
       line-height: 22px
   .ql-picker-options
-    background-color: backgroundColor
     display: none
     min-width: 100%
     padding: 4px 8px
@@ -312,12 +246,7 @@ colorItemsPerRow = 7
       padding-top: 5px
   .ql-picker.ql-expanded
     .ql-picker-label
-      color: borderColor
       z-index: 2
-      .ql-fill
-        fill: borderColor
-      .ql-stroke
-        stroke: borderColor
     .ql-picker-options
       display: block
       margin-top: -1px
@@ -460,7 +389,6 @@ ul[data-checked=false]
   > li *
     pointer-events: all
   > li::before
-    color: #777
     cursor: pointer
     pointer-events: all
 ul[data-checked=true] > li::before
@@ -542,7 +470,6 @@ for num in (1..MAX_INDENT)
   text-align: right
 
 .ql-editor.ql-blank::before
-  color: rgba(0,0,0,0.6)
   content: attr(data-placeholder)
   font-style: italic
   left: 15px

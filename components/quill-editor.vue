@@ -27,6 +27,8 @@ Delta = require "quill-delta"
 if document?
   require '~/plugins/quill'
 
+editor = require './editor'
+
 quill_paste = (newVal, oldVal)->
   return unless @quill
   if newVal
@@ -35,7 +37,7 @@ quill_paste = (newVal, oldVal)->
   else
     @quill.setText ''
 
-module.exports =
+module.exports = editor
   data: ->
     html: ""
     text: "\n"
@@ -116,35 +118,12 @@ module.exports =
       theme: 'bubble'
 
   props:
-    is_ban:
-      type: Boolean
-      default: false
-    is_warn:
-      type: Boolean
-      default: false
-
-    maxSize:
-      type: Number
-      default: 100
-    maxWord:
-      type: Number
-      default: 10
-    maxRow:
-      type: Number
-      default: 1
-    minRow:
-      type: Number
-      default: 1
+    content: String
+    value: String
 
     placeholder:
       type: String
       default: '入力はこちらに。'
-
-    content: String
-    value: String
-    disabled:
-      type: Boolean
-      default: false
 
     options:
       type: Object
@@ -247,46 +226,18 @@ module.exports =
       @html = @$refs.editor.children[0].innerHTML
       console.log { @redo, @undo, delta, @html, @text, @attrs }
       @$emit 'input', @html
-      @$emit 'change', { @html, @text, @quill }
-    , 500,
+    , 200,
       leading:  false
       trailing: true
 
-    submit: _.debounce ->
-      return if @ban
-      delta  = @quill.getContents()
-
-      @$emit 'submit', @value, { @attrs, @html, @text }
-    , 3000,
-      leading:  true
-      trailing: false
-
   computed:
-    lines: ->
-      @text.split("\n").length - 1
-    words: ->
-      @text.split(/[\!\?！？「」『』、。．.]+\s*|\s+/).length - 1
-    chars: ->
-      @text.length - 1
-    ban: ->
-      ban = false
-      ban ||= !( @value == @html )
-      ban ||= !(       2 <= @chars <= @maxSize )
-      ban ||= !(       1 <= @words <= @maxWord )
-      ban ||= !( @minRow <= @lines <= @maxRow )
-      ban ||= @is_ban
-      ban
-    warn: ->
-      warn = false
-      warn ||= @value.match /-/
-      warn ||= @is_warn
-      warn
-
-    mark: ->
-      m = "mdi-check-circle-outline"
-      m = "mdi-alert-circle-outline" if @warn
-      m = "mdi-cancel"               if @ban
-      [m]
+    meta: ->
+      size = [
+        @text.split("\n").length - 1
+        @text.split(/[\!\?！？「」『』、。．.]+\s*|\s+/).length - 1
+        @text.length - 1
+      ]
+      { @attrs, size }
 
   watch:
     content: quill_paste

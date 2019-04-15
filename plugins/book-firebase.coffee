@@ -32,6 +32,8 @@ module.exports =
 
     @create_mode chat =
       potof_id: "edit-edit-self"
+      deco: "quill"
+      head: ""
       write_at: 0
     Set.chat.add chat
 
@@ -57,7 +59,24 @@ module.exports =
       can_update = @chat?.phase?.update
       can_fav = @my_phase?.fav
 
+      { deco, head, log, data, potof } = @edit_base.chat
+      is_ban = false
+      switch deco
+        when 'quill'
+          is_ban ||= !( head || log?.match /// #{ potof?.face?.name } ///)
+        when 'diagram'
+          is_ban ||= ! head
+      is_warn = false
+      options = {
+        maxSize: 300
+        maxWord:  30
+        maxRow:   20
+        is_ban
+        is_warn
+      }
+
       { ...@edit_base
+        options
         is_entry
         is_creating
         is_replacing
@@ -124,13 +143,10 @@ module.exports =
         @my_icon_change { mdi: "mdi-account" }
 
     create_mode: (tgt = @edit_base.chat)->
-      console.log tgt
       Object.assign tgt,
         _id: 'edit-edit-edit-edit-edit'
         show: "talk"
-        deco: "quill"
         to: null
-        head: ""
         log: ""
         data:
           icons: [
@@ -139,15 +155,8 @@ module.exports =
             { v: "t30", label: "御尊顔", roll: 0, x:  210, y: 410 }
             { v: "t40", label: "御尊顔", roll: 0, x:  510, y: 610 }
           ]
-          lines: [
-            { v: "t10", w: "t20", line: "o=o", vpos:  90, wpos: 270, label: '同志' }
-            { v: "t10", w: "t30", line: "<.>", vpos: 180, wpos:   0, label: '師匠' }
-            { v: "t20", w: "t40", line: "x-x", vpos: 180, wpos:   0, label: 'ライヴァル' }
-            { v: "t30", w: "t40", line: "   ", vpos:  90, wpos: 270, label: '' }
-          ]
-          clusters: [
-            { vs: ["t10", "t20"], label: "ふじょし" }
-          ]
+          lines: []
+          clusters: []
           random: []
 
     replace_mode: ->
@@ -173,40 +182,38 @@ module.exports =
       next await ss.ref.getDownloadURL()
 
     move: ->
-      return if @is_creating
+      return if @edit.is_creating
       { _id } = @edit.chat
       { write_at } = @chat
       write_at -= 10
       await @chats_add { _id, write_at }
 
-    chat_post: (log, { attrs, html, text })->
-      { _id, show, deco, head, to, data } = @edit.chat
+    chat_post: ( value, { attrs, size } )->
+      { _id, show, deco, head, to, log, data } = @edit.chat
       { random, clusters, icons, lines } = data
 
-      for key, idx in attrs.random ? []
-        { title, text } = random[idx] ?= RANDOM key, { @book_id }
-        console.log { key, title, text }
+      if log
+        for key, idx in attrs.random ? []
+          { title, text } = random[idx] ?= RANDOM key, { @book_id }
+          console.log { key, title, text }
+        log = log.replace /<kbd title="([^"]+)">([^<]+)<\/kbd>/g, (str, t1, v1)->
+          { title, text } = random[idx]
+          console.log { t1, v1, title, text }
+          """<kbd title="#{title}">#{text}</kbd>"""
 
-      log = log.replace /<kbd title="([^"]+)">([^<]+)<\/kbd>/g, (str, t1, v1)->
-        { title, text } = random[idx]
-        console.log { t1, v1, title, text }
-        """<kbd title="#{title}">#{text}</kbd>"""
-
-      data = { random, clusters, icons, lines }
-      if @is_creating
-        potof_id = @potof_id
+      data = { size, random, clusters, icons, lines }
+      if @edit.is_creating
+        potof_id = @my_potof_id
         write_at = new Date - 0
         phase = Query.phases.find @phase_id
         idx = phase.chats.reduce?.say?.count ? 0
         _id = [@phase_id, 1 + idx ].join('-')
-        await @chats_add { _id, potof_id, write_at, show, deco, head, to, log, data }
+        console.log { @_id }
+        await @chats_add o = { _id, potof_id, write_at, show, deco, head, to, log, data }
       else
-        await @chats_add { _id, show, deco, head, to, log, data }
+        await @chats_add o = { _id, show, deco, head, to, log, data }
+      console.log o
       @create_mode()
-    
-    chat_input: (key, val)->
-      @edit_base.chat[key] = val
-      @$forceUpdate()
 
   watch:
     'user.uid':

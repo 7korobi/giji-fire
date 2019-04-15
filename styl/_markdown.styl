@@ -462,7 +462,7 @@ rect.move
 rect.cluster
 .cluster > rect
   stroke-width: 3px
-  fill: none
+  fill: transparent
 
 rect.icon
 .icon > rect
@@ -485,6 +485,8 @@ rect.box
 .edgePath
   > path.path
     fill: none
+    stroke-linecap: round
+    stroke-linejoin: round
     &.hide
       stroke: none
       stroke-width: 0
@@ -493,8 +495,8 @@ rect.box
     &.solid
       stroke-width: 3px
     &.dotted
-      stroke-width: 3px
-      stroke-dasharray: 3px, 6px
+      stroke-width: 6px
+      stroke-dasharray: 0, 12px
 
 #svg-marker-arrow-end > path
 #svg-marker-arrow-start > path

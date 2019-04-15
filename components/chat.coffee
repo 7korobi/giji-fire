@@ -4,6 +4,10 @@ el = require "~/plugins/dom"
 
 module.exports = ->
   props:
+    current: Object
+    target:  Object
+    edit:    Object
+
     id:      String
 
     face_id: String
@@ -12,17 +16,14 @@ module.exports = ->
     handle:  String
 
     log:  String
+    data: Object
+
     show: String
     head: String
     deco: String
     to:   String
 
-
     phase_id: String
-
-    current: Object
-    data:    Object
-    edit:    Object
 
 
   mixins: [
@@ -54,5 +55,10 @@ module.exports = ->
       [@handle, @el_adjust]
 
     for_body: ->
-      { @id, @label, @anker, @log, @show, @head, @deco, @to, @phase_id, @data, @edit, class: @classname }
+      o = {
+        @edit, class: @classname,
+        @id, @label, @anker, @log, @data, @show, @head, @deco, @to, @phase_id
+      }
+      o.target = @target ? o
+      o
 

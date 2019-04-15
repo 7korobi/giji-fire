@@ -13,7 +13,6 @@ module.exports =
           @create_mode
           @remove
           @selection
-          input:      @chat_input
           drop_image: @image_post
           check:      @check_post
           submit:      @chat_post
@@ -48,13 +47,6 @@ module.exports =
       { @book_id, @chat_id, @page_idx, @a }
     for_side: ->
       { @side_contents }
-    for_editor: ->
-      deco = @edit.chat.deco
-      { head, log, potof } = @edit.chat
-      is_ban = false
-      is_ban ||= !( head || log?.match /// #{ potof?.face?.name } ///)
-      is_warn = false
-      { is_ban, is_warn, deco, rows: 7, maxRow: 20, maxWord: 200, maxSize: 999 }
     for_profile: ->
       deco = "quill"
       is_ban = is_warn = false
