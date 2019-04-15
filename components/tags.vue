@@ -1,55 +1,7 @@
 <template lang="pug">
 p.form
-  span.tag
-    tag#all
-    tag#giji
-    tag#travel
-    tag#shoji
-    tag#stratos
-    tag#fable
-    tag#myth
-    tag#marchen
-    tag#asia
-
-  span.tag
-    tag#animal
-    tag#school
-
-  span.tag
-    tag#pair
-
-  span.tag
-    tag#kid
-    tag#young
-    tag#middle
-    tag#elder
-
-  span.tag
-    tag#student
-
-  span.tag
-    tag#river
-    tag#road
-    tag#immoral
-
-  span.tag
-    tag#office
-    tag#guild
-    tag#elegant
-    tag#ecclesia
-
-  span.tag
-    tag#medical
-    tag#market
-
-  span.tag
-    tag#apartment
-    tag#servant
-    tag#farm
-    tag#government
-
-  span.tag
-    tag#god
+  span.tag(v-for="group in tag_groups" v-if="group")
+    tag(v-for="o in group.list" v-bind="o")
 </template>
 
 <script lang="coffee">
@@ -62,11 +14,12 @@ module.exports =
       default: -> "all"
 
   methods:
-    find_tag: (tag_id)->
-      Query.tags.find tag_id
-
     faces: (tag_id)->
       Query.faces.tag tag_id
+
+  computed:
+    tag_groups: ->
+      Query.tags.reduce.group
 
   components:
     tag:
@@ -74,13 +27,15 @@ module.exports =
       props:
         id:
           required: true
+          type: String
+        label: String
+        faces: Object
 
       render: (m, ctx)->
         p = ctx.parent
-        # p.query
-        { id } = ctx.props
-        { list } = p.faces id
-        { label = "- 全体 -" } = p.find_tag id
+
+        { id, label = "- 全体 -", faces } = ctx.props
+        { list } = faces
 
         attr =
           key: id

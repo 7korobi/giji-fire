@@ -149,12 +149,7 @@ module.exports =
         to: null
         log: ""
         data:
-          icons: [
-            { v: "t10", label: "御尊顔", roll: 0, x:   10, y:  10 }
-            { v: "t20", label: "御尊顔", roll: 0, x:  710, y: 210 }
-            { v: "t30", label: "御尊顔", roll: 0, x:  210, y: 410 }
-            { v: "t40", label: "御尊顔", roll: 0, x:  510, y: 610 }
-          ]
+          icons: []
           lines: []
           clusters: []
           random: []

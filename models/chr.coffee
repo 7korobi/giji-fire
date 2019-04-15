@@ -28,6 +28,20 @@ new Rule("tag").schema ->
       all.where (o)->
         ! o.disabled
 
+  class @model extends @model
+    @map_reduce: (o, emit)->
+      group = o.order // 1000
+      emit "group", group,
+        set: o.id
+        list: true
+
+    @order: (o, emit)->
+      group = o.order // 1000
+      emit "list",
+        sort: ["order"]
+      emit "group", group, "list",
+        sort: ["order"]
+
 katakanas =
   for idx in ["ア".charCodeAt(0) .. "ン".charCodeAt(0)]
     String.fromCharCode idx

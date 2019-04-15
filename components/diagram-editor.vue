@@ -16,7 +16,6 @@ div
   div
     div(v-if="pin_icon")
       a.btn(@click="del_icon(pin_icon)") DEL
-      input(v-model="pin_icon.v" key="v" style="width: 3em")
       select(v-model="pin_icon.roll" key="roll")
         option(:value="  0") ↑
         option(:value=" 90") →
@@ -26,7 +25,7 @@ div
     div(v-if="pin_line")
       a.btn(@click="del_line(pin_line)") DEL
       select(v-model="pin_line.v" key="v")
-        option(v-for="(o, key) in calcs" v-if="'hide' != o.class" :value="key") {{key}}
+        option(v-for="(o, key) in calcs" v-if="'hide' != o.class" :value="key") {{o.label}}
       select(v-model="pin_line.vpos" key="vpos")
         option(:value="  0") ↑
         option(:value=" 90") →
@@ -40,28 +39,34 @@ div
         option(:value="180") ↓
         option(:value="270") ←
       select(v-model="pin_line.w" key="w")
-        option(v-for="(o, key) in calcs" v-if="'hide' != o.class" :value="key") {{key}}
+        option(v-for="(o, key) in calcs" v-if="'hide' != o.class" :value="key") {{o.label}}
       input(v-model.trim="pin_line.label" key="label")
     div(v-if="pin_cluster && pin_cluster.vs")
       a.btn(@click="del_cluster(pin_cluster)") DEL
       | &emsp;
       a.btn(
         v-for="(v, index) in pin_cluster.vs"
+        v-if="calcs[v]"
         :key="`vs.${index}`"
         @click="pin_cluster.vs.splice(index, 1)"
-      ) {{ v }}
+      ) {{ calcs[v].label }}
       select(v-model="pin_cluster.vs[pin_cluster.vs.length]" key="vs.new")
         option(:value="undefined") (追加)
-        option(v-for="(o, key) in calcs" v-if="'box' == o.class" :value="key") {{key}}
+        option(v-for="(o, key) in calcs" v-if="'box' == o.class && ! pin_cluster.vs.includes(key)" :value="key") {{o.label}}
       input(v-model.trim="pin_cluster.label" key="label")
-    fieldset
-      legend 追加
+    div
       a.btn(v-if="pin_icon || pin_cluster" @click="add_line(pin_id)") line
       a.btn(v-if="pin_icon" @click="add_cluster(pin_id)") cluster
-      a.btn(v-if="! pin_id" @click="add_icon()") icon
+      p(v-if="! pin_id")
+        select(v-model="pin_face")
+          optgroup(v-for="tag in tags" :label="tag.label")
+            option(v-for="o in pin_face_option(tag)" v-if="! Object.keys(calcs).includes(o.v)" :value="o") {{ o.label }}
+        a.btn(v-if="pin_face" @click="add_icon(pin_face, 0)") icon
 </template>
 
 <script lang="coffee">
+{ Query, State } = require "memory-orm"
+
 editor = require './editor'
 
 id_line = ({ v, w, vpos, wpos })->
@@ -74,7 +79,9 @@ module.exports = editor
     value: Object
 
   data: ->
+    step: State.step
     pin_id: ''
+    pin_face: null
 
   directives:
     agent:
@@ -90,7 +97,21 @@ module.exports = editor
         #console.log 'unbind', value, vnode, is_unbind
 
   methods:
-    add_icon: ()->
+    pin_face_option: (tag)->
+      csid = tag.chr_set_id
+      tag.faces.list.map (face)->
+        id = v = face.id
+        job =
+          Query.chr_jobs
+          .find "#{csid}_#{face.id}"
+          ?.job
+        label = "#{job} #{face.name}"
+
+        { id, v, job, label }
+
+    add_icon: ({v, label}, roll)->
+      @value.icons.push { v, roll, label, x: 0, y: 0 }
+      pin_face = null
     add_line: (v, w = v)-> @value.lines.push { v, w, line: "o=o", vpos: 0, wpos: 90, label: "line" }
     add_cluster: (...vs)-> @value.clusters.push { vs, label: "cluster" }
 
@@ -128,5 +149,23 @@ module.exports = editor
             rr = " ▶●✖"[k]
             a.push ["#{l}#{c}#{r}", "#{ll}#{cc}#{rr}"]
       a
+
+    tags: ->
+      Query.tags.reduce.list
+
+    calcs: ->
+      o = {}
+      for { v, label } in @value.icons
+        o[v] = { class: 'box', label }
+
+      for { vs, label } in @value.clusters
+        o[vs] = { class: "cluster", label }
+
+      for oo in @value.lines
+        vw = id_line oo
+        { label } = oo
+        o[vw] = { class: "hide", label }
+
+      o
 
 </script>

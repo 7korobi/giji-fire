@@ -2,96 +2,112 @@ all:
   label: すべて
   long: 「人狼議事 ちゃんぷる」のキャラクター
   chr_set_id: all
+  order: 1001
 
 giji:
   label: 人狼議事
   long: 「人狼議事」のキャラクター
   tag_id: all
   chr_set_id: ririnra
+  order: 1002
 
 animal:
   label: うきうきサバンナ
   long: 「うきうきサバンナ」のキャラクター
   tag_id: all
   chr_set_id: animal
+  order: 2001
 
 school:
   label: 私立七転学園
   long: 「私立七転学園」のキャラクター
   tag_id: all
   chr_set_id: school
+  order: 2002
 
 shoji:
   label: てやんでえ
   long: 「和の国てやんでえ」のキャラクター
   tag_id: all
   chr_set_id: wa
+  order: 1004
 
 travel:
   label: 帰還者議事
   long: 「帰還者議事」のキャラクター
   tag_id: all
   chr_set_id: time
+  order: 1003
 
 stratos:
   label: 明後日への道標
   long: 「明後日への道標」のキャラクター
   tag_id: all
   chr_set_id: sf
+  order: 1005
 
 myth:
   label: はおうのひろば
   long: 「はおうのひろば」のキャラクター
   tag_id: all
   chr_set_id: changed
+  order: 1007
 
 asia:
   label: 大陸議事
   long: 「大陸議事」のキャラクター
   tag_id: all
   chr_set_id: ger
+  order: 1009
 
 fable:
   label: 幻日世界
   long: 「幻日世界」のキャラクター
   tag_id: all
   chr_set_id: fable
+  order: 1006
 
 marchen:
   label: 狂騒議事
   long: 「狂騒議事」のキャラクター
   tag_id: all
   chr_set_id: mad
+  order: 1008
 
 kid:
   label: (児童)
   long: 児童のキャラクター
   tag_id: giji
   chr_set_id: ririnra
+  order: 4001
 
 young:
   label: (若者)
   long: 若者のキャラクター
   tag_id: giji
   chr_set_id: ririnra
+  order: 4002
 
 middle:
   label: (中年)
   long: 中年のキャラクター
   tag_id: giji
   chr_set_id: ririnra
+  order: 4003
 
 elder:
   label: (老人)
   long: 老人のキャラクター
   tag_id: giji
   chr_set_id: ririnra
+  order: 4004
 
 pair:
   label: =双対=
   long: お揃いのキャラクター
   tag_id: pair
   chr_set_id: all
+  order: 3001
 
 
 student:
@@ -99,6 +115,7 @@ student:
   long: 学園で学ぶ人
   tag_id: travel
   chr_set_id: time
+  order: 5001
 
 
 river:
@@ -106,42 +123,49 @@ river:
   long: 往く人来る人休む人
   tag_id: giji
   chr_set_id: ririnra
+  order: 6001
 
 road:
   label: -往来-
   long: 往く人来る人休む人
   tag_id: giji
   chr_set_id: ririnra
+  order: 6002
 
 immoral:
   label: -裏道-
   long: 街灯の裏の背徳達
   tag_id: giji
   chr_set_id: ririnra
+  order: 6003
 
 guild:
   label: -商工会-
   long: 商人と職人の集うギルド
   tag_id: giji
   chr_set_id: ririnra
+  order: 7002
 
 office:
   label: -事務所-
   long: 帳簿と写本と印刷と
   tag_id: giji
   chr_set_id: ririnra
+  order: 7001
 
 elegant:
   label: -舞踏会-
   long: 瀟洒な館の舞踏会
   tag_id: giji
   chr_set_id: ririnra
+  order: 7003
 
 ecclesia:
   label: -公教会-
   long: 信仰と道徳と学識の源泉
   tag_id: giji
   chr_set_id: ririnra
+  order: 7004
 
 
 medical:
@@ -149,39 +173,46 @@ medical:
   long: 病苦毒霊と戦う砦
   tag_id: giji
   chr_set_id: ririnra
+  order: 8001
 
 market:
   label: -歌劇酒場-
   long: 芸の極みに華が咲く
   tag_id: giji
   chr_set_id: ririnra
+  order: 8002
 
 apartment:
   label: -自室の窓-
   long: 窓から外を眺めると
   tag_id: giji
   chr_set_id: ririnra
+  order: 9001
 
 servant:
   label: -使用人-
   long: 良家を支えるスタッフ
   tag_id: giji
   chr_set_id: ririnra
+  order: 9002
 
 farm:
   label: -森の農場-
   long: 森に接する田畑
   tag_id: giji
   chr_set_id: ririnra
+  order: 9003
 
 government:
   label: -統治公共-
   long: 所領を治める権能者
   tag_id: giji
   chr_set_id: ririnra
+  order: 9004
 
 god:
   label: -かみさま-
   long: かみさま
   tag_id: all
   chr_set_id: all
+  order: 10001
