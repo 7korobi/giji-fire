@@ -9,7 +9,7 @@ table.talk(:key="id")
       th
         portrate(:img_src="img_src", :face_id="face_id")
       td
-        .baloon(:class="classname")
+        .baloon(:class="handle")
         chat-body(v-on="$listeners" v-bind="for_body")
           slot
 </template>

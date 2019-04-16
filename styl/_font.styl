@@ -35,9 +35,6 @@ for $weight in 100 300 350 400 500 700 900
 }
 
 
-inline($base, $inline, $family)
-  font-size:   $base
-
 font($small, $base, $family)
   $middle = ($small + $base) / 2
   $pad    = $base / 3
@@ -81,23 +78,24 @@ font($small, $base, $family)
   article
   .links
   .text
+  .chat
   textarea
   button
   dfn
   p
-    inline($base,  $block,  $family)
+    font-size: $base
 
   [title]
   [data-tooltip]
     &:after
-      inline($base,  $block,  $family)
+      font-size: $base
 
   .fine
   .date
-    inline($small, $middle, $family)
+    font-size: $small
     .links
     textarea
     button
     dfn
     p
-      inline($small, $middle, $family)
+      font-size: $small

@@ -30,3 +30,12 @@ palette_single(icons, 'N', 1, MOB)
   background-attachment: fixed
   background-image: url("//s3-ap-northeast-1.amazonaws.com/giji-assets/images/bg/renga.png")
 
+.contentframe
+  .inframe
+    animation: film .5s linear infinite
+
+@keyframes film
+  from
+    background-position: 0  18px
+  to
+    background-position: 0 -18px

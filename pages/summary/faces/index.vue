@@ -53,7 +53,7 @@ _ = require "lodash"
 
 module.exports =
   mixins: [
-    poll -> [["aggregate/faces"]]
+    poll -> [["aggregate/faces", 1 ]] # version
     replaceState "order"
     replaceState "tag_id"
     replaceState "search"

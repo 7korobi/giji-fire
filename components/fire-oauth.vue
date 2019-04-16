@@ -6,7 +6,7 @@ component(v-bind="for_top" v-on="$listeners")
         i.btn.mdi.mdi-logout(@click="signout")
 
       nuxt-link.tap(to="/user/show")
-        i(:class="icon")
+        i(:class="icon") &thinsp;
         | {{ user.displayName }}
 
     p(v-if=" ! user")

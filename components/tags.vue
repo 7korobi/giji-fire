@@ -1,7 +1,7 @@
 <template lang="pug">
 p.form
-  span.tag(v-for="group in tag_groups" v-if="group")
-    tag(v-for="o in group.list" v-bind="o")
+  span.tag(v-for="(group, idx) in tag_groups" v-if="group" :key="group.list[0].id")
+    tag(v-for="o in group.list" v-bind="o" :key="o.id")
 </template>
 
 <script lang="coffee">
