@@ -4,7 +4,7 @@ div
     transition-group(name="list" tag="div")
       c-post(handle="footer" key="breadcrumb")
         bread-crumb
-        
+          
       c-post.form(handle="btns" key="form")
         span
           btn(as="" @input="reset()" value="order")
@@ -62,63 +62,63 @@ div
 
       c-report.form(v-if="drill" handle="btns" key="subform")
         p(v-if="order === 'vid'")
-          check(v-for="o in summary('folder_id')" v-model="folder_id", :as="o.id", :key="o.id")
+          check(v-for="o in summary('folder_id')" v-model="folder_id" :as="o.id" :key="o.id")
             | {{ o.id }}
             sup(v-if="1 < o.count") {{ o.count }}
 
-        p(v-if="order === 'timer.updateddt'")
+        p.swipe(v-if="order === 'timer.updateddt'")
           grid(v-bind="grid_data" v-model="monthry")
         p(v-if="order === 'upd_range'")
-          check(v-for="o in summary('upd_range')" v-model="upd_range", :as="o.id", :key="o.id")
+          check(v-for="o in summary('upd_range')" v-model="upd_range" :as="o.id" :key="o.id")
             | {{ o.id }}
             sup(v-if="1 < o.count") {{ o.count }}
         p(v-if="order === 'upd_at'")
-          check(v-for="o in summary('upd_at')" v-model="upd_at", :as="o.id", :key="o.id")
+          check(v-for="o in summary('upd_at')" v-model="upd_at" :as="o.id" :key="o.id")
             | {{ o.id }}
             sup(v-if="1 < o.count") {{ o.count }}
         p(v-if="order === 'sow_auth_id'")
-          check(v-for="o in summary('sow_auth_id')" v-model="sow_auth_id", :as="o.id", :key="o.id")
+          check(v-for="o in summary('sow_auth_id')" v-model="sow_auth_id" :as="o.id" :key="o.id")
             | {{ o.id.replace(/\&\#2e/ig,'.') }}
             sup(v-if="1 < o.count") {{ o.count }}
         p(v-if="order === 'rating'")
-          check(v-for="o in summary('rating')" v-model="rating", :as="o.id", :key="o.id")
+          check(v-for="o in summary('rating')" v-model="rating" :as="o.id" :key="o.id")
             img(:src="rating_img(o.id)")
             sup(v-if="1 < o.count") {{ o.count }}
         p(v-if="order === 'vpl.0'")
-          check(v-for="o in summary('size')" v-model="size", :as="o.id", :key="o.id")
+          check(v-for="o in summary('size')" v-model="size" :as="o.id" :key="o.id")
             | {{ o.id }}人
             sup(v-if="1 < o.count") {{ o.count }}
 
         p(v-if="order === 'card.option'")
-          check(v-for="o in summary('option')" v-model="option", :as="o.id", :key="o.id")
+          check(v-for="o in summary('option')" v-model="option" :as="o.id" :key="o.id")
             | {{ o.label }}
             sup(v-if="1 < o.count") {{ o.count }}
         p(v-if="order === 'card.event'")
-          check(v-for="o in summary('event')" v-model="event", :as="o.id", :key="o.id")
+          check(v-for="o in summary('event')" v-model="event" :as="o.id" :key="o.id")
             | {{ o.label }}
             sup(v-if="1 < o.count") {{ o.count }}
         p(v-if="order === 'card.config'")
-          check(v-for="o in summary('config')" v-model="config", :as="o.id", :key="o.id")
+          check(v-for="o in summary('config')" v-model="config" :as="o.id" :key="o.id")
             | {{ o.label }}
             sup(v-if="1 < o.count") {{ o.count }}
         p(v-if="order === 'card.discard'")
-          check(v-for="o in summary('discard')" v-model="discard", :as="o.id", :key="o.id")
+          check(v-for="o in summary('discard')" v-model="discard" :as="o.id" :key="o.id")
             | {{ o.label }}
             sup(v-if="1 < o.count") {{ o.count }}
 
         p(v-if="order === 'say.CAPTION'")
-          check(v-for="o in summary('say')" v-model="say", :as="o.id", :key="o.id")
+          check(v-for="o in summary('say')" v-model="say" :as="o.id" :key="o.id")
             | {{ o.CAPTION }}
             sup(v-if="1 < o.count") {{ o.count }}
 
         p(v-if="order === 'game.label'")
-          check(v-for="o in summary('game')" v-model="game", :as="o.id", :key="o.id")
+          check(v-for="o in summary('game')" v-model="game" :as="o.id" :key="o.id")
             | {{ o.label }}
             sup(v-if="1 < o.count") {{ o.count }}
 
   div
-    div(v-for="(villages, idx) in page_contents", :key="idx")
-      c-report(handle="MAKER", v-for="o in villages", :write_at="o.write_at", :id="o._id", :key="o._id")
+    div(v-for="(villages, idx) in page_contents" :key="idx")
+      c-report(handle="MAKER", v-for="o in villages" :id="o._id" :key="o._id")
         .name
           sup.pull-right {{ o.sow_auth_id | decode }}
           nuxt-link(:to="book_url(o.id, 'top', 'full')") {{ o.name }}
@@ -141,30 +141,30 @@ div
                   timeago(:since="o.write_at")
           .card(style="width: 66%")
             p
-              a.label(v-if="o.mob", :class="o.mob.win") {{ o.mob.label }}
+              a.label(v-if="o.mob" :class="o.mob.win") {{ o.mob.label }}
               a.label(v-if="o.game") {{ o.game.label }}
               a(v-for="opt in o.option_datas.list")
                 .label {{ opt.label }}
             p
-              a(v-if="role" v-for="role in o.roles.config", :class="role.win")
+              a(v-if="role" v-for="role in o.roles.config" :class="role.win")
                 .label
                   | {{ role.label }}
                   sup(v-if="1 < role.count") {{ role.count }}
             hr
             p
-              a(v-if="role" v-for="role in o.roles.event", :class="role.win")
+              a(v-if="role" v-for="role in o.roles.event" :class="role.win")
                 .label
                   | {{ role.label }}
                   sup(v-if="1 < role.count") {{ role.count }}
             p
-              a(v-if="role" v-for="role in o.roles.discard", :class="role.win")
+              a(v-if="role" v-for="role in o.roles.discard" :class="role.win")
                 .label
                   | {{ role.label }}
                   sup(v-if="1 < role.count") {{ role.count }}
 
   div
     c-report(handle="footer" key="limitup")
-      scroll-mine(v-if="page_next_idx" @input="page_add", :as="page_next_idx") 次頁
+      scroll-mine(v-if="page_next_idx" @input="page_add" :as="page_next_idx") 次頁
     c-post(handle="footer")
       bread-crumb
 

@@ -16,7 +16,7 @@ table(@mouseleave="focus_on('','')")
           sub(v-if="yo.count") {{ yo.count }}
           br
           | {{ yo.id }}
-      td.r(v-for="xo in x" @mouseover="focus_on(xo.id, yo.id)" :class="{ focus: focus_at.x === xo.id || focus_at.y === yo.id }")
+      td.r(v-for="xo in x" @mouseover="focus_on(xo.id, yo.id)" :class="focus_class(xo.id, yo.id)")
         datum.r(:xo="xo" :yo="yo" :find="find" :data="data" :value="value" v-on="$listeners")
 
 </template>
@@ -28,8 +28,6 @@ table
     a
       padding: 0 .25ex;
       margin: 0;
-.focus
-  border: 2px dotted
 </style>
 
 <script lang="coffee">
@@ -63,6 +61,12 @@ module.exports =
     
     focus_on: (x, y)->
       @focus_at = { x, y }
+
+    focus_class: (x, y)->
+      is_x = @focus_at.x == x
+      is_y = @focus_at.y == y
+      focus: is_x || is_y
+      point: is_x && is_y
 
     on: (value, x, y)->
       key = @find x, y

@@ -102,13 +102,6 @@ elder:
   chr_set_id: ririnra
   order: 4004
 
-pair:
-  label: =双対=
-  long: お揃いのキャラクター
-  tag_id: pair
-  chr_set_id: all
-  order: 3001
-
 
 student:
   label: -学徒-

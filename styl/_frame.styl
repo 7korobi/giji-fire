@@ -4,7 +4,10 @@ body
   tab-size: 6
   -moz-tab-size: 6
 
-article
+.chat
+  box-sizing: border-box
+  display: block
+
   IMG
   table
     max-width: 100%
@@ -13,8 +16,20 @@ article
 
   th
   td
-    border-radius: 3px
+    border-radius: 9px
     padding:   0px 4px
+
+  thead
+  tfoot
+    th
+    td
+      border: 2px dashed
+  th
+    border: 2px dashed
+  .focus
+  .point
+    border: 2px dotted
+
 
 // img baseline make needless margin at bottom.
 IMG
@@ -146,11 +161,6 @@ IMG.hide
 
 .center-right
   right:   0
-
-
-.chat
-  box-sizing: border-box
-  display: block
 
 .mermaid
 .swipe

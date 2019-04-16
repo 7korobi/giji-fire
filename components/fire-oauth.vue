@@ -1,23 +1,24 @@
 <template lang="pug">
 component(v-bind="for_top" v-on="$listeners")
-  p(v-if="user")
-    span.tap
-      i.btn.mdi.mdi-logout(@click="signout")
-    nuxt-link(to="/user/show")
-      img.oauth_icon(:src="user.photoURL")
-      span
-        div {{ providerID }}
-        div {{ user.displayName }}
+  article
+    p(v-if="user")
+      span.tap.pull-right
+        i.btn.mdi.mdi-logout(@click="signout")
 
-  p(v-if=" ! user")
-    span.tap
-      i.btn.mdi.mdi-facebook-box(@click="facebook")
-      i.btn.mdi.mdi-twitter(@click="twitter")
-      i.btn.mdi.mdi-google(@click="google")
-      i.btn.mdi.mdi-github-face(@click="github")
-    
-  p(v-if="code") {{ code }}
-  p(v-if="message") {{ message }}
+      nuxt-link.tap(to="/user/show")
+        i(:class="icon")
+        | {{ user.displayName }}
+
+    p(v-if=" ! user")
+      span.tap
+        i.btn.mdi.mdi-facebook-box(@click="facebook")
+        i.btn.mdi.mdi-twitter(@click="twitter")
+        i.btn.mdi.mdi-google(@click="google")
+        i.btn.mdi.mdi-github-face(@click="github")
+      
+    p(v-if="code") {{ code }}
+    p(v-if="message") {{ message }}
+    slot
 </template>
 <script lang="coffee">
 { vuex, firestore_doc } = require "vue-petit-store"
@@ -82,6 +83,20 @@ module.exports =
         { @id, @handle, is: 'c-talk', img_src: @user.photoURL }
       else
         { @id, @handle, is: 'c-post' }
+    
+    icon: ->
+      switch @credential?.providerId
+        when 'twitter.com'
+          ['btn','mdi','mdi-twitter']
+        when 'facebook.com'
+          ['btn','mdi','mdi-facebook-box']
+        when 'google.com'
+          ['btn','mdi','mdi-google']
+        when 'github.com'
+          ['btn','mdi','mdi-github-face']
+        else
+          ['btn']
+
 
   methods:
     signout: ->

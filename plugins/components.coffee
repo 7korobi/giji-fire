@@ -1,5 +1,4 @@
 Vue = require "vue"
-MarkSVG = require '~/components/marksvg-view.vue'
 
 { Query } = require 'memory-orm'
 { url } = require "~/config/live.yml"
@@ -21,23 +20,6 @@ if window?
     return payload.message || "Ooops.. Something Went Wrong.."
   ,
     position: 'top-left'
-
-Object.assign MarkSVG.options.renderer,
-  href: (key)->
-    "#{url.assets}/images/portrate/#{ key }.jpg"
-
-  dic: (v)->
-    job = Query.chr_jobs
-    .search v
-    .list[0]
-    switch
-      when !! job?.face
-        for key in [ job.face.name, job.job ]
-          if key.includes v
-            v = key
-        ["icon", job.face.id, v]
-      else
-        ["box", v, v]
 
 ctx = require.context "~/components", true, ///(.+)\.vue$///
 for fname in ctx.keys()

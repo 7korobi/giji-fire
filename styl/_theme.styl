@@ -312,19 +312,6 @@ palette_single($bgTheme, $type, $idx, key)
       &[data-value={theme}]
         background-color: $bg
 
-    .{theme}.focus
-      border-color:   $focus
-
-      .ql-container
-      hr
-      hr:after
-      hr:before
-        border-color: $focus
-
-      .col2
-      .col3
-        column-rule-color: $focus
-
     .{theme}
       color:            $pen
       background-color: $bg
@@ -353,10 +340,6 @@ palette_single($bgTheme, $type, $idx, key)
         border-color: $edge
       
       // SVG
-      rect.move
-      .move > rect
-        stroke: $focus
-
       rect.cluster
       .cluster > rect
         stroke: $hide
@@ -526,16 +509,10 @@ palette_single($bgTheme, $type, $idx, key)
       .{theme} &
         Glowing(1.0px, 0.5px, $shade)
 
-    thead tr
-      body &.{theme}
-      .{theme} &
-        border-color: $focus
-
     th
       body &.{theme}
       .{theme} &
         color: $bold 
-        border-color: $focus
 
     em
     strong
@@ -606,11 +583,13 @@ palette_single($bgTheme, $type, $idx, key)
     [data-tooltip]
       body &.{theme}:before
       .{theme} &:before
+        border-color: $bgHi
       body &.{theme}:after
       .{theme} &:after
         text-shadow: none
         color: $pen
         background-color: $bgHi
+        border-color: $off
 
     .bar
       body &.{theme}
@@ -639,11 +618,6 @@ palette_single($bgTheme, $type, $idx, key)
 
         &.contain
           color: $bold
-
-        &.hover
-        &:hover
-        &:focus
-          border-color:  $focus
 
         &.nuxt-link-exact-active
         &.active
@@ -678,6 +652,16 @@ palette_single($bgTheme, $type, $idx, key)
       .{theme} &
         color: $bold
 
+    // focus setting
+    :hover
+    :focus
+    .hover
+    .focus
+    th
+      body &.{theme}
+      .{theme} &
+        border-color: $focus
+
     input
     select
     textarea
@@ -686,6 +670,23 @@ palette_single($bgTheme, $type, $idx, key)
       .{theme}.focus &
         border-color: $focus
 
-    .{theme} :hover
-    .{theme} :focus
+      .ql-container
+      hr
+      hr:after
         border-color: $focus
+
+      .col2
+      .col3
+        column-rule-color: $focus
+
+    .{theme}
+      rect.move
+      .move > rect
+        stroke: $focus
+
+    // bold setting
+    .point
+      body &.{theme}
+      .{theme} &
+        border-color: $bold
+
