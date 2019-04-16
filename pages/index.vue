@@ -6,8 +6,7 @@ div
     p.c
       app-logo(style="margin: -250px 0 70px 0")
 
-  c-post(@focus="focus" handle="TSAY" id="private")
-    fire-oauth(style="white-space: nowrap")
+  fire-oauth(@focus="focus" handle="TSAY" id="private")
     p ログイン中にできること。
     p #[i.mdi.mdi-map-marker]：過去ログビュアーでタップしたとき、栞を挟んで記録します。
 

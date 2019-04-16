@@ -3,8 +3,7 @@ div
   c-report(handle="footer" deco="center")
     bread-crumb
   
-  c-post(handle="TSAY")
-    fire-oauth(style="white-space: nowrap")
+  fire-oauth(handle="TSAY")
 
   c-post(handle="SSAY" v-if="user && sign")
     article

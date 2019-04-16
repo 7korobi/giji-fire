@@ -1,5 +1,5 @@
 <template lang="pug">
-div
+component(v-bind="for_top" v-on="$listeners")
   p(v-if="user")
     span.tap
       i.btn.mdi.mdi-logout(@click="signout")
@@ -34,6 +34,7 @@ module.exports =
     firestore_doc "sign", -> @user && "user/#{ @user.uid }"
     require("~/plugins/for_component")
   ]
+  props: ["id", "handle"]
   data: ->
     code: null
     message: null
@@ -75,6 +76,12 @@ module.exports =
 
     auth: ->
       firebase.auth()
+    
+    for_top: ->
+      if @user?
+        { @id, @handle, is: 'c-talk', img_src: @user.photoURL }
+      else
+        { @id, @handle, is: 'c-post' }
 
   methods:
     signout: ->

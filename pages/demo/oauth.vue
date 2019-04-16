@@ -5,8 +5,7 @@ div
       li
         nuxt-link(to="/demo") 開発者用ページ
 
-  c-post(handle="TSAY")
-    fire-oauth(style="white-space: nowrap")
+  fire-oauth(handle="TSAY")
 
   c-post(handle="TSAY")
     article

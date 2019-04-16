@@ -50,8 +50,7 @@ log-wiki
   c-report(handle="footer" deco="center")
     bread-crumb
 
-  c-post(handle="TSAY")
-    fire-oauth(style="white-space: nowrap")
+  fire-oauth(handle="TSAY")
 
   div(v-if="a.length")
     chat(v-for="o in cite_chats" :key="o.id" v-bind="for_chat(o.id)" v-on="for_chat_event(o.id)")

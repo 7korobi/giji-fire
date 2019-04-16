@@ -14,10 +14,11 @@ module.exports =
     has_html: ->
       !! @$slots.default
     image_class: ->
+      has_img_src = @img_src && 'external'
       if @hide
         ["hide"]
       else
-        []
+        [has_img_src]
     undef: ->
       _id: 'undef'
       id: 'undef'

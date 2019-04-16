@@ -55,8 +55,7 @@ log-wiki
   template(slot="popup")
     popup(v-for="o in floats" v-bind="o" :key="o.id" :current="chat" @anker="anker" @popup="popup")
 
-  c-post(handle="TSAY")
-    fire-oauth(style="white-space: nowrap")
+  fire-oauth(handle="TSAY")
 
   c-post(handle="footer")
     bread-crumb

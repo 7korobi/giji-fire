@@ -5,8 +5,7 @@ div
       li
         nuxt-link(to="/demo") 開発者用ページ
 
-  c-post.TSAY
-    fire-oauth
+  fire-oauth(handle="TSAY")
 
   no-ssr
     div
