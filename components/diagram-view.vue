@@ -10,12 +10,14 @@ article
     marker.edgePath#svg-marker-cross(viewBox="0 0 10 10" markerUnits="userSpaceOnUse" markerWidth="20" markerHeight="20" refX="5" refY="5" orient="0")
       path.path(d="M0,0 L10,10 M0,10 L10,0 z")
     g
+      slot
+    g
       rect( v-for="(o, key) in rects"  v-if="o" v-bind="o" v-on="draggable(key, o)")
       image(v-for="(o, key) in images" v-if="o" v-bind="o" v-on="draggable(key, o)")
     g.edgePath
       path.path(v-for="(o, key) in paths" fill="none" v-if="o" v-bind="o")
       rect(v-for="(o, key) in labels" v-if="o" v-bind="o" :ref="o.key")
-      text(v-for="(o, key) in texts" v-if="o" v-bind="o" :ref="o.key" @click="set_pin(key)")
+      text(v-for="(o, key) in texts" v-if="o" v-bind="o" :ref="o.key" @click="set_pin(key)" v-resize)
         | {{ o.label }}
     g(v-if="move.id")
       rect.move(v-bind="moved")
@@ -38,6 +40,11 @@ parse_touch = (e)->
   { pageX, pageY } = e.changedTouches[0]
   { target } = e
   { pageX, pageY, target }
+
+resize = new ResizeObserver (doms)->
+  doms.forEach (o)->
+    { vm } = o.target
+    vm.style.label_height = 0
 
 module.exports =
   props:
@@ -64,11 +71,21 @@ module.exports =
         width:      90
         height:    130
       gap_size:     50
-      label_height: 28
+      label_height:  0
+      label_heights: []
       line_slide:   25
       border_width:  5
       rx:           10
       ry:           10
+
+  directives:
+    resize:
+      inserted: (el, binding, { context })->
+        el.vm = context
+        resize.observe el
+      unbind: (el)->
+        resize.unobserve el
+        resize.disconnect el
 
   methods:
     set_pin: (key)->
@@ -160,10 +177,12 @@ module.exports =
       { x, y, width, height }
 
     label_height_update: (height)->
+      @style.label_heights.push height
+      height = Math.max @style.label_heights
       d = height - @style.label_height
       if 4 < d * d
         @style.label_height = parseInt height
-        console.log height, d * d
+        console.log height, d * d, @style.label_heights.length
 
     label_draw: (key)->
       return unless tgt = @$refs['rect-label-' + key]?[0]
@@ -383,6 +402,7 @@ module.exports =
     labels: ->
       o = {}
       { rx, ry, label_height } = @style
+      @style.label_heights = []
       @$nextTick ->
         for key, val of o
           @label_draw key

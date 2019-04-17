@@ -21,7 +21,6 @@ api = (timer, c, u)->
       maxAgeSeconds: to_sec timer
 
 module.exports =
-  dev: true
   runtimeCaching: [
     asset '10y', '2018-08-29', 'https://giji.f5.si/images/*'
     asset '10y', '2018-08-29', 'https://giji.f5.si/font/*'

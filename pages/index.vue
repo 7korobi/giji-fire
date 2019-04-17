@@ -3,8 +3,7 @@ div
   br
   c-post(@focus="focus" handle="XSAY" id="title" :write_at="1169852700003")
     diagram-view(:value="d_pair")
-    p.c
-      app-logo(style="margin: -250px 0 70px 0")
+      path(v-for="o in applogo_path" v-bind="o")
 
   fire-oauth(@focus="focus" handle="TSAY" id="private")
     p ログイン中にできること。
@@ -157,20 +156,31 @@ module.exports =
     poll -> [["sow/plan"]]
     replaceState "idx"
   ]
-
+###
+      { x:  0, y:  120, width: 105,   height: -180, fill: "#41b883"}
+      { x: 52, y:   90, width:  87.5, height: -150, fill: "#3b8070"}
+      { x: 35, y:   60, width:  70,   height: -120, fill: "#35495e"}
+      { x:  0, y:    0, width:  35,   height:  -60, fill:    "#fff"}
+###
   data: ->
     idx: ""
+    applogo: [
+      { x:  0, y:   90, height: -150, width:  87.5, fill: "#3b8070", to: [{ y:  30, height: 150 },{ x:  40 }]}
+      { x:  0, y:  120, height: -180, width: 105,   fill: "#41b883", to: [{ y:   0, height: 180 },{ x: -12 }]}
+      { x:  0, y:   60, height: -120, width:  70,   fill: "#35495e", to: [{ y:  60, height: 120 },{ x:  23 }]}
+      { x:  0, y:    0, height:  -60, width:  35,   fill:    "#fff", to: [{ y: 120, height:  60 },{ x: -12, y: 180, width: 0, height: 0 }]}
+    ]
     d_pair:
       icons: [
         v: "-1"
         roll: 0
-        x: -400
-        y: -200
+        x: -300
+        y: -100
       ,
         v: "-2"
         roll: 0
-        x:  400
-        y:  200
+        x:  300
+        y:  100
       ]
       lines: [
         v: "-1"
@@ -202,6 +212,14 @@ module.exports =
       Query.sow_villages.prologue.list
     progress: ->
       Query.sow_villages.progress.list
+    
+    applogo_path: ->
+      @applogo.map (o)->
+        { x,y, width,height, fill } = o
+        y += 60
+        x += 45
+        d = "M#{x},#{y} L#{ x - width },#{ y + height } #{ x + width },#{ y + height }"
+        { d, fill, key: fill }
 
   mounted: ->
     @initialize()
@@ -209,8 +227,57 @@ module.exports =
   methods:
     focus: (@idx)->
 
+
+    change_chr: (idx)->
+      pair = pairs[idx]
+      v_chr = Query.faces.find pair.vs[0]
+      w_chr = Query.faces.find pair.vs[1]
+
+      _.merge @d_pair,
+        icons: [
+          v: v_chr.id
+          label: v_chr.name
+        ,
+          v: w_chr.id
+          label: w_chr.name
+        ]
+        lines: [
+          v: v_chr.id
+          w: w_chr.id
+          label: pair.labels[0]
+          line: pair.lines[0]
+        ,
+          v: v_chr.id
+          w: w_chr.id
+          label: "祝！人狼議事10周年！"
+          line: "   "
+        ]
+
     initialize: ->
       @$nextTick ->
+        tl = anime.timeline()
+        tl.add
+          targets: @applogo
+          delay:     500
+          duration: 2500
+          easing: 'easeInOutBack'
+          y:      (o)=>  o.to[0].y
+          height: (o)=>  o.to[0].height
+        tl.add
+          targets: @applogo[3..3]
+          duration:     500
+          easing: 'linear'
+          x:      (o)=>  o.to[1].x
+          y:      (o)=>  o.to[1].y
+          width:  (o)=>  o.to[1].width
+          height: (o)=>  o.to[1].height
+        tl.add
+          targets: @applogo[0..2]
+          delay:    (el, i, l)-> 1000 - 500 * (l - i)
+          duration: (el, i, l)->        500 * (l - i)
+          easing: 'linear'
+          x:      (o)=>  o.to[1].x
+
         anime
           targets: @d_pair.icons
           delay:    1000
@@ -230,33 +297,12 @@ module.exports =
           easing: 'easeInOutBack'
           x:  155
 
+      @change_chr 0
       d_pair_idx = 0
       setInterval =>
-        pair = pairs[d_pair_idx]
-        v_chr = Query.faces.find pair.vs[0]
-        w_chr = Query.faces.find pair.vs[1]
-
-        _.merge @d_pair,
-          icons: [
-            v: v_chr.id
-            label: v_chr.name
-          ,
-            v: w_chr.id
-            label: w_chr.name
-          ]
-          lines: [
-            v: v_chr.id
-            w: w_chr.id
-            label: pair.labels[0]
-            line: pair.lines[0]
-          ,
-            v: v_chr.id
-            w: w_chr.id
-            label: "祝！人狼議事10周年！"
-            line: "   "
-          ]
+        @change_chr d_pair_idx
         d_pair_idx = (d_pair_idx + 1) % pairs.length
-      , 1000
+      , 4000
 </script>
 <style lang="sass" scoped>
 .card
