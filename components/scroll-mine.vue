@@ -1,17 +1,22 @@
 <script lang="coffee">
-_ = require "lodash"
-el = require "~/plugins/dom"
+{ fullpage } = require '~/plugins/observer'
 
 module.exports =
+  mixins: [
+    fullpage 'pos'
+  ]
+
   props: ["as", "value"]
 
+  data: ->
+    pos: 'view'
+
   computed:
-    el_adjust: el.adjust
     btn: ->
-      if @el_adjust
+      if "view" == @pos
         @$nextTick ->
           @$emit 'input', @as
-      [@el_adjust]
+      [@pos]
 
 </script>
 

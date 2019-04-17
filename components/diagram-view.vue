@@ -27,6 +27,7 @@ article
 # inspired by https://github.com/wakufactory/MarkDownDiagram
 
 _ = require 'lodash'
+{ resize_directive } = require '~/plugins/observer'
 
 { Query, State } = require "memory-orm"
 { url } = require "~/config/live.yml"
@@ -40,11 +41,6 @@ parse_touch = (e)->
   { pageX, pageY } = e.changedTouches[0]
   { target } = e
   { pageX, pageY, target }
-
-resize = new ResizeObserver (doms)->
-  doms.forEach (o)->
-    { vm } = o.target
-    vm.style.label_height = 0
 
 module.exports =
   props:
@@ -79,14 +75,7 @@ module.exports =
       ry:           10
 
   directives:
-    resize:
-      inserted: (el, binding, { context })->
-        el.vm = context
-        resize.observe el
-      unbind: (el)->
-        resize.unobserve el
-        resize.disconnect el
-
+    resize: resize_directive 'style.label_height'
   methods:
     set_pin: (key)->
       @$emit 'update:pin_id', key

@@ -94,8 +94,6 @@ module.exports =
       { hid: 'viewport', name: 'viewport', content: "width=device-width, initial-scale=#{@zoom}, shrink-to-fit=no" }
     ]
     link: [
-      { hid: 'hid10', rel: 'stylesheet', type: 'text/css', href: 'https://cdn.materialdesignicons.com/3.4.93/css/materialdesignicons.min.css' }
-      { hid: 'hid3',  rel: 'stylesheet',   type: 'text/css', href: url.style + '/css/index.styl.css' }
       { hid: 'hid4',  rel: @new.rel.log,   type: 'text/css', href: @href.log }
       { hid: 'hidA',  rel: @new.rel.zoom,  type: 'text/css', href: @href.zoom }
       { hid: 'hid5',  rel: @new.rel.font,  type: 'text/css', href: @href.font }

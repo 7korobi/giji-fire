@@ -1,6 +1,5 @@
 { Query } = require 'memory-orm'
-{ localStorage } = require "vue-petit-store"
-el = require "~/plugins/dom"
+{ horizon } = require '~/plugins/observer'
 
 module.exports = ->
   props:
@@ -27,15 +26,14 @@ module.exports = ->
 
 
   mixins: [
-    localStorage "shows"
+    horizon 'pos'
   ]
 
   data: ->
+    pos: 'focus'
     shows: [] # pin, toc, potof, current, search
 
   computed:
-    el_adjust: el.adjust
-
     part_id: ->
       @current?.part_id
 
@@ -50,9 +48,9 @@ module.exports = ->
       ""
 
     classname: ->
-      if @id && "focus" == @el_adjust
+      if @id && "focus" == @pos
         @$emit "focus", @id
-      [@handle, @el_adjust]
+      [@handle, @pos]
 
     for_body: ->
       o = {

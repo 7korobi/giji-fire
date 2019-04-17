@@ -21,6 +21,10 @@ module.exports =
   ]
   link: [
     { href: pkg.author }
+
+    { rel: 'stylesheet', type: 'text/css', href: 'https://cdn.materialdesignicons.com/3.4.93/css/materialdesignicons.min.css' }
+    { rel: 'stylesheet', type: 'text/css', href: url.style + '/css/index.styl.css' }
+
     { rel: 'manifest', href: '/manifest.json'}
     { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     { rel: "apple-touch-icon",       sizes: "180x180", href: "/images/icon/apple-touch-icon.png" }
