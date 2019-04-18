@@ -1,5 +1,5 @@
 <template lang="pug">
-article(v-zoom)
+article.fine(v-zoom)
   svg(:style="svg_style" :viewBox="view_box" v-on="movespace()")
     marker.edgePath#svg-marker-circle(viewBox="0 0 10 10" markerUnits="userSpaceOnUse" markerWidth="20" markerHeight="20" refX="5" refY="5" orient="auto")
       circle(cx="5" cy="5" r="4")
@@ -196,7 +196,7 @@ module.exports =
   computed:
     svg_style: ->
       maxWidth: '100%'
-      fontSize: "#{ @zoom }rem"
+      fontSize: "#{ @zoom * 3 / 4 }rem"
 
     zoom: ->
       { width } = @style.root_size
@@ -388,7 +388,7 @@ module.exports =
         # x, y はボトム
         x = parseInt x + 0.5 * width
         y = parseInt y + 1.0 * height - 3 * border_width
-        o[v] = { class: "portrate", key: "label-#{v}", "text-anchor": "middle", label, x, y }
+        o[v] = { class: "chr", key: "label-#{v}", "text-anchor": "middle", label, x, y }
 
       for oo in @value.lines when oo.label
         vw = id_line oo
@@ -411,7 +411,7 @@ module.exports =
         o[vs] = { class: "pen", key: "rect-label-#{vs}", rx , ry }
 
       for { v, label, roll, x, y } in @value.icons when label
-        o[v] = { class: "portrate", key: "rect-label-#{v}", rx , ry }
+        o[v] = { class: "chr", key: "rect-label-#{v}", rx , ry }
 
       for oo in @value.lines when oo.label
         vw = id_line oo

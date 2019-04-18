@@ -57,10 +57,14 @@ palette(leave, 'I', 0)
     margin:  0
     padding: 2px 0
 
-
 .chrblank
   background: #444844   // palette_bg('I',0, BROAD)
   color:      palette_pen('I',0, BROAD)
+
+text.chr
+text.chr > tspan
+.chr > text
+  fill: palette_pen('I',0, BROAD)
 
 .portrates
   background: black
@@ -70,13 +74,3 @@ palette(leave, 'I', 0)
 .contentframe
   .portrate
     background-color: black
-
-text.portrate
-text.portrate > tspan
-.edgePath > text.portrate
-  fill: palette_pen('I',0, BROAD)
-
-.edgePath > rect.portrate
-  fill: #444844   // palette_bg('I',0, BROAD)
-
-

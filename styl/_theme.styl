@@ -342,7 +342,12 @@ palette_single($bgTheme, $type, $idx, key)
       // SVG
       rect.cluster
       .cluster > rect
-        stroke: $hide
+        stroke: $shade
+
+      rect.pen
+      .pen > rect
+        fill:  $off
+        stroke: $on
 
       .edgePath
         > circle
@@ -359,9 +364,6 @@ palette_single($bgTheme, $type, $idx, key)
       text.pen > tspan
       .edgePath > text.pen
         fill: $pen
-
-      .edgePath > rect.pen
-        fill: $off
 
       // Quill
       .ql-bubble

@@ -1,3 +1,5 @@
+@import "./_theme.styl"
+
 body
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
   -webkit-overflow-scrolling: touch
@@ -442,33 +444,48 @@ sub
     column-width: 22ex
 
 // SVG section
-rect.move
-.move > rect
+rect.box
+.box > rect
+  cursor: pointer
+  fill: black
+  stroke: black
+
+rect.chr
+.chr > rect
   stroke-width: 1px
-  fill: none
+  fill: #444844   // palette_bg('I',0, BROAD)
+  stroke: black
+
+rect.pen
+.pen > rect
+  stroke-width: 1px
 
 rect.cluster
 .cluster > rect
-  stroke-width: 3px
+  cursor: pointer
+  stroke-width: 9px
   fill: transparent
+
+rect.move
+.move > rect
+  cursor: pointer
+  stroke-width: 1px
+  fill: none
 
 rect.icon
 .icon > rect
 
 rect.point
 .point > rect
+  cursor: pointer
   fill: none
   stroke: none
 
 rect.hide
 .hide > rect
+  cursor: pointer
   fill:   transparent
   stroke: transparent
-
-rect.box
-.box > rect
-  fill: black
-  stroke: black
 
 .edgePath
   > path.path
