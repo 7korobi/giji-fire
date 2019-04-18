@@ -3541,6 +3541,11 @@ core-js-pure@3.0.1:
   resolved "https://registry.yarnpkg.com/core-js-pure/-/core-js-pure-3.0.1.tgz#37358fb0d024e6b86d443d794f4e37e949098cbe"
   integrity sha512-mSxeQ6IghKW3MoyF4cz19GJ1cMm7761ON+WObSyLfTu/Jn3x7w4NwNFnrZxgl4MTSvYYepVLNuRtlB4loMwJ5g==
 
+core-js@2.6.5, core-js@^2.4.0, core-js@^2.5.7, core-js@^2.6.5:
+  version "2.6.5"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.6.5.tgz#44bc8d249e7fb2ff5d00e0341a7ffb94fbf67895"
+  integrity sha512-klh/kDpwX8hryYL14M9w/xei6vrv6sE8gTHDG7/T/+SEovB/G4ejwcfE/CBzO6Edsu+OETZMZ3wcX/EjUkrl5A==
+
 core-js@3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.0.0.tgz#a8dbfa978d29bfc263bfb66c556d0ca924c28957"
@@ -3550,11 +3555,6 @@ core-js@3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.0.1.tgz#1343182634298f7f38622f95e73f54e48ddf4738"
   integrity sha512-sco40rF+2KlE0ROMvydjkrVMMG1vYilP2ALoRXcYR4obqbYIuV3Bg+51GEDW+HF8n7NRA+iaA4qD0nD9lo9mew==
-
-core-js@^2.4.0, core-js@^2.5.7, core-js@^2.6.5:
-  version "2.6.5"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.6.5.tgz#44bc8d249e7fb2ff5d00e0341a7ffb94fbf67895"
-  integrity sha512-klh/kDpwX8hryYL14M9w/xei6vrv6sE8gTHDG7/T/+SEovB/G4ejwcfE/CBzO6Edsu+OETZMZ3wcX/EjUkrl5A==
 
 core-util-is@1.0.2, core-util-is@~1.0.0:
   version "1.0.2"
@@ -4835,10 +4835,10 @@ findup-sync@^2.0.0:
     micromatch "^3.0.4"
     resolve-dir "^1.0.1"
 
-firebase-admin@^7.2.0:
-  version "7.2.0"
-  resolved "https://registry.yarnpkg.com/firebase-admin/-/firebase-admin-7.2.0.tgz#dd7b78ca93014886090f2ae795ad6669f9157500"
-  integrity sha512-0Ikw5VwnTYk9DBnv73+/wv3eetuSSnNwLQw7x0/NXQ4kUJoGWORcmjFlW9SkBdR/xRXvU3WwTP72S8pkXVhqcQ==
+firebase-admin@^7.3.0:
+  version "7.3.0"
+  resolved "https://registry.yarnpkg.com/firebase-admin/-/firebase-admin-7.3.0.tgz#be9940fbabb58fc6a4404ac52c6a1e1b14b2ea38"
+  integrity sha512-G+gUU+u+8Mr/8IELeXA/44VYrGM6EEvUgYm5F6I5/oO6clUbM8b8x9QJasSeD14KQmP3iAPXcKQUALgH1wY+Vw==
   dependencies:
     "@firebase/app" "^0.3.4"
     "@firebase/database" "^0.3.6"
@@ -7201,7 +7201,7 @@ memory-fs@^0.4.0, memory-fs@^0.4.1, memory-fs@~0.4.1:
     errno "^0.1.3"
     readable-stream "^2.0.1"
 
-memory-orm@^0.3.0, memory-orm@^0.3.1:
+memory-orm@^0.3.1:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/memory-orm/-/memory-orm-0.3.1.tgz#03a09308ed9c1074dd077e65b5eff47779442fae"
   integrity sha512-eaGQmntdKZoKdcPfIxWGA5BuoDbXn5LiiEUBo6KSBWdHbPGPGxZznOTFyWvgVR9yzOT0+CGTZmsCcVGbGsXwqA==
@@ -11217,14 +11217,14 @@ vue-no-ssr@^1.1.1:
   resolved "https://registry.yarnpkg.com/vue-no-ssr/-/vue-no-ssr-1.1.1.tgz#875f3be6fb0ae41568a837f3ac1a80eaa137b998"
   integrity sha512-ZMjqRpWabMPqPc7gIrG0Nw6vRf1+itwf0Itft7LbMXs2g3Zs/NFmevjZGN1x7K3Q95GmIjWbQZTVerxiBxI+0g==
 
-vue-petit-store@^0.6.3:
-  version "0.6.3"
-  resolved "https://registry.yarnpkg.com/vue-petit-store/-/vue-petit-store-0.6.3.tgz#1d99e5ab35d87e3323bdf51962c5a25d98c8ae00"
-  integrity sha512-VwtE7dQ+em8M2iiF5qHLYFpkS83J9iPP1uM13vSoGUfIWpfV4yGaWMvG9thjEzImWseBO5btjT4nrJoVMAQoUQ==
+vue-petit-store@^0.6.6:
+  version "0.6.6"
+  resolved "https://registry.yarnpkg.com/vue-petit-store/-/vue-petit-store-0.6.6.tgz#bf779360c6779ab0a3e06cc0652f099def2a0730"
+  integrity sha512-db7PdZTvBx1WLkon+36WmS+2F8PwOYbqtsCvHVopCtWZtbsHXD8HGdjduiL6Yjei/MvTS2nwJlYF78Mp/QsEXA==
   dependencies:
     dexie "^2.0.4"
     firebase "^5.9.4"
-    memory-orm "^0.3.0"
+    memory-orm "^0.3.1"
     tiny-cookie "^2.3.1"
 
 vue-router@^3.0.5:

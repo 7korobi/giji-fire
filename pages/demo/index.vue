@@ -6,7 +6,6 @@ div
     nuxt-link(to="/wiki?idx=test-book") WIKI
   c-post(handle="TSAY")
     | 簡易言語
-    nuxt-link(to="/demo/svg") SVG
     nuxt-link(to="/demo/sow") sow
     nuxt-link(to="/demo/quill") Quill
   c-post(handle="TSAY")

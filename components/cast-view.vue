@@ -11,7 +11,7 @@ article
 
 <script lang="coffee">
 { Query, State } = require 'memory-orm'
-{ localStorage, path_by } = require "vue-petit-store"
+{ path_by } = require "vue-petit-store"
 
 module.exports =
   mixins: [

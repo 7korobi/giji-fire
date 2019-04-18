@@ -31,21 +31,6 @@ palette(leave, 'I', 0)
 
 .chrblank
   &
-  a
-  p
-  time
-    inline(12px, 15px, sans-serif)
-
-text.pen
-text.pen > tspan
-.edgePath > text.pen
-  inline(24px, 40px, sans-serif)
-  fill: palette_pen('I',0, BROAD)
-
-.edgePath > rect.pen
-  fill: palette_bg('I',0, BROAD)
-
-
   dfn
   abbr
   input
@@ -60,7 +45,7 @@ text.pen > tspan
   a
   b
   p
-    inline(12px, 15px, sans-serif)
+    font-size: 12px
 
   input
   select
@@ -71,5 +56,27 @@ text.pen > tspan
   .btn
     margin:  0
     padding: 2px 0
+
+
+.chrblank
+  background: #444844   // palette_bg('I',0, BROAD)
+  color:      palette_pen('I',0, BROAD)
+
+.portrates
+  background: black
+
+.swipe
+.fullframe
+.contentframe
+  .portrate
+    background-color: black
+
+text.portrate
+text.portrate > tspan
+.edgePath > text.portrate
+  fill: palette_pen('I',0, BROAD)
+
+.edgePath > rect.portrate
+  fill: #444844   // palette_bg('I',0, BROAD)
 
 

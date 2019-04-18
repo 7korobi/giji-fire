@@ -1,6 +1,6 @@
 <template lang="pug">
-article
-  svg(:style="`max-width: 100%; width: ${root.width}px;`" :viewBox="view_box" :ref="'root'" v-on="movespace()")
+article(v-zoom)
+  svg(:style="svg_style" :viewBox="view_box" v-on="movespace()")
     marker.edgePath#svg-marker-circle(viewBox="0 0 10 10" markerUnits="userSpaceOnUse" markerWidth="20" markerHeight="20" refX="5" refY="5" orient="auto")
       circle(cx="5" cy="5" r="4")
     marker.edgePath#svg-marker-arrow-start(viewBox="0 0 10 10" markerUnits="userSpaceOnUse" markerWidth="20" markerHeight="20" refX="3" refY="5" orient="auto")
@@ -67,7 +67,10 @@ module.exports =
         width:      90
         height:    130
       gap_size:     50
-      label_height:  0
+      root_size:
+        width:  0
+      label_size:
+        height:  0
       label_heights: []
       line_slide:   25
       border_width:  5
@@ -75,7 +78,8 @@ module.exports =
       ry:           10
 
   directives:
-    resize: resize_directive 'style.label_height'
+    zoom:   resize_directive 'style.root_size'
+    resize: resize_directive 'style.label_size'
   methods:
     set_pin: (key)->
       @$emit 'update:pin_id', key
@@ -168,10 +172,10 @@ module.exports =
     label_height_update: (height)->
       @style.label_heights.push height
       height = Math.max @style.label_heights
-      d = height - @style.label_height
+      d = height - @style.label_size.height
       if 4 < d * d
-        @style.label_height = parseInt height
-        console.log height, d * d, @style.label_heights.length
+        @style.label_size.height = parseInt height
+        # console.log height, d * d, @style.label_heights.length
 
     label_draw: (key)->
       return unless tgt = @$refs['rect-label-' + key]?[0]
@@ -190,8 +194,14 @@ module.exports =
         tgt.setAttribute key, val
 
   computed:
+    svg_style: ->
+      maxWidth: '100%'
+      fontSize: "#{ @zoom }rem"
+
     zoom: ->
-      return 1.0 unless width = @$refs.root?.getClientRects?()?[0]?.width
+      { width } = @style.root_size
+      console.log width, @root.width
+      return 1.0 unless width
       @root.width / width
 
     view_box: ->
@@ -202,7 +212,7 @@ module.exports =
 
     calcs: ->
       o = {}
-      { border_width, label_height, gap_size, icon } = @style
+      { border_width, label_size, gap_size, icon } = @style
 
       by_roll = (roll)->
         switch roll
@@ -267,7 +277,7 @@ module.exports =
           [width, height] = [height, width]
 
         if label
-          height += label_height
+          height += label_size.height
         width  += 2 * border_width
         height += 2 * border_width
         o[v] = { class: 'box', width, height, x, y, label }
@@ -363,13 +373,13 @@ module.exports =
 
     texts: ->
       o = {}
-      { label_height, border_width, icon } = @style
+      { label_size, border_width, icon } = @style
       for { vs, label } in @value.clusters
         { width } = icon
         { x, y, width } = @calcs[vs]
         # x, y は右上
         x = parseInt x + 1.0 * width
-        y = parseInt y + 0.3 * label_height
+        y = parseInt y + 0.3 * label_size.height
         o[vs] = { class: "pen", key: "label-#{vs}", "text-anchor": "end", label, x, y }
 
       for { v, label, roll, x, y } in @value.icons when label
@@ -378,19 +388,20 @@ module.exports =
         # x, y はボトム
         x = parseInt x + 0.5 * width
         y = parseInt y + 1.0 * height - 3 * border_width
-        o[v] = { class: "pen", key: "label-#{v}", "text-anchor": "middle", label, x, y }
+        o[v] = { class: "portrate", key: "label-#{v}", "text-anchor": "middle", label, x, y }
 
       for oo in @value.lines when oo.label
         vw = id_line oo
         { v, w, line, vpos, wpos, label } = oo
         { x, y }= @calcs[vw].cp
-        y = parseInt y + 0.3 * label_height
+        y = parseInt y + 0.3 * label_size.height
         o[vw] = { class: "pen", key: "label-#{vw}", "text-anchor": "middle", label, x, y }
       o
 
     labels: ->
       o = {}
-      { rx, ry, label_height } = @style
+      { rx, ry } = @style
+      @style.label_size.height
       @style.label_heights = []
       @$nextTick ->
         for key, val of o
@@ -400,7 +411,7 @@ module.exports =
         o[vs] = { class: "pen", key: "rect-label-#{vs}", rx , ry }
 
       for { v, label, roll, x, y } in @value.icons when label
-        o[v] = { class: "pen", key: "rect-label-#{v}", rx , ry }
+        o[v] = { class: "portrate", key: "rect-label-#{v}", rx , ry }
 
       for oo in @value.lines when oo.label
         vw = id_line oo

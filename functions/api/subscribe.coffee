@@ -97,35 +97,3 @@ module.exports =
 
       res.status(201).send("OK.")
 
-# obsolete
-  wiki_potof:
-    https.onCall (doc, { auth })->
-      console.log auth
-      ref_for "wiki", "potofs", doc
-      .set doc,
-        merge: true
-
-  wiki_potof_delete:
-    https.onCall (doc, { auth })->
-      console.log auth
-      ref_for "wiki", "potofs", doc
-      .delete()
-
-
-  wiki_chat:
-    https.onCall (doc, { auth })->
-      console.log auth
-      ref_for "wiki", "chats", doc
-      .set doc,
-        merge: true
-
-  wiki_chat_delete:
-    https.onCall (doc, { auth })->
-      console.log auth
-      ref_for "wiki", "chats", doc
-      .delete()
-
-
-  book_chat:
-    https.onCall (doc, { auth })->
-      console.log auth

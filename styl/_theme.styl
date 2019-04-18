@@ -348,8 +348,20 @@ palette_single($bgTheme, $type, $idx, key)
         > circle
         > path.fill
           fill: $line
+          &:focus
+            fill: $focus
         > path.path
           stroke: $line
+          &:focus
+            stroke: $focus
+
+      text.pen
+      text.pen > tspan
+      .edgePath > text.pen
+        fill: $pen
+
+      .edgePath > rect.pen
+        fill: $off
 
       // Quill
       .ql-bubble

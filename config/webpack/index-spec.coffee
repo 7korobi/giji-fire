@@ -9,11 +9,12 @@ coffee =
     transpile:
       plugins: [
         "@babel/plugin-transform-modules-commonjs",
+        ["@babel/plugin-transform-runtime", { regenerator: true }]
       ],
       presets: [[
         "@nuxt/babel-preset-app",
           targets:
-            node: "6.11.5"
+            node: "8.15.0"
       ]]
 
 sass =

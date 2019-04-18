@@ -37,7 +37,10 @@ module.exports =
       if ResizeObserver?
         new ResizeObserver (doms)->
           doms.forEach (o)->
-            o.target._cb_resize()
+            { width, height } = o.contentRect
+            width  = parseInt width
+            height = parseInt height
+            o.target._cb_resize { width, height }
       else
         observe: ->
         unobserve: ->
@@ -49,8 +52,8 @@ module.exports =
       # vm[type_id] = types[vm[default_id].constructor]
 
     inserted: (el, binding, { context })->
-      cb = ->
-        _.set @, id, @[default_id]
+      cb = (size)->
+        _.set @, id, size
       el._cb_resize = cb.bind context
       observer.observe el
 

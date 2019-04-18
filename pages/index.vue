@@ -51,7 +51,7 @@ div
   c-talk.form(@focus="focus" handle="GSAY" id="link-to" face_id="sf04" head="お散歩隊長 アシモフ").
     とたたたたたたんっ。
 
-    ぼくはドメインの壁なんてなんともないでちゅ。
+    ぼくはドメインの壁なんてへっちゃらでちゅ。
     #[a(href="https://twitter.com/jinrogiji") #[ruby 広報活動#[rt おさんぽ]]]についてきてもかまわないでちゅよ？
 
   c-report(@focus="focus" handle="footer" deco="giji" id="fcm-head")
@@ -126,7 +126,7 @@ pairs = [
   lines: ['<=>']
 ,
   vs: ["c103","c99"]
-  labels: ["厭世家"]
+  labels: ["ひきこもり"]
   lines: ['<=>']
 ,
   vs: ["t50","t51"]
@@ -142,7 +142,7 @@ pairs = [
   lines: ['o=>']
 ,
   vs: ["sf18","sf19"]
-  labels: ["ハードワイヤード"]
+  labels: ["絆（物理）"]
   lines: ['<=>']
 ,
   vs: ["w08","w07"]
@@ -156,12 +156,6 @@ module.exports =
     poll -> [["sow/plan"]]
     replaceState "idx"
   ]
-###
-      { x:  0, y:  120, width: 105,   height: -180, fill: "#41b883"}
-      { x: 52, y:   90, width:  87.5, height: -150, fill: "#3b8070"}
-      { x: 35, y:   60, width:  70,   height: -120, fill: "#35495e"}
-      { x:  0, y:    0, width:  35,   height:  -60, fill:    "#fff"}
-###
   data: ->
     idx: ""
     applogo: [
@@ -174,13 +168,13 @@ module.exports =
       icons: [
         v: "-1"
         roll: 0
-        x: -300
+        x: -500
         y: -100
       ,
         v: "-2"
         roll: 0
-        x:  300
-        y:  100
+        x:  100
+        y: -250
       ]
       lines: [
         v: "-1"
