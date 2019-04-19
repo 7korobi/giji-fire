@@ -27,7 +27,7 @@ article.fine(v-zoom)
 # inspired by https://github.com/wakufactory/MarkDownDiagram
 
 _ = require 'lodash'
-{ resize_directive } = require '~/plugins/observer'
+{ resize } = require '~/plugins/observer'
 
 { Query, State } = require "memory-orm"
 { url } = require "~/config/live.yml"
@@ -78,8 +78,8 @@ module.exports =
       ry:           10
 
   directives:
-    zoom:   resize_directive 'style.root_size'
-    resize: resize_directive 'style.label_size'
+    zoom:   resize 'style.root_size'
+    resize: resize 'style.label_size'
   methods:
     set_pin: (key)->
       @$emit 'update:pin_id', key
@@ -200,7 +200,6 @@ module.exports =
 
     zoom: ->
       { width } = @style.root_size
-      console.log width, @root.width
       return 1.0 unless width
       @root.width / width
 

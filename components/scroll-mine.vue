@@ -2,9 +2,8 @@
 { fullpage } = require '~/plugins/observer'
 
 module.exports =
-  mixins: [
-    fullpage 'pos'
-  ]
+  directives:
+    fullpage: fullpage 'pos'
 
   props: ["as", "value"]
 
@@ -21,6 +20,6 @@ module.exports =
 </script>
 
 <template lang="pug">
-a(:class="btn")
+a(:class="btn" v-fullpage)
   slot
 </template>

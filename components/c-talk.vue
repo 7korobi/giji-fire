@@ -3,7 +3,7 @@ module.exports = require("~/components/chat.coffee")()
 </script>
 
 <template lang="pug">
-table.talk(:key="id")
+table.talk(:key="id" v-horizon)
   tbody
     tr
       th

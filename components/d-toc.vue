@@ -1,16 +1,16 @@
 <template lang="pug">
-div(:class="page_view" v-on="movespace()")
+div(:class="page_view" v-on="col_space")
   table(v-if="show" v-on="markup_event()")
     tbody
       tr
         th
-        th(ref="curtain0")
+        th(v-col)
       tr(v-for="(o, line) in book.parts.list", :key="o.id")
         th.r.form.TITLE(style="white-space: nowrap")
           nuxt-link(replace, :to="page_url(o.id, 0)" :class="{ active: o.id === part_id }")
             | {{o.label}}
             sup {{ chat_size(o.id, mode) }}
-        th.l.form.TITLE.pages(v-if="is_swipe_page || in_curtain(0)")
+        th.l.form.TITLE.pages(v-if="is_swipe_page || col_left[0]")
           nuxt-link.cite-in.page(v-for="idx in page_all_idxs(o.id)" replace :to="page_url(o.id, idx)" :class="page_btn_class(o.id, idx)" :key=" o.id + idx " :cite="page_label(o.id, idx)")
             | {{ idx + 1 }}
         th.form(v-else)
@@ -21,15 +21,18 @@ div(:class="page_view" v-on="movespace()")
 timerange = require "~/components/filters/timerange"
 { Query } = require 'memory-orm'
 
+{ curtain } = require '~/plugins/observer'
+
 module.exports =
   mixins: [
     require('~/plugins/pager')
     require('~/plugins/markup-event')
-    require("~/plugins/curtain") [
-      "curtain0"
-    ]
+    curtain 'col'
   ]
   props: ["book", "chats", "mode", "part_id", "chat_size", "search", "page_by", "page_idx", "options"]
+
+  data: ->
+    col: []
 
   methods:
     part_label: (part_id)->

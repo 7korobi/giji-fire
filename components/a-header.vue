@@ -65,12 +65,6 @@ module.exports =
       , 100
 
   watch:
-    scroll:
-      immediate: true
-      deep: true
-      handler: (newVal, oldVal)->
-        @$store.commit "menu/center", @scroll
-
     theme:
       immediate: true
       handler: ->

@@ -61,7 +61,7 @@
     "nuxt": "^2.6.2",
     "tiny-cookie": "^2.3.1",
     "vue-kawaii": "^0.1.2",
-    "vue-petit-store": "^0.6.6",
+    "vue-petit-store": "^0.6.7",
     "vue-toasted": "^1.1.26"
   },
   "devDependencies": {

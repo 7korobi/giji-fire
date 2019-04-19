@@ -1,6 +1,6 @@
 _ = require "lodash"
 { Query } = require 'memory-orm'
-{ path_by, replaceState, pushState, localStorage } = require "vue-petit-store"
+{ path_by, scroll, replaceState, pushState, localStorage } = require "vue-petit-store"
 
 
 blank = []
@@ -8,6 +8,7 @@ blank.all = 0
 
 store =
   mixins: [
+    scroll()
     replaceState "idx"
     replaceState "page"
     replaceState "search"
@@ -122,7 +123,7 @@ store =
       { chat_id } = @
       @$nextTick =>
         if chat_id? && window[chat_id]
-          @$store.commit "menu/focus",
+          @scroll_to
             query: "#" + chat_id
             mode: 'center'
         else

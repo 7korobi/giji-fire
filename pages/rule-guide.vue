@@ -115,12 +115,18 @@ div
 </template>
 
 <script lang="coffee">
+{ scroll } = require "vue-petit-store"
+
 module.exports =
+  mixins: [
+    scroll()
+  ]
+
   data: ->
     require "../yaml/rule.yml"
   beforeRouteUpdate: ({ hash }, oldRoute, next)->
     next()
-    @$store.commit "menu/focus",
+    @scroll_to
       query: hash
       mode: 'top'
 

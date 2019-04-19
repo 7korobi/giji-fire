@@ -24,10 +24,8 @@ module.exports = ->
 
     phase_id: String
 
-
-  mixins: [
-    horizon 'pos'
-  ]
+  directives:
+    horizon: horizon 'pos'
 
   data: ->
     pos: 'focus'

@@ -118,7 +118,7 @@ div
 
   div
     div(v-for="(villages, idx) in page_contents" :key="idx")
-      c-report(handle="MAKER", v-for="o in villages" :id="o._id" :key="o._id")
+      c-report(handle="MAKER", v-for="o in villages" :id="o._id" :key="o._id" @focus="focus")
         .name
           sup.pull-right {{ o.sow_auth_id | decode }}
           nuxt-link(:to="book_url(o.id, 'top', 'full')") {{ o.name }}
@@ -178,6 +178,7 @@ module.exports =
   mixins: [
     require('~/plugins/pager')
     poll -> [["sow/oldlog"]]
+    replaceState "idx"
     replaceState "order"
     replaceState "folder_id"
     replaceState "monthry"
@@ -196,6 +197,7 @@ module.exports =
   ]
 
   data: ->
+    idx: ""
     order:  "timer.updateddt"
     folder_id: []
     monthry: []
@@ -218,6 +220,7 @@ module.exports =
     state_step: State.step
 
   methods:
+    focus: (@idx)->
     reset: ->
       @$router.replace query: { @order }
 
