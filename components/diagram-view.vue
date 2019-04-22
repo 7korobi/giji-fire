@@ -1,6 +1,6 @@
 <template lang="pug">
 article.fine(v-zoom)
-  svg(:style="svg_style" :viewBox="view_box" v-on="movespace()")
+  svg(v-bind="svg_attrs" v-on="movespace")
     marker.edgePath#svg-marker-circle(viewBox="0 0 10 10" markerUnits="userSpaceOnUse" markerWidth="20" markerHeight="20" refX="5" refY="5" orient="auto")
       circle(cx="5" cy="5" r="4")
     marker.edgePath#svg-marker-arrow-start(viewBox="0 0 10 10" markerUnits="userSpaceOnUse" markerWidth="20" markerHeight="20" refX="3" refY="5" orient="auto")
@@ -84,55 +84,19 @@ module.exports =
     set_pin: (key)->
       @$emit 'update:pin_id', key
 
-    do_move: (id)->
+    recalc: (dx, dy)->
+      @move_xy @moved, dx, dy
+
+    do_move: (id, dx, dy)->
       for o, idx in @value.icons when o.v == id
-        Object.assign o, @move_xy()
+        @move_xy o, dx, dy
         @$emit 'input', @value
         return
 
-    move_xy: ->
-      { x, y, dx, dy } = @move
-      x = parseInt x + dx
-      y = parseInt y + dy
-      { x, y }
-
-    movespace: ->
-      move = ({ pageX, pageY, target })=>
-        if @move.id
-          { px, py } = @move
-          dx = (pageX - px)
-          dy = (pageY - py)
-          @move.dx = @zoom * dx
-          @move.dy = @zoom * dy
-          @recalc()
-      finish = ({ pageX, pageY, target })=>
-        if @move.id
-          { px, py } = @move
-          dx = (pageX - px)
-          dy = (pageY - py)
-          if dx == dy == 0
-            @set_pin @move.id
-          else
-            @move.dx = @zoom * dx
-            @move.dy = @zoom * dy
-            @do_move @move.id
-          @move.id = null
-
-      up = (o)=>
-        unless @move.id
-          @set_pin null
-        finish(o)
-
-      cb =
-        touchend: (e)=>
-          up parse_touch e
-        touchleave: (e)=>
-          finish parse_touch e
-        touchmove: (e)=>
-          move parse_touch e
-        mouseup: up
-        mouseleave: finish
-        mousemove: move
+    move_xy: (o, dx, dy)->
+      { x, y } = @move
+      o.x = parseInt x + dx
+      o.y = parseInt y + dy
 
     draggable: (id)->
       start = ({ pageX, pageY, target })=>
@@ -148,9 +112,6 @@ module.exports =
           e.preventDefault()
           start e
     
-    recalc: ->
-      Object.assign @moved, @move_xy()
-
     cover: (vos)->
       { gap_size, icon } = @style
       vos = vos.filter (o)-> o
@@ -194,17 +155,53 @@ module.exports =
         tgt.setAttribute key, val
 
   computed:
-    svg_style: ->
-      maxWidth: '100%'
-      fontSize: "#{ @zoom * 3 / 4 }rem"
+    movespace: ->
+      move = ({ pageX, pageY, target })=>
+        { px, py } = @move
+        dx = @zoom * (pageX - px)
+        dy = @zoom * (pageY - py)
+        if @move.id
+          @recalc dx, dy
+
+      finish = ({ pageX, pageY, target })=>
+        { px, py } = @move
+        dx = @zoom * (pageX - px)
+        dy = @zoom * (pageY - py)
+
+        if @move.id
+          if dx == dy == 0
+            @set_pin @move.id
+          else
+            @do_move @move.id, dx, dy
+          @move.id = null
+
+      up = (o)=>
+        unless @move.id
+          @set_pin null
+        finish(o)
+
+      cb =
+        touchend: (e)=>
+          up parse_touch e
+        touchleave: (e)=>
+          finish parse_touch e
+        touchmove: (e)=>
+          move parse_touch e
+        mouseup: up
+        mouseleave: finish
+        mousemove: move
+
+    svg_attrs: ->
+      style:
+        maxWidth: '100%'
+        fontSize: "#{ @zoom * 3 / 4 }rem"
+      viewBox:
+        "#{@root.x} #{@root.y} #{@root.width} #{@root.height}"
 
     zoom: ->
       { width } = @style.root_size
       return 1.0 unless width
       @root.width / width
-
-    view_box: ->
-      "#{@root.x} #{@root.y} #{@root.width} #{@root.height}"
 
     root: ->
       @cover Object.values @rects

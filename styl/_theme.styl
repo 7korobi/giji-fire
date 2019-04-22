@@ -349,6 +349,11 @@ palette_single($bgTheme, $type, $idx, key)
         fill:  $off
         stroke: $on
 
+      rect.path
+      .path > rect
+        fill:  $off
+        stroke: $line
+
       .edgePath
         > circle
         > path.fill
@@ -362,7 +367,8 @@ palette_single($bgTheme, $type, $idx, key)
 
       text.pen
       text.pen > tspan
-      .edgePath > text.pen
+      text.path
+      text.path > tspan
         fill: $pen
 
       // Quill
