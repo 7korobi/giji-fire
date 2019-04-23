@@ -12,6 +12,7 @@ module.exports =
     { charset: 'utf-8' }
     { href: pkg.author }
     { hid: 'description', content: pkg.description }
+    { hid: 'viewport', name: 'viewport', content: "width=device-width, initial-scale=1.0, shrink-to-fit=no" }
     { name: "google-site-verification", content: "Yrpo5-YleKjRAidW8yT7TXWCfKlgi5gEppIoqc_-xio" }
     { name: "apple-mobile-web-app-title", content: pkg.description }
     { name: "application-name", content: pkg.description }

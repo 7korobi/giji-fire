@@ -55,6 +55,8 @@ font($small, $base, $family)
   width($base, 28 * $base + 132)
 
   html
+    font-size: $base
+
   body
     font-size: $base
 
@@ -67,3 +69,39 @@ font($small, $base, $family)
     dfn
     p
       font-size: $small
+
+  [data-ruby]:before
+    top:       $base * -1.2
+    font-size: $base *  0.5
+
+  sup
+    vertical-align:  $base *  0.5
+  sub
+    vertical-align:  $base * -0.5
+
+  .ql-size-small
+    font-size: $base * 0.75
+  .ql-size-large
+    font-size: $base * 1.5
+  .ql-size-huge
+    font-size: $base * 2.5
+
+  .ql-picker-item[data-value="1"]::before
+  h1
+    font-size: $base * 2.50
+  .ql-picker-item[data-value="2"]::before
+  h2
+    font-size: $base * 1.88
+  .ql-picker-item[data-value="3"]::before
+  h3
+    font-size: $base * 1.50
+  .ql-picker-item[data-value="4"]::before
+  h4
+    font-size: $base * 1.25
+  .ql-picker-item[data-value="5"]::before
+  h5
+    font-size: $base * 1.00
+  .ql-picker-item[data-value="6"]::before
+  h6
+    font-size: $base * 0.83
+

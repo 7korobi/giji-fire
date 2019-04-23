@@ -62,6 +62,7 @@ new Rule("face").schema ->
       all.tag(tag_id).reduce.name_head
 
   @deploy ->
+    @tag_ids.unshift "all"
 
   map =
     count: 1

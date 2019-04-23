@@ -11,10 +11,6 @@ width($font, $center)
   $limit3 = $center + 2 * ( $gap + 150px )
   $half   = ( $center + $gap ) / 2
 
-  .banner
-    left:  $center + $gap
-    width: "calc( 50vw - %s )" % ($half + $gap)
-
   @media screen and (min-width: $limit3)
     .summaryframe
       width: "calc( 50vw - %s )" % $half
@@ -23,10 +19,15 @@ width($font, $center)
       width: 150px
 
   @media screen and (min-width: $limit2)
+    .banner
+      left:  $center + 15px
+      width: "calc( 50vw - %s )" % ($half + 6px)
     .toastframe
     .sideframe
       width: "calc( 50vw - %s )" % $half
   @media screen and (max-width: $limit2)
+    .banner
+      display: none
     .toastframe
     .sideframe
       width: 80px

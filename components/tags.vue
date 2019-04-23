@@ -1,6 +1,6 @@
 <template lang="pug">
 p.form
-  span.tag(v-for="(group, idx) in tag_groups" v-if="group" :key="group.list[0].id")
+  span.tag(v-for="(group, idx) in tag_groups" v-if="group" :key="group.set[0]")
     tag(v-for="o in group.list" v-bind="o" :key="o.id")
 </template>
 

@@ -1,5 +1,6 @@
 @import "./_font.styl"
 
+html
 body
 b
 th

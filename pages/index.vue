@@ -1,7 +1,6 @@
 <template lang="pug">
 div
-  br
-  c-post(@focus="focus" handle="XSAY" id="title" :write_at="1169852700003")
+  c-post(@focus="focus" handle="XSAY" id="title" :write_at="1169852700003" style="height: 52ex")
     diagram-view(:value="d_pair")
       path(v-for="o in applogo_path" v-bind="o")
 

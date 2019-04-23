@@ -1,6 +1,6 @@
 <template lang="pug">
 .chat(:id="id" v-on="markup_event('click')")
-  div(v-if="head")
+  template(v-if="head")
     .name.center(v-if="(!! to)")
       span.pull-right {{ to }}
       | ▷

@@ -1,22 +1,5 @@
 @import "./_theme.styl"
 
-body
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
-  -webkit-overflow-scrolling: touch
-  -webkit-touch-callout: none
-  text-size-adjust: 100%
-  user-select: none
-  overflow-wrap: break-word
-  word-wrap:     break-word
-  font-variant-numeric: tabular-nums
-  font-feature-settings: "palt"
-  font-smooth: antialiased
-  font-kerning: normal
-  text-align: left
-  word-break: normal
-  word-wrap: break-word
-  overflow-wrap: break-word
-
 [data-ruby]
   position: relative
   white-space: nowrap
@@ -56,7 +39,7 @@ code
 kbd
 samp
 pre
-.chat .text.mono
+.text.mono
 .ql-picker-item[data-value=monospace]::before
 .ql-font-monospace
   font-weight: 400
@@ -81,7 +64,7 @@ rt
 button
 strong
 .bold
-.chat .text.head:first-line
+.text.head:first-line
   font-weight: 700
   font-family: 'Noto Sans CJK JP', 'Noto Sans JP', sans-serif
 
@@ -213,20 +196,6 @@ input[type=time]
     .badge
       writing-mode: lr-tb
       float: inline-end
-
-article
-.text
-  cursor: text
-  user-select: text
-
-label
-abbr
-[href]
-[cite]
-.btn
-.label
-  cursor: pointer
-  user-select: auto
 
 a
   text-decoration: none
@@ -370,7 +339,6 @@ kbd
 code
   padding: 1px 0.4ex
   margin:  0px 0.1ex
-  font-size: inherit
 
 
 input
@@ -398,7 +366,6 @@ sup
 sub
   display: inline-block
   text-align: center
-  font-size: inherit
 
 // multi-column
 .col2
@@ -418,8 +385,8 @@ sub
         td
           padding: 0
 
-.talk
-.post
+.talk > .chat
+.post > .chat
   .column
   .col2
     columns: 2 24ex
@@ -427,7 +394,7 @@ sub
   .col3
     columns: 3 16ex
 
-.report
+.report > .chat
   .col2
     columns: 2 34ex
 

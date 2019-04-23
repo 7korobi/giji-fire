@@ -26,7 +26,8 @@ module.exports =
     asset '10y', '2018-08-29', 'https://giji.f5.si/font/*'
     asset '10y', '2019-02-15', 'https://giji.f5.si/css/*'
     asset '10y', '2019-01-20', 'https://giji-db923.firebaseapp.com/images/*'
-    asset '10y', '2019-02-15', 'https://giji-db923.firebaseapp.com/css/*'
+    asset '10y', '2018-08-29', 'https://giji-db923.firebaseapp.com/font/*'
+    asset ' 5m', '2019-04-23', 'https://giji-db923.firebaseapp.com/css/*'
     asset '10y', '2018-08-29', 'https://cdn.materialdesignicons.com/*/*/*'
 
   ]

@@ -3,12 +3,10 @@
 
 palette_single(icons, 'N',1, FOAM)
 
-.talk
-  .chat
-    border-radius: 0.5rem
-    border-style: none
-    border-width: 0
-    margin:  0 7px 0 0
+.talk > .chat
+  border-radius: 0.5rem
+  border-style: none
+  border-width: 0
 
 .contentframe
   .baloon

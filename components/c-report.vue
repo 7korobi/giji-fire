@@ -3,6 +3,7 @@ module.exports = require("~/components/chat.coffee")()
 </script>
 
 <template lang="pug">
-chat-body.report(:key="id" v-on="$listeners" v-bind="for_body" v-horizon)
-  slot
+.report(:key="id" v-horizon)
+  chat-body(v-on="$listeners" v-bind="for_body")
+    slot
 </template>

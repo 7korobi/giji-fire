@@ -6,7 +6,6 @@ body
 
 .chat
   box-sizing: border-box
-  display: block
 
   IMG
   table
@@ -228,30 +227,99 @@ IMG.hide
       border-radius: 9px
 
 
-.post
+.post > .chat
   padding-right: 12px
   margin 0 0 6px 7px
   border-style: solid none solid solid
   border-width: 2px 0 2px 18px
 
-.report
+.report > .chat
   border-style: double dotted
   border-width: 4px 1px
-  margin: 0 -10px 6px -10px
-  padding: 1px 8px 1px 10px
-  .name
-    margin-right: 13px
-  .date
-    margin-right: 13px
+
+.contentframe
+  .post
+  .report
+  .talk
+    display: flex
+    flex-flow: row-reverse nowrap
+    justify-content: space-between
+
+    position: relative
+    margin: 0 0 6px 0
+
+  .talk > .baloon
+      align-self: flex-start
+      flex-grow:   0
+      flex-shrink: 0
+      top:   60px
+      left: 119px
+
+  .talk > .portrate
+      align-self: flex-start
+      flex-grow:   0
+      flex-shrink: 0
+      margin:  0 0 0 16px
+
+  .talk > .chat
+      width: calc(100% - 132px)
+      margin:  0 7px 0 19px
+      min-height: 70px
+
+  .post > .chat
+      width: calc(100% - 107px)
+      margin 0 0 0 107px
+      // box-shadow: inset -30px 0px 45px -38px #222
+      // 罫線にshadowが乗らない。
+      .name
+      .date
+        margin-right: 7px
+
+  .report > .chat
+      width: calc(100% +  20px)
+      margin: 0 -10px 0 -10px
+      padding: 1px 8px 1px 10px
+      .name
+      .date
+        margin-right: 13px
+
 
 .contentframe
   .chat
     z-index:  2
+    align-self: center
+    flex-grow:   1
+    flex-shrink: 1
+    padding: 0 4px 0 8px
 
-  .post
-    margin 0 0 6px 107px
-    // box-shadow: inset -30px 0px 45px -38px #222
-    // 罫線にshadowが乗らない。
+    .date
+      text-align: right
+
+    .name, .text, .date
+      padding: 0
+      margin: 0
+
+    .text
+      &.mono
+        white-space: pre
+        overflow-y: visible
+        overflow-x: auto
+        text-overflow: show
+        background: url("//s3-ap-northeast-1.amazonaws.com/giji-assets/images/bg/grid.gif")
+
+      fieldset
+      fieldset input[type=text]
+      fieldset select
+      textarea
+        width: 99%
+        min-width: 99%
+        max-width: 99%
+        resize: vertical
+        overflow-y: auto
+        overflow-x: scroll
+        -ms-overflow-style: none
+        &::-webkit-scrollbar
+          display:none;
 
   .baloon
     z-index: 1
@@ -259,13 +327,11 @@ IMG.hide
     content: ''
     width:  0
     height: 0
-    top:   60px
-    left:  -6px
     border-width:  6px
     border-radius: 6px 0 0 6px
     border-right-width 1px
 
-  .report
+  .report > .chat
     position: relative
 
     &::before
@@ -286,28 +352,3 @@ IMG.hide
       border-width: 4px 0 0 8px
       right: 0
 
-  .talk
-    width: 100%
-    table-layout: fixed
-    border-collapse: collapse
-    border-spacing:  0
-    margin: 0 0 6px 0
-
-  .talk > thead
-  .talk > tfoot
-  .talk > tbody
-  .talk > tbody > tr
-  .talk > tbody > tr > td
-  .talk > tbody > tr > th
-  .talk > tbody > tr > th > .portrate
-    border:  0
-    padding: 0
-    background: transparent
-  .talk > tbody > tr > td
-    vertical-align: middle
-    position: relative
-  .talk > tbody > tr > th
-    width: 125px
-    vertical-align: top
-  .talk > tbody > tr > th > .portrate
-    margin:  0 19px 0 16px

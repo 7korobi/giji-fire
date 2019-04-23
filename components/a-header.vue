@@ -85,7 +85,9 @@ module.exports =
   head: ->
     # https://materialdesignicons.com/
     meta: [
-      { hid: 'viewport', name: 'viewport', content: "width=device-width, initial-scale=#{@zoom}, shrink-to-fit=no" }
+      hid: 'viewport'
+      name: 'viewport'
+      content: "width=#{ @scroll.width }px, initial-scale=#{ @zoom }, user-scalable=no, shrink-to-fit=no"
     ]
     link: [
       { hid: 'hid4',  rel: @new.rel.log,   type: 'text/css', href: @href.log }

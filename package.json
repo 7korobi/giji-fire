@@ -24,7 +24,7 @@
     "dist:brotli": "find dist -type f -not -name \"*.br\" | grep -v \"dist/font\" | xargs -L1  brotli -Z -f -k",
     "deploy": "run-s generate:nuxt deploy:test backup",
     "deploy:test": "run-p -n deploy:host deploy:aws",
-    "deploy:live": "run-s -n dist:brotli deploy:rsync deploy:aws deploy:aws_img",
+    "deploy:live": "run-s -n dist:brotli deploy:rsync deploy:aws deploy:aws_img backup",
     "deploy:styl": "run-s copy:stylus dist:copy deploy:test",
     "deploy:sow": "run-s copy:sow dist:copy deploy:test",
     "deploy:img": "run-s copy:portrate dist:copy deploy:test",
@@ -37,6 +37,7 @@
     "deploy:func": "firebase deploy --only functions",
     "backup": "run-p -n backup:*",
     "backup:rsync": "rsync -avz -e 'ssh -i ../.ssh/id_rsa' 7korobi@giji.f5.si:/home/7korobi/*.zip config/.",
+    "backup:競合": "find . -name '*競合*' > dropbox.error.txt",
     "g": "run-p -n g:*",
     "g:msys": "pacman -S openssh rsync",
     "g:npm": "npm install -g aws-sdk firebase-tools npm-check-updates typesync"
