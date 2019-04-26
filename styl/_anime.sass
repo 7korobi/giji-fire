@@ -10,10 +10,19 @@
   50%   { border-radius: 3px 1em 3px 3px / 3px 3px 3px 1em }
   75%   { border-radius: 3px 3px 3px 1em / 3px 1em 3px 3px }
 
-.contentframe
-.summaryframe
-.chat
+.contentframe,
+.summaryframe,
+.chat,
+.portrate,
+.portrate > IMG,
   transition-property: border-color, width
+  transition-duration: .3s
+
+.filmline,
+.filmline > .contentframe,
+.filmend,
+.contentframe .inframe,
+  transition-property: width, height, background-size
   transition-duration: .3s
 
 .editframe
@@ -22,19 +31,19 @@
   transition-delay:    .1s   , 0s
   transition-timing-function: ease
 
-.timeline
-.icons
-.list
-  &-enter
-  &-leave-to
+.timeline,
+.icons,
+.list,
+  &-enter,
+  &-leave-to,
     opacity: 0
 
   &-leave-active
     position: absolute
 
-  &-enter-active
-  &-leave-active
-  &-move
+  &-enter-active,
+  &-leave-active,
+  &-move,
     transition: opacity .1s, transform .3s
 
 

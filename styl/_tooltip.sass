@@ -4,8 +4,8 @@
 [data-tooltip]:after
   content: attr(data-tooltip)
 
-[title]
-[data-tooltip]
+[title],
+[data-tooltip],
   position: relative
 
   &:after
@@ -14,8 +14,8 @@
   &:before
     z-index: 99999
 
-  &:after
-  &:before
+  &:after,
+  &:before,
     // Position
     position: absolute
 
@@ -42,14 +42,14 @@
     border-color: transparent
     border-radius: 6px
 
-[title]
-.tooltip-bottom
-.tooltip-right
-.tooltip-left
-.tooltip-top
-  &.tap
-  &:hover
-  &:focus
+[title],
+.tooltip-bottom,
+.tooltip-right,
+.tooltip-left,
+.tooltip-top,
+  &.tap,
+  &:hover,
+  &:focus,
     &:after
       display: block
       opacity: 1
@@ -71,8 +71,8 @@
 
 // Bottom
 .tooltip-bottom
-  &:after
-  &:before
+  &:after,
+  &:before,
     top: 85%
     left: 0
     margin-top: 12px
@@ -81,10 +81,10 @@
     left: 15px
 
 // Top
-[title]
-.tooltip-top
-  &:after
-  &:before
+[title],
+.tooltip-top,
+  &:after,
+  &:before,
     top: auto
     bottom: 85%
     left: 0
@@ -95,8 +95,8 @@
 
 // Right
 .tooltip-right
-  &:after
-  &:before
+  &:after,
+  &:before,
     left: 100%
     margin-left: 6px
     margin-top: 0
@@ -108,8 +108,8 @@
 
 // Left
 .tooltip-left
-  &:after
-  &:before
+  &:after,
+  &:before,
     right: 100%
     margin-right: 6px
     left: auto

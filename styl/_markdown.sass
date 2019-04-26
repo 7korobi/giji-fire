@@ -1,5 +1,3 @@
-@import "./_theme.styl"
-
 [data-ruby]
   position: relative
   white-space: nowrap
@@ -14,13 +12,13 @@
   -webkit-text-emphasis: none
   text-emphasis: none
 
-[data-ruby]:before
-rt
+[data-ruby]:before,
+rt,
   text-shadow: none
   font-variant-east-asian: ruby full-width simplified
 
-abbr[title]
-del
+abbr[title],
+del,
   text-decoration: none
 
 em
@@ -30,77 +28,72 @@ em
 
 s
   text-decoration-style: double
-u
-ins
+u,
+ins,
   text-decoration-style: wavy
 
-tt
-code
-kbd
-samp
-pre
-.text.mono
-.ql-picker-item[data-value=monospace]::before
-.ql-font-monospace
+tt,
+code,
+kbd,
+samp,
+pre,
+.text.mono,
+.ql-picker-item[data-value=monospace]::before,
+.ql-font-monospace,
   font-weight: 400
   font-family: 'Fira Code', 'Fira Code WEB', 'Noto Sans Mono CJK JP', 'Mgen+ 1mn', 'mplus-1m', monospace
   font-variant-numeric: tabular-nums slashed-zero
   font-feature-settings: "halt"
 
-select
-[cite]
+select,
+[cite],
   font-weight: 400
   font-family: 'Noto Sans CJK JP', 'Noto Sans JP', sans-serif
 
-.btn
-[href]
+.btn,
+[href],
   sup, sub, .badge
     font-weight: 700
     font-family: 'Noto Sans CJK JP', 'Noto Sans JP', sans-serif
 
-.ql-header .ql-picker-item[data-value]::before
-h1, h2, h3, h4, h5, h6
-rt
-button
-strong
-.bold
-.text.head:first-line
+.ql-header .ql-picker-item[data-value]::before,
+h1, h2, h3, h4, h5, h6,
+[data-ruby]:before,
+rt,
+button,
+strong,
+.bold,
+.text.head:first-line,
   font-weight: 700
   font-family: 'Noto Sans CJK JP', 'Noto Sans JP', sans-serif
 
 hr
   clear: both
   display: block
-  height:  0
   margin:  0
   margin-before: 0
   margin-after:  0
   border: none
 
-hr:before
-hr:after
+hr:before,
+hr:after,
   content: ""
   clear: both
   display: block
   margin:  0
   padding: 0
-  height: 1px
 
 hr:before
   border-style: solid none none none
-  border-width: 1px 0 0 0
 
 hr:after
   border-style: none none dashed none
-  border-width: 0 0 1px 0
 
 hr.footnote:before
   border-style: dashed none none none
-  border-width: 1px 0 0 0
 
 hr.footnote:after
   border-style: none none solid none
-  border-width: 0 0 1px 0
 
 hr.invisible_hr
   display: none
@@ -112,8 +105,8 @@ hr.invisible_hr
     transform: scale( 0.5, 1)
     transform-origin: right
 
-.ql-header .ql-picker-item[data-value]::before
-h1, h2, h3, h4, h5, h6
+.ql-header .ql-picker-item[data-value]::before,
+h1, h2, h3, h4, h5, h6,
   box-sizing: border-box
   display: block
   column-span: all
@@ -121,8 +114,8 @@ h1, h2, h3, h4, h5, h6
   transform-origin: center center
   margin: 0
 
-b
-p
+b,
+p,
   margin:  0
   padding: 0
 
@@ -131,7 +124,7 @@ blockquote
   padding: 0  0.5ex 0  0.5ex
   border-style: none solid none solid
   border-width: 0 0.5ex 0 0.5ex
-ol, ul
+ol, ul,
   margin:  0
   padding: 0
 strong
@@ -155,27 +148,26 @@ pre
   code
     max-width: 100%
 
-a
-b
-em
-abbr
-strong
-kbd
-code
-time
-select
-button
-time
+a,
+b,
+em,
+abbr,
+strong,
+kbd,
+code,
+time,
+select,
+button,
+time,
   border-width: 0
 
-q:not([title]):before
-q:not([title]):after
+q:not([title]):before,
+q:not([title]):after,
   content: ''
 
-input[type=time]
-input[type=number]
-
-.mini
+input[type=time],
+input[type=number],
+.mini,
   width: 3em
 
 input[type=time]
@@ -187,103 +179,95 @@ input[type=time]
     margin: 0 6px
 
 .tb-btn
-  a
-  button
-  .btn
+  a,
+  button,
+  .btn,
     writing-mode: tb-rl
-    sup
-    sub
-    .badge
+    sup,
+    sub,
+    .badge,
       writing-mode: lr-tb
       float: inline-end
 
 a
   text-decoration: none
 
-input[type=time]
-input[type=number]
-input[type=checkbox]
-input[type=radio]
-input[type=color]
-input[type=submit]
-input[type=button]
-input[type=image]
-input[type=reset]
-[href]
-[cite]
-a
-b
-abbr
-kbd
-code
-time
-select
-button
-textarea
-fieldset
-.btn
-  display: inline-block
+input[type=time],
+input[type=number],
+input[type=checkbox],
+input[type=radio],
+input[type=color],
+input[type=submit],
+input[type=button],
+input[type=image],
+input[type=reset],
+[href],
+[cite],
+a,
+b,
+abbr,
+kbd,
+code,
+time,
+select,
+button,
+textarea,
+fieldset,
+.btn,
   box-sizing: border-box
   text-rendering: auto
   align-items: flex-start
 
-q
-  border-radius: 9px
-
-input[type=time]
-input[type=number]
-input[type=checkbox]
-input[type=radio]
-input[type=color]
-input[type=submit]
-input[type=button]
-input[type=image]
-input[type=reset]
-[href]
-a
-abbr
-kbd
-code
-time
-select
-button
-textarea
-fieldset
-.note
-.btn
-  border-radius: 9px
+input[type=time],
+input[type=number],
+input[type=checkbox],
+input[type=radio],
+input[type=color],
+input[type=submit],
+input[type=button],
+input[type=image],
+input[type=reset],
+[href],
+a,
+abbr,
+kbd,
+code,
+time,
+select,
+button,
+textarea,
+fieldset,
+.note,
+.btn,
   border-style: solid
 
 textarea
   border: 0.5px solid
 
-input
-select
-button
-[href]
-.btn
+input,
+select,
+button,
+[href],
+.btn,
   border: 0.5px solid
   .date &
     border: 0
 
   .focus &
-    border-radius: 3px
     transition-property: border-radius, border-color
     transition-duration: 1s
 
   &:hover
-    border-radius: 3px
     animation: border-hover .4s ease-in-out infinite normal
 
   &:focus
     animation: border-hover  1s ease-in-out infinite normal
 
-input
-select
-button
-textarea
+input,
+select,
+button,
+textarea,
   user-select: auto
-  padding: 4px
 
 .pull-left
   float: left
@@ -294,89 +278,50 @@ span
   display: inline-block
 
 .banner
+  position: relative
   white-space: pre
   div
-    border-radius: 5px
     article
       overflow: hidden
 
 legend
-  border-radius: 3em
-  padding: 1px 6px
   text-shadow: none
 
-.label
-label
-abbr
-  border-radius: 3em
-  padding: 1px 0.4ex
-  margin:  0   0.1ex
+.label,
+label,
+abbr,
   text-align: center
   text-shadow: none
 
-.name
-.btn
-[href]
-  sup
-  sub
-  .badge
-    border-radius: 3em
-    padding: 0   0.4ex
-    margin: -1px 0.1ex
+.name,
+.btn,
+[href],
+  sup,
+  sub,
+  .badge,
     text-align: center
     text-shadow: none
 
 .form
-  a
-  abbr
-  button
-  [href]
-  .btn
+  a,
+  abbr,
+  button,
+  [href],
+  .btn,
     vertical-align: middle
 
-pre
-kbd
-code
-  padding: 1px 0.4ex
-  margin:  0px 0.1ex
-
-
-input
-select
-button
-[href]
-[cite]
-.btn
-  padding: 1px 0.4ex
-  margin:  0px 0.1ex
-
-  form &
-    padding: 1px 0.4ex
-    margin:  3px 0.1ex
-
-  .toastframe .icons &
-    padding: 0.4ex 1px
-    margin:  0.1ex 0px
-
-  .sideframe .icons &
-    padding: 0.4ex 1px
-    margin:  0.1ex 0px
-
-sup
-sub
-  display: inline-block
+sup,
+sub,
   text-align: center
 
 // multi-column
-.col2
-.col3
-.colX
-.col_wide
-.col_narrow
-.column
-  column-rule-width: 2px
+.col2,
+.col3,
+.colX,
+.col_wide,
+.col_narrow,
+.column,
   column-rule-style: dashed
-  column-gap:  1ex
   table
     width: 100%
     tbody
@@ -385,71 +330,45 @@ sub
         td
           padding: 0
 
-.talk > .chat
-.post > .chat
-  .column
-  .col2
-    columns: 2 24ex
-
-  .col3
-    columns: 3 16ex
-
-.report > .chat
-  .col2
-    columns: 2 34ex
-
-  .column
-  .col3
-    columns: 3 22ex
-
-.fullframe
-  .col_wide
-    column-width: 34ex
-  .col_narrow
-  .column
-  .colX
-    column-width: 22ex
-
 // SVG section
-rect.box
-.box > rect
+rect.box,
+.box > rect,
   cursor: pointer
   fill: black
   stroke: black
 
-rect.chr
-.chr > rect
+rect.chr,
+.chr > rect,
   stroke-width: 1px
   fill: #444844   // palette_bg('I',0, BROAD)
   stroke: black
 
-rect.pen
-.pen > rect
+rect.pen,
+.pen > rect,
   stroke-width: 1px
 
-rect.cluster
-.cluster > rect
+rect.cluster,
+.cluster > rect,
   cursor: pointer
   stroke-width: 9px
   fill: transparent
 
-rect.move
-.move > rect
+rect.move,
+.move > rect,
   cursor: pointer
   stroke-width: 1px
   fill: none
 
-rect.icon
-.icon > rect
-
-rect.point
-.point > rect
+rect.icon,
+.icon > rect,
+rect.point,
+.point > rect,
   cursor: pointer
   fill: none
   stroke: none
 
-rect.hide
-.hide > rect
+rect.hide,
+.hide > rect,
   cursor: pointer
   fill:   transparent
   stroke: transparent
@@ -470,8 +389,8 @@ rect.hide
       stroke-width: 6px
       stroke-dasharray: 0, 12px
 
-#svg-marker-arrow-end > path
-#svg-marker-arrow-start > path
+#svg-marker-arrow-end > path,
+#svg-marker-arrow-start > path,
   stroke-width: 1px
   stroke-dasharray: 1px, 0
 #svg-marker-cross > path

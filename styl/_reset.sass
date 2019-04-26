@@ -5,7 +5,7 @@
 [disabled]
   cursor: not-allowed
 
-:focus:not(:focus-visible)
+::focus::not(::focus-visible)
     outline: none
 
 body
@@ -27,19 +27,19 @@ body
   overflow-wrap: break-word
 
 
-article
-.text
+article,
+.text,
   cursor: text
   user-select: text
   white-space: pre-wrap
   overflow: visible
   width: 100%
 
-label
-abbr
-[href]
-[cite]
-.btn
-.label
+label,
+abbr,
+[href],
+[cite],
+.btn,
+.label,
   cursor: pointer
   user-select: auto
