@@ -1,9 +1,0 @@
-@import "./_theme.styl"
-
-palette(world,     'N',0)
-palette(announce,  'N',1)
-
-palette(friends,   'N',2)
-palette(twitter,   'N',3)
-palette(yelp,      'N',4)
-palette(whisper,   'N',5)
