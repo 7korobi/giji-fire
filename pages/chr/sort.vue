@@ -153,7 +153,7 @@ module.exports =
 
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
 progress
   width: 100%
 .list

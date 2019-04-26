@@ -51,7 +51,7 @@ div
     とたたたたたたんっ。
 
     ぼくはドメインの壁なんてへっちゃらでちゅ。
-    #[a(href="https://twitter.com/jinrogiji") #[ruby 広報活動#[rt おさんぽ]]]についてきてもかまわないでちゅよ？
+    #[span(data-ruby="おさんぽ") 広報活動]に#[a(href="https://twitter.com/jinrogiji") ついてきて]もかまわないでちゅよ？
 
   c-report(@focus="focus" handle="footer" deco="giji" id="fcm-head")
     h3.center 企画村予定／開始待ちの村／進行中の村
@@ -85,9 +85,12 @@ div
     .date
       | 廃村期限　
       timeago(:since="o.timer.scraplimitdt")
-  c-post(@focus="focus" handle="TSAY"  v-for="o in plan" :id="o.id" :head="o.name" :key="o._id")
-    | {{ o.state || '（開催地不明）' }}　
-    a(:href="o.link") WIKI
+  c-post(@focus="focus" handle="TSAY"  v-for="o in plan" :id="o.id" :key="o._id")
+    p
+      a(:href="o.link") {{ o.name }}
+    hr
+    p {{ o.state || '（開催地不明）' }}　
+    
     .fine
       ul
         li(v-for="text in o.flavor") {{ text }}

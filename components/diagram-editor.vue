@@ -3,7 +3,7 @@
   diagram-view(v-model="value" :pin_id.sync="pin_id" ref="view")
   hr.footnote
   div.form
-    button.fine(@click="submit" :class="{ ban, warn }")
+    button(@click="submit" :class="{ ban, warn }")
       i.mdi(:class="mark")
       span
         | {{chars}}/

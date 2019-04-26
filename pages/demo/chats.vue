@@ -79,8 +79,10 @@ div
     s 人絶獨出
     del /*門前望野*/
     ruby
-      | 田月出
+      | 田
       rt なむなむなむ
+    span(data-ruby="なむなむなむ")
+      | 月出
     a(title="Hello World")
       | 蕎麥花
       sup 如

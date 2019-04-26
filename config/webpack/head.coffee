@@ -12,7 +12,6 @@ module.exports =
     { charset: 'utf-8' }
     { href: pkg.author }
     { hid: 'description', content: pkg.description }
-    { hid: 'viewport', name: 'viewport', content: "width=device-width, initial-scale=1.0, shrink-to-fit=no" }
     { name: "google-site-verification", content: "Yrpo5-YleKjRAidW8yT7TXWCfKlgi5gEppIoqc_-xio" }
     { name: "apple-mobile-web-app-title", content: pkg.description }
     { name: "application-name", content: pkg.description }
@@ -25,6 +24,7 @@ module.exports =
 
     { rel: 'stylesheet', type: 'text/css', href: 'https://cdn.materialdesignicons.com/3.4.93/css/materialdesignicons.min.css' }
     { rel: 'stylesheet', type: 'text/css', href: url.style + '/css/index.styl.css' }
+    { rel: 'stylesheet', type: 'text/css', href: url.style + '/css/index.use.css' }
 
     { rel: 'manifest', href: '/manifest.json'}
     { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
@@ -33,8 +33,6 @@ module.exports =
     { rel: "icon", type: "image/png", sizes:  "16x16",  href: "/images/icon/favicon-16x16.png" }
     { rel: "mask-icon", href: "/images/icon/safari-pinned-tab.svg", color: "#c1b57f" }
     { rel: "shortcut icon", href: "/images/icon/favicon.ico" }
-
-
   ]
   script: [
   ]

@@ -1,9 +1,11 @@
 <template lang="pug">
 .contentframe(:style="style")
-  .chat.report.btns.center
+  .report
+    .chat.btns.center
   .inframe
     chat(v-on="$listeners" :current="current" :id="id")
-  .chat.report.btns.center
+  .report
+    .chat.btns.center
 </template>
 <style lang="sass" scoped>
 .report

@@ -7,14 +7,14 @@ module.exports =
   mixins: [
     localStorage "theme"
     localStorage "font"
-    localStorage "zoom"
+    localStorage "bg"
     scroll()
     # geo()
   ]
   data: ->
     theme: "cinema"
     font:  "std"
-    zoom:  "0.5"
+    bg: "BG"
 
     use: {}
     new:
@@ -41,10 +41,9 @@ module.exports =
 
   computed:
     href: ->
-      log: url.style + "/css/log-#{@log}.styl.css"
-      zoom: url.style + "/css/zoom-#{@zoom}.styl.css"
-      font: url.style + "/css/font-#{@font}.styl.css"
-      theme: url.style + "/css/theme-#{@theme}.styl.css"
+      log: url.style + "/css/log-#{@log}.use.css"
+      zoom: url.style + "/css/zoom-#{@zoom}.use.css"
+      theme: url.style + "/css/theme-#{@theme}.use.css"
     log: ->
       switch @theme
         when "snow"
@@ -53,6 +52,13 @@ module.exports =
           "day"
         else
           "night"
+    body_class: ->
+      document.querySelector("html").setAttribute "class", [
+        @bg
+        @font
+        @log
+        @theme
+      ].join(" ")
 
   methods:
     use_style: (key)->
@@ -71,32 +77,20 @@ module.exports =
         return unless window?
         @use_style 'theme'
         @use_style 'log'
-    font:
-      immediate: true
-      handler: ->
-        return unless window?
-        @use_style 'font'
-    zoom:
-      immediate: true
-      handler: ->
-        return unless window?
-        @use_style 'zoom'
 
   head: ->
     # https://materialdesignicons.com/
+    @body_class
+
     meta: [
       hid: 'viewport'
       name: 'viewport'
-      content: "width=#{ @scroll.width }px, initial-scale=#{ @zoom }, user-scalable=no, shrink-to-fit=no"
+      content: "initial-scale=1, user-scalable=no, shrink-to-fit=no"
     ]
     link: [
       { hid: 'hid4',  rel: @new.rel.log,   type: 'text/css', href: @href.log }
-      { hid: 'hidA',  rel: @new.rel.zoom,  type: 'text/css', href: @href.zoom }
-      { hid: 'hid5',  rel: @new.rel.font,  type: 'text/css', href: @href.font }
       { hid: 'hid6',  rel: @new.rel.theme, type: 'text/css', href: @href.theme }
       { hid: 'hid7',  rel: @old.rel.log,   type: 'text/css', href: @old.href.log }
-      { hid: 'hidB',  rel: @old.rel.zoom,  type: 'text/css', href: @old.href.zoom }
-      { hid: 'hid8',  rel: @old.rel.font,  type: 'text/css', href: @old.href.font }
       { hid: 'hid9',  rel: @old.rel.theme, type: 'text/css', href: @old.href.theme }
     ]
 
@@ -106,18 +100,20 @@ div
   no-ssr
     welcome(:top="scroll.top" :title="title")
       .btns.form
-        span.zoom
-          btn(v-model="zoom" as="1.0" ) １
-          btn(v-model="zoom" as="0.75") ¾
-          btn(v-model="zoom" as="0.5" ) ½
+        span
+          btn(v-model="bg" as="BG") １
+          btn(v-model="bg" as="BG75") ¾
+          btn(v-model="bg" as="BG50") ½
 
-        span.font
+        span
           btn(v-model="font" as="large") 大判
           btn(v-model="font" as="novel") 明朝
+          btn(v-model="font" as="press") 新聞
+        span
           btn(v-model="font" as="std") ゴシック
           btn(v-model="font" as="small") 繊細
 
-        span.theme
+        span
           btn(v-model="theme" as="cinema") 煉瓦
           btn(v-model="theme" as="pop")    噴出
           btn(v-model="theme" as="snow")   雪景
@@ -127,25 +123,4 @@ div
           btn(v-model="theme" as="moon")   月夜
           btn(v-model="theme" as="wa")   和の国
 
-  .outframe.filmend-frame
-    .contentframe
-      .filmend
-
 </template>
-<style lang="sass" scoped>
-.filmend-frame
-  height: 0
-  .inframe
-    padding: 0
-
-.outframe
-  .contentframe
-    text-align: left
-
-.filmend
-  margin: -11px 0 0 -2px
-  height:  36px
-  width:  126px
-  display: inline-block
-
-</style>

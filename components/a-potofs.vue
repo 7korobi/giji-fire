@@ -4,7 +4,7 @@
     hr
     h6 {{ part.label }}の参加者
     hr
-  .swipe.fine(v-on="curtain_space")
+  .swipe(v-on="curtain_space")
     table
       tfoot.TITLE.form.tb-btn
         tr
@@ -61,26 +61,19 @@
           td.l(v-else)
             del ...
 
-  transition-group.swipe.list(v-if="part" name="list" tag="div")
-    table.fine(key="ids")
-      tbody.TITLE.form.tb-btn
-        tr
-          th
-            btn(v-model="hide_ids", :as="live_on") 
-              | 参加者
-              .badge(style="display: none") {{ full_off.length - live_on.length }}
-          th
-            btn(v-model="hide_ids", :as="live_off")
-              | リタイア
-              .badge(style="display: none") {{ full_off.length - live_off.length }}
-          th
-            btn(v-model="hide_ids", :as="full_on") 
-              | 全表示
-              .badge(style="display: none") {{ full_off.length - full_on.length }}
-          th
-            btn(v-model="hide_ids", :as="invert") 
-              | 反転
-              .badge(style="display: none") {{ full_off.length - invert.length }}
+  transition-group.swipe.list.tb-btn(v-if="part" name="list" tag="div")
+    btn.form(key="btn1" v-model="hide_ids", :as="live_on") 
+        | 参加者
+        .badge(style="display: none") {{ full_off.length - live_on.length }}
+    btn.form(key="btn2" v-model="hide_ids", :as="live_off")
+        | リタイア
+        .badge(style="display: none") {{ full_off.length - live_off.length }}
+    btn.form(key="btn3" v-model="hide_ids", :as="full_on") 
+        | 全表示
+        .badge(style="display: none") {{ full_off.length - full_on.length }}
+    btn.form(key="btn4" v-model="hide_ids", :as="invert") 
+        | 反転
+        .badge(style="display: none") {{ full_off.length - invert.length }}
 
     portrate(v-for="o in potofs" :key="o.id" :face_id="o.face_id" :hide="o.hide" @click="toggle(o)")
       .bar.c(:class="bgc(o)" @click="only(o)") 注目
@@ -192,19 +185,11 @@ tfoot
   display: flex
   flex-direction:  row
   flex-wrap:       nowrap
-  align-items:     center
+  align-items:     stretch
   align-content:   space-around
   justify-content: flex-start
   min-width: 100%
-  img
-    max-height:   65px
-    height:       65px
-  .bar
-    border-radius: 3px
-  .fine
-    a
-      flex-basis: auto
-      max-height:   85px
-      height:       85px
+  a.flex
+    flex-basis: auto
 </style>
 

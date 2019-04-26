@@ -391,7 +391,7 @@ module.exports =
         { v, w, line, vpos, wpos, label } = oo
         { x, y }= @calcs[vw].cp
         y = parseInt y + 0.3 * label_size.height
-        o[vw] = { class: "pen", key: "label-#{vw}", "text-anchor": "middle", label, x, y }
+        o[vw] = { class: "path", key: "label-#{vw}", "text-anchor": "middle", label, x, y }
       o
 
     labels: ->
@@ -411,7 +411,7 @@ module.exports =
 
       for oo in @value.lines when oo.label
         vw = id_line oo
-        o[vw] = { class: "pen", key: "rect-label-#{vw}", rx , ry }
+        o[vw] = { class: "path", key: "rect-label-#{vw}", rx , ry }
       o
 
     images: ->

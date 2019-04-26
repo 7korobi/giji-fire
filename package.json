@@ -16,6 +16,7 @@
     "generate:nuxt": "nuxt generate",
     "copy": "run-s copy_all dist:copy",
     "copy_all": "run-p -n copy:*",
+    "copy:sass": "ls styl/*.use.sass | xargs -L 1 node-sass --precision 1 --output-style compressed -o static/css/",
     "copy:stylus": "ls styl/*.styl.use | xargs stylus --compress --out static/css/",
     "copy:portrate": "cp -u ../../*/web_work/images/portrate/* static/images/portrate/.",
     "copy:func": "webpack --config config/webpack/index-functions.coffee",

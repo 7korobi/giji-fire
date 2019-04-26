@@ -108,7 +108,10 @@ module.exports =
     nuxt-link(to="/") {{ title }}
 
   slot
-  .filmline
+  .outframe.filmline
+    .contentframe
+      span.filmend
+
 </template>
 <style lang="sass" scoped>
 #export
@@ -144,13 +147,6 @@ module.exports =
 #welcome
   object-fit: cover
   background-size:  cover
-
-.filmline
-  margin: 0
-  height: 11px
-  background-repeat: repeat-x
-  .contentframe
-    background-image: none
 
 h1
   height: 140px
