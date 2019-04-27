@@ -89,8 +89,17 @@ IMG.hide
   right: 0
   top:  0
 
+
+.summaryframe,
 .toastframe,
 .sideframe,
+  .talk > .baloon,
+  .talk > .portrate,
+    display: none
+
+  .chat
+    z-index:  6
+
   .icons
     width: 22px
     margin: 0 2px 6px auto
@@ -126,15 +135,9 @@ IMG.hide
     .mdi::before
       margin: 6px auto 2px auto
 
-.summaryframe
-  .swipe
-    td,
-    th,
-      padding: 0
-
+.summaryframe:not(:hover),
 .toastframe:not(:hover),
 .sideframe:not(:hover),
-.summaryframe:not(:hover),
   .detail
     display: none
 
@@ -146,9 +149,9 @@ IMG.hide
   box-sizing: content-box
 
 .summaryframe,
-.editframe,
 .toastframe,
 .sideframe,
+.editframe,
 .writeframe,
   position: fixed
   z-index: 10
@@ -212,22 +215,68 @@ IMG.hide
     text-align: center
     white-space: pre
 
-.post > .chat
-  border-style: solid none solid solid
+.report,
+.post,
+.talk,
+  display: flex
+  flex-flow: row-reverse nowrap
+  justify-content: space-between
 
-.report > .chat
-  border-style: double dotted
+  position: relative
+
+.chat
+  align-self: center
+  flex-grow:   1
+  flex-shrink: 1
+  .date
+    text-align: right
+  .name, .text, .date,
+    padding: 0
+    margin: 0
+
+  .text
+    &.mono
+      white-space: pre
+      overflow-y: visible
+      overflow-x: auto
+      text-overflow: show
+      background: url("//s3-ap-northeast-1.amazonaws.com/giji-assets/images/bg/grid.gif")
+
+    fieldset,
+    fieldset input[type=text],
+    fieldset select,
+    textarea,
+      width: 99%
+      min-width: 99%
+      max-width: 99%
+      resize: vertical
+      overflow-y: auto
+      overflow-x: scroll
+      -ms-overflow-style: none
+      &::-webkit-scrollbar
+        display: none
+
+
+.summaryframe,
+  .post > .chat
+    border-style: solid solid solid none
+  .report > .chat
+    border-style: double none
+  .swipe
+    td,
+    th,
+      padding: 0
+
+.contentframe,
+.toastframe,
+.sideframe,
+  .post > .chat
+    border-style: solid none solid solid
+  .report > .chat
+    border-style: double none
+
 
 .contentframe
-  .post,
-  .report,
-  .talk,
-    display: flex
-    flex-flow: row-reverse nowrap
-    justify-content: space-between
-
-    position: relative
-
   .talk > .baloon
       align-self: flex-start
       flex-grow:   0
@@ -238,45 +287,11 @@ IMG.hide
       flex-grow:   0
       flex-shrink: 0
 
-
-.contentframe
   .chat
-    z-index:  2
-    align-self: center
-    flex-grow:   1
-    flex-shrink: 1
-
-    .date
-      text-align: right
-
-    .name, .text, .date,
-      padding: 0
-      margin: 0
-
-    .text
-      &.mono
-        white-space: pre
-        overflow-y: visible
-        overflow-x: auto
-        text-overflow: show
-        background: url("//s3-ap-northeast-1.amazonaws.com/giji-assets/images/bg/grid.gif")
-
-      fieldset,
-      fieldset input[type=text],
-      fieldset select,
-      textarea,
-        width: 99%
-        min-width: 99%
-        max-width: 99%
-        resize: vertical
-        overflow-y: auto
-        overflow-x: scroll
-        -ms-overflow-style: none
-        &::-webkit-scrollbar
-          display: none
+    z-index:  4
 
   .baloon
-    z-index: 1
+    z-index: 2
     position: absolute
     content: ''
     width:  0
@@ -284,6 +299,7 @@ IMG.hide
 
   .report > .chat
     position: relative
+    border-style: double dotted
 
     &::before,
     &::after,

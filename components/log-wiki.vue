@@ -6,6 +6,20 @@
       no-ssr
         .toastframe
           .inframe
+            .report
+              .chat.ADMIN
+                .text.fine
+                  p.r
+                    span.limit1-ok 〇
+                    span.limit1-ng ×
+                    | /
+                    span.limit2-ok 〇
+                    span.limit2-ng ×
+                    | /
+                    span.limit3-ok 〇
+                    span.limit3-ng ×
+                  p.limit1-ng.tooltip-left(data-tooltip="不十分な画面幅にあわせ、折返し表示をしています") 折返し表示中
+
             .icons.form
               slot(name="toasts")
       no-ssr
@@ -31,6 +45,7 @@
 </style>
 
 <script lang="coffee">
+require "~/plugins/components.coffee"
 { localStorage } = require "vue-petit-store"
 
 module.exports =

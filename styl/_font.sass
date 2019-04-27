@@ -149,31 +149,32 @@ td,
 
 
 // multi-column
-.col2,
-.col3,
-.colX,
-.col_wide,
-.col_narrow,
-.column,
-  column-rule-width: 0.1em
-  column-gap:  0.5em
-
-.talk > .chat,
-.post > .chat,
-  .column,
+.contentframe
   .col2,
-    columns: 2 12em
-
-  .col3
-    columns: 3  8em
-
-.report > .chat
-  .col2
-    columns: 2 17em
-
-  .column,
   .col3,
-    columns: 3 11em
+  .colX,
+  .col_wide,
+  .col_narrow,
+  .column,
+    column-rule-width: 0.1em
+    column-gap:  0.5em
+
+  .talk > .chat,
+  .post > .chat,
+    .column,
+    .col2,
+      columns: 2 12em
+
+    .col3
+      columns: 3  8em
+
+  .report > .chat
+    .col2
+      columns: 2 17em
+
+    .column,
+    .col3,
+      columns: 3 11em
 
 .fullframe
   .col_wide
@@ -183,15 +184,12 @@ td,
   .colX,
     column-width: 11em
 
-.post > .chat
-  border-width: 0.1em 0
-
-.report > .chat
-  border-top-width:    0.2em
-  border-bottom-width: 0.2em
+.contentframe,
+.fullframe,
+  .chat
+    padding: 0 0.2em 0 0.4em
 
 .chat
-  padding: 0 0.2em 0 0.4em
   .focus,
   .point,
     border: 0.1em dotted
@@ -308,10 +306,17 @@ h6,
     &
       .summaryframe
         width: calc( 50vw - #{ $half })
+
+      .limit3-ng
+        display: none
+
   @media screen and (max-width: $limit3)
     &
       .summaryframe
         width: $side3
+
+      .limit3-ok
+        display: none
 
   @media screen and (min-width: $limit2)
     &
@@ -322,6 +327,9 @@ h6,
       .sideframe,
         width: calc( 50vw - #{ $half })
 
+      .limit2-ng
+        display: none
+
   @media screen and (max-width: $limit2)
     &
       .banner
@@ -329,6 +337,9 @@ h6,
       .toastframe,
       .sideframe,
         width: $side2
+
+      .limit2-ok
+        display: none
 
   @media screen and (min-width: $limit1)
     &
@@ -338,9 +349,15 @@ h6,
           width: $center
           margin: 0 auto
 
+      .limit1-ng
+        display: none
+
   @media screen and (max-width: $limit1)
     &
       .writeframe,
       .outframe,
         .contentframe
           margin: 0 5%
+
+      .limit1-ok
+        display: none

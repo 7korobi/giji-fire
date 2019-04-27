@@ -34,7 +34,7 @@ intersectionBase = (option)->
 
     unbind: (el)->
       observer.unobserve el
-      observer.disconnect el
+      # observer.disconnect
 
 resize_observer =
   if ResizeObserver?

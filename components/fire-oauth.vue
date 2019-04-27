@@ -1,6 +1,6 @@
 <template lang="pug">
 component(v-bind="for_top" v-on="$listeners")
-  article
+  article.form
     p(v-if="user")
       span.tap.pull-right
         i.btn.mdi.mdi-logout(@click="signout")

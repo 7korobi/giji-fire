@@ -36,28 +36,43 @@
   .fullframe
     margin-bottom: $zoom * 6px
 
-  .swipe
+  .summaryframe,
+  .toastframe,
+  .sideframe,
+  .swipe,
     +portrate($zoom * 0.5)
 
   .post > .chat
-    padding-right: $zoom * 12px
-    border-left-width: $zoom * 18px
+    border-width: 0.1em $zoom * 18px
 
   .report > .chat
-    border-left-width:  $zoom * 1px
-    border-right-width: $zoom * 1px
+    border-width: 0.2em $zoom *  1px
 
   .fullframe,
-  .contentframe
+  .contentframe,
     +portrate($zoom * 1.0)
+
+    .post > .chat
+      padding-right: $zoom * 12px
+
+  .summaryframe,
+    .talk > .chat,
+    .report > .chat,
+      margin: 0 $zoom * 18px 0 0
+
+  .toastframe,
+  .sideframe,
+    .talk > .chat,
+    .report > .chat,
+      margin: 0 0 0 $zoom * 18px
 
   .contentframe
     .inframe
       background-size: $zoom * 130px auto
 
+    .talk,
     .post,
     .report,
-    .talk
       margin-bottom: $zoom * 6px
 
 
