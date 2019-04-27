@@ -18,7 +18,7 @@
                     | /
                     span.limit3-ok 〇
                     span.limit3-ng ×
-                  p.limit1-ng.tooltip-left(data-tooltip="不十分な画面幅にあわせ、折返し表示をしています") 折返し表示中
+                  p.limit1-ng.tooltip-left(data-tooltip="不十分な画面幅にあわせ、折返し表示をしています") 折返中
 
             .icons.form
               slot(name="toasts")
