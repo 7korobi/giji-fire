@@ -8,16 +8,14 @@
           .inframe
             .report
               .chat.ADMIN
-                .text.fine
+                .text.fine.mono
                   p.r
-                    span.limit1-ok 〇
-                    span.limit1-ng ×
-                    | /
-                    span.limit2-ok 〇
-                    span.limit2-ng ×
-                    | /
-                    span.limit3-ok 〇
-                    span.limit3-ng ×
+                    span.limit1-ok o
+                    span.limit1-ng -
+                    span.limit2-ok o
+                    span.limit2-ng -
+                    span.limit3-ok o
+                    span.limit3-ng -
                   p.limit1-ng.tooltip-left(data-tooltip="不十分な画面幅にあわせ、折返し表示をしています") 折返中
 
             .icons.form

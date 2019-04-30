@@ -54,10 +54,13 @@
   $hide:   mix($bg, $bold, 50%)
 
   $shade:  0
+  $mono_url: ""
   @if white == $bold
     $shade: fix($bg,  0, -15)
+    $mono_url: url("/images/bg/grid-w.png")
   @if black == $bold
     $shade: fix($bg,  0,  15)
+    $mono_url: url("/images/bg/grid-b.png")
   @if 'G' == $type
     $off: transparent
 
@@ -82,6 +85,9 @@
       background-color: $bg
       border-color:     $edge
 
+      .text.mono
+        background-image: $mono_url
+
       .text.head:first-line
         color: $bold
 
@@ -92,6 +98,9 @@
       hr:after,
       hr:before,
         border-color: $emboss
+
+      hr.stripe
+      	background-image: linear-gradient(-70deg,transparent 35%,$emboss 45%, $emboss 55%,transparent 65%)
 
       .col2,
       .col3,
@@ -447,10 +456,13 @@
     ::focus,
     .hover,
     .focus,
-    th,
       body &.#{$theme},
       .#{$theme} &,
         border-color: $focus
+
+    body th.#{$theme},
+    .#{$theme} th,
+      border-color: $focus
 
     input,
     select,

@@ -19,7 +19,7 @@ log-wiki
 
   template(slot="icons")
     .item
-      i.c.mdi(:class="edit.icon.mdi")
+      i.c.mdi(:class="my_mdi")
     h6.c(:class="edit.chat.phase.handle" v-if="edit.is_replacing") 編集
     a.btn.item.tooltip-left(:class="handle" @click="move" v-if="edit.is_moving" data-tooltip="編集中の投稿の並び順をこの上に")
       i.mdi.mdi-table-column-plus-before

@@ -95,6 +95,13 @@ hr.footnote:before
 hr.footnote:after
   border-style: none none solid none
 
+
+hr.stripe
+	border: none
+hr.stripe:before,
+hr.stripe:after,
+  border: none
+
 hr.invisible_hr
   display: none
 
@@ -102,6 +109,9 @@ hr.invisible_hr
   white-space: nowrap
   b
     font-size: 0.5em
+    display: inline-block
+    transform: scale( 1, 2.5)
+    padding: 0 0 0.5em 0
 
 .ql-header .ql-picker-item[data-value]::before,
 h1, h2, h3, h4, h5, h6,

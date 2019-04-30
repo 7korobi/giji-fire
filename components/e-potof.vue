@@ -3,11 +3,12 @@ div
   c-report(v-if="! is_open" handle="header" deco="center")
     | 選択： 
     a.btn(@click="is_open = true")
-      p(v-if="set && name") {{ value.job }} {{ name }}
-      p(v-else) (キャラクターを選ぶ。)
+      span(v-if="set && name") {{ value.job }} {{ name }}
+      span(v-else) (キャラクターを選ぶ。)
   
   c-report(v-if="is_open" handle="header" deco="center")
     tags(v-model="tag_id")
+    btn.pull-right(v-model="is_open" :as="false") ×
     sub(style="width: 100%" v-if="set")
       | {{ chrs.length }}人の{{ set.long }}を表示しています。
   .fullframe(v-if="is_open && tag_id")

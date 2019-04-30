@@ -24,14 +24,36 @@ icons.codeblock = icons.code = """<code>あ</code>"""
 icons.abbr = """<abbr>あ</abbr>"""
 icons.random = """🎲"""
 
+BlockEmbed = Quill.import 'blots/block/embed'
+Embed = Quill.import 'blots/embed'
 Inline = Quill.import 'blots/inline'
 Inline.order.push 'abbr'
+
+class Hr extends BlockEmbed
+  @tagName: 'hr'
+  @blotName: 'hr'
+  @create: (value)->
+    domNode = super.create value
+    domNode.className = value
+    domNode
+
+  @value: (domNode)->
+    domNode.className
+
+  @formats: (domNode)->
+    domNode.className
+
+  format: (name, value)->
+    if name == @statics.blotName && value?.length
+      @domNode.className = value
+    else
+      super.format name, value
 
 class ABBR extends Quill.import 'formats/code'
   @tagName: 'ABBR'
   @blotName: 'abbr'
 
-class RANDOM extends Quill.import 'blots/inline'
+class RANDOM extends Inline
   @tagName: 'KBD'
   @blotName: 'random'
   @create: (value)->
@@ -56,7 +78,7 @@ class RANDOM extends Quill.import 'blots/inline'
       super.format name, value
 
 
-class Ruby extends Quill.import 'blots/inline'
+class Ruby extends Inline
   @tagName:  'RUBY'
   @blotName: 'ruby'
   @create: (value)->
@@ -86,7 +108,7 @@ class Ruby extends Quill.import 'blots/inline'
 
 require "quill-mention/dist/quill.mention.min"
 
-class mention extends Quill.import 'blots/embed'
+class mention extends Embed
   @tagName: 'q'
   @blotName: 'mention'
   @className: 'cite-bottom'
@@ -112,6 +134,7 @@ Quill.register
   'formats/size': Size
   'formats/abbr': ABBR
   'formats/ruby': Ruby
+  'formats/hr': Hr
   'formats/random':  RANDOM
   'formats/mention': mention
   'modules/keyboard': Keyboard

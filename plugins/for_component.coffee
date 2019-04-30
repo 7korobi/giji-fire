@@ -41,8 +41,10 @@ module.exports =
     for_potofs: ->
       { @part }
     for_marker: ->
+      back_url =
+        query: { @idx, @mode, page: '' }
       { log, write_at } = @chat ? {}
-      { log, write_at }
+      { log, write_at, back_url }
     for_mentions: ->
       { @book_id, @chat_id, @page_idx, @a }
     for_side: ->

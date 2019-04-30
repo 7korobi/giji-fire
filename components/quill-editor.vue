@@ -81,6 +81,7 @@ module.exports = editor
             [{ header: [1, 2, 3, 4, 5, 6, false] }]
             ['blockquote']
             [{ align: '' }, { align: 'center' }, { align: 'right' }]
+            [{ hr: "headnote" }, { hr: "stripe" }, { hr: "footnote" }]
 
             ['clean']
             [{ size: ['small', false, 'large', 'huge'] }]
@@ -92,6 +93,13 @@ module.exports = editor
           ]
           handlers:
             kana: require '~/plugins/quill-kana'
+            hr: (hr)->
+              { index } = @quill.getSelection()
+              ops = new Delta()
+              .retain index
+              .insert { hr }
+              @quill.updateContents ops
+
             random: ->
               { index, length } = @quill.getSelection()
               random = @quill.getText(index, length)
@@ -163,8 +171,7 @@ module.exports = editor
         @change()
         return unless 1 <= ops?.length <= 2
         [{ retain }, ..., { insert }] = ops
-        return unless insert
-        return if insert.image
+        return unless insert?.match?
 
         if insert.match /^\s$/ && sel = @quill.getSelection()
           # space input.

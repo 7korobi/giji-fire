@@ -1,5 +1,5 @@
 <template lang="pug">
-nuxt-link.item.active(replace :to="back_url" @click.native="bookmark")
+nuxt-link.item.active(replace :to="url" @click.native="bookmark")
   i.mdi.mdi-map-marker
   | {{ star }}
 </template>
@@ -22,8 +22,8 @@ module.exports =
 
   computed:
     uid: -> @user?.uid
-    idx: -> @back_url?.query?.idx
-    idx_a: -> @idx?.split("-")
+    idx: ->
+      @back_url?.query?.idx
     _id: ->
       if @uid
         "#{@idx}-#{@uid}"
@@ -40,7 +40,7 @@ module.exports =
         @$toasted.success "#{@idx} から栞をぬく"
       else
         mark_at = new Date - 0
-        log = @log.replace /(<br>|\n| )+/g, " "
+        log = @log[0..100].replace /(<br>|\n| )+/g, " "
         @markers_add { @_id, @uid, @book_id, @part_id, log, @url, @write_at, mark_at }
         @$toasted.success "#{@idx} に栞をさす"
 

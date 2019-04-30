@@ -55,6 +55,14 @@
     font-family: 'Noto Serif CJK JP', 'Noto Serif JP', serif
 
 
+sup
+  font-variant-position: super
+  font-feature-settings: "sups"
+
+sub
+  font-variant-position: sub
+  font-feature-settings: "subs"
+
 body
   line-height: 1.5em
   font-size: 1.0rem
@@ -88,11 +96,14 @@ hr
 
 hr:before,
 hr:after,
-  height: 0.1em
+  height: 0.12em
 hr:before
   border-width: 0.08em 0 0 0
 hr:after
   border-width: 0 0 0.08em 0
+
+hr.stripe
+  background-size: 0.4em 0.6em
 
 sup
   vertical-align:   0.5em
@@ -187,7 +198,9 @@ td,
 .contentframe,
 .fullframe,
   .chat
-    padding: 0 0.2em 0 0.4em
+    padding: 0 0.2em 0 0.3em
+    .mono
+      background-size: auto 2em
 
 .chat
   .focus,
@@ -199,9 +212,11 @@ td,
   tfoot,
     th,
     td,
-      border: 0.1em dashed
+      border-width: 0.1em
+      border-style: dashed
   th
-    border: 0.1em dashed
+      border-width: 0.1em
+      border-style: dashed
 
 input,
 select,

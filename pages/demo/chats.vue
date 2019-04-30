@@ -65,7 +65,7 @@ div
     .date
       abbr anker
 
-  c-talk(v-for="(handle, idx) in handles" :key="'E' + handle" :face_id="'c' + (10 + idx)", :write_at="now - 3600000", to="宛先" sign="ななころび" :head="handle" :handle="handle")
+  c-talk(v-for="(handle, idx) in handles" :key="'E' + handle" :face_id="'c' + (10 + idx)", :write_at="now - 3600000", to="宛先" sign="ななころび" :head="handle" :handle="handle" :deco="deco(idx)")
     ins 霜草蒼蒼
     nuxt-link(to="/demo/timeago")
       | 人絶獨
@@ -89,7 +89,9 @@ div
       sub 雪
     hr
     h6 h6
+    hr.stripe
     h5 h5
+    hr.footnote
     .date
       abbr anker
 
@@ -131,6 +133,9 @@ module.exports =
         for theme in @themes
           list.push "#{theme}#{hue}"
       list
+  methods:
+    deco: (idx)->
+      ["","head","mono"][idx % 3]
 
 </script>
 

@@ -59,11 +59,14 @@ module.exports =
       can_update = @chat?.phase?.update
       can_fav = @my_phase?.fav
 
-      { deco, head, log, data, potof } = @edit_base.chat
+      icon = @my_icon
+      potof = @my_potof
+      chat = @edit_base.chat
+      { deco, head, log, data } = chat
       is_ban = false
       switch deco
         when 'quill'
-          is_ban ||= !( head || log?.match /// #{ potof?.face?.name } ///)
+          is_ban ||= !( head || log?.match /// #{ potof.face?.name } ///)
         when 'diagram'
           is_ban ||= ! head
       is_warn = false
@@ -75,7 +78,9 @@ module.exports =
         is_warn
       }
 
-      { ...@edit_base
+      { icon
+        potof
+        chat
         options
         is_entry
         is_creating
@@ -153,6 +158,7 @@ module.exports =
           lines: []
           clusters: []
           random: []
+      console.log tgt
 
     replace_mode: ->
       Object.assign @edit_base.chat, @chat
@@ -163,11 +169,11 @@ module.exports =
       { _id, potof } = @edit.chat
       return unless confirm "編集中の #{_id} を削除しますか？"
       await @chats_del _id
+      @create_mode()
 
       return if potof.chats.ids.length
       { _id } = potof
       await @potofs_del _id
-      @create_mode()
     
     check_post: (target)->
       console.log target
@@ -224,7 +230,6 @@ module.exports =
       immediate: true
       handler: (id)->
         @edit_base.chat.potof_id = id
-        Object.assign @edit_base.potof, @my_potof
         @my_icon_change {}
         @create_mode()
 
