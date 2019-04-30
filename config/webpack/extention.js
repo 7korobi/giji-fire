@@ -64,29 +64,6 @@ module.exports = function (options) {
   // Add .coffee extension for store, middleware and more
   // Extend build
   this.extendBuild(config => {
-    config.resolve.extensions.push('.coffee', '.yml')
-    for ( rule of config.module.rules) {
-      console.log(rule.test)
-      if ( rule.test.exec(".svg") ){
-        rule.test = /\.(png|jpe?g|gif|webp)$/
-      }
-      if ( rule.test.exec(".js") ){
-        console.log(rule.exclude.toString())
-
-        const super_call = rule.exclude
-        rule.exclude = (file) => {
-/*
-          if (/node_modules\/parchment/.test( file )) return false
-          if (/node_modules\/quill/.test(file)) {
-            console.log(file);
-            return super_call(file);
-          }
- */ 
-          return super_call( file )
-        }
-        rule.use[0].options = babel
-      }
-    }
     for (const key in loaders) {
       const loader = loaders[key]
       config.module.rules.push(loader)

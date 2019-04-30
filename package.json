@@ -20,7 +20,6 @@
     "copy:stylus": "ls styl/*.styl.use | xargs stylus --compress --out static/css/",
     "copy:portrate": "cp -u ../../*/web_work/images/portrate/* static/images/portrate/.",
     "copy:func": "webpack --config config/webpack/index-functions.coffee",
-    "-copy:sow": "webpack --config config/webpack/index-sow.coffee",
     "dist:copy": "cp -ru static/* dist/",
     "dist:brotli": "find dist -type f -not -name \"*.br\" | grep -v \"dist/font\" | xargs -L1  brotli -Z -f -k",
     "deploy": "run-s generate:nuxt deploy:test backup",
