@@ -22,14 +22,10 @@ api = (timer, c, u)->
 
 module.exports =
   runtimeCaching: [
+    asset '10y', '2018-08-29', 'https://cdn.materialdesignicons.com/*/*/*'
     asset '10y', '2018-08-29', 'https://giji.f5.si/images/*'
     asset '10y', '2018-08-29', 'https://giji.f5.si/font/*'
-    asset '10y', '2019-02-15', 'https://giji.f5.si/css/*'
-    asset '10y', '2019-01-20', 'https://giji-db923.firebaseapp.com/images/*'
-    asset '10y', '2018-08-29', 'https://giji-db923.firebaseapp.com/font/*'
-    asset ' 5m', '2019-04-23', 'https://giji-db923.firebaseapp.com/css/*'
-    asset '10y', '2018-08-29', 'https://cdn.materialdesignicons.com/*/*/*'
-
+    asset  '1m', '2019-05-01', 'https://giji.f5.si/css/*'
   ]
   importScripts: [
     'firebase-messaging-sw.js'
