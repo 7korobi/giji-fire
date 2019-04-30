@@ -36,7 +36,7 @@
         .inframe
           nuxt
           a-footer
-        slot(name="popup")
+      slot(name="popup")
 
 </template>
 <script lang="coffee">
