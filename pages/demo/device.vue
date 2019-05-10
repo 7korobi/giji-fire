@@ -17,26 +17,40 @@ div
       tbody
         tr
           td
-          th.c x
-          th.c y
-          th.c z
+          th.c xy
+          th.c xz
         tr
           td.r accel: {
-          td.r x: {{ accel.x }}
-          td.r y: {{ accel.y }}
-          td.r z: {{ accel.z }}
+          td
+            svg(v-bind="svg_xyz")
+              g.edgePath
+                path.path.solid(:d="`M${ 0.1 * accel.x },${ 0.1 * accel.y }L0,0`")
+          td.r
+            svg(v-bind="svg_xyz")
+              g.edgePath
+                path.path.solid(:d="`M${ 0.1 * accel.x },${ 0.1 * accel.z }L0,0`")
           td.l }
         tr
           td.r gravity: {
-          td.r x: {{ gravity.x }}
-          td.r y: {{ gravity.y }}
-          td.r z: {{ gravity.z }}
+          td
+            svg(v-bind="svg_xyz")
+              g.edgePath
+                path.path.solid(:d="`M${ 0.1 * gravity.x },${ 0.1 * gravity.y }L0,0`")
+          td.r
+            svg(v-bind="svg_xyz")
+              g.edgePath
+                path.path.solid(:d="`M${ 0.1 * gravity.x },${ 0.1 * gravity.z }L0,0`")
           td.l }
         tr
-          td.r accel_with_gravity: {
-          td.r x: {{ accel_with_gravity.x }}
-          td.r y: {{ accel_with_gravity.y }}
-          td.r z: {{ accel_with_gravity.z }}
+          td.r accel with gravity: {
+          td
+            svg(v-bind="svg_xyz")
+              g.edgePath
+                path.path.solid(:d="`M${ 0.1 * accel_with_gravity.x },${ 0.1 * accel_with_gravity.y }L0,0`")
+          td.r
+            svg(v-bind="svg_xyz")
+              g.edgePath
+                path.path.solid(:d="`M${ 0.1 * accel_with_gravity.x },${ 0.1 * accel_with_gravity.z }L0,0`")
           td.l }
 
   c-talk(handle="SSAY" deco="center" face_id="c30")
@@ -49,29 +63,44 @@ div
           th.c gamma
         tr
           td.r gyro: {
-          td.r alpha: {{ gyro.alpha }}
-          td.r beta: {{ gyro.beta }}
-          td.r gamma: {{ gyro.gamma }}
+          td
+            svg(v-bind="svg_abg")
+              g.edgePath
+                path.path.solid(v-bind="roll(gyro.alpha, 36000)")
+          td
+            svg(v-bind="svg_abg")
+              g.edgePath
+                path.path.solid(v-bind="roll(gyro.beta, 36000)")
+          td
+            svg(v-bind="svg_abg")
+              g.edgePath
+                path.path.solid(v-bind="roll(gyro.gamma, 36000)")
           td.l }
         tr
           td.r rotate: {
-          td.r alpha: {{ rotate.alpha }}
-          td.r beta: {{ rotate.beta }}
-          td.r gamma: {{ rotate.gamma }}
+          td
+            svg(v-bind="svg_abg")
+              g.edgePath
+                path.path.solid(v-bind="roll(rotate.alpha, 36000)")
+          td
+            svg(v-bind="svg_abg")
+              g.edgePath
+                path.path.solid(v-bind="roll(rotate.beta, 36000)")
+          td
+            svg(v-bind="svg_abg")
+              g.edgePath
+                path.path.solid(v-bind="roll(rotate.gamma, 36000)")
           td.l }
 
   c-talk(handle="SSAY" deco="center" face_id="c40")
-    table
-      tbody
-        tr
-          td.r longitude: {{ geo.longitude }},
-          td
-        tr
-          th.r
-            p altitude: {{ geo.altitude }},
-            p heading: {{ geo.heading }},
-            p speed: {{ geo.speed }},
-          td.r latitude: {{ geo.latitude }},
+    svg(v-bind="svg_geo")
+      g.edgePath
+        path.path.solid(d="M-180,0L180,0M0,-90L0,90")
+        path.path.solid(:d="`M${ geo.longitude },${ - geo.latitude }L0,0`")
+        text.path(text-anchor="middle" :x=" geo.longitude " :y=" - geo.latitude ") {{ parseInt(geo.altitude * 100) / 100 }}
+
+    p heading: {{ geo.heading }},
+    p speed: {{ geo.speed }},
 
   c-talk(handle="SSAY" deco="center" face_id="c50")
     table
@@ -120,7 +149,22 @@ module.exports =
     accel()
     rotate()
   ]
+  methods:
+    roll: (d, max)->
+      r = d * Math.PI * 2 / max
+      d: "M#{ 100 * Math.sin r },#{ 100 * Math.cos r }L0,0"
 
-  computed: {}
-
+  computed:
+    svg_geo: ->
+      viewBox: "-180 -90 360 180"
+      width:  "24em"
+      height: "12em"
+    svg_xyz: ->
+      viewBox: "-100 -100 200 200"
+      width:  "10em"
+      height: "10em"
+    svg_abg: ->
+      viewBox: "-100 -100 200 200"
+      width:  "5em"
+      height: "5em"
 </script>
