@@ -59,7 +59,7 @@
     "normalize-url": "^4.3.0",
     "npm-run-all": "^4.1.5",
     "nuxt": "^2.6.3",
-    "vue-petit-store": "^0.6.13",
+    "vue-petit-store": "^0.6.15",
     "vue-toasted": "^1.1.26"
   },
   "devDependencies": {

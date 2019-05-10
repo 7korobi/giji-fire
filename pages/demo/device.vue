@@ -13,6 +13,8 @@ div
     h2 デバイスから取得できる情報
     
   c-talk(handle="SSAY" deco="center" face_id="c20")
+    p accel:   {{ accel.label }}
+    p gravity: {{ gravity.label }}
     table
       tbody
         tr
@@ -24,36 +26,37 @@ div
           td
             svg(v-bind="svg_xyz")
               g.edgePath
-                path.path.solid(:d="`M${ 0.1 * accel.x },${ 0.1 * accel.y }L0,0`")
+                path.path.solid(:d="`M${ 10 * accel.x },${ 10 * accel.y }L0,0`")
           td.r
             svg(v-bind="svg_xyz")
               g.edgePath
-                path.path.solid(:d="`M${ 0.1 * accel.x },${ 0.1 * accel.z }L0,0`")
+                path.path.solid(:d="`M${ 10 * accel.x },${ 10 * accel.z }L0,0`")
           td.l }
         tr
           td.r gravity: {
           td
             svg(v-bind="svg_xyz")
               g.edgePath
-                path.path.solid(:d="`M${ 0.1 * gravity.x },${ 0.1 * gravity.y }L0,0`")
+                path.path.solid(:d="`M${ 10 * gravity.x },${ 10 * gravity.y }L0,0`")
           td.r
             svg(v-bind="svg_xyz")
               g.edgePath
-                path.path.solid(:d="`M${ 0.1 * gravity.x },${ 0.1 * gravity.z }L0,0`")
+                path.path.solid(:d="`M${ 10 * gravity.x },${ 10 * gravity.z }L0,0`")
           td.l }
         tr
           td.r accel with gravity: {
           td
             svg(v-bind="svg_xyz")
               g.edgePath
-                path.path.solid(:d="`M${ 0.1 * accel_with_gravity.x },${ 0.1 * accel_with_gravity.y }L0,0`")
+                path.path.solid(:d="`M${ 10 * accel_with_gravity.x },${ 10 * accel_with_gravity.y }L0,0`")
           td.r
             svg(v-bind="svg_xyz")
               g.edgePath
-                path.path.solid(:d="`M${ 0.1 * accel_with_gravity.x },${ 0.1 * accel_with_gravity.z }L0,0`")
+                path.path.solid(:d="`M${ 10 * accel_with_gravity.x },${ 10 * accel_with_gravity.z }L0,0`")
           td.l }
 
   c-talk(handle="SSAY" deco="center" face_id="c30")
+    p {{ rotate.label }}
     table
       tbody
         tr
@@ -66,41 +69,41 @@ div
           td
             svg(v-bind="svg_abg")
               g.edgePath
-                path.path.solid(v-bind="roll(gyro.alpha, 36000)")
+                path.path.solid(v-bind="roll(gyro.alpha)")
           td
             svg(v-bind="svg_abg")
               g.edgePath
-                path.path.solid(v-bind="roll(gyro.beta, 36000)")
+                path.path.solid(v-bind="roll(gyro.beta)")
           td
             svg(v-bind="svg_abg")
               g.edgePath
-                path.path.solid(v-bind="roll(gyro.gamma, 36000)")
+                path.path.solid(v-bind="roll(gyro.gamma)")
           td.l }
         tr
           td.r rotate: {
           td
             svg(v-bind="svg_abg")
               g.edgePath
-                path.path.solid(v-bind="roll(rotate.alpha, 36000)")
+                path.path.solid(v-bind="roll(rotate.alpha)")
           td
             svg(v-bind="svg_abg")
               g.edgePath
-                path.path.solid(v-bind="roll(rotate.beta, 36000)")
+                path.path.solid(v-bind="roll(rotate.beta)")
           td
             svg(v-bind="svg_abg")
               g.edgePath
-                path.path.solid(v-bind="roll(rotate.gamma, 36000)")
+                path.path.solid(v-bind="roll(rotate.gamma)")
           td.l }
 
   c-talk(handle="SSAY" deco="center" face_id="c40")
+    p label: {{ geo.label }},
+    p heading: {{ geo.heading }},
+    p speed: {{ geo.speed }},
     svg(v-bind="svg_geo")
       g.edgePath
         path.path.solid(d="M-180,0L180,0M0,-90L0,90")
         path.path.solid(:d="`M${ geo.longitude },${ - geo.latitude }L0,0`")
         text.path(text-anchor="middle" :x=" geo.longitude " :y=" - geo.latitude ") {{ parseInt(geo.altitude * 100) / 100 }}
-
-    p heading: {{ geo.heading }},
-    p speed: {{ geo.speed }},
 
   c-talk(handle="SSAY" deco="center" face_id="c50")
     table
@@ -137,8 +140,7 @@ div
 <script lang="coffee">
 { geo, scroll, accel, rotate, device } = require "vue-petit-store"
 
-device
-  pow: 100
+deg_to_r = Math.PI * 2 / 360
 
 module.exports =
   head: ->
@@ -150,8 +152,8 @@ module.exports =
     rotate()
   ]
   methods:
-    roll: (d, max)->
-      r = d * Math.PI * 2 / max
+    roll: (deg)->
+      r = deg * deg_to_r
       d: "M#{ 100 * Math.sin r },#{ 100 * Math.cos r }L0,0"
 
   computed:
