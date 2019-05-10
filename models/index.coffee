@@ -1,6 +1,4 @@
-require "./locale"
 require "./random"
-require "./locale"
 
 require "./chr"
 require "./potof"

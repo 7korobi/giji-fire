@@ -51,9 +51,8 @@ module.exports =
     vuex_read 'credential', on: "firebase"
     vuex_read 'sign',       on: "firebase"
     firestore_models "markers",
-      -> "marker"
-      -> @uid
-      (ref)-> ref.where('uid','==', @uid )
+      -> @uid && "marker"
+      (ref)-> @uid && ref.where('uid','==', @uid )
   ]
   computed:
     uid: -> @user?.uid

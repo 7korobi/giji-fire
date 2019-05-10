@@ -12,8 +12,7 @@ module.exports =
     vuex "user", on: "firebase"
     vuex "sign", on: "firebase"
     firestore_models "icons",
-      -> "icon"
-      -> @book_id
+      -> @book_id && "icon"
       (ref)-> ref.where("book_id","==",@book_id)
   ]
   data: ->

@@ -35,12 +35,6 @@ new Rule("role").schema ->
       emit "group", o.group,
         list: true
 
-
-new Rule("trap").schema ->
-  @order "write_at"
-  @belongs_to "book"
-  @belongs_to "potof"
-
 new Rule("able").schema ->
   @habtm "roles", reverse: true
 
@@ -50,5 +44,4 @@ new Rule("able").schema ->
         list: true
 
 Set.role.set require '../yaml/set_roles.yml'
-Set.trap.set require '../yaml/set_traps.yml'
 Set.able.set require '../yaml/set_ables.yml'

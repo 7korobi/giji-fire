@@ -69,7 +69,7 @@ log-wiki
           br
           h3 項目を新しく書くには
           ol
-            li 下のアイコンから、ログインに使うサービスを選択。
+            li 上のアイコンから、ログインに使うサービスを選択。
             li 書き込みに使うキャラクターを選択。
             li 枠形と色味を好みできめたら、自由に書き込もう。
             li 文字の一部分を選択すると、文字に装飾をつけることができるぞ！
@@ -94,10 +94,6 @@ log-wiki
   c-report(handle="footer" deco="center")
     bread-crumb
 </template>
-<style lang="sass" scoped>
-.large
-  font-size: 2.5ex
-</style>
 <script lang="coffee">
 { Query, Set, State } = require 'memory-orm'
 { vuex, localStorage, firestore_model, firestore_models } = require "vue-petit-store"

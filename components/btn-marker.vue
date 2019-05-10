@@ -13,8 +13,7 @@ module.exports =
     path_by "idx", [null, 'book', 'part']
     vuex_read 'user', on: 'firebase'
     firestore_models "markers",
-      -> "marker"
-      -> @uid && @part_id
+      -> @uid && @part_id && "marker"
       (ref)-> ref.where('uid','==', @uid ).where('part_id', '==', @part_id )
   ]
 

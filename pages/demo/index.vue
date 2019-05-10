@@ -3,7 +3,11 @@ div
   c-report(handle="footer" deco="center")
     bread-crumb
   c-post(handle="SSAY")
+    nuxt-link(to="/game/new") BOOK
+  c-post(handle="SSAY")
     nuxt-link(to="/wiki?idx=test-book") WIKI
+  c-post(handle="VGSAY")
+    nuxt-link(to="/demo/device") Device
   c-post(handle="TSAY")
     | 簡易言語
     nuxt-link(to="/demo/sow") sow
