@@ -110,8 +110,9 @@ div
           btn(v-model="font" as="novel") 明朝
           btn(v-model="font" as="press") 新聞
         span
-          btn(v-model="font" as="std") ゴシック
-          btn(v-model="font" as="small") 繊細
+          btn(v-model="font" as="goth-L") L
+          btn(v-model="font" as="goth-M") M
+          btn(v-model="font" as="goth-S") S
 
         span
           btn(v-model="theme" as="cinema") 煉瓦

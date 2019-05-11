@@ -1,16 +1,6 @@
 format = require 'date-fns/format'
 locale = require "date-fns/locale/ja"
 
-to_time = (msec)->
-  i = msec / 1000
-  return "#{Math.ceil i}s" if i < 60
-  i = i / 60
-  return "#{Math.ceil i}m" if i < 60
-  i = i / 60
-  return "#{Math.ceil i}h" if i < 24
-  i = i / 24
-  return "#{Math.ceil i}d"
-
 module.exports = (o)->
   return "" unless o
   { min, max, range } = o

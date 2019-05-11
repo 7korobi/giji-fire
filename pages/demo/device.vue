@@ -26,37 +26,37 @@ div
           td
             svg(v-bind="svg_xyz")
               g.edgePath
-                path.path.solid(:d="`M${ 10 * accel.x },${ 10 * accel.y }L0,0`")
+                path.path.solid(:d="`M${ -10 * accel.x },${ 10 * accel.y }L0,0`")
           td.r
             svg(v-bind="svg_xyz")
               g.edgePath
-                path.path.solid(:d="`M${ 10 * accel.x },${ 10 * accel.z }L0,0`")
+                path.path.solid(:d="`M${ -10 * accel.x },${ 10 * accel.z }L0,0`")
           td.l }
         tr
           td.r gravity: {
           td
             svg(v-bind="svg_xyz")
               g.edgePath
-                path.path.solid(:d="`M${ 10 * gravity.x },${ 10 * gravity.y }L0,0`")
+                path.path.solid(:d="`M${ -10 * gravity.x },${ 10 * gravity.y }L0,0`")
           td.r
             svg(v-bind="svg_xyz")
               g.edgePath
-                path.path.solid(:d="`M${ 10 * gravity.x },${ 10 * gravity.z }L0,0`")
+                path.path.solid(:d="`M${ -10 * gravity.x },${ 10 * gravity.z }L0,0`")
           td.l }
         tr
           td.r accel with gravity: {
           td
             svg(v-bind="svg_xyz")
               g.edgePath
-                path.path.solid(:d="`M${ 10 * accel_with_gravity.x },${ 10 * accel_with_gravity.y }L0,0`")
+                path.path.solid(:d="`M${ -10 * accel_with_gravity.x },${ 10 * accel_with_gravity.y }L0,0`")
           td.r
             svg(v-bind="svg_xyz")
               g.edgePath
-                path.path.solid(:d="`M${ 10 * accel_with_gravity.x },${ 10 * accel_with_gravity.z }L0,0`")
+                path.path.solid(:d="`M${ -10 * accel_with_gravity.x },${ 10 * accel_with_gravity.z }L0,0`")
           td.l }
 
   c-talk(handle="SSAY" deco="center" face_id="c30")
-    p {{ rotate.label }}
+    p rotate: {{ rotate.label }}
     table
       tbody
         tr
@@ -138,7 +138,7 @@ div
         nuxt-link(to="/demo") 開発者用ページ
 </template>
 <script lang="coffee">
-{ geo, scroll, accel, rotate, device } = require "vue-petit-store"
+{ geo, gyro, scroll, accel, rotate, device } = require "vue-petit-store"
 
 deg_to_r = Math.PI * 2 / 360
 
@@ -147,9 +147,10 @@ module.exports =
     title: '人狼議事 - 開発者用ページ'
   mixins: [
     geo()
-    scroll()
+    gyro()
     accel()
     rotate()
+    scroll()
   ]
   methods:
     roll: (deg)->

@@ -1,5 +1,5 @@
 <template lang="pug">
-article.fine(v-zoom)
+article.fine(v-root-size)
   svg(v-bind="svg_attrs" v-on="movespace")
     marker.edgePath#svg-marker-circle(viewBox="0 0 10 10" markerUnits="userSpaceOnUse" markerWidth="20" markerHeight="20" refX="5" refY="5" orient="auto")
       circle(cx="5" cy="5" r="4")
@@ -17,7 +17,7 @@ article.fine(v-zoom)
     g.edgePath
       path.path(v-for="(o, key) in paths" fill="none" v-if="o" v-bind="o")
       rect(v-for="(o, key) in labels" v-if="o" v-bind="o" :ref="o.key")
-      text(v-for="(o, key) in texts" v-if="o" v-bind="o" :ref="o.key" @click="set_pin(key)" v-resize)
+      text(v-for="(o, key) in texts" v-if="o" v-bind="o" :ref="o.key" @click="set_pin(key)" v-label-size)
         | {{ o.label }}
     g(v-if="move.id")
       rect.move(v-bind="moved")
@@ -27,8 +27,7 @@ article.fine(v-zoom)
 # inspired by https://github.com/wakufactory/MarkDownDiagram
 
 _ = require 'lodash'
-{ resize } = require '~/plugins/observer'
-
+{ resize } = require "vue-petit-store"
 { Query, State } = require "memory-orm"
 { url } = require "~/config/live.yml"
 
@@ -78,8 +77,8 @@ module.exports =
       ry:           10
 
   directives:
-    zoom:   resize 'style.root_size'
-    resize: resize 'style.label_size'
+    rootSize:  resize 'style.root_size'
+    labelSize: resize 'style.label_size'
   methods:
     set_pin: (key)->
       @$emit 'update:pin_id', key

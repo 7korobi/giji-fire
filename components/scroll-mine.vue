@@ -1,9 +1,9 @@
 <script lang="coffee">
-{ fullpage } = require '~/plugins/observer'
+{ on_peek } = require "vue-petit-store"
 
 module.exports =
   directives:
-    fullpage: fullpage 'pos'
+    pos: on_peek 'pos'
 
   props: ["as", "value"]
 
@@ -20,6 +20,6 @@ module.exports =
 </script>
 
 <template lang="pug">
-a(:class="btn" v-fullpage)
+a(:class="btn" v-pos)
   slot
 </template>

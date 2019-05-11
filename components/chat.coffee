@@ -1,5 +1,5 @@
 { Query } = require 'memory-orm'
-{ horizon } = require '~/plugins/observer'
+{ on_horizon } = require "vue-petit-store"
 
 module.exports = ->
   props:
@@ -25,7 +25,7 @@ module.exports = ->
     phase_id: String
 
   directives:
-    horizon: horizon 'pos'
+    horizon: on_horizon 'pos'
 
   data: ->
     pos: 'focus'

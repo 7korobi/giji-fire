@@ -20,8 +20,7 @@ div(:class="page_view" v-on="col_space")
 <script lang="coffee">
 timerange = require "~/components/filters/timerange"
 { Query } = require 'memory-orm'
-
-{ curtain } = require '~/plugins/observer'
+{ curtain } = require "vue-petit-store"
 
 module.exports =
   mixins: [

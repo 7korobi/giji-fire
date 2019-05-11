@@ -1,12 +1,6 @@
-Vue = require 'vue'
-
-if window?
-  Vue = Vue.default
-
-pager = new Vue
-  data: ->
-    head_idx: 0
-    tail_idx: 0
+pager =
+  head_idx: 0
+  tail_idx: 0
 
 module.exports =
   data: ->

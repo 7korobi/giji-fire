@@ -34,7 +34,6 @@ module.exports =
   mode: 'production'
   entry:
     'functions/index':               './functions/api/index.coffee'
-    'static/comlink':                './worker/comlink-index.coffee'
     'static/firebase-messaging-sw':  './worker/firebase-messaging-index.coffee'
   output:
     path: current
