@@ -82,7 +82,7 @@ div
             sup(v-if="1 < o.count") {{ o.count }}
         p(v-if="order === 'rating'")
           check(v-for="o in summary('rating')" v-model="rating" :as="o.id" :key="o.id")
-            img(:src="rating_img(o.id)")
+            img.mark(:src="rating_img(o.id)")
             sup(v-if="1 < o.count") {{ o.count }}
         p(v-if="order === 'vpl.0'")
           check(v-for="o in summary('size')" v-model="size" :as="o.id" :key="o.id")
@@ -128,7 +128,7 @@ div
               tr
                 th
                   kbd(style="width: 40px")
-                    img(:src="rating_img(o.q.rating)")
+                    img.mark(:src="rating_img(o.q.rating)")
                 td {{ o.id }}
               tr
                 th 更新

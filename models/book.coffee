@@ -12,6 +12,9 @@ new Rule("book").schema ->
   @has_many "potofs"
 
   @habtm "options"
+  @habtm "roles"
+  @habtm "marks"
+
   @belongs_to "winner"
   @belongs_to "say"
   @belongs_to "locale"
@@ -24,7 +27,12 @@ new Rule("book").schema ->
   @scope (all)->
     in_folder: (folder_id)->
       all
+      .partition "#{folder_id}.set"
       .where { folder_id }
+      .page 25
+      .order
+        sort: ["write_at", "desc"]
+        page: true
 
   @deploy ->
     in_month = format @write_at, 'MM月', { locale }
@@ -52,6 +60,11 @@ new Rule("book").schema ->
     @map_reduce: (o, emit)->
       emit "idx",
         max: parseInt o.idx
+      it =
+        set: o.id
+      emit it
+      emit "all", it
+      emit o.folder_id, it
 
 new Rule("winner").schema ->
   @scope (all)->
@@ -71,9 +84,12 @@ new Rule("game").schema ->
 new Rule("locale").schema ->
   @scope (all)->
 
+new Rule("mark").schema ->
+  @scope (all)->
 
-Set.locale.set require "../yaml/locale.yml"
+Set.locale.set require "../yaml/set_locale.yml"
 Set.option.set require '../yaml/set_option.yml'
 Set.winner.set require '../yaml/set_winner.yml'
 Set.say.set    require '../yaml/set_says.yml'
+Set.mark.set   require '../yaml/set_mark.yml'
 Set.game.set   require "../yaml/sow_game.yml"

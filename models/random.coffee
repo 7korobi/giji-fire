@@ -29,7 +29,7 @@ new Rule("random").schema ->
         count: 1
         all: o.ratio
 
-    toString: (side = 1)->
+    toString: (side = _.random 0, 1)->
       switch @type
         when 'chess'
           "#{@symbols[side]} #{["白","黒"][side]}#{@label}"
@@ -46,14 +46,15 @@ new Rule("random").schema ->
         else
           "#{@label}"
 
+# scope without cache
 Query.randoms.choice = (type)->
   { list, reduce } = @deck(type)
   at = _.random 0, reduce.ratio.all - 1
   o = undefined
   for o in list
     at -= o.ratio
-    break if at < 0
-  o.toString _.random 0, 1
+    if at < 0
+      return o
 
 type = "trump"
 ratio = 1

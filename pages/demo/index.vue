@@ -17,8 +17,6 @@ div
   c-post(handle="TSAY")
     nuxt-link.button(to="/demo/timeago") 時計 page
   c-post(handle="TSAY")
-    nuxt-link.button(to="/demo/names") names
-  c-post(handle="TSAY")
     nuxt-link.button(to="/demo/chats") chats sample
   c-post(handle="TSAY")
     nuxt-link.button(to="/sow/village/show?mode=full&idx=allstar-2-0") 村ログ(allstar-2)

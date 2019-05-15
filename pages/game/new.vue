@@ -17,11 +17,34 @@ log-wiki
       hr
       ol
         li 上のアイコンから、ログインに使うサービスを選択。
-        li あなたがロボットでないなら、入力ボックスに{{ book_id_chk }}と書いて作成ボタンを押そう。
-        li
-          input(v-model="book_id")
-          btn(:value="book_id" :as="book_id_chk" @toggle="create") 作成
+        li(v-if="user && ! sign") #[nuxt-link(to="/user/edit") サインを記帳]します。他の人に見せるために使います。
+      
+      table(v-if="sign")
+        tbody
+          tr
+            td(colspan=2) ID欄に「{{ book_id_chk }}」と書いて作成ボタンを押そう。
+          tr
+            td.r
+              label(style="display: block" for="book_id") ID
+            td
+              input#book_id(v-model="book_id")
+          tr
+            td.r
+              label(style="display: block" for="label") 名称
+            td
+              input#label(v-model="label")
+              img.mark(:src="o.path" v-for="o in use_marks")
+          tr
+            td.c
+              a.btn(@click="shuffle") 🎲
+            td
+              btn(:value="book_id" :as="book_id_chk" @toggle="create") 作成
 
+    c-post(handle="MAKER")
+      btn(v-model="mark_ids" :as="[]")
+        i.mdi.mdi-eraser
+      check(v-for="o in marks" v-model="mark_ids" :as="o.id")
+        img.mark(:src="o.path")
   c-report(handle="footer" deco="center")
     bread-crumb
 </template>
@@ -43,7 +66,9 @@ module.exports =
     step: State.step
     options: ["impose"] # impose
     shows: [] # pin, toc, potof, current, search
+    mark_ids: []
     book_id: ""
+    label: ""
 
   computed:
     folder_id: -> 
@@ -54,8 +79,20 @@ module.exports =
       Query
       .books.in_folder @folder_id
       .reduce.idx?.max ? 0
+    use_marks: ->
+      Query.marks.finds @mark_ids
+    marks: ->
+      Query.marks.where(enable: true).list
+
+  created: ->
+    @shuffle()
 
   methods:
+    shuffle: ->
+      tarot = Query.randoms.choice("tarot").label
+      planet = Query.randoms.choice("planet").label
+      @label = "#{planet}の#{tarot}"
+
     create: ->
       range = "1d"
       gap = "23h0m"
@@ -67,6 +104,8 @@ module.exports =
         is_epilogue: false
         is_finish:   false
 
+        @label
+        @mark_ids
         _id: @book_id
 
         tag_id: "giji"
@@ -77,14 +116,11 @@ module.exports =
         winner_id: "NONE"
 
         option_ids: ["undead-talk", "aiming-talk"]
+        role_ids: []
 
-        rating: ""
         uid: @user.uid
         sign: @sign.sign
-        label: format new Date, "M月d日に開催するゲーム"
         tempo: { range, gap, now_idx }
-        card:
-          config: []
       }
       @$toasted.success "ゲームを開催します。細かい設定を調整しましょう。"
       @$router.push "/game"

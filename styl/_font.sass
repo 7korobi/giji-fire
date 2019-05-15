@@ -68,9 +68,15 @@ body
   line-height: 1.5em
   font-size: 1.0rem
 
+.text
+  img.mark
+    max-height: 1.5em
+
 .fine,
 .date,
   line-height: 1.2em
+  img.mark
+    max-height: 1.2em
 
 sup,
 sub,
@@ -80,6 +86,8 @@ sub,
 .chrblank p,
 .chrblank time,
   line-height: 1.1em
+  img.mark
+    max-height: 1.1em
 
 [title]:after
 [data-tooltip]:after
@@ -113,6 +121,13 @@ sub
 
 table
   border-spacing: 0.15em
+
+input[type=number],
+.mini,
+  width: 3em
+
+input[type=time]
+  width: 5em
 
 input[type=checkbox],
 input[type=radio],
@@ -264,6 +279,8 @@ q,
 
 h1, h2, h3, h4, h5, h6,
   line-height: 1.0em
+  img.mark
+    max-height: 1.0em
 
 .ql-picker-item[data-value="1"]::before,
 h1,

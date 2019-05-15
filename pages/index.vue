@@ -1,16 +1,14 @@
 <template lang="pug">
 div
-  c-post(@focus="focus" handle="XSAY" id="title" :write_at="1169852700003" style="height: 52ex")
+  c-post(@focus="focus" handle="XSAY" id="title" :write_at="1169852700003" style="height: 38ex")
     diagram-view(:value="d_pair")
       path(v-for="o in applogo_path" v-bind="o")
-
+      text(text-anchor="middle" label="祝！人狼議事10周年！" x="57" y="260" class="path") 祝！人狼議事10周年！
   fire-oauth(@focus="focus" handle="TSAY" id="private")
     p ログイン中にできること。
     p #[i.mdi.mdi-map-marker]：過去ログビュアーでタップしたとき、栞を挟んで記録します。
 
-  c-report(@focus="focus" handle="footer" deco="center" id="head-private" v-if="mypage") ロビー
-  c-post.form(@focus="focus" handle="TSAY" id="private" v-if="mypage")
-    nuxt-link(:to="mypage") あなたの情報
+  c-report(@focus="focus" handle="footer" deco="center" id="head-private" v-if="user") ロビー
   c-report(@focus="focus" handle="footer" deco="center" id="head-public") みんなの情報
   c-post.form(@focus="focus" handle="SSAY")
     nuxt-link(to="/rule-guide") 人狼議事のルール
@@ -23,29 +21,39 @@ div
     nuxt-link(to="/chr/npc")
       | 最初の犠牲者一覧
     .card 人狼議事を遊ぶ参考にどうぞ。
+
   c-post.form(@focus="focus" handle="VSSAY" id="chr-sort")
     nuxt-link(to="/chr/sort") キャラクター並べ替えゲーム
     br
     .card 人狼議事キャラソートを作ってみました。長い！
+
   c-post.form(@focus="focus" handle="VSSAY" id="summary-face")
     nuxt-link(to="/summary/faces") キャラクター活躍記録
     br
     .card どこかの村で活躍したことのあるキャラクターはこちら。
 
   c-report(@focus="focus" handle="footer" deco="center" id="head-appendix") おまけの情報
-  c-post.form(@focus="focus" handle="VGSAY" id="appendix")
-    a(href="https://giji-db923.firebaseapp.com/") テストサイト
-    br
-    | つくりかけの人狼議事総合トップが置いてあります。
-
   c-post.form(@focus="focus" handle="SSAY" id="history")
     | 更新履歴
     hr
     a(href="https://github.com/7korobi/giji-fire/commits/master") 総合トップ
+    a(href="https://github.com/7korobi/giji_assets/commits/chr-add") キャラ更新
     a(href="https://github.com/7korobi/giji-sow-api/commits/master") 村ログAPI
-    a(href="https://github.com/7korobi/giji_rails/commits/master") 村ログ収集・キャラ更新
-    a(href="https://github.com/7korobi/sow-giji/commits/cabala") ゲーム
-    a(href="https://github.com/7korobi/sow-giji/commits/show-fix") ゲーム（新）
+    a(href="https://github.com/7korobi/giji_rails/commits/master") 村ログ収集
+    a(href="https://github.com/7korobi/sow-giji/commits/cabala") 人狼
+    a(href="https://github.com/7korobi/sow-giji/commits/show-fix") 人狼(ciel)
+
+  c-post.form(@focus="focus" handle="VGSAY" id="appendix")
+    a(href="https://giji-db923.firebaseapp.com/") テストサイト
+    br
+    .card つくりかけの人狼議事総合トップが置いてあります。
+
+  c-post.form(@focus="focus" handle="VGSAY" id="creation")
+    nuxt-link.button(to="/demo/names" no-prefetch) 人名単語索引
+    a(href="http://naming.nobody.jp/") 創作支援名前倉庫
+    a(href="https://ichiranya.com/") いちらん屋
+    br
+    .card 創作のお供にどうぞ。
 
   c-talk.form(@focus="focus" handle="GSAY" id="link-to" face_id="sf04" head="お散歩隊長 アシモフ").
     とたたたたたたんっ。
@@ -108,7 +116,7 @@ div
 _ = require 'lodash'
 anime = require('animejs').default
 { Step, Query } = require 'memory-orm'
-{ poll, replaceState } = require "vue-petit-store"
+{ poll, replaceState, on_appear } = require "vue-petit-store"
 
 pairs = [
   vs: ["c41","c47"]
@@ -154,6 +162,8 @@ pairs = [
 d_pair_idx = 0
 
 module.exports =
+  directives:
+    appear: on_appear 'applogo'
   mixins: [
     poll -> [["sow/plan"]]
     replaceState "idx"
@@ -170,26 +180,19 @@ module.exports =
       icons: [
         v: "-1"
         roll: 0
-        x: -500
-        y: -100
+        x: -170
+        y:   70
       ,
         v: "-2"
         roll: 0
-        x:  100
-        y: -250
+        x:  170
+        y:   70
       ]
       lines: [
         v: "-1"
         w: "-2"
         vpos:   0
         wpos:   0
-        line: "   "
-      ,
-        v: "-1"
-        w: "-2"
-        vpos: 180
-        wpos: 180
-        label: "祝！人狼議事10周年！"
         line: "   "
       ]
       clusters: []
@@ -198,10 +201,7 @@ module.exports =
 
   computed:
     user: ->
-      @$store.state.user
-    mypage: ->
-      return null unless @user?._id
-      "mypage"
+      @$store.state.firebase.user
     plan: ->
       Query.sow_village_plans.sort('write_at','desc').list
     prologue: ->
@@ -242,11 +242,6 @@ module.exports =
           w: w_chr.id
           label: pair.labels[0]
           line: pair.lines[0]
-        ,
-          v: v_chr.id
-          w: w_chr.id
-          label: "祝！人狼議事10周年！"
-          line: "   "
         ]
 
     initialize: ->
@@ -274,30 +269,35 @@ module.exports =
           easing: 'linear'
           x:      (o)=>  o.to[1].x
 
-        anime
-          targets: @d_pair.icons
-          delay:    1000
-          duration: 2200
-          easing: 'easeInOutBack'
-          y:    0
-        anime
-          targets: @d_pair.icons[0]
-          delay:    1000
-          duration: 2800
-          easing: 'easeInOutBack'
-          x: -155
-        anime
-          targets: @d_pair.icons[1]
-          delay:    1000
-          duration: 2800
-          easing: 'easeInOutBack'
-          x:  155
-
       @change_chr 0
       d_pair_idx = 0
       setInterval =>
-        @change_chr d_pair_idx
-        d_pair_idx = (d_pair_idx + 1) % pairs.length
+        anime
+          targets: @d_pair.icons[0]
+          duration: 300
+          easing: 'easeInOutSine'
+          x: -400
+          complete: =>
+            anime
+              targets: @d_pair.icons[0]
+              duration: 400
+              easing: 'easeInOutSine'
+              x: -170
+            d_pair_idx = (d_pair_idx + 1) % pairs.length
+            @change_chr d_pair_idx
+
+        anime
+          targets: @d_pair.icons[1]
+          duration: 300
+          easing: 'easeInOutSine'
+          x:  400
+          complete: =>
+            anime
+              targets: @d_pair.icons[1]
+              duration: 400
+              easing: 'easeInOutSine'
+              x:  170
+
       , 4000
 </script>
 <style lang="sass" scoped>

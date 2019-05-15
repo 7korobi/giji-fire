@@ -10,43 +10,33 @@ div
       c-report(handle="MAKER", v-for="o in books" :id="o._id" :key="o._id" @focus="focus")
         .name
           sup.pull-right {{ o.sign }}
-          nuxt-link(:to="book_url(o.id, 'top', 'full')") {{ o.name }}
+          nuxt-link(:to="book_url(o.id, 'top', 'full')") {{ o.label }}
         .cards
-          table.btns.card(style="width: 33%" v-if="o.q")
+          table.btns.card(style="width: 9em")
             tbody
               tr
-                th
-                  kbd(style="width: 40px")
-                    img(:src="rating_img(o.q.rating)")
+                th(colspan="2")
+                  img.mark(:src="mark.path" v-for="mark in o.marks.list")
+              tr
+                th ID
                 td {{ o.id }}
               tr
                 th 更新
-                td {{ o.q.upd_range }}毎 {{ o.q.upd_at }}
+                td {{ o.tempo.gap }}
               tr
                 th 規模
                 td {{ o.q.size }}人 {{ o.say.CAPTION }}
               tr
                 td(colspan="2")
                   timeago(:since="o.write_at")
-          .card(style="width: 66%")
-            p
+          .card(style="width: 27em")
+            p(v-if="o.options")
               a.label(v-if="o.mob" :class="o.mob.win") {{ o.mob.label }}
               a.label(v-if="o.game") {{ o.game.label }}
-              a(v-for="opt in o.option_datas.list")
+              a(v-for="opt in o.options.list")
                 span.label {{ opt.label }}
-            p
-              a(v-if="role" v-for="role in o.roles.config" :class="role.win")
-                span.label
-                  | {{ role.label }}
-                  sup(v-if="1 < role.count") {{ role.count }}
-            hr
-            p
-              a(v-if="role" v-for="role in o.roles.event" :class="role.win")
-                span.label
-                  | {{ role.label }}
-                  sup(v-if="1 < role.count") {{ role.count }}
-            p
-              a(v-if="role" v-for="role in o.roles.discard" :class="role.win")
+            p(v-if="o.roles")
+              a(v-for="role in o.roles.list" :class="role.win")
                 span.label
                   | {{ role.label }}
                   sup(v-if="1 < role.count") {{ role.count }}
@@ -84,7 +74,7 @@ module.exports =
       "#{url.store}/images/icon/cd_#{rating}.png"
 
   computed:
-    folder_id: -> 
+    folder_id: ->
       "fire"
     page_all_contents: ->
       @page_idxs = [0]

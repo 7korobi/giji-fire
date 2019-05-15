@@ -43,7 +43,7 @@ module.exports = (title, ctx)->
 
     else
       if Query.randoms.deck(title)
-        text = Query.randoms.choice(title)
+        text = Query.randoms.choice(title).toString()
         return { title, text }
 
       else
