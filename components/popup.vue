@@ -1,5 +1,5 @@
 <template lang="pug">
-.outframe(:style="style")
+.outframe.popup(:style="style")
   .contentframe
     .report
       .chat.btns.center
@@ -8,10 +8,6 @@
     .report
       .chat.btns.center
 </template>
-<style lang="sass" scoped>
-.report
-  margin-bottom: 0
-</style>
 <script lang="coffee">
 { Query, State, Finder } = require 'memory-orm'
 
