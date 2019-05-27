@@ -12,7 +12,7 @@ module.exports =
 
   computed:
     btn: ->
-      if "view" == @pos
+      if @$el && "view" == @pos
         @$nextTick ->
           @$emit 'input', @as
       [@pos]

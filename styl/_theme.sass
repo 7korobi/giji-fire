@@ -84,6 +84,8 @@
       color:            $pen
       background-color: $bg
       border-color:     $edge
+      text-emphasis-color:   $line
+      text-decoration-color: $line
 
       .text.mono
         background-image: $mono_url
@@ -277,9 +279,16 @@
         background-color: $bg
         border-color:     $edge
 
-    b,
-    rt,
     [data-ruby]:before,
+      body &.#{$theme},
+      .#{$theme} &,
+        color: $bold
+
+    b,
+    em,
+    strong,
+    th,
+    rt,
     h1,
     h2,
     h3,
@@ -308,19 +317,6 @@
       .#{$theme} &,
         +Glowing(1.0px, 0.5px, $shade)
 
-    th
-      body &.#{$theme},
-      .#{$theme} &,
-        color: $bold 
-
-    em,
-    strong,
-      body &.#{$theme},
-      .#{$theme} &,
-        color: $pen
-        text-emphasis-color: $pen
-        text-decoration-color: $pen
-
     label.btn,
     label,
     label[title],
@@ -347,14 +343,6 @@
         sup, sub, .badge
           background-color: $emboss
           color: $bg
-
-    u,
-    ins,
-      body &.#{$theme},
-      .#{$theme} &,
-        color: $bold 
-        text-emphasis-color: $line
-        text-decoration-color: $line
 
     .note
       body &.#{$theme},
@@ -431,12 +419,6 @@
         sup, sub, .badge
           background-color: $emboss
           color: $bg
-
-    s
-      body &.#{$theme},
-      .#{$theme} &,
-        text-emphasis-color: $line
-        text-decoration-color: $line
 
     kbd,
     code,

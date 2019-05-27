@@ -24,6 +24,10 @@ abbr.btn
 p
   padding: 0 2px
   user-select: text
+
+time
+  display: inline-block
+
 </style>
 
 <script lang="coffee">

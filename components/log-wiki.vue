@@ -36,7 +36,7 @@
         .inframe
           slot
           a-footer
-      slot(name="popup")
+    slot(name="popup")
 
 </template>
 <style lang="sass" scoped>
