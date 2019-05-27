@@ -1,5 +1,5 @@
 _ = require 'lodash'
-{ Set, Model, Query, Rule } = require 'memory-orm'
+{ Set, Model, Query, Rule, State } = require 'memory-orm'
 
 new Rule("random").schema ->
   @scope (all)->
@@ -56,37 +56,39 @@ Query.randoms.choice = (type)->
     if at < 0
       return o
 
-type = "trump"
-ratio = 1
-for suite, idx1 in ["♢","♡","♣","♠"]
-  for rank, idx2 in "A 2 3 4 5 6 7 8 9 10 J Q K".split(" ")
-    label = "#{suite}#{rank}"
-    suite_code = idx1 + 1
-    number = idx2 + 1
-    _id = 100 * suite_code + number
-    Set.random.add { _id, type, ratio, number, suite, rank, label }
+State.transaction ->
+  type = "trump"
+  ratio = 1
+  for suite, idx1 in ["♢","♡","♣","♠"]
+    for rank, idx2 in "A 2 3 4 5 6 7 8 9 10 J Q K".split(" ")
+      label = "#{suite}#{rank}"
+      suite_code = idx1 + 1
+      number = idx2 + 1
+      _id = 100 * suite_code + number
+      Set.random.add { _id, type, ratio, number, suite, rank, label }
 
-Set.random.add
-  _id: 501
-  type: "trump"
-  ratio: 1
-  number: 0
-  suite: ""
-  rank: ""
-  label: "JOKER"
+  Set.random.add
+    _id: 501
+    type: "trump"
+    ratio: 1
+    number: 0
+    suite: ""
+    rank: ""
+    label: "JOKER"
 
-Set.random.add
-  _id: 502
-  type: "trump"
-  ratio: 1
-  number: 0
-  suite: ""
-  rank: ""
-  label: "joker"
+  Set.random.add
+    _id: 502
+    type: "trump"
+    ratio: 1
+    number: 0
+    suite: ""
+    rank: ""
+    label: "joker"
 
-for type, o of require '../yaml/random.yml'
-  for key, oo of o
-    oo._id = "#{type}_#{key}"
-    oo.type = type
-    oo.ratio ?= 1
-    Set.random.add oo
+  for type, o of require '../yaml/random.yml'
+    for key, oo of o
+      oo._id = "#{type}_#{key}"
+      oo.type = type
+      oo.ratio ?= 1
+      Set.random.add oo
+, Query.static.meta

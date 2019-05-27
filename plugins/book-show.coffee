@@ -26,10 +26,16 @@ store =
     mode: 'full'
     a: []
 
+  mounted: ->
+    { chat_id } = @
+    @$nextTick ->
+      if window[chat_id]
+        @page_reset()
+
   watch:
     idx: ->
       return unless window?
-      unless window[@chat_id]
+      unless @page_all_contents.query.hash[@chat_id]
         @go_top()
 
     mode: ->

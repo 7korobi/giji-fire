@@ -240,3 +240,4 @@ State.transaction ->
       { chr_set_id, face_id, job }
 
   Set.chr_job.merge list
+, Query.static.meta

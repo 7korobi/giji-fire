@@ -1,4 +1,4 @@
-{ Model, Query, Rule, Set } = require 'memory-orm'
+{ Model, Query, Rule, Set, State } = require 'memory-orm'
 { game } = require "~/config/live.yml"
 format = require 'date-fns/format'
 locale = require "date-fns/locale/ja"
@@ -87,9 +87,11 @@ new Rule("locale").schema ->
 new Rule("mark").schema ->
   @scope (all)->
 
-Set.locale.set require "../yaml/set_locale.yml"
-Set.option.set require '../yaml/set_option.yml'
-Set.winner.set require '../yaml/set_winner.yml'
-Set.say.set    require '../yaml/set_says.yml'
-Set.mark.set   require '../yaml/set_mark.yml'
-Set.game.set   require "../yaml/sow_game.yml"
+State.transaction (m)->
+  Set.locale.set require "../yaml/set_locale.yml"
+  Set.option.set require '../yaml/set_option.yml'
+  Set.winner.set require '../yaml/set_winner.yml'
+  Set.say.set    require '../yaml/set_says.yml'
+  Set.mark.set   require '../yaml/set_mark.yml'
+  Set.game.set   require "../yaml/sow_game.yml"
+, Query.static.meta

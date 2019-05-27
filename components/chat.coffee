@@ -45,8 +45,9 @@ module.exports = ->
     label: ->
       ""
 
+    # directives data reset after mounted.
     classname: ->
-      if @id && "focus" == @pos
+      if @id && @$el && "focus" == @pos
         @$emit "focus", @id
       [@handle, @pos]
 

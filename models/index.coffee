@@ -1,3 +1,7 @@
+{ Query } = require 'memory-orm'
+Query.static =
+  meta: {}
+
 require "./random"
 
 require "./chr"
