@@ -29,7 +29,6 @@ module.exports = ->
 
   data: ->
     pos: 'focus'
-    shows: [] # pin, toc, potof, current, search
 
   computed:
     part_id: ->

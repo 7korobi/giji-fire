@@ -15,6 +15,11 @@ new Rule("marker").schema ->
 
       emit "list",
         sort: ["write_at", "desc"]
+  
+  @property 'model',
+    anker:
+      get: ->
+        "-" + @id.split("-")[2..4].join("-")
 
 new Rule("icon").schema ->
   @belongs_to "book"

@@ -36,6 +36,9 @@ log-wiki
     nuxt-link.item.active.tooltip-left(v-if="$route.query.back" replace :to="back_url" data-tooltip="以前の画面に戻る")
       i.mdi.mdi-backspace
       | BACK
+    a.btn.item.active.tooltip-left(v-else @click="go_top" data-tooltip="一番上までスクロール")
+      i.mdi.mdi-arrow-collapse-up
+      | TOP
     btn-marker(v-bind="for_marker")
 
     check.item.tooltip-left(v-model="shows" as="mention" data-tooltip="今見ている投稿に関する情報")

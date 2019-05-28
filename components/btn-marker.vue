@@ -6,7 +6,7 @@ nuxt-link.item.active(replace :to="url" @click.native="bookmark")
 <script lang="coffee">
 { relative_to, firestore_models, vuex_read, path_by } = require "vue-petit-store"
 
-{ Query } = require 'memory-orm'
+{ Query, State } = require 'memory-orm'
 
 module.exports =
   mixins: [
@@ -18,6 +18,9 @@ module.exports =
   ]
 
   props: ['back_url', 'log', 'write_at']
+
+  data: ->
+    step: State.step
 
   computed:
     uid: -> @user?.uid

@@ -3,6 +3,8 @@ div(v-if="chat")
   .stable(:class="chat.phase.handle")
     hr
     strong.fine.text
+      p.center(v-if="star")
+        nuxt-link(:to="star_url") {{ star }}
       p.left(v-if="sign")
         | by {{ sign || '' }}
       p.left(v-if="anker" style="white-space: nowrap")
@@ -13,7 +15,7 @@ div(v-if="chat")
         timeago(:since="at")
       p.right
         span(v-if="phase") {{ phase }}
-        span(v-if="anker" title="クリップボードへコピー" @click="clip")
+        span(title="クリップボードへコピー" @click="clip")
           abbr.btn {{ anker || '' }}
 </template>
 
@@ -31,19 +33,24 @@ time
 </style>
 
 <script lang="coffee">
-{ Query } = require 'memory-orm'
+{ Query, State } = require 'memory-orm'
+{ vuex_read, relative_to } = require "vue-petit-store"
 _ = require "lodash"
 
 module.exports =
-  props: ['book_id', 'chat_id', 'page_idx']
-  methods:
-    clip: (e)->
-      range = document.createRange()
-      range.selectNode e.target
-      window.getSelection().addRange range
-      document.execCommand 'copy'
+  mixins: [
+    vuex_read 'user', on: 'firebase'
+  ]
+  props: ['book_id', 'chat_id', 'page_idx', 'back']
+  data: ->
+    step: State.step
 
   computed:
+    uid: -> @user?.uid
+    marker_id: ->
+      if @uid
+        "#{@chat_id}-#{@uid}"
+
     chat: ->
       Query.chats.find @chat_id
     at: ->     @chat?.write_at
@@ -55,11 +62,29 @@ module.exports =
     anker: ->  @chat?.anker()
     page: ->   "p#{1 + @page_idx}"
 
+    star_url: ->
+      a = @markers.pluck("anker")
+      idx = @chat_id
+      query: { a, @back, idx }
+
+
+    markers: -> @uid && Query.markers.own(@uid)
+    marker: -> @uid && @markers?.find(@marker_id)
+    star: -> @marker?.url && "⭐️"
+
     long_anker: ->
       if @chat
         prefix = if @mark? then '>>' else ''
         "(#{prefix}#{@chat.anker() || ''} #{@name || ''})"
       else
         ""
+
+  methods:
+    clip: (e)->
+      range = document.createRange()
+      range.selectNode e.target
+      window.getSelection().addRange range
+      document.execCommand 'copy'
+
 
 </script>

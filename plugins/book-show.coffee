@@ -27,32 +27,26 @@ store =
     a: []
 
   mounted: ->
-    { chat_id } = @
-    @$nextTick ->
-      if window[chat_id]
-        @page_reset()
+    @page_reset()
 
   watch:
-    idx: ->
-      return unless window?
-      unless @page_all_contents.query.hash[@chat_id]
-        @go_top()
-
     mode: ->
+      @page_reset()
+    "step.chats": ->
+      @page_reset()
+
+    search: (n,o)->
+      if n && ! o
+        @$router.replace
+          query: { @mode, @search, @back, @idx }
       @page_reset()
 
     page: ->
-      if @page
-        if Number(@page)
-          @page_idxs = [@page - 1]
-        else
-          @$nextTick ->
-            @page_reset()
-
-        @page = undefined
-
-    "step.chats": ->
-      @page_reset()
+      if @page && Number(@page)
+        @page_idxs = [@page - 1]
+      else
+        @page_reset()
+      @page = undefined
 
   computed:
     is_floats: ->
@@ -101,7 +95,6 @@ store =
         Query.chats.reduce[part_id]?[mode]?.set?.length ? 0
 
   methods:
-
     focus: (@idx)->
 
     popup: ({ adjust, pageY, id, bye_id })->
@@ -123,23 +116,28 @@ store =
           query: { a, @back, idx }
 
     page_reset: ->
+      { chat_id, page_idx } = @
+      console.log "#{chat_id} in #{page_idx}"
       return unless window?
-      @page_idxs = [ @page_idx ]
+      unless chat_id && page_idx
+        @page_idxs = [0]
+        @go_top()
+        return
+
+      @page_idxs = [page_idx]
       @floats = {}
-      { chat_id } = @
       @$nextTick =>
-        if chat_id? && window[chat_id]
-          @scroll_to
-            query: "#" + chat_id
-            mode: 'center'
-        else
-          console.log "scrollto TOP"
-          window.scrollTo 0, 0
+        @$nextTick =>
+          if window[chat_id]
+            @scroll_to
+              query: "#" + chat_id
+              mode: 'center'
+          else
+            @go_top()
 
     go_top: ->
-      @$nextTick =>
-        console.log "scrollto TOP"
-        window.scrollTo 0, 0
+      console.log "scrollto TOP"
+      window.scrollTo 0, 0
 
     page_url: (part_id, page_idx)->
       return unless part_id && data = @chats @mode, part_id

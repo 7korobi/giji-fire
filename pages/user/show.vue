@@ -21,6 +21,8 @@ div
     div(v-for="({ id }) in mark_at")
       c-post(handle="GAIM")
         | {{ id }}
+        nuxt-link(:to="all_markers_url(id)")
+          | 一覧
         button.pull-right(@click="del_marker(id)")
           i.mdi.mdi-delete-forever
         hr
@@ -59,6 +61,11 @@ module.exports =
     mark_at: ->
       Query.markers.own(@uid).reduce?.mark_at ? {}
   methods:
+    all_markers_url: (idx)->
+      a = @marker_for(idx).pluck("anker")
+      name: 'sow-village-show'
+      query: { a, idx }
+        
     del_marker: (id)->
       for { _id } in @marker_for(id).list
         @markers_del _id
