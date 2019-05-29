@@ -46,7 +46,7 @@ module.exports =
       { log, write_at } = @chat ? {}
       { log, write_at, back_url }
     for_mentions: ->
-      { @book_id, @chat_id, @page_idx, @back }
+      { @book_id, @chat_id, @page_idx, @back, @a }
     for_side: ->
       { @side_contents }
     for_profile: ->

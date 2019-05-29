@@ -13,7 +13,7 @@ module.exports =
   ]
   data: ->
     theme: "cinema"
-    font:  "std"
+    font:  "novel"
     bg: "BG"
 
     use: {}

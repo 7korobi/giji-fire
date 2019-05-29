@@ -1,7 +1,9 @@
 <template lang="pug">
 p.form
   label.mdi.mdi-magnify(for="search")
-  input.search#search(size="30" :value="value" @input="input" @focus="focus")
+  input.search#search(size="30" :value="value" list="search_log" @input="input" @focus="focus")
+  datalist#search_log
+    option(v-for="s in history.search" :value="s")
   label.mdi.mdi-eraser(v-if="value !== ''" @click="clear")
 </template>
 
@@ -22,9 +24,21 @@ input
 
 <script lang="coffee">
 _ = require 'lodash'
+{ localStorage } = require "vue-petit-store"
 
 module.exports =
   props: ["value"]
+  mixins: [
+    localStorage "history.search"
+  ]
+
+  watch:
+    "history.search": ->
+      console.log "history search value:", @history.search
+
+  data: ->
+    history:
+      search: []
 
   methods:
     clear: ->
@@ -34,6 +48,12 @@ module.exports =
       @$emit 'focus'
 
     input: _.debounce (e)->
-      @$emit 'input', e.target.value
+      @$emit 'input', value = e.target.value
+      if value
+        @history.search = [
+          value
+          ... for log in @history.search when ! value.startsWith log
+                log
+        ]
     , 1000
 </script>

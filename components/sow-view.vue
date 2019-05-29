@@ -46,6 +46,10 @@ sow = (log)->
       ""
     link(url) + suffix
 
+  .replace ///<rand\s+([^>]*)>///g, (tag, list, idx, src)->
+    [item, title] = list.split(",")
+    """<kbd title="#{title}">#{item}</kbd>"""
+
 module.exports =
   props: ["value"]
 
