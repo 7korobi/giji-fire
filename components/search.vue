@@ -3,7 +3,7 @@ p.form
   label.mdi.mdi-magnify(for="search")
   input.search#search(size="30" :value="value" list="search_log" @input="input" @focus="focus")
   datalist#search_log
-    option(v-for="s in history.search" :value="s")
+    option(v-for="s in log.search" :value="s")
   label.mdi.mdi-eraser(v-if="value !== ''" @click="clear")
 </template>
 
@@ -29,15 +29,11 @@ _ = require 'lodash'
 module.exports =
   props: ["value"]
   mixins: [
-    localStorage "history.search"
+    localStorage "log.search"
   ]
 
-  watch:
-    "history.search": ->
-      console.log "history search value:", @history.search
-
   data: ->
-    history:
+    log:
       search: []
 
   methods:
@@ -50,9 +46,9 @@ module.exports =
     input: _.debounce (e)->
       @$emit 'input', value = e.target.value
       if value
-        @history.search = [
+        @log.search = [
           value
-          ... for log in @history.search when ! value.startsWith log
+          ... for log in @log.search when ! value.startsWith log
                 log
         ]
     , 1000

@@ -23,6 +23,7 @@ div
 <script lang="coffee">
 _ = require 'lodash'
 Delta = require "quill-delta"
+{ localStorage } = require "vue-petit-store"
 
 if document?
   require '~/plugins/quill'
@@ -31,24 +32,38 @@ editor = require './editor'
 
 quill_paste = (newVal, oldVal)->
   return unless @quill
+  html = @$refs.editor.children[0].innerHTML
   if newVal
-    if newVal != @html
-      @quill.clipboard.dangerouslyPasteHTML 0, @html = newVal
+    if newVal != html
+      @quill.clipboard.dangerouslyPasteHTML 0, @log.quill.html = newVal
   else
     @quill.setText ''
 
 module.exports = editor
+  mixins: [
+    localStorage "log.quill.html"
+    localStorage "log.quill.stack.redo"
+    localStorage "log.quill.stack.undo"
+  ]
   data: ->
-    html: ""
     text: "\n"
     attrs: {}
     index:  0
     length: 0
 
+    log:
+      quill:
+        html: "<p><br></p>"
+        stack:
+          redo: []
+          undo: []
     _options: {}
     defaultOptions:
       modules:
-        history: true
+        history:
+          delay:    2000
+          maxStack: 150
+          userOnly: true
         clipboard: true
         uploader: 
           handler: require("~/plugins/quill-uploader").bind @
@@ -155,9 +170,10 @@ module.exports = editor
       return unless @$el && Quill
       @_options = _.merge {}, @defaultOptions, @globalOptions, @options
       @quill = new Quill @$refs.editor, @_options
+      @quill.history.stack = @log.quill.stack
       @quill.enable false
 
-      if html = @value || @content || @html
+      if html = @value || @content || @log.quill.html
         if html
           @change()
         @quill.clipboard.dangerouslyPasteHTML 0, html
@@ -216,7 +232,6 @@ module.exports = editor
     change: _.debounce ->
       return unless @$refs
       return unless @quill
-      { @redo, @undo } = @quill.history.stack
       delta  = @quill.getContents()
       @attrs = {}
       textlist =
@@ -230,9 +245,9 @@ module.exports = editor
             when o = op.insert.mention
               "#{o.mark}#{o.id}"
       @text = textlist.join("")
-      @html = @$refs.editor.children[0].innerHTML
-      console.log { @redo, @undo, delta, @html, @text, @attrs }
-      @$emit 'input', @html
+      @log.quill.html = @$refs.editor.children[0].innerHTML
+      console.log { delta, @text, @attrs }
+      @$emit 'input', @log.quill.html
     , 200,
       leading:  false
       trailing: true
@@ -247,6 +262,7 @@ module.exports = editor
       { @attrs, size }
 
   watch:
+    'log.quill.html': quill_paste
     content: quill_paste
     value:   quill_paste
     disabled: (newVal, oldVal)->
