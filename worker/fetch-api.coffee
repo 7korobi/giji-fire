@@ -388,7 +388,7 @@ module.exports =
           _id: book_id + "-top-mS-vrule"
           write_at: chat_head.write_at - 2
           show: "report"
-          deco: "quill"
+          deco: "trix"
           sign: sign
           log: """
             <h3>村のルール</h3>#{v_rules}
@@ -400,7 +400,7 @@ module.exports =
         _id: book_id + "-top-mS-nrule"
         write_at: chat_head.write_at - 1
         show: "report"
-        deco: "quill"
+        deco: "trix"
         sign: sign
         log: """
           <h3>国のルール</h3>#{n_rules.join("<br>")}

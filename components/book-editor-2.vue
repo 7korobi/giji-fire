@@ -4,12 +4,12 @@
   c-post.form(handle="MAKER" deco="giji")
     h4 村の説明
     hr
-    text-editor(v-model="maker[0]", :maxSize="500", :maxRow="30")
+    text-edit(v-model="maker[0]", :maxSize="500", :maxRow="30")
 
   c-post.form(handle="public" deco="giji")
     h4 村のルール
     hr
-    text-editor(v-model="maker[1]", :maxSize="500", :maxRow="30")
+    text-edit(v-model="maker[1]", :maxSize="500", :maxRow="30")
 
   c-post.form(handle="public" deco="giji")
     h4 国のルール
@@ -18,10 +18,10 @@
       li(v-for="rule in n_rules") {{ rule.head }}
 
   c-talk.form(handle="SSAY" deco="giji", :head="npc_name", :face_id="npc.face_id")
-    text-editor(placeholder="冒頭の発言" v-model="npc.say[0]")
+    text-edit(placeholder="冒頭の発言" v-model="npc.say[0]")
 
   c-talk.form(handle="SSAY" deco="giji", :head="npc_name", :face_id="npc.face_id")
-    text-editor(placeholder="１日目の発言" v-model="npc.say[1]")
+    text-edit(placeholder="１日目の発言" v-model="npc.say[1]")
 
   c-report.form(handle="MAKER" deco="giji")
     a.btn(@click="commit")

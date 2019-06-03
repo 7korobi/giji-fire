@@ -32,7 +32,6 @@ module.exports = (o)->
 
   assign o.methods,
     submit: _.debounce ->
-      console.log @value, @meta
       return if @ban
 
       @$emit 'submit', @value, @meta

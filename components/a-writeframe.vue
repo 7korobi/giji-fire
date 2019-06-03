@@ -28,6 +28,6 @@ module.exports =
   .contentframe(v-if="show_write")
     .inframe
       talk(sign="ななころび" handle="SSAY" face_id="c71")
-        text-editor(v-model="text")
+        text-edit(v-model="text")
       br
 </template>

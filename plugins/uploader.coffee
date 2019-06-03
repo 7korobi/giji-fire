@@ -1,0 +1,30 @@
+Delta = require "quill-delta"
+
+hashcode = (str)->
+  hash = 5381
+  at = str.length
+  while at
+    hash = (hash * 33) ^ str.charCodeAt --at
+  hash >>> 0
+
+module.exports =
+  quill: ( range, files )->
+    images = await Promise.all files.map (file)=>
+      new Promise (ok)=>
+        reader = new FileReader()
+        reader.onload = (e)=>
+          code = hashcode e.target.result
+          [ ext ] = file.name.match /\.[^.]+$/
+          id = "#{code.toString(36)}#{ext}"
+          @$emit "drop_image", { id, file }, ok
+        reader.readAsDataURL file
+
+    ops = new Delta()
+    .retain range.index
+    .delete range.length
+    for image in images
+      ops.insert { image }
+    @quill.updateContents ops
+    @quill.setSelection range.index + images.length
+
+  trix: (  )->

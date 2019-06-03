@@ -63,7 +63,17 @@ const loaders = {
 module.exports = function (options) {
   // Add .coffee extension for store, middleware and more
   // Extend build
+
+  this.nuxt.options.extensions.push('coffee', 'yml')
+  this.nuxt.hook('build:before', (builder)=>{
+    builder.supportedExtensions.push('coffee','yml')
+  })
+
   this.extendBuild(config => {
+    const babel = config.module.rules.find( rule => String(rule.test) == '/\\.jsx?$/i' );
+    console.log(babel);
+
+    config.resolve.extensions.push('.coffee', '.yml')
     for (const key in loaders) {
       const loader = loaders[key]
       config.module.rules.push(loader)

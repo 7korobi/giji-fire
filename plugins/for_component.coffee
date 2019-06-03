@@ -50,7 +50,7 @@ module.exports =
     for_side: ->
       { @side_contents }
     for_profile: ->
-      deco = "quill"
+      deco = "trix"
       is_ban = is_warn = false
       is_ban ||= ! @user?.uid?
       is_ban ||= ! @sign.sign

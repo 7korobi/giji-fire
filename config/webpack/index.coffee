@@ -17,9 +17,6 @@ module.exports =
     ['@nuxtjs/google-analytics', { id: 'UA-16547346-4' }]
   ]
 
-  extensions: ['coffee', 'yml']
-
-
   manifest:
     name: '人狼議事'
     lang: 'ja'

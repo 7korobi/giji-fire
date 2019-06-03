@@ -103,7 +103,7 @@ module.exports =
 
       if @edit
         { options } = @edit
-        target = "#{target}-editor"
+        target = "#{target}-edit"
       else
         options = {}
         target = "#{target}-view"

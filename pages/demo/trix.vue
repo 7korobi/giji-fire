@@ -9,15 +9,15 @@ div
 
   no-ssr
     div
-      c-report(head="Quill TEST" sign="ななころび" :handle="chat.handle" style="z-index: 10")
-        quill-edit(v-model="text" @submit="console" @drop_image="image_post")
+      c-report(head="Trix TEST" sign="ななころび" :handle="chat.handle" style="z-index: 10")
+        trix-edit#trix-sample(v-model="text" :max-row="10" @submit="console" @drop_image="image_post")
           select(v-model="chat.handle" key="handle")
             option(value="SSAY") 発言
             option(value="WSAY") 囁き
             option(value="TSAY") 独り言
 
-      c-report(head="Quill TEST result" sign="ななころび" :handle="chat.handle" :deco="chat.deco" :log="text")
-      c-report(head="Quill TEST result" sign="ななころび" :handle="chat.handle" :deco="chat.deco")
+      c-report(head="Trix TEST result" sign="ななころび" :handle="chat.handle" :deco="chat.deco" :log="text")
+      c-report(head="Trix TEST result" sign="ななころび" :handle="chat.handle" :deco="chat.deco")
         textarea(v-model="text")
 
   c-report(handle="footer" deco="center")
@@ -41,7 +41,7 @@ module.exports =
       head: "てすと"
     chat:
       handle: "SSAY"
-      deco: "quill"
+      deco: "trix"
       part_id: "edit-edit-edit"
 
   computed:

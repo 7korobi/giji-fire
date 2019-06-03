@@ -8,7 +8,7 @@ span
 </style>
 
 <template lang="pug">
-.text-editor(@drop="drop")
+.text-edit(@drop="drop")
   textarea(ref="input" :value="value" :rows="areaRow" :placeholder="placeholder" @input="input" @focus="focus" @blur="blur" @keydown.ctrl.90="history_back" @keydown.ctrl.89="history_forward")
   div.form
     button(@click="submit" :class="{ ban, warn }")

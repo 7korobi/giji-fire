@@ -35,6 +35,8 @@ for fname in ctx.keys()
   name = fname[2.. -(".coffee".length + 1)]
   Vue.filter name, ctx(fname)
 
+Vue.config.ignoredElements = ['trix-editor']
+
 ###
 # ElementUI section #####
 #

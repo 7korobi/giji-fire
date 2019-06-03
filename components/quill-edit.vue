@@ -66,7 +66,7 @@ module.exports = editor
           userOnly: true
         clipboard: true
         uploader: 
-          handler: require("~/plugins/quill-uploader").bind @
+          handler: require("~/plugins/uploader").quill.bind @
         mention:
           dataAttributes: ['id', 'id', 'mark']
           isolateCharacter:   true

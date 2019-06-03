@@ -43,7 +43,7 @@ log-wiki
     c-post(handle="MAKER")
       btn(v-model="mark_ids" :as="[]")
         i.mdi.mdi-eraser
-      check(v-for="o in marks" v-model="mark_ids" :as="o.id")
+      check(v-for="o in marks" v-model="mark_ids" :as="o.id" :key="o.id")
         img.mark(:src="o.path")
   c-report(handle="footer" deco="center")
     bread-crumb

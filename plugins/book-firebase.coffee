@@ -31,7 +31,7 @@ module.exports =
 
     @create_mode chat =
       potof_id: "edit-edit-self"
-      deco: "quill"
+      deco: "trix"
       head: ""
       write_at: 0
     Set.chat.add chat
@@ -64,7 +64,7 @@ module.exports =
       { deco, head, log, data } = chat
       is_ban = false
       switch deco
-        when 'quill'
+        when 'quill', 'trix'
           is_ban ||= !( head || log?.match /// #{ potof.face?.name } ///)
         when 'diagram'
           is_ban ||= ! head
@@ -196,8 +196,10 @@ module.exports =
         for key, idx in attrs.random ? []
           { title, text } = random[idx] ?= RANDOM key, { @book_id }
           console.log { key, title, text }
-        log = log.replace /<kbd title="([^"]+)">([^<]+)<\/kbd>/g, (str, t1, v1)->
-          { title, text } = random[idx]
+
+        idx = 0
+        log = log.replace /<kbd ([^>]+)>([^<]+)<\/kbd>/g, (str, attr, v1)->
+          { title, text } = random[idx++]
           console.log { t1, v1, title, text }
           """<kbd title="#{title}">#{text}</kbd>"""
 

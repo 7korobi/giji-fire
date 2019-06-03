@@ -1,35 +1,7 @@
 fs = require 'fs'
 
-babel =
-  plugins: [
-    "@babel/plugin-transform-modules-commonjs"
-    ["@babel/plugin-transform-runtime", { regenerator: true }]
-  ]
-  presets: [
-    [ "@nuxt/babel-preset-app",
-      targets:
-        node: "8.15.0"
-        browsers: [
-          ">1%",
-          "not ie 11",
-          "not op_mini all",
-        ]
-    ]
-  ]
-
-
-_loaders =
-  coffee:
-    test: /\.coffee$/
-    loader: 'coffee-loader'
-    options:
-      sourceMap: true
-      transpile: babel
-
 module.exports =
   extend: (config, { isDev, isClient, isServer, loaders })=>
-    config.resolve.extensions.push '.coffee', '.yml'
-
     ###
     config.entry =
       sow: './sow/index.coffee'
@@ -40,8 +12,8 @@ module.exports =
     ###
 
     fs.writeFile "./config/webpack/result-#{config.name}-#{config.mode}.json", JSON.stringify(config, null, "  "), (err)->
-      console.log err
+    fs.writeFile "./config/webpack/result-#{config.name}-#{config.mode}-rules.json", JSON.stringify(config.module.rules, null, "  "), (err)->
 
   parallel: true
   extractCSS: true
-  babel: babel
+  # see .babelrc

@@ -9,13 +9,6 @@ if window?
 
 
 module.exports =
-  modules:
-    sow:       require './sow'
-    book:      require './book'
-    menu:      require './menu'
-    firebase:  require './firebase'
-    aggregate: require './aggregate'
-
   state: ->
     user: null
     env: {}

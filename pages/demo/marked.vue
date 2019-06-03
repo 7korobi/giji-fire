@@ -8,7 +8,7 @@ div
   div(v-for="o in talks")
     chat(:id="o.id" :key="o.id")
     c-report(:head="o.deco" :handle="o.handle" :write_at="o.write_at")
-      text-editor(v-model="o.log" :deco="o.deco" :rows="7" :maxRow="20" :maxSize="999")
+      text-edit(v-model="o.log" :deco="o.deco" :rows="7" :maxRow="20" :maxSize="999")
         select(v-model="o.handle" key="handle")
           option(v-for="phase in phases" :value="phase.handle" :class="phase.handle" :key="phase.handle") ∞ {{ phase.label }}
         select(v-model="o.deco" key="deco")
