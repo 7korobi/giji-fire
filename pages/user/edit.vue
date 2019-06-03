@@ -16,7 +16,7 @@ div
             td
               input#label(style="width: 97%" v-model="sign.sign" placeholder="みんなに見せる名前をつけよう！" size="10")
       hr
-    quill-edit(v-model="sign.introduction" placeholder="自己紹介をしよう！" v-bind="for_profile" @drop_image="image_post" @submit="submit")
+    trix-edit(v-model="sign.introduction" placeholder="自己紹介をしよう！" v-bind="for_profile" @drop_image="image_post" @submit="submit")
 
   c-report(handle="footer" deco="center")
     bread-crumb

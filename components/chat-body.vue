@@ -21,7 +21,7 @@
       option(value="") 無地
       option(:value="edit.potof.head") 記名
     select(v-model="v_deco" key="deco")
-      option(value="quill")  文字
+      option(value="trix")  文字
       option(value="diagram") 作図
     span.pull-right(v-if="edit.is_replacing")
       a.btn.active(@click="$listeners.remove")
@@ -99,7 +99,7 @@ module.exports =
         else
           key    = 'log'
           value  = @log
-          target = 'quill'
+          target = 'trix'
 
       if @edit
         { options } = @edit
