@@ -4,7 +4,6 @@ format = require 'date-fns/format'
 locale = require "date-fns/locale/ja"
 
 new Rule("book").schema ->
-  @order "write_at"
   @path "folder"
   @has_many "parts"
   @has_many "phases"
@@ -56,6 +55,7 @@ new Rule("book").schema ->
     @aggregate =
       face_ids: []
 
+  @order "list", sort: ['write_at', 'desc']
   class @model extends @model
     @map_reduce: (o, emit)->
       emit "idx",

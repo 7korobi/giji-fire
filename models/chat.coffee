@@ -133,13 +133,14 @@ new Rule("chat").schema ->
           count: 1
 
     @order: (o, emit)->
-      emit "last",
-        pluck: "max_is"
-        sort: [["max_is.phase.id", "max_is.write_at"], ["desc", "desc"]]
-        page: true
-      emit "list",
-        sort: ["write_at", "asc"]
-        page: true
       emit "mention", anker
       for mention_id in o.mention_ids
         emit "mention_to", mention_id, anker
+
+  @order "last",
+    pluck: "max_is"
+    sort: [["max_is.phase.id", "max_is.write_at"], ["desc", "desc"]]
+    page: true
+  @order "list",
+    sort: ["write_at", "asc"]
+    page: true

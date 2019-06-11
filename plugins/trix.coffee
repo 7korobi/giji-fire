@@ -1,18 +1,24 @@
 Trix = require 'trix'
 
-Trix.config.attachments.preview.caption =
+reset = (tgt, set)->
+  for key of tgt when ! set[key]
+    delete tgt[key]
+  for key, val of set
+    tgt[key] = val
+
+reset Trix.config.attachments.preview.caption,
   name: false
   size: false
 
-Trix.config.lang =
+reset Trix.config.lang,
   attachFiles: "Attach Files"
   byte:  "Byte"
   bytes: "Bytes"
   captionPlaceholder: "Add a caption…"
-  remove: "Remove"
   link: "Link"
   unlink: "Unlink"
   url: "URL"
+  remove: ""
   urlPlaceholder: "Enter a URL…"
   GB: "GB"
   KB: "KB"
@@ -27,8 +33,8 @@ Trix.config.toolbar.getDefaultHTML = ->
       <span class="trix-button-group trix-button-group--text-tools" data-trix-button-group="text-tools">
         <button type="button" class="trix-button trix-button--icon" data-trix-attribute="bold" data-trix-key="b" tabindex="-1"><strong>太</strong></button>
         <button type="button" class="trix-button trix-button--icon" data-trix-attribute="del" tabindex="-1"><del>薄</del></button>
-        <button type="button" class="trix-button trix-button--icon" data-trix-attribute="strike" tabindex="-1"><strike>◎</strike></button>
-        <button type="button" class="trix-button trix-button--icon" data-trix-attribute="underline" tabindex="-1"><underline>◎</underline></button>
+        <button type="button" class="trix-button trix-button--icon" data-trix-attribute="ins" tabindex="-1"><ins>◎</ins></button>
+        <button type="button" class="trix-button trix-button--icon" data-trix-attribute="s" tabindex="-1"><s>◎</s></button>
         <button type="button" class="trix-button trix-button--icon" data-trix-attribute="em" data-trix-key="i" tabindex="-1"><em style="font-size: 1.4ex">あ</em></button>
         <button type="button" class="trix-button trix-button--icon" data-trix-attribute="abbr" data-trix-key="i" tabindex="-1"><abbr>あ</abbr></button>
       </span>
@@ -87,7 +93,7 @@ Trix.config.toolbar.getDefaultHTML = ->
     <hr class="stripe">
   """
 
-Trix.config.blockAttributes = attributes =
+reset Trix.config.blockAttributes, attributes =
   default:
     tagName: "div"
     parse: false
@@ -151,7 +157,7 @@ Trix.config.blockAttributes = attributes =
     parse: false
     group: false
 
-Trix.config.textAttributes =
+reset Trix.config.textAttributes,
   bold:
     tagName: "strong"
     inheritable: true
@@ -170,11 +176,11 @@ Trix.config.textAttributes =
   del:
     tagName: "del"
     inheritable: true
-  strike:
-    tagName: "strike"
+  ins:
+    tagName: "ins"
     inheritable: true
-  underline:
-    tagName: "underline"
+  s:
+    tagName: "s"
     inheritable: true
   abbr:
     tagName: "abbr"

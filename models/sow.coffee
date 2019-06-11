@@ -8,8 +8,8 @@ new Rule("sow_village_plan").schema ->
 
 
 new Rule("sow_turn").schema ->
-  @order "turn", "asc"
   @belongs_to "village", target: "sow_villages", key: "story_id"
+  @order "list", sort: ["turn", "asc"]
 
 new Rule("sow_village").schema ->
   @has_many "turns", target: "sow_turns", key: "story_id"
@@ -105,24 +105,22 @@ new Rule("sow_village").schema ->
 
   cmd =
     count: 1
+  @order "yeary",       { sort: ['id','desc'] }
+  @order "in_month",    { sort: ['id','asc'] }
+  @order "upd_at",      { sort: ['id','asc'] }
+  @order "folder_id",   { sort: ['count', 'desc'] }
+  @order "upd_range",   { sort: ['count', 'desc'] }
+  @order "sow_auth_id", { sort: ['count', 'desc'] }
+  @order "rating",      { sort: ['count', 'desc'] }
+  @order "size",        { sort: ['count', 'desc'] }
+  @order "say",         { sort: ['count', 'desc'], belongs_to: "says"    }
+  @order "game",        { sort: ['count', 'desc'], belongs_to: "games"   }
+  @order "mob",         { sort: ['count', 'desc'], belongs_to: "roles"   }
+  @order "option",      { sort: ['count', 'desc'], belongs_to: "options" }
+  @order "event",       { sort: ['count', 'desc'], belongs_to: "roles"   }
+  @order "discard",     { sort: ['count', 'desc'], belongs_to: "roles"   }
+  @order "config",      { sort: ['count', 'desc'], belongs_to: "roles"   }
   class @model extends @model
-    @order: (o, emit)->
-      emit "yeary",       { sort: ['id','desc'] }
-      emit "in_month",    { sort: ['id','asc'] }
-      emit "upd_at",      { sort: ['id','asc'] }
-      emit "folder_id",   { sort: ['count', 'desc'] }
-      emit "upd_range",   { sort: ['count', 'desc'] }
-      emit "sow_auth_id", { sort: ['count', 'desc'] }
-      emit "rating",      { sort: ['count', 'desc'] }
-      emit "size",        { sort: ['count', 'desc'] }
-      emit "say",         { sort: ['count', 'desc'], belongs_to: "says"    }
-      emit "game",        { sort: ['count', 'desc'], belongs_to: "games"   }
-      emit "mob",         { sort: ['count', 'desc'], belongs_to: "roles"   }
-      emit "option",      { sort: ['count', 'desc'], belongs_to: "options" }
-      emit "event",       { sort: ['count', 'desc'], belongs_to: "roles"   }
-      emit "discard",     { sort: ['count', 'desc'], belongs_to: "roles"   }
-      emit "config",      { sort: ['count', 'desc'], belongs_to: "roles"   }
-
     @map_partition: (o, emit)->
       { id, part_id } = o
       it =

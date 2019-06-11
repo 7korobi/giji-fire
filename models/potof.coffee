@@ -2,7 +2,6 @@
 { Set, Model, Query, Rule } = require 'memory-orm'
 
 new Rule("potof").schema ->
-  @order "write_at"
   @path "folder", "book"
   @belongs_to "part"
   @belongs_to "face"
@@ -111,6 +110,7 @@ new Rule("potof").schema ->
       get: ->
         @icons.list[0]?.mdi
 
+  @order "list", sort: ['write_at', 'desc']
   class @model extends @model
     side: (part_id)->
       for idx in ["SM", "S", "GM", "G", "VM", "V"] when o = @book.chats.reduce.side?["#{part_id}-#{idx}"]?[@id]
@@ -136,6 +136,3 @@ new Rule("potof").schema ->
         continue unless o
         return o
 
-    @map_reduce: (o, emit)->
-
-    @order: (o, emit)->

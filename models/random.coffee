@@ -15,13 +15,10 @@ new Rule("random").schema ->
       else
         [t0]
 
-  class @model extends @model
-    @order: (o, emit)->
-      emit "list",
-        sort: ['ratio', 'desc']
-      emit "type",
-        sort: ['count', 'asc']
 
+  @order "list", sort: ['ratio', 'desc']
+  @order "type", sort: ['count', 'asc']
+  class @model extends @model
     @map_reduce: (o, emit)->
       emit "type", o.type,
         count: 1

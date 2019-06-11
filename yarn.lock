@@ -7321,10 +7321,10 @@ memory-fs@^0.4.0, memory-fs@^0.4.1, memory-fs@~0.4.1:
     errno "^0.1.3"
     readable-stream "^2.0.1"
 
-memory-orm@^0.3.7:
-  version "0.3.7"
-  resolved "https://registry.yarnpkg.com/memory-orm/-/memory-orm-0.3.7.tgz#63c8b60cd1d640ebcf97e0c018afe9eaa14c0d97"
-  integrity sha512-5CrEF7FhrPkp5nXBtKUUj83CBi9edZiY6huodbsoWCYBD6MIhJtAAheJX4t2mxwZTkOsg++EXGUzRVuIzEwpwg==
+memory-orm@^0.3.13:
+  version "0.3.13"
+  resolved "https://registry.yarnpkg.com/memory-orm/-/memory-orm-0.3.13.tgz#ab8d79b1662e88c4aedee8703b84cfaefab870c3"
+  integrity sha512-AC5NdGzRkOC1QlwfOMb6S3w2MIfMGkigPf0ZZY3MCDicMDLZhuVLNQdze37s/GeeN/34BNtqygiVjJo525ZS/A==
   dependencies:
     lodash "^4.17.11"
 
@@ -7910,7 +7910,7 @@ number-is-nan@^1.0.0:
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
   integrity sha1-CXtgK1NCKlIsGvuHkDGDNpQaAR0=
 
-nuxt@^2.7.1:
+nuxt@^2.8.0:
   version "2.8.0"
   resolved "https://registry.yarnpkg.com/nuxt/-/nuxt-2.8.0.tgz#34e01bb9eeec02324f8e446d0c03995f174b49ce"
   integrity sha512-EGgSJOWSVmH8pOPmEPkf5V8C3IpfGReHziqEdTK8JrrAb1tvGKbTrfbNwaXV0qJ62vdVSSiHtFyWqOFEHXhJ1g==
@@ -11375,14 +11375,14 @@ vue-no-ssr@^1.1.1:
   resolved "https://registry.yarnpkg.com/vue-no-ssr/-/vue-no-ssr-1.1.1.tgz#875f3be6fb0ae41568a837f3ac1a80eaa137b998"
   integrity sha512-ZMjqRpWabMPqPc7gIrG0Nw6vRf1+itwf0Itft7LbMXs2g3Zs/NFmevjZGN1x7K3Q95GmIjWbQZTVerxiBxI+0g==
 
-vue-petit-store@^0.7.16:
-  version "0.7.16"
-  resolved "https://registry.yarnpkg.com/vue-petit-store/-/vue-petit-store-0.7.16.tgz#330541254e520ae34b6fb5d09bc5757f33a52eed"
-  integrity sha512-VnKWDaDfe9g9W4tiEbhBjuWi17YNgArSUIEtcaoQ3tBZmm0/0Mr5t5pxDS8mPhTw8LUpTfiS7IzmNuPl/Deubg==
+vue-petit-store@^0.8.5:
+  version "0.8.5"
+  resolved "https://registry.yarnpkg.com/vue-petit-store/-/vue-petit-store-0.8.5.tgz#2083fd04f7e865275b1a9cdfb9e914aeda0d6f72"
+  integrity sha512-7UTmu9YmyF1Ufr4Da1ZEAwRNIGzleLV8p/EgrvDSQdraIO26SojBSkeCWFsBNCE7L0MUNGfzCqi/hymb0sj8lw==
   dependencies:
     dexie "^2.0.4"
     firebase "5.10.1"
-    memory-orm "^0.3.7"
+    memory-orm "^0.3.13"
     tiny-cookie "^2.3.1"
     yaml-jest "^1.0.5"
 

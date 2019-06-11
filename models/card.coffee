@@ -1,7 +1,6 @@
 { Set, Model, Query, Rule } = require 'memory-orm'
 
 new Rule("card").schema ->
-  @order "write_at"
   @path "folder", "book", "potof"
   @belongs_to "role"
 
@@ -13,6 +12,10 @@ new Rule("card").schema ->
   @scope (all)->
     for_part:  (part_id)->  all.where {  part_id }
     for_phase: (phase_id)-> all.where { phase_id }
+
+  @order "list", sort: ['write_at', 'desc']
+  class @model extends @model
+    @map_reduce: (o, emit)->
 
 new Rule("stat").schema ->
   @path "folder", "book", "potof"

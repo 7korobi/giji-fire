@@ -1,5 +1,7 @@
 <template lang="pug">
 div
+  div(style="")
+    div(v-for="o in rect_styles" :style="o")
   trix-editor(
     ref="trix"
     :input="id"
@@ -31,8 +33,6 @@ div
         sub {{maxWord}}文
         | {{lines}}/
         sub {{maxRow}}行
-    span
-      | {{ head }}-{{ tail }} {{ rect.top }} {{ rect.left }}
     slot
 </template>
 <script lang="coffee">
@@ -62,11 +62,7 @@ module.exports = editor
     localStorage "log.html"
   ]
   data: ->
-    head: ""
-    tail: ""
-    rect:
-      left: 0
-      top:  0
+    rects: []
     attrs:
       random: []
     log:
@@ -86,6 +82,17 @@ module.exports = editor
       default: '入力はこちらに。'
 
   computed:
+    rect_styles: ->
+      for o in @rects when o
+        { left, top, right, bottom, width, height } = o
+        left = parseInt( left ) + "px"
+        top = parseInt( top ) + "px"
+        width = parseInt( width ) + "px"
+        height = parseInt( height ) + "px"
+        right = parseInt( right ) + "px"
+        bottom = parseInt( bottom ) + "px"
+        { left, top, right, bottom, width, height, position: 'absolute', border: '1px solid red' }
+
     meta: ->
       size = [
         @log.text.split("\n").length - 1
@@ -155,15 +162,17 @@ module.exports = editor
     selection_change: (e)->
       range = @editor.getSelectedRange()
       doc = @editor.getSelectedDocument()
-      rect = @editor.getClientRectAtPosition( @head )
       full = @editor.getDocument()
 
-      [@head, @tail] = range
+      loc_range = full.locationRangeFromRange(range)
+      dom_range = @editor.selectionManager.createDOMRangeFromLocationRange(loc_range)
+      if dom_range
+        @rects = @editor.selectionManager.getClientRectsForDOMRange(dom_range)
 
-      console.log @editor, full
+      console.log [ range, loc_range, dom_range, @rect_styles ]
 
-      if rect
-        @rect = rect
+      if @rects?[0]
+        @rect = @rects[0]
       window.localStorage["log.trix"] = JSON.stringify @editor
 
     change_bare: (e)->
@@ -172,6 +181,8 @@ module.exports = editor
 
     change: _.debounce ->
       return unless @$refs && @$el && Trix
+
+      @editor.getClientRectAtRange
 
       hash = {}
       for block in @editor.getDocument().blockList.objects
@@ -185,7 +196,7 @@ module.exports = editor
       window.localStorage["log.trix"] = JSON.stringify @editor
       console.log @meta
 
-    , 200
+    , 300
 
     focus: (e)->
       @$emit "focus", e
@@ -197,6 +208,12 @@ module.exports = editor
       console.log e
 
   watch:
+    value: _.debounce (newValue)->
+      unless @log.html == newValue
+        console.log "force change."
+        @editor.loadHTML newValue
+    , 500
+
     'log.trix': (backup)->
       @restore backup
 
@@ -222,22 +239,6 @@ trix-toolbar
     display: flex
     flex-wrap: nowrap
     justify-content: space-between
-
-  .trix-button--remove,
-  .trix-button--icon,
-    width:  5ex
-    height: 3ex
-    &::before
-      display: inline-block
-      position: absolute
-      top:    0
-      right:  0
-      bottom: 0
-      left:   0
-      background-position: center
-      background-repeat: no-repeat
-      background-size: contain
-      font-size: 2ex
 
   .trix-button--icon.mdi
     &::before
@@ -345,6 +346,21 @@ trix-toolbar
       flex-basis: 50%
       max-width: 50%
 
+.trix-button--remove,
+.trix-button--icon,
+  width:  5ex
+  height: 3ex
+  &::before
+    display: inline-block
+    position: absolute
+    top:    0
+    right:  0
+    bottom: 0
+    left:   0
+    background-position: center
+    background-repeat: no-repeat
+    background-size: contain
+    font-size: 2ex
 
 </style>
 

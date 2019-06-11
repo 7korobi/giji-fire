@@ -8,7 +8,6 @@ format =
     hour:    "2-digit"
 
 new Rule("section").schema ->
-  @order "write_at"
   @path "folder", "book", "part"
   @has_many "chats"
 
@@ -30,3 +29,5 @@ new Rule("section").schema ->
           write = format.tail.format @write_at
           begin
           .replace "時", "-" + write
+
+  @order "list", sort: ["write_at", "desc"]

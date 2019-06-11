@@ -13,13 +13,20 @@ div
 </template>
 
 <script lang="coffee">
+
+
 module.exports =
   data: (req)->
     now = new Date() - 0
+    times = [0,-86400 * 2 * 365 - 1, -86400 * 365 - 1,-86400 * 7 - 1, -86400 - 1,[-3610..-3590]...,-Infinity,[-70..-50]...,0,[50..70]...,Infinity,[3590..3610]...,86400 - 1,86400 * 7 - 1,86400 * 365 - 1,0].map (t)->
+      at: now - t * 1000
+
+    times[.. 0][0].at = Number.MIN_SAFE_INTEGER
+    times[-1..][0].at = Number.MAX_SAFE_INTEGER
+
     clicks: 0
     name: if req then 'server' else 'client'
-    times: [[-3610..-3590]...,Infinity,[-70..-50]...,Infinity,[50..70]...,Infinity,[3590..3610]...].map (t)->
-      at: now - t * 1000
+    times: times
   head: ->
     title: "About Page (#{this.name}-side)"
   methods:

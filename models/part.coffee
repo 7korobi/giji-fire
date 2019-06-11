@@ -11,7 +11,4 @@ new Rule("part").schema ->
   @scope (all)->
     {}
 
-  class @model extends @model
-    @order: (o, emit)->
-      emit "list",
-        sort: ["chats.list.0.0.write_at", "asc"]
+  @order "list", sort: ["chats.list.0.0.write_at", "asc"]

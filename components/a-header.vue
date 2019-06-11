@@ -67,7 +67,7 @@ module.exports =
         @old.href[key] = @href[key]
         setTimeout =>
           @new.rel[key] = 'prefetch'
-        , 100
+        , 1000
       , 100
 
   watch:

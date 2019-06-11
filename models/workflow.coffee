@@ -5,10 +5,7 @@ new Rule("work_country").schema ->
   @deploy ->
     @q =
       search_words: @country.join(" ")
-  class @model extends @model
-    @order: (o, emit)->
-      emit "list",
-        sort: ["country.length", "desc"]
+  @order "list", sort: ["country.length", "desc"]
 
 idx = 0
 new Rule("work_name").schema ->
@@ -29,6 +26,7 @@ new Rule("work_name").schema ->
           all
       q.search search
 
+  @order "spot_size", sort: ["count", "desc"]
   class @model extends @model
     @map_partition: (o, emit)->
       emit "spot", o.key,
@@ -40,5 +38,3 @@ new Rule("work_name").schema ->
     @order: (o, emit)->
       emit "spot", o.key, "list",
         sort: ["name", "asc"]
-      emit "spot_size",
-        sort: ["count", "desc"]

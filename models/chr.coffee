@@ -28,6 +28,7 @@ new Rule("tag").schema ->
       all.where (o)->
         ! o.disabled
 
+  @order "list", sort: ["order"]
   class @model extends @model
     @map_reduce: (o, emit)->
       group = o.order // 1000
@@ -37,8 +38,6 @@ new Rule("tag").schema ->
 
     @order: (o, emit)->
       group = o.order // 1000
-      emit "list",
-        sort: ["order"]
       emit "group", group, "list",
         sort: ["order"]
 
@@ -66,15 +65,13 @@ new Rule("face").schema ->
 
   map =
     count: 1
+  @order "list",
+    sort: ["order"]
+  @order "name_head",
+    sort: ["id"]
+    index: "set.length"
+    cover: katakanas
   class @model extends @model
-    @order: (o, emit)->
-      emit "list",
-        sort: ["order"]
-      emit "name_head",
-        sort: ["id"]
-        index: "set.length"
-        cover: katakanas
-
     @map_partition: (o, emit)->
       it =
         set: o.id
@@ -139,12 +136,11 @@ new Rule("face").schema ->
         @chr_jobs.pluck("job").uniq
 
 new Rule("chr_set").schema ->
-  @order "label"
   @has_many "chr_jobs"
   @has_many "chr_npcs"
+  @order "list", sort: ['label', 'asc']
 
 new Rule("chr_npc").schema ->
-  @order "label"
   @belongs_to "chr_set"
   @belongs_to "chr_job"
   @belongs_to "face"
@@ -157,6 +153,8 @@ new Rule("chr_npc").schema ->
     head:
       get: ->
         "#{@chr_job.job} #{@face.name}"
+
+  @order "list", sort: ['label', 'asc']
 
 new Rule("chr_job").schema ->
   @belongs_to "chr_set"
@@ -187,11 +185,7 @@ new Rule("chr_job").schema ->
           .where { chr_set_id }
           .in 'face.tag_ids': tag_id
 
-  class @model extends @model
-    @order: (o, emit)->
-      emit "list",
-        sort: ["face.order"]
-
+  @order "list", sort: ['face.order']
   @property 'model',
     chr_npc:
       get: ->

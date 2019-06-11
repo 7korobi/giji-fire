@@ -115,7 +115,7 @@ div
 <script lang="coffee">
 _ = require 'lodash'
 anime = require('animejs').default
-{ Step, Query } = require 'memory-orm'
+{ State, Query } = require 'memory-orm'
 { poll, replaceState, on_appear } = require "vue-petit-store"
 
 pairs = [
@@ -169,6 +169,7 @@ module.exports =
     replaceState "idx"
   ]
   data: ->
+    step: State.step
     idx: ""
     applogo: [
       { x:  0, y:   90, height: -150, width:  87.5, fill: "#3b8070", to: [{ y:  30, height: 150 },{ x:  40 }]}

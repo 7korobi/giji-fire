@@ -16,6 +16,7 @@ require "./chat"
 
 require "./sow"
 
+require "./sheet"
 
 require "./activity"
 require "./workflow"

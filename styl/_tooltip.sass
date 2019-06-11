@@ -1,10 +1,10 @@
-[title]:after
+body :not(button)[title]:after
   content: attr(title)
 
 [data-tooltip]:after
   content: attr(data-tooltip)
 
-[title],
+body :not(button)[title],
 [data-tooltip],
   position: relative
 
@@ -42,7 +42,7 @@
     border-color: transparent
     border-radius: 6px
 
-[title],
+body :not(button)[title],
 .tooltip-bottom,
 .tooltip-right,
 .tooltip-left,
@@ -81,7 +81,7 @@
     left: 15px
 
 // Top
-[title],
+body :not(button)[title],
 .tooltip-top,
   &:after,
   &:before,
