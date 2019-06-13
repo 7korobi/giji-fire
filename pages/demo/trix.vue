@@ -10,7 +10,7 @@ div
   no-ssr
     div
       c-report(head="Trix TEST" sign="ななころび" :handle="chat.handle" style="z-index: 10")
-        trix-edit#trix-sample(v-model="text" :max-row="10" @submit="console" @drop_image="image_post")
+        trix-edit#trix-sample(:handle="chat.handle" v-model="text" :max-row="10" @submit="submit" @drop_image="image_post")
           select(v-model="chat.handle" key="handle")
             option(value="SSAY") 発言
             option(value="WSAY") 囁き
@@ -27,7 +27,7 @@ div
 </template>
 
 <script lang="coffee">
-
+RANDOM = require "~/plugins/random"
 if window?
   firebase = require "firebase"
 
@@ -43,6 +43,8 @@ module.exports =
       handle: "SSAY"
       deco: "trix"
       part_id: "edit-edit-edit"
+      data:
+        random: []
 
   computed:
     _storage: ->
@@ -54,6 +56,23 @@ module.exports =
     image_post: ({ id, file }, next)->
       ss = await @_images.child(id).put(file)
       next await ss.ref.getDownloadURL()
+
+    submit: ( value, { attrs, size } )->
+      { handle, deco, part_id, data } = @chat
+      { random, clusters, icons, lines } = data
+
+      for key, idx in attrs.random ? []
+        random[idx] ?= RANDOM key, { book_id: "edit-edit" }
+
+      idx = 0
+      console.log value
+      value = value.replace /<kbd ([^>]+)>([^<]+)<\/kbd>/g, (str, attr, v1)->
+        { title, text } = random[idx++]
+        console.log { t1, v1, title, text }
+        """<kbd title="#{title}">#{text}</kbd>"""
+
+      @text = value
+
     console: ->
       console.log arguments
 </script>

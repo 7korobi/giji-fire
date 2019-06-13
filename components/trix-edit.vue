@@ -5,11 +5,16 @@ div
   trix-editor(
     ref="trix"
     :input="id"
+    :toolbar="toolbar_id"
     :placeholder="placeholder"
+
+    @trix-action-invoke="action_invoke"
 
     @trix-initialize="initialize"
     @trix-change="change_bare"
     @trix-selection-change="selection_change"
+
+    @trix-paste="paste"
 
     @trix-file-accept="file_accept"
     @trix-attachment-add="attachment_add"
@@ -18,12 +23,12 @@ div
     @trix-focus="focus"
     @trix-blur="blur"
 
+
     @trix-before-initialize="logger"
-    @trix-action-invoke="action_invoke"
   )
-  hr.footnote
   input(ref="input" type="hidden" :id="id" name="content")
-  div.form
+  div.form.toolbar(:class="handle")
+    hr.footnote
     button(@click="submit" :class="{ ban, warn }")
       i.mdi(:class="mark")
       span
@@ -34,15 +39,48 @@ div
         | {{lines}}/
         sub {{maxRow}}行
     slot
+    p(v-for="suggest in suggests")
+    trix-toolbar(:id="toolbar_id")
 </template>
 <script lang="coffee">
 _ = require 'lodash'
 Trix = require 'trix'
 { localStorage } = require "vue-petit-store"
 
-uploader = require "~/plugins/uploader"
 invoke =
   kana: require "~/plugins/trix-kana"
+  hr: (editor, mode, range, text)->
+    hr = new Trix.Attachment
+      content: """<hr class="#{mode}">"""
+      contentType: "block"
+    editor.insertAttachment hr
+
+  url: (editor, mode, range, text)->
+    switch mode
+      when 'href'
+        text.replace /(ftp|https?):\/\/(?:www\.|(?!www))[^\s\.]+\.[^\s]{2,}|www\.[^\s]+\.[^\s]{2,}/ig, (url, protocol, head, src)=>
+          console.log "uri: ", head, tail, protocol, url
+          return src unless protocol
+          tail  = head +     url.length
+          tail2 = head + 1 + protocol.length
+          result_range = [head + 1, tail2]
+          console.log head, tail, tail2, " #{protocol} ", { href: url }
+
+          if head < range[0] < tail && head < range[1] < tail
+            range = result_range
+          if tail < range[0]
+            range[0] += tail2 - tail
+          if tail < range[1]
+            range[1] += tail2 - tail
+          editor.recordUndoEntry "Auto Link"
+          editor.setSelectedRange [head, tail]
+          editor.insertString " #{protocol} "
+          editor.setSelectedRange result_range
+          editor.activateAttribute 'href', url
+          return ""
+
+        editor.setSelectedRange range
+
 
 editor = require './editor'
 
@@ -62,6 +100,7 @@ module.exports = editor
     localStorage "log.html"
   ]
   data: ->
+    suggests: []
     rects: []
     attrs:
       random: []
@@ -74,6 +113,7 @@ module.exports = editor
 
   props:
     content: String
+    handle: String
     value: String
     id: String
 
@@ -82,6 +122,8 @@ module.exports = editor
       default: '入力はこちらに。'
 
   computed:
+    toolbar_id: ->
+      @id + "_toolbar"
     rect_styles: ->
       for o in @rects when o
         { left, top, right, bottom, width, height } = o
@@ -122,7 +164,10 @@ module.exports = editor
     action_invoke: (e)->
       { actionName } = e
       [..., type, mode] = actionName.split("-")
-      invoke[type] @editor, mode
+
+      range = @editor.getSelectedRange()
+      str = @editor.getDocument().getStringAtRange range
+      invoke[type] @editor, mode, range, str
 
 
     file_accept: (e)->
@@ -182,8 +227,8 @@ module.exports = editor
     change: _.debounce ->
       return unless @$refs && @$el && Trix
 
-      @editor.getClientRectAtRange
-
+      range = @editor.getSelectedRange()
+      invoke.url @editor, "href", range, @log.text
       hash = {}
       for block in @editor.getDocument().blockList.objects
         for attribute in block.attributes
@@ -197,6 +242,10 @@ module.exports = editor
       console.log @meta
 
     , 300
+
+    paste: ({ paste })->
+      { range, string, type } = paste
+      console.log { range, string, type }
 
     focus: (e)->
       @$emit "focus", e
@@ -220,13 +269,14 @@ module.exports = editor
 </script>
 <style lang="sass">
 
+.form.toolbar
+  position: sticky
+  bottom: 0
+
 trix-editor
   outline: none
 
 trix-toolbar
-  position: sticky
-  top: 0
-
   .trix-button
     position: relative
     float: left
@@ -237,7 +287,7 @@ trix-toolbar
 
   .trix-button-row
     display: flex
-    flex-wrap: nowrap
+    flex-wrap: wrap
     justify-content: space-between
 
   .trix-button--icon.mdi
@@ -246,6 +296,7 @@ trix-toolbar
 
   .trix-button-group
     display: flex
+    margin-top: 0.3em
 
     &:not(:first-child)
       margin-left: 1.5vw
@@ -287,6 +338,9 @@ trix-toolbar
   .trix-input--dialog.validate:invalid
     box-shadow: #f00 0px 0px 1.5px 1px
 
+
+.attachment[data-trix-content-type="block"]
+  display: block
 
 .attachment
   display: inline-block
@@ -365,10 +419,9 @@ trix-toolbar
 </style>
 
 <style>
-
 .trix-button--icon[data-trix-action="x-kana-invert"]::before {
   content: "あア";
-  letter-spacing: -0.3em;
+  letter-spacing: -0.4em;
 }
 .trix-button--icon[data-trix-action="x-kana-none"]::before {
   content: "は";
@@ -450,7 +503,6 @@ trix-toolbar
   background-image: url(data:image/svg+xml,%3Csvg%20height%3D%2224%22%20width%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M19%206.4L17.6%205%2012%2010.6%206.4%205%205%206.4l5.6%205.6L5%2017.6%206.4%2019l5.6-5.6%205.6%205.6%201.4-1.4-5.6-5.6z%22%2F%3E%3Cpath%20d%3D%22M0%200h24v24H0z%22%20fill%3D%22none%22%2F%3E%3C%2Fsvg%3E);
 }
 
-
 trix-toolbar .trix-dialog--link {
   max-width: 600px;
 }
@@ -465,8 +517,6 @@ trix-toolbar .trix-dialog__link-fields .trix-button-group {
   flex: 0 0 content;
   margin: 0;
 }
-
-
 
 trix-editor [data-trix-mutable]:not(.attachment__caption-editor) {
   -webkit-user-select: none;
@@ -591,7 +641,6 @@ trix-editor .attachment__metadata .attachment__size {
   margin-left: 0.2em;
   white-space: nowrap;
 }
-
 
 .trix-content img {
   max-width: 100%;

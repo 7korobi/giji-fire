@@ -104,7 +104,6 @@ module.exports =
     potofs: ->
       if @part?.book
         { list } = Query.potofs.catalog(@part.book_id, @part.id, @sort, @order)
-        console.log list
         for o in list
           o.hide = false
         for id in @hide_ids

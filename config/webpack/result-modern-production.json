@@ -273,15 +273,10 @@
           {
             "loader": "/Users/7korobi/Dropbox/www/giji-fire-new/node_modules/babel-loader/lib/index.js",
             "options": {
-              "plugins": [
-                "@babel/plugin-transform-modules-commonjs",
-                [
-                  "@babel/plugin-transform-runtime",
-                  {
-                    "regenerator": true
-                  }
-                ]
-              ],
+              "configFile": false,
+              "babelrc": false,
+              "cacheDirectory": false,
+              "envName": "modern",
               "presets": [
                 [
                   "/Users/7korobi/Dropbox/www/giji-fire-new/node_modules/@nuxt/babel-preset-app/src/index.js",
@@ -289,11 +284,7 @@
                     "modern": true
                   }
                 ]
-              ],
-              "configFile": false,
-              "babelrc": false,
-              "cacheDirectory": false,
-              "envName": "modern"
+              ]
             }
           }
         ]
@@ -304,15 +295,10 @@
           {
             "loader": "/Users/7korobi/Dropbox/www/giji-fire-new/node_modules/babel-loader/lib/index.js",
             "options": {
-              "plugins": [
-                "@babel/plugin-transform-modules-commonjs",
-                [
-                  "@babel/plugin-transform-runtime",
-                  {
-                    "regenerator": true
-                  }
-                ]
-              ],
+              "configFile": false,
+              "babelrc": false,
+              "cacheDirectory": false,
+              "envName": "modern",
               "presets": [
                 [
                   "/Users/7korobi/Dropbox/www/giji-fire-new/node_modules/@nuxt/babel-preset-app/src/index.js",
@@ -320,11 +306,7 @@
                     "modern": true
                   }
                 ]
-              ],
-              "configFile": false,
-              "babelrc": false,
-              "cacheDirectory": false,
-              "envName": "modern"
+              ]
             }
           },
           {
@@ -344,15 +326,10 @@
           {
             "loader": "/Users/7korobi/Dropbox/www/giji-fire-new/node_modules/babel-loader/lib/index.js",
             "options": {
-              "plugins": [
-                "@babel/plugin-transform-modules-commonjs",
-                [
-                  "@babel/plugin-transform-runtime",
-                  {
-                    "regenerator": true
-                  }
-                ]
-              ],
+              "configFile": false,
+              "babelrc": false,
+              "cacheDirectory": false,
+              "envName": "modern",
               "presets": [
                 [
                   "/Users/7korobi/Dropbox/www/giji-fire-new/node_modules/@nuxt/babel-preset-app/src/index.js",
@@ -360,11 +337,7 @@
                     "modern": true
                   }
                 ]
-              ],
-              "configFile": false,
-              "babelrc": false,
-              "cacheDirectory": false,
-              "envName": "modern"
+              ]
             }
           },
           {
@@ -889,7 +862,6 @@
     {
       "options": {
         "filename": "[contenthash].css",
-        "orderWarning": true,
         "chunkFilename": "[contenthash].css"
       }
     },
@@ -1003,9 +975,7 @@
       ".vue",
       ".jsx",
       ".ts",
-      ".tsx",
-      ".coffee",
-      ".yml"
+      ".tsx"
     ],
     "alias": {
       "~~": "/Users/7korobi/Dropbox/www/giji-fire-new",

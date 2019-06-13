@@ -5,33 +5,32 @@ for voice_chr, idx in voice_chrs
   devoice_chr = devoice_chrs[idx]
   devoice[voice_chr] = devoice_chr
 
-selected_change = (editor, cb)->
-  range = editor.getSelectedRange()
-  full = editor.getDocument()
+selected_change = (editor, range, str, cb)->
   doc = editor.getSelectedDocument()
-  str = full.getStringAtRange range
-  str = cb str
-  editor.insertString str
+  ret = cb str
+  editor.insertString ret
+  range[1] += ret.length - str.length
+  editor.setSelectedRange range
 
-module.exports = (editor, mode)->
+module.exports = (editor, mode, range, str)->
   switch mode
     when 'invert'
       # ひらがなをカタカナに、カタカナをひらがなに
-      selected_change editor, (text)->
+      selected_change editor, range, str, (text)->
         text.replace /([\u3041-\u3096])|([\u30a1-\u30f6])/g, (match, hira, kata)->
           if hira
             return String.fromCharCode hira.charCodeAt(0) + 0x60
           if kata
             return String.fromCharCode kata.charCodeAt(0) - 0x60
     when 'none'
-      selected_change editor, (text)->
+      selected_change editor, range, str, (text)->
         text = text.replace /([\u3099\u309a])/g, (match, cut)->
           ""
         text = text.replace /([\u3041-\u3096\u309d\309f\u30a1-\u30fa\u30fd\u30fe\u30ff])/g, (match, chr)->
           devoice[chr] ? chr
         text
     when 'half'
-      selected_change editor, (text)->
+      selected_change editor, range, str, (text)->
         text = text.replace /([\u3099\u309a])/g, (match, cut)->
           ""
         text = text.replace /([\u3041-\u3096\u309d\309f\u30a1-\u30fa\u30fd\u30fe\u30ff])/g, (match, chr)->
@@ -41,7 +40,7 @@ module.exports = (editor, mode)->
           String.fromCharCode chr.charCodeAt(0) + 2
         text
     when 'full'
-      selected_change editor, (text)->
+      selected_change editor, range, str, (text)->
         text = text.replace /([\u3099\u309a])/g, (match, cut)->
           ""
         text = text.replace /([\u3041-\u3096\u309d\309f\u30a1-\u30fa\u30fd\u30fe\u30ff])/g, (match, chr)->

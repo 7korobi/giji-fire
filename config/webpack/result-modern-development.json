@@ -653,7 +653,6 @@
     {
       "options": {
         "filename": "[name].css",
-        "orderWarning": true,
         "chunkFilename": "[name].css"
       }
     },
