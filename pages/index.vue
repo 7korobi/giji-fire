@@ -116,7 +116,7 @@ div
 _ = require 'lodash'
 anime = require('animejs').default
 { State, Query } = require 'memory-orm'
-{ poll, replaceState, on_appear } = require "vue-petit-store"
+{ share, poll, replaceState, on_appear } = require "vue-petit-store"
 
 pairs = [
   vs: ["c41","c47"]
@@ -164,9 +164,11 @@ d_pair_idx = 0
 module.exports =
   directives:
     appear: on_appear 'applogo'
+
   mixins: [
     poll -> [["sow/plan"]]
     replaceState "idx"
+    share "user"
   ]
   data: ->
     step: State.step
@@ -201,8 +203,6 @@ module.exports =
       size: [2,4,18]
 
   computed:
-    user: ->
-      @$store.state.firebase.user
     plan: ->
       Query.sow_village_plans.sort('write_at','desc').list
     prologue: ->

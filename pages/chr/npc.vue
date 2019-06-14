@@ -2,7 +2,7 @@
 div
   c-post(handle="footer")
     bread-crumb
-  c-report(handle="header" deco="center")
+  c-report.form(handle="header" deco="center")
     btn(v-for=" o in chr_sets " v-model="chr_set_id" :as="o.id" :key="o.id")
       | {{ o.label }}
       sup {{ o.chr_npcs.list.length }}

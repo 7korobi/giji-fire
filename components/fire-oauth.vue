@@ -108,11 +108,6 @@ module.exports =
     google: ->
       @auth.signInWithRedirect new firebase.auth.GoogleAuthProvider()
 
-  watch:
-    user: (oldValue, newValue)->
-      console.log @$data.$shared_memory
-      console.log "user:", oldValue, newValue
-
 </script>
 
 <style lang="sass" scoped>
