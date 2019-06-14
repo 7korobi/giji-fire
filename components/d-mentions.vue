@@ -34,12 +34,12 @@ time
 
 <script lang="coffee">
 { Query, State } = require 'memory-orm'
-{ vuex_read, relative_to } = require "vue-petit-store"
+{ share, relative_to } = require "vue-petit-store"
 _ = require "lodash"
 
 module.exports =
   mixins: [
-    vuex_read 'user', on: 'firebase'
+    share 'user'
   ]
   props: ['book_id', 'chat_id', 'page_idx', 'back']
   data: ->

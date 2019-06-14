@@ -84,15 +84,15 @@ div
 
 </template>
 <script lang="coffee">
-{ vuex_read } = require "vue-petit-store"
+{ share } = require "vue-petit-store"
 
 if window?
-  firebase = require "firebase"
+  firebase = require "firebase/app"
 
 module.exports =
   mixins: [
-    vuex_read 'user',       on: "firebase"
-    vuex_read 'credential', on: "firebase"
+    share 'user'
+    share 'credential'
   ]
   data: -> {}
   mounted: ->
@@ -111,13 +111,6 @@ module.exports =
     @messaging.onTokenRefresh =>
       token = await @messaging.getToken()
       console.log token
-
-    @collection.where("appName", "==", "[DEFAULT]").onSnapshot (q)=>
-      q.docChanges().forEach ({ newIndex, oldIndex, type })=>
-        console.log { newIndex, oldIndex, type }
-      q.forEach (doc)=>
-        # console.log doc.data()
-        console.log doc.metadata
 
   computed:
     db: ->

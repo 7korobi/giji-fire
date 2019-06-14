@@ -29,7 +29,7 @@ div
 <script lang="coffee">
 
 if window?
-  firebase = require "firebase"
+  firebase = require "firebase/app"
 
 module.exports =
   mixins: [

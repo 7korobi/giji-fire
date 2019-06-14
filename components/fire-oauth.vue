@@ -21,17 +21,16 @@ component(v-bind="for_top" v-on="$listeners")
     slot
 </template>
 <script lang="coffee">
-{ vuex, firestore_doc } = require "vue-petit-store"
+{ share, firestore_doc } = require "vue-petit-store"
 
 if window?
-  firebase = require "firebase"
-
+  firebase = require "firebase/app"
 
 module.exports =
   mixins: [
-    vuex 'user',       on: 'firebase'
-    vuex 'credential', on: 'firebase'
-    vuex 'sign',       on: 'firebase'
+    share 'user'
+    share 'sign'
+    share 'credential'
     firestore_doc "sign", -> @user && "user/#{ @user.uid }"
     require("~/plugins/for_component")
   ]
@@ -39,18 +38,17 @@ module.exports =
   data: ->
     code: null
     message: null
+
   mounted: ->
     @auth.onIdTokenChanged (user)=>
       if user
         { uid, email, photoURL, displayName, apiKey, authDomain, refreshToken, metadata } = user
-        user = { uid, email, photoURL, displayName, apiKey, authDomain, refreshToken, metadata }
-      @$store.commit 'firebase/replace', { user }
+        @user = { uid, email, photoURL, displayName, apiKey, authDomain, refreshToken, metadata }
 
     @auth.onAuthStateChanged (user)=>
       if user
         { uid, email, photoURL, displayName, apiKey, authDomain, refreshToken, metadata } = user
-        user = { uid, email, photoURL, displayName, apiKey, authDomain, refreshToken, metadata }
-      @$store.commit 'firebase/replace', { user }
+        @user = { uid, email, photoURL, displayName, apiKey, authDomain, refreshToken, metadata }
 
     @auth.getRedirectResult()
     .then (o)=>
@@ -60,9 +58,9 @@ module.exports =
       { isNewUser, username, profile } = additionalUserInfo
       { accessToken, providerId, secret, signInMethod } = credential
       { uid, email, photoURL, displayName, apiKey, authDomain, refreshToken, metadata } = user
-      @$store.commit 'firebase/replace',
-        user: { uid, email, photoURL, displayName, apiKey, authDomain, refreshToken, metadata }
-        credential: { accessToken, providerId, secret, signInMethod }
+      console.log "get redirect result success"
+      @user = { uid, email, photoURL, displayName, apiKey, authDomain, refreshToken, metadata }
+      @credential = { accessToken, providerId, secret, signInMethod }
 
     .catch ({ @code, @message })=>
 
@@ -97,13 +95,10 @@ module.exports =
         else
           ['btn']
 
-
   methods:
     signout: ->
       @auth.signOut()
-      @$store.commit 'firebase/replace',
-        user: null
-        credential: null
+      @user = @credential = null
     facebook: ->
       @auth.signInWithRedirect new firebase.auth.FacebookAuthProvider()
     twitter: ->
@@ -112,6 +107,11 @@ module.exports =
       @auth.signInWithRedirect new firebase.auth.GithubAuthProvider()
     google: ->
       @auth.signInWithRedirect new firebase.auth.GoogleAuthProvider()
+
+  watch:
+    user: (oldValue, newValue)->
+      console.log @$data.$shared_memory
+      console.log "user:", oldValue, newValue
 
 </script>
 

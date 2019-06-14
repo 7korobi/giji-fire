@@ -44,14 +44,14 @@ div
 </style>
 
 <script lang="coffee">
-{ firestore_models, vuex_read } = require "vue-petit-store"
+{ firestore_models, share } = require "vue-petit-store"
 { Query } = require 'memory-orm'
 
 module.exports =
   mixins: [
-    vuex_read 'user',       on: "firebase"
-    vuex_read 'credential', on: "firebase"
-    vuex_read 'sign',       on: "firebase"
+    share 'user'
+    share 'sign'
+    share 'credential'
     firestore_models "markers",
       -> @uid && "marker"
       (ref)-> @uid && ref.where('uid','==', @uid )

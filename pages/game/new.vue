@@ -51,13 +51,13 @@ log-wiki
 <script lang="coffee">
 format = require "date-fns/format"
 { Query, Set, State } = require 'memory-orm'
-{ vuex, localStorage, firestore_model, firestore_models, to_tempo } = require "vue-petit-store"
+{ share, localStorage, firestore_model, firestore_models, to_tempo } = require "vue-petit-store"
 
 module.exports =
   mixins: [
     firestore_models "books",  -> "game"
-    vuex "user", on: "firebase"
-    vuex "sign", on: "firebase"
+    share "user"
+    share "sign"
     localStorage "shows"
     localStorage "options"
   ]

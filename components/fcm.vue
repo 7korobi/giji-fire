@@ -7,10 +7,10 @@ check.item(v-model="fcm_topics" :as="topic" :title="title")
 </style>
 <script lang="coffee">
 _ = require "lodash"
-{ localStorage, vuex } = require "vue-petit-store"
+{ localStorage, share } = require "vue-petit-store"
 
 if window?
-  firebase = require "firebase"
+  firebase = require "firebase/app"
 
 store =
   fcm_topics: []
@@ -18,7 +18,7 @@ store =
 
 module.exports =
   mixins: [
-    vuex         'fcm_token', on: 'firebase'
+    share        'fcm_token'
     localStorage "fcm_topics"
     localStorage "fcm_subscribes"
   ]

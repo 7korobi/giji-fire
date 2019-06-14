@@ -52,7 +52,10 @@ Vue.config.ignoredElements = ['trix-editor', 'trix-toolbar']
 
 if window?
   live = require "~/config/live.yml"
-  firebase = require "firebase"
+  firebase = require "firebase/app"
+  require 'firebase/auth'
   require 'firebase/firestore'
+  require 'firebase/functions'
+  require 'firebase/messaging'
 
   firebase.initializeApp live.firebase

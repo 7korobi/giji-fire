@@ -1,16 +1,16 @@
 require "~/models/index"
 RANDOM = require "~/plugins/random"
 { Query, Set, State } = require 'memory-orm'
-{ vuex, relative_to, firestore_models } = require "vue-petit-store"
+{ share, relative_to, firestore_models } = require "vue-petit-store"
 
 if window?
-  firebase = require "firebase"
+  firebase = require "firebase/app"
 
 
 module.exports =
   mixins: [
-    vuex "user", on: "firebase"
-    vuex "sign", on: "firebase"
+    share "user"
+    share "sign"
     firestore_models "icons",
       -> @book_id && "icon"
       (ref)-> ref.where("book_id","==",@book_id)

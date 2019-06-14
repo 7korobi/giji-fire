@@ -4,14 +4,14 @@ nuxt-link.item.active(replace :to="url" @click.native="bookmark")
   | {{ star }}
 </template>
 <script lang="coffee">
-{ relative_to, firestore_models, vuex_read, path_by } = require "vue-petit-store"
+{ relative_to, firestore_models, share, path_by } = require "vue-petit-store"
 
 { Query, State } = require 'memory-orm'
 
 module.exports =
   mixins: [
     path_by "idx", [null, 'book', 'part']
-    vuex_read 'user', on: 'firebase'
+    share 'user'
     firestore_models "markers",
       -> @uid && @part_id && "marker"
       (ref)-> ref.where('uid','==', @uid ).where('part_id', '==', @part_id )

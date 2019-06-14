@@ -12,7 +12,7 @@ div
 
     @trix-initialize="initialize"
     @trix-change="change_bare"
-    @trix-selection-change="selection_change"
+    @trix-selection-change="selection_change_bare"
 
     @trix-paste="paste"
 
@@ -95,10 +95,7 @@ hashcode = (str)->
   hash >>> 0
 
 module.exports = editor
-  mixins: [
-    localStorage "log.trix"
-    localStorage "log.html"
-  ]
+  mixins: []
   data: ->
     suggests: []
     rects: []
@@ -107,9 +104,6 @@ module.exports = editor
     log:
       text: ""
       html: ""
-      trix:
-        document: []
-        selectedRange: []
 
   props:
     content: String
@@ -155,10 +149,14 @@ module.exports = editor
 
     initialize: ->
       @editor = @$refs.trix.editor
-      @restore @log.trix
+      if @value
+        @editor.loadHTML @value
+      else
+        @restore()
     
-    restore: (backup)->
-      @editor?.loadJSON backup
+    restore: (backup = window.localStorage[@id])->
+      return unless @editor && backup
+      @editor.loadJSON JSON.parse backup
 
 
     action_invoke: (e)->
@@ -204,7 +202,10 @@ module.exports = editor
     image: (url, type)->
       
 
-    selection_change: (e)->
+    selection_change_bare: (e)->
+      @selection_change()
+    
+    selection_change: _.debounce ->
       range = @editor.getSelectedRange()
       doc = @editor.getSelectedDocument()
       full = @editor.getDocument()
@@ -218,7 +219,8 @@ module.exports = editor
 
       if @rects?[0]
         @rect = @rects[0]
-      window.localStorage["log.trix"] = JSON.stringify @editor
+      window.localStorage[@id] = JSON.stringify @editor
+    , 300
 
     change_bare: (e)->
       @$emit "input", @get_content()
@@ -238,9 +240,8 @@ module.exports = editor
           for attribute, value of text.attributes.values
             (hash[attribute] ?= []).push text.string
       @attrs.random = hash.kbd
-      window.localStorage["log.trix"] = JSON.stringify @editor
+      window.localStorage[@id] = JSON.stringify @editor
       console.log @meta
-
     , 300
 
     paste: ({ paste })->
@@ -262,9 +263,6 @@ module.exports = editor
         console.log "force change."
         @editor.loadHTML newValue
     , 500
-
-    'log.trix': (backup)->
-      @restore backup
 
 </script>
 <style lang="sass">
@@ -427,7 +425,7 @@ trix-toolbar
   content: "は";
 }
 .trix-button--icon[data-trix-action="x-kana-full"]::before {
-  content: "ば";
+  content: "ば";
 }
 .trix-button--icon[data-trix-action="x-kana-half"]::before {
   content: "ぱ";
