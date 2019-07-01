@@ -50,7 +50,7 @@ log-wiki
 </template>
 <script lang="coffee">
 format = require "date-fns/format"
-{ Query, Set, State } = require 'memory-orm'
+{ Query, Set } = require 'memory-orm'
 { share, localStorage, firestore_model, firestore_models, to_tempo } = require "vue-petit-store"
 
 module.exports =
@@ -63,7 +63,6 @@ module.exports =
   ]
   layout: 'blank'
   data: ->
-    step: State.step
     options: ["impose"] # impose
     shows: [] # pin, toc, potof, current, search
     mark_ids: []

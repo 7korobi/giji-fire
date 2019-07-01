@@ -37,5 +37,5 @@ module.exports =
       current, target, edit,
       id, face_id, handle, log, data, show, head, deco, to, phase_id }
 
-    m "c-" + attrs.show, { attrs, key, on: ctx.data.on }, ctx.children
+    m "c-" + show, { attrs, key, on: ctx.data.on }, ctx.children
 </script>

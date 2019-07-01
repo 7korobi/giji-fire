@@ -167,7 +167,7 @@ div
 
 </template>
 <script lang="coffee">
-{ State, Query } = require 'memory-orm'
+{ Query } = require 'memory-orm'
 { url } = require "~/config/live.yml"
 { poll, replaceState } = require "vue-petit-store"
 
@@ -214,7 +214,6 @@ module.exports =
     mode: "oldlog"
     asc: "desc"
     drill: true
-    state_step: State.step
 
   methods:
     focus: (@idx)->

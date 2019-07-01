@@ -37,14 +37,18 @@ Trix.config.toolbar.getDefaultHTML = ->
   """
     <div class="trix-button-row">
       <span class="trix-button-group trix-button-group--text-tools" data-trix-button-group="text-tools">
-        <button type="button" class="trix-button trix-button--icon" data-trix-attribute="bold" data-trix-key="b" tabindex="-1"><strong>太</strong></button>
+        <button type="button" class="trix-button trix-button--icon" data-trix-attribute="strong" data-trix-key="b" tabindex="-1"><strong>太</strong></button>
         <button type="button" class="trix-button trix-button--icon" data-trix-attribute="del" tabindex="-1"><del>薄</del></button>
         <button type="button" class="trix-button trix-button--icon" data-trix-attribute="ins" tabindex="-1"><ins>◎</ins></button>
         <button type="button" class="trix-button trix-button--icon" data-trix-attribute="s" tabindex="-1"><s>◎</s></button>
-        <button type="button" class="trix-button trix-button--icon" data-trix-attribute="em" data-trix-key="i" tabindex="-1"><em style="font-size: 1.4ex">あ</em></button>
-        <button type="button" class="trix-button trix-button--icon" data-trix-attribute="sup" data-trix-key="i" tabindex="-1"><sup>上</sup></button>
-        <button type="button" class="trix-button trix-button--icon" data-trix-attribute="sub" data-trix-key="i" tabindex="-1"><sub>下</sub></button>
-        <button type="button" class="trix-button trix-button--icon" data-trix-attribute="abbr" data-trix-key="i" tabindex="-1"><abbr>あ</abbr></button>
+        <button type="button" class="trix-button trix-button--icon" data-trix-attribute="sup" tabindex="-1"><i class="mdi mdi-format-superscript"></i></button>
+        <button type="button" class="trix-button trix-button--icon" data-trix-attribute="sub" tabindex="-1"><i class="mdi mdi-format-subscript"></i></button>
+      <span class="trix-button-group trix-button-group--text-tools" data-trix-button-group="text-tools">
+      </span>
+        <button type="button" class="trix-button trix-button--icon" data-trix-attribute="em" tabindex="-1"><em style="font-size: 1.4ex">あ</em></button>
+        <button type="button" class="trix-button trix-button--icon" data-trix-attribute="mark" tabindex="-1"><mark>あ</mark></button>
+        <button type="button" class="trix-button trix-button--icon" data-trix-attribute="abbr" tabindex="-1"><abbr>あ</abbr></button>
+        <button type="button" class="trix-button trix-button--icon" data-trix-attribute="q" tabindex="-1"><q>あ</q></button>
       </span>
       <span class="trix-button-group trix-button-group--text-tools" data-trix-button-group="text-tools">
         <button type="button" class="trix-button trix-button--icon" data-trix-action="x-kana-invert" tabindex="-1"></button>
@@ -62,16 +66,20 @@ Trix.config.toolbar.getDefaultHTML = ->
     <div class="trix-button-row">
       <span class="trix-button-group trix-button-group--text-tools" data-trix-button-group="text-tools">
         <button type="button" class="trix-button trix-button--icon trix-button--icon-link" data-trix-attribute="href" data-trix-action="link" data-trix-key="k" tabindex="-1"></button>
-        <button type="button" class="trix-button trix-button--icon" data-trix-attribute="title" data-trix-key="i" tabindex="-1"><kbd title="random">🎲</kbd></button>
-        <button type="button" class="trix-button trix-button--icon" data-trix-attribute="data-ruby" data-trix-action="data-ruby" data-trix-key="r" tabindex="-1"><ruby data-ruby="ふりがな">仮名</ruby></button>
+        <button type="button" class="trix-button trix-button--icon" data-trix-attribute="kbd" tabindex="-1"><kbd>🎲</kbd></button>
       </span>
       <span class="trix-button-group trix-button-group--block-tools" data-trix-button-group="block-tools">
-        <button type="button" class="trix-button trix-button--icon" data-trix-attribute="default" tabindex="-1">⇦</button>
-        <button type="button" class="trix-button trix-button--icon" data-trix-attribute="center" tabindex="-1">⇆</button>
-        <button type="button" class="trix-button trix-button--icon" data-trix-attribute="right" tabindex="-1">⇨</button>
+        <button type="button" class="trix-button trix-button--icon" data-trix-attribute="default" tabindex="-1"><i class="mdi mdi-format-align-left"></i></button>
+        <button type="button" class="trix-button trix-button--icon" data-trix-attribute="center" tabindex="-1"><i class="mdi mdi-format-align-center"></i></button>
+        <button type="button" class="trix-button trix-button--icon" data-trix-attribute="nav" tabindex="-1"><i class="mdi mdi-format-align-right"></i></button>
       </span>
       <span class="trix-button-group trix-button-group--block-tools" data-trix-button-group="block-tools">
+        <button type="button" class="trix-button trix-button--icon" data-trix-attribute="details" tabindex="-1"><i class="mdi mdi-details"></i></button>
+        <button type="button" class="trix-button trix-button--icon" data-trix-attribute="marquee" tabindex="-1"><i class="mdi mdi-transfer-left"></i></button>
         <button type="button" class="trix-button trix-button--icon trix-button--icon-quote" data-trix-attribute="quote" tabindex="-1"></button>
+        <button type="button" class="trix-button trix-button--icon trix-button--icon-code" data-trix-attribute="code" tabindex="-1"></button>
+      </span>
+      <span class="trix-button-group trix-button-group--block-tools" data-trix-button-group="block-tools">
         <button type="button" class="trix-button trix-button--icon trix-button--icon-bullet-list" data-trix-attribute="bullet" tabindex="-1"></button>
         <button type="button" class="trix-button trix-button--icon trix-button--icon-number-list" data-trix-attribute="number" tabindex="-1"></button>
         <button type="button" class="trix-button trix-button--icon trix-button--icon-decrease-nesting-level" data-trix-action="decreaseNestingLevel" tabindex="-1"></button>
@@ -96,36 +104,39 @@ Trix.config.toolbar.getDefaultHTML = ->
           </div>
         </div>
       </div>
-      <div class="trix-dialog trix-dialog--ruby" data-trix-dialog="data-ruby" data-trix-dialog-attribute="data-ruby">
-        <div class="trix-dialog__ruby-fields">
-          <input type="text" name="href" class="trix-input trix-input--dialog" placeholder="#{lang.rubyPlaceholder}" aria-label="#{lang.ruby}" required data-trix-input>
-          <div class="trix-button-group">
-            <input type="button" class="trix-button trix-button--dialog" value="#{lang.setRuby}" data-trix-method="setAttribute">
-            <input type="button" class="trix-button trix-button--dialog" value="#{lang.unRuby}" data-trix-method="removeAttribute">
-          </div>
-        </div>
-      </div>
     </div>
   """
+
 
 reset Trix.config.blockAttributes, attributes =
   default:
     tagName: "p"
     parse: false
-    breakOnReturn: true
+    breakOnReturn: false
   center:
-    tagName: "p"
-    className: "center"
+    tagName: "center"
     parse: false
-    breakOnReturn: true
-  right:
-    tagName: "p"
-    className: "right"
+    breakOnReturn: false
+  nav:
+    tagName: "nav"
     parse: false
-    breakOnReturn: true
+    breakOnReturn: false
+  details:
+    tagName: "details"
+    parse: false
+    breakOnReturn: false
+  marquee:
+    tagName: "marquee"
+    parse: false
+    breakOnReturn: false
   quote:
     tagName: "blockquote"
     nestable: true
+  code:
+    tagName: "code"
+    terminal: true
+    text:
+      plaintext: true
   h1:
     tagName: "h1"
     terminal: true
@@ -184,18 +195,13 @@ reset Trix.config.blockAttributes, attributes =
     group: false
 
 reset Trix.config.textAttributes,
-  bold:
+  strong:
     tagName: "strong"
     inheritable: true
-    parser: (element) ->
-      style = window.getComputedStyle(element)
-      style["fontWeight"] is "bold" or style["fontWeight"] >= 600
   em:
     tagName: "em"
     inheritable: true
-    parser: (element) ->
-      style = window.getComputedStyle(element)
-      style["fontStyle"] is "em"
+
   del:
     tagName: "del"
     inheritable: true
@@ -205,6 +211,7 @@ reset Trix.config.textAttributes,
   s:
     tagName: "s"
     inheritable: true
+
   sup:
     tagName: "sup"
     inheritable: true
@@ -214,27 +221,19 @@ reset Trix.config.textAttributes,
 
   kbd:
     tagName: "kbd"
-    inheritable: false
+    inheritable: true
+    terminal: true
+    text:
+      plaintext: true
+  mark:
+    tagName: "mark"
+    inheritable: true
   abbr:
     tagName: "abbr"
-    inheritable: false
-
-  title:
-    groupTagName: "kbd"
-    parser: (element) ->
-      {attachmentSelector} = Trix.AttachmentView
-      matchingSelector = "a:not(#{attachmentSelector})"
-      if link = Trix.findClosestElementFromNode(element, {matchingSelector})
-        link.getAttribute("title")
-
-  "data-ruby":
-    groupTagName: "ruby"
-    parser: (element) ->
-      {attachmentSelector} = Trix.AttachmentView
-      console.log "ruby", element, attachmentSelector
-      matchingSelector = "a:not(#{attachmentSelector})"
-      if ruby = Trix.findClosestElementFromNode(element, {matchingSelector})
-        ruby.getAttribute("data-ruby")
+    inheritable: true
+  q:
+    tagName: "q"
+    inheritable: true
 
   href:
     groupTagName: "a"

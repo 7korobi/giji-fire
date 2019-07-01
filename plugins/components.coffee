@@ -1,6 +1,6 @@
 Vue = require "vue"
 
-{ Query } = require 'memory-orm'
+{ Query, State } = require 'memory-orm'
 { url } = require "~/config/live.yml"
 
 if window?
@@ -36,6 +36,9 @@ for fname in ctx.keys()
   Vue.filter name, ctx(fname)
 
 Vue.config.ignoredElements = ['trix-editor', 'trix-toolbar']
+Vue.mixin
+  data: ->
+    $step: State.step
 
 ###
 # ElementUI section #####

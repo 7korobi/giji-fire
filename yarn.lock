@@ -693,6 +693,53 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
+"@ckeditor/ckeditor5-alignment@^11.1.1":
+  version "11.1.1"
+  resolved "https://registry.yarnpkg.com/@ckeditor/ckeditor5-alignment/-/ckeditor5-alignment-11.1.1.tgz#8508e666812360533d18f1bed8e188a90159212e"
+  integrity sha512-q97TVM4tOa++fd+jqp8JTgRQvpVdNw+ipEuOIF5lnrp1IExqNZFmIIQZFnRMh36AA8bxOKTJ5KIiBIyZhKoEvQ==
+  dependencies:
+    "@ckeditor/ckeditor5-core" "^12.1.1"
+    "@ckeditor/ckeditor5-ui" "^13.0.0"
+
+"@ckeditor/ckeditor5-build-classic@file:../ckeditor5-build-classic":
+  version "12.2.0"
+  dependencies:
+    "@ckeditor/ckeditor5-alignment" "^11.1.1"
+
+"@ckeditor/ckeditor5-core@^12.1.1":
+  version "12.1.1"
+  resolved "https://registry.yarnpkg.com/@ckeditor/ckeditor5-core/-/ckeditor5-core-12.1.1.tgz#65828f596fb00225afedb491f46912a58b8bde01"
+  integrity sha512-LuMvqHgBK6GL3LVeLied6Xo7gybma5VDjP637YclLC49PPyLLc7yUrpKpHmQiNg2ERm5Xwz07kh404QMq3RQFA==
+  dependencies:
+    "@ckeditor/ckeditor5-engine" "^13.1.1"
+    "@ckeditor/ckeditor5-utils" "^12.1.1"
+    lodash-es "^4.17.10"
+
+"@ckeditor/ckeditor5-engine@^13.1.1":
+  version "13.1.1"
+  resolved "https://registry.yarnpkg.com/@ckeditor/ckeditor5-engine/-/ckeditor5-engine-13.1.1.tgz#8d194dd6a5c7946f4892be830a52bc26c783fe4b"
+  integrity sha512-Itu7ECpUGFJJg9HGqOOSyu9vGbdBGKcHdWGLf000NOBwK9ZZZzIsZL2xWd/5bhVAo+M/q/b5j7DHGJP6PDRW2g==
+  dependencies:
+    "@ckeditor/ckeditor5-utils" "^12.1.1"
+    lodash-es "^4.17.10"
+
+"@ckeditor/ckeditor5-ui@^13.0.0":
+  version "13.0.0"
+  resolved "https://registry.yarnpkg.com/@ckeditor/ckeditor5-ui/-/ckeditor5-ui-13.0.0.tgz#062fb155595f1b93138876ab586817a62e08d948"
+  integrity sha512-rAaNrn84v16+nbXxuimETlz8kGR+mJWa9hqWEndTrGsJIOgdfWnvt2S0a9LZm8ufJN5fgXGh4k2TpJxTSeK/fA==
+  dependencies:
+    "@ckeditor/ckeditor5-core" "^12.1.1"
+    "@ckeditor/ckeditor5-utils" "^12.1.1"
+    lodash-es "^4.17.10"
+
+"@ckeditor/ckeditor5-utils@^12.1.1":
+  version "12.1.1"
+  resolved "https://registry.yarnpkg.com/@ckeditor/ckeditor5-utils/-/ckeditor5-utils-12.1.1.tgz#886a8d8379573658a551520d62ada65ab29a4d67"
+  integrity sha512-69D+3Sx+QTBgKunFZdDp5jcEgo/v6kE+vOgnNtVXaEyjvAXJGppB++WPCYJw3POZxHqMy57PlpyqGG5zGyoYkg==
+  dependencies:
+    ckeditor5 "^12.2.0"
+    lodash-es "^4.17.10"
+
 "@cnakazawa/watch@^1.0.3":
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/@cnakazawa/watch/-/watch-1.0.3.tgz#099139eaec7ebf07a27c1786a3ff64f39464d2ef"
@@ -3264,6 +3311,11 @@ cipher-base@^1.0.0, cipher-base@^1.0.1, cipher-base@^1.0.3:
   dependencies:
     inherits "^2.0.1"
     safe-buffer "^5.0.1"
+
+ckeditor5@^12.2.0:
+  version "12.2.0"
+  resolved "https://registry.yarnpkg.com/ckeditor5/-/ckeditor5-12.2.0.tgz#39cbaee904854be2a8324b40348fedc5373368e1"
+  integrity sha512-LPni36zcmeS8VaV3tRdO6etvLrJC6ytP+zRzjUmOoAG+5tiZwb5z8LS4L+HOWqIy9BxA/2H/jkiY67X0ZTTiBw==
 
 class-utils@^0.3.5:
   version "0.3.6"
@@ -7041,6 +7093,11 @@ locate-path@^3.0.0:
     p-locate "^3.0.0"
     path-exists "^3.0.0"
 
+lodash-es@^4.17.10:
+  version "4.17.11"
+  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.11.tgz#145ab4a7ac5c5e52a3531fb4f310255a152b4be0"
+  integrity sha512-DHb1ub+rMjjrxqlB3H56/6MXtm1lSksDp2rA2cNWjG8mlDUYFhUj3Di2Zn5IwSU87xLv8tNIQ7sSwE/YOX/D/Q==
+
 lodash._reinterpolate@~3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/lodash._reinterpolate/-/lodash._reinterpolate-3.0.0.tgz#0ccf2d89166af03b3663c796538b75ac6e114d9d"
@@ -7298,10 +7355,10 @@ memory-fs@^0.4.0, memory-fs@^0.4.1, memory-fs@~0.4.1:
     errno "^0.1.3"
     readable-stream "^2.0.1"
 
-memory-orm@^0.4.1:
-  version "0.4.1"
-  resolved "https://registry.yarnpkg.com/memory-orm/-/memory-orm-0.4.1.tgz#1e8f31d66402af74b58863f868111dfad56f5182"
-  integrity sha512-IE7HTx0XB50C+iYZBQR+wF8KL4EcrF8DsvVdRxag0QtErhtAj6da8/ZUDSih1PPN/E4fgWc2O5Y9Og/eM20mEQ==
+memory-orm@^0.4.2:
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/memory-orm/-/memory-orm-0.4.2.tgz#285e5b21467a9175978c96eefe7b164e1500ae2b"
+  integrity sha512-QriNncgc5SO6JU5+UVmxDFmE1PSDV1xvTciyJ8ZzAhxIU2LO0dJY7PiGGgfjciJ+IYpd5+Ehd1+A/rQ+F/YvDw==
   dependencies:
     lodash "^4.17.11"
 
@@ -11360,14 +11417,14 @@ vue-no-ssr@^1.1.1:
   resolved "https://registry.yarnpkg.com/vue-no-ssr/-/vue-no-ssr-1.1.1.tgz#875f3be6fb0ae41568a837f3ac1a80eaa137b998"
   integrity sha512-ZMjqRpWabMPqPc7gIrG0Nw6vRf1+itwf0Itft7LbMXs2g3Zs/NFmevjZGN1x7K3Q95GmIjWbQZTVerxiBxI+0g==
 
-vue-petit-store@^0.8.10:
-  version "0.8.10"
-  resolved "https://registry.yarnpkg.com/vue-petit-store/-/vue-petit-store-0.8.10.tgz#5f9514487e24f9969b89f66e57ac29e731b9db23"
-  integrity sha512-szirzKHLrC0arlEwhNGJHgSEsX/hpMKB9FSi0XQ7iUU/diR0TCq15paH9N3gTCgCCKEEPrWDmiHsiPh9dh5/FQ==
+vue-petit-store@^0.8.11:
+  version "0.8.11"
+  resolved "https://registry.yarnpkg.com/vue-petit-store/-/vue-petit-store-0.8.11.tgz#c5a56d8ff123e53c9dd594e9a8bbc56819b74f0c"
+  integrity sha512-bQVX4UKVsjcQmdZncj8tEjB8dnD8vMRVAtVFwbcOeDw84iRkNpZglwUUCnMxILumiTgqox2C1HLh1BgbfrZmcQ==
   dependencies:
     dexie "^2.0.4"
     firebase "^5.11.1"
-    memory-orm "^0.4.1"
+    memory-orm "^0.4.2"
     tiny-cookie "^2.3.1"
     yaml-jest "^1.0.5"
 

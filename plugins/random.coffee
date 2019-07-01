@@ -1,3 +1,4 @@
+require "~/models/index"
 { Query, Set, State } = require 'memory-orm'
 _ = require 'lodash'
 
@@ -7,7 +8,7 @@ head = (o)->
   else
     "-該当なし-"
 
-module.exports = (title, ctx)->
+module.exports = m = (title, ctx)->
   words = title.split "|"
 
   if 1 < words.length
@@ -29,6 +30,10 @@ module.exports = (title, ctx)->
     text = head _.sample Query.chr_jobs.tag(title).list
     return { title, text }
 
+  if title in Query.randoms.reduce.type.pluck("id")
+    text = Query.randoms.choice(title).toString()
+    return { title, text }
+
   switch title
     when 'role'
       { list } = Query.roles.where (o)-> !( o.group in ["SPECIAL", "EVENT"] )
@@ -42,10 +47,13 @@ module.exports = (title, ctx)->
       return { title, text }
 
     else
-      if Query.randoms.deck(title)
-        text = Query.randoms.choice(title).toString()
-        return { title, text }
+      text = title
+      return { title, text }
 
-      else
-        text = title
-        return { title, text }
+m.match = /// ^ (
+  role | who |
+  #{ Query.tags.ids.join('|') } | 
+  #{ Query.randoms.reduce.type.pluck("id").join('|') } |
+  (\d*)d(\d+) |
+  [|]
+) $ ///

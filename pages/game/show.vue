@@ -95,7 +95,7 @@ log-wiki
     bread-crumb
 </template>
 <script lang="coffee">
-{ Query, Set, State } = require 'memory-orm'
+{ Query, Set } = require 'memory-orm'
 { vuex, localStorage, firestore_model, firestore_models } = require "vue-petit-store"
 
 module.exports =
@@ -115,7 +115,6 @@ module.exports =
   ]
   layout: 'blank'
   data: ->
-    step: State.step
     mode: 'wiki' 
     floats: {}
     options: ["impose"] # impose

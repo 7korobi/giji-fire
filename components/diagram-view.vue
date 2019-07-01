@@ -28,7 +28,7 @@ article.fine(v-root-size)
 
 _ = require 'lodash'
 { resize } = require "vue-petit-store"
-{ Query, State } = require "memory-orm"
+{ Query } = require "memory-orm"
 { url } = require "~/config/live.yml"
 
 id_line = ({ v, w, vpos, wpos })->
@@ -47,7 +47,6 @@ module.exports =
     pin_id: String
 
   data: ->
-    step: State.step
     move:
       id: null
       x:  0

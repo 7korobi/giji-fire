@@ -36,7 +36,8 @@
     "deploy:host": "firebase deploy --only hosting",
     "deploy:func": "firebase deploy --only functions",
     "backup": "run-p -n backup:*",
-    "backup:rsync": "rsync -avz -e 'ssh -i ../.ssh/id_rsa' 7korobi@giji.f5.si:/home/7korobi/*.zip config/.",
+    "backup:rsync-front": "rsync -avz -e 'ssh -i ../.ssh/id_rsa'          7korobi@giji.f5.si:/home/7korobi/*.zip ../backup/.",
+    "backup:rsync-data":  "rsync -avz -e 'ssh -i ../.ssh/id_rsa -p 10000' 7korobi@giji-api.duckdns.org:/home/7korobi/*.zip ../backup/.",
     "backup:競合": "find . -name '*競合*' > dropbox.error.txt",
     "g": "run-p -n g:*",
     "g:msys": "pacman -S openssh rsync",
@@ -44,6 +45,7 @@
   },
   "dependencies": {
     "@babel/plugin-transform-runtime": "^7.4.4",
+    "@ckeditor/ckeditor5-build-classic": "file:../ckeditor5-build-classic",
     "@nuxtjs/google-analytics": "^2.2.0",
     "@nuxtjs/pwa": "^3.0.0-beta.14",
     "animejs": "^3.0.1",
@@ -55,12 +57,12 @@
     "firebase-admin": "8.1.0",
     "firebase-functions": "3.0.1",
     "lodash": "^4.17.11",
-    "memory-orm": "^0.4.1",
+    "memory-orm": "^0.4.2",
     "normalize-url": "^4.3.0",
     "npm-run-all": "^4.1.5",
     "nuxt": "^2.8.1",
     "trix": "^1.1.1",
-    "vue-petit-store": "^0.8.10",
+    "vue-petit-store": "^0.8.11",
     "vue-toasted": "^1.1.27"
   },
   "devDependencies": {

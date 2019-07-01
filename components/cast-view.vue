@@ -10,7 +10,7 @@ article
 </template>
 
 <script lang="coffee">
-{ Query, State } = require 'memory-orm'
+{ Query } = require 'memory-orm'
 { path_by } = require "vue-petit-store"
 
 module.exports =
@@ -18,9 +18,6 @@ module.exports =
     path_by "value", [null, 'book']
   ]
   props: ["value"]
-
-  data: ->
-    step: State.step
 
   computed:
     potofs: ->

@@ -7,6 +7,15 @@
 @import "./_zoom"
 @import "./_font"
 
+@import "./_theme"
+
+text.chr,
+text.chr > tspan,
+.chr > text,
+  fill: palette_pen('I',1, BROAD)
+
+
+
 .copyright
   p
     background-image: none
@@ -23,6 +32,22 @@
 .contentframe,
   .portrate
     background-color: black
+
++palette(grass, 'G', 1)
++palette(ash,   'I', 1)
++palette(leave, 'I', 1)
+
++palette(stat,  'I', 2)
++palette(metal, 'I', 3)
+
+.potofs
+  +palette(whisper, 'I',1)
+  +palette(twitter, 'I',1)
+  +palette(yelp,    'I',2)
+
+.chrblank
+  background: #444844   // palette_bg('I',1, BROAD)
+  color:      palette_pen('I',1, BROAD)
 
 $bgs: ( BG: 1.0 , BG75: 0.75, BG50: 0.50 )
 

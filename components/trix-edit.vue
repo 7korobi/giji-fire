@@ -39,13 +39,16 @@ div
         | {{lines}}/
         sub {{maxRow}}行
     slot
-    p(v-for="suggest in suggests")
+    p
+      label(:class="type" v-for="[type, label, call] in fixes" @click="call") {{ label }}
     trix-toolbar(:id="toolbar_id")
 </template>
 <script lang="coffee">
 _ = require 'lodash'
 Trix = require 'trix'
 { localStorage } = require "vue-petit-store"
+
+random = require "~/plugins/random"
 
 invoke =
   kana: require "~/plugins/trix-kana"
@@ -54,33 +57,6 @@ invoke =
       content: """<hr class="#{mode}">"""
       contentType: "block"
     editor.insertAttachment hr
-
-  url: (editor, mode, range, text)->
-    switch mode
-      when 'href'
-        text.replace /(ftp|https?):\/\/(?:www\.|(?!www))[^\s\.]+\.[^\s]{2,}|www\.[^\s]+\.[^\s]{2,}/ig, (url, protocol, head, src)=>
-          console.log "uri: ", head, tail, protocol, url
-          return src unless protocol
-          tail  = head +     url.length
-          tail2 = head + 1 + protocol.length
-          result_range = [head + 1, tail2]
-          console.log head, tail, tail2, " #{protocol} ", { href: url }
-
-          if head < range[0] < tail && head < range[1] < tail
-            range = result_range
-          if tail < range[0]
-            range[0] += tail2 - tail
-          if tail < range[1]
-            range[1] += tail2 - tail
-          editor.recordUndoEntry "Auto Link"
-          editor.setSelectedRange [head, tail]
-          editor.insertString " #{protocol} "
-          editor.setSelectedRange result_range
-          editor.activateAttribute 'href', url
-          return ""
-
-        editor.setSelectedRange range
-
 
 editor = require './editor'
 
@@ -97,10 +73,10 @@ hashcode = (str)->
 module.exports = editor
   mixins: []
   data: ->
-    suggests: []
     rects: []
     attrs:
       random: []
+    fixes: []
     log:
       text: ""
       html: ""
@@ -116,6 +92,15 @@ module.exports = editor
       default: '入力はこちらに。'
 
   computed:
+    is_ban_internal: ->
+      for [type] in @fixes
+        return true if "ban" == type
+      false
+    is_warn_internal: ->
+      for [type] in @fixes
+        return true if "warn" == type
+      false
+
     toolbar_id: ->
       @id + "_toolbar"
     rect_styles: ->
@@ -229,8 +214,9 @@ module.exports = editor
     change: _.debounce ->
       return unless @$refs && @$el && Trix
 
-      range = @editor.getSelectedRange()
-      invoke.url @editor, "href", range, @log.text
+      { editor } = @
+      @fixes = []
+
       hash = {}
       for block in @editor.getDocument().blockList.objects
         for attribute in block.attributes
@@ -239,7 +225,34 @@ module.exports = editor
         for text in block.text.pieceList.objects
           for attribute, value of text.attributes.values
             (hash[attribute] ?= []).push text.string
-      @attrs.random = hash.kbd
+      @attrs.random = hash.kbd ? []
+
+      for str in @attrs.random
+        console.log str.match random.match
+        type = 
+          if str.match random.match
+            "ok"
+          else
+            "warn"
+        @fixes.push [type, str, (->)]
+
+      @log.text.replace /(ftp|https?):\/\/(?:www\.|(?!www))[^\s\.]+\.[^\s]{2,}|www\.[^\s]+\.[^\s]{2,}/ig, (url, protocol, head, src)=>
+        console.log "uri: ", head, tail, protocol, url
+        return src unless protocol
+
+        tail  = head +     url.length
+        tail2 = head + 1 + protocol.length
+        result_range = [head + 1, tail2]
+        console.log head, tail, tail2, " #{protocol} ", { href: url }
+        @fixes.push ["ban", url, ->
+          editor.recordUndoEntry "Auto Link"
+          editor.setSelectedRange [head, tail]
+          editor.insertString " #{protocol} "
+          editor.setSelectedRange result_range
+          editor.activateAttribute 'href', url
+        ]
+        return ""
+
       window.localStorage[@id] = JSON.stringify @editor
       console.log @meta
     , 300

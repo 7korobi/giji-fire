@@ -111,7 +111,6 @@ module.exports =
   ]
   layout: 'blank'
   data: ->
-    step: State.step
     mode: 'wiki' 
     floats: {}
     options: ["impose"] # impose

@@ -23,8 +23,6 @@ module.exports =
     { href: pkg.author }
 
     { rel: 'stylesheet', type: 'text/css', href: 'https://cdn.materialdesignicons.com/3.4.93/css/materialdesignicons.min.css' }
-    { rel: 'stylesheet', type: 'text/css', href: url.style + '/css/index.use.css' }
-    { rel: 'stylesheet', type: 'text/css', href: url.style + '/css/log-common.use.css' }
 
     { rel: 'manifest', href: '/manifest.json'}
     { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }

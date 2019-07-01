@@ -11,7 +11,7 @@ div
         a キャラクター名（詳細へリンク）
       li ♥ いちばん沢山、そのキャラクターで遊んだプレイヤー
   c-report(handle="header" deco="center")
-    tags(v-model="tag_id")
+    tags.center(v-model="tag_id")
     hr
     search(v-model="search")
 

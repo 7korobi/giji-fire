@@ -1,5 +1,5 @@
 <template lang="pug">
-.ql-bubble
+div
   diagram-view(v-model="value" :pin_id.sync="pin_id" ref="view")
   hr.footnote
   div.form
@@ -89,11 +89,9 @@ a.name
 input
   width: 8em
 
-.ql-bubble
-  z-index: 10
 </style>
 <script lang="coffee">
-{ Query, State } = require "memory-orm"
+{ Query } = require "memory-orm"
 
 parse_touch = (e)->
   { layerX, layerY } = e.changedTouches[0]
@@ -112,7 +110,6 @@ module.exports = editor
     value: Object
 
   data: ->
-    step: State.step
     pin_id: null
     pin_face: null
 

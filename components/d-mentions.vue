@@ -33,7 +33,7 @@ time
 </style>
 
 <script lang="coffee">
-{ Query, State } = require 'memory-orm'
+{ Query } = require 'memory-orm'
 { share, relative_to } = require "vue-petit-store"
 _ = require "lodash"
 
@@ -42,8 +42,6 @@ module.exports =
     share 'user'
   ]
   props: ['book_id', 'chat_id', 'page_idx', 'back']
-  data: ->
-    step: State.step
 
   computed:
     uid: -> @user?.uid

@@ -36,7 +36,6 @@ module.exports =
       write_at: 0
     Set.chat.add chat
 
-    step: State.step
     edit_base: { icon, potof, chat }
 
   computed:
@@ -64,7 +63,7 @@ module.exports =
       { deco, head, log, data } = chat
       is_ban = false
       switch deco
-        when 'quill', 'trix'
+        when 'quill', 'trix', 'cke'
           is_ban ||= !( head || log?.match /// #{ potof.face?.name } ///)
         when 'diagram'
           is_ban ||= ! head

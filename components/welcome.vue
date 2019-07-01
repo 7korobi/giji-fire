@@ -1,6 +1,6 @@
 <script lang="coffee">
 { poll } = require 'vue-petit-store'
-{ Query, State } = require 'memory-orm'
+{ Query } = require 'memory-orm'
 { url } = require "~/config/live.yml"
 
 module.exports =
@@ -10,7 +10,6 @@ module.exports =
   props: ["top", "title"]
 
   data: -> {
-    State
     export_to: "progress"
   }
 

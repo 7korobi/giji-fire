@@ -11,7 +11,6 @@ div
   c-post(handle="TSAY")
     | 簡易言語
     nuxt-link(to="/demo/sow") sow
-    nuxt-link(to="/demo/quill") Quill
     nuxt-link(to="/demo/trix") Trix
   c-post(handle="TSAY")
     nuxt-link.button(to="/demo/oauth") OpenID

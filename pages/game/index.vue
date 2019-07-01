@@ -49,7 +49,7 @@ div
 
 </template>
 <script lang="coffee">
-{ State, Query } = require 'memory-orm'
+{ Query } = require 'memory-orm'
 { url } = require "~/config/live.yml"
 { firestore_models } = require "vue-petit-store"
 
@@ -61,7 +61,6 @@ module.exports =
 
   data: ->
     idx: ""
-    state_step: State.step
 
   methods:
     focus: (@idx)->

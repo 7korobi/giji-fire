@@ -118,7 +118,7 @@ log-wiki
 </style>
 
 <script lang="coffee">
-{ Query, State, Finder } = require 'memory-orm'
+{ Query, Finder } = require 'memory-orm'
 { poll, vuex, localStorage } = require "vue-petit-store"
 
 dic = '><&"\n'
@@ -144,7 +144,6 @@ module.exports =
 
   layout: 'blank'
   data: ->
-    step: State.step
     page_view: 'wrap'
     floats: {}
     options: ["impose"] # impose

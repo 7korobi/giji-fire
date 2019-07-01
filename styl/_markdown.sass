@@ -38,8 +38,6 @@ kbd,
 samp,
 pre,
 .text.mono,
-.ql-picker-item[data-value=monospace]::before,
-.ql-font-monospace,
   font-weight: 400
   font-family: 'Fira Code', 'Fira Code WEB', 'Noto Sans Mono CJK JP', 'Mgen+ 1mn', 'mplus-1m', monospace
   font-variant-numeric: tabular-nums slashed-zero
@@ -56,7 +54,6 @@ select,
     font-weight: 700
     font-family: 'Noto Sans CJK JP', 'Noto Sans JP', sans-serif
 
-.ql-header .ql-picker-item[data-value]::before,
 h1, h2, h3, h4, h5, h6,
 [data-ruby]:before,
 rt,
@@ -116,7 +113,6 @@ hr.invisible_hr
     transform: scale( 1, 2.5)
     padding: 0 0 0.5em 0
 
-.ql-header .ql-picker-item[data-value]::before,
 h1, h2, h3, h4, h5, h6,
   box-sizing: border-box
   display: block
@@ -139,17 +135,11 @@ blockquote
 ol, ul,
   margin:  0  
   padding: 0
-  padding-inline-start: 1.0em
+  padding-inline-start: 1em
+  margin-inline-start: 1em
 
 strong
   display: inline
-
-.ql-syntax
-  max-width: 100%
-  margin: 0 -2px
-  white-space: pre-wrap
-  column-span: all
-  display: flex
 
 pre
   max-width: 100%
@@ -275,14 +265,17 @@ button,
 textarea,
   user-select: auto
 
+p,
 .left,
 .l,
   text-align: justify
 
+center,
 .center,
 .c,
   text-align: center
 
+nav,
 .right,
 .r,
   text-align: right

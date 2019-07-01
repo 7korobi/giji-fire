@@ -52,11 +52,13 @@ module.exports = (o)->
       ban ||= !(       2 <= @chars <= @maxSize )
       ban ||= !(       1 <= @words <= @maxWord )
       ban ||= !( @minRow <= @lines <= @maxRow )
+      ban ||= @is_ban_internal
       ban ||= @is_ban
       ban
 
     warn: ->
       warn = false
+      warn ||= @is_warn_internal
       warn ||= @is_warn
       warn
 

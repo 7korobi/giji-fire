@@ -1,0 +1,251 @@
+<template lang="pug">
+div
+  div(ref="cke")
+  div.form.toolbar(:class="handle")
+    hr.footnote
+    button(@click="submit" :class="{ ban, warn }")
+      i.mdi(:class="mark")
+      span
+        | {{chars}}/
+        sub {{maxSize}}字
+        | {{words}}/
+        sub {{maxWord}}文
+        | {{lines}}/
+        sub {{maxRow}}行
+    slot
+    p
+      label(:class="type" v-for="[type, label, call] in fixes" @click="call") {{ label }}
+</template>
+<script lang="coffee">
+_ = require 'lodash'
+ClassicEditor = require '@ckeditor/ckeditor5-build-classic'
+console.log ClassicEditor.builtinPlugins.map (o)-> o.pluginName
+
+random = require "~/plugins/random"
+
+invoke =
+  kana: require "~/plugins/trix-kana"
+  hr: (editor, mode, range, text)->
+    hr = new Trix.Attachment
+      content: """<hr class="#{mode}">"""
+      contentType: "block"
+    editor.insertAttachment hr
+
+editor = require './editor'
+
+if document?
+  require '~/plugins/trix'
+
+hashcode = (str)->
+  hash = 5381
+  at = str.length
+  while at
+    hash = (hash * 33) ^ str.charCodeAt --at
+  hash >>> 0
+
+module.exports = editor
+  mixins: []
+  data: ->
+    attrs:
+      random: []
+    fixes: []
+    log:
+      text: ""
+      html: ""
+    config:
+      initialData: @value
+      placeholder: @placeholder
+
+  props:
+    content: String
+    handle: String
+    value: String
+    id: String
+
+    placeholder:
+      type: String
+      default: '入力はこちらに。'
+
+  computed:
+    is_ban_internal: ->
+      for [type] in @fixes
+        return true if "ban" == type
+      false
+    is_warn_internal: ->
+      for [type] in @fixes
+        return true if "warn" == type
+      false
+
+    meta: ->
+      size = [
+        @log.text.split("\n").length - 1
+        @log.text.split(/[\!\?！？「」『』、。．.]+\s*|\s+/).length - 1
+        @log.text.length - 1
+      ]
+      { @attrs, size }
+
+  mounted: ->
+    ClassicEditor.create @$refs.cke, @config
+    .then (@editor)=>
+      console.log Array.from @editor.ui.componentFactory.names()
+      @editor.isReadOnly = false
+
+      @editor.model.document.on 'change:data', (e)=>
+        console.log @get_content()
+        @$emit "input", @get_content()
+        @change()
+
+      @editor.editing.view.document.on 'focus', (e)=>
+        @$emit "focus", e, @editor
+
+      @editor.editing.view.document.on 'blur', (e)=>
+        @$emit "blur", e
+
+
+      @$emit 'ready', @editor
+
+  beforeDestroy: ->
+    @editor?.destroy()
+    @editor = null
+    @$emit 'bye', @editor
+
+  methods:
+    get_content: ->
+      @log.html = @editor.getData()
+    
+    restore: (backup = window.localStorage[@id])->
+      return unless @editor && backup
+      @editor.loadJSON JSON.parse backup
+
+
+    action_invoke: (e)->
+      { actionName } = e
+      [..., type, mode] = actionName.split("-")
+
+      range = @editor.getSelectedRange()
+      str = @editor.getDocument().getStringAtRange range
+      invoke[type] @editor, mode, range, str
+
+
+    file_accept: (e)->
+      { file } = e
+      { name, type } = file
+      console.log file
+      switch
+        when type.match /// ^text/ ///
+          true
+        when type.match /// ^image/ ///
+          reader = new FileReader()
+          reader.onload = (e)=>
+            code = hashcode e.target.result
+            [ ext ] = file.name.match /\.[^.]+$/
+            id = "#{code.toString(36)}#{ext}"
+            @$emit "drop_image", { id, file }, ( url )=>
+              href = url
+              attachment.setAttributes { url, href }
+          reader.readAsDataURL file
+      # e.preventDefault()
+
+    attachment_add: (e)->
+      { attachment, attachmentManager, file } = e
+      return unless file && attachment
+      console.log file, attachment
+
+      switch
+        when type.match /// ^text/ ///
+          true
+
+    attachment_remove: (e)->
+      console.log e
+
+    image: (url, type)->
+      
+
+    selection_change_bare: (e)->
+      @selection_change()
+    
+    selection_change: _.debounce ->
+      range = @editor.getSelectedRange()
+      doc = @editor.getSelectedDocument()
+      full = @editor.getDocument()
+
+      loc_range = full.locationRangeFromRange(range)
+      dom_range = @editor.selectionManager.createDOMRangeFromLocationRange(loc_range)
+      if dom_range
+        @rects = @editor.selectionManager.getClientRectsForDOMRange(dom_range)
+
+      console.log [ range, loc_range, dom_range, @rect_styles ]
+
+      if @rects?[0]
+        @rect = @rects[0]
+      window.localStorage[@id] = JSON.stringify @editor
+    , 300
+
+    change: _.debounce ->
+      return unless @$refs?.cke
+
+      { editor } = @
+      @fixes = []
+
+      hash = {}
+      for block in @editor.getDocument().blockList.objects
+        for attribute in block.attributes
+          console.log attribute
+        { attributes, text } = block
+        for text in block.text.pieceList.objects
+          for attribute, value of text.attributes.values
+            (hash[attribute] ?= []).push text.string
+      @attrs.random = hash.kbd ? []
+
+      for str in @attrs.random
+        console.log str.match random.match
+        type = 
+          if str.match random.match
+            "ok"
+          else
+            "warn"
+        @fixes.push [type, str, (->)]
+
+      @log.text.replace /(ftp|https?):\/\/(?:www\.|(?!www))[^\s\.]+\.[^\s]{2,}|www\.[^\s]+\.[^\s]{2,}/ig, (url, protocol, head, src)=>
+        console.log "uri: ", head, tail, protocol, url
+        return src unless protocol
+
+        tail  = head +     url.length
+        tail2 = head + 1 + protocol.length
+        result_range = [head + 1, tail2]
+        console.log head, tail, tail2, " #{protocol} ", { href: url }
+        @fixes.push ["ban", url, ->
+          editor.recordUndoEntry "Auto Link"
+          editor.setSelectedRange [head, tail]
+          editor.insertString " #{protocol} "
+          editor.setSelectedRange result_range
+          editor.activateAttribute 'href', url
+        ]
+        return ""
+
+      window.localStorage[@id] = JSON.stringify @editor
+      console.log @meta
+    , 300
+
+    paste: ({ paste })->
+      { range, string, type } = paste
+      console.log { range, string, type }
+
+    logger: (e)->
+      console.log e
+
+  watch:
+    value: _.debounce (newValue)->
+      unless @log.html == newValue
+        console.log "force change."
+        @editor.setData newValue
+    , 500
+
+</script>
+<style lang="sass">
+
+.form.toolbar
+  position: sticky
+  top: 0
+
+</style>

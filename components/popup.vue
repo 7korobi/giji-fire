@@ -9,7 +9,7 @@
       .chat.btns.center
 </template>
 <script lang="coffee">
-{ Query, State, Finder } = require 'memory-orm'
+{ Query, Finder } = require 'memory-orm'
 
 module.exports =
   props: ["id", "current", "adjust", "pageY", "zIndex"]
