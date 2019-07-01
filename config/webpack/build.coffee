@@ -16,4 +16,11 @@ module.exports =
 
   parallel: true
   extractCSS: true
+
+  postcss:
+    plugins:
+      'postcss-url': false,
+    preset:
+      autoprefixer:
+        grid: true
   # see .babelrc

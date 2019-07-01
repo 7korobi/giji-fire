@@ -378,7 +378,6 @@
                   "plugins": [
                     null,
                     null,
-                    null,
                     null
                   ],
                   "order": "presetEnvAndCssnanoLast"
@@ -407,7 +406,6 @@
                 "options": {
                   "sourceMap": false,
                   "plugins": [
-                    null,
                     null,
                     null,
                     null
@@ -448,7 +446,6 @@
                   "plugins": [
                     null,
                     null,
-                    null,
                     null
                   ],
                   "order": "presetEnvAndCssnanoLast"
@@ -477,7 +474,6 @@
                 "options": {
                   "sourceMap": false,
                   "plugins": [
-                    null,
                     null,
                     null,
                     null
@@ -516,7 +512,6 @@
                 "options": {
                   "sourceMap": false,
                   "plugins": [
-                    null,
                     null,
                     null,
                     null
@@ -555,7 +550,6 @@
                   "plugins": [
                     null,
                     null,
-                    null,
                     null
                   ],
                   "order": "presetEnvAndCssnanoLast"
@@ -598,7 +592,6 @@
                 "options": {
                   "sourceMap": false,
                   "plugins": [
-                    null,
                     null,
                     null,
                     null
@@ -636,7 +629,6 @@
                 "options": {
                   "sourceMap": false,
                   "plugins": [
-                    null,
                     null,
                     null,
                     null
@@ -684,7 +676,6 @@
                   "plugins": [
                     null,
                     null,
-                    null,
                     null
                   ],
                   "order": "presetEnvAndCssnanoLast"
@@ -719,7 +710,6 @@
                 "options": {
                   "sourceMap": false,
                   "plugins": [
-                    null,
                     null,
                     null,
                     null
@@ -764,7 +754,6 @@
                 "options": {
                   "sourceMap": false,
                   "plugins": [
-                    null,
                     null,
                     null,
                     null
@@ -801,7 +790,6 @@
                 "options": {
                   "sourceMap": false,
                   "plugins": [
-                    null,
                     null,
                     null,
                     null

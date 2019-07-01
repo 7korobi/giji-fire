@@ -77,7 +77,7 @@ Trix.config.toolbar.getDefaultHTML = ->
         <button type="button" class="trix-button trix-button--icon" data-trix-attribute="details" tabindex="-1"><i class="mdi mdi-details"></i></button>
         <button type="button" class="trix-button trix-button--icon" data-trix-attribute="marquee" tabindex="-1"><i class="mdi mdi-transfer-left"></i></button>
         <button type="button" class="trix-button trix-button--icon trix-button--icon-quote" data-trix-attribute="quote" tabindex="-1"></button>
-        <button type="button" class="trix-button trix-button--icon trix-button--icon-code" data-trix-attribute="code" tabindex="-1"></button>
+        <button type="button" class="trix-button trix-button--icon trix-button--icon-pre" data-trix-attribute="pre" tabindex="-1"></button>
       </span>
       <span class="trix-button-group trix-button-group--block-tools" data-trix-button-group="block-tools">
         <button type="button" class="trix-button trix-button--icon trix-button--icon-bullet-list" data-trix-attribute="bullet" tabindex="-1"></button>
@@ -132,8 +132,8 @@ reset Trix.config.blockAttributes, attributes =
   quote:
     tagName: "blockquote"
     nestable: true
-  code:
-    tagName: "code"
+  pre:
+    tagName: "pre"
     terminal: true
     text:
       plaintext: true

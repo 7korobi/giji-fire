@@ -147,7 +147,6 @@
               "sourceMap": true,
               "plugins": [
                 null,
-                null,
                 null
               ],
               "order": "presetEnvAndCssnanoLast"
@@ -176,7 +175,6 @@
             "options": {
               "sourceMap": true,
               "plugins": [
-                null,
                 null,
                 null
               ],
@@ -215,7 +213,6 @@
               "sourceMap": true,
               "plugins": [
                 null,
-                null,
                 null
               ],
               "order": "presetEnvAndCssnanoLast"
@@ -244,7 +241,6 @@
             "options": {
               "sourceMap": true,
               "plugins": [
-                null,
                 null,
                 null
               ],
@@ -282,7 +278,6 @@
             "options": {
               "sourceMap": true,
               "plugins": [
-                null,
                 null,
                 null
               ],
@@ -319,7 +314,6 @@
               "sourceMap": true,
               "plugins": [
                 null,
-                null,
                 null
               ],
               "order": "presetEnvAndCssnanoLast"
@@ -362,7 +356,6 @@
             "options": {
               "sourceMap": true,
               "plugins": [
-                null,
                 null,
                 null
               ],
@@ -399,7 +392,6 @@
             "options": {
               "sourceMap": true,
               "plugins": [
-                null,
                 null,
                 null
               ],
@@ -445,7 +437,6 @@
               "sourceMap": true,
               "plugins": [
                 null,
-                null,
                 null
               ],
               "order": "presetEnvAndCssnanoLast"
@@ -480,7 +471,6 @@
             "options": {
               "sourceMap": true,
               "plugins": [
-                null,
                 null,
                 null
               ],
@@ -524,7 +514,6 @@
             "options": {
               "sourceMap": true,
               "plugins": [
-                null,
                 null,
                 null
               ],
@@ -560,7 +549,6 @@
             "options": {
               "sourceMap": true,
               "plugins": [
-                null,
                 null,
                 null
               ],

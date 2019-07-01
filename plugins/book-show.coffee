@@ -1,5 +1,5 @@
 _ = require "lodash"
-{ Query } = require 'memory-orm'
+{ Query, State } = require 'memory-orm'
 { path_by, scroll, replaceState, pushState, localStorage } = require "vue-petit-store"
 
 
@@ -32,7 +32,7 @@ store =
   watch:
     mode: ->
       @page_reset()
-    "step.chats": ->
+    "$data.$step.chats": ->
       @page_reset()
 
     search: (n,o)->

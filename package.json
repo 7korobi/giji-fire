@@ -37,6 +37,7 @@
     "deploy:func": "firebase deploy --only functions",
     "backup": "run-p -n backup:*",
     "backup:rsync-front": "rsync -avz -e 'ssh -i ../.ssh/id_rsa'          7korobi@giji.f5.si:/home/7korobi/*.zip ../backup/.",
+    "backup:rsync-mongo": "rsync -avz -e 'ssh -i ../.ssh/id_rsa -p 20000' 7korobi@giji-api.duckdns.org:/home/7korobi/*.zip ../backup/.",
     "backup:rsync-data":  "rsync -avz -e 'ssh -i ../.ssh/id_rsa -p 10000' 7korobi@giji-api.duckdns.org:/home/7korobi/*.zip ../backup/.",
     "backup:競合": "find . -name '*競合*' > dropbox.error.txt",
     "g": "run-p -n g:*",
