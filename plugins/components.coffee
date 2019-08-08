@@ -4,6 +4,14 @@ Vue = require "vue"
 { url } = require "~/config/live.yml"
 
 if window?
+  live = require "~/config/live.yml"
+  firebase = require "firebase/app"
+  require 'firebase/auth'
+  require 'firebase/firestore'
+  require 'firebase/functions'
+  require 'firebase/messaging'
+  firebase.initializeApp live.firebase
+
   Toasted = require 'vue-toasted'
   Vue = Vue.default
   Vue.use Toasted.default,
@@ -36,9 +44,7 @@ for fname in ctx.keys()
   Vue.filter name, ctx(fname)
 
 Vue.config.ignoredElements = ['trix-editor', 'trix-toolbar']
-Vue.mixin
-  data: ->
-    $step: State.step
+Vue.mixin State.mixin
 
 ###
 # ElementUI section #####
@@ -52,13 +58,3 @@ Vue.mixin
 #locale.use lang
 
 #element require 'element-ui/lib/transitions/collapse-transition'
-
-if window?
-  live = require "~/config/live.yml"
-  firebase = require "firebase/app"
-  require 'firebase/auth'
-  require 'firebase/firestore'
-  require 'firebase/functions'
-  require 'firebase/messaging'
-
-  firebase.initializeApp live.firebase
