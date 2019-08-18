@@ -54,9 +54,6 @@ new Rule("face").schema ->
     tag: (tag_id)->
       all.partition "tag.#{tag_id}.set"
 
-    name_blank: ->
-      all.reduce.name_head.from.remain
-
     name_head: (tag_id)->
       all.tag(tag_id).reduce.name_head
 

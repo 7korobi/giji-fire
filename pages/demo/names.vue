@@ -4,24 +4,6 @@ div
     bread-crumb
       li
         nuxt-link(to="/demo") 開発者用ページ
-  c-report(handle="header" deco="center")
-    tags(v-model="tag_id")
-  c-report(handle="header" deco="center")
-    p 0人
-    article.fine(v-if="name_blanks") {{ name_blanks.map(c=> `<${c} `).join("") }}
-  c-post(handle="TSAY")
-    span(v-for="name in name_blanks") <{{name}}>
-  div(v-for="group, count in name_counts" v-if="0 < count", :key="count")
-    transition-group.posts(name="list" tag="div")
-      c-report(handle="header" deco="center", :key="'h'+count")
-        p {{count}}人
-        article.fine(v-if="group") {{ group.map(o=> `<${o.id} `).join("") }}
-      c-post(v-for="map in group" handle="SSAY", :key="map.id")
-        | <{{map.id}}> {{ map.set.join("、") }}
-  c-report(handle="footer" deco="center")
-    bread-crumb
-      li
-        nuxt-link(to="/demo") 開発者用ページ
 
   .fullframe.VSSAY
     | いつも見ている人名辞典を検索可能にしてみました。
@@ -57,6 +39,25 @@ div
                 component(:is="oo.is_used ? 's' : 'span'") {{ oo.spell }}
     article.fine.col_wide(v-else)
       | ※ 検索結果が多すぎます。
+
+
+
+  c-report(handle="header" deco="center")
+    h2 人狼議事のキャラクター名
+    hr.blank
+    tags(v-model="tag_id")
+  c-report(handle="header" deco="center")
+    p 0人
+    article.fine(v-if="name_blanks") {{ name_blanks.map(c=> `<${c} `).join("") }}
+  c-post(handle="TSAY")
+    span(v-for="name in name_blanks") <{{name}}>
+  div(v-for="group, count in name_counts" v-if="0 < count", :key="count")
+    transition-group.posts(name="list" tag="div")
+      c-report(handle="header" deco="center", :key="'h'+count")
+        p {{count}}人
+        article.fine(v-if="group") {{ group.map(o=> `<${o.id} `).join("") }}
+      c-post(v-for="map in group" handle="SSAY", :key="map.id")
+        | <{{map.id}}> {{ map.set.join("、") }}
 
   c-report(handle="footer" deco="center")
     bread-crumb
@@ -130,7 +131,7 @@ module.exports =
       Query.work_countrys.list
 
     name_blanks: ->
-      @name_counts.from.remain
+      @name_counts.remain
 
     name_counts: ->
       Query.faces.name_head(@tag_id)

@@ -7296,6 +7296,16 @@ memory-orm@^0.4.5:
     "@types/lodash" "^4.14.136"
     lodash "^4.17.15"
 
+memory-orm@^0.4.8:
+  version "0.4.8"
+  resolved "https://registry.yarnpkg.com/memory-orm/-/memory-orm-0.4.8.tgz#80594381aa3a02f2fc8a5e7de7848d2022d4ec4b"
+  integrity sha512-GzCNSb78WgEl1a/tvcZrmWm4LUbQ9P7PHN+QPbUnU5kBrhmxSlTVP67LJSHa7kF9lmbsgnPKKFn4/z/g+x62Dg==
+  dependencies:
+    "@types/lodash" "^4.14.136"
+    lodash "^4.17.15"
+    ts-loader "^6.0.4"
+    typescript "^3.5.3"
+
 memorystream@^0.3.1:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/memorystream/-/memorystream-0.3.1.tgz#86d7090b30ce455d63fbae12dda51a47ddcaf9b2"
