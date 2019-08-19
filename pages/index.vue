@@ -50,6 +50,8 @@ div
 
   c-post.form(@focus="focus" handle="VGSAY" id="creation")
     nuxt-link.button(to="/demo/names" no-prefetch) 人名単語索引
+    a(href="https://naming-dic.com/about.html") ネーミング辞典
+    a(href="https://myth.maji.asia") 紳魔精妖名辞典
     a(href="http://naming.nobody.jp/") 創作支援名前倉庫
     a(href="https://ichiranya.com/") いちらん屋
     br

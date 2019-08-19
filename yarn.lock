@@ -11341,10 +11341,10 @@ vue-no-ssr@^1.1.1:
   resolved "https://registry.yarnpkg.com/vue-no-ssr/-/vue-no-ssr-1.1.1.tgz#875f3be6fb0ae41568a837f3ac1a80eaa137b998"
   integrity sha512-ZMjqRpWabMPqPc7gIrG0Nw6vRf1+itwf0Itft7LbMXs2g3Zs/NFmevjZGN1x7K3Q95GmIjWbQZTVerxiBxI+0g==
 
-vue-petit-store@0.8.15:
-  version "0.8.15"
-  resolved "https://registry.yarnpkg.com/vue-petit-store/-/vue-petit-store-0.8.15.tgz#a1714c7942ccce172397e8cdbae9a091689092d9"
-  integrity sha512-PGevS6CPBC+zaUFvFHZ7fJ/OE0eqxTEw9H5dlAH0N5iJjhZb5qiumRiZPPUR3OMdqueacyuNQSpDJ8LXL7S42w==
+vue-petit-store@0.8.17:
+  version "0.8.17"
+  resolved "https://registry.yarnpkg.com/vue-petit-store/-/vue-petit-store-0.8.17.tgz#765f02b4d5be7d63f9e9cfb5809d7302faf30360"
+  integrity sha512-CDBChnYTeHS7DiUG57TIu/zuo+5/xpNp9D8bJvMCvUAEAPP8YQ2UoK/6f2YXUlPMszSwV+UxD5Kaa64N5YvcdA==
   dependencies:
     dexie "^2.0.4"
     firebase "^6.4.0"

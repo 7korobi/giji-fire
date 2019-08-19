@@ -62,7 +62,7 @@
     "npm-run-all": "^4.1.5",
     "nuxt": "^2.8.1",
     "trix": "^1.2.0",
-    "vue-petit-store": "0.8.15",
+    "vue-petit-store": "0.8.17",
     "vue-toasted": "^1.1.27"
   },
   "devDependencies": {
