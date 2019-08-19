@@ -29,14 +29,19 @@ div
       div(v-for="id in work_names_order" :style="work_names_style")
         btn(v-model="spot_id" :as="id") {{ id }}
         table
-          tbody
-            tr(v-for="oo in work_names[id].list")
+          tbody(v-for="oo in work_names[id].list")
+            tr
               td.r
                 component(:is="oo.is_used ? 's' : 'span'").fine {{ oo.head_used || "" }}
               td
                 component(:is="oo.is_used ? 's' : 'span'") {{ oo.name }}
               td
                 component(:is="oo.is_used ? 's' : 'span'") {{ oo.spell }}
+            tr(v-if="oo.side")
+              td
+              td(colspan="2")
+                sup
+                  component(:is="oo.is_used ? 's' : 'span'") {{ oo.side }} {{ oo.comment }}
     article.fine.col_wide(v-else)
       | ※ 検索結果が多すぎます。
 
@@ -69,13 +74,28 @@ div
 { pushState, replaceState } = require "vue-petit-store"
 
 { country, name, timestamp } = require '~/yaml/work_namedb.yml'
-console.log timestamp
-
-names = Query.faces.pluck("name")
-
 Set.work_country.set country
 Set.work_name.set name
+console.log timestamp
+
+
+{ name, timestamp } = require '~/yaml/work_namedb_ancient.yml'
+Set.work_name.merge name
+console.log timestamp
+
+{ name, timestamp } = require '~/yaml/work_namedb_jpn.yml'
+Set.work_name.merge name
+console.log timestamp
+
+Query.work_countrys.find("EGY").country.push "古カナアン"
+Query.work_countrys.find("ISR").country.push "古ヘブライ"
+Query.work_countrys.find("ITA").country.push "古ローマ"
+Query.work_countrys.find("IRI").country.push "古ペルシア"
+
+names = Query.faces.pluck("name")
 for o in Query.work_names.list
+  unless o.name
+    console.log o
   o.head_used = Query.faces.reduce.name_head.from[o.name[0]]?.set.length
   if names.includes o.name
     o.is_used = true

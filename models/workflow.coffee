@@ -11,7 +11,11 @@ idx = 0
 new Rule("work_name").schema ->
   @belongs_to "work_country"
   @deploy ->
-    ascii = @spell.normalize('NFKD').replace /[\u0300-\u036F]/g, ''
+    ascii =
+      if @spell
+        @spell.normalize('NFKD').replace /[\u0300-\u036F]/g, ''
+      else
+        ""
     @_id = "#{@key}-#{++idx}"
     @work_country_id = @key
     @q =
