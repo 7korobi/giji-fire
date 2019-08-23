@@ -12,11 +12,11 @@ module.exports =
     .outframe
       .toastframe
         .inframe
-          no-ssr
+          client-only
             .icons.form
       .sideframe
         .inframe
-          no-ssr
+          client-only
             .icons.form
       .summaryframe(name="list" tag="div" key="summary")
 
@@ -24,7 +24,7 @@ module.exports =
       .center-right
       .contentframe
         .inframe
-          no-ssr
+          client-only
             c-report(handle="SSAY" deco="giji")
               nuxt
           a-footer

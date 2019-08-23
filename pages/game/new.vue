@@ -52,10 +52,14 @@ log-wiki
 format = require "date-fns/format"
 { Query, Set } = require 'memory-orm'
 { share, localStorage, firestore_model, firestore_models, to_tempo } = require "vue-petit-store"
+{ nation, village } = require "~/yaml/rule.yml"
 
 module.exports =
   mixins: [
     firestore_models "books",  -> "game"
+    firestore_models "parts",  -> @book_id && "game/#{@book_id}/parts"
+    firestore_models "phases", -> @book_id && "game/#{@book_id}/phases"
+    firestore_models "chats",  -> @book_id && "game/#{@book_id}/chats"
     share "user"
     share "sign"
     localStorage "shows"
@@ -72,8 +76,10 @@ module.exports =
   computed:
     folder_id: -> 
       "fire"
-    book_id_chk:->
-      "#{@folder_id}-#{@book_idx - -0}"
+    book_id_chk: ->
+      "#{@folder_id}-#{@book_idx - -1}"
+    part_id: ->
+      "#{@book_id}-top"
     book_idx: ->
       Query
       .books.in_folder @folder_id
@@ -94,7 +100,11 @@ module.exports =
 
     create: ->
       range = "1d"
-      gap = "23h0m"
+      gap   = "23h0m"
+      uid   = @user.uid
+      sign  = @sign.sign
+      { book_id, part_id } = @
+      console.warn { book_id, part_id }
       { now_idx, write_at, last_at, next_at } = to_tempo(range, gap)
       await @books_add {
         write_at
@@ -105,7 +115,7 @@ module.exports =
 
         @label
         @mark_ids
-        _id: @book_id
+        _id: book_id
 
         tag_id: "giji"
         face_id: "c05"
@@ -117,10 +127,80 @@ module.exports =
         option_ids: ["undead-talk", "aiming-talk"]
         role_ids: []
 
-        uid: @user.uid
-        sign: @sign.sign
+        uid
+        sign
         tempo: { range, gap, now_idx }
       }
+    
+      await @parts_add {
+        write_at
+        _id: part_id
+
+        uid
+        sign
+        label: 'タイトル'
+      }
+
+      await @phases_add {
+        write_at
+        _id: part_id + '-M'
+
+        is_update: true
+        uid
+        sign
+        handle: 'TITLE'
+        label: '黒幕'
+      }
+
+      write_at++
+      await @chats_add {
+        write_at
+        _id: part_id + '-M-title'
+        uid
+        sign
+        deco: 'trix'
+        mention_ids: []
+        head: "#{@book_id} by #{sign}"
+        log: """<p></p><h2>#{@label}</h2><p></p>"""
+      }
+
+      write_at++
+      await @chats_add {
+        write_at
+        _id: part_id + '-M-welcome'
+        uid
+        sign
+        deco: 'trix'
+        mention_ids: []
+        log: """<p>（村のルールは、自由に編集できるよ！）</p>"""
+      }
+
+      v_rules = for {head} in village.list
+        "<li>#{head}</li>"
+      write_at++
+      await @chats_add {
+        write_at
+        _id: part_id + '-M-vrule'
+        uid
+        sign
+        deco: 'trix'
+        mention_ids: []
+        log: """<h3>村のルール</h3><ol>#{v_rules.join("")}</ol>"""
+      }
+
+      n_rules = for {head} in nation.list
+        "<li>#{head}</li>"
+      write_at++
+      await @chats_add {
+        write_at
+        _id: part_id + '-M-nrule'
+        uid
+        sign
+        deco: 'trix'
+        mention_ids: []
+        log: """<h3>国のルール</h3><ol>#{n_rules.join("")}</ol>"""
+      }
+
       @$toasted.success "ゲームを開催します。細かい設定を調整しましょう。"
       @$router.push "/game"
   head: ->

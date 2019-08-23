@@ -23,7 +23,7 @@ div
     btn(as="date_min"     v-model="order") 古参度
     a.btn(@click="do_shuffles") 🎲
 
-  no-ssr
+  client-only
     .fullframe
       transition-group.portrates(name="list" tag="div")
         portrate(v-for="(chr, idx) in chrs" :face_id="chr.face_id" :key="chr.face_id" :style="{ order: chr.q[order] }")

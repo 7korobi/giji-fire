@@ -215,7 +215,6 @@ module.exports =
             _id: phase_id
             handle: 'TITLE'
             group:  'A'
-            update: false
             guide:  true
           Set.chat.add
             _id: phase_id + "-CAST"
@@ -326,7 +325,6 @@ module.exports =
             guide: guide
             type:  phase_type
             group: phase_group
-            update: false
         Set.chat.add { _id, potof_id, write_at, to, show, deco, log, head, handle, mention_ids }
         o
 
@@ -349,17 +347,9 @@ module.exports =
         label: o.name ? "#{o.turn}日目"
 
       Set.phase.add phase_attr
-        _id: "#{book_id}-top-mA"
-        handle: "MAKER"
-        group:  "A"
-        update: false
-        guide:  false
-
-      Set.phase.add phase_attr
         _id: "#{book_id}-top-mS"
         handle: "TITLE"
         group:  "A"
-        update: false
         guide:  true
 
       Set.chat.add

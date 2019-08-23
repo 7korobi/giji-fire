@@ -1,11 +1,25 @@
 <template lang="pug">
 log-wiki
   template(slot="summary")
-    d-mentions.inframe.mentions(v-bind="for_mentions" key="1" @anker="anker" @popup="popup")
-    .inframe.TITLE
+    d-mentions.inframe.mentions(v-bind="for_mentions" @anker="anker" @popup="popup" key="1" v-if="is_show.mention")
+    .inframe.swipe.TITLE(v-if="is_show.link")
+      .TITLE
+        hr
+        anker-map(v-bind="for_mentions" @anker="anker" @popup="popup")
+
+    .inframe.TITLE.text(v-if="is_show.toc")
       hr
-      .swipe
-        search(v-model="search")        
+      d-toc(v-bind="for_toc" key="2" @popup="popup")
+      hr
+      div.swipe
+        select(v-model="page_by")
+          option(:value="30") &emsp;30投稿/p
+          option(:value="100") &ensp;100投稿/p
+          option(:value="300") &ensp;300投稿/p
+          option(:value="1000") 1000投稿/p
+        span.pull-left(style="width: 150px")
+          search(v-model="search")
+      d-mode(v-bind="for_mode" style="white-space: nowrap")
     a-potofs(v-bind="for_potofs" key="3" v-if="is_show.potofs")
 
   template(slot="toasts")
@@ -37,9 +51,22 @@ log-wiki
     nuxt-link.item.active.tooltip-left(v-if="$route.query.back" replace :to="back_url" data-tooltip="以前の画面に戻る")
       i.mdi.mdi-backspace
       | BACK
+    a.btn.item.active.tooltip-left(v-else @click="go_top" data-tooltip="一番上までスクロール")
+      i.mdi.mdi-arrow-collapse-up
+      | TOP
     btn-marker(v-if="$route.query.back" :back_url="{ query: $route.query }" v-bind="for_marker")
     btn-marker(v-else                   :back_url="back_url" v-bind="for_marker")
-    check.item(v-model="shows" as="potof")
+
+    check.item.tooltip-left(v-model="shows" as="mention" data-tooltip="今見ている投稿に関する情報")
+      i.mdi.mdi-pin
+      | INFO
+    check.item.tooltip-left(v-model="shows" as="link" data-tooltip="今見ている投稿に関する情報")
+      i.mdi.mdi-link-variant
+      | LINK
+    check.item.tooltip-left(v-model="shows" as="toc" v-if="! a.length" data-tooltip="他の日付へ移動、検索など")
+      i.mdi.mdi-filmstrip
+      | TOC
+    check.item.tooltip-left(v-model="shows" as="potof" data-tooltip="キャラクターの一覧、ステータス等を確認")
       i.mdi.mdi-account-multiple
       | STAT
     hr
@@ -64,27 +91,13 @@ log-wiki
         article(v-if="! page_contents.length")
           blockquote.
             現在、この名前の項目はありません。
-            誰でも編集できます。
           hr
           br
-          h3 項目を新しく書くには
-          ol
-            li 上のアイコンから、ログインに使うサービスを選択。
-            li 書き込みに使うキャラクターを選択。
-            li 枠形と色味を好みできめたら、自由に書き込もう。
-            li 文字の一部分を選択すると、文字に装飾をつけることができるぞ！
-        article(v-if="page_contents.length")
-          ol
-            li 文字の一部分を選択すると、文字に装飾をつけることができるぞ！
         article
           ol(style="list-style-type: upper-latin")
-            li 画像を書き込みフォームにDrag＆Dropすると、その画像を張り付けるぞ。
             li
               abbr.mdi.mdi-pencil
               | 投稿済みのメッセージを編集できるぞ。
-            li
-              abbr.mdi.mdi-table-column-plus-before
-              | 編集中のメッセージは、他のメッセージの上に移動できるぞ。
             li
               fcm(:topic="book_id")
               | このページ内での新規投稿を通知
@@ -98,6 +111,16 @@ log-wiki
 { Query, Set } = require 'memory-orm'
 { vuex, localStorage, firestore_model, firestore_models } = require "vue-petit-store"
 
+dic = '><&"\n'
+reg_dic = /[><\&\"\n]/g
+sow_dic = [
+  "&gt;"
+  "&lt;"
+  "&amp;"
+  "&quot;"
+  "<br>"
+]
+
 module.exports =
   mixins: [
     firestore_model  "book",   -> @book_id && "game/#{@book_id}"
@@ -109,43 +132,40 @@ module.exports =
     vuex "hide_ids", on: "menu.potofs"
     localStorage "shows"
     localStorage "options"
-    require("~/plugins/book-show")
+
     require("~/plugins/book-firebase")
+
+    require("~/plugins/book-show")
+    require("~/plugins/pager")
     require("~/plugins/for_component")
   ]
   layout: 'blank'
   data: ->
-    mode: 'wiki' 
+    mode: 'full'
     floats: {}
     options: ["impose"] # impose
     shows: [] # pin, toc, potof, current, search
 
   computed:
     is_show: ->
-      magnify: "magnify" in @shows
-      potofs:  "potof"   in @shows
+      magnify:  @shows.includes("magnify")
+      impose:   @options.includes("impose")
+      side:     @shows.includes("side") && !( ["memo", "memos"].includes(@mode) )
+      toc:      @shows.includes("toc")  && !( @a?.length )
+      link:     @shows.includes("link")    && @chat
+      mention:  @shows.includes("mention") && @chat
+      potofs:   @shows.includes("potof")
+
+    page_idx: ->
+      @page_all_contents?.page_idx?(@chat) ? 0
+
+    search_words: ->
+      @search.replace reg_dic, (chr)->
+        sow_dic[ dic.indexOf chr ]
 
   methods: {}
 
   mounted: ->
-    guide = true
-    update = true
-
-    Set.book.add
-      _id: @book_id
-    Set.part.add
-      _id: @part_id
-      label: 'wiki'
-    Set.phase.merge [
-      { update, guide, _id: @part_id + '-S', handle: 'SSAY',  label: '会話' }
-      { update, guide, _id: @part_id + '-M', handle: 'MSAY',  label: '人形' }
-      { update, guide, _id: @part_id + '-W', handle: 'WSAY',  label: '人狼' }
-      { update, guide, _id: @part_id + '-P', handle: 'PSAY',  label: '結社' }
-      { update, guide, _id: @part_id + '-G', handle: 'GSAY',  label: '墓下' }
-      { update, guide, _id: @part_id + '-F', handle: 'FSAY',  label: '発泡' }
-      { update, guide, _id: @part_id + '-X', handle: 'XSAY',  label: '妖精' }
-      { update, guide, _id: @part_id + '-T', handle: 'TITLE', label: '黒地' }
-    ]
   head: ->
     titleTemplate: "#{@book_id} %s"
 

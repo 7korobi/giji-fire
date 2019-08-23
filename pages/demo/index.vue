@@ -8,6 +8,9 @@ div
     nuxt-link(to="/wiki?idx=test-book") WIKI
   c-post(handle="VGSAY")
     nuxt-link(to="/demo/device") Device
+
+  c-post(handle="VGSAY")
+    a(href="https://weathernews.jp/onebox/?type=day") 天気予報
   c-post(handle="TSAY")
     | 簡易言語
     nuxt-link(to="/demo/sow") sow

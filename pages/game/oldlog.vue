@@ -1,6 +1,6 @@
 <template lang="pug">
 div
-  no-ssr
+  client-only
     transition-group(name="list" tag="div")
       c-post(handle="footer" key="breadcrumb")
         bread-crumb

@@ -4,7 +4,7 @@
   a-header(title="人狼議事")
   .page-active
     .outframe
-      no-ssr
+      client-only
         .toastframe
           .inframe
             .report
@@ -21,13 +21,13 @@
 
             .icons.form
               slot(name="toasts")
-      no-ssr
+      client-only
         .sideframe
           .inframe
             .icons.form
               slot(name="icons")
 
-      no-ssr
+      client-only
         .summaryframe(:class="options" name="list" tag="div" key="summary")
           slot(name="summary")
 

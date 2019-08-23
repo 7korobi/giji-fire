@@ -118,8 +118,8 @@ module.exports =
       b.set admin.firestore().doc("game/#{book_id}/parts/#{_id}"), o
 
       phases = [
-        { _id: "#{_id}-S", update: false, guide: true, handle: 'SSAY',  label: '会話' }
-        { _id: "#{_id}-T", update: true,  guide: true, handle: 'TITLE', label: '黒地' }
+        { _id: "#{_id}-S", is_update: false, handle: 'SSAY',  label: '会話' }
+        { _id: "#{_id}-T", is_update: true,  handle: 'TITLE', label: '黒地' }
       ]
       for o in phases
         b.set admin.firestore().doc("game/#{book_id}/phases/#{o._id}"), o

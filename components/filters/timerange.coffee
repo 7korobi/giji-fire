@@ -1,4 +1,4 @@
-format = require 'date-fns/format'
+format = require 'date-fns/format/index'
 locale = require "date-fns/locale/ja"
 
 module.exports = (o)->

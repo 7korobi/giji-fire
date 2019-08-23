@@ -1,6 +1,6 @@
 { Set, Model, Query, Rule } = Mem = require "memory-orm"
 { url } = require "~/config/live.yml"
-format = require 'date-fns/format'
+format = require 'date-fns/format/index'
 locale = require "date-fns/locale/ja"
 
 new Rule("sow_roletable").schema ->
@@ -64,12 +64,17 @@ new Rule("sow_village").schema ->
     { interval, hour, minute } = @upd
     hour   = "0#{hour}"   if hour   < 10
     minute = "0#{minute}" if minute < 10
-    updated_at = new Date @timer.updateddt
+    @timer.nextchargedt = new Date @timer.nextchargedt
+    @timer.nextcommitdt = new Date @timer.nextcommitdt
+    @timer.nextupdatedt = new Date @timer.nextupdatedt
+    @timer.scraplimitdt = new Date @timer.scraplimitdt
+    @timer.updateddt    = new Date @timer.updateddt
+    updated_at          = new Date @timer.updateddt
 
     @write_at = updated_at - 0
 
     in_month = format updated_at, 'MM月', { locale }
-    yeary = format updated_at, 'YYYY年', { locale }
+    yeary = format updated_at, 'yyyy年', { locale }
     monthry = yeary + in_month
     @q = {
       yeary

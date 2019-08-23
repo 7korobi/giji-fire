@@ -7,7 +7,7 @@ div
 
   fire-oauth(handle="TSAY")
 
-  no-ssr
+  client-only
     div
       component.text(:is="`c-${chat.show}`" head="CKEditor5 TEST" sign="ななころび" :handle="chat.handle" :deco="chat.deco" style="z-index: 10")
         cke-edit(:handle="chat.handle" v-model="text" :max-row="10" @submit="submit" @drop_image="image_post")

@@ -7,7 +7,7 @@ div
 
   fire-oauth(handle="TSAY")
 
-  no-ssr
+  client-only
     div
       c-report(head="Trix TEST" sign="ななころび" :handle="chat.handle" style="z-index: 10")
         trix-edit#trix-sample(:handle="chat.handle" v-model="text" :max-row="10" @submit="submit" @drop_image="image_post")

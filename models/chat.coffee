@@ -48,7 +48,7 @@ new Rule("chat").schema ->
     anker: (part_id)->
       { mark, guide } = @phase ? {}
       switch
-        when ! guide
+        when false == guide
           ""
         when  mark?
           if part_id == @part_id

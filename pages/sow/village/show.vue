@@ -67,7 +67,7 @@ log-wiki
         button(@click="get_by_network")
           i.mdi.mdi-reload
 
-  no-ssr
+  client-only
     div
       div(v-if="a.length")
         chat(v-for="o in cite_chats" :key="o.id" v-bind="for_chat(o.id)" v-on="for_chat_event(o.id)")

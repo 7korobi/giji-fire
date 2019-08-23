@@ -1,6 +1,6 @@
 { firestore, database, https } = require 'firebase-functions'
 admin = require 'firebase-admin'
-format = require 'date-fns/format'
+format = require 'date-fns/format/index'
 locale = require "date-fns/locale/ja"
 
 { to_msec, to_tempo } = require "vue-petit-store"
@@ -12,9 +12,9 @@ tempo = (doc)->
 
   if now_idx != doc.last_idx
     Object.assign doc, { last_at, write_at, next_at }
-    doc.write_time = format write_at - timezone, "YYYY/MM/DD HH:mm:ss", { locale }
-    doc.next_time  = format next_at  - timezone, "YYYY/MM/DD HH:mm:ss", { locale }
-    doc.last_time  = format last_at  - timezone, "YYYY/MM/DD HH:mm:ss", { locale }
+    doc.write_time = format write_at - timezone, "yyyy/MM/dd HH:mm:ss", { locale }
+    doc.next_time  = format next_at  - timezone, "yyyy/MM/dd HH:mm:ss", { locale }
+    doc.last_time  = format last_at  - timezone, "yyyy/MM/dd HH:mm:ss", { locale }
     doc.last_idx = now_idx
   else
     null
@@ -70,5 +70,5 @@ module.exports =
     ref = admin.firestore().doc('test/tick')
     oo = await ref.get()
 
-    now_s = format new Date - timezone, "YYYY/MM/DD HH:mm:ss", { locale }
+    now_s = format new Date - timezone, "yyyy/MM/dd HH:mm:ss", { locale }
 ###

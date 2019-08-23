@@ -27,6 +27,7 @@ store =
     a: []
 
   mounted: ->
+    console.warn @$route
     @page_reset()
 
   watch:
@@ -35,10 +36,7 @@ store =
     "$data.$step.chats": ->
       @page_reset()
 
-    search: (n,o)->
-      if n && ! o
-        @$router.replace
-          query: { @mode, @search, @back, @idx }
+    search: ->
       @page_reset()
 
     page: ->
@@ -120,7 +118,6 @@ store =
       console.log "#{chat_id} in #{page_idx}"
       return unless window?
       unless chat_id && page_idx
-        @page_idxs = [0]
         @go_top()
         return
 

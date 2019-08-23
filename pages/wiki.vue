@@ -131,8 +131,7 @@ module.exports =
   methods: {}
 
   mounted: ->
-    guide = true
-    update = true
+    is_update = true
 
     Set.book.add
       _id: @book_id
@@ -140,14 +139,14 @@ module.exports =
       _id: @part_id
       label: 'wiki'
     Set.phase.merge [
-      { update, guide, _id: @part_id + '-S', handle: 'SSAY',  label: '会話' }
-      { update, guide, _id: @part_id + '-M', handle: 'MSAY',  label: '人形' }
-      { update, guide, _id: @part_id + '-W', handle: 'WSAY',  label: '人狼' }
-      { update, guide, _id: @part_id + '-P', handle: 'PSAY',  label: '結社' }
-      { update, guide, _id: @part_id + '-G', handle: 'GSAY',  label: '墓下' }
-      { update, guide, _id: @part_id + '-F', handle: 'FSAY',  label: '発泡' }
-      { update, guide, _id: @part_id + '-X', handle: 'XSAY',  label: '妖精' }
-      { update, guide, _id: @part_id + '-T', handle: 'TITLE', label: '黒地' }
+      { is_update, _id: @part_id + '-S', handle: 'SSAY',  label: '会話' }
+      { is_update, _id: @part_id + '-M', handle: 'MSAY',  label: '人形' }
+      { is_update, _id: @part_id + '-W', handle: 'WSAY',  label: '人狼' }
+      { is_update, _id: @part_id + '-P', handle: 'PSAY',  label: '結社' }
+      { is_update, _id: @part_id + '-G', handle: 'GSAY',  label: '墓下' }
+      { is_update, _id: @part_id + '-F', handle: 'FSAY',  label: '発泡' }
+      { is_update, _id: @part_id + '-X', handle: 'XSAY',  label: '妖精' }
+      { is_update, _id: @part_id + '-T', handle: 'TITLE', label: '黒地' }
     ]
   head: ->
     titleTemplate: "#{@book_id} %swiki"

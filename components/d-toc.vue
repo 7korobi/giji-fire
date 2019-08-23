@@ -20,7 +20,7 @@ div(:class="page_view" v-on="col_space")
 <script lang="coffee">
 timerange = require "~/components/filters/timerange"
 { Query } = require 'memory-orm'
-{ curtain } = require "vue-petit-store"
+{ curtain, simple_route } = require "vue-petit-store"
 
 module.exports =
   mixins: [
@@ -43,7 +43,7 @@ module.exports =
     page_url: (part_id, page_idx)->
       idx = part_id
       page = 1 + page_idx
-      query: { @mode, idx, page, @search }
+      simple_route  query: { @mode, idx, page, @search }
 
     page_label: (part_id, page_idx)->
       [ min,..., max ] = @chats(@mode, part_id)[page_idx] ? []

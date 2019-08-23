@@ -97,7 +97,7 @@ module.exports =
 </script>
 <template lang="pug">
 div
-  no-ssr
+  client-only
     welcome(:top="scroll.top" :title="title")
       .btns.form
         span

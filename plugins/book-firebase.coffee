@@ -54,7 +54,7 @@ module.exports =
         is_replacing = ! is_creating
 
       is_moving = is_replacing && @chat_id != @my_chat_id
-      can_update = @chat?.phase?.update
+      can_update = @chat?.phase?.is_update
       can_fav = @my_phase?.fav
 
       icon = @my_icon
