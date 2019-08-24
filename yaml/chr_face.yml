@@ -3292,6 +3292,34 @@
     tag_ids:
       - shoji
 
+#########################
+# 2019-08-24
+
+-   _id: c142
+    name: ウィレム
+    order: 142
+    tag_ids:
+      - giji
+      - young
+      - kid
+      - farm
+      - river
+      - ecclesia
+
+-   _id: c143
+    name: ボイド
+    order: 143
+    tag_ids:
+      - giji
+      - elder
+      - servant
+
+-   _id: f26
+    name: ビジリア
+    order: 60026
+    tag_ids:
+      - fable
+
 
 #########################
 # xxxx-xx-xx update

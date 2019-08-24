@@ -521,3 +521,9 @@ chr_job:
 
   - face_id: c141
     job: 泥炭採り
+
+  - face_id: c142
+    job: 河川学徒
+
+  - face_id: c143
+    job: 家庭教師
