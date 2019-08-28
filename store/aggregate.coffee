@@ -6,7 +6,7 @@ module.exports =
   state: -> {}
   mutations: {}
   actions: {
-    ...poll.caches "6h",
+    ...poll.caches "6h", "1.0.0",
       faces:    -> "#{url.store}/aggregate/faces/index.json"
       face: (id)-> "#{url.api}/aggregate/faces/#{id}"
   }

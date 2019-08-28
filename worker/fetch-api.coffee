@@ -1,5 +1,7 @@
-require "../models/index"
 { Model, Query, Rule, Set, Finder } = require 'memory-orm'
+{ poll } = require "vue-petit-store"
+
+require "../models/index"
 { nation } = require "../yaml/rule.yml"
 
 
@@ -43,8 +45,7 @@ phase_attr = (self)->
     Object.assign self, o
   self
 
-
-module.exports =
+poll.api 
   'aggregate/faces': (url)->
     @fetch url, (data)->
       for o in data.faces when face = Set.face.find o._id.face_id
