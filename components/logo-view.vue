@@ -22,6 +22,5 @@ module.exports =
   props: ["value"]
   computed:
     use_marks: ->
-      console.warn @book
       Query.marks.finds @book.mark_ids
 </script>

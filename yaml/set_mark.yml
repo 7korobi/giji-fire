@@ -67,3 +67,6 @@ violence:
   enable: true
   path: /images/icon/CERO_violence.svg
 
+biohazard:
+  enable: true
+  path: /images/icon/alert_biohazard.svg
