@@ -149,6 +149,7 @@ module.exports =
         uid
         sign
         handle: 'TITLE'
+        group: 'S'
         label: '黒幕'
       }
 
@@ -158,10 +159,9 @@ module.exports =
         _id: part_id + '-M-title'
         uid
         sign
-        deco: 'trix'
+        show: 'report'
+        deco: 'logo'
         mention_ids: []
-        head: "#{@book_id} by #{sign}"
-        log: """<p></p><h2>#{@label}</h2><p></p>"""
       }
 
       write_at++
@@ -170,6 +170,7 @@ module.exports =
         _id: part_id + '-M-welcome'
         uid
         sign
+        show: 'report'
         deco: 'trix'
         mention_ids: []
         log: """<p>（村のルールは、自由に編集できるよ！）</p>"""
@@ -183,6 +184,7 @@ module.exports =
         _id: part_id + '-M-vrule'
         uid
         sign
+        show: 'report'
         deco: 'trix'
         mention_ids: []
         log: """<h3>村のルール</h3><ol>#{v_rules.join("")}</ol>"""
@@ -196,6 +198,7 @@ module.exports =
         _id: part_id + '-M-nrule'
         uid
         sign
+        show: 'report'
         deco: 'trix'
         mention_ids: []
         log: """<h3>国のルール</h3><ol>#{n_rules.join("")}</ol>"""

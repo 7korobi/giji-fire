@@ -1,4 +1,3 @@
-<style lang="sass" src="~/styl/index.use.sass" />
 <template lang="pug">
 .page-active-bg
   a-header(title="人狼議事")

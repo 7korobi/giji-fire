@@ -120,11 +120,11 @@
         > circle,
         > path.fill,
           fill: $line
-          &:focus
+          &:focus-within,
             fill: $focus
         > path.path
           stroke: $line
-          &:focus
+          &:focus-within,
             stroke: $focus
 
       text.pen,
@@ -251,7 +251,8 @@
     [data-tooltip],
       body &.#{$theme}:before,
       .#{$theme} &:before,
-        border-color: $bgHi
+        background-color: $bgHi
+        border-color: $off
       body &.#{$theme}:after,
       .#{$theme} &:after,
         text-shadow: none
@@ -317,7 +318,7 @@
 
     // focus setting
     ::hover,
-    ::focus,
+    ::focus-within,
     .hover,
     .focus,
       body &.#{$theme},

@@ -100,26 +100,27 @@ new Rule("chat").schema ->
       emit "last", o.q.group,
         max: o.write_at
 
-      emit "say",
-        max: o.write_at + 1
-        min: o.write_at
-        count: 1
-        all: o.log.length
+      if o.log?.length
+        emit "say",
+          max: o.write_at + 1
+          min: o.write_at
+          count: 1
+          all: o.log.length
 
-      if o.phase_id.match(/-[SGV]S?$/)
-        all = o.phase_id.split("-")
-        all[2] = 'top'
-        all_phase_id = all.join("-")
-        emit "potof", all_phase_id, o.potof_id,
-          count: 1
-          all: o.log.length
-          max: o.write_at + 1
-          min: o.write_at
-        emit "potof", o.phase_id, o.potof_id,
-          count: 1
-          all: o.log.length
-          max: o.write_at + 1
-          min: o.write_at
+        if o.phase_id.match(/-[SGV]S?$/)
+          all = o.phase_id.split("-")
+          all[2] = 'top'
+          all_phase_id = all.join("-")
+          emit "potof", all_phase_id, o.potof_id,
+            count: 1
+            all: o.log.length
+            max: o.write_at + 1
+            min: o.write_at
+          emit "potof", o.phase_id, o.potof_id,
+            count: 1
+            all: o.log.length
+            max: o.write_at + 1
+            min: o.write_at
 
       if o.phase_id.match(/-.M?$/)
         emit "side", o.phase_id, o.potof_id,

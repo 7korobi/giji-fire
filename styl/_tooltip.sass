@@ -39,7 +39,6 @@ body :not(button)[title],
     content: ''
     width: 0
     height: 0
-    border-color: transparent
     border-radius: 6px
 
 body :not(button)[title],
@@ -49,73 +48,58 @@ body :not(button)[title],
 .tooltip-top,
   &.tap,
   &:hover,
-  &:focus,
-    &:after
+  &:focus-within,
+    &:after,
       display: block
       opacity: 1
       border: 0.5px solid
-    &:before
+    &:before,
       display: block
       opacity: 1
-      border: 6px solid
-
-  &:has(:focus)
-    &:after
-      display: block
-      opacity: 1
-      border: 0.5px solid
-    &:before
-      display: block
-      opacity: 1
-      border: 6px solid
+      width:  12px
+      height: 12px
 
 // Bottom
 .tooltip-bottom
   &:after,
-  &:before,
-    top: 85%
+    top: calc( 85% + 12px )
     left: 0
-    margin-top: 12px
-  &:before
-    margin-top:  6px
+  &:before,
+    top: calc( 85% +  6px )
     left: 15px
+    border-top: 0.5px solid
 
 // Top
 body :not(button)[title],
 .tooltip-top,
   &:after,
+    top: auto
+    bottom: calc( 85% + 12px )
+    left: 0
   &:before,
     top: auto
-    bottom: 85%
-    left: 0
-    margin-bottom: 12px
-  &:before
-    margin-bottom:  6px
+    bottom: calc( 85% +  6px )
     left: 15px
+    border-bottom: 0.5px solid
 
 // Right
 .tooltip-right
   &:after,
-  &:before,
-    left: 100%
-    margin-left: 6px
-    margin-top: 0
+    left: calc( 100% + 6px )
     top: 0
-  &:before
-    margin-left: 0
-    left: 100%
+  &:before,
+    left: calc( 100% )
     top: 7px
+    border-left: 0.5px solid
 
 // Left
 .tooltip-left
   &:after,
-  &:before,
-    right: 100%
-    margin-right: 6px
     left: auto
-    margin-top: 0
+    right: calc( 100% + 6px )
     top: 0
-  &:before
-    margin-right: 0
-    right: 100%
+  &:before,
+    left: auto
+    right: calc( 100% )
     top: 7px
+    border-right: 0.5px solid

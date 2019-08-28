@@ -30,7 +30,10 @@ new Rule("sow_village").schema ->
   @order "config",      sort: ['count', 'desc'], belongs_to: "roles"
 
   @has_many "turns", target: "sow_turns", key: "story_id"
+
+  @habtm "marks"
   @habtm "option_datas", target: "options", key: "options"
+
   @belongs_to "say",  target: "says",  key: "q.say"
   @belongs_to "mob",  target: "roles", key: "q.mob"
   @belongs_to "game", target: "games", key: "q.game"
@@ -80,7 +83,7 @@ new Rule("sow_village").schema ->
       yeary
       monthry
       in_month
-      sow_auth_id: @sow_auth_id.replace(/\./g, '&#2e')
+      sow_auth_id: @sign
       folder_id: @folder.toUpperCase()
       size: "x" + @vpl[0]
       say:  @type.say
@@ -89,7 +92,7 @@ new Rule("sow_village").schema ->
       upd_at: "#{hour}:#{minute}"
       upd_range: "#{interval * 24}h"
       rating: @rating
-      search_words: @name
+      search_words: @label
     }
 
     @q.rating = "default"  if @rating in [null, 0, "0", "null", "view"]

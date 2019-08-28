@@ -81,10 +81,10 @@ module.exports =
   computed:
     for_target: ->
       switch @deco
-        when 'cast'
+        when 'logo', 'cast'
           key    = 'id'
           value  = @id
-          target = 'cast'
+          target = @deco
 
         when 'diagram'
           key    = 'data'

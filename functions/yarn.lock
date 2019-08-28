@@ -703,10 +703,10 @@ date-and-time@^0.8.0:
   resolved "https://registry.yarnpkg.com/date-and-time/-/date-and-time-0.8.1.tgz#cd7d03b06bc68eb16977850a3f7a5ac7c1a643d3"
   integrity sha512-p1d0c3HE7bJK4m3/TcNx7EFZcq0Jyvl05TWeESfC5FsJQVRlUrYAL7rB7NEPogx9C3rKsOZJn9PELYo9jVT7mw==
 
-date-fns@1.30.1:
-  version "1.30.1"
-  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-1.30.1.tgz#2e71bf0b119153dbb4cc4e88d9ea5acfb50dc05c"
-  integrity sha512-hBSVCvSmWC+QypYObzwGOd9wqdDpOt+0wl0KbU+R+uuZBS1jN8VsD1ss3irQDknRj5NvxiTF6oj/nDRnN/UQNw==
+date-fns@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.0.1.tgz#c5f30e31d3294918e6b6a82753a4e719120e203d"
+  integrity sha512-C14oTzTZy8DH1Eq8N78owrCWvf3+cnJw88BTK/N3DYWVxDJuJzPaNdplzYxDYuuXXGvqBcO4Vy5SOrwAooXSWw==
 
 debug@2.6.9, debug@^2.1.2:
   version "2.6.9"
@@ -975,10 +975,10 @@ finalhandler@~1.1.2:
     statuses "~1.5.0"
     unpipe "~1.0.0"
 
-firebase-admin@^8.3.0:
-  version "8.3.0"
-  resolved "https://registry.yarnpkg.com/firebase-admin/-/firebase-admin-8.3.0.tgz#8ab935a4f11f0f8983e6ae5d14704d199c00f712"
-  integrity sha512-ydjTudnWa6T1wZPdb+s4mQJ6NhHxvXkhMMHNV7inI3ZRFUfhovv77M4SDUbMND2SFMYvttyDuj66/EpcPzyXNg==
+firebase-admin@^8.4.0:
+  version "8.4.0"
+  resolved "https://registry.yarnpkg.com/firebase-admin/-/firebase-admin-8.4.0.tgz#b3ba7330afbaa0d223f344d361f566da0e3f2126"
+  integrity sha512-DRAAPRFYhdpwNu8KDceuem7Y1yvFZRqAf6iO5/5IwiHTp9ojRin/V8eV2eNjY3C4tZCKkJDpXvCBtwbvBejFDA==
   dependencies:
     "@firebase/database" "^0.4.7"
     "@types/node" "^8.0.53"
@@ -2280,10 +2280,10 @@ vary@^1, vary@~1.1.2:
   resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
   integrity sha1-IpnwLG3tMNSllhsLn3RSShj2NPw=
 
-vue-petit-store@^0.8.24:
-  version "0.8.24"
-  resolved "https://registry.yarnpkg.com/vue-petit-store/-/vue-petit-store-0.8.24.tgz#b5d9d23743ee1fadfdfbd63d54a222fc3976c75e"
-  integrity sha512-+c6DiK3b6FzaPjat4TZkPrcCBv3PWbOrkMAwFZb+gwpMmBIEyVywPAtWPe9zQJSz2NSu6hV/+vRqSpJrEPVosQ==
+vue-petit-store@^0.8.25:
+  version "0.8.25"
+  resolved "https://registry.yarnpkg.com/vue-petit-store/-/vue-petit-store-0.8.25.tgz#46aa055788050987139071fd649f6c34fac14100"
+  integrity sha512-Ki2B0QcWUqh6vDlFWyPkWlrYy7mR/Nw/BUqQgVNgoGZfVipDWh21dHpSvGmKcNjhO8Gl7S66+nVcltNM2Iaemg==
   dependencies:
     dexie "^2.0.4"
     firebase "^6.4.0"

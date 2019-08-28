@@ -115,6 +115,20 @@ module.exports =
 
   'sow/progress': (url)->
     @fetch url, (data)->
+      for o in data.stories
+        sign = o.sow_auth_id.replace(/\./g, '&#2e')
+        Object.assign o,
+          label: o.name
+          sign: sign
+          mark_ids:
+            switch o.rating
+              when "sexylove"
+                ['sexy', 'love']
+              when "sexyviolence"
+                ['sexy', 'violence']
+              else
+                [o.rating]
+
       Set.sow_village.reject Query.sow_villages.prologue.list
       Set.sow_village.reject Query.sow_villages.progress.list
       Set.sow_turn.merge    data.events
@@ -182,13 +196,14 @@ module.exports =
         else
           job = Query.chr_jobs.find("#{csid}_#{o.face_id}")?.job
 
+        sign = o.sow_auth_id.replace(/\./g, '&#2e')
         Set.potof.add
           _id:       potof_id
           part_id: o.event_id
           job:            job
           pno:          o.pno
           face_id:  o.face_id
-          sign: o.sow_auth_id
+          sign: sign
           text: o.history?.replace /<[^>]+>/g, ""
 
       potofs = Query.potofs
@@ -339,6 +354,14 @@ module.exports =
         potof_size: potofs.list.length
         sign: sign
         write_at: chat_head.write_at - 4
+        mark_ids:
+          switch o.rating
+            when "sexylove"
+              ['sexy', 'love']
+            when "sexyviolence"
+              ['sexy', 'violence']
+            else
+              [o.rating]
 
       [welcome = "", v_rules] = o.comment.split(/■村のルール<br>/)
 
@@ -356,14 +379,9 @@ module.exports =
         _id: book_id + "-top-mS-title"
         write_at: chat_head.write_at - 4
         show: "report"
-        deco: "center"
+        deco: "logo"
         sign: sign
-        head: "#{ o.folder }-#{ o.vid } by #{ sign }"
-        log: """
-          <br>
-          <h2>#{o.name}</h2>
-          <br>
-        """
+        log: ""
 
       Set.chat.add
         _id: book_id + "-top-mS-welcome"

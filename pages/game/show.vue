@@ -35,9 +35,6 @@ log-wiki
     .item
       i.c.mdi(:class="my_mdi")
     h6.c(:class="edit.chat.phase.handle" v-if="edit.is_replacing") 編集
-    a.btn.item.tooltip-left(:class="handle" @click="move" v-if="edit.is_moving" data-tooltip="編集中の投稿の並び順をこの上に")
-      i.mdi.mdi-table-column-plus-before
-
     a.btn.item.tooltip-left(:class="handle" @click="replace_mode()" v-if="edit.can_update && edit.is_creating" data-tooltip="この投稿を編集")
       i.mdi.mdi-pencil
     a.btn.item.tooltip-left(:class="handle" @click="create_mode()" v-if="edit.is_replacing" data-tooltip="この編集を取りやめる")
@@ -84,8 +81,16 @@ log-wiki
   div(v-else)
     c-report.form(handle="footer" key="finder")
       search(v-model="search")
+      d-mode.center(v-bind="for_mode")
+      d-part.center(v-bind="for_part")
+
     div(v-for="(page_chats, idx) in page_contents", :key="idx")
+      banner
+        .public
+          article.text
+            h3 p{{ 1 + page_idxs[idx] }}
       chat(v-for="o in page_chats" :key="o.id" v-bind="for_chat(o.id)" v-on="for_chat_event(o.id)")
+
     div
       c-post(handle="VSSAY")
         article(v-if="! page_contents.length")
@@ -102,6 +107,16 @@ log-wiki
               fcm(:topic="book_id")
               | このページ内での新規投稿を通知
           br
+
+    c-report.form(v-if="page_next_idx" handle="footer" key="limitup")
+      .center
+        scroll-mine(@input="page_add", :as="page_next_idx") 次頁
+
+    c-report.form(v-else handle="footer" key="limitup")
+      d-part.center(v-bind="for_part")
+      d-mode.center(v-bind="for_mode")
+      search(v-model="search")
+
   e-potof(v-if="edit.is_entry" :value="my_potof" @input="my_potof_change")
   chat(v-if="edit.is_creating" v-bind="for_chat_new" v-on="for_chat_event(edit.chat.id)")
   c-report(handle="footer" deco="center")
@@ -141,15 +156,14 @@ module.exports =
   ]
   layout: 'blank'
   data: ->
-    mode: 'full'
     floats: {}
     options: ["impose"] # impose
     shows: [] # pin, toc, potof, current, search
 
   computed:
     is_show: ->
-      magnify:  @shows.includes("magnify")
       impose:   @options.includes("impose")
+      magnify:  @shows.includes("magnify")
       side:     @shows.includes("side") && !( ["memo", "memos"].includes(@mode) )
       toc:      @shows.includes("toc")  && !( @a?.length )
       link:     @shows.includes("link")    && @chat
@@ -163,9 +177,6 @@ module.exports =
       @search.replace reg_dic, (chr)->
         sow_dic[ dic.indexOf chr ]
 
-  methods: {}
-
-  mounted: ->
   head: ->
     titleTemplate: "#{@book_id} %s"
 
