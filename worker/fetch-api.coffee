@@ -123,6 +123,12 @@ poll.api
           sign: sign
           mark_ids:
             switch o.rating
+              when "default"
+                []
+              when "child"
+                ['age_A']
+              when "fireplace"
+                ['cat']
               when "sexylove"
                 ['sexy', 'love']
               when "sexyviolence"
@@ -357,6 +363,12 @@ poll.api
         write_at: chat_head.write_at - 4
         mark_ids:
           switch o.rating
+            when "default"
+              []
+            when "child"
+              ['age_A']
+            when "fireplace"
+              ['cat']
             when "sexylove"
               ['sexy', 'love']
             when "sexyviolence"

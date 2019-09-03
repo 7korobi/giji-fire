@@ -69,4 +69,17 @@ violence:
 
 biohazard:
   enable: true
-  path: /images/icon/alert_biohazard.svg
+  path: /images/icon/mood_biohazard.svg
+
+cat:
+  enable: true
+  path: /images/icon/mood_cat.svg
+
+music:
+  enable: true
+  path: /images/icon/mood_music.svg
+
+
+appare:
+  enable: false
+  path: /images/icon/cd_appare.png
