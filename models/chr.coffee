@@ -216,8 +216,8 @@ State.transaction ->
     o = require "../yaml/cs_#{key}.yml"
 
     Set.chr_set.append o.chr_set
-    { chr_set_id } = o.chr_set
-    cs_key = { chr_set_id }
+    { id } = o.chr_set
+    cs_key = { chr_set_id: id }
 
     Set.chr_npc.merge o.chr_npc, cs_key
     Set.chr_job.merge o.chr_job, cs_key

@@ -1,5 +1,11 @@
 { Set, Model, Query, Rule } = require 'memory-orm'
 
+new Rule("work_location").schema ->
+  @property 'model',
+    prefecture:
+      get: ->
+        @id.split("-")[0]
+
 new Rule("work_country").schema ->
   @has_many "work_names"
   @deploy ->
