@@ -1,6 +1,6 @@
 { firestore, database, https } = require 'firebase-functions'
 admin = require 'firebase-admin'
-format = require 'date-fns/format/index'
+format = require 'date-fns/format'
 locale = require "date-fns/locale/ja"
 
 { to_msec, to_tempo } = require "vue-petit-store"

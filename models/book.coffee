@@ -1,7 +1,11 @@
 { Model, Query, Rule, Set, State } = require 'memory-orm'
 { game } = require "~/config/live.yml"
-format = require 'date-fns/format/index'
+format = require 'date-fns/format'
 locale = require "date-fns/locale/ja"
+
+if window?
+  format = format.default 
+  locale = locale.default
 
 new Rule("book").schema ->
   @path "folder"

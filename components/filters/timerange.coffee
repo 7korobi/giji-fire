@@ -1,5 +1,9 @@
-format = require 'date-fns/format/index'
+format = require 'date-fns/format'
 locale = require "date-fns/locale/ja"
+
+if window?
+  format = format.default 
+  locale = locale.default
 
 module.exports = (o)->
   return "" unless o

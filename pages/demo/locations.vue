@@ -5,6 +5,9 @@ div
       li
         nuxt-link(to="/demo") 開発者用ページ
 
+  c-post.form(handle="SSAY" deco="trix")
+    a.btn(v-for="id in id_list" @click="location_tap(id)") {{ label(id) }}
+
   c-report(handle="footer" deco="center")
     bread-crumb
       li
@@ -20,11 +23,54 @@ Set.work_location.reset geo
 module.exports =
   mixins: [
   ]
+
   data: ->
+    ids: []
     options: []
-    search: ""
-    limit: 1000
+    limit: 100
+
+  methods:
+    label: (id)->
+      hd =
+        if @current
+          @current.name.length
+        else
+          0
+      { idx, name } = @location id
+      tail = name[ hd .. ]
+      if idx.length < tail.length
+        tail
+      else
+        idx
+
+    location: (id)->
+      Query.work_locations.find(id)
+
+    location_tap: (id)->
+      @ids.push id
+      console.log @ids
+
   computed:
-    is_used: ->
-      @options.includes 'is_used'
+    bases: ->
+      [
+        Query.work_locations,
+        Query.work_locations.zip(),
+        Query.work_locations.geo(),
+        Query.work_locations.no_zip(),
+        Query.work_locations.no_geo(),
+      ]
+    root: ->
+      root = @bases[0].reduce.id_tree.navi
+      for id in @ids
+        break unless root = root[id]
+      root
+    
+    current: ->
+      [..., id] = @ids
+      @location id
+
+    id_list: ->
+      if @root
+        Object.keys @root
+
 </script>
