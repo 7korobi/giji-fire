@@ -25,7 +25,6 @@ module.exports =
     asset '10y', '2018-08-29', 'https://cdn.materialdesignicons.com/*/*/*'
     asset '10y', '2018-08-29', 'https://giji.f5.si/images/*'
     asset '10y', '2018-08-29', 'https://giji.f5.si/font/*'
-    asset  '1m', '2019-06-13', 'https://giji.f5.si/css/*'
   ]
   importScripts: [
     'firebase-messaging-sw.js'
