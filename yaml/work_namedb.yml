@@ -4813,6 +4813,9 @@ name:
 - spell: Romilly
   name: ロミリー
   key: USA
+- spell: Rommel
+  name: ローメル
+  key: USA
 - spell: Romney
   name: ロムニー
   key: USA
@@ -6390,6 +6393,9 @@ name:
   key: USA
 - spell: Sarelle
   name: サレル
+  key: USA
+- spell: Sarge
+  name: サージ
   key: USA
 - spell: Sargeant
   name: サージェント
@@ -8356,6 +8362,9 @@ name:
 - spell: Shellie
   name: シェリー
   key: USA
+- spell: Shellist
+  name: シェリスト
+  key: USA
 - spell: Shelly
   name: シェリー
   key: USA
@@ -9528,9 +9537,6 @@ name:
   key: USA
 - spell: Slansky
   name: スランスキー
-  key: USA
-- spell: Slapsie
-  name: スラプシー
   key: USA
 - spell: Slash
   name: スラッシュ
@@ -11509,6 +11515,9 @@ name:
 - spell: Stinker
   name: スティンカー
   key: USA
+- spell: Stinnett
+  name: スティネット
+  key: USA
 - spell: Stinson
   name: スティンソン
   key: USA
@@ -13246,6 +13255,9 @@ name:
 - spell: Tarpey
   name: ターピー
   key: USA
+- spell: Tarpley
+  name: タープリー
+  key: USA
 - spell: Tarr
   name: ター
   key: USA
@@ -13440,6 +13452,9 @@ name:
   key: USA
 - spell: TeBoekhorst
   name: テボークホースト
+  key: USA
+- spell: Techman
+  name: テックマン
   key: USA
 - spell: Ted
   name: テッド
@@ -14181,6 +14196,9 @@ name:
   key: USA
 - spell: Tibbetts
   name: ティベッツ
+  key: USA
+- spell: Tibbles
+  name: ティブルス
   key: USA
 - spell: Tibbs
   name: ティブス
@@ -16767,6 +16785,9 @@ name:
   key: USA
 - spell: Vickie
   name: ヴィッキー
+  key: USA
+- spell: Vicknair
+  name: ヴィックネア
   key: USA
 - spell: Vicks
   name: ヴィックス
@@ -19381,6 +19402,9 @@ name:
 - spell: Wirth
   name: ワース
   key: USA
+- spell: Wirtz
+  name: ワーツ
+  key: USA
 - spell: Wisberg
   name: ワイスバーグ
   key: USA
@@ -20301,6 +20325,9 @@ name:
   key: USA
 - spell: Yoke
   name: ヨーク
+  key: USA
+- spell: Yolette
+  name: ヨレット
   key: USA
 - spell: Yolonda
   name: ヨロンダ
@@ -23634,6 +23661,9 @@ name:
   key: USA
 - spell: Lizard
   name: リザード
+  key: USA
+- spell: Lizbeth
+  name: リズベス
   key: USA
 - spell: Lizer
   name: ライザー
@@ -28804,6 +28834,9 @@ name:
 - spell: Meir
   name: ミーア
   key: USA
+- spell: Meire
+  name: メイア
+  key: USA
 - spell: Meisle
   name: マイスル
   key: USA
@@ -29529,6 +29562,9 @@ name:
   key: USA
 - spell: Mihok
   name: マイホク
+  key: USA
+- spell: Mikaela
+  name: ミケイラ
   key: USA
 - spell: Mikaila
   name: ミケイラ
@@ -32626,6 +32662,9 @@ name:
 - spell: Northcott
   name: ノースコット
   key: USA
+- spell: Northern
+  name: ノーザン
+  key: USA
 - spell: Northon
   name: ノートン
   key: USA
@@ -33009,6 +33048,9 @@ name:
   key: USA
 - spell: O'Day
   name: オデイ
+  key: USA
+- spell: Oddy
+  name: オディ
   key: USA
 - spell: O'Dea
   name: オディ
@@ -37894,6 +37936,9 @@ name:
 - spell: Elston
   name: エルストン
   key: USA
+- spell: Elsworth
+  name: エルズワース
+  key: USA
 - spell: Eltie
   name: エルティ
   key: USA
@@ -42025,6 +42070,9 @@ name:
 - spell: Gautesen
   name: ゴートゥセン
   key: USA
+- spell: Gauthier
+  name: ゴティエー
+  key: USA
 - spell: Gautreaux
   name: ゴートロー
   key: USA
@@ -43666,6 +43714,9 @@ name:
 - spell: Gorch
   name: ゴーチ
   key: USA
+- spell: Gord
+  name: ゴード
+  key: USA
 - spell: Gordan
   name: ゴーダン
   key: USA
@@ -44994,6 +45045,9 @@ name:
   key: USA
 - spell: Gyton
   name: ガイトン
+  key: USA
+- spell: Gzowski
+  name: グゾウスキー
   key: USA
 - spell: Haack
   name: ハーク
@@ -46900,6 +46954,9 @@ name:
 - spell: Henrie
   name: ヘンリー
   key: USA
+- spell: Henrietta
+  name: ヘンリエタ
+  key: USA
 - spell: Henriques
   name: ヘンリケス
   key: USA
@@ -47514,6 +47571,9 @@ name:
   key: USA
 - spell: Hinde
   name: ハインド
+  key: USA
+- spell: Hinderstein
+  name: ヘンダースティーン
   key: USA
 - spell: Hindle
   name: ヒンドル
@@ -48738,6 +48798,9 @@ name:
   key: USA
 - spell: Hurtig
   name: ハーティグ
+  key: USA
+- spell: Hurtubise
+  name: ハートビース
   key: USA
 - spell: Hurwitz
   name: ハーウィッツ
@@ -56233,6 +56296,9 @@ name:
 - spell: Ansah
   name: アンサー
   key: USA
+- spell: Anscombe
+  name: アンスコム
+  key: USA
 - spell: Ansel
   name: アンセル
   key: USA
@@ -57150,6 +57216,9 @@ name:
   key: USA
 - spell: Astro
   name: アストロ
+  key: USA
+- spell: Astrof
+  name: アストロフ
   key: USA
 - spell: Aswan
   name: アスワン
@@ -62473,6 +62542,9 @@ name:
 - spell: Brett
   name: ブレット
   key: USA
+- spell: Brettingham
+  name: ブレティングハム
+  key: USA
 - spell: Breuer
   name: ブリュアー
   key: USA
@@ -64660,6 +64732,9 @@ name:
 - spell: Carano
   name: カラーノ
   key: USA
+- spell: Carapezza
+  name: キャラペーザ
+  key: USA
 - spell: Carballo
   name: カルバーロ
   key: USA
@@ -65080,6 +65155,9 @@ name:
 - spell: Casanta
   name: カサンタ
   key: USA
+- spell: Cascio
+  name: カシオ
+  key: USA
 - spell: Cascone
   name: カスコーン
   key: USA
@@ -65106,6 +65184,9 @@ name:
   key: USA
 - spell: Caskey
   name: キャスキー
+  key: USA
+- spell: Casler
+  name: キャスラー
   key: USA
 - spell: Casnoff
   name: キャズノフ
@@ -71506,6 +71587,9 @@ name:
 - spell: Dey
   name: デイ
   key: USA
+- spell: Deyle
+  name: ダイル
+  key: USA
 - spell: Deyne
   name: デイニー
   key: USA
@@ -77761,6 +77845,9 @@ name:
 - spell: Abellan
   name: アベヤン
   key: ESP
+- spell: Abello
+  name: アベーロ
+  key: ESP
 - spell: Abraham
   name: アブラーム
   key: ESP
@@ -78111,6 +78198,9 @@ name:
   key: ESP
 - spell: Alí
   name: アリ
+  key: ESP
+- spell: Alianak
+  name: アリアナーク
   key: ESP
 - spell: Alicia
   name: アリシア
@@ -83440,6 +83530,9 @@ name:
 - spell: Illanes
   name: イヤネス
   key: ESP
+- spell: Illar
+  name: イジャル
+  key: ESP
 - spell: Ilza
   name: イルサ
   key: ESP
@@ -86598,6 +86691,9 @@ name:
   key: ESP
 - spell: Pachi
   name: パチ
+  key: ESP
+- spell: Pacienza
+  name: パシエンサ
   key: ESP
 - spell: Paco
   name: パコ
@@ -90337,9 +90433,6 @@ name:
 - spell: Andjela
   name: アンジェラ
   key: CZE
-- spell: Andjelkovic
-  name: アンジェルコヴィッチ
-  key: CZE
 - spell: Andjelo
   name: アンジェロ
   key: CZE
@@ -93424,6 +93517,12 @@ name:
 - spell: Perić
   name: ペリッチ
   key: CZE
+- spell: Perkovic
+  name: ペルコヴィッチ
+  key: CZE
+- spell: Perković
+  name: ペルコヴィッチ
+  key: CZE
 - spell: Pero
   name: ペロ
   key: CZE
@@ -94429,6 +94528,9 @@ name:
 - spell: Trifunovic
   name: トリフノヴィッチ
   key: CZE
+- spell: Trifunović
+  name: トリフノヴィッチ
+  key: CZE
 - spell: Triska
   name: トジースカ
   key: CZE
@@ -95013,6 +95115,9 @@ name:
   key: POR
 - spell: Alves
   name: アウヴィス
+  key: POR
+- spell: Alvim
+  name: アルヴィム
   key: POR
 - spell: Alzir
   name: アルジール
@@ -96045,6 +96150,9 @@ name:
   key: POR
 - spell: Lagemann
   name: ラーゲンマン
+  key: POR
+- spell: Laidner
+  name: ライドネル
   key: POR
 - spell: Landin
   name: ランジン
@@ -97530,6 +97638,9 @@ name:
   key: ISR
 - spell: Cabau
   name: カバウ
+  key: ISR
+- spell: Calizo
+  name: カリーゾ
   key: ISR
 - spell: Carmit
   name: カーミット
@@ -105712,6 +105823,9 @@ name:
 - spell: Giumarra
   name: ジュマッラ
   key: ITA
+- spell: Giunta
+  name: ジュンタ
+  key: ITA
 - spell: Giuntini
   name: ジュンティーニ
   key: ITA
@@ -108309,6 +108423,9 @@ name:
   key: ITA
 - spell: Melita
   name: メリータ
+  key: ITA
+- spell: Melito
+  name: メリート
   key: ITA
 - spell: Melli
   name: メッリ
@@ -113134,6 +113251,9 @@ name:
 - spell: Sportelli
   name: スポルテッリ
   key: ITA
+- spell: Sportolaro
+  name: スポルトラーロ
+  key: ITA
 - spell: Sposito
   name: スポシート
   key: ITA
@@ -115206,6 +115326,9 @@ name:
   key: IND
 - spell: Batra
   name: バトラー
+  key: IND
+- spell: Bavan
+  name: バヴァン
   key: IND
 - spell: Bedi
   name: ベディ
@@ -122473,6 +122596,9 @@ name:
 - spell: Khmelnitskiy
   name: フメルニツキー
   key: RUS
+- spell: Khmurov
+  name: フムロフ
+  key: RUS
 - spell: Khobua
   name: ホブア
   key: RUS
@@ -126949,6 +127075,9 @@ name:
 - spell: Patrika
   name: パトリカ
   key: EST
+- spell: Petraitis
+  name: ペトライティス
+  key: EST
 - spell: Porshnev
   name: ポルシュネフ
   key: EST
@@ -127377,6 +127506,9 @@ name:
   key: GER
 - spell: Andics
   name: アンディクス
+  key: GER
+- spell: Andjelkovic
+  name: アンジェルコヴィッチ
   key: GER
 - spell: Andor
   name: アンドア
@@ -147841,6 +147973,9 @@ name:
 - spell: Berq
   name: ベルク
   key: FRA
+- spell: Berr
+  name: ベール
+  key: FRA
 - spell: Berretta
   name: ベレッタ
   key: FRA
@@ -165151,6 +165286,9 @@ name:
 - spell: Surel
   name: シュレル
   key: FRA
+- spell: Surette
+  name: シュレット
+  key: FRA
 - spell: Surfs
   name: シュルフ
   key: FRA
@@ -173634,6 +173772,9 @@ name:
   key: TUR
 - spell: Horozoğlu
   name: ホロゾウル
+  key: TUR
+- spell: Hrant
+  name: フラント
   key: TUR
 - spell: Hulya
   name: フルヤ
@@ -183010,37 +183151,37 @@ country:
     - モンゴル
     _id: MGL
 timestamp:
-  NOR.htm: 2019-09-07 19:28:57.000000000 Z
-  USA.htm: 2019-09-09 05:04:36.000000000 Z
-  USA2.htm: 2019-09-09 19:40:46.000000000 Z
-  USA3.htm: 2019-09-09 19:40:47.000000000 Z
-  USA4.htm: 2019-09-09 19:40:48.000000000 Z
+  NOR.htm: 2019-09-12 19:46:10.000000000 Z
+  USA.htm: 2019-09-12 19:46:13.000000000 Z
+  USA2.htm: 2019-09-12 19:46:15.000000000 Z
+  USA3.htm: 2019-09-12 19:46:16.000000000 Z
+  USA4.htm: 2019-09-12 19:46:18.000000000 Z
   GEO.htm: 2019-09-07 19:28:52.000000000 Z
   IRI.htm: 2019-09-09 05:04:34.000000000 Z
   EGY.htm: 2019-09-09 05:04:30.000000000 Z
-  ESP.htm: 2019-09-09 19:40:42.000000000 Z
-  CZE.htm: 2019-09-09 05:04:29.000000000 Z
-  POR.htm: 2019-09-07 19:28:57.000000000 Z
-  ISR.htm: 2019-09-07 19:28:54.000000000 Z
-  ITA.htm: 2019-09-07 19:28:56.000000000 Z
-  IND.htm: 2019-09-06 19:46:33.000000000 Z
+  ESP.htm: 2019-09-12 19:46:04.000000000 Z
+  CZE.htm: 2019-09-12 19:46:03.000000000 Z
+  POR.htm: 2019-09-12 19:46:11.000000000 Z
+  ISR.htm: 2019-09-12 19:46:08.000000000 Z
+  ITA.htm: 2019-09-12 19:46:10.000000000 Z
+  IND.htm: 2019-09-12 19:46:08.000000000 Z
   INA.htm: 2019-09-07 19:28:54.000000000 Z
   KEN.htm: 2019-09-09 05:04:34.000000000 Z
-  RUS.htm: 2019-09-07 19:28:58.000000000 Z
-  EST.htm: 2019-09-07 19:28:50.000000000 Z
-  GER.htm: 2019-09-09 05:04:34.000000000 Z
+  RUS.htm: 2019-09-12 19:46:11.000000000 Z
+  EST.htm: 2019-09-12 19:46:05.000000000 Z
+  GER.htm: 2019-09-12 19:46:07.000000000 Z
   NED.htm: 2019-09-03 19:16:36.000000000 Z
   CHN.htm: 2019-09-07 19:28:48.000000000 Z
   THA.htm: 2019-09-07 19:28:59.000000000 Z
   GRE.htm: 2019-08-30 11:51:55.000000000 Z
-  FRA.htm: 2019-09-09 19:40:44.000000000 Z
+  FRA.htm: 2019-09-12 19:46:06.000000000 Z
   RSA.htm: 2019-08-13 19:21:20.000000000 Z
   SWE.htm: 2019-09-07 19:28:58.000000000 Z
   DEN.htm: 2019-09-07 19:28:49.000000000 Z
-  TUR.htm: 2019-09-09 05:04:34.000000000 Z
+  TUR.htm: 2019-09-12 19:46:11.000000000 Z
   HUN.htm: 2019-09-07 19:28:54.000000000 Z
   FIN.htm: 2019-09-07 19:28:51.000000000 Z
   BUL.htm: 2019-09-07 19:28:48.000000000 Z
-  POL.htm: 2019-09-07 19:28:57.000000000 Z
+  POL.htm: 2019-09-12 19:46:10.000000000 Z
   ROM.htm: 2019-09-07 19:28:58.000000000 Z
   MGL.htm: 2019-08-01 10:53:46.000000000 Z
