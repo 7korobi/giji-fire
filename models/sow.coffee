@@ -1,7 +1,11 @@
 { Set, Model, Query, Rule } = Mem = require "memory-orm"
 { url } = require "~/config/live.yml"
-format = require 'date-fns/format/index'
+format = require 'date-fns/format'
 locale = require "date-fns/locale/ja"
+
+if window?
+  format = format.default 
+  locale = locale.default
 
 new Rule("sow_roletable").schema ->
 new Rule("sow_village_plan").schema ->

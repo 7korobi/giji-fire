@@ -4052,7 +4052,7 @@ date-and-time@^0.7.0:
   resolved "https://registry.yarnpkg.com/date-and-time/-/date-and-time-0.7.0.tgz#26273355558877799f9c95888293fccee92fdb94"
   integrity sha512-qPHBPG0AQqbjP7wVf7vLv25/0bZRjYPiJiJtE0t6RqTswJR/6ExCXQLDnL5w4986j7i6470TMtalJxC8/UHrww==
 
-date-fns@^2.0.1:
+date-fns@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.1.0.tgz#0d7e806c3cefe14a943532dbf968995ccfd46bd9"
   integrity sha512-eKeLk3sLCnxB/0PN4t1+zqDtSs4jb4mXRSTZ2okmx/myfWyDqeO4r5nnmA5LClJiCwpuTMeK2v5UQPuE4uMaxA==
@@ -7384,16 +7384,6 @@ memory-fs@^0.4.0, memory-fs@^0.4.1:
   dependencies:
     errno "^0.1.3"
     readable-stream "^2.0.1"
-
-memory-orm@^0.4.13:
-  version "0.4.13"
-  resolved "https://registry.yarnpkg.com/memory-orm/-/memory-orm-0.4.13.tgz#795987dc7b825f6c3d79fe13d37f4734f6d1dc28"
-  integrity sha512-i0Plk0wE9qQAZLOE5BJcWOogR36XD0fp7DwzTVwjqA67/74z8V06qLjlxJgl9o+0JKb1SFd8JGFtLz5YHNhdaw==
-  dependencies:
-    "@types/lodash" "^4.14.138"
-    lodash "^4.17.15"
-    ts-loader "^6.0.4"
-    typescript "^3.6.2"
 
 memory-orm@^0.4.14:
   version "0.4.14"
@@ -11040,6 +11030,17 @@ ts-loader@^6.0.4:
     micromatch "^4.0.0"
     semver "^6.0.0"
 
+ts-loader@^6.1.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/ts-loader/-/ts-loader-6.1.0.tgz#999cb0a7644f9c7c6c0901802dce50ceb0a76e5b"
+  integrity sha512-7JedeOu2rsYHQDEr2fwmMozABwbQTZXEaEMZPSIWG7gpzRefOLJCqwdazcegHtyaxp04PeEgs/b0m08WMpnIzQ==
+  dependencies:
+    chalk "^2.3.0"
+    enhanced-resolve "^4.0.0"
+    loader-utils "^1.0.2"
+    micromatch "^4.0.0"
+    semver "^6.0.0"
+
 tsconfig@^7.0.0:
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/tsconfig/-/tsconfig-7.0.0.tgz#84538875a4dc216e5c4a5432b3a4dec3d54e91b7"
@@ -11113,6 +11114,11 @@ typescript@^3.6.2:
   version "3.6.2"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.6.2.tgz#105b0f1934119dde543ac8eb71af3a91009efe54"
   integrity sha512-lmQ4L+J6mnu3xweP8+rOrUwzmN+MRAj7TgtJtDaXE5PMyX2kCrklhg3rvOsOIfNeAWMQWO2F1GPc1kMD2vLAfw==
+
+typescript@^3.6.3:
+  version "3.6.3"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.6.3.tgz#fea942fabb20f7e1ca7164ff626f1a9f3f70b4da"
+  integrity sha512-N7bceJL1CtRQ2RiG0AQME13ksR7DiuQh/QehubYcghzv20tnh+MQnQIuJddTmsbqYj+dztchykemz0zFzlvdQw==
 
 ua-parser-js@^0.7.20:
   version "0.7.20"
@@ -11473,14 +11479,14 @@ vue-no-ssr@^1.1.1:
   resolved "https://registry.yarnpkg.com/vue-no-ssr/-/vue-no-ssr-1.1.1.tgz#875f3be6fb0ae41568a837f3ac1a80eaa137b998"
   integrity sha512-ZMjqRpWabMPqPc7gIrG0Nw6vRf1+itwf0Itft7LbMXs2g3Zs/NFmevjZGN1x7K3Q95GmIjWbQZTVerxiBxI+0g==
 
-vue-petit-store@^0.8.28:
-  version "0.8.28"
-  resolved "https://registry.yarnpkg.com/vue-petit-store/-/vue-petit-store-0.8.28.tgz#c4888a0d535542c7218eae77a173bb9c7e9c0b25"
-  integrity sha512-bvVh5XNAb72JbwDEHPaua7wvN2BkfJibZikDQ5PIPZPGlrDFO+P+duqzUvY2QscDudLqzhZbEMpKauZ2AAcj7A==
+vue-petit-store@^0.8.30:
+  version "0.8.30"
+  resolved "https://registry.yarnpkg.com/vue-petit-store/-/vue-petit-store-0.8.30.tgz#a18d731229ee206df1a11b8b8ca50d98d83424d5"
+  integrity sha512-V0zCfW4ryO0L5rCIQxUa/vFuqEWsG6hFK2gA8R1vi7Yftdenls8UMlqAZpGAF+mWFNLKl2kO9dHelOkCPQBMSQ==
   dependencies:
     dexie "^2.0.4"
     firebase "^6.6.0"
-    memory-orm "^0.4.13"
+    memory-orm "^0.4.14"
     tiny-cookie "^2.3.1"
     yaml-jest "^1.0.5"
 

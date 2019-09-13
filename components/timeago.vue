@@ -1,7 +1,11 @@
 <script lang="coffee">
-format = require 'date-fns/format/index'
+format = require 'date-fns/format'
 locale = require "date-fns/locale/ja"
 { relative } = require "vue-petit-store"
+
+if window?
+  format = format.default 
+  locale = locale.default
 
 module.exports =
   mixins: [

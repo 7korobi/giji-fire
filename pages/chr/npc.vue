@@ -9,7 +9,7 @@ div
 
     hr
     sub(style="width: 100%")
-      | 「{{ chr_set.label }}」で選択できる、最初の犠牲者を表示しています。
+      | {{ chr_set_label }}で選択できる、最初の犠牲者を表示しています。
 
   transition-group.talks(name="list" tag="div")
     div(v-for="o in chr_npcs" :key="o.id")
@@ -52,6 +52,12 @@ module.exports =
       Query.chr_sets.sort("chr_npcs.list.length","desc").list
     chr_npcs: ->
       @chr_set.chr_npcs.list
+
+    chr_set_label: ->
+      if /「/.test @chr_set.label
+        @chr_set.label
+      else
+        "「#{@chr_set.label}」"
 
   head: ->
     titleTemplate: "#{ @chr_set.label } - %s"
