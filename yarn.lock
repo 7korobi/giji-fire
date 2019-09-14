@@ -225,12 +225,7 @@
     esutils "^2.0.2"
     js-tokens "^4.0.0"
 
-"@babel/parser@^7.1.0", "@babel/parser@^7.4.3":
-  version "7.5.5"
-  resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.5.5.tgz#02f077ac8817d3df4a832ef59de67565e71cca4b"
-  integrity sha512-E5BN68cqR7dhKan1SfqgPGhQ178bkVKpXTPEXnFJBrEt8/DKRZlybmy+IgYLTeN7tp1R5Ccmbm2rBk17sHYU3g==
-
-"@babel/parser@^7.6.0":
+"@babel/parser@^7.1.0", "@babel/parser@^7.4.3", "@babel/parser@^7.6.0":
   version "7.6.0"
   resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.6.0.tgz#3e05d0647432a8326cb28d0de03895ae5a57f39b"
   integrity sha512-+o2q111WEx4srBs7L9eJmcwi655eD8sXniLqMB93TBK9GrNzGrxDWSjiqz2hLU0Ha8MTXFIP0yd9fNdP+m43ZQ==
@@ -4023,9 +4018,9 @@ ejs@^2.6.1:
   integrity sha512-kS/gEPzZs3Y1rRsbGX4UOSjtP/CeJP0CxSNZHYxGfVM/VgLcv0ZqM7C45YyTj2DI2g7+P9Dd24C+IMIg6D0nYQ==
 
 electron-to-chromium@^1.3.247:
-  version "1.3.257"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.257.tgz#35da0ad5833b27184c8298804c498a4d2f4ed27d"
-  integrity sha512-EcKVmUeHCZelPA0wnIaSmpAN8karKhKBwFb+xLUjSVZ8sGRE1l3fst1zQZ7KJUkyJ7H5edPd4RP94pzC9sG00A==
+  version "1.3.258"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.258.tgz#829b03be37424099b91aefb6815e8801bf30b509"
+  integrity sha512-rkPYrgFU7k/8ngjHYvzOZ44OQQ1GeIRIQnhGv00RkSlQXEnJKsGonQppbEEWHuuxZegpMao+WZmYraWQJQJMMg==
 
 elliptic@^6.0.0:
   version "6.5.1"
@@ -4799,9 +4794,9 @@ gaze@^1.0.0:
     globule "^1.0.0"
 
 gcp-metadata@^2.0.0:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/gcp-metadata/-/gcp-metadata-2.0.3.tgz#b7565aaf31f5089153cb39e9bf47af64672cf167"
-  integrity sha512-E27NslVNL61Qg0krivnl0bbC+VH0iHTupQoEy2NY2YOgQ3Ipg0TnyEZMSH/dRGUFzEBdQ8tiuuVTh39Jplu5RA==
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/gcp-metadata/-/gcp-metadata-2.0.4.tgz#ed5e11b1ab463a111f904b777bc6fd65acd0d1c5"
+  integrity sha512-p1lXhJvcKvJHWfQXhkd4Za1kyXRsGZA0JH7Cjs07W9hrg84d/j5tqQhbGewlSLx9gNyuQUid69uLux48YbggLg==
   dependencies:
     gaxios "^2.0.1"
     json-bigint "^0.3.0"
@@ -6318,9 +6313,9 @@ jest@^24.9.0:
     jest-cli "^24.9.0"
 
 jimp-compact@^0.8.0:
-  version "0.8.1"
-  resolved "https://registry.yarnpkg.com/jimp-compact/-/jimp-compact-0.8.1.tgz#57e69cc117d99b6aed6eb2ce132b60093633dfff"
-  integrity sha512-m9D/K5ODBCw2J7heEjqHFemIjXnmE7RFBmi6k179ifqsELRyuvLFvHmNI68bMlU8yGtFP952ynbFvXwpS1JtZw==
+  version "0.8.2"
+  resolved "https://registry.yarnpkg.com/jimp-compact/-/jimp-compact-0.8.2.tgz#fb2fd742a1770d7e5982ac3ccc098ebe5375f76d"
+  integrity sha512-IWvC9NzbXxXqc38NNh0mHkVKwdlnjRxgKuLrrm3LleSZowGHIpuIQurV5Td/ECX6tXX8pg9ImTtlWB63X+qD8A==
 
 js-base64@^2.1.8:
   version "2.5.1"
@@ -9287,9 +9282,9 @@ regexp.prototype.flags@^1.2.0:
     define-properties "^1.1.2"
 
 regexpu-core@^4.5.4:
-  version "4.5.5"
-  resolved "https://registry.yarnpkg.com/regexpu-core/-/regexpu-core-4.5.5.tgz#aaffe61c2af58269b3e516b61a73790376326411"
-  integrity sha512-FpI67+ky9J+cDizQUJlIlNZFKual/lUkFr1AG6zOCpwZ9cLrg8UUVakyUQJD7fCDIe9Z2nwTQJNPyonatNmDFQ==
+  version "4.6.0"
+  resolved "https://registry.yarnpkg.com/regexpu-core/-/regexpu-core-4.6.0.tgz#2037c18b327cfce8a6fea2a4ec441f2432afb8b6"
+  integrity sha512-YlVaefl8P5BnFYOITTNzDvan1ulLOiXJzCNZxduTIosN17b87h3bvG9yHMoHaRuo88H4mQ06Aodj5VtYGGGiTg==
   dependencies:
     regenerate "^1.4.0"
     regenerate-unicode-properties "^8.1.0"
@@ -11113,9 +11108,9 @@ webpack-dev-middleware@^3.7.0:
     webpack-log "^2.0.0"
 
 webpack-external-import@^0.0.1-beta.19:
-  version "0.0.1-beta.26"
-  resolved "https://registry.yarnpkg.com/webpack-external-import/-/webpack-external-import-0.0.1-beta.26.tgz#6bf141a958829077838337e3a321934902e38935"
-  integrity sha512-oybeHS2ttidkZIn7KNVPqVI+M1NoIzDa057aL0o+OOXFHGONgcMN+kkFTXiOzDvdaMSLg6T2nMv5s8u7vEmFNA==
+  version "0.0.1-beta.28"
+  resolved "https://registry.yarnpkg.com/webpack-external-import/-/webpack-external-import-0.0.1-beta.28.tgz#05e6fc3eeb3afdb7584ad2ee59254aa734354a42"
+  integrity sha512-1qyRB5GvxIMpHnxbuvubcpdMYZa5+7bj/+0gV2x34iCmEnL1Q5iYFGUF3jva1jyvHTCBXWFVkVxI7diX4EedWw==
   dependencies:
     "@babel/helper-module-imports" "^7.0.0"
     babel-traverse "^6.26.0"
@@ -11156,9 +11151,9 @@ webpack-sources@^1.0.1, webpack-sources@^1.1.0, webpack-sources@^1.4.0, webpack-
     source-map "~0.6.1"
 
 webpack@^4.39.3:
-  version "4.40.0"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-4.40.0.tgz#b76f5fc2b76de5a58a7be61cb1dc3244e4a58572"
-  integrity sha512-qwDJehWHAbnSHwQT5S50OBx5nN2DD+bFhRf5IBs1unsEXAG+XG4r8Myt17j/fQBVfWIeSWRyEeTHUaPKaiFUNQ==
+  version "4.40.2"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-4.40.2.tgz#d21433d250f900bf0facbabe8f50d585b2dc30a7"
+  integrity sha512-5nIvteTDCUws2DVvP9Qe+JPla7kWPPIDFZv55To7IycHWZ+Z5qBdaBYPyuXWdhggTufZkQwfIK+5rKQTVovm2A==
   dependencies:
     "@webassemblyjs/ast" "1.8.5"
     "@webassemblyjs/helper-module-context" "1.8.5"
