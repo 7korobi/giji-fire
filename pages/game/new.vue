@@ -20,7 +20,10 @@ log-wiki
         li(v-if="user && ! sign") #[nuxt-link(to="/user/edit") サインを記帳]します。他の人に見せるために使います。
       
       table(v-if="sign")
-        tbody
+        tbody(v-if="is_progress")
+          tr
+            td.center …処理中…
+        tbody(v-else)
           tr
             td(colspan=2) ID欄に「{{ book_id_chk }}」と書いて作成ボタンを押そう。
           tr
@@ -106,7 +109,7 @@ module.exports =
       { book_id, part_id } = @
       console.warn { book_id, part_id }
       { now_idx, write_at, last_at, next_at } = to_tempo(range, gap)
-      await @books_add {
+      @books_add {
         write_at
         last_at
         next_at
@@ -132,16 +135,17 @@ module.exports =
         tempo: { range, gap, now_idx }
       }
     
-      await @parts_add {
+      @parts_add {
         write_at
         _id: part_id
 
+        is_update: true
         uid
         sign
         label: 'タイトル'
       }
 
-      await @phases_add {
+      @phases_add {
         write_at
         _id: part_id + '-M'
 
@@ -154,7 +158,7 @@ module.exports =
       }
 
       write_at++
-      await @chats_add {
+      @chats_add {
         write_at
         _id: part_id + '-M-title'
         uid
@@ -165,7 +169,7 @@ module.exports =
       }
 
       write_at++
-      await @chats_add {
+      @chats_add {
         write_at
         _id: part_id + '-M-welcome'
         uid
@@ -179,7 +183,7 @@ module.exports =
       v_rules = for {head} in village.list
         "<li>#{head}</li>"
       write_at++
-      await @chats_add {
+      @chats_add {
         write_at
         _id: part_id + '-M-vrule'
         uid
@@ -193,7 +197,7 @@ module.exports =
       n_rules = for {head} in nation.list
         "<li>#{head}</li>"
       write_at++
-      await @chats_add {
+      @chats_add {
         write_at
         _id: part_id + '-M-nrule'
         uid
@@ -205,7 +209,12 @@ module.exports =
       }
 
       @$toasted.success "ゲームを開催します。細かい設定を調整しましょう。"
-      @$router.push "/game"
+      @$router.push
+        path:  "/game/show"
+        query:
+          mode: 'full'
+          idx: "#{part_id}-top-M-title"
+
   head: ->
     titleTemplate: "#{@book_id} %s"
 

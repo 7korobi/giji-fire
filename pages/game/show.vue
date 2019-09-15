@@ -117,14 +117,14 @@ log-wiki
       d-mode.center(v-bind="for_mode")
       search(v-model="search")
 
-  e-potof(v-if="edit.is_entry" :value="my_potof" @input="my_potof_change")
+  e-potof(v-if="game.init" :value="my_potof" @input="potof_join")
   chat(v-if="edit.is_creating" v-bind="for_chat_new" v-on="for_chat_event(edit.chat.id)")
   c-report(handle="footer" deco="center")
     bread-crumb
 </template>
 <script lang="coffee">
 { Query, Set } = require 'memory-orm'
-{ vuex, localStorage, firestore_model, firestore_models } = require "vue-petit-store"
+{ to_tempo, vuex, localStorage, firestore_model, firestore_models } = require "vue-petit-store"
 
 dic = '><&"\n'
 reg_dic = /[><\&\"\n]/g
@@ -141,6 +141,7 @@ module.exports =
     firestore_model  "book",   -> @book_id && "game/#{@book_id}"
     firestore_models "potofs", -> @book_id && "game/#{@book_id}/potofs"
     firestore_models "cards",  -> @book_id && "game/#{@book_id}/cards"
+    firestore_models "stats",  -> @book_id && "game/#{@book_id}/stats"
     firestore_models "parts",  -> @book_id && "game/#{@book_id}/parts"
     firestore_models "phases", -> @book_id && "game/#{@book_id}/phases"
     firestore_models "chats",  -> @book_id && "game/#{@book_id}/chats"
@@ -161,6 +162,22 @@ module.exports =
     shows: [] # pin, toc, potof, current, search
 
   computed:
+    game: ->
+      return {} unless @book
+      [ part_top, part_0 ] = Query.parts.finds(["#{@book.id}-top","#{@book.id}-0"])
+      [ potof_npc ] = Query.potofs.finds(["#{@book.id}-NPC"])
+
+      edit_book = @user.uid == @book.uid
+      edit_npc  = @user.uid == potof_npc?.uid
+      init = edit_book && part_top?.is_update
+
+      { is_update, is_creating, is_entry, is_moving, is_replacing } = @edit
+      console.warn { is_update, is_creating, is_entry, is_moving, is_replacing }
+      console.warn { edit_book, edit_npc, init, @part, part_top, part_0, potof_npc }
+      console.warn { @my_icon, @my_potof, @my_chat, @my_phase }
+
+      { edit_book, edit_npc, init }
+
     is_show: ->
       impose:   @options.includes("impose")
       magnify:  @shows.includes("magnify")
@@ -176,6 +193,63 @@ module.exports =
     search_words: ->
       @search.replace reg_dic, (chr)->
         sow_dic[ dic.indexOf chr ]
+
+  methods:
+    potof_join: ({ tag_id, job, face_id })->
+      return unless @game.init
+      uid   = @user.uid
+      sign  = @sign.sign
+      idx =
+        if ! @game.potof_npc && @game.edit_book
+          'NPC'
+        else
+          uid
+
+      { range, gap } = @book.tempo
+      { now_idx, write_at, last_at, next_at } = to_tempo range, gap
+
+      potof_id = "#{@book_id}-#{idx}"
+      @my_icon_change
+        _id: uid
+        mdi: "mdi-account"
+        potof_id: potof_id
+
+      @potofs_add {
+        write_at
+        _id: potof_id
+        uid
+        sign
+        face_id
+        @part_id
+      }
+      if 'NPC' == idx
+        @cards_add {
+          write_at
+          _id: "#{potof_id}-live"
+          role_id: 'live'
+          SSAY: 1000
+          TSAY: 1000
+          AIM:  1000
+          commit: false
+          date: Infinity
+        }
+        @cards_add {
+          write_at
+          _id: "#{potof_id}-master"
+          role_id: 'master'
+          MAKER: Infinity
+        }
+      else
+        @cards_add {
+          write_at
+          _id: "#{potof_id}-live"
+          role_id: 'live'
+          SSAY: 1000
+          TSAY: 1000
+          AIM:  1000
+          commit: false
+          date: Infinity
+        }
 
   head: ->
     titleTemplate: "#{@book_id} %s"

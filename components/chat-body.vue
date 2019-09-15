@@ -84,30 +84,32 @@ module.exports =
         when 'logo', 'cast'
           key    = 'id'
           value  = @id
-          target = @deco
+          component = @deco
 
         when 'diagram'
           key    = 'data'
           value  = @data
-          target = 'diagram'
+          component = 'diagram'
 
         when 'sow', 'head', 'mono'
           key    = 'log'
           value  = @log
-          target = 'sow'
+          component = 'sow'
 
         else
           key    = 'log'
           value  = @log
-          target = 'trix'
+          component = 'trix'
 
+      id = "#{key}-#{ @id }"
+      handle = @target.phase?.handle
       if @edit
         { options } = @edit
-        target = "#{target}-edit"
+        component = "#{component}-edit"
       else
         options = {}
-        target = "#{target}-view"
+        component = "#{component}-view"
 
-      { key, class: @deco, is: target, ...options }
+      { id, handle, key, class: @deco, is: component, ...options }
 
 </script>

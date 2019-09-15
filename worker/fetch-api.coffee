@@ -207,10 +207,10 @@ poll.api
         Set.potof.add
           _id:       potof_id
           part_id: o.event_id
-          job:            job
-          pno:          o.pno
           face_id:  o.face_id
           sign: sign
+          job:  job
+          pno:  o.pno
           text: o.history?.replace /<[^>]+>/g, ""
 
       potofs = Query.potofs

@@ -27,7 +27,6 @@ store =
     a: []
 
   mounted: ->
-    console.warn @$route
     @page_reset()
 
   watch:

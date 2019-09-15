@@ -14,15 +14,13 @@ new Rule("card").schema ->
     for_phase: (phase_id)-> all.where { phase_id }
 
   @order "list", sort: ['write_at', 'desc']
-  class @model extends @model
-    @map_reduce: (o, emit)->
+
 
 new Rule("stat").schema ->
   @path "folder", "book", "potof"
-  @belongs_to "able"
+  @belongs_to "able", key: "idx"
 
   @deploy ->
-    @able_id = @idx
   @property 'model',
     card:
       get: ->

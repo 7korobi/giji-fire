@@ -190,6 +190,7 @@ module.exports =
     chat_post: ( value, { attrs, size } )->
       { _id, show, deco, head, to, log, data } = @edit.chat
       { random, clusters, icons, lines } = data
+      console.warn { value, attrs, size }
 
       if log
         for key, idx in attrs.random ? []
@@ -203,14 +204,19 @@ module.exports =
           """<kbd title="#{title}">#{text}</kbd>"""
 
       data = { size, random, clusters, icons, lines }
+      o = { _id, show, deco, head, to, log, data }
+      console.warn o
+
       if @edit.is_creating
-        potof_id = @my_potof_id
-        write_at = new Date - 0
         idx = Query.chats.reduce?.index?[@phase_id]?.max ? 0
         _id = [@phase_id, 1 + idx ].join('-')
-        await @chats_add o = { _id, potof_id, write_at, show, deco, head, to, log, data }
+        potof_id = @my_potof_id
+        write_at = new Date - 0
+        Object.assign o, { _id, potof_id, write_at }
       else
-        await @chats_add o = { _id, show, deco, head, to, log, data }
+        edit_at = new Date - 0
+        Object.assign o, { edit_at }
+      await @chats_add o
       @create_mode()
 
   watch:

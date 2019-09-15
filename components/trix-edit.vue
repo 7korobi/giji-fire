@@ -205,6 +205,7 @@ module.exports = editor
       if @rects?[0]
         @rect = @rects[0]
       window.localStorage[@id] = JSON.stringify @editor
+      @$emit 'selection', range
     , 300
 
     change_bare: (e)->
@@ -254,7 +255,7 @@ module.exports = editor
         return ""
 
       window.localStorage[@id] = JSON.stringify @editor
-      console.log @meta
+      # console.log { @id, @handle, @value, @meta }
     , 300
 
     paste: ({ paste })->
@@ -262,10 +263,11 @@ module.exports = editor
       console.log { range, string, type }
 
     focus: (e)->
-      @$emit "focus", e
+      range = @editor.getSelectedRange()
+      @$emit 'selection', range
 
     blur: (e)->
-      @$emit "blur", e
+      @$emit 'selection', null
 
     logger: (e)->
       console.log e
