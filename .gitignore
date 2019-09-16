@@ -1,4 +1,5 @@
 # settings
+microsoft-identity-association.json
 firebase.crashreporting.json
 config/*.zip
 config/service_account.yml

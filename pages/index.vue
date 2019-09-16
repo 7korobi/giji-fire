@@ -121,6 +121,10 @@ anime = require('animejs').default
 { share, poll, replaceState, on_appear } = require "vue-petit-store"
 
 pairs = [
+  vs: ["t97","w59"]
+  labels: ["愛し面影"]
+  lines: ['<=>']
+,
   vs: ["c41","c47"]
   labels: ["ふうらいの"]
   lines: ['<=>']
@@ -129,12 +133,24 @@ pairs = [
   labels: ["オーケストラ"]
   lines: ['<=>']
 ,
+  vs: ["sf18","sf19"]
+  labels: ["絆（物理）"]
+  lines: ['<=>']
+,
   vs: ["c32","c33"]
   labels: ["双生児"]
   lines: ['<=>']
 ,
+  vs: ["m11","m12"]
+  labels: ["騎士道"]
+  lines: ['<=>']
+,
   vs: ["c67","c76"]
   labels: ["はじめての"]
+  lines: ['<=>']
+,
+  vs: ["w08","w07"]
+  labels: ["双子"]
   lines: ['<=>']
 ,
   vs: ["c103","c99"]
@@ -145,21 +161,9 @@ pairs = [
   labels: ["道居士"]
   lines: ['<=>']
 ,
-  vs: ["m11","m12"]
-  labels: ["騎士道"]
-  lines: ['<=>']
-,
   vs: ["m19","m20"]
   labels: ["ズッ友⭐"]
   lines: ['o=>']
-,
-  vs: ["sf18","sf19"]
-  labels: ["絆（物理）"]
-  lines: ['<=>']
-,
-  vs: ["w08","w07"]
-  labels: ["双子"]
-  lines: ['<=>']
 ]
 d_pair_idx = 0
 

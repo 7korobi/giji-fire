@@ -15,6 +15,7 @@ component(v-bind="for_top" v-on="$listeners")
         i.btn.mdi.mdi-twitter(@click="twitter")
         i.btn.mdi.mdi-google(@click="google")
         i.btn.mdi.mdi-github-face(@click="github")
+        i.btn.mdi.mdi-windows(@click="microsoft")
       
     p(v-if="code") {{ code }}
     p(v-if="message") {{ message }}
@@ -107,6 +108,8 @@ module.exports =
       @auth.signInWithRedirect new firebase.auth.GithubAuthProvider()
     google: ->
       @auth.signInWithRedirect new firebase.auth.GoogleAuthProvider()
+    microsoft: ->
+      @auth.signInWithRedirect new firebase.auth.OAuthProvider('microsoft.com')
 
 </script>
 
