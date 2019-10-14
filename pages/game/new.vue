@@ -118,9 +118,9 @@ module.exports =
 
         @label
         @mark_ids
+
         _id: book_id
 
-        tag_id: "giji"
         face_id: "c05"
         locale_id: "heavy"
 

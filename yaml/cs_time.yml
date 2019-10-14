@@ -220,6 +220,7 @@ chr_job:
 
   - face_id: t23
     job: "孤高天使連合"
+    comment: 由来：ソロ・エンジェルズ・モーターサイクルクラブ
 
   - face_id: t24
     job: "トレーサー"
@@ -235,6 +236,7 @@ chr_job:
 
   - face_id: t28
     job: "樫の樹の子ら"
+    comment: 由来：ライブオークボーイズ
 
   - face_id: t29
     job: "透明女子会"
@@ -263,7 +265,7 @@ chr_job:
 
   - face_id: t37
     job: "素顔連盟"
-    comment: 由来：国語の教科書から。
+    comment: 由来：国語の教科書「素顔同盟」から。
 
   - face_id: t38
     job: "北後家蜘蛛会"
@@ -349,7 +351,7 @@ chr_job:
 
   - face_id: t59
     job: 夜笑国
-    comment: 由来：古代の夜郎国
+    comment: 由来：古代の夜郎国。夜郎自大の故事成語の元
 
   - face_id: t60
     job: 大太刀源流

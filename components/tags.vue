@@ -10,16 +10,14 @@ _ = require "lodash"
 
 module.exports =
   props:
+    tag_ids:
+      default: -> Query.tags.pluck "id"
     value:
       default: -> "all"
 
-  methods:
-    faces: (tag_id)->
-      Query.faces.tag tag_id
-
   computed:
     tag_groups: ->
-      Query.tags.reduce.group
+      Query.tags.where(id: @tag_ids).reduce.group
 
   components:
     tag:
@@ -42,9 +40,7 @@ module.exports =
           props:
             as: id
             value: p.value
-          on:
-            input: (as)->
-              p.$emit 'input', as
+          on: p.$listeners
 
         if list.length
           m "btn", attr, [

@@ -24795,65 +24795,65 @@ name:
   mark: 古ロシア
   comment: ''
   key: RUS
-- spell: "<span"
+- spell: Анатолий
   name: アナトーリィ
   side: 男
   mark: 古ロシア
-  comment: class="en">Анатолий</span> 東
+  comment: 東
   key: RUS
 - spell: 
   name: トーリャ
   side: 男
   mark: 古ロシア
-  comment: class="en">Анатолий</span> 東
+  comment: 東
   key: RUS
 - spell: 
   name: トーシヤ
   side: 男
   mark: 古ロシア
-  comment: class="en">Анатолий</span> 東
+  comment: 東
   key: RUS
-- spell: "<span"
+- spell: Вячеслав
   name: ヴィヤチェスラーフ
   side: 男
   mark: 古ロシア
-  comment: class="en">Вячеслав</span> より多くの栄光
+  comment: より多くの栄光
   key: RUS
 - spell: 
   name: スラーヴァ
   side: 男
   mark: 古ロシア
-  comment: class="en">Вячеслав</span> より多くの栄光
+  comment: より多くの栄光
   key: RUS
-- spell: "<span"
+- spell: Дмитрий
   name: ドミートリ
   side: 男
   mark: 古ロシア
-  comment: class="en">Дмитрий</span> 女神デメテル
+  comment: 女神デメテル
   key: RUS
 - spell: 
   name: ミーチャ
   side: 男
   mark: 古ロシア
-  comment: class="en">Дмитрий</span> 女神デメテル
+  comment: 女神デメテル
   key: RUS
 - spell: 
   name: ディーマ
   side: 男
   mark: 古ロシア
-  comment: class="en">Дмитрий</span> 女神デメテル
+  comment: 女神デメテル
   key: RUS
-- spell: "<span"
+- spell: Руслан
   name: ルスラン
   side: 男
   mark: 古ロシア
-  comment: class="en">Руслан</span> ライオン
+  comment: ライオン
   key: RUS
 - spell: 
   name: ルーシャ
   side: 男
   mark: 古ロシア
-  comment: class="en">Руслан</span> ライオン
+  comment: ライオン
   key: RUS
 - spell: Adelaida
   name: アデライーダ
@@ -25125,83 +25125,83 @@ name:
   mark: 古ロシア
   comment: 大神ユピテル
   key: RUS
-- spell: "<span"
+- spell: Дарья
   name: ダーリヤ
   side: 女
   mark: 古ロシア
-  comment: class="en">Дарья</span> ダレイオス
+  comment: ダレイオス
   key: RUS
 - spell: 
   name: ダーシャ
   side: 女
   mark: 古ロシア
-  comment: class="en">Дарья</span> ダレイオス
+  comment: ダレイオス
   key: RUS
-- spell: "<span"
+- spell: Евгения
   name: エフゲーニヤ
   side: 女
   mark: 古ロシア
-  comment: class="en">Евгения</span> 血筋のよい
+  comment: 血筋のよい
   key: RUS
 - spell: 
   name: ジェーニャ
   side: 女
   mark: 古ロシア
-  comment: class="en">Евгения</span> 血筋のよい
+  comment: 血筋のよい
   key: RUS
-- spell: "<span"
+- spell: Елена
   name: エレーナ
   side: 女
   mark: 古ロシア
-  comment: class="en">Елена</span> 松明
+  comment: 松明
   key: RUS
 - spell: 
   name: レーナ
   side: 女
   mark: 古ロシア
-  comment: class="en">Елена</span> 松明
+  comment: 松明
   key: RUS
-- spell: "<span"
+- spell: Мａрина
   name: マリーナ
   side: 女
   mark: 古ロシア
-  comment: class="en">Мａрина</span> 海
+  comment: 海
   key: RUS
 - spell: 
   name: マーラ
   side: 女
   mark: 古ロシア
-  comment: class="en">Мａрина</span> 海
+  comment: 海
   key: RUS
-- spell: "<span"
+- spell: Оксана
   name: オクサーナ
   side: 女
   mark: 古ロシア
-  comment: class="en">Оксана</span> 客好き
+  comment: 客好き
   key: RUS
 - spell: 
   name: サーナ
   side: 女
   mark: 古ロシア
-  comment: class="en">Оксана</span> 客好き
+  comment: 客好き
   key: RUS
 - spell: 
   name: クサーナ
   side: 女
   mark: 古ロシア
-  comment: class="en">Оксана</span> 客好き
+  comment: 客好き
   key: RUS
-- spell: "<span"
+- spell: Юрия
   name: ユーリヤ
   side: 女
   mark: 古ロシア
-  comment: class="en">Юрия</span> 農夫
+  comment: 農夫
   key: RUS
 - spell: 
   name: ユーリャ
   side: 女
   mark: 古ロシア
-  comment: class="en">Юрия</span> 農夫
+  comment: 農夫
   key: RUS
 - spell: Brezhnev
   name: ブレジネフ

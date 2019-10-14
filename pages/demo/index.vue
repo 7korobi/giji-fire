@@ -18,6 +18,7 @@ div
     | 簡易言語
     nuxt-link(to="/demo/sow") sow
     nuxt-link(to="/demo/trix") Trix
+    nuxt-link(to="/demo/slate") Slate
   c-post(handle="TSAY")
     nuxt-link.button(to="/demo/oauth") OpenID
   c-post(handle="TSAY")

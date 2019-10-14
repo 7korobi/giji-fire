@@ -100,6 +100,8 @@ log-wiki
           br
         article
           ol(style="list-style-type: upper-latin")
+            li(v-if="game.edit_book")
+              nuxt-link(:to="edit_url") 村を編集する
             li
               abbr.mdi.mdi-pencil
               | 投稿済みのメッセージを編集できるぞ。
@@ -193,22 +195,23 @@ module.exports =
     search_words: ->
       @search.replace reg_dic, (chr)->
         sow_dic[ dic.indexOf chr ]
+    
+    edit_url: ->
+      path: "/game/edit"
+      query: { @idx }
+      
 
   methods:
     potof_join: ({ tag_id, job, face_id })->
       return unless @game.init
       uid   = @user.uid
       sign  = @sign.sign
-      idx =
-        if ! @game.potof_npc && @game.edit_book
-          'NPC'
-        else
-          uid
+      idx   = uid
+      potof_id = "#{@book_id}-#{idx}"
 
       { range, gap } = @book.tempo
       { now_idx, write_at, last_at, next_at } = to_tempo range, gap
 
-      potof_id = "#{@book_id}-#{idx}"
       @my_icon_change
         _id: uid
         mdi: "mdi-account"
@@ -222,34 +225,16 @@ module.exports =
         face_id
         @part_id
       }
-      if 'NPC' == idx
-        @cards_add {
-          write_at
-          _id: "#{potof_id}-live"
-          role_id: 'live'
-          SSAY: 1000
-          TSAY: 1000
-          AIM:  1000
-          commit: false
-          date: Infinity
-        }
-        @cards_add {
-          write_at
-          _id: "#{potof_id}-master"
-          role_id: 'master'
-          MAKER: Infinity
-        }
-      else
-        @cards_add {
-          write_at
-          _id: "#{potof_id}-live"
-          role_id: 'live'
-          SSAY: 1000
-          TSAY: 1000
-          AIM:  1000
-          commit: false
-          date: Infinity
-        }
+      @cards_add {
+        write_at
+        _id: "#{potof_id}-live"
+        role_id: 'live'
+        SSAY: 1000
+        TSAY: 1000
+        AIM:  1000
+        commit: false
+        date: Infinity
+      }
 
   head: ->
     titleTemplate: "#{@book_id} %s"

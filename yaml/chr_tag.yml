@@ -74,6 +74,71 @@ marchen:
   chr_set_id: mad
   order: 1008
 
+
+explorism:
+  label: ~求道~
+  long: 至尊の高みに至る道
+  tag_id: travel
+  chr_set_id: time
+  order: 3001
+
+commercism:
+  label: ~収益~
+  long: 利益を大きく育てる
+  tag_id: travel
+  chr_set_id: time
+  order: 3002
+
+faith:
+  label: ~信仰~
+  long: 照らされる宗門
+  tag_id: travel
+  chr_set_id: time
+  order: 3003
+
+activitism:
+  label: ~余暇~
+  long: 特別な時間
+  tag_id: travel
+  chr_set_id: time
+  order: 3004
+
+militalism:
+  label: ~武力~
+  long: 屈服しない力
+  tag_id: travel
+  chr_set_id: time
+  order: 3005
+
+rulerism:
+  label: ~支配~
+  long: まとまった世界を統治する
+  tag_id: travel
+  chr_set_id: time
+  order: 3006
+
+anarchism:
+  label: ~反政~
+  long: 世界を革命するために
+  tag_id: travel
+  chr_set_id: time
+  order: 3007
+
+artism:
+  label: ~表現~
+  long: 表現からの反応
+  tag_id: travel
+  chr_set_id: time
+  order: 3008
+
+policism:
+  label: ~保安~
+  long: 安全を保つ仕事
+  tag_id: travel
+  chr_set_id: time
+  order: 3009
+
+
 kid:
   label: (児童)
   long: 児童のキャラクター
@@ -103,14 +168,6 @@ elder:
   order: 4004
 
 
-student:
-  label: -学徒-
-  long: 学園で学ぶ人
-  tag_id: travel
-  chr_set_id: time
-  order: 5001
-
-
 river:
   label: -運河-
   long: 往く人来る人休む人
@@ -118,19 +175,26 @@ river:
   chr_set_id: ririnra
   order: 6001
 
-road:
-  label: -往来-
-  long: 往く人来る人休む人
-  tag_id: giji
-  chr_set_id: ririnra
-  order: 6002
-
 immoral:
   label: -裏道-
   long: 街灯の裏の背徳達
   tag_id: giji
   chr_set_id: ririnra
+  order: 6002
+
+road:
+  label: -往来-
+  long: 往く人来る人休む人
+  tag_id: giji
+  chr_set_id: ririnra
   order: 6003
+
+servant:
+  label: -使用人-
+  long: 良家を支えるスタッフ
+  tag_id: giji
+  chr_set_id: ririnra
+  order: 7001
 
 guild:
   label: -商工会-
@@ -139,31 +203,38 @@ guild:
   chr_set_id: ririnra
   order: 7002
 
+ecclesia:
+  label: -公教会-
+  long: 信仰と道徳と学識の源泉
+  tag_id: giji
+  chr_set_id: ririnra
+  order: 7003
+
 office:
   label: -事務所-
   long: 帳簿と写本と印刷と
   tag_id: giji
   chr_set_id: ririnra
-  order: 7001
+  order: 7004
 
 elegant:
   label: -舞踏会-
   long: 瀟洒な館の舞踏会
   tag_id: giji
   chr_set_id: ririnra
-  order: 7003
-
-ecclesia:
-  label: -公教会-
-  long: 信仰と道徳と学識の源泉
-  tag_id: giji
-  chr_set_id: ririnra
-  order: 7004
-
+  order: 7005
 
 medical:
   label: -施療院-
   long: 病苦毒霊と戦う砦
+  tag_id: giji
+  chr_set_id: ririnra
+  order: 7006
+
+
+farm:
+  label: -森の農場-
+  long: 森に接する田畑
   tag_id: giji
   chr_set_id: ririnra
   order: 8001
@@ -180,28 +251,14 @@ apartment:
   long: 窓から外を眺めると
   tag_id: giji
   chr_set_id: ririnra
-  order: 9001
-
-servant:
-  label: -使用人-
-  long: 良家を支えるスタッフ
-  tag_id: giji
-  chr_set_id: ririnra
-  order: 9002
-
-farm:
-  label: -森の農場-
-  long: 森に接する田畑
-  tag_id: giji
-  chr_set_id: ririnra
-  order: 9003
+  order: 8003
 
 government:
   label: -統治公共-
   long: 所領を治める権能者
   tag_id: giji
   chr_set_id: ririnra
-  order: 9004
+  order: 8004
 
 god:
   label: -かみさま-

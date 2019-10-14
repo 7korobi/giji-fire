@@ -17,6 +17,7 @@ new Rule("book").schema ->
   @habtm "options"
   @habtm "roles"
   @habtm "marks"
+  @habtm "tags"
 
   @belongs_to "winner"
   @belongs_to "say"
