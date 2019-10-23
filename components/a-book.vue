@@ -9,7 +9,7 @@ c-post.form(handle="SSAY" deco="giji")
         th.r 参加者
         td.r {{ book.chat.player }}名
         th.r 発言
-        td   {{ say.CAPTION }}
+        td   {{ say.label }}
         th.r 更新
         td
           | {{ book.chat.next_at }}

@@ -30,11 +30,32 @@ new Rule("stat").schema ->
 
 new Rule("role").schema ->
   @habtm "ables"
+  @order 'summary', sort: ['count', 'desc'], belongs_to: 'roles'
 
   class @model extends @model
     @map_reduce: (o, emit)->
+      emit "summary", o.id,
+        count: 1
       emit "group", o.group,
+        count: 1
         list: true
+      clan = 
+        switch o.group
+          when undefined, null, '', 'SPECIAL', 'TURN'
+            null
+          when 'EVENT', 'GIFT', 'LIVE'
+            o.group
+          else
+            "MAIN"
+      if clan
+        emit "clan", clan,
+          count: 1
+        if o.win
+          emit "clan", clan, o.win,
+            count: 1
+      if o.win
+        emit "win", o.win,
+          count: 1
 
 new Rule("able").schema ->
   @habtm "roles", reverse: true

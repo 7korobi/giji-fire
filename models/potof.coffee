@@ -3,6 +3,7 @@
 
 new Rule("potof").schema ->
   @path "folder", "book"
+  @belongs_to "chr_npc"
   @belongs_to "part"
   @belongs_to "face"
   @belongs_to "winner"

@@ -27,7 +27,7 @@ div
           btn(as="vpl.0"           v-model="order" @toggle="submenu")
             | 人数
             sup(v-if="size.length") {{ size.length }}
-          btn(as="say.CAPTION"     v-model="order" @toggle="submenu")
+          btn(as="say.label"     v-model="order" @toggle="submenu")
             | 発言ルール
             sup(v-if="say.length") {{ say.length }}
           btn(as="game.label"     v-model="order" @toggle="submenu")
@@ -103,9 +103,9 @@ div
             | {{ o.label }}
             sup(v-if="1 < o.count") {{ o.count }}
 
-        p(v-if="order === 'say.CAPTION'")
+        p(v-if="order === 'say.label'")
           check(v-for="o in summary('say')" v-model="say" :as="o.id" :key="o.id")
-            | {{ o.CAPTION }}
+            | {{ o.label }}
             sup(v-if="1 < o.count") {{ o.count }}
 
         p(v-if="order === 'game.label'")

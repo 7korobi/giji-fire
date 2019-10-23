@@ -1,36 +1,17 @@
-51:
-  label: ?51?
-  win:
-  group: EVIL
-  able_ids: []
-  cmd: role
-  help: >-
-
-57:
-  label: ?57?
-  win:
-  group: EVIL
-  able_ids: []
-  cmd: role
-  help: >-
-
 dyingpossess:
   label: 衰退狂人
   win: EVIL
-  group: EVIL
   able_ids:
     - aura
     - human
     - evil
     - vote
     - entrust
-  cmd: role
   help: >-
 
 aurawolf:
   label: 気狼
   win: WOLF
-  group: WOLF
   able_ids:
     - aura
     - wolf
@@ -40,7 +21,6 @@ aurawolf:
     - vote
     - entrust
     - WSAY
-  cmd: role
   help: >-
 
 
@@ -469,22 +449,20 @@ admin:
 lost:
   label: 喪失
   win:
-  group: OTHER
+  group: GIFT
   able_ids: []
-  cmd: gift
   help: >-
     あなたは贈り物を<A href="http://crazy-crazy.sakura.ne.jp/giji/?(Gift)GIFTID_LOST" TARGET="_blank">喪失</A>しました。
-    もう二度と手にすることはないでしょう。もしまたあなたの手に贈り物があっても、消え去ってしまいます。そして、あなたがそれに気付くことはないでしょう。
+    もう二度と手にすることはないでしょう。もしまたあなたの手に贈り物が渡っても、消え去ってしまいます。そして、あなたがそれに気付くことはないでしょう。
 
 
 shield:
   label: 光の輪
   win:
-  group: OTHER
+  group: GIFT
   able_ids:
     - circular
     - guard
-  cmd: gift
   help: >-
     あなたを<A href="http://crazy-crazy.sakura.ne.jp/giji/?(Gift)GIFTID_SHIELD" TARGET="_blank">光の輪</A>が取り巻きます。
     あなたはもし昨夜、襲撃されていたとしても守られました。
@@ -493,11 +471,10 @@ shield:
 glass:
   label: 魔鏡
   win:
-  group: OTHER
+  group: GIFT
   able_ids:
     - circular
     - see
-  cmd: gift
   help: >-
     あなたを<A href="http://crazy-crazy.sakura.ne.jp/giji/?(Gift)GIFTID_GLASS" TARGET="_blank">魔鏡</A>が照らします。
     あなたは、魔鏡を渡す相手を占います。
@@ -506,13 +483,12 @@ glass:
 ogre:
   label: 悪鬼
   win: WOLF
-  group: WOLF
+  group: GIFT
   able_ids:
     - wolf
     - hunt
     - friend
     - WSAY
-  cmd: gift
   help: >-
     あなたは<A href="http://crazy-crazy.sakura.ne.jp/giji/?(Gift)GIFTID_OGRE" TARGET="_blank">悪鬼</A>です。
     表向きは他の役目を帯びていますが、あなたは人を襲う悪い鬼なのです。
@@ -520,10 +496,9 @@ ogre:
 fairy:
   label: 妖精の子
   win: PIXI
-  group: PIXI
+  group: GIFT
   able_ids:
     - pixi
-  cmd: gift
   help: >-
     あなたは<A href="http://crazy-crazy.sakura.ne.jp/giji/?(Gift)GIFTID_FAIRY" TARGET="_blank">妖精から生まれた子</A>です。
     表向きは他の役目を帯びていますが、あなたは人ならぬ存在なのです。
@@ -532,10 +507,9 @@ fairy:
 fink:
   label: 半端者
   win: EVIL
-  group: EVIL
+  group: GIFT
   able_ids:
     - evil
-  cmd: gift
   help: >-
     あなたは<A href="http://crazy-crazy.sakura.ne.jp/giji/?(Gift)GIFTID_FINK" TARGET="_blank">半端者</A>です。
     表向きは他の役目を帯びていますが、あなたは人ともつかぬ、人狼ともつかぬ、半端な正体を隠しています。
@@ -543,11 +517,10 @@ fink:
 decide:
   label: 決定者
   win:
-  group: OTHER
+  group: GIFT
   able: 投票
   able_ids:
     - vote_role
-  cmd: gift
   help: >-
     あなたは<A href="http://crazy-crazy.sakura.ne.jp/giji/?(Gift)GIFTID_DECIDE" TARGET="_blank">決定者</A>です。
     あなたは追加票を投じる権利を持ちつづけます。行使することで、健在を示すこともできるでしょう。
@@ -555,22 +528,20 @@ decide:
 seeronce:
   label: 夢占師
   win:
-  group: OTHER
+  group: GIFT
   able: 占う
   able_ids:
     - once
     - see
     - spy_wolf
-  cmd: gift
   help: >-
     あなたは<A href="http://crazy-crazy.sakura.ne.jp/giji/?(Gift)GIFTID_SEERONCE" TARGET="_blank">夢占師</A>です。
 
 dipsy:
   label: 酔払い
   win:
-  group: OTHER
+  group: GIFT
   able_ids: []
-  cmd: gift
   help: >-
     あなたは<A href="http://crazy-crazy.sakura.ne.jp/giji/?(Gift)GIFTID_DIPSY" TARGET="_blank">酔払い</A>です。
     あなたが人外もしくは村人に相対するものであれば、自分の役割を見失うことはありません。
@@ -580,7 +551,7 @@ dipsy:
 lover:
   label: 弟子
   win:
-  group: OTHER
+  group: GIFT
   able: 入門
   able_ids:
     - aura
@@ -595,7 +566,7 @@ lover:
 robber:
   label: 盗賊
   win:
-  group: OTHER
+  group: GIFT
   able_ids:
     - aura
     - rob
@@ -608,7 +579,6 @@ robber:
 tangle:
   label: 怨念
   win:
-  group: OTHER
   able_ids:
     - aura
     - revenge
@@ -671,7 +641,7 @@ sympathy:
     - human
     - vote
     - entrust
-    - SPSAY
+    - PSAY
   cmd: role
   help: >-
     あなたは<A href="http://crazy-crazy.sakura.ne.jp/giji/?(Role)ROLEID_SYMPATHY" TARGET="_blank">共鳴者</A>です。

@@ -1,7 +1,10 @@
 <template lang="pug">
-p.form
-  span.tag(v-for="(group, idx) in tag_groups" v-if="group" :key="group.set[0]")
-    tag(v-for="o in group.list" v-bind="o" :key="o.id")
+.form
+  component(:is="head_groups.id ? 'fieldset' : 'div'" v-for="(head_groups, gidx) in tag_groups" :key="gidx")
+    legend(v-if="head_groups.id") {{ head_groups.id }}
+    span.tag(v-for="(group, idx) in head_groups" v-if="group" :key="group.set[0]")
+      | &ensp;
+      tag(v-for="o in group.list" v-bind="o" :key="o.id")
 </template>
 
 <script lang="coffee">

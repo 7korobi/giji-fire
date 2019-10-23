@@ -11,6 +11,7 @@ log-wiki
 
   fire-oauth(handle="TSAY")
 
+  e-game(:label.sync="label" :mark_ids.sync="mark_ids")
   div
     c-post(handle="VSSAY")
       h3 ゲームを開催する
@@ -36,18 +37,14 @@ log-wiki
               label(style="display: block" for="label") 名称
             td
               input#label(v-model="label")
-              img.mark(:src="o.path" v-for="o in use_marks")
           tr
             td.c
               a.btn(@click="shuffle") 🎲
             td
               btn(:value="book_id" :as="book_id_chk" @toggle="create") 作成
 
-    c-post(handle="MAKER")
-      btn(v-model="mark_ids" :as="[]")
-        i.mdi.mdi-eraser
-      check(v-for="o in marks" v-model="mark_ids" :as="o.id" :key="o.id")
-        img.mark(:src="o.path")
+    e-marks(v-model="mark_ids")
+  c-report(handle="TITLE" deco="logo" :book="logo")
   c-report(handle="footer" deco="center")
     bread-crumb
 </template>
@@ -70,6 +67,7 @@ module.exports =
   ]
   layout: 'blank'
   data: ->
+    is_progress: false
     options: ["impose"] # impose
     shows: [] # pin, toc, potof, current, search
     mark_ids: []
@@ -77,6 +75,10 @@ module.exports =
     label: ""
 
   computed:
+    logo: ->
+      id = @book_id_chk
+      sign = @sign?.sign
+      { id, sign, @label, @mark_ids }
     folder_id: -> 
       "fire"
     book_id_chk: ->
@@ -87,10 +89,6 @@ module.exports =
       Query
       .books.in_folder @folder_id
       .reduce.idx?.max ? 0
-    use_marks: ->
-      Query.marks.finds @mark_ids
-    marks: ->
-      Query.marks.where(enable: true).list
 
   created: ->
     @shuffle()
@@ -102,37 +100,40 @@ module.exports =
       @label = "#{planet}の#{tarot}"
 
     create: ->
-      range = "1d"
-      gap   = "23h0m"
+      @is_progress = true
       uid   = @user.uid
       sign  = @sign.sign
+      range = "1日"
+      gap   = "23時30分"
       { book_id, part_id } = @
-      console.warn { book_id, part_id }
       { now_idx, write_at, last_at, next_at } = to_tempo(range, gap)
       @books_add {
+        _id: book_id
+        uid
+        sign
+        @label
+        potof_max: 5
+
         write_at
         last_at
         next_at
         is_epilogue: false
         is_finish:   false
 
-        @label
         @mark_ids
-
-        _id: book_id
-
-        face_id: "c05"
-        locale_id: "heavy"
-
-        say_id: "weak"
-        winner_id: "NONE"
-
         option_ids: ["undead-talk", "aiming-talk"]
         role_ids: []
+        tag_ids: []
 
-        uid
-        sign
-        tempo: { range, gap, now_idx }
+        winner_id: "NONE"
+        locale_id: "heavy"
+        say_id: "weak"
+
+        range
+        gap_days: ""
+        gap
+        off: "5分"
+        now_idx
       }
     
       @parts_add {
@@ -149,7 +150,6 @@ module.exports =
         write_at
         _id: part_id + '-M'
 
-        is_update: true
         uid
         sign
         handle: 'TITLE'

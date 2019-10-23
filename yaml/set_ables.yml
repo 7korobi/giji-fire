@@ -605,7 +605,7 @@ ADMIN:
   help: |-
     あなたは管理人です。
 
-SPSAY:
+PSAY:
   cmd: write
   text:
     - talk

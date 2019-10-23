@@ -16,6 +16,7 @@ module.exports = ->
 
     log:  String
     data: Object
+    book: Object
 
     show: String
     head: String
@@ -52,6 +53,7 @@ module.exports = ->
 
     for_body: ->
       o = {
+        @book,
         @edit, class: @classname,
         @id, @label, @anker, @log, @data, @show, @head, @deco, @to, @phase_id
       }

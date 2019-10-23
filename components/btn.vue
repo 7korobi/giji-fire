@@ -20,7 +20,7 @@ module.exports =
   computed:
     bool_is: ->
       switch @bool
-        when "equal"
+        when "equal", "counter"
           _.isEqual @as, @value
         when "include"
           for as in @as

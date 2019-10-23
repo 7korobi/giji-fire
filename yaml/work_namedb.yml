@@ -283,6 +283,9 @@ name:
 - spell: Broch
   name: ブロック
   key: NOR
+- spell: Bryhn
+  name: ブリーン
+  key: NOR
 - spell: Buran
   name: ブラン
   key: NOR
@@ -661,6 +664,9 @@ name:
 - spell: Gulli
   name: グッリ
   key: NOR
+- spell: Gundersen
+  name: グンダースン
+  key: NOR
 - spell: Gunnar
   name: グンナル
   key: NOR
@@ -771,6 +777,9 @@ name:
   key: NOR
 - spell: Haugen
   name: ハウゲン
+  key: NOR
+- spell: Haugstad
+  name: ハウクスタ
   key: NOR
 - spell: Haukelid
   name: ハウケリ
@@ -1128,6 +1137,9 @@ name:
   key: NOR
 - spell: Kornelius
   name: コルネリユス
+  key: NOR
+- spell: Kraglund
+  name: クラーグルン
   key: NOR
 - spell: Kristanna
   name: クリスターナ
@@ -1705,6 +1717,9 @@ name:
 - spell: Røyneland
   name: レイネラン
   key: NOR
+- spell: Røysamb
+  name: レイサム
+  key: NOR
 - spell: Rubeck
   name: ルーベック
   key: NOR
@@ -1842,6 +1857,9 @@ name:
   key: NOR
 - spell: Skjønberg
   name: ションバルグ
+  key: NOR
+- spell: Skogstad
+  name: スコクスタ
   key: NOR
 - spell: Skulason
   name: スクーラソン
@@ -2278,6 +2296,9 @@ name:
 - spell: Wirkola
   name: ウィルコラ
   key: NOR
+- spell: Wold
+  name: ヴォル
+  key: NOR
 - spell: Zeiner
   name: サイネル
   key: NOR
@@ -2289,6 +2310,9 @@ name:
   key: USA
 - spell: Rabe
   name: レイブ
+  key: USA
+- spell: Raben
+  name: レイベン
   key: USA
 - spell: Rabett
   name: ラベット
@@ -2403,6 +2427,9 @@ name:
   key: USA
 - spell: Raeden
   name: レイデン
+  key: USA
+- spell: Raekwon
+  name: レイクワン
   key: USA
 - spell: RaeVen
   name: レイヴン
@@ -3100,6 +3127,9 @@ name:
 - spell: Reams
   name: リームス
   key: USA
+- spell: Reamy
+  name: リーミー
+  key: USA
 - spell: Rearden
   name: リアデン
   key: USA
@@ -3162,6 +3192,9 @@ name:
   key: USA
 - spell: Rebhorn
   name: レブホーン
+  key: USA
+- spell: Rebus
+  name: リーバス
   key: USA
 - spell: Records
   name: レコーズ
@@ -3708,6 +3741,9 @@ name:
   key: USA
 - spell: Reverend
   name: レヴァレンド
+  key: USA
+- spell: Revier
+  name: リヴィア
   key: USA
 - spell: Revill
   name: レヴィル
@@ -4750,6 +4786,9 @@ name:
 - spell: Roisín
   name: ロシン
   key: USA
+- spell: Roisman
+  name: ロイスマン
+  key: USA
 - spell: Roizman
   name: ロイズマン
   key: USA
@@ -5260,6 +5299,9 @@ name:
 - spell: Roughley
   name: ラフリー
   key: USA
+- spell: Rouillard
+  name: ルイラード
+  key: USA
 - spell: Roukin
   name: ルーキン
   key: USA
@@ -5668,6 +5710,9 @@ name:
 - spell: Ruptash
   name: ルプタシュ
   key: USA
+- spell: Rus
+  name: ラス
+  key: USA
 - spell: Rusch
   name: ラッシュ
   key: USA
@@ -5682,6 +5727,9 @@ name:
   key: USA
 - spell: Rushin
   name: ラッシン
+  key: USA
+- spell: Rushing
+  name: ラッシング
   key: USA
 - spell: Rushton
   name: ラシュトン
@@ -5823,6 +5871,9 @@ name:
   key: USA
 - spell: Ryley
   name: ライリー
+  key: USA
+- spell: Ryman
+  name: ライマン
   key: USA
 - spell: Rymer
   name: ライマー
@@ -6100,6 +6151,9 @@ name:
 - spell: Sallis
   name: サリス
   key: USA
+- spell: Salloum
+  name: サロウム
+  key: USA
 - spell: Sally
   name: サリー
   key: USA
@@ -6123,6 +6177,9 @@ name:
   key: USA
 - spell: Salthouse
   name: ソルトハウス
+  key: USA
+- spell: Saltrese
+  name: ソルトリーズ
   key: USA
 - spell: Saltzman
   name: サルツマン
@@ -6499,6 +6556,9 @@ name:
 - spell: Sasha
   name: サッシャ
   key: USA
+- spell: Sasheer
+  name: サシーア
+  key: USA
 - spell: Saskia
   name: サスキア
   key: USA
@@ -6676,6 +6736,9 @@ name:
 - spell: Scales
   name: スケイルズ
   key: USA
+- spell: Scalies
+  name: スカリーズ
+  key: USA
 - spell: Scalise
   name: スカリース
   key: USA
@@ -6687,6 +6750,9 @@ name:
   key: USA
 - spell: Scanlan
   name: スカンラン
+  key: USA
+- spell: Scanlin
+  name: スキャンリン
   key: USA
 - spell: Scanlon
   name: スキャンロン
@@ -6753,6 +6819,9 @@ name:
   key: USA
 - spell: Schacter
   name: シャクター
+  key: USA
+- spell: Schadrack
+  name: シャドラック
   key: USA
 - spell: Schaech
   name: シェック
@@ -7119,6 +7188,9 @@ name:
   key: USA
 - spell: Schumer
   name: シューマー
+  key: USA
+- spell: Schur
+  name: シャー
   key: USA
 - spell: Schut
   name: シャット
@@ -7681,6 +7753,9 @@ name:
 - spell: Semans
   name: シーマンズ
   key: USA
+- spell: Semel
+  name: セメル
+  key: USA
 - spell: Semer
   name: シマー
   key: USA
@@ -7953,6 +8028,9 @@ name:
   key: USA
 - spell: Shahnaian
   name: シャネイアン
+  key: USA
+- spell: Shaifer
+  name: シェイファー
   key: USA
 - spell: Shaila
   name: シェイラ
@@ -8661,6 +8739,9 @@ name:
   key: USA
 - spell: Shining
   name: シャイニング
+  key: USA
+- spell: Shinkle
+  name: シンクル
   key: USA
 - spell: Shipka
   name: シプカ
@@ -9484,6 +9565,9 @@ name:
 - spell: Skellern
   name: スケラーン
   key: USA
+- spell: Skelly
+  name: スケリー
+  key: USA
 - spell: Skelton
   name: スケルトン
   key: USA
@@ -9591,6 +9675,9 @@ name:
   key: USA
 - spell: Skyler
   name: スカイラー
+  key: USA
+- spell: Skyy
+  name: スカイ
   key: USA
 - spell: Slabber
   name: スラバー
@@ -10927,6 +11014,9 @@ name:
 - spell: Stainton
   name: ステイントン
   key: USA
+- spell: Stait
+  name: ステイト
+  key: USA
 - spell: Staite
   name: ステイト
   key: USA
@@ -11130,6 +11220,9 @@ name:
   key: USA
 - spell: Statler
   name: スタットラー
+  key: USA
+- spell: Statman
+  name: スタットマン
   key: USA
 - spell: Staton
   name: ステイトン
@@ -12144,6 +12237,9 @@ name:
   key: USA
 - spell: Stryker
   name: ストライカー
+  key: USA
+- spell: Strzalkowski
+  name: ストシャルカウスキー
   key: USA
 - spell: Stu
   name: スチュー
@@ -13420,6 +13516,9 @@ name:
 - spell: Tatar
   name: タター
   key: USA
+- spell: Tatasciore
+  name: タッタショア
+  key: USA
 - spell: Tatchell
   name: タッチェル
   key: USA
@@ -13490,6 +13589,9 @@ name:
   name: テイルフォース
   key: USA
 - spell: Taylor
+  name: テイラー
+  key: USA
+- spell: Taylour
   name: テイラー
   key: USA
 - spell: Tayman
@@ -13843,6 +13945,9 @@ name:
 - spell: Teter
   name: ティーター
   key: USA
+- spell: Tetley
+  name: テトリー
+  key: USA
 - spell: Tetrick
   name: テトリック
   key: USA
@@ -13956,6 +14061,9 @@ name:
   key: USA
 - spell: Thea
   name: シア
+  key: USA
+- spell: Theadore
+  name: シアドア
   key: USA
 - spell: Theaker
   name: シーカー
@@ -14199,6 +14307,9 @@ name:
   key: USA
 - spell: Thorson
   name: トーソン
+  key: USA
+- spell: Thou
+  name: サウ
   key: USA
 - spell: Thourlby
   name: ソールビー
@@ -14583,6 +14694,9 @@ name:
   key: USA
 - spell: Tito
   name: ティト
+  key: USA
+- spell: Titone
+  name: ティトン
   key: USA
 - spell: Tittensor
   name: ティテンサー
@@ -15178,6 +15292,9 @@ name:
 - spell: Travis
   name: トラヴィス
   key: USA
+- spell: Travon
+  name: トラヴォン
+  key: USA
 - spell: Trayling
   name: トレイリング
   key: USA
@@ -15643,6 +15760,9 @@ name:
 - spell: Tuesday
   name: チューズデイ
   key: USA
+- spell: Tuffy
+  name: タフィ
+  key: USA
 - spell: Tufts
   name: タフツ
   key: USA
@@ -15792,6 +15912,9 @@ name:
   key: USA
 - spell: Turturro
   name: タトゥーロ
+  key: USA
+- spell: Turvey
+  name: ターヴィ
   key: USA
 - spell: Tushingham
   name: タッシンガム
@@ -16246,6 +16369,9 @@ name:
 - spell: Vagley
   name: ヴァグリー
   key: USA
+- spell: Vague
+  name: ヴェイグ
+  key: USA
 - spell: Vahan
   name: ヴァハン
   key: USA
@@ -16450,6 +16576,9 @@ name:
 - spell: Vanetta
   name: ヴァネッタ
   key: USA
+- spell: Vangsness
+  name: ヴァングズネス
+  key: USA
 - spell: VanHeertum
   name: ヴァンヒアタム
   key: USA
@@ -16641,6 +16770,9 @@ name:
   key: USA
 - spell: Vella
   name: ヴェラ
+  key: USA
+- spell: Velma
+  name: ヴェルマ
   key: USA
 - spell: Veloz
   name: ヴィロース
@@ -16918,6 +17050,9 @@ name:
 - spell: Vicius
   name: ヴィシャス
   key: USA
+- spell: Vick
+  name: ヴィック
+  key: USA
 - spell: Vickers
   name: ヴィッカーズ
   key: USA
@@ -17010,6 +17145,9 @@ name:
   key: USA
 - spell: Villalovos
   name: ヴィラロヴォス
+  key: USA
+- spell: Villani
+  name: ヴィラーニ
   key: USA
 - spell: Villanueva
   name: ヴィラヌエーヴァ
@@ -17419,6 +17557,9 @@ name:
 - spell: Wade
   name: ウェイド
   key: USA
+- spell: Wadelow
+  name: ウェイドロウ
+  key: USA
 - spell: Wadham
   name: ワダム
   key: USA
@@ -17776,6 +17917,9 @@ name:
 - spell: Warf
   name: ワーフ
   key: USA
+- spell: Warfel
+  name: ウォーフル
+  key: USA
 - spell: Warfield
   name: ウォーフィールド
   key: USA
@@ -17958,6 +18102,9 @@ name:
   key: USA
 - spell: Watters
   name: ワターズ
+  key: USA
+- spell: Watterson
+  name: ワターソン
   key: USA
 - spell: Wattis
   name: ワティス
@@ -18952,6 +19099,9 @@ name:
 - spell: Wiechert
   name: ウィーカート
   key: USA
+- spell: Wiedergott
+  name: ウィーダーゴット
+  key: USA
 - spell: Wiederhorn
   name: ウィーダーホーン
   key: USA
@@ -19402,6 +19552,9 @@ name:
 - spell: Wingard
   name: ウィンガード
   key: USA
+- spell: Wingate
+  name: ウィンゲイト
+  key: USA
 - spell: Winger
   name: ウィンガー
   key: USA
@@ -19416,6 +19569,9 @@ name:
   key: USA
 - spell: Wingreen
   name: ウィングリーン
+  key: USA
+- spell: Wingrove
+  name: ウィングローブ
   key: USA
 - spell: Wings
   name: ウィングス
@@ -20026,6 +20182,9 @@ name:
 - spell: Wormser
   name: ウォームザー
   key: USA
+- spell: Wornick
+  name: ワーニック
+  key: USA
 - spell: Woronov
   name: ウォロノフ
   key: USA
@@ -20593,6 +20752,9 @@ name:
 - spell: Yulin
   name: ユーリン
   key: USA
+- spell: Yunger
+  name: ヤンガー
+  key: USA
 - spell: Yunker
   name: ヤンカー
   key: USA
@@ -20716,6 +20878,9 @@ name:
 - spell: Zaluski
   name: ザルスキー
   key: USA
+- spell: Zamata
+  name: ザメイタ
+  key: USA
 - spell: Zammit
   name: ザミット
   key: USA
@@ -20778,6 +20943,9 @@ name:
   key: USA
 - spell: Zasu
   name: ゼイズー
+  key: USA
+- spell: Zavayna
+  name: ザヴェイナ
   key: USA
 - spell: Zawe
   name: ゾウィ
@@ -21697,6 +21865,9 @@ name:
 - spell: Langton
   name: ラントン
   key: USA
+- spell: Lanham
+  name: ラナム
+  key: USA
 - spell: Lanier
   name: ラニアー
   key: USA
@@ -21897,6 +22068,9 @@ name:
   key: USA
 - spell: Lashaway
   name: ラシャウェイ
+  key: USA
+- spell: Lashawn
+  name: ラショーン
   key: USA
 - spell: Lashbrook
   name: ラシュブルック
@@ -22669,6 +22843,9 @@ name:
 - spell: LeJohn
   name: ルジョン
   key: USA
+- spell: LeKeith
+  name: レキース
+  key: USA
 - spell: Lela
   name: リーラ
   key: USA
@@ -22701,6 +22878,9 @@ name:
   key: USA
 - spell: Lemelin
   name: レミリン
+  key: USA
+- spell: Lemen
+  name: レーメン
   key: USA
 - spell: Lemeny
   name: レムニー
@@ -22815,6 +22995,9 @@ name:
   key: USA
 - spell: Lenska
   name: レンスカ
+  key: USA
+- spell: Lenthall
+  name: レンサル
   key: USA
 - spell: Lenz
   name: レンズ
@@ -24283,6 +24466,9 @@ name:
 - spell: Lorinz
   name: ロリンズ
   key: USA
+- spell: Lorissa
+  name: ロリッサ
+  key: USA
 - spell: Lormand
   name: ローマンド
   key: USA
@@ -25108,6 +25294,9 @@ name:
 - spell: MacEachern
   name: マカークラン
   key: USA
+- spell: Macelwain
+  name: マケルウェイン
+  key: USA
 - spell: Macer
   name: メイサー
   key: USA
@@ -25266,6 +25455,9 @@ name:
   key: USA
 - spell: MacKinlay
   name: マッキンレー
+  key: USA
+- spell: Mackinley
+  name: マッキンリー
   key: USA
 - spell: MacKinnon
   name: マッキノン
@@ -25552,6 +25744,9 @@ name:
 - spell: Magdalen
   name: マグダレン
   key: USA
+- spell: Magdalene
+  name: マグダレン
+  key: USA
 - spell: Magder
   name: マグダー
   key: USA
@@ -25638,6 +25833,9 @@ name:
   key: USA
 - spell: Maher
   name: マー
+  key: USA
+- spell: Mahern
+  name: メイハーン
   key: USA
 - spell: Mahin
   name: メイヒン
@@ -26127,6 +26325,9 @@ name:
   key: USA
 - spell: Manitoba
   name: マニトバ
+  key: USA
+- spell: Manker
+  name: マンカー
   key: USA
 - spell: Mankiewicz
   name: マンキウィッツ
@@ -26722,6 +26923,9 @@ name:
 - spell: Marne
   name: マーン
   key: USA
+- spell: Marneen
+  name: マーニーン
+  key: USA
 - spell: Marner
   name: マーナー
   key: USA
@@ -26760,6 +26964,9 @@ name:
   key: USA
 - spell: Marquardt
   name: マークアート
+  key: USA
+- spell: Marque
+  name: マーク
   key: USA
 - spell: Marques
   name: マーカス
@@ -26808,6 +27015,9 @@ name:
   key: USA
 - spell: Marrissa
   name: マリサ
+  key: USA
+- spell: Marrone
+  name: マローニ
   key: USA
 - spell: Marrou
   name: マルー
@@ -27760,6 +27970,9 @@ name:
 - spell: McColm
   name: マコーム
   key: USA
+- spell: McComas
+  name: マコーマス
+  key: USA
 - spell: McComb
   name: マコーム
   key: USA
@@ -27774,6 +27987,9 @@ name:
   key: USA
 - spell: McConnell
   name: マコーネル
+  key: USA
+- spell: McConville
+  name: マコーンヴィル
   key: USA
 - spell: McCool
   name: マクール
@@ -28177,6 +28393,9 @@ name:
 - spell: McGivern
   name: マギヴァン
   key: USA
+- spell: McGlaston
+  name: マグラストン
+  key: USA
 - spell: McGlinn
   name: マグリン
   key: USA
@@ -28323,6 +28542,9 @@ name:
   key: USA
 - spell: McInnes
   name: マキネス
+  key: USA
+- spell: McInroe
+  name: マッキンロー
   key: USA
 - spell: McIntaggart
   name: マッキンタガート
@@ -29053,6 +29275,9 @@ name:
 - spell: Megs
   name: メグス
   key: USA
+- spell: Megyn
+  name: メギン
+  key: USA
 - spell: Mehaffey
   name: メハフィー
   key: USA
@@ -29388,6 +29613,9 @@ name:
   key: USA
 - spell: Merelina
   name: ミレリーナ
+  key: USA
+- spell: Meremblum
+  name: メレンブラム
   key: USA
 - spell: Merensky
   name: メレンスキー
@@ -30607,6 +30835,9 @@ name:
 - spell: Mongo
   name: モンゴ
   key: USA
+- spell: Mongol
+  name: マンゴール
+  key: USA
 - spell: Monica
   name: モニカ
   key: USA
@@ -30703,6 +30934,9 @@ name:
 - spell: Monty
   name: モンティ
   key: USA
+- spell: Moodi
+  name: ムーディ
+  key: USA
 - spell: Moodie
   name: ムーディ
   key: USA
@@ -30747,6 +30981,9 @@ name:
   key: USA
 - spell: Moorer
   name: モーラー
+  key: USA
+- spell: Moorey
+  name: ムーリー
   key: USA
 - spell: Moorhead
   name: ムーアヘッド
@@ -30837,6 +31074,9 @@ name:
   key: USA
 - spell: Morell
   name: モレル
+  key: USA
+- spell: Morerice
+  name: モアリス
   key: USA
 - spell: Moreton
   name: モートン
@@ -31858,6 +32098,9 @@ name:
 - spell: Narstie
   name: ナースティ
   key: USA
+- spell: Narver
+  name: ナーヴァー
+  key: USA
 - spell: Nas
   name: ナス
   key: USA
@@ -31938,6 +32181,9 @@ name:
   key: USA
 - spell: Naughton
   name: ノートン
+  key: USA
+- spell: Nauman
+  name: ノーマン
   key: USA
 - spell: Naunton
   name: ノーントン
@@ -32476,6 +32722,9 @@ name:
 - spell: Niamh
   name: ニーヴ
   key: USA
+- spell: Nibert
+  name: ニーバート
+  key: USA
 - spell: Nibley
   name: ニブリー
   key: USA
@@ -32616,6 +32865,12 @@ name:
   key: USA
 - spell: Nieman
   name: ニーマン
+  key: USA
+- spell: Niemerow
+  name: ニムロウ
+  key: USA
+- spell: Nieporent
+  name: ニポーレント
   key: USA
 - spell: Nieporte
   name: ニーポーティ
@@ -32889,6 +33144,9 @@ name:
   key: USA
 - spell: Nordstrom
   name: ノードストロム
+  key: USA
+- spell: Nordwind
+  name: ノードウィンド
   key: USA
 - spell: Noree
   name: ノリー
@@ -33201,6 +33459,9 @@ name:
   key: USA
 - spell: Obedzinski
   name: オベジンスキ
+  key: USA
+- spell: Obenchain
+  name: オーベンチェイン
   key: USA
 - spell: Obenreder
   name: オーベンレダー
@@ -33628,6 +33889,9 @@ name:
 - spell: Olympia
   name: オリンピア
   key: USA
+- spell: Olynek
+  name: オリニク
+  key: USA
 - spell: Olyphant
   name: オリファント
   key: USA
@@ -33900,6 +34164,9 @@ name:
   key: USA
 - spell: Orson
   name: オースン
+  key: USA
+- spell: Ortenberg
+  name: オーテンバーグ
   key: USA
 - spell: Orth
   name: オース
@@ -34270,6 +34537,9 @@ name:
 - spell: Paisner
   name: ペイズナー
   key: USA
+- spell: Pait
+  name: ペイト
+  key: USA
 - spell: Paktell
   name: パクテル
   key: USA
@@ -34578,6 +34848,9 @@ name:
   key: USA
 - spell: Parsons
   name: パーソンズ
+  key: USA
+- spell: Parsonson
+  name: パースンスン
   key: USA
 - spell: Part
   name: パート
@@ -35041,6 +35314,9 @@ name:
 - spell: Pelt
   name: ペルト
   key: USA
+- spell: Peltier
+  name: ペルティーア
+  key: USA
 - spell: Peltz
   name: ペルツ
   key: USA
@@ -35323,6 +35599,9 @@ name:
 - spell: Persons
   name: パーソンズ
   key: USA
+- spell: Persson
+  name: ピアソン
+  key: USA
 - spell: Pertler
   name: パートラー
   key: USA
@@ -35565,6 +35844,9 @@ name:
   key: USA
 - spell: Philmar
   name: フィルマー
+  key: USA
+- spell: Philpot
+  name: フィルポット
   key: USA
 - spell: Philpott
   name: フィルポット
@@ -36466,6 +36748,9 @@ name:
 - spell: Pottinger
   name: ポティンジャー
   key: USA
+- spell: Pottle
+  name: ポトル
+  key: USA
 - spell: Potts
   name: ポッツ
   key: USA
@@ -37195,6 +37480,9 @@ name:
 - spell: Questel
   name: クエステル
   key: USA
+- spell: Questell
+  name: ケステル
+  key: USA
 - spell: Quick
   name: クイック
   key: USA
@@ -37888,6 +38176,9 @@ name:
 - spell: Elana
   name: エラーナ
   key: USA
+- spell: Elanjian
+  name: エランジアン
+  key: USA
 - spell: Elbert
   name: エルバート
   key: USA
@@ -38202,6 +38493,9 @@ name:
   key: USA
 - spell: Elner
   name: エルナー
+  key: USA
+- spell: Elody
+  name: エロディ
   key: USA
 - spell: Eloise
   name: エロイース
@@ -39121,6 +39415,9 @@ name:
 - spell: Ewins
   name: ユーインズ
   key: USA
+- spell: E'Xavion
+  name: エグゼイヴィオン
+  key: USA
 - spell: Exel
   name: エクセル
   key: USA
@@ -39183,6 +39480,9 @@ name:
   key: USA
 - spell: Fa'aeteete
   name: ファーティーテ
+  key: USA
+- spell: Fa'aoso
+  name: ファイオーソ
   key: USA
 - spell: Fab
   name: ファブ
@@ -39959,7 +40259,7 @@ name:
   name: ファーン
   key: USA
 - spell: Fernandez
-  name: ファーナンデス
+  name: フェルナンデズ
   key: USA
 - spell: Fernberger
   name: ファーンバーガー
@@ -41365,6 +41665,9 @@ name:
 - spell: Fregalette
   name: フリガレット
   key: USA
+- spell: Frehley
+  name: フレーリー
+  key: USA
 - spell: Freiberger
   name: フライバーガー
   key: USA
@@ -41643,6 +41946,9 @@ name:
   key: USA
 - spell: Fulford
   name: フルファード
+  key: USA
+- spell: Fulger
+  name: フルガー
   key: USA
 - spell: Fulle
   name: フーリ
@@ -43396,6 +43702,9 @@ name:
 - spell: Giorgio
   name: ジョージオ
   key: USA
+- spell: Giosh
+  name: ギオシュ
+  key: USA
 - spell: Giovonnie
   name: ジオヴォニー
   key: USA
@@ -44920,6 +45229,9 @@ name:
 - spell: Groomes
   name: グルームス
   key: USA
+- spell: Grooms
+  name: グルームス
+  key: USA
 - spell: Gropper
   name: グロッパー
   key: USA
@@ -45559,6 +45871,9 @@ name:
 - spell: Hager
   name: ヘイガー
   key: USA
+- spell: Hagerman
+  name: ヘイガマン
+  key: USA
 - spell: Hagerthy
   name: ハガティ
   key: USA
@@ -45600,6 +45915,9 @@ name:
   key: USA
 - spell: Hagmann
   name: ハグマン
+  key: USA
+- spell: Hagner
+  name: ハーグナー
   key: USA
 - spell: Hagney
   name: ハグニー
@@ -46444,6 +46762,9 @@ name:
 - spell: Hassett
   name: ハセット
   key: USA
+- spell: Hassie
+  name: ハシー
+  key: USA
 - spell: Hasson
   name: ハッソン
   key: USA
@@ -46867,6 +47188,12 @@ name:
 - spell: Heath
   name: ヒース
   key: USA
+- spell: Heathcliff
+  name: ヘスクリフ
+  key: USA
+- spell: Heathcliffe
+  name: ヘスクリフ
+  key: USA
 - spell: Heathcock
   name: ヒースコック
   key: USA
@@ -47184,6 +47511,9 @@ name:
   key: USA
 - spell: Helton
   name: ヘルトン
+  key: USA
+- spell: Helvey
+  name: ヘルヴィ
   key: USA
 - spell: Helvick
   name: ヘルヴィック
@@ -47899,6 +48229,9 @@ name:
 - spell: Hillman
   name: ヒルマン
   key: USA
+- spell: Hillmer
+  name: ヒルマー
+  key: USA
 - spell: Hillmeyer
   name: ヒルマイアー
   key: USA
@@ -48436,6 +48769,9 @@ name:
 - spell: Holman
   name: ホルマン
   key: USA
+- spell: Holme
+  name: ホーム
+  key: USA
 - spell: Holmes
   name: ホームズ
   key: USA
@@ -48801,6 +49137,9 @@ name:
   key: USA
 - spell: Houts
   name: ハウツ
+  key: USA
+- spell: Houvardas
+  name: フヴァールダス
   key: USA
 - spell: Hovey
   name: ホーヴィ
@@ -51193,6 +51532,9 @@ name:
 - spell: Johanne
   name: ジョハン
   key: USA
+- spell: Johannsen
+  name: ジョハンセン
+  key: USA
 - spell: Johannson
   name: ジョハンソン
   key: USA
@@ -52090,6 +52432,9 @@ name:
 - spell: Karbacz
   name: カーバッチ
   key: USA
+- spell: Karbelnikoff
+  name: カーベルニコフ
+  key: USA
 - spell: Kardian
   name: カーディアン
   key: USA
@@ -52585,6 +52930,9 @@ name:
 - spell: Keel
   name: キール
   key: USA
+- spell: Keelaghan
+  name: キーラハン
+  key: USA
 - spell: Keelan
   name: キーラン
   key: USA
@@ -52809,6 +53157,9 @@ name:
   key: USA
 - spell: Kelton
   name: ケルトン
+  key: USA
+- spell: Kelty
+  name: ケルティ
   key: USA
 - spell: Kelvin
   name: ケルヴィン
@@ -53527,6 +53878,9 @@ name:
 - spell: Kinmonth
   name: キンマンス
   key: USA
+- spell: Kinna
+  name: キナ
+  key: USA
 - spell: Kinnaird
   name: キナード
   key: USA
@@ -53565,6 +53919,9 @@ name:
   key: USA
 - spell: Kinsman
   name: キンズマン
+  key: USA
+- spell: Kious
+  name: キアス
   key: USA
 - spell: Kip
   name: キップ
@@ -54298,6 +54655,9 @@ name:
 - spell: Kosana
   name: コサーナ
   key: USA
+- spell: Kosinski
+  name: コジンスキー
+  key: USA
 - spell: Koskoff
   name: コスコフ
   key: USA
@@ -54327,6 +54687,9 @@ name:
   key: USA
 - spell: Kostmayer
   name: コスマイヤー
+  key: USA
+- spell: Kostovick
+  name: コストヴィック
   key: USA
 - spell: Kostrey
   name: コストリー
@@ -54630,6 +54993,9 @@ name:
   key: USA
 - spell: Krugman
   name: クラグマン
+  key: USA
+- spell: Kruis
+  name: クルーイス
   key: USA
 - spell: Kruize
   name: クルーズ
@@ -55059,6 +55425,9 @@ name:
   key: USA
 - spell: Abrams
   name: エイブラムズ
+  key: USA
+- spell: Abramsohn
+  name: エイブラムソーン
   key: USA
 - spell: Abromeit
   name: アブロマイト
@@ -55945,6 +56314,9 @@ name:
 - spell: Allapach
   name: アラパッチ
   key: USA
+- spell: Allard
+  name: アラード
+  key: USA
 - spell: Allardice
   name: アラダイス
   key: USA
@@ -56054,6 +56426,9 @@ name:
   name: アリー
   key: USA
 - spell: Allyn
+  name: アリン
+  key: USA
+- spell: Allynne
   name: アリン
   key: USA
 - spell: Allyson
@@ -56413,6 +56788,9 @@ name:
 - spell: Anapau
   name: アナパウ
   key: USA
+- spell: Anastagia
+  name: アナステイジア
+  key: USA
 - spell: Anastasia
   name: アナステイジア
   key: USA
@@ -56472,6 +56850,9 @@ name:
   key: USA
 - spell: Andreas
   name: アンドレイアス
+  key: USA
+- spell: Andreeff
+  name: アンドリーフ
   key: USA
 - spell: Andren
   name: アンドレン
@@ -57807,6 +58188,9 @@ name:
   key: USA
 - spell: Aufill
   name: オーフィル
+  key: USA
+- spell: Auger
+  name: オーガー
   key: USA
 - spell: Augie
   name: オーギー
@@ -59320,6 +59704,9 @@ name:
 - spell: Baynton
   name: ベイントン
   key: USA
+- spell: Bays
+  name: ベイズ
+  key: USA
 - spell: Baz
   name: バズ
   key: USA
@@ -59661,6 +60048,9 @@ name:
   key: USA
 - spell: Beetem
   name: ビーテム
+  key: USA
+- spell: Bega
+  name: ベガ
   key: USA
 - spell: Begg
   name: ベグ
@@ -60567,6 +60957,9 @@ name:
   key: USA
 - spell: Bettin
   name: ベティン
+  key: USA
+- spell: Bettine
+  name: ベティーン
   key: USA
 - spell: Bettinson
   name: ベティンソン
@@ -61795,6 +62188,9 @@ name:
 - spell: Bomann
   name: ボーマン
   key: USA
+- spell: Bomar
+  name: ボマー
+  key: USA
 - spell: Bomback
   name: ボンバック
   key: USA
@@ -61917,6 +62313,9 @@ name:
   key: USA
 - spell: Bonus
   name: ボーナス
+  key: USA
+- spell: Bonz
+  name: ボンズ
   key: USA
 - spell: Boo
   name: ブー
@@ -62139,6 +62538,9 @@ name:
   key: USA
 - spell: Boss
   name: ボス
+  key: USA
+- spell: Bossett
+  name: ボセット
   key: USA
 - spell: Bossley
   name: ボスリー
@@ -63829,6 +64231,9 @@ name:
 - spell: Bucatinsky
   name: ブキャチンスキー
   key: USA
+- spell: Bucens
+  name: ブセンズ
+  key: USA
 - spell: Buch
   name: ブック
   key: USA
@@ -64561,6 +64966,9 @@ name:
 - spell: Byland
   name: バイランド
   key: USA
+- spell: Bylsma
+  name: ビルズマ
+  key: USA
 - spell: Byner
   name: バイナー
   key: USA
@@ -64656,6 +65064,9 @@ name:
   key: USA
 - spell: Caesar
   name: シーザー
+  key: USA
+- spell: Caeti
+  name: カエティ
   key: USA
 - spell: Caffell
   name: カフェル
@@ -67186,6 +67597,9 @@ name:
 - spell: Ciera
   name: シエラ
   key: USA
+- spell: Cig
+  name: キーグ
+  key: USA
 - spell: Cilella
   name: シレーラ
   key: USA
@@ -67345,6 +67759,9 @@ name:
 - spell: Class
   name: クラス
   key: USA
+- spell: Clatterbuck
+  name: クラターバック
+  key: USA
 - spell: Clatworthy
   name: クラットワージー
   key: USA
@@ -67358,6 +67775,9 @@ name:
   name: クローデル
   key: USA
 - spell: Claudia
+  name: クローディア
+  key: USA
+- spell: Claudier
   name: クローディア
   key: USA
 - spell: Claudine
@@ -67578,6 +67998,9 @@ name:
   key: USA
 - spell: Clohessy
   name: クロヘシー
+  key: USA
+- spell: Cloie
+  name: クローイ
   key: USA
 - spell: Cloke
   name: クローク
@@ -69493,6 +69916,9 @@ name:
 - spell: Crouther
   name: クラウザー
   key: USA
+- spell: Crovatin
+  name: クローヴァティン
+  key: USA
 - spell: Crow
   name: クロウ
   key: USA
@@ -69705,6 +70131,9 @@ name:
   key: USA
 - spell: Culpepper
   name: カルペッパー
+  key: USA
+- spell: Culpo
+  name: カルポ
   key: USA
 - spell: Culver
   name: カルヴァー
@@ -70195,6 +70624,9 @@ name:
 - spell: Damas
   name: ダマス
   key: USA
+- spell: D'Ambrosia
+  name: ダンブロージア
+  key: USA
 - spell: Dame
   name: デイム
   key: USA
@@ -70531,6 +70963,9 @@ name:
 - spell: Darnell
   name: ダーネル
   key: USA
+- spell: Daron
+  name: ダロン
+  key: USA
 - spell: Darr
   name: ダー
   key: USA
@@ -70623,6 +71058,9 @@ name:
   key: USA
 - spell: Dashiell
   name: ダシール
+  key: USA
+- spell: Dashnaw
+  name: ダシュナウ
   key: USA
 - spell: Dashner
   name: ダシュナー
@@ -70927,6 +71365,9 @@ name:
 - spell: Dearing
   name: ディアリング
   key: USA
+- spell: Dearman
+  name: ディアマン
+  key: USA
 - spell: Dearth
   name: ダース
   key: USA
@@ -70950,6 +71391,9 @@ name:
   key: USA
 - spell: Deavere
   name: ディーヴァー
+  key: USA
+- spell: Deavion
+  name: デアヴィアン
   key: USA
 - spell: Deb
   name: デブ
@@ -71097,6 +71541,9 @@ name:
   key: USA
 - spell: Dee
   name: ディー
+  key: USA
+- spell: DeeDee
+  name: ディーディー
   key: USA
 - spell: Deegan
   name: ディーガン
@@ -71250,6 +71697,9 @@ name:
   key: USA
 - spell: Deitchman
   name: ダイチマン
+  key: USA
+- spell: DeJean
+  name: デジャン
   key: USA
 - spell: DeJesus
   name: デジーザス
@@ -71712,6 +72162,9 @@ name:
   key: USA
 - spell: Deon
   name: ディオン
+  key: USA
+- spell: Deonte
+  name: ディオント
   key: USA
 - spell: DePalma
   name: デパルマ
@@ -72228,6 +72681,9 @@ name:
   key: USA
 - spell: Dictynna
   name: ディクタイナ
+  key: USA
+- spell: Didawick
+  name: ディーダウィック
   key: USA
 - spell: Diddley
   name: ディドリー
@@ -73641,6 +74097,9 @@ name:
   key: USA
 - spell: Duffett
   name: ダフェット
+  key: USA
+- spell: Duffey
+  name: ダフィ
   key: USA
 - spell: Duffield
   name: ダフィールド
@@ -76306,6 +76765,9 @@ name:
 - spell: Charaf
   name: シャラフ
   key: EGY
+- spell: Charof
+  name: シャロフ
+  key: EGY
 - spell: Chatiby
   name: シャティビ
   key: EGY
@@ -76368,6 +76830,9 @@ name:
   key: EGY
 - spell: Dassouki
   name: ダスーキー
+  key: EGY
+- spell: Dennaoui
+  name: デナウイ
   key: EGY
 - spell: Derriachi
   name: デリアシ
@@ -79642,6 +80107,9 @@ name:
 - spell: Bagdasaryan
   name: バグダサリアン
   key: ESP
+- spell: Bagutta
+  name: バグータ
+  key: ESP
 - spell: Baiz
   name: バイス
   key: ESP
@@ -79998,6 +80466,9 @@ name:
   key: ESP
 - spell: Benet
   name: ベネット
+  key: ESP
+- spell: Bengala
+  name: ベンガラ
   key: ESP
 - spell: Bengoa
   name: ベンゴア
@@ -80481,6 +80952,9 @@ name:
   key: ESP
 - spell: Bulnes
   name: ブルネス
+  key: ESP
+- spell: Bulos
+  name: ブロス
   key: ESP
 - spell: Bunuel
   name: ブニュエル
@@ -81184,6 +81658,9 @@ name:
 - spell: Cha
   name: チャ
   key: ESP
+- spell: Chabon
+  name: チャボン
+  key: ESP
 - spell: Chacon
   name: チャコン
   key: ESP
@@ -81369,6 +81846,9 @@ name:
   key: ESP
 - spell: Cintron
   name: シントロン
+  key: ESP
+- spell: Cirio
+  name: シリオ
   key: ESP
 - spell: Ciro
   name: シーロ
@@ -81606,6 +82086,9 @@ name:
   key: ESP
 - spell: Cornielle
   name: コルニエル
+  key: ESP
+- spell: Coromina
+  name: コロミナ
   key: ESP
 - spell: Coronado
   name: コロナド
@@ -81987,6 +82470,9 @@ name:
   key: ESP
 - spell: Delucio
   name: デルシオ
+  key: ESP
+- spell: Demestres
+  name: デメストレス
   key: ESP
 - spell: Demian
   name: デミアン
@@ -83202,6 +83688,9 @@ name:
   key: ESP
 - spell: Galván
   name: ガルバン
+  key: ESP
+- spell: Galvez
+  name: ガルベス
   key: ESP
 - spell: Gálvez
   name: ガルベス
@@ -86128,6 +86617,9 @@ name:
 - spell: Mena
   name: メナ
   key: ESP
+- spell: Menacho
+  name: メナーチョ
+  key: ESP
 - spell: Menasanch
   name: メナサンチ
   key: ESP
@@ -86515,6 +87007,9 @@ name:
 - spell: Montilles
   name: モンティイェス
   key: ESP
+- spell: Montoro
+  name: モントーロ
+  key: ESP
 - spell: Montoto
   name: モントト
   key: ESP
@@ -86751,6 +87246,9 @@ name:
   key: ESP
 - spell: Nailea
   name: ナイレア
+  key: ESP
+- spell: Nailim
+  name: ナイリム
   key: ESP
 - spell: Naim
   name: ナイーム
@@ -89683,11 +90181,17 @@ name:
 - spell: Tártalo
   name: タルタロ
   key: ESP
+- spell: Tatán
+  name: タタン
+  key: ESP
 - spell: Tatiana
   name: タティアナ
   key: ESP
 - spell: Tato
   name: タト
+  key: ESP
+- spell: Taus
+  name: タウス
   key: ESP
 - spell: Taveras
   name: タベラス
@@ -90024,6 +90528,9 @@ name:
   key: ESP
 - spell: Tte
   name: テニエンテ
+  key: ESP
+- spell: Tucho
+  name: トゥーチョ
   key: ESP
 - spell: Tuozzo
   name: トゥオッツォ
@@ -90825,6 +91332,9 @@ name:
   key: ESP
 - spell: Zair
   name: サイル
+  key: ESP
+- spell: Zajarias
+  name: サハリアス
   key: ESP
 - spell: Zaldivar
   name: サルディバル
@@ -92178,6 +92688,9 @@ name:
   key: CZE
 - spell: Goscíková
   name: ゴシチーコヴァー
+  key: CZE
+- spell: Grdevich
+  name: グルデヴィチ
   key: CZE
 - spell: Gregorac
   name: グレゴラーチュ
@@ -94087,6 +94600,9 @@ name:
 - spell: Pantelic
   name: パンテリッチ
   key: CZE
+- spell: Pantovic
+  name: パントヴィッチ
+  key: CZE
 - spell: Papousek
   name: パポウシェク
   key: CZE
@@ -94887,6 +95403,9 @@ name:
   key: CZE
 - spell: Spahić
   name: スパヒッチ
+  key: CZE
+- spell: Spahiu
+  name: スパヒユ
   key: CZE
 - spell: Spasic
   name: スパシッチ
@@ -96079,6 +96598,12 @@ name:
 - spell: Campino
   name: カンピーノ
   key: POR
+- spell: Candido
+  name: カンジド
+  key: POR
+- spell: Cândido
+  name: カンジド
+  key: POR
 - spell: Canelas
   name: カネーラシュ
   key: POR
@@ -96090,6 +96615,9 @@ name:
   key: POR
 - spell: Canijo
   name: カニージョ
+  key: POR
+- spell: Cápua
+  name: カープア
   key: POR
 - spell: Cardadeiro
   name: カフダデイロ
@@ -96166,6 +96694,9 @@ name:
 - spell: Cazarré
   name: カザヘ
   key: POR
+- spell: Cazzola
+  name: カッゾーラ
+  key: POR
 - spell: Celso
   name: セウソ
   key: POR
@@ -96189,6 +96720,9 @@ name:
   key: POR
 - spell: Chiume
   name: シウム
+  key: POR
+- spell: Cida
+  name: シーダ
   key: POR
 - spell: Cimfel
   name: シムフェウ
@@ -96379,6 +96913,9 @@ name:
 - spell: Dunia
   name: ドゥニア
   key: POR
+- spell: Dutra
+  name: ドゥトゥラ
+  key: POR
 - spell: Eça
   name: エッサ
   key: POR
@@ -96408,6 +96945,9 @@ name:
   key: POR
 - spell: Espírito
   name: エスピリト
+  key: POR
+- spell: Estiano
+  name: エスチアーノ
   key: POR
 - spell: Fabiana
   name: ファビアーナ
@@ -96568,6 +97108,9 @@ name:
 - spell: Gerkson
   name: ジェルクソン
   key: POR
+- spell: Germano
+  name: ジェフマーノ
+  key: POR
 - spell: Ghelli
   name: ゲーリ
   key: POR
@@ -96703,6 +97246,9 @@ name:
 - spell: Isaac
   name: イザーク
   key: POR
+- spell: Isabél
+  name: イザベウ
+  key: POR
 - spell: Isabeli
   name: イザベリ
   key: POR
@@ -96714,6 +97260,9 @@ name:
   key: POR
 - spell: Isaura
   name: イサウラ
+  key: POR
+- spell: Ivy
+  name: イーヴィ
   key: POR
 - spell: Jaborandy
   name: ジャボランディ
@@ -96753,6 +97302,9 @@ name:
   key: POR
 - spell: Joana
   name: ジョアナ
+  key: POR
+- spell: Joao
+  name: ジュアン
   key: POR
 - spell: João
   name: ジュアン
@@ -96810,6 +97362,9 @@ name:
   key: POR
 - spell: Katyana
   name: カティアーナ
+  key: POR
+- spell: Kenji
+  name: ケンジー
   key: POR
 - spell: Kieling
   name: ケーリング
@@ -97045,6 +97600,12 @@ name:
 - spell: Mário
   name: マーリオ
   key: POR
+- spell: Marjorie
+  name: マルジョリー
+  key: POR
+- spell: Marquee
+  name: マルケー
+  key: POR
 - spell: Marques
   name: マルケス
   key: POR
@@ -97123,6 +97684,9 @@ name:
 - spell: Milhem
   name: ミリェン
   key: POR
+- spell: Militello
+  name: ミリテーロ
+  key: POR
 - spell: Milton
   name: ミウトン
   key: POR
@@ -97140,9 +97704,6 @@ name:
   key: POR
 - spell: Molho
   name: モリョ
-  key: POR
-- spell: Mongol
-  name: モンゴウ
   key: POR
 - spell: Moniz
   name: モニース
@@ -97192,6 +97753,9 @@ name:
 - spell: Naíma
   name: ナイマ
   key: POR
+- spell: Naloana
+  name: ナロアナ
+  key: POR
 - spell: Naruna
   name: ナルナ
   key: POR
@@ -97234,6 +97798,9 @@ name:
 - spell: Netto
   name: ネート
   key: POR
+- spell: Neusa
+  name: ネウザ
+  key: POR
 - spell: Nicolau
   name: ニコラウ
   key: POR
@@ -97242,6 +97809,9 @@ name:
   key: POR
 - spell: Noizyman
   name: ノイジマン
+  key: POR
+- spell: Nomacce
+  name: ノマッセ
   key: POR
 - spell: Norival
   name: ノリヴァウ
@@ -97483,6 +98053,9 @@ name:
 - spell: Raoni
   name: ハオニ
   key: POR
+- spell: Raphaella
+  name: ハファエラ
+  key: POR
 - spell: Raposo
   name: ハポーソ
   key: POR
@@ -97572,6 +98145,9 @@ name:
   key: POR
 - spell: Rogério
   name: ホジェーリオ
+  key: POR
+- spell: Rojas
+  name: ホハス
   key: POR
 - spell: Ronaldinho
   name: ホナウジーニョ
@@ -97780,6 +98356,9 @@ name:
 - spell: Sorval
   name: ソフヴァウ
   key: POR
+- spell: Souza
+  name: ソウザ
+  key: POR
 - spell: Soveral
   name: ソヴェラウ
   key: POR
@@ -97945,6 +98524,9 @@ name:
 - spell: Vilela
   name: ヴィレラ
   key: POR
+- spell: Villavicenzio
+  name: ヴィラヴィセンジオ
+  key: POR
 - spell: Villela
   name: ヴィレーラ
   key: POR
@@ -98020,6 +98602,9 @@ name:
 - spell: Zacché
   name: ザシェー
   key: POR
+- spell: Zacharias
+  name: ザハリアス
+  key: POR
 - spell: Zaidan
   name: ザイダン
   key: POR
@@ -98031,6 +98616,9 @@ name:
   key: POR
 - spell: Zanatti
   name: ザナティ
+  key: POR
+- spell: Zanini
+  name: ザニーニ
   key: POR
 - spell: Zeïda
   name: ゼイダ
@@ -98052,6 +98640,9 @@ name:
   key: POR
 - spell: Zorek
   name: ゾレク
+  key: POR
+- spell: Zuaa
+  name: ズアー
   key: POR
 - spell: Aba
   name: アバ
@@ -98722,6 +99313,12 @@ name:
 - spell: Ishai
   name: イシャイ
   key: ISR
+- spell: Ishdarr
+  name: イシュダール
+  key: ISR
+- spell: Ishmael
+  name: イシュマエル
+  key: ISR
 - spell: Isserles
   name: イセルルス
   key: ISR
@@ -99096,6 +99693,9 @@ name:
   key: ISR
 - spell: Osamah
   name: オサマ
+  key: ISR
+- spell: Oshman
+  name: オシュマン
   key: ISR
 - spell: Oshri
   name: オシュリ
@@ -100552,6 +101152,9 @@ name:
 - spell: Avoledo
   name: アヴォレード
   key: ITA
+- spell: Ayanta
+  name: アヤンタ
+  key: ITA
 - spell: Aylin
   name: アイリーン
   key: ITA
@@ -101122,6 +101725,9 @@ name:
 - spell: Berruti
   name: ベルルーティ
   key: ITA
+- spell: Bertani
+  name: ベルターニ
+  key: ITA
 - spell: Bertante
   name: ベルターンテ
   key: ITA
@@ -101187,6 +101793,9 @@ name:
   key: ITA
 - spell: Bettini
   name: ベッティーニ
+  key: ITA
+- spell: Bettoia
+  name: ベットイヤ
   key: ITA
 - spell: Bevilacqua
   name: ベヴィラックァ
@@ -104911,6 +105520,9 @@ name:
 - spell: Fallo
   name: ファッロ
   key: ITA
+- spell: Faloppa
+  name: ファロッパ
+  key: ITA
 - spell: Falorni
   name: ファロールニ
   key: ITA
@@ -104988,6 +105600,9 @@ name:
   key: ITA
 - spell: Farnese
   name: ファルネーゼ
+  key: ITA
+- spell: Farnesi
+  name: ファルネージ
   key: ITA
 - spell: Farra
   name: ファーラ
@@ -106525,6 +107140,9 @@ name:
 - spell: Giraldi
   name: ジラールディ
   key: ITA
+- spell: Giraldo
+  name: ジラールド
+  key: ITA
 - spell: Girardi
   name: ジラールディ
   key: ITA
@@ -106851,6 +107469,9 @@ name:
   key: ITA
 - spell: Grisoni
   name: グリゾーニ
+  key: ITA
+- spell: Grivna
+  name: グリーヴナ
   key: ITA
 - spell: Grossi
   name: グロッシ
@@ -108289,6 +108910,9 @@ name:
 - spell: Maghenzani
   name: マゲンツァーニ
   key: ITA
+- spell: Magini
+  name: マジーニ
+  key: ITA
 - spell: Magisano
   name: マギサーノ
   key: ITA
@@ -108594,6 +109218,9 @@ name:
   key: ITA
 - spell: Marcella
   name: マルチェッラ
+  key: ITA
+- spell: Marcellina
+  name: マルチェルリーナ
   key: ITA
 - spell: Marcello
   name: マルチェッロ
@@ -109645,6 +110272,9 @@ name:
 - spell: Moneta
   name: モネータ
   key: ITA
+- spell: Monetti
+  name: モネッティ
+  key: ITA
 - spell: Monicelli
   name: モニチェッリ
   key: ITA
@@ -109864,6 +110494,9 @@ name:
 - spell: Mosquini
   name: モスクィーニ
   key: ITA
+- spell: Mosso
+  name: モッソ
+  key: ITA
 - spell: Motta
   name: モッタ
   key: ITA
@@ -109884,6 +110517,9 @@ name:
   key: ITA
 - spell: Mucci
   name: ムッチ
+  key: ITA
+- spell: Mucciacito
+  name: ムッチャチート
   key: ITA
 - spell: Muccino
   name: ムッチーノ
@@ -110217,6 +110853,9 @@ name:
   key: ITA
 - spell: Ninchi
   name: ニンキ
+  key: ITA
+- spell: Ninetta
+  name: ニネッタ
   key: ITA
 - spell: Ninetto
   name: ニネット
@@ -111928,6 +112567,9 @@ name:
 - spell: Pulcrano
   name: プルクラーノ
   key: ITA
+- spell: Pulera
+  name: プレーラ
+  key: ITA
 - spell: Pullara
   name: プッラーラ
   key: ITA
@@ -112062,6 +112704,9 @@ name:
   key: ITA
 - spell: Ragno
   name: ラーニョ
+  key: ITA
+- spell: Ragona
+  name: ラゴーナ
   key: ITA
 - spell: Ragonese
   name: ラゴネーゼ
@@ -112791,6 +113436,9 @@ name:
   key: ITA
 - spell: Rullo
   name: ルッロ
+  key: ITA
+- spell: Ruocco
+  name: ルオッコ
   key: ITA
 - spell: Ruoso
   name: ルオーゾ
@@ -114403,6 +115051,9 @@ name:
 - spell: Tatafiore
   name: タタフィオーレ
   key: ITA
+- spell: Tattanelli
+  name: タッタネーリ
+  key: ITA
 - spell: Tattoli
   name: タットリ
   key: ITA
@@ -115936,6 +116587,9 @@ name:
 - spell: Abhishek
   name: アビシェーク
   key: IND
+- spell: Abidah
+  name: アビーダハ
+  key: IND
 - spell: Acharya
   name: アーチャーリア
   key: IND
@@ -116362,6 +117016,9 @@ name:
 - spell: Cheena
   name: チーナ
   key: IND
+- spell: Chehak
+  name: チェハク
+  key: IND
 - spell: Chellappa
   name: チェラッパ
   key: IND
@@ -116586,6 +117243,9 @@ name:
   key: IND
 - spell: Ganesh
   name: ガネーシュ
+  key: IND
+- spell: Gangale
+  name: ガンガーレ
   key: IND
 - spell: Ganguly
   name: ガングリ
@@ -117111,6 +117771,9 @@ name:
   key: IND
 - spell: Kumar
   name: クマール
+  key: IND
+- spell: Kumbhani
+  name: クムハニ
   key: IND
 - spell: Kunal
   name: クナール
@@ -118480,6 +119143,9 @@ name:
 - spell: Suri
   name: スーリ
   key: IND
+- spell: Sury
+  name: スリ
+  key: IND
 - spell: Swami
   name: スワミ
   key: IND
@@ -118801,6 +119467,9 @@ name:
 - spell: Abang
   name: アバン
   key: INA
+- spell: Abdy
+  name: アブディ
+  key: INA
 - spell: Achnas
   name: アハナス
   key: INA
@@ -118828,8 +119497,14 @@ name:
 - spell: Ahipene
   name: アイペネ
   key: INA
+- spell: Aji
+  name: アジ
+  key: INA
 - spell: Alamsyah
   name: アラムシャー
+  key: INA
+- spell: Alfridus
+  name: アルフリードゥス
   key: INA
 - spell: Aliff
   name: アリフ
@@ -118846,6 +119521,9 @@ name:
 - spell: Apii
   name: アピー
   key: INA
+- spell: Argya
+  name: アルギヤ
+  key: INA
 - spell: Arifin
   name: アリフィン
   key: INA
@@ -118854,6 +119532,9 @@ name:
   key: INA
 - spell: Asfa
   name: アスファ
+  key: INA
+- spell: Ashari
+  name: アシャリ
   key: INA
 - spell: Assan
   name: アッサン
@@ -118942,6 +119623,9 @@ name:
 - spell: Enayatullah
   name: エナヤトゥーラ
   key: INA
+- spell: Eon
+  name: エヨン
+  key: INA
 - spell: Fala
   name: ファラ
   key: INA
@@ -119014,11 +119698,17 @@ name:
 - spell: Iko
   name: イコ
   key: INA
+- spell: Irwinsyah
+  name: イルウィンシャー
+  key: INA
 - spell: Ismed
   name: イスメド
   key: INA
 - spell: Jacquelina
   name: ジャクリーナ
+  key: INA
+- spell: Jadi
+  name: ジャディ
   key: INA
 - spell: Jamal
   name: ジャマール
@@ -119112,6 +119802,9 @@ name:
   key: INA
 - spell: Kum
   name: クム
+  key: INA
+- spell: Kuswardono
+  name: クスワルドノ
   key: INA
 - spell: Ky
   name: キー
@@ -119284,6 +119977,9 @@ name:
 - spell: Prananto
   name: プラナント
   key: INA
+- spell: Pratistha
+  name: プラティスタ
+  key: INA
 - spell: Prehara
   name: プレハラ
   key: INA
@@ -119350,6 +120046,12 @@ name:
 - spell: Sahetapy
   name: サヘタピー
   key: INA
+- spell: Santosa
+  name: サントサ
+  key: INA
+- spell: Santoso
+  name: サントソ
+  key: INA
 - spell: Saputra
   name: サプトラ
   key: INA
@@ -119358,6 +120060,9 @@ name:
   key: INA
 - spell: Sarangapani
   name: サランガパニ
+  key: INA
+- spell: Sardana
+  name: サルダナ
   key: INA
 - spell: Sarjono
   name: サルジョノ
@@ -119590,6 +120295,9 @@ name:
 - spell: Yusry
   name: ユスリー
   key: INA
+- spell: Zahira
+  name: ザヒラ
+  key: INA
 - spell: Zaskia
   name: ザスキア
   key: INA
@@ -119673,6 +120381,9 @@ name:
   key: KEN
 - spell: Adilah
   name: アディーラ
+  key: KEN
+- spell: Adimora
+  name: アディモラ
   key: KEN
 - spell: Adisa
   name: アディサ
@@ -120091,6 +120802,9 @@ name:
 - spell: Fedu
   name: フェドゥ
   key: KEN
+- spell: Fega
+  name: フェガ
+  key: KEN
 - spell: Femi
   name: フェミ
   key: KEN
@@ -120147,6 +120861,9 @@ name:
   key: KEN
 - spell: Giwa
   name: ギワ
+  key: KEN
+- spell: Godfred
+  name: ゴッドフレッド
   key: KEN
 - spell: Goûchy
   name: グーチー
@@ -120291,6 +121008,9 @@ name:
   key: KEN
 - spell: Karamoko
   name: カラモコ
+  key: KEN
+- spell: Karanj
+  name: カランジ
   key: KEN
 - spell: Karidja
   name: カリージャ
@@ -120607,6 +121327,9 @@ name:
 - spell: Muktar
   name: ムクタル
   key: KEN
+- spell: Mulamba
+  name: ムランバ
+  key: KEN
 - spell: Mulu
   name: ムル
   key: KEN
@@ -120717,6 +121440,9 @@ name:
   key: KEN
 - spell: Niyi
   name: ニイー
+  key: KEN
+- spell: Nizwar
+  name: ニズワル
   key: KEN
 - spell: Nkaaga
   name: ンカーガ
@@ -121176,6 +121902,9 @@ name:
   key: KEN
 - spell: Wangari
   name: ワンガリ
+  key: KEN
+- spell: Wasa
+  name: ワサ
   key: KEN
 - spell: Watussi
   name: ワツシ
@@ -121800,6 +122529,9 @@ name:
   key: RUS
 - spell: Bashmakov
   name: バシュマコフ
+  key: RUS
+- spell: Bashur
+  name: バシュル
   key: RUS
 - spell: Baskin
   name: バスキン
@@ -122721,6 +123453,9 @@ name:
   key: RUS
 - spell: Fedchenko
   name: フェドチェンコ
+  key: RUS
+- spell: Fedi
+  name: フェーディ
   key: RUS
 - spell: Fedor
   name: フョードル
@@ -124072,6 +124807,9 @@ name:
 - spell: Kulikova
   name: クリコワ
   key: RUS
+- spell: Kunina
+  name: クニナ
+  key: RUS
 - spell: Kunis
   name: クニス
   key: RUS
@@ -124551,6 +125289,9 @@ name:
   key: RUS
 - spell: Maria
   name: マリーヤ
+  key: RUS
+- spell: Marinkova
+  name: マリンコヴァ
   key: RUS
 - spell: Mariya
   name: マリヤ
@@ -127228,6 +127969,9 @@ name:
 - spell: Vitaliya
   name: ヴィターリヤ
   key: RUS
+- spell: Vitaly
+  name: ヴィタリー
+  key: RUS
 - spell: Vitchenko
   name: ヴィチエンコ
   key: RUS
@@ -127632,6 +128376,9 @@ name:
   key: RUS
 - spell: Zaytseva
   name: ザイツェワ
+  key: RUS
+- spell: Zdorovetskiy
+  name: ストロヴィエツキー
   key: RUS
 - spell: Zdruykovskiy
   name: ドリイコフスキー
@@ -128830,6 +129577,9 @@ name:
 - spell: Bächler
   name: ベヒラー
   key: GER
+- spell: Bäck
+  name: ベック
+  key: GER
 - spell: Backes
   name: バッケス
   key: GER
@@ -128868,6 +129618,9 @@ name:
   key: GER
 - spell: Barbel
   name: バーベル
+  key: GER
+- spell: Bardischewski
+  name: バルディシェフスキ
   key: GER
 - spell: Barfuss
   name: バルフース
@@ -129186,6 +129939,9 @@ name:
   key: GER
 - spell: Bibiane
   name: ビビアーネ
+  key: GER
+- spell: Bichsel
+  name: ビクセル
   key: GER
 - spell: Biederbeck
   name: ビーダーベック
@@ -129534,6 +130290,9 @@ name:
   key: GER
 - spell: Brandner
   name: ブラントナー
+  key: GER
+- spell: Brandorff
+  name: ブランドルフ
   key: GER
 - spell: Bras
   name: ブラス
@@ -130105,6 +130864,9 @@ name:
 - spell: Danin
   name: ダニン
   key: GER
+- spell: Danzer
+  name: ダンツァー
+  key: GER
 - spell: Darchinger
   name: ダーヒンガー
   key: GER
@@ -130368,6 +131130,9 @@ name:
   key: GER
 - spell: Doreen
   name: ドレーン
+  key: GER
+- spell: Dorena
+  name: ドレーナ
   key: GER
 - spell: Dorflein
   name: ドルフライン
@@ -130725,6 +131490,9 @@ name:
   key: GER
 - spell: Engels
   name: エンゲルス
+  key: GER
+- spell: Engelstorfer
+  name: エンゲルストーファー
   key: GER
 - spell: Engleder
   name: エングレダー
@@ -131518,6 +132286,9 @@ name:
 - spell: Gemzell
   name: ゲムツェル
   key: GER
+- spell: Genée
+  name: ジェネー
+  key: GER
 - spell: Gennadi
   name: ゲンナーディ
   key: GER
@@ -131796,6 +132567,9 @@ name:
   key: GER
 - spell: Goldner
   name: ゴルドナー
+  key: GER
+- spell: Gollé
+  name: ゴレ
   key: GER
 - spell: Golm
   name: ゴルム
@@ -132937,6 +133711,9 @@ name:
 - spell: Höppner
   name: ヘップナー
   key: GER
+- spell: Hör
+  name: ヘール
+  key: GER
 - spell: Hörbiger
   name: ヘルビガー
   key: GER
@@ -133158,6 +133935,9 @@ name:
   key: GER
 - spell: Isik
   name: イシク
+  key: GER
+- spell: Iwald
+  name: イーヴァルト
   key: GER
 - spell: Jablonski
   name: ヤブロンスキー
@@ -133491,6 +134271,9 @@ name:
   key: GER
 - spell: Kadelbach
   name: カーデルバッハ
+  key: GER
+- spell: Kaden
+  name: カードゥン
   key: GER
 - spell: Kah
   name: カー
@@ -134353,6 +135136,9 @@ name:
 - spell: Kristian
   name: クリスティアーン
   key: GER
+- spell: Krittl
+  name: クリトゥル
+  key: GER
 - spell: Kroecher
   name: クレヒャー
   key: GER
@@ -134376,6 +135162,9 @@ name:
   key: GER
 - spell: Krönes
   name: クレーネス
+  key: GER
+- spell: Kronlachner
+  name: クロンラフナー
   key: GER
 - spell: Kronos
   name: クロノス
@@ -134824,6 +135613,12 @@ name:
 - spell: Ley
   name: ライ
   key: GER
+- spell: Liane
+  name: リアーネ
+  key: GER
+- spell: Libgart
+  name: リープガート
+  key: GER
 - spell: Libnow
   name: リプノウ
   key: GER
@@ -135030,6 +135825,9 @@ name:
   key: GER
 - spell: Lord
   name: ロルト
+  key: GER
+- spell: Lore
+  name: ローレ
   key: GER
 - spell: Lorenz
   name: ローレンツ
@@ -135264,9 +136062,6 @@ name:
   key: GER
 - spell: Mangold
   name: マンゴールト
-  key: GER
-- spell: Manker
-  name: マンカー
   key: GER
 - spell: Manne
   name: マンネ
@@ -136489,6 +137284,9 @@ name:
 - spell: Otten
   name: オッテン
   key: GER
+- spell: Ottilie
+  name: オティリエ
+  key: GER
 - spell: Ottmann
   name: オットマン
   key: GER
@@ -136603,6 +137401,9 @@ name:
 - spell: Pelikan
   name: ペリカン
   key: GER
+- spell: Pemmer
+  name: ペマー
+  key: GER
 - spell: Pempeit
   name: ペンパイト
   key: GER
@@ -136714,6 +137515,9 @@ name:
 - spell: Pfleghar
   name: プフレクハー
   key: GER
+- spell: Pfluger
+  name: プフルガー
+  key: GER
 - spell: Pflum
   name: プフルム
   key: GER
@@ -136792,6 +137596,9 @@ name:
 - spell: Pleskow
   name: プレスコウ
   key: GER
+- spell: Pluhar
+  name: プルハー
+  key: GER
 - spell: Plumhoff
   name: プルムホフ
   key: GER
@@ -136806,6 +137613,9 @@ name:
   key: GER
 - spell: Podolski
   name: ポドルスキ
+  key: GER
+- spell: Poeschl
+  name: ペーシュル
   key: GER
 - spell: Pohl
   name: ポール
@@ -137251,6 +138061,9 @@ name:
 - spell: Renneke
   name: レネケ
   key: GER
+- spell: Rescher
+  name: レッシャー
+  key: GER
 - spell: Reshhe
   name: レシュヘ
   key: GER
@@ -137265,6 +138078,9 @@ name:
   key: GER
 - spell: Reuber
   name: ロイバー
+  key: GER
+- spell: Reutemann
+  name: ロイテマン
   key: GER
 - spell: Reuver
   name: ロイヴァー
@@ -137556,6 +138372,9 @@ name:
   key: GER
 - spell: Roskam
   name: ロスカム
+  key: GER
+- spell: Rosl
+  name: ローズル
   key: GER
 - spell: Rosner
   name: ロスナー
@@ -138019,6 +138838,9 @@ name:
 - spell: Schinz
   name: シンツ
   key: GER
+- spell: Schippel
+  name: シペル
+  key: GER
 - spell: Schipper
   name: シッパー
   key: GER
@@ -138198,6 +139020,9 @@ name:
   key: GER
 - spell: Schön
   name: シェーン
+  key: GER
+- spell: Schonberg
+  name: シェーンベルク
   key: GER
 - spell: Schönböck
   name: シェーンベック
@@ -138955,6 +139780,9 @@ name:
 - spell: Stender
   name: シュテンダー
   key: GER
+- spell: Stenzel
+  name: シュテンツル
+  key: GER
 - spell: Stephan
   name: シュテファン
   key: GER
@@ -139210,6 +140038,9 @@ name:
 - spell: Svantje
   name: スファンチェ
   key: GER
+- spell: Svoboda
+  name: スヴォボダ
+  key: GER
 - spell: Swamm
   name: スヴァム
   key: GER
@@ -139227,6 +140058,9 @@ name:
   key: GER
 - spell: Swinn
   name: スウィン
+  key: GER
+- spell: Swoboda
+  name: スヴォボダ
   key: GER
 - spell: Sybilla
   name: ジビラ
@@ -139525,8 +140359,14 @@ name:
 - spell: Tonkel
   name: トンケル
   key: GER
+- spell: Toost
+  name: トースト
+  key: GER
 - spell: Torsten
   name: トアステン
+  key: GER
+- spell: Tötschinger
+  name: トッチンガー
   key: GER
 - spell: Traeger
   name: トレガー
@@ -140355,6 +141195,9 @@ name:
   key: GER
 - spell: Winterstein
   name: ヴィンターシュタイン
+  key: GER
+- spell: Wirth
+  name: ヴィルト
   key: GER
 - spell: Wirtz
   name: ヴィルツ
@@ -141939,6 +142782,9 @@ name:
   key: NED
 - spell: Kooten
   name: コーテン
+  key: NED
+- spell: Koppens
+  name: コペンス
   key: NED
 - spell: Korneel
   name: コルネール
@@ -144916,6 +145762,9 @@ name:
 - spell: Amphaiphun
   name: アンパイプン
   key: THA
+- spell: Amy
+  name: アミー
+  key: THA
 - spell: Aphaiwonk
   name: アパイウォン
   key: THA
@@ -144942,6 +145791,12 @@ name:
   key: THA
 - spell: Aung
   name: アウン
+  key: THA
+- spell: Austria
+  name: アウストリア
+  key: THA
+- spell: Avellana
+  name: アヴェリャーナ
   key: THA
 - spell: Bacalso
   name: バカルソ
@@ -144990,6 +145845,9 @@ name:
   key: THA
 - spell: Caparas
   name: カパラス
+  key: THA
+- spell: Chaloemporn
+  name: チャレンポーン
   key: THA
 - spell: Chandraviroj
   name: チャンドラヴィロジュ
@@ -145044,6 +145902,9 @@ name:
   key: THA
 - spell: Copon
   name: コポン
+  key: THA
+- spell: Crisologo
+  name: クリソーロゴ
   key: THA
 - spell: Cydel
   name: サイデル
@@ -145207,6 +146068,9 @@ name:
 - spell: Kami
   name: カミ
   key: THA
+- spell: Kamsing
+  name: カムシン
+  key: THA
 - spell: Kantapat
   name: カンタパート
   key: THA
@@ -145236,6 +146100,9 @@ name:
   key: THA
 - spell: Kompheak
   name: コンフィーク
+  key: THA
+- spell: Komsan
+  name: コムサン
   key: THA
 - spell: Kongrasri
   name: コンラシー
@@ -145287,6 +146154,9 @@ name:
   key: THA
 - spell: Mabalot
   name: マバロット
+  key: THA
+- spell: Mabklang
+  name: マブクラン
   key: THA
 - spell: Macapagal
   name: マカパガル
@@ -145354,6 +146224,9 @@ name:
 - spell: Napakpapha
   name: ナパックパパー
   key: THA
+- spell: Nato
+  name: ナト
+  key: THA
 - spell: Nattapong
   name: ナッタポン
   key: THA
@@ -145380,6 +146253,9 @@ name:
   key: THA
 - spell: Ngor
   name: ニョール
+  key: THA
+- spell: Niamhom
+  name: ニアムホム
   key: THA
 - spell: Nicdao
   name: ニクダオ
@@ -145422,6 +146298,9 @@ name:
   key: THA
 - spell: Panward
   name: パーンワート
+  key: THA
+- spell: Panya
+  name: パンヤ
   key: THA
 - spell: Paraluman
   name: パラルマン
@@ -145471,6 +146350,9 @@ name:
 - spell: Polonah
   name: ポロナー
   key: THA
+- spell: Polsan
+  name: ポルサン
+  key: THA
 - spell: Pongpas
   name: ポンパス
   key: THA
@@ -145482,6 +146364,9 @@ name:
   key: THA
 - spell: Poonpiriya
   name: プーンピリヤ
+  key: THA
+- spell: Pornchanok
+  name: ポーンチャノック
   key: THA
 - spell: Prachya
   name: プラッチャヤー
@@ -145549,6 +146434,9 @@ name:
 - spell: Sasanatieng
   name: サーサナティヤン
   key: THA
+- spell: Sawatsuk
+  name: サワツク
+  key: THA
 - spell: Sereyvuth
   name: セレイヴース
   key: THA
@@ -145579,11 +146467,17 @@ name:
 - spell: Sombat
   name: ソムバット
   key: THA
+- spell: Somluck
+  name: ソムラック
+  key: THA
 - spell: Sompob
   name: ソンポブ
   key: THA
 - spell: Somtow
   name: ソムトウ
+  key: THA
+- spell: Srimalai
+  name: スリマライ
   key: THA
 - spell: Srinikornchot
   name: スリニコーンチョー
@@ -145681,6 +146575,9 @@ name:
 - spell: Vasudhorn
   name: ワスドーン
   key: THA
+- spell: Vibar
+  name: ヴィバル
+  key: THA
 - spell: Vinsiri
   name: ヴィンシリ
   key: THA
@@ -145743,6 +146640,9 @@ name:
   key: THA
 - spell: Yayaying
   name: ヤーヤーイン
+  key: THA
+- spell: Yimmumphai
+  name: イムアンパイ
   key: THA
 - spell: Ynna
   name: ヤンナ
@@ -145951,6 +146851,9 @@ name:
 - spell: Casdagli
   name: カスダリ
   key: GRE
+- spell: Chappoulis
+  name: チャプリス
+  key: GRE
 - spell: Chatziantoniou
   name: ハジアントニウ
   key: GRE
@@ -145992,6 +146895,9 @@ name:
   key: GRE
 - spell: Demetraki
   name: デメトラキ
+  key: GRE
+- spell: Demetre
+  name: デメトレ
   key: GRE
 - spell: Demetrios
   name: デミトリオス
@@ -146127,6 +147033,9 @@ name:
   key: GRE
 - spell: Gavras
   name: ガヴラス
+  key: GRE
+- spell: Georgalas
+  name: ヨルガラス
   key: GRE
 - spell: Georgiadis
   name: ゲオルギアディス
@@ -153250,7 +154159,7 @@ name:
 - spell: Dejardin
   name: ドゥジャルダン
   key: FRA
-- spell: Dejean
+- spell: DeJean
   name: ドゥジャン
   key: FRA
 - spell: Dekok
@@ -155052,6 +155961,9 @@ name:
   key: FRA
 - spell: Everly
   name: エヴリー
+  key: FRA
+- spell: Evijan
+  name: エヴィヨン
   key: FRA
 - spell: Exupéry
   name: エグジュペリ
@@ -157492,9 +158404,6 @@ name:
 - spell: Hainque
   name: アンク
   key: FRA
-- spell: Hair
-  name: エール
-  key: FRA
 - spell: Haker
   name: アケール
   key: FRA
@@ -158418,6 +159327,9 @@ name:
   key: FRA
 - spell: Jeannet
   name: ジャネ
+  key: FRA
+- spell: Jeannin
+  name: ジャナン
   key: FRA
 - spell: Jeannine
   name: ジャンヌ
@@ -162481,6 +163393,9 @@ name:
 - spell: Moutel
   name: ムテル
   key: FRA
+- spell: Moutier
+  name: ムチエ
+  key: FRA
 - spell: Mouton
   name: ムトン
   key: FRA
@@ -164062,6 +164977,9 @@ name:
 - spell: Poisson
   name: ポワソン
   key: FRA
+- spell: Poissonnier
+  name: ポワソニエ
+  key: FRA
 - spell: Poitier
   name: ポワティエ
   key: FRA
@@ -164238,6 +165156,9 @@ name:
   key: FRA
 - spell: Prajoux
   name: プラジュー
+  key: FRA
+- spell: Prakazrel
+  name: プラカズレル
   key: FRA
 - spell: Prat
   name: プハ
@@ -165001,6 +165922,9 @@ name:
 - spell: Rim
   name: リム
   key: FRA
+- spell: Rimbaud
+  name: ハンボー
+  key: FRA
 - spell: Rimoux
   name: リムー
   key: FRA
@@ -165030,6 +165954,9 @@ name:
   key: FRA
 - spell: Rivard
   name: リヴァール
+  key: FRA
+- spell: Rivault
+  name: リヴォール
   key: FRA
 - spell: Rivel
   name: リヴェル
@@ -165960,6 +166887,9 @@ name:
   key: FRA
 - spell: Ségur
   name: セギュール
+  key: FRA
+- spell: Seide
+  name: セイド
   key: FRA
 - spell: Seigne
   name: セーニュ
@@ -172278,6 +173208,9 @@ name:
   key: SWE
 - spell: Thommy
   name: トミー
+  key: SWE
+- spell: Thorborg
+  name: トールボリ
   key: SWE
 - spell: Thore
   name: トーレ
@@ -179332,6 +180265,9 @@ name:
 - spell: Arsovski
   name: アルソフスキ
   key: BUL
+- spell: Asparuhov
+  name: アスパルーホフ
+  key: BUL
 - spell: Atanas
   name: アタナス
   key: BUL
@@ -179364,6 +180300,9 @@ name:
   key: BUL
 - spell: Boneva
   name: ボネヴァ
+  key: BUL
+- spell: Borislav
+  name: ボリスラフ
   key: BUL
 - spell: Boyan
   name: ボヤン
@@ -179665,6 +180604,9 @@ name:
 - spell: Mirsad
   name: ミルサド
   key: BUL
+- spell: Mitev
+  name: ミテフ
+  key: BUL
 - spell: Mitevska
   name: ミテフスカ
   key: BUL
@@ -179788,6 +180730,9 @@ name:
 - spell: Samardzic
   name: サマルジッチ
   key: BUL
+- spell: Sarandev
+  name: サランデフ
+  key: BUL
 - spell: Satin
   name: ザティン
   key: BUL
@@ -179869,6 +180814,9 @@ name:
 - spell: Velikova
   name: ヴェリコヴァ
   key: BUL
+- spell: Velislav
+  name: ヴィェリスラフ
+  key: BUL
 - spell: Velizar
   name: ヴェリザール
   key: BUL
@@ -179880,6 +180828,9 @@ name:
   key: BUL
 - spell: Viktorija
   name: ヴィクトーリヤ
+  key: BUL
+- spell: Vladimirov
+  name: ヴラディミロフ
   key: BUL
 - spell: Vodenicharov
   name: ヴォデニチャロフ
@@ -179952,6 +180903,9 @@ name:
   key: POL
 - spell: Akhmed
   name: アフメッド
+  key: POL
+- spell: Alaborski
+  name: アラボルスキ
   key: POL
 - spell: Alekander
   name: アレカンデル
@@ -180144,6 +181098,12 @@ name:
   key: POL
 - spell: Bimbam
   name: ビムバム
+  key: POL
+- spell: Binczycki
+  name: ビンチツキ
+  key: POL
+- spell: Bińczycki
+  name: ビンチツキ
   key: POL
 - spell: Biskupski
   name: ビスクプスキ
@@ -180414,6 +181374,9 @@ name:
   key: POL
 - spell: Cypryański
   name: チプリアンスキ
+  key: POL
+- spell: Cyrwus
+  name: シルヴス
   key: POL
 - spell: Czapski
   name: チャプスキ
@@ -180781,6 +181744,12 @@ name:
 - spell: Gąsiorowski
   name: ゴンショロフスキー
   key: POL
+- spell: Gasowski
+  name: ゴンソフスキ
+  key: POL
+- spell: Gąsowski
+  name: ゴンソフスキ
+  key: POL
 - spell: Gazecki
   name: ガジェツキ
   key: POL
@@ -180966,6 +181935,9 @@ name:
   key: POL
 - spell: Huculak
   name: フーチュラク
+  key: POL
+- spell: Hudziak
+  name: フジャク
   key: POL
 - spell: Huk
   name: フク
@@ -181385,7 +182357,10 @@ name:
   name: コシチュキェヴィチュ
   key: POL
 - spell: Kosinski
-  name: コジンスキー
+  name: コシンスキー
+  key: POL
+- spell: Kosiński
+  name: コシンスキー
   key: POL
 - spell: Kostenko
   name: コステンコ
@@ -182086,6 +183061,9 @@ name:
 - spell: Nowicki
   name: ノヴィツキー
   key: POL
+- spell: Nowina
+  name: ノヴィーナ
+  key: POL
 - spell: Nünke
   name: ニュンケ
   key: POL
@@ -182226,6 +183204,9 @@ name:
   key: POL
 - spell: Perchuć
   name: ペルフーチ
+  key: POL
+- spell: Perepeczko
+  name: ペレペツコ
   key: POL
 - spell: Pianka
   name: ピアンカ
@@ -182575,6 +183556,9 @@ name:
 - spell: Siennicka
   name: シエンニツカ
   key: POL
+- spell: Siergiej
+  name: セルゲイ
+  key: POL
 - spell: Sikora
   name: シコーラ
   key: POL
@@ -182847,6 +183831,9 @@ name:
   key: POL
 - spell: Szajnert
   name: シャイネルト
+  key: POL
+- spell: Szakurow
+  name: シャクロフ
   key: POL
 - spell: Szalawski
   name: シャラフスキ
@@ -183163,6 +184150,9 @@ name:
 - spell: Wenanty
   name: ヴェナンティ
   key: POL
+- spell: Weresniak
+  name: ヴェレスニアク
+  key: POL
 - spell: Weronika
   name: ヴェロニカ
   key: POL
@@ -183385,6 +184375,9 @@ name:
 - spell: Żarnecki
   name: ジャルネツキ
   key: POL
+- spell: Zarzycki
+  name: ザジツキ
+  key: POL
 - spell: Zass
   name: ザス
   key: POL
@@ -183468,6 +184461,9 @@ name:
   key: POL
 - spell: Żmijewski
   name: ジミイェフスキ
+  key: POL
+- spell: Zmuda
+  name: ズムーダ
   key: POL
 - spell: Zofia
   name: ゾフィア
@@ -183574,6 +184570,9 @@ name:
 - spell: Astileanu
   name: アスティレアヌ
   key: ROM
+- spell: Aurelian
+  name: アウレリアン
+  key: ROM
 - spell: Aurica
   name: アウリカ
   key: ROM
@@ -183601,6 +184600,9 @@ name:
 - spell: Bânzaru
   name: ブンザル
   key: ROM
+- spell: Baranga
+  name: バランガ
+  key: ROM
 - spell: Barkó
   name: バルコー
   key: ROM
@@ -183627,6 +184629,9 @@ name:
   key: ROM
 - spell: Bleont
   name: ブレオント
+  key: ROM
+- spell: Bodolan
+  name: ボドラン
   key: ROM
 - spell: Bogdan
   name: ボグダン
@@ -183664,6 +184669,9 @@ name:
 - spell: Buhai
   name: ブハイ
   key: ROM
+- spell: Burtea
+  name: ブルテア
+  key: ROM
 - spell: Busuioc
   name: ブスイヨク
   key: ROM
@@ -183672,6 +184680,9 @@ name:
   key: ROM
 - spell: Calman
   name: カルマン
+  key: ROM
+- spell: Caprita
+  name: カプリータ
   key: ROM
 - spell: Caramitru
   name: カラミトル
@@ -183690,6 +184701,12 @@ name:
   key: ROM
 - spell: Cazanov
   name: カザノフ
+  key: ROM
+- spell: Celea
+  name: チェレア
+  key: ROM
+- spell: Cellea
+  name: チェレア
   key: ROM
 - spell: Cerasela
   name: チェラセーラ
@@ -183783,6 +184800,9 @@ name:
   key: ROM
 - spell: Dafinescu
   name: ダフィネスク
+  key: ROM
+- spell: Dinu
+  name: ディヌ
   key: ROM
 - spell: Dobrin
   name: ドブリン
@@ -184039,6 +185059,9 @@ name:
 - spell: Marcovici
   name: マルコヴィッチ
   key: ROM
+- spell: Marculescu
+  name: マルクレスコ
+  key: ROM
 - spell: Mariescu
   name: マリエスコ
   key: ROM
@@ -184113,6 +185136,9 @@ name:
   key: ROM
 - spell: Nane
   name: ナーネ
+  key: ROM
+- spell: Nastase
+  name: ナスターセ
   key: ROM
 - spell: Nataşa
   name: ナターシャ
@@ -184225,6 +185251,9 @@ name:
 - spell: Radu
   name: ラド
   key: ROM
+- spell: Raducu
+  name: ラドゥク
+  key: ROM
 - spell: Radulescu
   name: ラドゥレスコ
   key: ROM
@@ -184336,6 +185365,9 @@ name:
 - spell: Tofan
   name: トファン
   key: ROM
+- spell: Trandafir
+  name: トランダフィル
+  key: ROM
 - spell: Trifan
   name: トリファン
   key: ROM
@@ -184390,6 +185422,9 @@ name:
 - spell: Vekony
   name: ヴェコニ
   key: ROM
+- spell: Verbitschi
+  name: ヴェルビッキ
+  key: ROM
 - spell: Verea
   name: ヴェレア
   key: ROM
@@ -184428,6 +185463,9 @@ name:
   key: ROM
 - spell: Zaverihua
   name: ザヴェリウア
+  key: ROM
+- spell: Zettu
+  name: ゼトゥ
   key: ROM
 - spell: Zita
   name: ジタ
@@ -184793,37 +185831,37 @@ country:
     - モンゴル
     _id: MGL
 timestamp:
-  NOR.htm: 2019-10-01 21:19:17.000000000 Z
-  USA.htm: 2019-10-06 21:36:15.000000000 Z
-  USA2.htm: 2019-10-04 17:53:20.000000000 Z
-  USA3.htm: 2019-10-06 21:36:16.000000000 Z
-  USA4.htm: 2019-10-06 21:36:18.000000000 Z
+  NOR.htm: 2019-10-14 18:16:24.000000000 Z
+  USA.htm: 2019-10-20 19:06:23.000000000 Z
+  USA2.htm: 2019-10-20 19:06:23.000000000 Z
+  USA3.htm: 2019-10-20 19:06:24.000000000 Z
+  USA4.htm: 2019-10-20 19:06:24.000000000 Z
   GEO.htm: 2019-09-20 21:08:47.000000000 Z
   IRI.htm: 2019-09-18 13:34:05.000000000 Z
-  EGY.htm: 2019-10-06 21:36:07.000000000 Z
-  ESP.htm: 2019-10-06 21:36:08.000000000 Z
-  CZE.htm: 2019-10-06 21:36:06.000000000 Z
-  POR.htm: 2019-09-30 16:04:18.000000000 Z
-  ISR.htm: 2019-09-25 20:28:36.000000000 Z
-  ITA.htm: 2019-10-06 21:36:13.000000000 Z
-  IND.htm: 2019-10-06 21:36:12.000000000 Z
-  INA.htm: 2019-09-20 21:08:47.000000000 Z
-  KEN.htm: 2019-10-04 17:53:16.000000000 Z
-  RUS.htm: 2019-10-04 17:53:16.000000000 Z
+  EGY.htm: 2019-10-20 19:06:19.000000000 Z
+  ESP.htm: 2019-10-20 19:06:19.000000000 Z
+  CZE.htm: 2019-10-16 20:23:25.000000000 Z
+  POR.htm: 2019-10-12 18:30:06.000000000 Z
+  ISR.htm: 2019-10-20 19:06:21.000000000 Z
+  ITA.htm: 2019-10-20 19:06:21.000000000 Z
+  IND.htm: 2019-10-20 19:06:21.000000000 Z
+  INA.htm: 2019-10-16 20:23:27.000000000 Z
+  KEN.htm: 2019-10-20 19:06:22.000000000 Z
+  RUS.htm: 2019-10-14 18:16:26.000000000 Z
   EST.htm: 2019-09-18 02:02:06.000000000 Z
-  GER.htm: 2019-10-06 21:36:11.000000000 Z
-  NED.htm: 2019-10-06 21:36:13.000000000 Z
-  CHN.htm: 2019-09-23 21:10:36.000000000 Z
-  THA.htm: 2019-09-20 05:32:31.000000000 Z
-  GRE.htm: 2019-09-29 19:34:55.000000000 Z
-  FRA.htm: 2019-10-06 21:36:10.000000000 Z
+  GER.htm: 2019-10-14 18:16:22.000000000 Z
+  NED.htm: 2019-10-14 18:16:24.000000000 Z
+  CHN.htm: 2019-10-09 19:55:03.000000000 Z
+  THA.htm: 2019-10-20 19:06:22.000000000 Z
+  GRE.htm: 2019-10-20 19:06:20.000000000 Z
+  FRA.htm: 2019-10-20 19:06:20.000000000 Z
   RSA.htm: 2019-09-22 18:37:11.000000000 Z
-  SWE.htm: 2019-10-04 17:53:17.000000000 Z
+  SWE.htm: 2019-10-14 18:16:26.000000000 Z
   DEN.htm: 2019-10-06 21:36:07.000000000 Z
   TUR.htm: 2019-10-06 21:36:13.000000000 Z
-  HUN.htm: 2019-10-06 21:36:11.000000000 Z
+  HUN.htm: 2019-10-10 17:38:11.000000000 Z
   FIN.htm: 2019-09-18 02:02:07.000000000 Z
-  BUL.htm: 2019-10-04 17:53:09.000000000 Z
-  POL.htm: 2019-09-26 22:14:40.000000000 Z
-  ROM.htm: 2019-09-28 19:28:19.000000000 Z
+  BUL.htm: 2019-10-20 19:06:18.000000000 Z
+  POL.htm: 2019-10-14 18:16:25.000000000 Z
+  ROM.htm: 2019-10-14 18:16:25.000000000 Z
   MGL.htm: 2019-10-04 17:53:16.000000000 Z

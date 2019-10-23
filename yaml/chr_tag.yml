@@ -1,268 +1,389 @@
-all:
-  label: すべて
-  long: 「人狼議事 ちゃんぷる」のキャラクター
-  chr_set_id: all
-  order: 1001
-
 giji:
   label: 人狼議事
   long: 「人狼議事」のキャラクター
   tag_id: all
   chr_set_id: ririnra
+  face_sort: [ face.order, asc ]
+  order: 1000
+
+G_a_k:
+  label: あ〜こ
+  long: 「人狼議事」の名前が あ、か 行のキャラクター名簿
+  tag_id: giji
+  chr_set_id: ririnra
+  face_sort: [ face.q.head, asc ]
+  order: 1001
+
+G_s_t:
+  label: さ〜と
+  long: 「人狼議事」の名前が さ、た 行のキャラクター名簿
+  tag_id: giji
+  chr_set_id: ririnra
+  face_sort: [ face.q.head, asc ]
   order: 1002
 
-animal:
-  label: うきうきサバンナ
-  long: 「うきうきサバンナ」のキャラクター
-  tag_id: all
-  chr_set_id: animal
-  order: 2001
+G_n_h:
+  label: な〜ほ
+  long: 「人狼議事」の名前が な、は 行のキャラクター名簿
+  tag_id: giji
+  chr_set_id: ririnra
+  face_sort: [ face.q.head, asc ]
+  order: 1003
 
-school:
-  label: 私立七転学園
-  long: 「私立七転学園」のキャラクター
-  tag_id: all
-  chr_set_id: school
-  order: 2002
-
-shoji:
-  label: てやんでえ
-  long: 「和の国てやんでえ」のキャラクター
-  tag_id: all
-  chr_set_id: wa
+G_m_w:
+  label: ま〜を
+  long: 「人狼議事」の名前が ま、や、ら、わ 行のキャラクター名簿
+  tag_id: giji
+  chr_set_id: ririnra
+  face_sort: [ face.q.head, asc ]
   order: 1004
+
+
 
 travel:
   label: 帰還者議事
   long: 「帰還者議事」のキャラクター
   tag_id: all
   chr_set_id: time
-  order: 1003
+  face_sort: [ face.order, asc ]
+  order: 2000
+
+T_a_k:
+  label: あ〜こ
+  long: 「帰還者議事」の名前が あ、か 行のキャラクター名簿
+  tag_id: travel
+  chr_set_id: time
+  face_sort: [ face.q.head, asc ]
+  order: 2001
+
+T_s_n:
+  label: さ〜の
+  long: 「帰還者議事」の名前が さ、た、な 行のキャラクター名簿
+  tag_id: travel
+  chr_set_id: time
+  face_sort: [ face.q.head, asc ]
+  order: 2002
+
+T_h_w:
+  label: は〜を
+  long: 「帰還者議事」の名前が は、ま、や、ら、わ 行のキャラクター名簿
+  tag_id: travel
+  chr_set_id: time
+  face_sort: [ face.q.head, asc ]
+  order: 2003
+
+all:
+  label: すべて
+  long: 「人狼議事 ちゃんぷる」のキャラクター
+  chr_set_id: all
+  face_sort: [ face.order, asc ]
+  order: 3000
+
+animal:
+  label: うきうきサバンナ
+  long: 「うきうきサバンナ」のキャラクター
+  tag_id: all
+  chr_set_id: animal
+  face_sort: [ face.order, asc ]
+  order: 4001
+
+
+school:
+  label: 私立七転学園
+  long: 「私立七転学園」のキャラクター
+  tag_id: all
+  chr_set_id: school
+  face_sort: [ face.order, asc ]
+  order: 4002
+
+shoji:
+  label: てやんでえ
+  long: 「和の国てやんでえ」のキャラクター
+  tag_id: all
+  chr_set_id: wa
+  face_sort: [ face.order, asc ]
+  order: 3001
 
 stratos:
   label: 明後日への道標
   long: 「明後日への道標」のキャラクター
   tag_id: all
   chr_set_id: sf
-  order: 1005
-
-myth:
-  label: はおうのひろば
-  long: 「はおうのひろば」のキャラクター
-  tag_id: all
-  chr_set_id: changed
-  order: 1007
-
-asia:
-  label: 大陸議事
-  long: 「大陸議事」のキャラクター
-  tag_id: all
-  chr_set_id: ger
-  order: 1009
+  face_sort: [ face.order, asc ]
+  order: 3002
 
 fable:
   label: 幻日世界
   long: 「幻日世界」のキャラクター
   tag_id: all
   chr_set_id: fable
-  order: 1006
+  face_sort: [ face.order, asc ]
+  order: 3003
+
+myth:
+  label: はおうのひろば
+  long: 「はおうのひろば」のキャラクター
+  tag_id: all
+  chr_set_id: changed
+  face_sort: [ face.order, asc ]
+  order: 3004
 
 marchen:
   label: 狂騒議事
   long: 「狂騒議事」のキャラクター
   tag_id: all
   chr_set_id: mad
-  order: 1008
-
-
-explorism:
-  label: ~求道~
-  long: 至尊の高みに至る道
-  tag_id: travel
-  chr_set_id: time
-  order: 3001
-
-commercism:
-  label: ~収益~
-  long: 利益を大きく育てる
-  tag_id: travel
-  chr_set_id: time
-  order: 3002
-
-faith:
-  label: ~信仰~
-  long: 照らされる宗門
-  tag_id: travel
-  chr_set_id: time
-  order: 3003
-
-activitism:
-  label: ~余暇~
-  long: 特別な時間
-  tag_id: travel
-  chr_set_id: time
-  order: 3004
-
-militalism:
-  label: ~武力~
-  long: 屈服しない力
-  tag_id: travel
-  chr_set_id: time
+  face_sort: [ face.order, asc ]
   order: 3005
 
-rulerism:
-  label: ~支配~
-  long: まとまった世界を統治する
-  tag_id: travel
-  chr_set_id: time
+asia:
+  label: 大陸議事
+  long: 「大陸議事」のキャラクター
+  tag_id: all
+  chr_set_id: ger
+  face_sort: [ face.order, asc ]
   order: 3006
 
-anarchism:
-  label: ~反政~
-  long: 世界を革命するために
-  tag_id: travel
-  chr_set_id: time
-  order: 3007
-
-artism:
-  label: ~表現~
-  long: 表現からの反応
-  tag_id: travel
-  chr_set_id: time
-  order: 3008
-
-policism:
-  label: ~保安~
-  long: 安全を保つ仕事
-  tag_id: travel
-  chr_set_id: time
-  order: 3009
-
-
 kid:
-  label: (児童)
+  label: 児童
   long: 児童のキャラクター
+  head: 人狼議事-年齢別
   tag_id: giji
   chr_set_id: ririnra
-  order: 4001
+  face_sort: [ face.order, asc ]
+  order: 9001
 
 young:
-  label: (若者)
+  label: 若者
   long: 若者のキャラクター
+  head: 人狼議事-年齢別
   tag_id: giji
   chr_set_id: ririnra
-  order: 4002
+  face_sort: [ face.order, asc ]
+  order: 9002
 
 middle:
-  label: (中年)
+  label: 中年
   long: 中年のキャラクター
+  head: 人狼議事-年齢別
   tag_id: giji
   chr_set_id: ririnra
-  order: 4003
+  face_sort: [ face.order, asc ]
+  order: 9003
 
 elder:
-  label: (老人)
+  label: 老人
   long: 老人のキャラクター
+  head: 人狼議事-年齢別
   tag_id: giji
   chr_set_id: ririnra
-  order: 4004
+  face_sort: [ face.order, asc ]
+  order: 9004
 
 
 river:
-  label: -運河-
+  label: 運河
   long: 往く人来る人休む人
+  head: 人狼議事-テーマ別
   tag_id: giji
   chr_set_id: ririnra
-  order: 6001
+  face_sort: [ face.order, asc ]
+  order: 16001
 
 immoral:
-  label: -裏道-
+  label: 裏道
   long: 街灯の裏の背徳達
+  head: 人狼議事-テーマ別
   tag_id: giji
   chr_set_id: ririnra
-  order: 6002
+  face_sort: [ face.order, asc ]
+  order: 16002
 
 road:
-  label: -往来-
+  label: 往来
   long: 往く人来る人休む人
+  head: 人狼議事-テーマ別
   tag_id: giji
   chr_set_id: ririnra
-  order: 6003
+  face_sort: [ face.order, asc ]
+  order: 16003
 
 servant:
-  label: -使用人-
+  label: 使用人
   long: 良家を支えるスタッフ
+  head: 人狼議事-テーマ別
   tag_id: giji
   chr_set_id: ririnra
-  order: 7001
+  face_sort: [ face.order, asc ]
+  order: 17001
 
 guild:
-  label: -商工会-
+  label: 商工会
   long: 商人と職人の集うギルド
+  head: 人狼議事-テーマ別
   tag_id: giji
   chr_set_id: ririnra
-  order: 7002
+  face_sort: [ face.order, asc ]
+  order: 17002
 
 ecclesia:
-  label: -公教会-
+  label: 公教会
   long: 信仰と道徳と学識の源泉
+  head: 人狼議事-テーマ別
   tag_id: giji
   chr_set_id: ririnra
-  order: 7003
+  face_sort: [ face.order, asc ]
+  order: 17003
 
 office:
-  label: -事務所-
+  label: 事務所
   long: 帳簿と写本と印刷と
+  head: 人狼議事-テーマ別
   tag_id: giji
   chr_set_id: ririnra
-  order: 7004
+  face_sort: [ face.order, asc ]
+  order: 17004
 
 elegant:
-  label: -舞踏会-
+  label: 舞踏会
   long: 瀟洒な館の舞踏会
+  head: 人狼議事-テーマ別
   tag_id: giji
   chr_set_id: ririnra
-  order: 7005
+  face_sort: [ face.order, asc ]
+  order: 17005
 
 medical:
-  label: -施療院-
+  label: 施療院
   long: 病苦毒霊と戦う砦
+  head: 人狼議事-テーマ別
   tag_id: giji
   chr_set_id: ririnra
-  order: 7006
+  face_sort: [ face.order, asc ]
+  order: 17006
 
 
 farm:
-  label: -森の農場-
+  label: 森の農場
   long: 森に接する田畑
+  head: 人狼議事-テーマ別
   tag_id: giji
   chr_set_id: ririnra
-  order: 8001
+  face_sort: [ face.order, asc ]
+  order: 18001
 
 market:
-  label: -歌劇酒場-
+  label: 歌劇酒場
   long: 芸の極みに華が咲く
+  head: 人狼議事-テーマ別
   tag_id: giji
   chr_set_id: ririnra
-  order: 8002
+  face_sort: [ face.order, asc ]
+  order: 18002
 
 apartment:
-  label: -自室の窓-
+  label: 自室の窓
   long: 窓から外を眺めると
+  head: 人狼議事-テーマ別
   tag_id: giji
   chr_set_id: ririnra
-  order: 8003
+  face_sort: [ face.order, asc ]
+  order: 18003
 
 government:
-  label: -統治公共-
+  label: 統治公共
   long: 所領を治める権能者
+  head: 人狼議事-テーマ別
   tag_id: giji
   chr_set_id: ririnra
-  order: 8004
+  face_sort: [ face.order, asc ]
+  order: 18004
+
+explorism:
+  label: 求道
+  long: 至尊の高みに至る道
+  head: 帰還者議事-テーマ別
+  tag_id: travel
+  chr_set_id: time
+  face_sort: [ face.order, asc ]
+  order: 20001
+
+commercism:
+  label: 収益
+  long: 実りある利益
+  head: 帰還者議事-テーマ別
+  tag_id: travel
+  chr_set_id: time
+  face_sort: [ face.order, asc ]
+  order: 20002
+
+faith:
+  label: 信仰
+  long: 照らされる宗門
+  head: 帰還者議事-テーマ別
+  tag_id: travel
+  chr_set_id: time
+  face_sort: [ face.order, asc ]
+  order: 20003
+
+activitism:
+  label: 余暇
+  long: 特別な時間
+  head: 帰還者議事-テーマ別
+  tag_id: travel
+  chr_set_id: time
+  face_sort: [ face.order, asc ]
+  order: 20004
+
+militalism:
+  label: 武力
+  long: 屈服しない力
+  head: 帰還者議事-テーマ別
+  tag_id: travel
+  chr_set_id: time
+  face_sort: [ face.order, asc ]
+  order: 20005
+
+rulerism:
+  label: 支配
+  long: 小世界の主人
+  head: 帰還者議事-テーマ別
+  tag_id: travel
+  chr_set_id: time
+  face_sort: [ face.order, asc ]
+  order: 20006
+
+anarchism:
+  label: 反政
+  long: 世界を革命する営み
+  head: 帰還者議事-テーマ別
+  tag_id: travel
+  chr_set_id: time
+  face_sort: [ face.order, asc ]
+  order: 20007
+
+artism:
+  label: 表現
+  long: 垣間見える技量
+  head: 帰還者議事-テーマ別
+  tag_id: travel
+  chr_set_id: time
+  face_sort: [ face.order, asc ]
+  order: 20008
+
+policism:
+  label: 保安
+  long: 安全を保つ仕事
+  head: 帰還者議事-テーマ別
+  tag_id: travel
+  chr_set_id: time
+  face_sort: [ face.order, asc ]
+  order: 20009
 
 god:
-  label: -かみさま-
+  label: かみさま
   long: かみさま
   tag_id: all
   chr_set_id: all
-  order: 10001
+  face_sort: [ face.order, asc ]
+  order: 99999

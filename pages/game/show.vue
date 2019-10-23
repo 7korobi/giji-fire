@@ -169,12 +169,14 @@ module.exports =
       [ part_top, part_0 ] = Query.parts.finds(["#{@book.id}-top","#{@book.id}-0"])
       [ potof_npc ] = Query.potofs.finds(["#{@book.id}-NPC"])
 
-      edit_book = @user.uid == @book.uid
-      edit_npc  = @user.uid == potof_npc?.uid
-      init = edit_book && part_top?.is_update
+      if @user && @book
+        edit_book = @user.uid == @book.uid
+        edit_npc  = @user.uid == potof_npc?.uid
+        init = edit_book && part_top?.is_update
 
-      { is_update, is_creating, is_entry, is_moving, is_replacing } = @edit
-      console.warn { is_update, is_creating, is_entry, is_moving, is_replacing }
+      if @edit
+        { is_update, is_creating, is_entry, is_moving, is_replacing } = @edit
+        console.warn { is_update, is_creating, is_entry, is_moving, is_replacing }
       console.warn { edit_book, edit_npc, init, @part, part_top, part_0, potof_npc }
       console.warn { @my_icon, @my_potof, @my_chat, @my_phase }
 

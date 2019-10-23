@@ -31,7 +31,6 @@
 <script lang="coffee">
 { Query } = require 'memory-orm'
 { nation, village } = require "../yaml/rule.yml"
-NPC = require "../yaml/npc.yml"
 
 v_rules = "（村のルールは、自由に編集できるよ！）\n"
 v_rules += ( "#{idx + 1}. #{head}" for {head}, idx in village.list )

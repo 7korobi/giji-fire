@@ -243,6 +243,7 @@ chr_job:
 
   - face_id: t30
     job: "旅団✡肘笠雨"
+    comment: 由来：シャワーパシ
 
   - face_id: t31
     job: "呵呵老会"

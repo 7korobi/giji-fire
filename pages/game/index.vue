@@ -12,7 +12,7 @@ div
           sup.pull-right {{ o.sign }}
           nuxt-link(:to="book_url(o.id, 'top', 'full')") {{ o.label }}
         .cards
-          table.btns.card(style="width: 9em")
+          table.btns.card(style="width: 11em")
             tbody
               tr
                 th(colspan="2")
@@ -22,10 +22,10 @@ div
                 td {{ o.id }}
               tr
                 th 更新
-                td {{ o.tempo.gap }}
+                td {{ o.range }}毎 {{ o.gap }}
               tr
                 th 規模
-                td {{ o.q.size }}人 {{ o.say.CAPTION }}
+                td {{ o.potof_max }}人 {{ o.say.label }}
               tr
                 td(colspan="2")
                   timeago(:since="o.write_at")
@@ -36,7 +36,7 @@ div
               a(v-for="opt in o.options.list")
                 span.label {{ opt.label }}
             p(v-if="o.roles")
-              a(v-for="role in o.roles.list" :class="role.win")
+              a(v-for="role in o.roles.reduce.summary" :class="role.win")
                 span.label
                   | {{ role.label }}
                   sup(v-if="1 < role.count") {{ role.count }}

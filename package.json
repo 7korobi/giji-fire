@@ -70,7 +70,7 @@
     "slate-html-serializer": "^0.8.10",
     "slate-react": "^0.22.9",
     "trix": "^1.2.0",
-    "vue-petit-store": "^0.8.34",
+    "vue-petit-store": "^0.8.35",
     "vue-toasted": "^1.1.27",
     "vuera": "^0.2.5"
   },

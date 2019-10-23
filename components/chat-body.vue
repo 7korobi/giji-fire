@@ -67,6 +67,7 @@ module.exports =
 
     log:  String
     data: Object
+    book: Object
 
     show: String
     head: String
@@ -82,8 +83,8 @@ module.exports =
     for_target: ->
       switch @deco
         when 'logo', 'cast'
-          key    = 'id'
-          value  = @id
+          key    = 'book'
+          value  = @book
           component = @deco
 
         when 'diagram'

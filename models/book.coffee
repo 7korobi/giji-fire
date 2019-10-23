@@ -1,7 +1,9 @@
 { Model, Query, Rule, Set, State } = require 'memory-orm'
-{ game } = require "~/config/live.yml"
+{ to_tempo, to_msec } = require "vue-petit-store"
 format = require 'date-fns/format'
 locale = require "date-fns/locale/ja"
+
+{ game } = require "~/config/live.yml"
 
 if window?
   format = format.default 
@@ -70,6 +72,12 @@ new Rule("book").schema ->
       emit it
       emit "all", it
       emit o.folder_id, it
+
+  @property 'model',
+    timer:
+      get: ->
+        to_tempo @range, "#{gap_days}#{@gap}"
+
 
 new Rule("winner").schema ->
   @scope (all)->

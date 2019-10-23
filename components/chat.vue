@@ -31,9 +31,11 @@ module.exports =
     
     key = id
     { face_id = face_id, handle = handle, show = show, head = head,
-      write_at, log, deco, to, phase_id, data
+      write_at, log, deco, to, phase_id, data,
+      book
     } = target
     attrs = {
+      book,
       current, target, edit,
       id, face_id, handle, log, data, show, head, deco, to, phase_id }
 

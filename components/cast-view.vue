@@ -14,15 +14,12 @@ article
 { path_by } = require "vue-petit-store"
 
 module.exports =
-  mixins: [
-    path_by "value", [null, 'book']
-  ]
   props: ["value"]
 
   computed:
     potofs: ->
       Query.potofs
-      .cast @book_id
+      .cast @value?.id
       .list
 
 </script>

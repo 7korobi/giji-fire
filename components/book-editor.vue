@@ -42,7 +42,7 @@
             label 発言制限
           td
             select(v-model="book.chat.limit")
-              option(v-for="say in says", :value="say._id") {{ say.CAPTION }}
+              option(v-for="say in says", :value="say._id") {{ say.label }}
           th.r
             label 更新間隔
           td
