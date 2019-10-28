@@ -105,9 +105,9 @@ module.exports =
     vuex "hide_ids", on: "menu.potofs"
     localStorage "shows"
     localStorage "options"
-    require("~/plugins/book-show")
-    require("~/plugins/book-firebase")
-    require("~/plugins/for_component")
+    require("~/app/plugins/book-show")
+    require("~/app/plugins/book-firebase")
+    require("~/app/plugins/for_component")
   ]
   layout: 'blank'
   data: ->

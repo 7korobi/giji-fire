@@ -2,7 +2,7 @@
 nuxt
 </template>
 <script lang="coffee">
-require "~/plugins/components.coffee"
+require "~/app/plugins/components.coffee"
 
 module.exports =
   data: -> {}

@@ -1,5 +1,5 @@
 { poll } = require("vue-petit-store")
-{ url } = require "~/config/live.yml"
+{ url } = require "~/app/config/live.yml"
 
 module.exports =
   namespaced: true

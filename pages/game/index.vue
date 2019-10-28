@@ -50,12 +50,12 @@ div
 </template>
 <script lang="coffee">
 { Query } = require 'memory-orm'
-{ url } = require "~/config/live.yml"
+{ url } = require "~/app/config/live.yml"
 { firestore_models } = require "vue-petit-store"
 
 module.exports =
   mixins: [
-    require('~/plugins/pager')
+    require('~/app/plugins/pager')
     firestore_models "books",  -> "game"
   ]
 

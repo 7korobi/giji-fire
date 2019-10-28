@@ -1,7 +1,7 @@
 Mem = require 'memory-orm'
 
-require "~/models/index"
-require "~/worker/fetch-api"
+require "~/app/models/index"
+require "~/app/plugins/fetch-api"
 
 if window?
   Object.assign window, { Mem }

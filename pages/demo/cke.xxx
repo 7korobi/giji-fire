@@ -31,13 +31,13 @@ div
 </template>
 
 <script lang="coffee">
-RANDOM = require "~/plugins/random"
+RANDOM = require "~/app/plugins/random"
 if window?
   firebase = require "firebase/app"
 
 module.exports =
   mixins: [
-    require('~/plugins/markup-event')
+    require('~/app/plugins/markup-event')
   ]
   data: (req)->
     text: ""

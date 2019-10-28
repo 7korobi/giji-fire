@@ -1,11 +1,11 @@
 # settings
 microsoft-identity-association.json
 firebase.crashreporting.json
-config/*.zip
-config/service_account.yml
-config/live.yml
-config/default.yml
-config/production.yml
+app/config/*.zip
+app/config/service_account.yml
+app/config/live.yml
+app/config/default.yml
+app/config/production.yml
 
 # mac
 .DS_Store

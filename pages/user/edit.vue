@@ -33,7 +33,7 @@ module.exports =
     share 'user'
     share 'credential'
     firestore_doc "sign", -> @user && "user/#{ @user.uid }"
-    require("~/plugins/for_component")
+    require("~/app/plugins/for_component")
   ]
   data: ->
     sign:

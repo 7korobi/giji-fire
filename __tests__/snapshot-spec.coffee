@@ -144,7 +144,7 @@ snap
     chat_size: -> 10
 
 
-require '~/models/index'
+require '~/app/models/index'
 localVue.component 'c-hide',   require '~/components/c-hide'
 localVue.component 'c-post',   require '~/components/c-post'
 localVue.component 'c-report', require '~/components/c-report'

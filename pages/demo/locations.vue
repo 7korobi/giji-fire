@@ -17,8 +17,8 @@ div
 { Set, Query } = require 'memory-orm'
 { pushState, replaceState } = require "vue-petit-store"
 
-geo = require '~/yaml/work_geo_orm.yml'
-Set.work_location.reset geo
+#geo = require '~/app/yaml/work_geo_orm.yml'
+#Set.work_location.reset geo
 
 module.exports =
   mixins: [

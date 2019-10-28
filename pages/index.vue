@@ -63,6 +63,13 @@ div
     ぼくはドメインの壁なんてへっちゃらでちゅ。
     #[span(data-ruby="おさんぽ") 広報活動]に#[a(href="https://twitter.com/jinrogiji") ついてきて]もかまわないでちゅよ？
 
+  c-talk.form(@focus="focus" handle="GSAY" id="link-to" face_id="t82" head="子ども食堂 サガタ").
+    ほい、いらっしゃい！
+
+    うちは食堂だからね。どこからきたどんなお客にも、#[a(href="https://twitter.com/hello_giji") 手作りの温かいご飯]を食べてってもらうのさ。
+
+    炊き出しはおかわりも自由だよ。まあちょっと座って、一食おあがりよ。
+
   c-report(@focus="focus" handle="footer" deco="giji" id="fcm-head")
     h3.center 企画村予定／開始待ちの村／進行中の村
     div

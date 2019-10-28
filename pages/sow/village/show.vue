@@ -133,9 +133,9 @@ sow_dic = [
 
 module.exports =
   mixins: [
-    require("~/plugins/book-show")
-    require('~/plugins/pager')
-    require("~/plugins/for_component")
+    require("~/app/plugins/book-show")
+    require('~/app/plugins/pager')
+    require("~/app/plugins/for_component")
     poll -> [["sow/story", @book_id ]]
     vuex "hide_ids", on: "menu.potofs"
     localStorage "shows"

@@ -33,7 +33,7 @@ if window?
 
 module.exports =
   mixins: [
-    require('~/plugins/markup-event')
+    require('~/app/plugins/markup-event')
   ]
   data: (req)->
     text: ""

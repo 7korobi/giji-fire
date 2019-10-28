@@ -2,7 +2,7 @@
 admin = require 'firebase-admin'
 { startGM, deployGM, executionGM, checkGM } = require './game/progress'
 
-require "~/models/index"
+require "~/app/models/index"
 { Query } = require 'memory-orm'
 
 

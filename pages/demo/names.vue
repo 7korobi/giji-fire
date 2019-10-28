@@ -73,17 +73,17 @@ div
 { Set, Query } = require 'memory-orm'
 { pushState, replaceState } = require "vue-petit-store"
 
-{ country, name, timestamp } = require '~/yaml/work_namedb.yml'
+{ country, name, timestamp } = require '~/app/yaml/work_namedb.yml'
 Set.work_country.set country
 Set.work_name.set name
 console.log timestamp
 
 
-{ name, timestamp } = require '~/yaml/work_namedb_ancient.yml'
+{ name, timestamp } = require '~/app/yaml/work_namedb_ancient.yml'
 Set.work_name.merge name
 console.log timestamp
 
-{ name, timestamp } = require '~/yaml/work_namedb_jpn.yml'
+{ name, timestamp } = require '~/app/yaml/work_namedb_jpn.yml'
 Set.work_name.merge name
 console.log timestamp
 

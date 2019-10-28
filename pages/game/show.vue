@@ -151,11 +151,11 @@ module.exports =
     localStorage "shows"
     localStorage "options"
 
-    require("~/plugins/book-firebase")
+    require("~/app/plugins/book-firebase")
 
-    require("~/plugins/book-show")
-    require("~/plugins/pager")
-    require("~/plugins/for_component")
+    require("~/app/plugins/book-show")
+    require("~/app/plugins/pager")
+    require("~/app/plugins/for_component")
   ]
   layout: 'blank'
   data: ->

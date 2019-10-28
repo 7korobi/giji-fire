@@ -123,7 +123,7 @@ module.exports =
   ]
 
   data: ->
-    require "../yaml/rule.yml"
+    require "~/app/yaml/rule.yml"
   beforeRouteUpdate: ({ hash }, oldRoute, next)->
     next()
     @scroll_to

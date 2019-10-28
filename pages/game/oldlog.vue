@@ -168,12 +168,12 @@ div
 </template>
 <script lang="coffee">
 { Query } = require 'memory-orm'
-{ url } = require "~/config/live.yml"
+{ url } = require "~/app/config/live.yml"
 { poll, replaceState } = require "vue-petit-store"
 
 module.exports =
   mixins: [
-    require('~/plugins/pager')
+    require('~/app/plugins/pager')
     poll -> [["sow/oldlog"]]
     replaceState "idx"
     replaceState "order"

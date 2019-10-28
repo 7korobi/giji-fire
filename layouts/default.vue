@@ -40,7 +40,7 @@
 
 </template>
 <script lang="coffee">
-require "~/plugins/components.coffee"
+require "~/app/plugins/components.coffee"
 { localStorage } = require "vue-petit-store"
 
 module.exports =

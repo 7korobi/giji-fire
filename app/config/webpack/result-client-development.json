@@ -1,0 +1,736 @@
+{
+  "name": "client",
+  "mode": "development",
+  "devtool": "cheap-module-eval-source-map",
+  "optimization": {
+    "runtimeChunk": "single",
+    "minimize": false,
+    "splitChunks": {
+      "chunks": "all",
+      "automaticNameDelimiter": ".",
+      "cacheGroups": {
+        "commons": {
+          "test": {},
+          "chunks": "all",
+          "priority": 10,
+          "name": true
+        }
+      }
+    }
+  },
+  "output": {
+    "path": "/Users/7korobi/Dropbox/www/giji-fire-new/.nuxt/dist/client",
+    "filename": "[name].js",
+    "futureEmitAssets": true,
+    "chunkFilename": "[name].js",
+    "publicPath": "/_nuxt/"
+  },
+  "performance": {
+    "maxEntrypointSize": 1024000,
+    "hints": false
+  },
+  "module": {
+    "rules": [
+      {
+        "test": {},
+        "loader": "vue-loader",
+        "options": {
+          "transformAssetUrls": {
+            "video": "src",
+            "source": "src",
+            "object": "src",
+            "embed": "src"
+          },
+          "productionMode": false
+        }
+      },
+      {
+        "test": {},
+        "oneOf": [
+          {
+            "resourceQuery": {},
+            "use": [
+              {
+                "loader": "pug-plain-loader",
+                "options": {}
+              }
+            ]
+          },
+          {
+            "use": [
+              "raw-loader",
+              {
+                "loader": "pug-plain-loader",
+                "options": {}
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "test": {},
+        "use": [
+          {
+            "loader": "/Users/7korobi/Dropbox/www/giji-fire-new/node_modules/babel-loader/lib/index.js",
+            "options": {
+              "configFile": false,
+              "babelrc": false,
+              "cacheDirectory": true,
+              "envName": "client",
+              "presets": [
+                [
+                  "/Users/7korobi/Dropbox/www/giji-fire-new/node_modules/@nuxt/babel-preset-app/src/index.js",
+                  {}
+                ]
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "test": {},
+        "oneOf": [
+          {
+            "resourceQuery": {},
+            "use": [
+              {
+                "loader": "/Users/7korobi/Dropbox/www/giji-fire-new/node_modules/extract-css-chunks-webpack-plugin/dist/loader.js",
+                "options": {
+                  "reloadAll": true,
+                  "hot": true
+                }
+              },
+              {
+                "loader": "css-loader",
+                "options": {
+                  "modules": {
+                    "localIdentName": "[local]_[hash:base64:5]"
+                  },
+                  "sourceMap": true,
+                  "importLoaders": 2,
+                  "onlyLocals": false
+                }
+              },
+              {
+                "loader": "postcss-loader",
+                "options": {
+                  "sourceMap": true,
+                  "plugins": [
+                    null,
+                    null
+                  ],
+                  "order": "presetEnvAndCssnanoLast"
+                }
+              }
+            ]
+          },
+          {
+            "use": [
+              {
+                "loader": "/Users/7korobi/Dropbox/www/giji-fire-new/node_modules/extract-css-chunks-webpack-plugin/dist/loader.js",
+                "options": {
+                  "reloadAll": true,
+                  "hot": true
+                }
+              },
+              {
+                "loader": "css-loader",
+                "options": {
+                  "sourceMap": true,
+                  "importLoaders": 2,
+                  "onlyLocals": false
+                }
+              },
+              {
+                "loader": "postcss-loader",
+                "options": {
+                  "sourceMap": true,
+                  "plugins": [
+                    null,
+                    null
+                  ],
+                  "order": "presetEnvAndCssnanoLast"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "test": {},
+        "oneOf": [
+          {
+            "resourceQuery": {},
+            "use": [
+              {
+                "loader": "/Users/7korobi/Dropbox/www/giji-fire-new/node_modules/extract-css-chunks-webpack-plugin/dist/loader.js",
+                "options": {
+                  "reloadAll": true,
+                  "hot": true
+                }
+              },
+              {
+                "loader": "css-loader",
+                "options": {
+                  "modules": {
+                    "localIdentName": "[local]_[hash:base64:5]"
+                  },
+                  "sourceMap": true,
+                  "importLoaders": 2,
+                  "onlyLocals": false
+                }
+              },
+              {
+                "loader": "postcss-loader",
+                "options": {
+                  "sourceMap": true,
+                  "plugins": [
+                    null,
+                    null
+                  ],
+                  "order": "presetEnvAndCssnanoLast"
+                }
+              }
+            ]
+          },
+          {
+            "use": [
+              {
+                "loader": "/Users/7korobi/Dropbox/www/giji-fire-new/node_modules/extract-css-chunks-webpack-plugin/dist/loader.js",
+                "options": {
+                  "reloadAll": true,
+                  "hot": true
+                }
+              },
+              {
+                "loader": "css-loader",
+                "options": {
+                  "sourceMap": true,
+                  "importLoaders": 2,
+                  "onlyLocals": false
+                }
+              },
+              {
+                "loader": "postcss-loader",
+                "options": {
+                  "sourceMap": true,
+                  "plugins": [
+                    null,
+                    null
+                  ],
+                  "order": "presetEnvAndCssnanoLast"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "test": {},
+        "oneOf": [
+          {
+            "resourceQuery": {},
+            "use": [
+              {
+                "loader": "/Users/7korobi/Dropbox/www/giji-fire-new/node_modules/extract-css-chunks-webpack-plugin/dist/loader.js",
+                "options": {
+                  "reloadAll": true,
+                  "hot": true
+                }
+              },
+              {
+                "loader": "css-loader",
+                "options": {
+                  "modules": {
+                    "localIdentName": "[local]_[hash:base64:5]"
+                  },
+                  "sourceMap": true,
+                  "importLoaders": 2,
+                  "onlyLocals": false
+                }
+              },
+              {
+                "loader": "postcss-loader",
+                "options": {
+                  "sourceMap": true,
+                  "plugins": [
+                    null,
+                    null
+                  ],
+                  "order": "presetEnvAndCssnanoLast"
+                }
+              },
+              {
+                "loader": "less-loader",
+                "options": {
+                  "sourceMap": true
+                }
+              }
+            ]
+          },
+          {
+            "use": [
+              {
+                "loader": "/Users/7korobi/Dropbox/www/giji-fire-new/node_modules/extract-css-chunks-webpack-plugin/dist/loader.js",
+                "options": {
+                  "reloadAll": true,
+                  "hot": true
+                }
+              },
+              {
+                "loader": "css-loader",
+                "options": {
+                  "sourceMap": true,
+                  "importLoaders": 2,
+                  "onlyLocals": false
+                }
+              },
+              {
+                "loader": "postcss-loader",
+                "options": {
+                  "sourceMap": true,
+                  "plugins": [
+                    null,
+                    null
+                  ],
+                  "order": "presetEnvAndCssnanoLast"
+                }
+              },
+              {
+                "loader": "less-loader",
+                "options": {
+                  "sourceMap": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "test": {},
+        "oneOf": [
+          {
+            "resourceQuery": {},
+            "use": [
+              {
+                "loader": "/Users/7korobi/Dropbox/www/giji-fire-new/node_modules/extract-css-chunks-webpack-plugin/dist/loader.js",
+                "options": {
+                  "reloadAll": true,
+                  "hot": true
+                }
+              },
+              {
+                "loader": "css-loader",
+                "options": {
+                  "modules": {
+                    "localIdentName": "[local]_[hash:base64:5]"
+                  },
+                  "sourceMap": true,
+                  "importLoaders": 2,
+                  "onlyLocals": false
+                }
+              },
+              {
+                "loader": "postcss-loader",
+                "options": {
+                  "sourceMap": true,
+                  "plugins": [
+                    null,
+                    null
+                  ],
+                  "order": "presetEnvAndCssnanoLast"
+                }
+              },
+              {
+                "loader": "sass-loader",
+                "options": {
+                  "sassOptions": {
+                    "indentedSyntax": true
+                  },
+                  "sourceMap": true
+                }
+              }
+            ]
+          },
+          {
+            "use": [
+              {
+                "loader": "/Users/7korobi/Dropbox/www/giji-fire-new/node_modules/extract-css-chunks-webpack-plugin/dist/loader.js",
+                "options": {
+                  "reloadAll": true,
+                  "hot": true
+                }
+              },
+              {
+                "loader": "css-loader",
+                "options": {
+                  "sourceMap": true,
+                  "importLoaders": 2,
+                  "onlyLocals": false
+                }
+              },
+              {
+                "loader": "postcss-loader",
+                "options": {
+                  "sourceMap": true,
+                  "plugins": [
+                    null,
+                    null
+                  ],
+                  "order": "presetEnvAndCssnanoLast"
+                }
+              },
+              {
+                "loader": "sass-loader",
+                "options": {
+                  "sassOptions": {
+                    "indentedSyntax": true
+                  },
+                  "sourceMap": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "test": {},
+        "oneOf": [
+          {
+            "resourceQuery": {},
+            "use": [
+              {
+                "loader": "/Users/7korobi/Dropbox/www/giji-fire-new/node_modules/extract-css-chunks-webpack-plugin/dist/loader.js",
+                "options": {
+                  "reloadAll": true,
+                  "hot": true
+                }
+              },
+              {
+                "loader": "css-loader",
+                "options": {
+                  "modules": {
+                    "localIdentName": "[local]_[hash:base64:5]"
+                  },
+                  "sourceMap": true,
+                  "importLoaders": 2,
+                  "onlyLocals": false
+                }
+              },
+              {
+                "loader": "postcss-loader",
+                "options": {
+                  "sourceMap": true,
+                  "plugins": [
+                    null,
+                    null
+                  ],
+                  "order": "presetEnvAndCssnanoLast"
+                }
+              },
+              {
+                "loader": "sass-loader",
+                "options": {
+                  "sourceMap": true
+                }
+              }
+            ]
+          },
+          {
+            "use": [
+              {
+                "loader": "/Users/7korobi/Dropbox/www/giji-fire-new/node_modules/extract-css-chunks-webpack-plugin/dist/loader.js",
+                "options": {
+                  "reloadAll": true,
+                  "hot": true
+                }
+              },
+              {
+                "loader": "css-loader",
+                "options": {
+                  "sourceMap": true,
+                  "importLoaders": 2,
+                  "onlyLocals": false
+                }
+              },
+              {
+                "loader": "postcss-loader",
+                "options": {
+                  "sourceMap": true,
+                  "plugins": [
+                    null,
+                    null
+                  ],
+                  "order": "presetEnvAndCssnanoLast"
+                }
+              },
+              {
+                "loader": "sass-loader",
+                "options": {
+                  "sourceMap": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "test": {},
+        "oneOf": [
+          {
+            "resourceQuery": {},
+            "use": [
+              {
+                "loader": "/Users/7korobi/Dropbox/www/giji-fire-new/node_modules/extract-css-chunks-webpack-plugin/dist/loader.js",
+                "options": {
+                  "reloadAll": true,
+                  "hot": true
+                }
+              },
+              {
+                "loader": "css-loader",
+                "options": {
+                  "modules": {
+                    "localIdentName": "[local]_[hash:base64:5]"
+                  },
+                  "sourceMap": true,
+                  "importLoaders": 2,
+                  "onlyLocals": false
+                }
+              },
+              {
+                "loader": "postcss-loader",
+                "options": {
+                  "sourceMap": true,
+                  "plugins": [
+                    null,
+                    null
+                  ],
+                  "order": "presetEnvAndCssnanoLast"
+                }
+              },
+              {
+                "loader": "stylus-loader",
+                "options": {
+                  "sourceMap": true
+                }
+              }
+            ]
+          },
+          {
+            "use": [
+              {
+                "loader": "/Users/7korobi/Dropbox/www/giji-fire-new/node_modules/extract-css-chunks-webpack-plugin/dist/loader.js",
+                "options": {
+                  "reloadAll": true,
+                  "hot": true
+                }
+              },
+              {
+                "loader": "css-loader",
+                "options": {
+                  "sourceMap": true,
+                  "importLoaders": 2,
+                  "onlyLocals": false
+                }
+              },
+              {
+                "loader": "postcss-loader",
+                "options": {
+                  "sourceMap": true,
+                  "plugins": [
+                    null,
+                    null
+                  ],
+                  "order": "presetEnvAndCssnanoLast"
+                }
+              },
+              {
+                "loader": "stylus-loader",
+                "options": {
+                  "sourceMap": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "test": {},
+        "use": [
+          {
+            "loader": "url-loader",
+            "options": {
+              "limit": 1000,
+              "name": "[path][name].[ext]"
+            }
+          }
+        ]
+      },
+      {
+        "test": {},
+        "use": [
+          {
+            "loader": "url-loader",
+            "options": {
+              "limit": 1000,
+              "name": "[path][name].[ext]"
+            }
+          }
+        ]
+      },
+      {
+        "test": {},
+        "use": [
+          {
+            "loader": "file-loader",
+            "options": {
+              "name": "[path][name].[ext]"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "plugins": [
+    {
+      "watchOffset": 11000
+    },
+    {
+      "options": {
+        "filename": "[name].css",
+        "ignoreOrder": false,
+        "chunkFilename": "[name].css"
+      }
+    },
+    {},
+    {},
+    {},
+    {
+      "profile": false,
+      "modulesCount": 500,
+      "showEntries": false,
+      "showModules": true,
+      "showActiveModules": true,
+      "options": {
+        "name": "client",
+        "color": "green",
+        "reporters": [
+          "basic",
+          "fancy",
+          "profile",
+          "stats"
+        ],
+        "reporter": {},
+        "basic": false,
+        "fancy": true,
+        "profile": false,
+        "stats": false
+      },
+      "reporters": [
+        {},
+        {}
+      ]
+    },
+    {
+      "options": {
+        "template": "/Users/7korobi/Dropbox/www/giji-fire-new/.nuxt/views/app.template.html",
+        "filename": "../server/index.spa.html",
+        "hash": false,
+        "inject": true,
+        "compile": true,
+        "favicon": false,
+        "minify": {
+          "collapseBooleanAttributes": true,
+          "decodeEntities": true,
+          "minifyCSS": true,
+          "minifyJS": true,
+          "processConditionalComments": true,
+          "removeEmptyAttributes": true,
+          "removeRedundantAttributes": true,
+          "trimCustomFragments": true,
+          "useShortDoctype": true
+        },
+        "cache": true,
+        "showErrors": true,
+        "chunks": "all",
+        "excludeChunks": [],
+        "chunksSortMode": "dependency",
+        "meta": {},
+        "title": "Webpack App",
+        "xhtml": false
+      }
+    },
+    {
+      "options": {
+        "filename": "../server/client.manifest.json"
+      }
+    },
+    {
+      "definitions": {
+        "process.env.NODE_ENV": "\"development\"",
+        "process.mode": "\"development\"",
+        "process.static": false,
+        "process.env.VUE_ENV": "\"client\"",
+        "process.browser": true,
+        "process.client": true,
+        "process.server": false,
+        "process.modern": false
+      }
+    },
+    {
+      "options": {},
+      "fullBuildTimeout": 200,
+      "requestTimeout": 10000
+    },
+    {
+      "targetDir": "/Users/7korobi/Dropbox/www/giji-fire-new/.nuxt/dist/client",
+      "isModernBuild": false
+    }
+  ],
+  "resolve": {
+    "extensions": [
+      ".wasm",
+      ".mjs",
+      ".js",
+      ".json",
+      ".vue",
+      ".jsx"
+    ],
+    "alias": {
+      "~~": "/Users/7korobi/Dropbox/www/giji-fire-new",
+      "@@": "/Users/7korobi/Dropbox/www/giji-fire-new",
+      "~": "/Users/7korobi/Dropbox/www/giji-fire-new",
+      "@": "/Users/7korobi/Dropbox/www/giji-fire-new",
+      "assets": "/Users/7korobi/Dropbox/www/giji-fire-new/assets",
+      "static": "/Users/7korobi/Dropbox/www/giji-fire-new/static",
+      "vue-meta": "/Users/7korobi/Dropbox/www/giji-fire-new/node_modules/vue-meta/dist/vue-meta.esm.browser.js",
+      "nuxt_plugin_workbox_143c9c60": "./workbox.js",
+      "nuxt_plugin_googleanalytics_4605b41c": "./google-analytics.js"
+    },
+    "modules": [
+      "node_modules",
+      "/Users/7korobi/Dropbox/www/giji-fire-new/node_modules/nuxt/bin/node_modules",
+      "/Users/7korobi/Dropbox/www/giji-fire-new/node_modules/nuxt/node_modules",
+      "/Users/7korobi/Dropbox/www/giji-fire-new/node_modules",
+      "/Users/7korobi/Dropbox/www/node_modules",
+      "/Users/7korobi/Dropbox/node_modules",
+      "/Users/7korobi/node_modules",
+      "/Users/node_modules",
+      "/node_modules"
+    ]
+  },
+  "resolveLoader": {
+    "modules": [
+      "node_modules",
+      "/Users/7korobi/Dropbox/www/giji-fire-new/node_modules/nuxt/bin/node_modules",
+      "/Users/7korobi/Dropbox/www/giji-fire-new/node_modules/nuxt/node_modules",
+      "/Users/7korobi/Dropbox/www/giji-fire-new/node_modules",
+      "/Users/7korobi/Dropbox/www/node_modules",
+      "/Users/7korobi/Dropbox/node_modules",
+      "/Users/7korobi/node_modules",
+      "/Users/node_modules",
+      "/node_modules"
+    ]
+  }
+}

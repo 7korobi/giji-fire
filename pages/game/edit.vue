@@ -38,7 +38,7 @@ _ = require 'lodash'
 { Query, Set } = require 'memory-orm'
 { to_tempo, to_msec, vuex, localStorage, firestore_model, firestore_models } = require "vue-petit-store"
 
-{ form } = require "~/plugins/form"
+{ form } = require "~/app/plugins/form"
 
 
 module.exports =
@@ -54,9 +54,9 @@ module.exports =
     localStorage "shows"
     localStorage "options"
 
-    require("~/plugins/book-show")
-    require("~/plugins/book-firebase")
-    require("~/plugins/for_component")
+    require("~/app/plugins/book-show")
+    require("~/app/plugins/book-firebase")
+    require("~/app/plugins/for_component")
 
     form  'npc', ->
       job: ""

@@ -42,8 +42,8 @@ format = require "date-fns/format"
 { Query, Set } = require 'memory-orm'
 { share, localStorage, firestore_model, firestore_models, to_tempo } = require "vue-petit-store"
 
-{ form } = require "~/plugins/form"
-{ nation, village } = require "~/yaml/rule.yml"
+{ form } = require "~/app/plugins/form"
+{ nation, village } = require "~/app/yaml/rule.yml"
 
 module.exports =
   mixins: [
