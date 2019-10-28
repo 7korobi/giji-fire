@@ -11,9 +11,9 @@
   },
   "dependencies": {
     "core-js": "2.6.9",
-    "firebase-admin": "^8.5.0",
-    "firebase-functions": "^3.2.0",
-    "vue-petit-store": "^0.8.34"
+    "firebase-admin": "^8.6.1",
+    "firebase-functions": "^3.3.0",
+    "vue-petit-store": "^0.8.35"
   },
   "devDependencies": {
     "webpack-node-externals": "^1.7.2"

@@ -11,39 +11,41 @@ c-post(handle="MAKER")
   p.warn(v-for="msg in warns_local") {{ msg }}
   table(v-if="is_open")
     tbody
-      tr
+      tr(v-if="mark_ids")
         td(colspan="2")
           btn(:value="mark_ids" @input="emit_mark_ids" :as="[]")
             i.mdi.mdi-eraser
           check(v-for="o in marks" :value="mark_ids" @input="emit_mark_ids" :as="o.id" :key="o.id")
             img.mark(:src="o.path")
 
-      tr
+      tr(v-if="label !== void 0")
         td.r
           label(style="display: block" for="label") 名称
         td
           input#label(:value="label" size="20" maxlength="20" @input="emit_label")
+          | &emsp;
+          a.btn(@click="shuffle") 🎲
 
-      tr
+      tr(v-if="potof_max !== void 0")
         td.r
           label(style="display: block" for="potof_max") 参加人数
         td
           input#potof_max(type="number" min="4" max="25" :value="potof_max" @input="emit_potof_max")
 
-      tr
+      tr(v-if="range !== void 0")
         td.r
           label(style="display: block") 「１日」の長さ
         td
           btn(as="1日" :value="range" @input="emit_range") 1日
           btn(as="2日" :value="range" @input="emit_range") 2日
           btn(as="3日" :value="range" @input="emit_range") 3日
-      tr
+      tr(v-if="gap !== void 0")
         td.r
           label(style="display: block" for="gap") 更新時刻
         td
           input#gap(type="time" :value="gap_time" step="300" @input="emit_gap")
 
-      tr
+      tr(v-if="off !== void 0")
         td.r
           label(style="display: block" for="off") 消灯時間
         td
@@ -74,7 +76,16 @@ module.exports =
   ]
   data: ->
     is_open: false
-  props: ['label', 'mark_ids', 'potof_max', 'range', 'gap', 'gap_days', 'off']
+  props:
+    label: String
+
+    mark_ids: Array
+    potof_max: Number
+
+    range: String
+    gap: String
+    gap_days: String
+    off: String
 
   computed:
     gap_time: ->
@@ -83,7 +94,17 @@ module.exports =
     marks: ->
       Query.marks.where(enable: true).list
 
+  created: ->
+    @shuffle() unless @label
+
   methods:
+    shuffle: ->
+      tarot = Query.randoms.choice("tarot").label
+      planet = Query.randoms.choice("planet").label
+      @emit_label
+        target:
+          value: "#{planet}の#{tarot}"
+
     new_gap_days: (range, gap)->
       day = to_msec("1日")
       base_at  = to_tempo("1日", gap).last_at

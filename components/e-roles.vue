@@ -1,12 +1,11 @@
 <template lang="pug">
-c-post(handle="MAKER")
-  span(v-if="summary.length && ! is_open")
+c-post.form(handle="MAKER")
+  span(v-if="summary.length")
     a(v-for="o in summary" :class="o.win")
-      span.label
-        | {{ o.label }}
-        sup(v-if="1 < o.count") {{ o.count }}
+      | {{ o.label }}
+      sup(v-if="1 < o.count") {{ o.count }}
 
-  span(v-if="! uses.length && ! is_open")
+  span(v-if="! summary.length && ! is_open")
     | ゲームに登場するカードを選びましょう。
   btn.pull-right(v-if="is_open" v-model="is_open" :as="false")
     | ▲
@@ -15,10 +14,15 @@ c-post(handle="MAKER")
 
 
   template(v-if="is_open")
-    p(v-for="(roles, key) in all" :key="key")
+    fieldset.center(v-for="(roles, key) in all" :key="key")
+      legend {{ labels[key].label }}
       check(v-for="role in roles.list" :key="role.id" :as="role.id" :handle="role.win" :value="value" multi @input="input")
-        span.label
-          | {{ role.label }}
+        | {{ role.label }}
+  template(v-if="role_id")
+    hr.stripe
+    p(v-html="role.help")
+    ul
+      li(v-for="help in role.ables.pluck('help')" v-html="help")
 
 </template>
 <script lang="coffee">
@@ -48,10 +52,21 @@ module.exports =
     error 'warns', ( chk )->
   ]
   data: ->
+    role_id: null
     is_open: false
   props: ['value', 'potof_max']
       
   computed:
+    role: ->
+      Query.roles.find @role_id
+    labels: ->
+      {
+        EVENT:
+          label: "事件"
+        GIFT:
+          label: "恩恵"
+        ... Query.winners.hash
+      }
     summary: ->
       @uses?.summary || []
     uses: ->
@@ -66,6 +81,6 @@ module.exports =
       .reduce.group
 
   methods:
-    input: (role_ids)->
+    input: (role_ids, @role_id)->
       @$emit "input", role_ids
 </script>

@@ -9,28 +9,12 @@ log-wiki
   fire-oauth(handle="TSAY")
   template(v-if="book")
     c-report(handle="TITLE" deco="logo" :book="form")
-      hr.stripe
-      table.center
-        tbody
-          tr
-            td.r 参加人数
-            td {{ potofs.length }}人 / {{ form.potof_max }}人
-          tr
-            td.r 日程
-            td {{ form.range }}毎 {{ form.gap }}
-          tr
-            td.r 次の更新
-            td {{ next_time }}
-          tr
-            td.r 次の消灯
-            td {{  off_time }}
-
     e-game(v-bind.sync="form" :bans.sync="bans" :warns.sync="warns")
     e-options(v-model="form.option_ids" :bans.sync="bans" :warns.sync="warns")
     e-say(v-model="form.say_id" :bans.sync="bans" :warns.sync="warns")
     e-tags(v-model="form.tag_ids" :bans.sync="bans" :warns.sync="warns")
-    chat(:id="book.id + '-top-M-welcome'")
-    chat(:id="book.id + '-top-M-vrule'")
+    component(is="c-report" :id="`${book_id}-top-M-welcome`" v-bind.sync="welcome" :bans.sync="bans" :warns.sync="warns")
+    component(is="c-report" :id="`${book_id}-top-M-vrule`"   v-bind.sync="vrule"   :bans.sync="bans" :warns.sync="warns")
     chat(:id="book.id + '-top-M-nrule'")
     e-locale(v-model="form.locale_id" :bans.sync="bans" :warns.sync="warns")
     e-npc(v-bind.sync="npc" :tag_ids="form.tag_ids" :bans.sync="bans" :warns.sync="warns")
@@ -40,6 +24,7 @@ log-wiki
     c-post(handle="TITLE" v-if="is_edit")
       a.btn(@click="form_save")
         | 編集内容を保存する
+      p {{ phase }}
     c-post.ban(handle="F0" v-if="bans.length")
       p(v-for="msg in bans") {{ msg }}
     c-post.ban(handle="F1" v-if="warns.length")
@@ -52,13 +37,6 @@ log-wiki
 _ = require 'lodash'
 { Query, Set } = require 'memory-orm'
 { to_tempo, to_msec, vuex, localStorage, firestore_model, firestore_models } = require "vue-petit-store"
-
-format = require 'date-fns/format'
-locale = require "date-fns/locale/ja"
-
-if window?
-  format = format.default 
-  locale = locale.default
 
 { form } = require "~/plugins/form"
 
@@ -81,13 +59,13 @@ module.exports =
     require("~/plugins/for_component")
 
     form  'npc', ->
-      _id: ""
       job: ""
       face_id: "c99"
       chr_npc_id: "c99"
+    , ->
+      Query.potofs.find "#{@book_id}-NPC"
 
     form 'form', ->
-      _id: ""
       uid: ""
       sign: ""
       label: ""
@@ -106,6 +84,17 @@ module.exports =
       gap_days: ""
       off: "5分"
       now_idx: 0
+    , -> @book
+
+    form 'welcome', ->
+      log: """<p>（村のルールは、自由に編集できるよ！）</p>"""
+    , ->
+      Query.chats.find "#{@book_id}-top-M-welcome"
+
+    form 'vrule', ->
+      log: ''
+    , ->
+      Query.chats.find "#{@book_id}-top-M-vrule"
   ]
   layout: 'blank'
   data: ->
@@ -118,27 +107,12 @@ module.exports =
 
 
   computed:
+    phase: ->
+      Query.phases.find "#{@book_id}-top-M"
+
     is_edit: ->
       return false if @bans.length
       @is_form_edit || @is_npc_edit　
-
-    tempo: ->
-      to_tempo @form.range, @form.gap_days + @form.gap
-    next_time: ->
-      next_at = @tempo.next_at
-      format next_at, "M月d日(EE) HH:mm", { locale }
-    off_time: ->
-      off_at = @tempo.next_at - to_msec @form.off
-      format off_at, "M月d日(EE) HH:mm", { locale }
-
-    npc_potof: ->
-      Query.potofs.find "#{@book_id}-NPC"
-
-    npc_potof_id: ->
-      @npc_potof?.id
-
-    potofs: ->
-      @book?.potofs.list || []
 
     game: ->
       return {} unless @book
@@ -169,8 +143,8 @@ module.exports =
 
   methods:
     form_save: ->
-      @book_add @form
-      @set_potof @user.uid, @sign.sign, "#{@book_id}-NPC", @npc
+      @book_add { _id: @book_id, ...@form }
+      @set_potof @user.uid, @sign.sign, "#{}-NPC", @npc
       @cards_add
         write_at: new Date().getTime()
         _id: "#{@book_id}-NPC-master"
@@ -204,13 +178,12 @@ module.exports =
         commit: false
         date: Infinity
       }
-
-  watch:
-    npc_potof: (npc)->
-      @npc_init npc
-
-    book: (book)->
-      @form_init book
+      @$toasted.success "ゲームを編集しました。"
+      @$router.push
+        path:  "/game/show"
+        query:
+          mode: 'full'
+          idx: "#{@part_id}-top-M-title"
 
   head: ->
     titleTemplate: "#{@book_id} %s"

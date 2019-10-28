@@ -299,18 +299,18 @@ government:
   face_sort: [ face.order, asc ]
   order: 18004
 
-explorism:
-  label: 求道
-  long: 至尊の高みに至る道
+commercism:
+  label: 収益
+  long: 実りある利益
   head: 帰還者議事-テーマ別
   tag_id: travel
   chr_set_id: time
   face_sort: [ face.order, asc ]
   order: 20001
 
-commercism:
-  label: 収益
-  long: 実りある利益
+explorism:
+  label: 求道
+  long: 至尊の高みに至る道
   head: 帰還者議事-テーマ別
   tag_id: travel
   chr_set_id: time

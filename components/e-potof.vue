@@ -36,7 +36,8 @@ module.exports =
       @tag_ids.includes @tag_id
 
     name: ->
-      @value?.face.name
+      Query.faces.find @value?.face_id
+      ?.name
 
     set: ->
       Query.tags

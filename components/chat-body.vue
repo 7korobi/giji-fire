@@ -9,24 +9,24 @@
       sup.pull-right(v-if="label") {{ label }}
       | {{ head }}
   hr(v-if="head")
-  component.text(v-if="edit" v-bind="for_target" v-on="$listeners" v-model="target[for_target.key]")
-    select(v-if="edit.is_creating" v-model="v_phase_id" key="handle")
+  component.text(v-bind="for_target" v-on="$listeners" v-model="v_value" v-if="v_value && $listeners.submit")
+    select(v-model="v_phase_id" key="handle" v-if="edit.is_creating && $listeners['update:handle']")
       option(v-for="phase in edit.phases" :value="phase.id" :class="phase.handle" :key="phase.handle") ∞ {{ phase.label }}
 
-    select(v-model="v_show" key="show")
+    select(v-model="v_show" key="show" v-if="$listeners['update:show']")
       option(value="post")   描写
       option(value="talk")   会話
       option(value="report") 看板 
-    select(v-model="v_head" key="head")
+    select(v-model="v_head" key="head" v-if="$listeners['update:head']")
       option(value="") 無地
-      option(:value="edit.potof.head") 記名
-    select(v-model="v_deco" key="deco")
-      option(value="trix")  文字
+      option(:value="edit.head") 記名
+    select(v-model="v_deco" key="deco" v-if="$listeners['update:deco']")
+      option(value="slate")  文字
       option(value="diagram") 作図
     span.pull-right(v-if="edit.is_replacing")
       a.btn.active(@click="$listeners.remove")
         i.mdi.mdi-comment-remove-outline
-  component.text(v-else v-bind="for_target" v-on="$listeners" v-model="target[for_target.key]")
+  component.text(v-bind="for_target" v-on="$listeners" :value="v_value" v-if="v_value && ! $listeners.submit")
   .text(v-if="$slots.default" :class="deco")
     slot
   .date(v-if="anker")
@@ -36,18 +36,19 @@
 
 <script lang="coffee">
 { Query } = require 'memory-orm'
-{ localStorage } = require "vue-petit-store"
+{ localStorage, path_by } = require "vue-petit-store"
 
 v_model = (key)->
   computed:
     "v_#{key}":
       get:    -> @[key]
-      set: (o)-> @target[key] = o
+      set: (o)-> @$emit "update:#{key}", o
 
 module.exports =
   mixins: [
     require('~/plugins/markup-event')
     localStorage "shows"
+    path_by "id", [null, null, null, null, 'chat']
     v_model 'log'
     v_model 'data'
     v_model 'show'
@@ -57,13 +58,12 @@ module.exports =
   ]
 
   props:
-    target: Object
-    edit:   Object
+    current: Object
 
-    id:    String
+    id:      String
+    face_id: String
 
-    label: String
-    anker: String
+    handle:  String
 
     log:  String
     data: Object
@@ -74,43 +74,52 @@ module.exports =
     deco: String
     to:   String
 
-    phase_id: String
-
   data: ->
     shows: []
 
   computed:
+    edit: ->
+      phases: Query.phases.list
+      head: 'test'
+      is_creating: false
+      is_replacing: false
+
+    anker: ->
+      @chat?.anker @current?.part_id
+
+    label: ->
+      ""
+
+    v_value:
+      get: ->
+        @[@for_target.key]
+      set: (o)->
+        @$emit "update:#{@for_target.key}", o
+
     for_target: ->
       switch @deco
         when 'logo', 'cast'
-          key    = 'book'
-          value  = @book
+          key = 'book'
           component = @deco
 
         when 'diagram'
-          key    = 'data'
-          value  = @data
+          key = 'data'
           component = 'diagram'
 
         when 'sow', 'head', 'mono'
-          key    = 'log'
-          value  = @log
+          key = 'log'
           component = 'sow'
 
         else
-          key    = 'log'
-          value  = @log
-          component = 'trix'
+          key = 'log'
+          component = 'slate'
 
       id = "#{key}-#{ @id }"
-      handle = @target.phase?.handle
-      if @edit
-        { options } = @edit
+      if @$listeners.submit
         component = "#{component}-edit"
       else
-        options = {}
         component = "#{component}-view"
 
-      { id, handle, key, class: @deco, is: component, ...options }
+      { id, @handle, key, class: @deco, is: component }
 
 </script>

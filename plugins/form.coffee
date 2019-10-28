@@ -26,7 +26,8 @@ module.exports =
         ary = _.union ary, local
         @$emit "update:#{id}", ary
 
-  form: (id, cb)->
+  form: (id, cb, origin)->
+    origin_id = "#{id}_origin"
     base_id = "#{id}_base"
     init_id = "#{id}_init"
     is_edit_id = "is_#{id}_edit"
@@ -43,6 +44,7 @@ module.exports =
       [base_id]: base
 
     computed:
+      [origin_id]: origin
       [is_edit_id]: ->
         ! _.isEqual @[id], @[base_id]
 
@@ -51,3 +53,6 @@ module.exports =
         for key in keys
           @[id][key] = @[base_id][key] = src[key]
 
+    watch:
+      [origin_id]: (o)->
+        @[init_id] o

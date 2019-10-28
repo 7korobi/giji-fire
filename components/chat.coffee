@@ -1,11 +1,12 @@
 { Query } = require 'memory-orm'
-{ on_horizon } = require "vue-petit-store"
+{ on_horizon, path_by } = require "vue-petit-store"
 
 module.exports = ->
+  mixins: [
+    path_by "id", [null, null, null, 'phase']
+  ]
   props:
     current: Object
-    target:  Object
-    edit:    Object
 
     id:      String
 
@@ -23,8 +24,6 @@ module.exports = ->
     deco: String
     to:   String
 
-    phase_id: String
-
   directives:
     horizon: on_horizon 'pos'
 
@@ -32,31 +31,21 @@ module.exports = ->
     pos: 'focus'
 
   computed:
-    part_id: ->
-      @current?.part_id
-
-    anker: ->
-      @chat?.anker @part_id
-
-    chat: ->
-      if @id
-        Query.chats.find @id
-    
-    label: ->
-      ""
-
-    # directives data reset after mounted.
     classname: ->
       if @id && @$el && "focus" == @pos
         @$emit "focus", @id
-      [@handle, @pos]
+      handle = @handle || @phase?.handle
+      [handle, @pos]
 
     for_body: ->
-      o = {
-        @book,
-        @edit, class: @classname,
-        @id, @label, @anker, @log, @data, @show, @head, @deco, @to, @phase_id
+      handle = @classname[0]
+      {
+        class: @classname,
+        handle,
+        @current,
+        @id, @face_id,
+        @log, @data, @book, 
+        @show, @head, @deco,
+        @to
       }
-      o.target = @target ? o
-      o
 

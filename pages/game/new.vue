@@ -11,40 +11,29 @@ log-wiki
 
   fire-oauth(handle="TSAY")
 
-  e-game(:label.sync="label" :mark_ids.sync="mark_ids")
-  div
-    c-post(handle="VSSAY")
-      h3 ゲームを開催する
-      hr
-      ol
-        li 上のアイコンから、ログインに使うサービスを選択。
-        li(v-if="user && ! sign") #[nuxt-link(to="/user/edit") サインを記帳]します。他の人に見せるために使います。
-      
-      table(v-if="sign")
-        tbody(v-if="is_progress")
-          tr
-            td.center …処理中…
-        tbody(v-else)
-          tr
-            td(colspan=2) ID欄に「{{ book_id_chk }}」と書いて作成ボタンを押そう。
-          tr
-            td.r
-              label(style="display: block" for="book_id") ID
-            td
-              input#book_id(v-model="book_id")
-          tr
-            td.r
-              label(style="display: block" for="label") 名称
-            td
-              input#label(v-model="label")
-          tr
-            td.c
-              a.btn(@click="shuffle") 🎲
-            td
-              btn(:value="book_id" :as="book_id_chk" @toggle="create") 作成
-
-    e-marks(v-model="mark_ids")
+  e-game(:label.sync="label" :mark_ids.sync="mark_ids" :bans.sync="bans" :warns.sync="warns")
   c-report(handle="TITLE" deco="logo" :book="logo")
+  c-post(handle="TITLE")
+    h3 ゲームを開催する
+    hr
+    ol
+      li(v-if="! user") 上のアイコンから、ログインに使うサービスを選択。
+      li(v-if="user && ! sign") #[nuxt-link(to="/user/edit") サインを記帳]します。他の人に見せるために使います。
+
+      li(v-if="user && sign") 「{{ book_id_chk }}」と書いて作成ボタンを押そう。
+    
+    p(v-if="is_progress")
+      center …処理中…
+    p(v-else)
+      input#book_id(v-model="book_id" v-if="user && sign")
+      hr.stripe
+      btn(:value="book_id" :as="book_id_chk" @toggle="create") {{ book_id_chk }} を作成
+
+  c-post.ban(handle="F0" v-if="bans.length")
+    p(v-for="msg in bans") {{ msg }}
+  c-post.ban(handle="F1" v-if="warns.length")
+    p(v-for="msg in warns") {{ msg }}
+
   c-report(handle="footer" deco="center")
     bread-crumb
 </template>
@@ -52,6 +41,8 @@ log-wiki
 format = require "date-fns/format"
 { Query, Set } = require 'memory-orm'
 { share, localStorage, firestore_model, firestore_models, to_tempo } = require "vue-petit-store"
+
+{ form } = require "~/plugins/form"
 { nation, village } = require "~/yaml/rule.yml"
 
 module.exports =
@@ -70,6 +61,10 @@ module.exports =
     is_progress: false
     options: ["impose"] # impose
     shows: [] # pin, toc, potof, current, search
+
+    bans: []
+    warns: []
+
     mark_ids: []
     book_id: ""
     label: ""
@@ -90,15 +85,7 @@ module.exports =
       .books.in_folder @folder_id
       .reduce.idx?.max ? 0
 
-  created: ->
-    @shuffle()
-
   methods:
-    shuffle: ->
-      tarot = Query.randoms.choice("tarot").label
-      planet = Query.randoms.choice("planet").label
-      @label = "#{planet}の#{tarot}"
-
     create: ->
       @is_progress = true
       uid   = @user.uid
@@ -175,7 +162,7 @@ module.exports =
         uid
         sign
         show: 'report'
-        deco: 'trix'
+        deco: 'slate'
         mention_ids: []
         log: """<p>（村のルールは、自由に編集できるよ！）</p>"""
       }
@@ -189,7 +176,7 @@ module.exports =
         uid
         sign
         show: 'report'
-        deco: 'trix'
+        deco: 'slate'
         mention_ids: []
         log: """<h3>村のルール</h3><ol>#{v_rules.join("")}</ol>"""
       }
@@ -203,16 +190,15 @@ module.exports =
         uid
         sign
         show: 'report'
-        deco: 'trix'
+        deco: 'slate'
         mention_ids: []
         log: """<h3>国のルール</h3><ol>#{n_rules.join("")}</ol>"""
       }
 
       @$toasted.success "ゲームを開催します。細かい設定を調整しましょう。"
       @$router.push
-        path:  "/game/show"
+        path:  "/game/edit"
         query:
-          mode: 'full'
           idx: "#{part_id}-top-M-title"
 
   head: ->
