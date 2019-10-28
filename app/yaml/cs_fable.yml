@@ -200,6 +200,21 @@ chr_job:
   - face_id: f32
     job: 彩鞄座
 
+  - face_id: f33
+    job: 網鉱座
+    comment: ウェブと鉱床を混ぜた造語。チェインメイル作るの得意なドワーフてきな
+
+  - face_id: f34
+    job: 浮穴沫媛
+    comment: 洪水型兄妹始祖神話と土蜘蛛（朝廷に従わない民）から
+
+  - face_id: f35
+    job: 質草座
+    comment: マレー語のパジャクガダイが質屋
+
+  - face_id: f36
+    job: ランタン
+
   - face_id: fw01
     job: 尸解仙道
 
@@ -221,3 +236,6 @@ chr_job:
   - face_id: fw07
     job: 恩賜神
 
+  - face_id: fw08
+    job: 後神
+    comment: 後ろ髪をひき、恐怖心や心残りを誘う臆病神

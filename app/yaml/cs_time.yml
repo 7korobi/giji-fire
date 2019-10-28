@@ -509,3 +509,11 @@ chr_job:
   - face_id: t98
     job: 卐黒帝會卐
     comment: 関東連合 BLACK 卐 EMPEROR から。
+
+  - face_id: t99
+    job: 暗黒舞踏
+    comment: 日本の前衛舞踏家が興した独特な舞踏の流れについた名前
+
+  - face_id: t100
+    job: いざなぎ流
+    comment: 高知県に今も伝わる陰陽師（の村）
