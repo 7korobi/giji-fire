@@ -129,7 +129,6 @@ module.exports =
 
 .welcome-links
   white-space: pre
-  vertical-align: top
   padding: 0.5ex
   background-color: rgba(23,47,31,0.4)
 

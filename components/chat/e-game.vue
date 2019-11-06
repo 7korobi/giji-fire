@@ -24,7 +24,8 @@ c-post(handle="MAKER")
         td
           input#label(:value="label" size="20" maxlength="20" @input="emit_label")
           | &emsp;
-          a.btn(@click="shuffle") 🎲
+          a.btn(@click="shuffle1") 🎲
+          a.btn(@click="shuffle2") 🎲
 
       tr(v-if="potof_max !== void 0")
         td.r
@@ -98,12 +99,19 @@ module.exports =
     @shuffle() unless @label
 
   methods:
-    shuffle: ->
+    shuffle1: ->
       tarot = Query.randoms.choice("tarot").label
       planet = Query.randoms.choice("planet").label
       @emit_label
         target:
           value: "#{planet}の#{tarot}"
+
+    shuffle2: ->
+      tarot = Query.randoms.choice("tarot").label
+      iau = Query.randoms.choice("IAU").label
+      @emit_label
+        target:
+          value: "#{iau}の#{tarot}"
 
     new_gap_days: (range, gap)->
       day = to_msec("1日")

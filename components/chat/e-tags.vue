@@ -10,15 +10,17 @@ div
       | ▲
     btn.pull-right(v-else v-model="is_open" :as="true")
       | ▼
-    .TSAY.center(v-if="is_open && secret_tag_ids.length")
+    fieldset.TSAY.center(v-if="is_open && secret_tag_ids.length")
+      legend 登場しない
       tags(v-model="tag_id" :tag_ids="secret_tag_ids")
 
-    .header.center(v-if="is_open")
+    fieldset.header.center(v-if="is_open")
+      legend 登場する
       tags(v-model="tag_id" :tag_ids="value")
-      .btn.pull-right(@click="reset_tags")
-        | クリア
-      sub(style="width: 100%" v-if="set")
-        | {{ chrs.length }}人の{{ set.long }}を表示しています。
+    .btn.pull-right(@click="reset_tags")
+      | クリア
+    sub(style="width: 100%" v-if="set")
+      | {{ chrs.length }}人の{{ set.long }}を表示しています。
 
   .fullframe(v-if="is_open && tag_id")
     transition-group.portrates(name="list" tag="div")

@@ -143,22 +143,26 @@ div
             p
               a.label(v-if="o.mob" :class="o.mob.win") {{ o.mob.label }}
               a.label(v-if="o.game") {{ o.game.label }}
-              a(v-for="opt in o.option_datas.list")
-                span.label {{ opt.label }}
+              template(v-for="opt in o.option_datas.list")
+                | &#x200B;
+                a.label {{ opt.label }}
             p
-              a(v-if="role" v-for="role in o.roles.config" :class="role.win")
-                span.label
+              template(v-if="role" v-for="role in o.roles.config")
+                | &#x200B;
+                a.label(:class="role.win")
                   | {{ role.label }}
                   sup(v-if="1 < role.count") {{ role.count }}
             hr
             p
-              a(v-if="role" v-for="role in o.roles.event" :class="role.win")
-                span.label
+              template(v-if="role" v-for="role in o.roles.event")
+                | &#x200B;
+                a.label(:class="role.win")
                   | {{ role.label }}
                   sup(v-if="1 < role.count") {{ role.count }}
             p
-              a(v-if="role" v-for="role in o.roles.discard" :class="role.win")
-                span.label
+              template(v-if="role" v-for="role in o.roles.discard")
+                | &#x200B;
+                a.label(:class="role.win")
                   | {{ role.label }}
                   sup(v-if="1 < role.count") {{ role.count }}
 

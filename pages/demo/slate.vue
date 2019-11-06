@@ -36,7 +36,12 @@ module.exports =
     require('~/app/plugins/markup-event')
   ]
   data: (req)->
-    text: ""
+    text: """
+<p class="center">The Slate editor gives you <strong data-ruby="test">complete</strong> control over the logic you can add.</p>
+<hr class="stripe c">
+<p>In its simplest form, when representing plain text, Slate is a glorified <code>&laquo;textarea&raquo;</code>. But you can augment it to be much more than that.</p>
+<p class="right">Check out <a href="http://slatejs.org">http://slatejs.org</a> for examples!</p>
+    """.replace(/\n/,"")
     potof:
       head: "てすと"
     chat:

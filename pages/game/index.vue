@@ -12,7 +12,7 @@ div
           sup.pull-right {{ o.sign }}
           nuxt-link(:to="book_url(o.id, 'top', 'full')") {{ o.label }}
         .cards
-          table.btns.card(style="width: 11em")
+          table.btns.card(style="width: 13em")
             tbody
               tr
                 th(colspan="2")
@@ -33,11 +33,13 @@ div
             p(v-if="o.options")
               a.label(v-if="o.mob" :class="o.mob.win") {{ o.mob.label }}
               a.label(v-if="o.game") {{ o.game.label }}
-              a(v-for="opt in o.options.list")
-                span.label {{ opt.label }}
+              template(v-for="opt in o.options.list")
+                | &#x200B;
+                a.label {{ opt.label }}
             p(v-if="o.roles")
-              a(v-for="role in o.roles.reduce.summary" :class="role.win")
-                span.label
+              template(v-for="role in o.roles.reduce.summary" :class="role.win")
+                | &#x200B;
+                a.label(:class="role.win")
                   | {{ role.label }}
                   sup(v-if="1 < role.count") {{ role.count }}
 

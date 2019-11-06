@@ -1,7 +1,7 @@
 <template lang="pug">
 c-post.form(handle="MAKER")
   span(v-if="summary.length")
-    a(v-for="o in summary" :class="o.win")
+    a.label(v-for="o in summary" :class="o.win")
       | {{ o.label }}
       sup(v-if="1 < o.count") {{ o.count }}
 

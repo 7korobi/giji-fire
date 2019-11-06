@@ -218,21 +218,19 @@
         background-color: $emboss
         color: $bg
 
-    .name
-      body &.#{$theme},
-      .#{$theme} &,
-        sup, sub, .badge
-          background-color: $emboss
-          color: $bg
-
     .note
       body &.#{$theme},
       .#{$theme} &,
         color: $hide
         border-color: $off
 
-    del,
     legend,
+      body &.#{$theme},
+      .#{$theme} &,
+        background-color: $bgHi
+        color: $hide
+
+    del,
     .warn,
     .name,
     .date,
@@ -295,7 +293,10 @@
         &:checked,
           background: linear-gradient( 30deg, $onG, $on, $onG )
 
+    .name,
     .btn,
+    .label,
+    a,
     [href],
       body &.#{$theme},
       .#{$theme} &,
