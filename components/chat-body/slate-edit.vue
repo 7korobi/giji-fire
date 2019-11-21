@@ -1,11 +1,11 @@
 <template lang="pug">
 div
   slate-editor(
-    ref="slate"
     :placeholder="placeholder"
-    :autoFocus="true"
+    :autoFocus="false"
     :value="data"
     :onChange="change_bare"
+    :onPaste="paste_bare"
 
     :renderBlock="render_block"
     :renderInline="render_inline"
@@ -26,6 +26,7 @@ div
         | {{lines}}/
         sub {{maxRow}}行
     slot
+    a.btn(@click="" :class="") aaa
     p
       label(:class="type" v-for="[type, label, call] in fixes" @click="call") {{ label }}
 </template>
@@ -39,6 +40,15 @@ React = require 'react'
 
 if window?
   Html = Html.default
+
+element = ( type, attrs, children )->
+  switch type
+    when undefined
+      undefined
+    when 'HR', 'BR' #, 'IMG', 'AUDIO'
+      React.createElement type.toLowerCase(), attrs
+    else
+      React.createElement type.toLowerCase(), attrs, children
 
 html = new Html
   defaultBlock: 'p'
@@ -58,31 +68,25 @@ html = new Html
         when '#text', 'BR'
           undefined
 
-        when 'UL', 'OL', 'DL', 'HR'
+        when 'HR'
           { object: 'block', type, data }
 
-        when 'P', 'DT', 'DD', 'LI', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'BLOCKQUOTE'
+        # when 'IMG', 'AUDIO'
+        #   { object: 'inline', type, data }
+
+        when 'BLOCKQUOTE', 'ASIDE', 'P',  'DL', 'DT', 'DD',  'UL', 'OL', 'LI',  'H1', 'H2', 'H3', 'H4', 'H5', 'H6'
           nodes = next el.childNodes
           { object: 'block', type, data, nodes }
-
-        when 'IMG'
-          { object: 'inline', type, data }
 
         when 'A'
           nodes = next el.childNodes
           { object: 'inline', type, data, nodes }
 
-        when 'LABEL', 'SUP', 'SUB', 'CITE', 'SAMP', 'CODE', 'KBD', 'VAR',  'STRIKE', 'U', 'TT', 'RUBY', 'RT'
+        when 'ABBR', 'LABEL', 'SUP', 'SUB', 'SAMP', 'CODE', 'KBD', 'VAR', 'RUBY', 'RTC', 'RT', 'RP'
           nodes = next el.childNodes
           { object: 'inline', type, data, nodes }
 
-        when 'B'
-          nodes = next el.childNodes
-          { object: 'mark', type: 'strong', data, nodes }
-        when 'I'
-          nodes = next el.childNodes
-          { object: 'mark', type: 'em', data, nodes }
-        when 'EM', 'STRONG', 'ABBR', 'STRIKE'
+        when 'MARK', 'STRONG', 'DEL', 'INS', 'EM', 'I', 'B', 'S', 'U'
           nodes = next el.childNodes
           { object: 'mark', type, data, nodes }
 
@@ -96,13 +100,7 @@ html = new Html
         for [key, val] in [...data]
           attrs[key] = val
 
-      switch type
-        when undefined
-          undefined
-        when 'IMG', 'HR', 'BR', 'UL', 'OL', 'DL'
-          React.createElement type.toLowerCase(), attrs
-        else
-          React.createElement type.toLowerCase(), attrs, children
+      element type, attrs, children
   ]
 
 _ = require 'lodash'
@@ -159,54 +157,47 @@ module.exports = editor
       { @attrs, @size }
 
   mounted: ->
-    console.warn @$refs.slate
     if @value
       @data = html.deserialize @value
     else
       @restore()
-
-    @$emit 'ready', @editor
+    @change()
 
   beforeDestroy: ->
 
   methods:
-    render_block: ({ isFocused, isSelected, readOnly, parent, node, attributes, children }, editor, next)->
+    render_ref: (editor)->
+      console.log { editor }
+
+    render_block: ({ isFocused, isSelected, readOnly, parent, node, attributes, children }, @editor, next)->
       for [key, val] in [...node.data]
         attributes[key] = val
-      console.log "BLOCK", node.type, children, {isFocused, isSelected, readOnly, parent}
-      switch node.type
-        when 'UL', 'OL', 'DL', 'HR'
-          React.createElement node.type.toLowerCase(), attributes
-        else
-          React.createElement node.type.toLowerCase(), attributes, children
+      # console.log "BLOCK", node.type, children, {isFocused, isSelected, readOnly, parent}
+      element node.type, attributes, children
 
-    render_inline: ({ isFocused, isSelected, readOnly, parent, node, attributes, children }, editor, next)->
+    render_inline: ({ isFocused, isSelected, readOnly, parent, node, attributes, children }, @editor, next)->
       for [key, val] in [...node.data]
         attributes[key] = val
-      console.log "INLINE", node.type, children, {isFocused, isSelected, readOnly, parent}
-      switch node.type
-        when 'IMG'
-          React.createElement node.type.toLowerCase(), attributes
-        else
-          React.createElement node.type.toLowerCase(), attributes, children
+      # console.log "INLINE", node.type, children, {isFocused, isSelected, readOnly, parent}
+      element node.type, attributes, children
 
-    render_mark: ({ mark, marks, attributes, children, offset, text }, editor, next)->
+    render_mark: ({ mark, marks, attributes, children, offset, text }, @editor, next)->
       for [key, val] in [...mark.data]
         attributes[key] = val
       console.log "MARK", mark.type, marks, children, offset, text
-      React.createElement mark.type.toLowerCase(), attributes, children
+      element mark.type, attributes, children
 
-    render_decoration: ({ decoration, marks, attributes, children, offset, text }, editor, next)->
+    render_decoration: ({ decoration, marks, attributes, children, offset, text }, @editor, next)->
       console.log "DECORATION", decoration, children, offset, text
       next()
 
-    render_annotation: ({ annotation, marks, attributes, children, offset, text }, editor, next)->
+    render_annotation: ({ annotation, marks, attributes, children, offset, text }, @editor, next)->
       console.log "ANNOTATION", annotation, children, offset, text
       next()
 
     restore: (backup = window.localStorage[@id])->
       return unless backup
-      @data = backup
+      @data = Value.fromJSON backup
 
     action_invoke: (e)->
       { actionName } = e
@@ -217,7 +208,15 @@ module.exports = editor
       invoke[type] @editor, mode, range, str
 
     change_bare: ({ operations, value })->
-      { selection, object, document, decorations, blocks } = value
+      @data = value
+      # @$emit "input", html.serialize value
+      @change()
+
+    paste_bare: (e)->
+      console.log e, arguments
+
+    change: _.debounce ->
+      { fragment, selection, object, document, decorations, blocks } = @data
 
       if document
         @size = [
@@ -226,12 +225,6 @@ module.exports = editor
           document.text.length - 1
         ]
 
-      @data = value
-
-      # @$emit "input", html.serialize value
-      @change()
-
-    change: _.debounce ->
       @fixes = []
 
       hash = {}
@@ -263,14 +256,11 @@ module.exports = editor
         ]
         return ""
 
-      window.localStorage[@id] = @data
+      if @id
+        window.localStorage[@id] = @data.toJSON()
       @log.html = html.serialize @data
       @$emit 'input', @log.html
     , 300
-
-    paste: ({ paste })->
-      { range, string, type } = paste
-      console.log { range, string, type }
 
     focus: (e)->
       range = @editor.getSelectedRange()
@@ -278,9 +268,6 @@ module.exports = editor
 
     blur: (e)->
       @$emit 'selection', null
-
-    logger: (e)->
-      console.log e
 
   watch:
     value: _.debounce (newValue, oldValue)->

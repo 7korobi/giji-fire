@@ -34,11 +34,11 @@ div
               a.label(v-if="o.mob" :class="o.mob.win") {{ o.mob.label }}
               a.label(v-if="o.game") {{ o.game.label }}
               template(v-for="opt in o.options.list")
-                | &#x200B;
+                wbr
                 a.label {{ opt.label }}
             p(v-if="o.roles")
               template(v-for="role in o.roles.reduce.summary" :class="role.win")
-                | &#x200B;
+                wbr
                 a.label(:class="role.win")
                   | {{ role.label }}
                   sup(v-if="1 < role.count") {{ role.count }}

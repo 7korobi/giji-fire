@@ -6,6 +6,8 @@ div
     nuxt-link(to="/game/new") BOOK
   c-post(handle="SSAY")
     nuxt-link(to="/wiki?idx=test-book") WIKI
+  c-post(handle="SSAY")
+    nuxt-link(to="/demo/fancy-date") 架空歴
 
   c-post(handle="VGSAY")
     nuxt-link.button(to="/demo/locations" no-prefetch) 住所録
