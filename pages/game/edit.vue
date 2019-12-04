@@ -146,7 +146,7 @@ module.exports =
       @book_add { _id: @book_id, ...@form }
       @set_potof @user.uid, @sign.sign, "#{}-NPC", @npc
       @cards_add
-        write_at: new Date().getTime()
+        write_at: Date.now()
         _id: "#{@book_id}-NPC-master"
         role_id: 'master'
         MAKER: Infinity

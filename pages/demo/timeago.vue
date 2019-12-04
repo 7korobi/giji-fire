@@ -17,7 +17,7 @@ div
 
 module.exports =
   data: (req)->
-    now = new Date() - 0
+    now = Date.now() - 0
     times = [0,-86400 * 2 * 365 - 1, -86400 * 365 - 1,-86400 * 7 - 1, -86400 - 1,[-3610..-3590]...,-Infinity,[-70..-50]...,0,[50..70]...,Infinity,[3590..3610]...,86400 - 1,86400 * 7 - 1,86400 * 365 - 1,0].map (t)->
       at: now - t * 1000
 
@@ -32,5 +32,5 @@ module.exports =
   methods:
     reset: (idx)->
       @clicks++
-      @times[idx].at = new Date() - -62000
+      @times[idx].at = Date.now() - -62000
 </script>
