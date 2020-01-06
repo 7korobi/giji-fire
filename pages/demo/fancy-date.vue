@@ -3,38 +3,92 @@ div
   c-report(handle="footer" deco="center")
     bread-crumb
   c-post(handle="PSAY")
+    p.r 差分 {{ since }} msec
     table
-      tbody(v-for="c in results")
+      tbody(v-for="[label, [yMd, Hm, Hrmr, ao, ar, Ao, Ar, Eo, Er, Fo, Fr, J, No, Nr, Zo, Zr], 日出, 南中, 日入, { year, day, leap }, data] in results")
         tr
-          th.c(colspan="6") {{ c[0] }}
+          th.c(colspan="7") {{ label }}
         tr
           th.r.note(colspan="4") 日付
           th.c.note 曜
           th.l.note 時刻
+          th(rowspan="7").c
+            .form
+              a.btn(@click="reset") reset
+            .form
+              a.btn(@click="back(data[1], '1年')") −
+              | 年
+              a.btn(@click="succ(data[1], '1年')") ＋
+            .form
+              a.btn(@click="back(data[1], '1月')") −
+              | 月
+              a.btn(@click="succ(data[1], '1月')") ＋
+            .form
+              a.btn(@click="back(data[1], '1週')") −
+              | 週
+              a.btn(@click="succ(data[1], '1週')") ＋
+            .form
+              a.btn(@click="back(data[1], '1日')") −
+              | 日
+              a.btn(@click="succ(data[1], '1日')") ＋
+            .form
+              a.btn(@click="back(data[1], '1時')") −
+              | 時
+              a.btn(@click="succ(data[1], '1時')") ＋
+            .form
+              a.btn(@click="back(data[1], '1分')") −
+              | 分
+              a.btn(@click="succ(data[1], '1分')") ＋
+            .form
+              a.btn(@click="back(data[1], '1秒')") −
+              | 秒
+              a.btn(@click="succ(data[1], '1秒')") ＋
         tr
-          td.r(colspan="4") {{ c[1] }}
-          td.c {{ c[2] }}
-          td.l {{ c[3] }}
+          td.r(colspan="4") {{ yMd }}
+          td.c
+            ruby(:data-ruby="Er") {{ Eo }}
+          td.l
+            ruby(:data-ruby="Hrmr") {{ Hm }}
         tr
           th.c.note(colspan="6")
         tr
           td
-          th.r.note(colspan="1") 干支
-          td.l {{ c[4] }}
+          th.r.note(colspan="1") 月相
+          td.l
+            ruby(:data-ruby="Nr") {{ No }}
           th.r.note(colspan="2") 日出
-          td.l {{ c[7] }}
+          td.l
+            ruby(:data-ruby="日出[1]") {{ 日出[0] }}
         tr
           td
           th.r.note(colspan="1") 節気
-          td.l {{ c[5] }}
+          td.l
+            ruby(:data-ruby="Zr") {{ Zo }}
           th.r.note(colspan="2") 南中
-          td.l {{ c[8] }}
+          td.l
+            ruby(:data-ruby="南中[1]") {{ 南中[0] }}
         tr
           td
-          th.r.note(colspan="1") 月相
-          td.l {{ c[6] }}
+          th.r.note(colspan="1") 九星
+          td.l
+            ruby(:data-ruby="Fr") {{ Fo }}
           th.r.note(colspan="2") 日入
-          td.l {{ c[9] }}
+          td.l
+            ruby(:data-ruby="日入[1]") {{ 日入[0] }}
+        tr
+          td
+          th.r.note(colspan="1") 干支
+          td.l(colspan="3")
+            ruby(:data-ruby="ar") {{ ao }}年
+            | &nbsp;
+            ruby(:data-ruby="Ar") {{ Ao }}日
+        tr
+          td.r.form(colspan="7")
+            input(v-model="data[2]" size="60")
+        tr
+          td.r(colspan="7") 時間:分:秒
+        tr
+          td.r(colspan="7") {{ day.join(":") }}
 
   c-post(handle="TSAY")
     table.text
@@ -59,19 +113,34 @@ module.exports =
 
   data: ->
     current_at: Date.now()
+    since: 0
     calendars: [
-      [ "グレゴリオ暦（1970年1月1日基準）", FancyDate.Gregorian, "yyyy/MM/dd E HH:mm T Z N" ]
-      [ "平気法太陽太陰暦（1970年1月1日基準）", FancyDate.平気法, "Gyy年Mdd日 E Hm T Z N" ]
-      [ "火星太陽暦（前1年9月1日＝火星暦1年1月1日）", FancyDate.MarsGregorian, "yyyy/MM/dd E HH:mm T Z" ]
+      [ "グレゴリオ暦", FancyDate.Gregorian, "Gyyyy/MM/dd HH:mm Hrmr ao ar Ao Ar Eo Er Fo Fr J No Nr Zo Zr" ]
+      [ "太陽太陰暦（地球、月）", FancyDate.平気法, "Gyy年Modd日 Homo Hrmr ao ar Ao Ar Eo Er Fo Fr J No Nr Zo Zr" ]
+      [ "フランス革命歴", FancyDate.フランス革命暦, "Gyyy年Modd日 HH:mm Hrmr ao ar Ao Ar Eo Er Fo Fr J No Nr Zo Zr" ]
+      [ "ロムルス歴", FancyDate.Romulus, "Gyyyy/MM/dd HH:mm Hrmr ao ar Ao Ar Eo Er Fo Fr J No Nr Zo Zr" ]
+      [ "太陽太陰暦（木星、カリスト）", FancyDate.Jupiter, "Gyyyy/MM/dd HH:mm Hrmr ao ar Ao Ar Eo Er Fo Fr J No Nr Zo Zr" ]
+      [ "太陽暦（火星）", FancyDate.MarsGregorian, "Gyyyy/MM/dd HH:mm Hrmr ao ar Ao Ar Eo Er Fo Fr J No Nr Zo Zr" ]
     ]
 
   created: ->
     @tick()
   
   destroyed: ->
-    @current_at = 0
+    @current_at = @since = 0
 
   methods:
+    back: (c, diff)->
+      @since += c.back_msec @current_at, diff
+      console.warn { c, diff }
+
+    succ: (c, diff)->
+      @since += c.succ_msec @current_at, diff
+      console.warn { c, diff }
+
+    reset: ->
+      @since = 0
+
     tick: ->
       console.log await Tempo.sleep @minutes
       if @current_at
@@ -79,26 +148,26 @@ module.exports =
         @tick()
 
   computed:
+    show_at: ->
+      @current_at + @since
+
     minutes: ->
-      @calendars.map ([,c])=> c.to_tempos( @current_at ).m
+      @calendars.map ([,c])=> c.to_tempos( @show_at ).m
+
     results: ->
-      @calendars.map ([label, c, date_f, time_f ])=>
-        [,, time_f] = date_f.split(/\s+/)
-        [yMd, E, Hm, T,Z,N] = c.format(@current_at, date_f ).split(/\s+/)
-        { 日の出, 南中時刻, 日の入 } = c.solor @current_at
+      @calendars.map (data)=>
+        [label, c, date_f] = data
+        [, time_fo, time_fr] = date_f.split(/\s/)
+        time_f = "#{time_fo} #{time_fr}"
+        { 日の出, 南中時刻, 日の入 } = c.solor @show_at
 
         [ label
-          yMd
-          E
-          Hm
-
-          T
-          Z
-          N
-
-          c.format  日の出, time_f
-          c.format 南中時刻, time_f
-          c.format  日の入, time_f
+          c.format(@show_at, date_f ).split(/\s/)
+          c.format(  日の出, time_f).split(/\s/)
+          c.format( 南中時刻, time_f).split(/\s/)
+          c.format(  日の入, time_f).split(/\s/)
+          c.precision()
+          data
         ]
 
 </script>

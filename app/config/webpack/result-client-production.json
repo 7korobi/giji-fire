@@ -215,9 +215,9 @@
   },
   "output": {
     "path": "/Users/7korobi/Dropbox/www/giji-fire-new/.nuxt/dist/client",
-    "filename": "[chunkhash].js",
+    "filename": "[contenthash].js",
     "futureEmitAssets": true,
-    "chunkFilename": "[chunkhash].js",
+    "chunkFilename": "[contenthash].js",
     "publicPath": "/_nuxt/"
   },
   "performance": {
@@ -769,7 +769,7 @@
             "loader": "url-loader",
             "options": {
               "limit": 1000,
-              "name": "img/[hash:7].[ext]"
+              "name": "img/[contenthash:7].[ext]"
             }
           }
         ]
@@ -781,7 +781,7 @@
             "loader": "url-loader",
             "options": {
               "limit": 1000,
-              "name": "fonts/[hash:7].[ext]"
+              "name": "fonts/[contenthash:7].[ext]"
             }
           }
         ]
@@ -792,7 +792,7 @@
           {
             "loader": "file-loader",
             "options": {
-              "name": "videos/[hash:7].[ext]"
+              "name": "videos/[contenthash:7].[ext]"
             }
           }
         ]
