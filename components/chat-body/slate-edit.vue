@@ -1,20 +1,11 @@
 <template lang="pug">
-div
-  slate-editor(
-    :placeholder="placeholder"
-    :autoFocus="false"
-    :value="data"
-    :onChange="change_bare"
-    :onPaste="paste_bare"
-
-    :renderBlock="render_block"
-    :renderInline="render_inline"
-
-    :renderMark="render_mark"
-    :renderDecoration="render_decoration"
-    :renderAnnotation="render_annotation"
-  )
-  div.form.toolbar(:class="handle")
+slate-editor(
+  :id="id"
+  :editor="editor"
+  :placeholder="placeholder"
+  @change="change"
+)
+  div.form.toolbar
     hr.footnote
     button(@click="submit" :class="{ ban, warn }")
       i.mdi(:class="mark")
@@ -31,100 +22,484 @@ div
       label(:class="type" v-for="[type, label, call] in fixes" @click="call") {{ label }}
 </template>
 <script lang="coffee">
-Html = require 'slate-html-serializer'
-{ Value } = require "slate"
+{ Editor, Node, Text, Transforms, createEditor } = require "slate"
+{ Slate, Editable, withReact } = require "slate-react"
+{ withHistory } = require 'slate-history'
 
-{ Editor } = require "slate-react"
 { ReactInVue } = require "vuera"
-React = require 'react'
 
-if window?
-  Html = Html.default
-
-element = ( type, attrs, children )->
-  switch type
-    when undefined
-      undefined
-    when 'HR', 'BR' #, 'IMG', 'AUDIO'
-      React.createElement type.toLowerCase(), attrs
-    else
-      React.createElement type.toLowerCase(), attrs, children
-
-html = new Html
-  defaultBlock: 'p'
-  rules: [
-    deserialize: (el, next)->
-      type = el.tagName
-      data = {}
-      if el.attributes
-        for { name, value }, idx in el.attributes
-          switch name
-            when 'class'
-              data.className = value
-            else
-              data[name] = value
-
-      switch el.nodeName
-        when '#text', 'BR'
-          undefined
-
-        when 'HR'
-          { object: 'block', type, data }
-
-        # when 'IMG', 'AUDIO'
-        #   { object: 'inline', type, data }
-
-        when 'BLOCKQUOTE', 'ASIDE', 'P',  'DL', 'DT', 'DD',  'UL', 'OL', 'LI',  'H1', 'H2', 'H3', 'H4', 'H5', 'H6'
-          nodes = next el.childNodes
-          { object: 'block', type, data, nodes }
-
-        when 'A'
-          nodes = next el.childNodes
-          { object: 'inline', type, data, nodes }
-
-        when 'ABBR', 'LABEL', 'SUP', 'SUB', 'SAMP', 'CODE', 'KBD', 'VAR', 'RUBY', 'RTC', 'RT', 'RP'
-          nodes = next el.childNodes
-          { object: 'inline', type, data, nodes }
-
-        when 'MARK', 'STRONG', 'DEL', 'INS', 'EM', 'I', 'B', 'S', 'U'
-          nodes = next el.childNodes
-          { object: 'mark', type, data, nodes }
-
-        else
-          console.warn el, el.tagName, el.nodeName, el.class, el.nodeValue, el.dataset
-          undefined
-
-    serialize: ({ object, type, data, nodes }, children)->
-      attrs = {}
-      if data
-        for [key, val] in [...data]
-          attrs[key] = val
-
-      element type, attrs, children
-  ]
-
-_ = require 'lodash'
 { localStorage } = require "vue-petit-store"
+
+isHotkey = require 'is-hotkey'
+React = require 'react'
+escapeHtml = require 'escape-html'
+_ = require 'lodash'
 
 random = require "~/app/plugins/random"
 
-invoke =
-  kana: require "~/app/plugins/trix-kana"
-  hr: (editor, mode, range, text)->
-    hr = new Trix.Attachment
-      content: """<hr class="#{mode}">"""
-      contentType: "block"
-    editor.insertAttachment hr
+if window?
+  isHotkey = isHotkey.default
+
+Render = (h, type, attrs, children)->
+  switch type
+    when null, undefined
+      children
+    when 'P'
+      <p {...attrs}>{children}</p>
+    when 'TABLE'
+      <div class="c">
+        <hr class="stripe" />
+        <table class="r"><tbody {...attrs}>{children}</tbody></table>
+      </div>
+    else
+      h type.toLowerCase(), attrs, children
+      # throw new Error "#{type}#{children}"
+
+RenderText = (type, children)->
+  switch type
+    when 'LI'
+      "・#{children}\n"
+    when 'RT','RP'
+      ""
+    when 'P','TR','BLOCKQUOTE','H4', 'TABLE'
+      children + "\n"
+    else
+      children
+
+HOTKEYS =
+  'mod+b': 'STRONG'
+  'mod+i': 'EM'
+  'mod+u': 'U'
+  'mod+`': 'CODE'
+MARK_TAGS = [ 'ABBR', 'LABEL', 'SUP', 'SUB', 'SAMP', 'CODE', 'KBD', 'VAR', 'MARK', 'STRONG', 'DEL', 'INS', 'EM', 'I', 'B', 'S', 'U' ]
+LEAF_TAGS = [
+  ...MARK_TAGS
+  'A'
+  'RUBY', 'RTC', 'RT', 'RP'
+]
+NODE_TAGS = [
+  'BLOCKQUOTE', 'ASIDE', 'P'
+  'UL', 'OL', 'LI'
+  'H1', 'H2', 'H3', 'H4', 'H5', 'H6'
+  'HR', 'BR'
+  'TABLE', 'TBODY','TR', 'TH', 'TD'
+  'DL', 'DT', 'DD'
+  'IMG'
+  'AUDIO'
+]
+ELEMENT_TAGS = NODE_TAGS
+
+TEXT =
+  parse: (text)->
+    text
+    .split "\n"
+    .map (text)->
+      { text }
+
+  stringify: (node)->
+    if Text.isText node
+      return node.text
+    
+    text = node.children.map (n)=>
+      TEXT.stringify n
+    .join("")
+
+    RenderText node.type, text
+
+HTML =
+  parse: (html)->
+    parsed = new DOMParser().parseFromString html, 'text/html'
+    parsed.body
+
+  stringify: (node)->
+    if Text.isText node
+      tags =
+        for key in LEAF_TAGS when node[key]
+          key
+
+      children = []
+      Deco node.text, ///(rich)///u, (text, is_match, last, next)->
+        text = escapeHtml text
+        if is_match
+          text = Render toTAG, 'MARK', {}, text
+        for key in tags
+          text = Render toTAG, key, {}, text
+        children.push text
+      return children.join("")
+    
+    text = node.children.map (n)=>
+      HTML.stringify n
+    .join("")
+
+    Render toTAG, node.type, {}, text
+
+toTAG = (tag, o, children)->
+  attrs = []
+  if o?.class
+    attrs.push """ class="#{o.class}"
+    """
+  if o?.attrs
+    for k,v of o.attrs when k and v
+      attrs.push """ #{escapeHtml k}="#{escapeHtml v}"
+      """
+
+  attrs = attrs.join ""
+  if children
+    "<#{tag}#{attrs}>#{children}</#{tag}#{attrs}>"
+  else
+    "<#{tag}#{attrs}/>"
+
+toReact = (tag, o, children)->
+  if o.className = o.class
+    delete o.class
+  React.createElement tag, o, children
+
+Deco = (text, search, cb)->
+  offset = 0
+  for part, i in text.split search
+    cb part, i & 1, offset, offset + part.length
+    offset += part.length
+
+withHtml = (editor)->
+  { insertData, isInline, isVoid } = editor
+  editor.isInline = (el)-> ['RUBY','RTC','RT','RP','A'].includes el.type
+  # editor.isVoid = (el)-> ['HR','IMG'].includes el.type
+  editor.insertData = (data)->
+    if html = data.getData 'text/html'
+      Transforms.insertFragment editor, HTML.parse html
+      return
+    insertData data
+  editor
+
+class SlateEditor extends React.Component
+  constructor: (props)->
+    super props
+    console.info props
+    { id } = props
+    json = window.localStorage[id]
+    value =
+      if json
+        JSON.parse json
+        window.localStorage[id] = JSON.stringify initialValue
+        initialValue
+      else
+        initialValue
+
+    @state = { value }
+    @ref = React.createRef()
+    @change()
+
+    @onChange = @onChange.bind @
+    @onKeyDown = @onKeyDown.bind @
+
+    @decorate = @decorate.bind @
+    @renderLeaf = @renderLeaf.bind @
+    @renderElement = @renderElement.bind @
+
+  componentDidMount: ->
+    console.info "did Mount"
+  componentDidUpdate: (props)->
+    console.info "did Update"
+  componentWillUnmount: ->
+    console.info "will Unmount"
+
+  onChange: (value)->
+    @setState { value }
+    @change()
+
+  change: _.debounce ->
+    @props.change @state.value, @cursor(), @size()
+  , 300
+
+  rect: ->
+    o = window.getSelection()
+    unless o.focusNode
+      return {}
+    rects = o.getRangeAt(0)?.getClientRects()
+
+    top = Math.min ...( o.top for o in rects )
+    left = Math.min ...( o.left for o in rects )
+    right = Math.max ...( o.right for o in rects )
+    bottom = Math.max ...( o.bottom for o in rects )
+
+    ###
+    top -= base.top
+    left -= base.left
+    right -= base.left
+    bottom -= base.top
+    ###
+
+    width = right - left
+    height = bottom - top
+    { top, left, bottom, right, width, height }
+
+
+  size: ->
+    text = TEXT.stringify
+      children: @state.value
+    [ text.split(/\n/).length
+      text.split(/[\!\?.,\[\]\{\}！？、。．「」『』【】［］〔〕｛｝]+\s*|\s+/).length - 1
+      text.length - 1
+    ]
+
+  cursor: ->
+    rect = @rect()
+    nodes = {}
+    [m] = Editor.nodes @props.editor,
+      match: (n)=>
+        if n.type
+          nodes[n.type] = true
+        false
+    marks = Editor.marks @props.editor
+    { nodes, marks, rect }
+
+  decorate: ([node, path])->
+    ranges = []
+    if Text.isText node
+      Deco node.text, ///(rich)///u, (text, is_match, last, next)=>
+        if is_match
+          ranges.push
+            anchor: { path, offset: last }
+            focus: { path, offset: next }
+            MARK: true
+    ranges
+
+  onKeyDown: (e)->
+    for hotkey, format of HOTKEYS
+      if isHotkey hotkey, e
+        e.preventDefault()
+        marks = Editor.marks @editor
+        if marks?[format] == true
+          Editor.removeMark @editor, format
+        else
+          Editor.addMark @editor, format, true
+
+  renderElement: ({ element, attributes, children })->
+    { type, attrs } = element
+    # console.info "elem", { type, className, attrs, attributes }
+    Object.assign attributes, attrs
+    Render toReact, type, attributes, children
+
+  renderLeaf: ({ leaf, attributes, children })->
+    { parent: { type } } = children.props
+    # console.info "leaf", { attributes, children, leaf, type }
+    # leaf.text
+    tags =
+      for key in LEAF_TAGS when leaf[key]
+        key
+    last = tags.pop() || 'SPAN'
+    for key in tags
+      children = Render toReact, key, {}, children
+    Render toReact, last, attributes, children
+
+  render: ->
+    { id
+      editor
+      placeholder
+      children
+    } = @props
+    { value
+    } = @state
+    key = id
+    readOnly = false
+
+    h = React.createElement
+    h Slate, {
+      editor
+      value
+      placeholder
+      @onChange
+    }, [
+      h Editable, {
+        key
+        readOnly
+        @decorate
+        @renderLeaf
+        @renderElement
+        @onKeyDown
+      }
+      children
+    ]
+
+initialValue = [{ type: 'P', children: [{ text: ''}]}]
+initialValue = [
+  {
+    type: 'P',
+    children: [
+      { text: 'This is editable ' },
+      { text: 'rich', STRONG: true },
+      { text: ' text, ' },
+      { text: 'much', EM: true },
+      { text: ' better than a ' },
+      { text: '<textarea>', CODE: true },
+      { text: '!' },
+    ],
+  },
+  {
+    type: 'UL',
+    children: [
+      {
+        type: 'LI'
+        children: [
+          {
+            type: 'P'
+            children: [
+              { text: "りすとびゅー"}
+            ]
+          }
+          {
+            type: 'OL'
+            children: [
+              {
+                type: 'LI'
+                children: [
+                  { text: "りすとびゅー"}
+                ]
+              }
+            ]
+          }
+        ]
+      }
+      {
+        type: 'LI',
+        children: [
+          type: 'RUBY',
+          attrs:
+            ruby: 'richふりがな'
+          children: [
+            { text: "ここを"}
+            {
+              type: 'RT',
+              children: [
+                { text: "richふりがな"}
+              ]
+            }
+          ]
+        ]
+      }
+    ]
+  }
+  {
+    type: 'P',
+    children: [
+      { text: "Since it's rich text, you can do things like turn a selection of text "}
+      { text: 'bold', STRONG: true }
+      { text: ', or add a semantically rendered block quote in the middle of the page, like this:'}
+    ],
+  },
+  {
+    type: 'BLOCKQUOTE',
+    children: [{ text: 'A wise quote.' }],
+  },
+  {
+    type: 'H4',
+    children: [{ text: 'Try it out for yourself!' }],
+  },
+  {
+    type: 'TABLE',
+    children: [
+          {
+            type: 'TR',
+            children: [
+              {
+                type: 'TH',
+                children: [{ text: '' }],
+              },
+              {
+                type: 'TH',
+                children: [{ text: 'Human', STRONG: true }],
+              },
+              {
+                type: 'TH',
+                children: [{ text: 'Dog', STRONG: true }],
+              },
+              {
+                type: 'TH',
+                children: [{ text: 'Cat', STRONG: true }],
+              },
+            ],
+          },
+          {
+            type: 'TR',
+            children: [
+              {
+                type: 'TH',
+                children: [{ text: '# of Feet', STRONG: true }],
+              },
+              {
+                type: 'TD',
+                children: [{ text: '2' }],
+              },
+              {
+                type: 'TD',
+                children: [{ text: '4' }],
+              },
+              {
+                type: 'TD',
+                children: [{ text: '4' }],
+              },
+            ],
+          },
+          {
+            type: 'TR',
+            children: [
+              {
+                type: 'TH',
+                children: [{ text: '# of Lives', STRONG: true }],
+              },
+              {
+                type: 'TD',
+                children: [{ text: '1' }],
+              },
+              {
+                type: 'TD',
+                children: [{ text: '1' }],
+              },
+              {
+                type: 'TD',
+                children: [
+                  {
+                    type: 'P',
+                    children: [
+                      { text: "rich text, "}
+                      { text: 'bold', STRONG: true }
+                    ],
+                  },
+                  {
+                    type: 'P',
+                    children: [
+                      { text: "rich text, "}
+                      { text: 'em', EM: true }
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+    ],
+  },
+]
+
+serialize = (node)->
+  if Text.isText node
+    return escapeHtml node.text
+
+  children = node.children
+    .map (n)=> serialize n
+    .join('')
+  { type, data } = node
+  "<#{type} #{data}>#{children}</#{type}>"
 
 editor = require './editor'
 
 module.exports = editor
   components:
-    'slate-editor': ReactInVue Editor
+    'slate-editor': ReactInVue SlateEditor
   mixins: []
 
   data: ->
-    data: html.deserialize ""
+    cursor_style: {}
+    cursor: {}
     attrs:
       random: []
     fixes: []
@@ -143,6 +518,9 @@ module.exports = editor
       default: '入力はこちらに。'
 
   computed:
+    editor: ->
+      withHtml withHistory withReact createEditor()
+
     is_ban_internal: ->
       for [type] in @fixes
         return true if "ban" == type
@@ -156,49 +534,9 @@ module.exports = editor
     meta: ->
       { @attrs, @size }
 
-  mounted: ->
-    if @value
-      @data = html.deserialize @value
-    else
-      @restore()
-    @change()
-
   beforeDestroy: ->
 
   methods:
-    render_ref: (editor)->
-      console.log { editor }
-
-    render_block: ({ isFocused, isSelected, readOnly, parent, node, attributes, children }, @editor, next)->
-      for [key, val] in [...node.data]
-        attributes[key] = val
-      # console.log "BLOCK", node.type, children, {isFocused, isSelected, readOnly, parent}
-      element node.type, attributes, children
-
-    render_inline: ({ isFocused, isSelected, readOnly, parent, node, attributes, children }, @editor, next)->
-      for [key, val] in [...node.data]
-        attributes[key] = val
-      # console.log "INLINE", node.type, children, {isFocused, isSelected, readOnly, parent}
-      element node.type, attributes, children
-
-    render_mark: ({ mark, marks, attributes, children, offset, text }, @editor, next)->
-      for [key, val] in [...mark.data]
-        attributes[key] = val
-      console.log "MARK", mark.type, marks, children, offset, text
-      element mark.type, attributes, children
-
-    render_decoration: ({ decoration, marks, attributes, children, offset, text }, @editor, next)->
-      console.log "DECORATION", decoration, children, offset, text
-      next()
-
-    render_annotation: ({ annotation, marks, attributes, children, offset, text }, @editor, next)->
-      console.log "ANNOTATION", annotation, children, offset, text
-      next()
-
-    restore: (backup = window.localStorage[@id])->
-      return unless backup
-      @data = Value.fromJSON backup
-
     action_invoke: (e)->
       { actionName } = e
       [..., type, mode] = actionName.split("-")
@@ -207,23 +545,15 @@ module.exports = editor
       str = @editor.getDocument().getStringAtRange range
       invoke[type] @editor, mode, range, str
 
-    change_bare: ({ operations, value })->
-      @data = value
-      # @$emit "input", html.serialize value
-      @change()
+    change: (value, @cursor, @size)->
+      { top, left, width, height } = @cursor.rect
+      top = top + "px"
+      left = left + "px"
+      @cursor_style = { position: 'absolute', borderWidth: '2px', borderColor: 'red', top, left, width: "100px", height: "100px" }
 
-    paste_bare: (e)->
-      console.log e, arguments
-
-    change: _.debounce ->
+      console.info value, @cursor, @cursor_style
+      return
       { fragment, selection, object, document, decorations, blocks } = @data
-
-      if document
-        @size = [
-          document.nodes.size
-          document.text.split(/[\!\?！？「」『』、。．.]+\s*|\s+/).length - 1
-          document.text.length - 1
-        ]
 
       @fixes = []
 
@@ -232,7 +562,7 @@ module.exports = editor
 
       for str in @attrs.random
         console.log str.match random.match
-        type = 
+        type =
           if str.match random.match
             "ok"
           else
@@ -257,10 +587,9 @@ module.exports = editor
         return ""
 
       if @id
-        window.localStorage[@id] = @data.toJSON()
-      @log.html = html.serialize @data
-      @$emit 'input', @log.html
-    , 300
+        window.localStorage[@id] = JSON.stringify @data
+      # @log.html = serialize @data
+      # @$emit 'input', @log.html
 
     focus: (e)->
       range = @editor.getSelectedRange()
@@ -270,12 +599,15 @@ module.exports = editor
       @$emit 'selection', null
 
   watch:
+    'cursor.marks.STRONG': (n,o)->
+      console.info 'cursor-marks.STRONG', JSON.stringify n
+    'cursor.nodes.P': (n,o)->
+      console.info 'cursor.nodes.P', JSON.stringify n
     value: _.debounce (newValue, oldValue)->
+      return
       return if @log.html == newValue
       console.log "force change.", { newValue, oldValue }
-      @data = html.deserialize @value
+      @data = deserialize @value
     , 500
-
 </script>
-<style lang="sass">
-</style>
+<style lang="sass"></style>

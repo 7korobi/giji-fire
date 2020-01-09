@@ -37,6 +37,8 @@
   body,
   b,
   th,
+  input,
+  button,
   textarea,
   [title]:after,
   [data-tooltip]:after,
@@ -49,6 +51,8 @@
   body,
   b,
   th,
+  input,
+  button,
   textarea,
   [title]:after,
   [data-tooltip]:after,
@@ -64,9 +68,14 @@ sub
   font-variant-position: sub
   font-feature-settings: "subs"
 
-body
+body,
+input,
+button,
+select,
+textarea,
   line-height: 1.5em
   font-size: 1.0rem
+
 
 .text
   img.mark
@@ -123,11 +132,42 @@ table
   border-spacing: 0.15em
 
 input[type=number],
-.mini,
-  width: 3em
+.w1,
+  max-width: 3em
+  width: 99%
 
-input[type=time]
-  width: 6em
+input[type=time],
+.w2
+  max-width: 6em
+  width: 99%
+
+.w3
+  max-width: 9em
+  width: 99%
+
+.w4
+  max-width: 12em
+  width: 99%
+
+.w5
+  max-width: 15em
+  width: 99%
+
+.w6
+  max-width: 18em
+  width: 99%
+
+.w7
+  max-width: 21em
+  width: 99%
+
+.w8
+  max-width: 24em
+  width: 99%
+
+.w9
+  max-width: 27em
+  width: 99%
 
 input[type=checkbox],
 input[type=radio],

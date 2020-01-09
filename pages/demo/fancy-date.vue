@@ -84,7 +84,7 @@ div
             ruby(:data-ruby="Ar") {{ Ao }}日
         tr
           td.r.form(colspan="7")
-            input(v-model="data[2]" size="60")
+            input.w9(v-model="data[2]")
         tr
           td.r(colspan="7") 時間:分:秒
         tr
@@ -96,13 +96,18 @@ div
         tr
           th 書式
       tbody
-        tr(v-for="c in calendars")
+        tr(v-for="data in calendars")
           td
-            input(v-model="c[2]" size="35")
+            input.w9(v-model="data[2]")
 
   c-report(handle="footer" deco="center")
     bread-crumb
 </template>
+<style lang="sass" scoped>
+.form
+  white-space: nowrap
+
+</style>
 <script lang="coffee">
 { Tempo, FancyDate } = require 'fancy-date'
 window.FancyDate = FancyDate
@@ -131,11 +136,11 @@ module.exports =
 
   methods:
     back: (c, diff)->
-      @since += c.back_msec @current_at, diff
+      @since += c.back_msec @show_at, diff
       console.warn { c, diff }
 
     succ: (c, diff)->
-      @since += c.succ_msec @current_at, diff
+      @since += c.succ_msec @show_at, diff
       console.warn { c, diff }
 
     reset: ->

@@ -94,13 +94,22 @@ hr.footnote:after
 
 hr.blank,
 hr.stripe,
+  border: none
   &::before,
   &::after,
     border: none
 
-hr.blank,
-hr.stripe,
-  border: none
+
+hr.section,
+  border-style: solid none solid none
+  &::before,
+    border: none
+  &::after,
+    content: '§'
+    padding: 0 1ex
+    top:      -2ex
+    position: relative
+    border: none
 
 hr.invisible_hr
   display: none
