@@ -5,7 +5,7 @@ slate-editor(
   :placeholder="placeholder"
   @change="change"
 )
-  div.form.toolbar
+  .form
     hr.footnote
     button(@click="submit" :class="{ ban, warn }")
       i.mdi(:class="mark")
@@ -17,13 +17,18 @@ slate-editor(
         | {{lines}}/
         sub {{maxRow}}行
     slot
-    a.btn(@click="" :class="") aaa
-    p
-      label(:class="type" v-for="[type, label, call] in fixes" @click="call") {{ label }}
+    span(v-if="cursor.is_range" :title="cursor.text")
+      a.btn(@click="unicode('full')") あ゙
+      a.btn(@click="unicode('half')") い゚
+      a.btn(@click="unicode('none')") あ
+      a.btn(@click="unicode('invert')") あア
+
+  p
+    label(:class="type" v-for="[type, label, call] in fixes" @click="call") {{ label }}
 </template>
 <script lang="coffee">
-{ Editor, Node, Text, Transforms, createEditor } = require "slate"
-{ Slate, Editable, withReact } = require "slate-react"
+{ Editor, Node, Text, Range, Transforms, createEditor } = require "slate"
+{ Slate, Editable, withReact, ReactEditor } = require "slate-react"
 { withHistory } = require 'slate-history'
 
 { ReactInVue } = require "vuera"
@@ -36,6 +41,7 @@ escapeHtml = require 'escape-html'
 _ = require 'lodash'
 
 random = require "~/app/plugins/random"
+unicode = require '~/app/plugins/unicode'
 
 if window?
   isHotkey = isHotkey.default
@@ -160,17 +166,6 @@ Deco = (text, search, cb)->
     cb part, i & 1, offset, offset + part.length
     offset += part.length
 
-withHtml = (editor)->
-  { insertData, isInline, isVoid } = editor
-  editor.isInline = (el)-> ['RUBY','RTC','RT','RP','A'].includes el.type
-  # editor.isVoid = (el)-> ['HR','IMG'].includes el.type
-  editor.insertData = (data)->
-    if html = data.getData 'text/html'
-      Transforms.insertFragment editor, HTML.parse html
-      return
-    insertData data
-  editor
-
 class SlateEditor extends React.Component
   constructor: (props)->
     super props
@@ -211,29 +206,6 @@ class SlateEditor extends React.Component
     @props.change @state.value, @cursor(), @size()
   , 300
 
-  rect: ->
-    o = window.getSelection()
-    unless o.focusNode
-      return {}
-    rects = o.getRangeAt(0)?.getClientRects()
-
-    top = Math.min ...( o.top for o in rects )
-    left = Math.min ...( o.left for o in rects )
-    right = Math.max ...( o.right for o in rects )
-    bottom = Math.max ...( o.bottom for o in rects )
-
-    ###
-    top -= base.top
-    left -= base.left
-    right -= base.left
-    bottom -= base.top
-    ###
-
-    width = right - left
-    height = bottom - top
-    { top, left, bottom, right, width, height }
-
-
   size: ->
     text = TEXT.stringify
       children: @state.value
@@ -243,7 +215,6 @@ class SlateEditor extends React.Component
     ]
 
   cursor: ->
-    rect = @rect()
     nodes = {}
     [m] = Editor.nodes @props.editor,
       match: (n)=>
@@ -251,17 +222,24 @@ class SlateEditor extends React.Component
           nodes[n.type] = true
         false
     marks = Editor.marks @props.editor
-    { nodes, marks, rect }
+
+    { selection } = @props.editor
+    if selection
+      is_collapse = Range.isCollapsed selection
+      is_range = ! is_collapse
+      text = Editor.string @props.editor, selection
+
+    { nodes, marks, text, is_collapse, is_range }
 
   decorate: ([node, path])->
     ranges = []
     if Text.isText node
-      Deco node.text, ///(rich)///u, (text, is_match, last, next)=>
+      Deco node.text, ///((?:ftp|https?):\/\/(?:www\.|(?!www))[^\s\.]+\.[^\s]{2,}|www\.[^\s]+\.[^\s]{2,})///u, (text, is_match, last, next)=>
         if is_match
           ranges.push
             anchor: { path, offset: last }
             focus: { path, offset: next }
-            MARK: true
+            ABBR: true
     ranges
 
   onKeyDown: (e)->
@@ -304,20 +282,22 @@ class SlateEditor extends React.Component
     readOnly = false
 
     h = React.createElement
-    h Slate, {
-      editor
-      value
-      placeholder
-      @onChange
-    }, [
-      h Editable, {
-        key
-        readOnly
-        @decorate
-        @renderLeaf
-        @renderElement
-        @onKeyDown
-      }
+    h 'div', {}, [
+      h Slate, {
+        editor
+        value
+        placeholder
+        @onChange
+      }, [
+        h Editable, {
+          key
+          readOnly
+          @decorate
+          @renderLeaf
+          @renderElement
+          @onKeyDown
+        }
+      ]
       children
     ]
 
@@ -498,7 +478,6 @@ module.exports = editor
   mixins: []
 
   data: ->
-    cursor_style: {}
     cursor: {}
     attrs:
       random: []
@@ -519,7 +498,30 @@ module.exports = editor
 
   computed:
     editor: ->
-      withHtml withHistory withReact createEditor()
+      editor = withHistory withReact createEditor()
+      { insertText, insertData, deleteBackward, isInline, isVoid, normalizeNode } = editor
+
+      editor.isInline = (el)-> ['RUBY','RTC','RT','RP','A'].includes el.type
+      editor.isVoid = (el)-> ['HR','IMG'].includes el.type
+
+      editor.normalizeNode = ([node, path])->
+        console.warn "normalize", node, path
+        normalizeNode [node, path]
+
+      editor.insertData = (data)->
+        if html = data.getData 'text/html'
+          Transforms.insertFragment editor, HTML.parse html
+          return
+        insertData data
+
+      editor.insertText = (text)->
+        console.warn "insert", text
+        insertText text
+
+      editor.deleteBackward = (...args)->
+        console.warn "delete", args
+        deleteBackward ...args
+      editor
 
     is_ban_internal: ->
       for [type] in @fixes
@@ -545,13 +547,21 @@ module.exports = editor
       str = @editor.getDocument().getStringAtRange range
       invoke[type] @editor, mode, range, str
 
-    change: (value, @cursor, @size)->
-      { top, left, width, height } = @cursor.rect
-      top = top + "px"
-      left = left + "px"
-      @cursor_style = { position: 'absolute', borderWidth: '2px', borderColor: 'red', top, left, width: "100px", height: "100px" }
+    unicode: (mode)->
+      { text } = @cursor
+      target = unicode.replace mode, text
 
-      console.info value, @cursor, @cursor_style
+      { anchor, focus } = @editor.selection
+      focus =
+        path: focus.path
+        offset: focus.offset - text.length + target.length
+
+      Transforms.delete @editor
+      Transforms.insertText @editor, target
+      Transforms.select @editor, { anchor, focus }
+
+    change: (value, @cursor, @size)->
+      console.info value, @cursor
       return
       { fragment, selection, object, document, decorations, blocks } = @data
 
@@ -568,23 +578,6 @@ module.exports = editor
           else
             "warn"
         @fixes.push [type, str, (->)]
-
-      "".replace /(ftp|https?):\/\/(?:www\.|(?!www))[^\s\.]+\.[^\s]{2,}|www\.[^\s]+\.[^\s]{2,}/ig, (url, protocol, head, src)=>
-        console.log "uri: ", head, tail, protocol, url
-        return src unless protocol
-
-        tail  = head +     url.length
-        tail2 = head + 1 + protocol.length
-        result_range = [head + 1, tail2]
-        console.log head, tail, tail2, " #{protocol} ", { href: url }
-        @fixes.push ["ban", url, ->
-          editor.recordUndoEntry "Auto Link"
-          editor.setSelectedRange [head, tail]
-          editor.insertString " #{protocol} "
-          editor.setSelectedRange result_range
-          editor.activateAttribute 'href', url
-        ]
-        return ""
 
       if @id
         window.localStorage[@id] = JSON.stringify @data
