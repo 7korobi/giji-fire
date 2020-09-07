@@ -29,6 +29,13 @@ const loaders = {
       },
     }]
   },
+  ts: {
+    test: /\.ts$/,
+    loader: 'ts-loader',
+    options: {
+      transpileOnly: true
+    }
+  },
   coffee: {
     test: /\.coffee$/,
     loader: 'coffee-loader',
@@ -39,7 +46,12 @@ const loaders = {
   },
   yml: {
     test: /\.yml$/,
-    loader: 'json-loader!yaml-loader'
+    type: 'json',
+    loader: 'yaml-loader',
+    options: {
+      merge: true,
+      prettyErrors: true,
+    }
   },
   md: {
     test: /\.md$/,
@@ -64,16 +76,16 @@ module.exports = function (options) {
   // Add .coffee extension for store, middleware and more
   // Extend build
 
-  this.nuxt.options.extensions.push('coffee', 'yml')
+  this.nuxt.options.extensions.push('ts', 'coffee', 'yml')
   this.nuxt.hook('build:before', (builder)=>{
-    builder.supportedExtensions.push('coffee','yml')
+    builder.supportedExtensions.push("ts", "coffee", "yml");
   })
 
   this.extendBuild(config => {
     const babel = config.module.rules.find( rule => String(rule.test) == '/\\.jsx?$/i' );
     console.log(babel);
 
-    config.resolve.extensions.push('.coffee', '.yml')
+    config.resolve.extensions.push("ts", ".coffee", ".yml");
     for (const key in loaders) {
       const loader = loaders[key]
       config.module.rules.push(loader)

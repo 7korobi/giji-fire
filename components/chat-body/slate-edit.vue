@@ -22,6 +22,34 @@ slate-editor(
       a.btn(@click="unicode('half')") い゚
       a.btn(@click="unicode('none')") あ
       a.btn(@click="unicode('invert')") あア
+      | &nbsp;
+      a.btn(:class="cursor.marks.U ? ['active'] : []" @click="mark('U')")
+      a.btn(:class="cursor.marks.S ? ['active'] : []" @click="mark('S')")
+      a.btn(:class="cursor.marks.B ? ['active'] : []" @click="mark('B')")
+      a.btn(:class="cursor.marks.I ? ['active'] : []" @click="mark('I')")
+      a.btn(:class="cursor.marks.EM ? ['active'] : []" @click="mark('EM')")
+      a.btn(:class="cursor.marks.INS ? ['active'] : []" @click="mark('INS')")
+      a.btn(:class="cursor.marks.DEL ? ['active'] : []" @click="mark('DEL')")
+      a.btn(:class="cursor.marks.VAR ? ['active'] : []" @click="mark('VAR')")
+      a.btn(:class="cursor.marks.KBD ? ['active'] : []" @click="mark('KBD')")
+      a.btn(:class="cursor.marks.SUP ? ['active'] : []" @click="mark('SUP')")
+      a.btn(:class="cursor.marks.SUB ? ['active'] : []" @click="mark('DEL')")
+      a.btn(:class="cursor.marks.SAMP ? ['active'] : []" @click="mark('SAMP')")
+      a.btn(:class="cursor.marks.CODE ? ['active'] : []" @click="mark('CODE')")
+      a.btn(:class="cursor.marks.MARK ? ['active'] : []" @click="mark('MARK')")
+      a.btn(:class="cursor.marks.ABBR ? ['active'] : []" @click="mark('ABBR')")
+      a.btn(:class="cursor.marks.LABEL ? ['active'] : []" @click="mark('LABEL')")
+      a.btn(:class="cursor.marks.STRONG ? ['active'] : []" @click="mark('STRONG')")
+
+      select(@v-model="node")
+        option(value="P") 平文
+        option(value="H1") H1
+        option(value="H2") H2
+        option(value="H3") H3
+        option(value="H4") H4
+        option(value="H5") H5
+        option(value="H6") H6
+        option(value="BLOCKQUOTE") quote
 
   p
     label(:class="type" v-for="[type, label, call] in fixes" @click="call") {{ label }}
@@ -37,134 +65,25 @@ slate-editor(
 
 isHotkey = require 'is-hotkey'
 React = require 'react'
-escapeHtml = require 'escape-html'
 _ = require 'lodash'
 
+{ Deco, Render, HTML, TEXT, LEAF_TAGS, LIST_TAGS } = require './slate-logic'
 random = require "~/app/plugins/random"
 unicode = require '~/app/plugins/unicode'
 
 if window?
   isHotkey = isHotkey.default
 
-Render = (h, type, attrs, children)->
-  switch type
-    when null, undefined
-      children
-    when 'P'
-      <p {...attrs}>{children}</p>
-    when 'TABLE'
-      <div class="c">
-        <hr class="stripe" />
-        <table class="r"><tbody {...attrs}>{children}</tbody></table>
-      </div>
-    else
-      h type.toLowerCase(), attrs, children
-      # throw new Error "#{type}#{children}"
-
-RenderText = (type, children)->
-  switch type
-    when 'LI'
-      "・#{children}\n"
-    when 'RT','RP'
-      ""
-    when 'P','TR','BLOCKQUOTE','H4', 'TABLE'
-      children + "\n"
-    else
-      children
-
 HOTKEYS =
   'mod+b': 'STRONG'
   'mod+i': 'EM'
   'mod+u': 'U'
   'mod+`': 'CODE'
-MARK_TAGS = [ 'ABBR', 'LABEL', 'SUP', 'SUB', 'SAMP', 'CODE', 'KBD', 'VAR', 'MARK', 'STRONG', 'DEL', 'INS', 'EM', 'I', 'B', 'S', 'U' ]
-LEAF_TAGS = [
-  ...MARK_TAGS
-  'A'
-  'RUBY', 'RTC', 'RT', 'RP'
-]
-NODE_TAGS = [
-  'BLOCKQUOTE', 'ASIDE', 'P'
-  'UL', 'OL', 'LI'
-  'H1', 'H2', 'H3', 'H4', 'H5', 'H6'
-  'HR', 'BR'
-  'TABLE', 'TBODY','TR', 'TH', 'TD'
-  'DL', 'DT', 'DD'
-  'IMG'
-  'AUDIO'
-]
-ELEMENT_TAGS = NODE_TAGS
-
-TEXT =
-  parse: (text)->
-    text
-    .split "\n"
-    .map (text)->
-      { text }
-
-  stringify: (node)->
-    if Text.isText node
-      return node.text
-    
-    text = node.children.map (n)=>
-      TEXT.stringify n
-    .join("")
-
-    RenderText node.type, text
-
-HTML =
-  parse: (html)->
-    parsed = new DOMParser().parseFromString html, 'text/html'
-    parsed.body
-
-  stringify: (node)->
-    if Text.isText node
-      tags =
-        for key in LEAF_TAGS when node[key]
-          key
-
-      children = []
-      Deco node.text, ///(rich)///u, (text, is_match, last, next)->
-        text = escapeHtml text
-        if is_match
-          text = Render toTAG, 'MARK', {}, text
-        for key in tags
-          text = Render toTAG, key, {}, text
-        children.push text
-      return children.join("")
-    
-    text = node.children.map (n)=>
-      HTML.stringify n
-    .join("")
-
-    Render toTAG, node.type, {}, text
-
-toTAG = (tag, o, children)->
-  attrs = []
-  if o?.class
-    attrs.push """ class="#{o.class}"
-    """
-  if o?.attrs
-    for k,v of o.attrs when k and v
-      attrs.push """ #{escapeHtml k}="#{escapeHtml v}"
-      """
-
-  attrs = attrs.join ""
-  if children
-    "<#{tag}#{attrs}>#{children}</#{tag}#{attrs}>"
-  else
-    "<#{tag}#{attrs}/>"
 
 toReact = (tag, o, children)->
   if o.className = o.class
     delete o.class
   React.createElement tag, o, children
-
-Deco = (text, search, cb)->
-  offset = 0
-  for part, i in text.split search
-    cb part, i & 1, offset, offset + part.length
-    offset += part.length
 
 class SlateEditor extends React.Component
   constructor: (props)->
@@ -234,7 +153,7 @@ class SlateEditor extends React.Component
   decorate: ([node, path])->
     ranges = []
     if Text.isText node
-      Deco node.text, ///((?:ftp|https?):\/\/(?:www\.|(?!www))[^\s\.]+\.[^\s]{2,}|www\.[^\s]+\.[^\s]{2,})///u, (text, is_match, last, next)=>
+      Deco node.text, (text, is_match, last, next)=>
         if is_match
           ranges.push
             anchor: { path, offset: last }
@@ -535,17 +454,32 @@ module.exports = editor
 
     meta: ->
       { @attrs, @size }
-
+    
   beforeDestroy: ->
 
   methods:
-    action_invoke: (e)->
-      { actionName } = e
-      [..., type, mode] = actionName.split("-")
+    node: (type)->
+      is_list = LIST_TAGS.includes type
 
-      range = @editor.getSelectedRange()
-      str = @editor.getDocument().getStringAtRange range
-      invoke[type] @editor, mode, range, str
+      Transforms.unwrapNodes @editor,
+        match: (n)=> LIST_TAGS.includes n.type
+        split: true
+
+      Transforms.setNodes @editor,
+        type:
+          if is_list
+            'LI'
+          else
+            type
+
+      if is_list
+        Transforms.wrapNodes @editor, { type, children: [] }
+
+    mark: (type)->
+      if @cursor.marks[type]
+        Editor.removeMark @editor, type
+      else
+        Editor.addMark @editor, type, true
 
     unicode: (mode)->
       { text } = @cursor
@@ -562,8 +496,8 @@ module.exports = editor
 
     change: (value, @cursor, @size)->
       console.info value, @cursor
+      console.warn HTML.parse HTML.stringify @editor
       return
-      { fragment, selection, object, document, decorations, blocks } = @data
 
       @fixes = []
 
@@ -579,8 +513,6 @@ module.exports = editor
             "warn"
         @fixes.push [type, str, (->)]
 
-      if @id
-        window.localStorage[@id] = JSON.stringify @data
       # @log.html = serialize @data
       # @$emit 'input', @log.html
 

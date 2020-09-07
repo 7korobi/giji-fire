@@ -3623,6 +3623,30 @@
   - T_s_n
 
 #########################
+# 2020-07-05
+
+- _id: sf041
+  name: 地球
+  comment: 
+  order: 80041
+  tag_ids:
+  - stratos
+
+
+#########################
+# 2020-09-07
+
+- _id: t101
+  name: クツワダ
+  order: 30101
+  tag_ids:
+  - travel
+  - faith
+  - policism
+  - T_s_n
+
+
+#########################
 # xxxx-xx-xx update
 # 
 # でてきたアイデア

@@ -19,8 +19,13 @@ div
   c-post(handle="TSAY")
     | 簡易言語
     nuxt-link(to="/demo/sow") sow
+    | &nbsp;
     nuxt-link(to="/demo/trix") Trix
+    | &nbsp;
     nuxt-link(to="/demo/slate") Slate
+    | &nbsp;
+    nuxt-link(to="/demo/sow") SOW
+    | &nbsp;
   c-post(handle="TSAY")
     nuxt-link.button(to="/demo/oauth") OpenID
   c-post(handle="TSAY")

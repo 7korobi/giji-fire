@@ -15,6 +15,12 @@ babel =
     ]
   ]
 
+ts =
+  test: /\.ts$/
+  loader: 'ts-loader'
+  options:
+    transpileOnly: true
+
 coffee =
   test: /\.coffee$/
   loader: 'coffee-loader'
@@ -24,7 +30,11 @@ coffee =
 
 yml =
   test: /\.yml$/,
-  loader: 'json-loader!yaml-loader'
+  type: 'json'
+  loader: 'yaml-loader'
+  options:
+    merge: true
+    prettyErrors: true
 
 vue =
   test: /\.vue$/,
@@ -44,13 +54,14 @@ module.exports =
   devtool: 'source-map'
   module:
     rules: [
+      ts
       coffee
       yml
       vue
     ]
 
   resolve:
-    extensions: [ '.coffee', '.yml', '.js' ]
+    extensions: [ '.ts', '.coffee', '.yml', '.js' ]
     alias:
       '@': current
       '~': current

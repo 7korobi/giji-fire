@@ -14,7 +14,7 @@ require "./phase"
 require "./section"
 require "./chat"
 
-require "./sow"
+require "./sow.ts"
 
 require "./sheet"
 

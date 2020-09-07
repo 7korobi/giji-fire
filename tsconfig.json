@@ -1,0 +1,42 @@
+{
+  "compilerOptions": {
+    "target": "ES2018",
+    "module": "esnext",
+    "moduleResolution": "node",
+
+    "strict": true,
+    "allowJs": true,
+    "sourceMap": true,
+    "experimentalDecorators": true,
+
+    "noEmit": false,
+    "noImplicitAny": false, // TypeScriptでは型定義がない変数はany型になる(暗黙のany型)のでこれを禁止する
+    "esModuleInterop": false,
+    "allowSyntheticDefaultImports": false,
+    
+    "baseUrl": "./app",
+    "lib": [
+      "esnext",
+      "esnext.asynciterable",
+      "dom"
+    ],
+    "paths": {
+      "~/*": [
+        "./*"
+      ],
+      "@/*": [
+        "./*"
+      ]
+    },
+    "typeRoots": [
+      "/app/@types"
+    ],
+    "types": [
+      "@types/node",
+      "@nuxt/types"
+    ]
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}
