@@ -397,6 +397,18 @@ name:
   mark: 北海道
   comment: 40%住 北見市
   key: CHN
+- spell: 帰山
+  name: カエリヤマ
+  side: 姓
+  mark: 北海道
+  comment: 30%住 多 知内町
+  key: CHN
+- spell: 加我
+  name: カガ
+  side: 姓
+  mark: 北海道
+  comment: 70%住 多 函館市
+  key: CHN
 - spell: 可香
   name: カガ
   side: 姓
@@ -846,6 +858,18 @@ name:
   side: 姓
   mark: 北海道
   comment: 30%住 利尻町
+  key: CHN
+- spell: 笹森
+  name: ササモリ
+  side: 姓
+  mark: 北海道
+  comment: 30%住 多 札幌市
+  key: CHN
+- spell: 笹谷
+  name: ササヤ
+  side: 姓
+  mark: 北海道
+  comment: 30%住 多 函館市
   key: CHN
 - spell: 嵯城
   name: サジョウ
@@ -1675,6 +1699,12 @@ name:
   mark: 北海道
   comment: 50%住 知内町
   key: CHN
+- spell: 能登谷
+  name: ノトヤ
+  side: 姓
+  mark: 北海道
+  comment: 30%住 多 札幌市
+  key: CHN
 - spell: 野長瀬
   name: ノナガセ
   side: 姓
@@ -2233,6 +2263,42 @@ name:
   mark: 北海道
   comment: 50%住 札幌市
   key: CHN
+- spell: 相坂
+  name: アイサカ
+  side: 姓
+  mark: 青森
+  comment: 30%住 多 おいらせ町　
+  key: CHN
+- spell: 会津
+  name: アイヅ
+  side: 姓
+  mark: 青森
+  comment: 30%住 多 板柳町
+  key: CHN
+- spell: 相内
+  name: アイナイ
+  side: 姓
+  mark: 青森
+  comment: 50%住 多 今別町
+  key: CHN
+- spell: 相内
+  name: アイウチ
+  side: 姓
+  mark: 青森
+  comment: 50%住 多 今別町
+  key: CHN
+- spell: 赤平
+  name: アカヒラ
+  side: 姓
+  mark: 青森
+  comment: 40%住 多 青森市　
+  key: CHN
+- spell: 秋田谷
+  name: アキタヤ
+  side: 姓
+  mark: 青森
+  comment: 40%住 多 つがる市
+  key: CHN
 - spell: 秋戸
   name: アキト
   side: 姓
@@ -2274,6 +2340,18 @@ name:
   side: 姓
   mark: 青森
   comment: 40%住 大鰐町
+  key: CHN
+- spell: 阿保
+  name: アボ
+  side: 姓
+  mark: 青森
+  comment: 50%住 多 弘前市　
+  key: CHN
+- spell: 天内
+  name: アマナイ
+  side: 姓
+  mark: 青森
+  comment: 50%住 多 青森市
   key: CHN
 - spell: 荒内
   name: アラウチ
@@ -2395,6 +2473,12 @@ name:
   mark: 青森
   comment: 40%住 おいらせ町
   key: CHN
+- spell: 市沢
+  name: イチサワ
+  side: 姓
+  mark: 青森
+  comment: 40%住 多 八戸市
+  key: CHN
 - spell: 一戸
   name: イチノヘ
   side: 姓
@@ -2485,6 +2569,24 @@ name:
   mark: 青森
   comment: 40%住 七戸町
   key: CHN
+- spell: 蛯沢
+  name: エビサワ
+  side: 姓
+  mark: 青森
+  comment: 50%住 多 東北町
+  key: CHN
+- spell: 蝦名
+  name: エビナ
+  side: 姓
+  mark: 青森
+  comment: 50%住 多 青森市
+  key: CHN
+- spell: 蛯名
+  name: エビナ
+  side: 姓
+  mark: 青森
+  comment: 60%住 多 東北町
+  key: CHN
 - spell: 江利山
   name: エリヤマ
   side: 姓
@@ -2562,6 +2664,42 @@ name:
   side: 姓
   mark: 青森
   comment: 50%住 六戸町
+  key: CHN
+- spell: 奥崎
+  name: オクザキ
+  side: 姓
+  mark: 青森
+  comment: 50%住 多 青森市
+  key: CHN
+- spell: 奥瀬
+  name: オクセ
+  side: 姓
+  mark: 青森
+  comment: 50%住 多 鶴田町
+  key: CHN
+- spell: 小山内
+  name: オサナイ
+  side: 姓
+  mark: 青森
+  comment: 40%住 多 弘前市　
+  key: CHN
+- spell: 長内
+  name: オサナイ
+  side: 姓
+  mark: 青森
+  comment: 40%住 多 青森市　
+  key: CHN
+- spell: 長利
+  name: オサリ
+  side: 姓
+  mark: 青森
+  comment: 60%住 多 中泊町　
+  key: CHN
+- spell: 小田桐
+  name: オダギリ
+  side: 姓
+  mark: 青森
+  comment: 50%住 多 弘前市　
   key: CHN
 - spell: 乙供
   name: オットモ
@@ -2749,11 +2887,47 @@ name:
   mark: 青森
   comment: 60%住 八戸市
   key: CHN
+- spell: 唐牛
+  name: カロウジ
+  side: 姓
+  mark: 青森
+  comment: 50%住 多 青森市　
+  key: CHN
+- spell: 川守田
+  name: カワモリタ
+  side: 姓
+  mark: 青森
+  comment: 50%住 多 南部町　
+  key: CHN
+- spell: 河原木
+  name: カワラギ
+  side: 姓
+  mark: 青森
+  comment: 60%住 多 八戸市
+  key: CHN
 - spell: 北城
   name: キタジョウ
   side: 姓
   mark: 青森
   comment: 30%住 八戸市
+  key: CHN
+- spell: 木立
+  name: キダチ
+  side: 姓
+  mark: 青森
+  comment: 60%住 多 青森市
+  key: CHN
+- spell: 北向
+  name: キタムキ
+  side: 姓
+  mark: 青森
+  comment: 50%住 多 おいらせ町
+  key: CHN
+- spell: 木浪
+  name: キナミ
+  side: 姓
+  mark: 青森
+  comment: 40%住 多 青森市　
   key: CHN
 - spell: 木明
   name: キミョウ
@@ -2766,6 +2940,18 @@ name:
   side: 姓
   mark: 青森
   comment: 80%住 八戸市
+  key: CHN
+- spell: 櫛引
+  name: クシビキ
+  side: 姓
+  mark: 青森
+  comment: 40%住 多 青森市
+  key: CHN
+- spell: 楠美
+  name: クスミ
+  side: 姓
+  mark: 青森
+  comment: 50%住 多 青森市
   key: CHN
 - spell: 久保沢
   name: クボサワ
@@ -2820,6 +3006,18 @@ name:
   side: 姓
   mark: 青森
   comment: 60%住 深浦町
+  key: CHN
+- spell: 五戸
+  name: ゴノヘ
+  side: 姓
+  mark: 青森
+  comment: 70%住 多 八戸市
+  key: CHN
+- spell: 小比類巻
+  name: コヒルイマキ
+  side: 姓
+  mark: 青森
+  comment: 80%住 多 三沢市
   key: CHN
 - spell: 枋木
   name: コボノキ
@@ -2965,11 +3163,29 @@ name:
   mark: 青森
   comment: 70%住 八戸市
   key: CHN
+- spell: 七戸
+  name: シチノヘ
+  side: 姓
+  mark: 青森
+  comment: 40%住 多 深浦町　
+  key: CHN
+- spell: 四戸
+  name: シノヘ
+  side: 姓
+  mark: 青森
+  comment: 30%住 多 南部町　
+  key: CHN
 - spell: 嶋中
   name: シマナカ
   side: 姓
   mark: 青森
   comment: 30%住 青森市
+  key: CHN
+- spell: 島守
+  name: シマモリ
+  side: 姓
+  mark: 青森
+  comment: 70%住 多 八戸市
   key: CHN
 - spell: 嶋守
   name: シマモリ
@@ -3048,6 +3264,24 @@ name:
   side: 姓
   mark: 青森
   comment: 40%住 八戸市
+  key: CHN
+- spell: 白戸
+  name: シラト
+  side: 姓
+  mark: 青森
+  comment: 30%住 多 青森市　
+  key: CHN
+- spell: 白取
+  name: シラトリ
+  side: 姓
+  mark: 青森
+  comment: 50%住 多 青森市
+  key: CHN
+- spell: 神
+  name: ジン
+  side: 姓
+  mark: 青森
+  comment: 40%住 多 青森市
   key: CHN
 - spell: 杉野森
   name: スギノモリ
@@ -3211,6 +3445,18 @@ name:
   mark: 青森
   comment: 30%住 むつ市
   key: CHN
+- spell: 立崎
+  name: タチザキ
+  side: 姓
+  mark: 青森
+  comment: 40%住 多 十和田市
+  key: CHN
+- spell: 館田
+  name: タテダ
+  side: 姓
+  mark: 青森
+  comment: 50%住 多 青森市
+  key: CHN
 - spell: 舘田
   name: タテダ
   side: 姓
@@ -3223,11 +3469,29 @@ name:
   mark: 青森
   comment: 60%住 八戸市
   key: CHN
+- spell: 館山
+  name: タテヤマ
+  side: 姓
+  mark: 青森
+  comment: 40%住 多 弘前市　
+  key: CHN
+- spell: 舘山
+  name: タテヤマ
+  side: 姓
+  mark: 青森
+  comment: 30%住 多 青森市
+  key: CHN
 - spell: 田戸岡
   name: タドオカ
   side: 姓
   mark: 青森
   comment: 50%住 つがる市
+  key: CHN
+- spell: 田名部
+  name: タナブ
+  side: 姓
+  mark: 青森
+  comment: 50%住 多 八戸市
   key: CHN
 - spell: 田名辺
   name: タナベ
@@ -3259,6 +3523,18 @@ name:
   mark: 青森
   comment: 40%住 三戸町　
   key: CHN
+- spell: 丹代
+  name: タンダイ
+  side: 姓
+  mark: 青森
+  comment: 50%住 多 平川市　
+  key: CHN
+- spell: 丹藤
+  name: タンドウ
+  side: 姓
+  mark: 青森
+  comment: 40%住 多 弘前市
+  key: CHN
 - spell: 千代谷
   name: チヨヤ
   side: 姓
@@ -3289,6 +3565,24 @@ name:
   mark: 青森
   comment: 40%住 青森市　
   key: CHN
+- spell: 附田
+  name: ツクダ
+  side: 姓
+  mark: 青森
+  comment: 60%住 多 七戸町　
+  key: CHN
+- spell: 対馬
+  name: ツシマ
+  side: 姓
+  mark: 青森
+  comment: 50%住 多 弘前市　
+  key: CHN
+- spell: 對馬
+  name: ツシマ
+  side: 姓
+  mark: 青森
+  comment: 30%住 多 弘前市　
+  key: CHN
 - spell: 蔦林
   name: ツタバヤシ
   side: 姓
@@ -3312,6 +3606,12 @@ name:
   side: 姓
   mark: 青森
   comment: 30%住 野辺地町
+  key: CHN
+- spell: 坪
+  name: ツボ
+  side: 姓
+  mark: 青森
+  comment: 50%住 多 七戸町　
   key: CHN
 - spell: 出貝
   name: デガイ
@@ -3354,6 +3654,12 @@ name:
   side: 姓
   mark: 青森
   comment: 30%住 つがる市
+  key: CHN
+- spell: 伝法
+  name: デンポウ
+  side: 姓
+  mark: 青森
+  comment: 50%住 多 大間町
   key: CHN
 - spell: 伝法谷
   name: デンポウヤ
@@ -3445,6 +3751,12 @@ name:
   mark: 青森
   comment: 40%住 むつ市
   key: CHN
+- spell: 苫米地
+  name: トマベチ
+  side: 姓
+  mark: 青森
+  comment: 50%住 多 十和田市
+  key: CHN
 - spell: 百目木
   name: ドメキ
   side: 姓
@@ -3517,6 +3829,18 @@ name:
   mark: 青森
   comment: 30%住 八戸市　
   key: CHN
+- spell: 中野渡
+  name: ナカノワタリ
+  side: 姓
+  mark: 青森
+  comment: 70%住 多 十和田市
+  key: CHN
+- spell: 長谷地
+  name: ナガヤチ
+  side: 姓
+  mark: 青森
+  comment: 60%住 多 十和田市
+  key: CHN
 - spell: 中渡
   name: ナカワタリ
   side: 姓
@@ -3534,6 +3858,18 @@ name:
   side: 姓
   mark: 青森
   comment: 60%住 八戸市　
+  key: CHN
+- spell: 夏堀
+  name: ナツボリ
+  side: 姓
+  mark: 青森
+  comment: 50%住 多 南部町
+  key: CHN
+- spell: 奈良岡
+  name: ナラオカ
+  side: 姓
+  mark: 青森
+  comment: 60%住 多 弘前市
   key: CHN
 - spell: 楢館
   name: ナラダテ
@@ -3588,6 +3924,18 @@ name:
   side: 姓
   mark: 青森
   comment: 40%住 八戸市
+  key: CHN
+- spell: 二本柳
+  name: ニホンヤナギ
+  side: 姓
+  mark: 青森
+  comment: 30%住 多 むつ市
+  key: CHN
+- spell: 乳井
+  name: ニュウイ
+  side: 姓
+  mark: 青森
+  comment: 30%住 多 つがる市　
   key: CHN
 - spell: 仁和
   name: ニワ
@@ -3666,6 +4014,18 @@ name:
   side: 姓
   mark: 青森
   comment: 30%住 八戸市
+  key: CHN
+- spell: 野田頭
+  name: ノダガシラ
+  side: 姓
+  mark: 青森
+  comment: 60%住 多 東北町
+  key: CHN
+- spell: 野月
+  name: ノヅキ
+  side: 姓
+  mark: 青森
+  comment: 60%住 多 十和田市
   key: CHN
 - spell: 能渡
   name: ノト
@@ -3817,6 +4177,18 @@ name:
   mark: 青森
   comment: 60%住 八戸市
   key: CHN
+- spell: 吹越
+  name: フキコシ
+  side: 姓
+  mark: 青森
+  comment: 70%住 多 東北町
+  key: CHN
+- spell: 福士
+  name: フクシ
+  side: 姓
+  mark: 青森
+  comment: 40%住 多 青森市　
+  key: CHN
 - spell: 藤ケ森
   name: フジガモリ
   side: 姓
@@ -3828,6 +4200,18 @@ name:
   side: 姓
   mark: 青森
   comment: 80%住 おいらせ町
+  key: CHN
+- spell: 二ツ森
+  name: フタツモリ
+  side: 姓
+  mark: 青森
+  comment: 50%住 多 七戸町　
+  key: CHN
+- spell: 船水
+  name: フナミズ
+  side: 姓
+  mark: 青森
+  comment: 60%住 多 弘前市
   key: CHN
 - spell: 法量
   name: ホウリョウ
@@ -3907,6 +4291,12 @@ name:
   mark: 青森
   comment: 80%住 むつ市
   key: CHN
+- spell: 間山
+  name: マヤマ
+  side: 姓
+  mark: 青森
+  comment: 40%住 多 青森市
+  key: CHN
 - spell: 円子
   name: マルコ
   side: 姓
@@ -3931,6 +4321,18 @@ name:
   mark: 青森
   comment: 30%住 十和田市
   key: CHN
+- spell: 水梨
+  name: ミズナシ
+  side: 姓
+  mark: 青森
+  comment: 50%住 多 三戸町
+  key: CHN
+- spell: 溝江
+  name: ミゾエ
+  side: 姓
+  mark: 青森
+  comment: 30%住 多 青森市
+  key: CHN
 - spell: 道合
   name: ミチアイ
   side: 姓
@@ -3943,11 +4345,35 @@ name:
   mark: 青森
   comment: 60%住 八戸市
   key: CHN
+- spell: 三津谷
+  name: ミツヤ
+  side: 姓
+  mark: 青森
+  comment: 50%住 多 平内町
+  key: CHN
+- spell: 宮古
+  name: ミヤコ
+  side: 姓
+  mark: 青森
+  comment: 40%住 多 三沢市
+  key: CHN
+- spell: 向中野
+  name: ムカイナカノ
+  side: 姓
+  mark: 青森
+  comment: 50%住 多 七戸町
+  key: CHN
 - spell: 向谷地
   name: ムカイヤチ
   side: 姓
   mark: 青森
   comment: 80%住 八戸市
+  key: CHN
+- spell: 棟方
+  name: ムナカタ
+  side: 姓
+  mark: 青森
+  comment: 50%住 多 弘前市　
   key: CHN
 - spell: 村館
   name: ムラダテ
@@ -4014,6 +4440,18 @@ name:
   side: 姓
   mark: 青森
   comment: 60%住 八戸市
+  key: CHN
+- spell: 雪田
+  name: ユキタ
+  side: 姓
+  mark: 青森
+  comment: 50%住 多 青森市
+  key: CHN
+- spell: 横浜
+  name: ヨコハマ
+  side: 姓
+  mark: 青森
+  comment: 30%住 多 野辺地町
   key: CHN
 - spell: 米内口
   name: ヨナイグチ
@@ -4091,7 +4529,7 @@ name:
   name: アマルメ
   side: 姓
   mark: 岩手
-  comment: 50%住 盛岡市　
+  comment: 50%住 盛岡市
   key: CHN
 - spell: 家子
   name: イエコ
@@ -4115,7 +4553,7 @@ name:
   name: イサゴダ
   side: 姓
   mark: 岩手
-  comment: 30%住 盛岡市　
+  comment: 30%住 盛岡市
   key: CHN
 - spell: 石羽根
   name: イシバネ
@@ -4133,7 +4571,7 @@ name:
   name: イズミダテ
   side: 姓
   mark: 岩手
-  comment: 40%住 盛岡市　
+  comment: 40%住 盛岡市
   key: CHN
 - spell: 板沢
   name: イタザワ
@@ -4163,7 +4601,7 @@ name:
   name: イツカイチ
   side: 姓
   mark: 岩手
-  comment: 40%住 多 二戸市　
+  comment: 40%住 多 二戸市
   key: CHN
 - spell: 井面
   name: イノモ
@@ -4187,7 +4625,7 @@ name:
   name: イワダテ
   side: 姓
   mark: 岩手
-  comment: 30%住 多 盛岡市　
+  comment: 30%住 多 盛岡市
   key: CHN
 - spell: 岩持
   name: イワモチ
@@ -4223,13 +4661,13 @@ name:
   name: ウチダテ
   side: 姓
   mark: 岩手
-  comment: 60%住 山田町　
+  comment: 60%住 山田町
   key: CHN
 - spell: 内舘
   name: ウチダテ
   side: 姓
   mark: 岩手
-  comment: 60%住 山田町　
+  comment: 60%住 山田町
   key: CHN
 - spell: 鵜浦
   name: ウノウラ
@@ -4241,7 +4679,7 @@ name:
   name: ウブカタ
   side: 姓
   mark: 岩手
-  comment: 70%住 遠野市　
+  comment: 70%住 遠野市
   key: CHN
 - spell: 宇部
   name: ウベ
@@ -4265,7 +4703,7 @@ name:
   name: オイカワ
   side: 姓
   mark: 岩手
-  comment: 30%住 多 奥州市　
+  comment: 30%住 多 奥州市
   key: CHN
 - spell: 生平
   name: オイダイラ
@@ -4295,13 +4733,13 @@ name:
   name: オオシミズ
   side: 姓
   mark: 岩手
-  comment: 30%住 軽米町　
+  comment: 30%住 軽米町
   key: CHN
 - spell: 太田代
   name: オオタシロ
   side: 姓
   mark: 岩手
-  comment: 50%住 多 遠野市　
+  comment: 50%住 多 遠野市
   key: CHN
 - spell: 大粒来
   name: オオツブライ
@@ -4367,7 +4805,7 @@ name:
   name: カクダテ
   side: 姓
   mark: 岩手
-  comment: 40%住 八幡平市　
+  comment: 40%住 八幡平市
   key: CHN
 - spell: 角館
   name: カクダテ
@@ -4391,7 +4829,7 @@ name:
   name: カケハタ
   side: 姓
   mark: 岩手
-  comment: 50%住 久慈市　
+  comment: 50%住 久慈市
   key: CHN
 - spell: 笠水上
   name: カサミズカミ
@@ -4409,7 +4847,7 @@ name:
   name: カタビラ
   side: 姓
   mark: 岩手
-  comment: 50%住 岩手町　
+  comment: 50%住 岩手町
   key: CHN
 - spell: 門ノ沢
   name: カドノサワ
@@ -4439,7 +4877,7 @@ name:
   name: カマイシ
   side: 姓
   mark: 岩手
-  comment: 50%住 多 一戸町　
+  comment: 50%住 多 一戸町
   key: CHN
 - spell: 上川原
   name: カミカワラ
@@ -4457,13 +4895,13 @@ name:
   name: カミダテ
   side: 姓
   mark: 岩手
-  comment: 40%住 岩泉町　
+  comment: 40%住 岩泉町
   key: CHN
 - spell: 上舘
   name: カミダテ
   side: 姓
   mark: 岩手
-  comment: 30%住 岩泉町　
+  comment: 30%住 岩泉町
   key: CHN
 - spell: 上屋敷
   name: カミヤシキ
@@ -4553,7 +4991,7 @@ name:
   name: キドバ
   side: 姓
   mark: 岩手
-  comment: 40%住 葛巻町　
+  comment: 40%住 葛巻町
   key: CHN
 - spell: 紀室
   name: キムロ
@@ -4565,7 +5003,7 @@ name:
   name: クジ
   side: 姓
   mark: 岩手
-  comment: 30%住 多 久慈市　
+  comment: 30%住 多 久慈市
   key: CHN
 - spell: 櫛桁
   name: クシゲタ
@@ -4583,7 +5021,7 @@ name:
   name: クリヤガワ
   side: 姓
   mark: 岩手
-  comment: 30%住 盛岡市　
+  comment: 30%住 盛岡市
   key: CHN
 - spell: 碁石
   name: ゴイシ
@@ -4685,13 +5123,31 @@ name:
   name: コヤチ
   side: 姓
   mark: 岩手
-  comment: 60%住 野田村　
+  comment: 60%住 野田村
   key: CHN
 - spell: 小屋畑
   name: コヤハタ
   side: 姓
   mark: 岩手
   comment: 40%住 久慈市
+  key: CHN
+- spell: 昆
+  name: コン
+  side: 姓
+  mark: 岩手
+  comment: 40%住 多 山田町
+  key: CHN
+- spell: 昆野
+  name: コンノ
+  side: 姓
+  mark: 岩手
+  comment: 50%住 多 北上市
+  key: CHN
+- spell: 金野
+  name: コンノキンノ
+  side: 姓
+  mark: 岩手
+  comment: 30%住 多 一関市
   key: CHN
 - spell: 咲山
   name: サキヤマ
@@ -4703,7 +5159,7 @@ name:
   name: サクヤマ
   side: 姓
   mark: 岩手
-  comment: 30%住 岩手町　
+  comment: 30%住 岩手町
   key: CHN
 - spell: 桜小路
   name: サクラコウジ
@@ -4733,7 +5189,7 @@ name:
   name: サリイシ
   side: 姓
   mark: 岩手
-  comment: 90%住 川井村　
+  comment: 90%住 川井村
   key: CHN
 - spell: 猿館
   name: サルダテ
@@ -4775,7 +5231,7 @@ name:
   name: サワフジ
   side: 姓
   mark: 岩手
-  comment: 30%住 二戸市　
+  comment: 30%住 二戸市
   key: CHN
 - spell: 獅子内
   name: シシナイ
@@ -4835,7 +5291,7 @@ name:
   name: シュハマ
   side: 姓
   mark: 岩手
-  comment: 60%住 滝沢村　
+  comment: 60%住 滝沢村
   key: CHN
 - spell: 城守
   name: ジョウモリ
@@ -4889,7 +5345,7 @@ name:
   name: セキムカイ
   side: 姓
   mark: 岩手
-  comment: 30%住 軽米町　
+  comment: 30%住 軽米町
   key: CHN
 - spell: 摂待
   name: セッタイ
@@ -4973,7 +5429,7 @@ name:
   name: タクサリ
   side: 姓
   mark: 岩手
-  comment: 40%住 多 宮古市　
+  comment: 40%住 多 宮古市
   key: CHN
 - spell: 竹高
   name: タケダカ
@@ -5015,7 +5471,7 @@ name:
   name: タテシタ
   side: 姓
   mark: 岩手
-  comment: 40%住 軽米町　
+  comment: 40%住 軽米町
   key: CHN
 - spell: 館洞
   name: タテホラ
@@ -5039,7 +5495,7 @@ name:
   name: タナカダテ
   side: 姓
   mark: 岩手
-  comment: 40%住 二戸市　
+  comment: 40%住 二戸市
   key: CHN
 - spell: 玉沢
   name: タマザワ
@@ -5051,7 +5507,7 @@ name:
   name: チエダ
   side: 姓
   mark: 岩手
-  comment: 30%住 北上市　
+  comment: 30%住 北上市
   key: CHN
 - spell: 筑後
   name: チクゴ
@@ -5117,7 +5573,7 @@ name:
   name: テルイ
   side: 姓
   mark: 岩手
-  comment: 30%住 多 花巻市　
+  comment: 30%住 多 花巻市
   key: CHN
 - spell: 東梅
   name: トウバイ
@@ -5131,11 +5587,23 @@ name:
   mark: 岩手
   comment: 50%住 軽米町
   key: CHN
+- spell: 外館
+  name: トダテ
+  side: 姓
+  mark: 岩手
+  comment: 40%住 多 久慈市
+  key: CHN
+- spell: 外舘
+  name: トダテ
+  side: 姓
+  mark: 岩手
+  comment: 50%住 多 久慈市
+  key: CHN
 - spell: 栃沢
   name: トチザワ
   side: 姓
   mark: 岩手
-  comment: 30%住 一関市　
+  comment: 30%住 一関市
   key: CHN
 - spell: 栃内
   name: トチナイ
@@ -5213,7 +5681,7 @@ name:
   name: ナスカワ
   side: 姓
   mark: 岩手
-  comment: 50%住 北上市　
+  comment: 50%住 北上市
   key: CHN
 - spell: 那須川
   name: ナスカワ
@@ -5250,6 +5718,12 @@ name:
   side: 姓
   mark: 岩手
   comment: 70%住 遠野市
+  key: CHN
+- spell: 似内
+  name: ニタナイ
+  side: 姓
+  mark: 岩手
+  comment: 60%住 多 花巻市
   key: CHN
 - spell: 糠森
   name: ヌカモリ
@@ -5297,7 +5771,7 @@ name:
   name: ハコイシ
   side: 姓
   mark: 岩手
-  comment: 50%住 多 岩泉町　
+  comment: 50%住 多 岩泉町
   key: CHN
 - spell: 葉沢
   name: ハザワ
@@ -5333,7 +5807,7 @@ name:
   name: ハレヤマ
   side: 姓
   mark: 岩手
-  comment: 50%住 多 花巻市　
+  comment: 50%住 多 花巻市
   key: CHN
 - spell: 日影
   name: ヒカゲ
@@ -5369,7 +5843,7 @@ name:
   name: ヒナタ
   side: 姓
   mark: 岩手
-  comment: 30%住 久慈市　
+  comment: 30%住 久慈市
   key: CHN
 - spell: 日野沢
   name: ヒノサワ
@@ -5413,6 +5887,18 @@ name:
   mark: 岩手
   comment: 50%住 滝沢村
   key: CHN
+- spell: 古館
+  name: フルダテ
+  side: 姓
+  mark: 岩手
+  comment: 30%住 多 宮古市
+  key: CHN
+- spell: 古舘
+  name: フルダテ
+  side: 姓
+  mark: 岩手
+  comment: 30%住 多 盛岡市
+  key: CHN
 - spell: 古水
   name: フルミズ
   side: 姓
@@ -5435,13 +5921,13 @@ name:
   name: ヘライ
   side: 姓
   mark: 岩手
-  comment: 30%住 多 花巻市　
+  comment: 30%住 多 花巻市
   key: CHN
 - spell: 朴沢
   name: ホウザワ
   side: 姓
   mark: 岩手
-  comment: 30%住 奥州市　
+  comment: 30%住 奥州市
   key: CHN
 - spell: 細谷地
   name: ホソヤチ
@@ -5525,19 +6011,19 @@ name:
   name: ミチマタ
   side: 姓
   mark: 岩手
-  comment: 40%住 大槌町　
+  comment: 40%住 大槌町
   key: CHN
 - spell: 南館
   name: ミナミダテ
   side: 姓
   mark: 岩手
-  comment: 40%住 宮古市　
+  comment: 40%住 宮古市
   key: CHN
 - spell: 南舘
   name: ミナミダテ
   side: 姓
   mark: 岩手
-  comment: 40%住 二戸市　
+  comment: 40%住 二戸市
   key: CHN
 - spell: 南幅
   name: ミナミハバ
@@ -5552,13 +6038,7 @@ name:
   comment: 60%住 野田村
   key: CHN
 - spell: 民部田
-  name: ミンブタ
-  side: 姓
-  mark: 岩手
-  comment: 60%住 岩手町
-  key: CHN
-- spell: 民部田
-  name: ミブタ
+  name: ミンブタミブタ
   side: 姓
   mark: 岩手
   comment: 60%住 岩手町
@@ -5579,7 +6059,7 @@ name:
   name: メガ
   side: 姓
   mark: 岩手
-  comment: 50%住 盛岡市　
+  comment: 50%住 盛岡市
   key: CHN
 - spell: 本館
   name: モトダテ
@@ -5627,7 +6107,7 @@ name:
   name: ヤエガシ
   side: 姓
   mark: 岩手
-  comment: 50%住 多 北上市　
+  comment: 50%住 多 北上市
   key: CHN
 - spell: 八重柏
   name: ヤエガシ
@@ -5641,6 +6121,18 @@ name:
   mark: 岩手
   comment: 70%住 盛岡市
   key: CHN
+- spell: 安ケ平
+  name: ヤスガヒラ
+  side: 姓
+  mark: 岩手
+  comment: 50%住 多 二戸市
+  key: CHN
+- spell: 谷地
+  name: ヤチ
+  side: 姓
+  mark: 岩手
+  comment: 30%住 多 雫石町
+  key: CHN
 - spell: 矢羽々
   name: ヤハバ
   side: 姓
@@ -5651,13 +6143,13 @@ name:
   name: ヤハバ
   side: 姓
   mark: 岩手
-  comment: 30%住 盛岡市　
+  comment: 30%住 盛岡市
   key: CHN
 - spell: 山蔭
   name: ヤマカゲ
   side: 姓
   mark: 岩手
-  comment: 30%住 遠野市　
+  comment: 30%住 遠野市
   key: CHN
 - spell: 山舘
   name: ヤマダテ
@@ -5681,13 +6173,13 @@ name:
   name: ヨシヤチ
   side: 姓
   mark: 岩手
-  comment: 70%住 岩手町　
+  comment: 70%住 岩手町
   key: CHN
 - spell: 四日市
   name: ヨッカイチ
   side: 姓
   mark: 岩手
-  comment: 50%住 岩手町　
+  comment: 50%住 岩手町
   key: CHN
 - spell: 四役
   name: ヨツヤク
@@ -5723,7 +6215,7 @@ name:
   name: ワノ
   side: 姓
   mark: 岩手
-  comment: 30%住 久慈市　
+  comment: 30%住 久慈市
   key: CHN
 - spell: 和山
   name: ワヤマ
@@ -5737,6 +6229,24 @@ name:
   mark: 宮城
   comment: 80%住 仙台市
   key: CHN
+- spell: 我妻
+  name: アガツマ
+  side: 姓
+  mark: 宮城
+  comment: 30%住 多 蔵王町
+  key: CHN
+- spell: 我妻
+  name: ワガツマ
+  side: 姓
+  mark: 宮城
+  comment: 30%住 多 蔵王町
+  key: CHN
+- spell: 赤間
+  name: アカマ
+  side: 姓
+  mark: 宮城
+  comment: 40%住 多 仙台市　
+  key: CHN
 - spell: 阿子島
   name: アコジマ
   side: 姓
@@ -5748,6 +6258,18 @@ name:
   side: 姓
   mark: 宮城
   comment: 30%住 仙台市
+  key: CHN
+- spell: 安住
+  name: アズミ
+  side: 姓
+  mark: 宮城
+  comment: 40%住 多 石巻市
+  key: CHN
+- spell: 熱海
+  name: アツミ
+  side: 姓
+  mark: 宮城
+  comment: 50%住 多 東松島市　
   key: CHN
 - spell: 跡辺
   name: アトベ
@@ -5778,6 +6300,12 @@ name:
   side: 姓
   mark: 宮城
   comment: 50%住 柴田町　
+  key: CHN
+- spell: 砂金
+  name: イサゴ
+  side: 姓
+  mark: 宮城
+  comment: 30%住 多 仙台市　
   key: CHN
 - spell: 石母田
   name: イシモダ
@@ -6024,6 +6552,18 @@ name:
   side: 姓
   mark: 宮城
   comment: 60%住 東松島市　
+  key: CHN
+- spell: 郷家
+  name: ゴウケ
+  side: 姓
+  mark: 宮城
+  comment: 60%住 多 仙台市　
+  key: CHN
+- spell: 郷古
+  name: ゴウコ
+  side: 姓
+  mark: 宮城
+  comment: 60%住 多 仙台市　
   key: CHN
 - spell: 郷右近
   name: ゴウコン
@@ -6349,6 +6889,18 @@ name:
   mark: 宮城
   comment: 60%住 大崎町
   key: CHN
+- spell: 沼倉
+  name: ヌマクラ
+  side: 姓
+  mark: 宮城
+  comment: 30%住 多 登米市　
+  key: CHN
+- spell: 根元
+  name: ネモト
+  side: 姓
+  mark: 宮城
+  comment: 30%住 多 仙台市
+  key: CHN
 - spell: 練生川
   name: ネリウカワ
   side: 姓
@@ -6385,6 +6937,24 @@ name:
   mark: 宮城
   comment: 60%住 仙台市
   key: CHN
+- spell: 早坂
+  name: ハヤサカ
+  side: 姓
+  mark: 宮城
+  comment: 30%住 多 仙台市
+  key: CHN
+- spell: 針生
+  name: ハリウ
+  side: 姓
+  mark: 宮城
+  comment: 50%住 多 仙台市　
+  key: CHN
+- spell: 針生
+  name: ハリュウ
+  side: 姓
+  mark: 宮城
+  comment: 50%住 多 仙台市　
+  key: CHN
 - spell: 久道
   name: ヒサミチ
   side: 姓
@@ -6403,6 +6973,18 @@ name:
   mark: 宮城
   comment: 50%住 加美町
   key: CHN
+- spell: 布田
+  name: フダ
+  side: 姓
+  mark: 宮城
+  comment: 30%住 多 岩沼市
+  key: CHN
+- spell: 文屋
+  name: ブンヤ
+  side: 姓
+  mark: 宮城
+  comment: 30%住 多 大和町　
+  key: CHN
 - spell: 細目
   name: ホソメ
   side: 姓
@@ -6414,6 +6996,18 @@ name:
   side: 姓
   mark: 宮城
   comment: 30%住 石巻市
+  key: CHN
+- spell: 堀篭
+  name: ホリゴメ
+  side: 姓
+  mark: 宮城
+  comment: 30%住 多 大和町
+  key: CHN
+- spell: 堀籠
+  name: ホリゴメ
+  side: 姓
+  mark: 宮城
+  comment: 40%住 多 大和町
   key: CHN
 - spell: 真籠
   name: マゴメ
@@ -6438,6 +7032,18 @@ name:
   side: 姓
   mark: 宮城
   comment: 30%住 加美町
+  key: CHN
+- spell: 三塚
+  name: ミツヅカ
+  side: 姓
+  mark: 宮城
+  comment: 50%住 多 栗原市　
+  key: CHN
+- spell: 嶺岸
+  name: ミネギシ
+  side: 姓
+  mark: 宮城
+  comment: 60%住 多 仙台市
   key: CHN
 - spell: 名生
   name: ミョウ
@@ -6474,6 +7080,24 @@ name:
   side: 姓
   mark: 宮城
   comment: 40%住 仙台市　
+  key: CHN
+- spell: 門間
+  name: モンマ
+  side: 姓
+  mark: 宮城
+  comment: 30%住 多 大崎市　
+  key: CHN
+- spell: 山家
+  name: ヤンベ
+  side: 姓
+  mark: 宮城
+  comment: 30%住 多 蔵王町　
+  key: CHN
+- spell: 遊佐
+  name: ユサ
+  side: 姓
+  mark: 宮城
+  comment: 30%住 多 大崎市　
   key: CHN
 - spell: 横橋
   name: ヨコハシ
@@ -6919,6 +7543,18 @@ name:
   mark: 秋田
   comment: 40%住 能代市
   key: CHN
+- spell: 信太
+  name: シダ
+  side: 姓
+  mark: 秋田
+  comment: 30%住 多 三種町
+  key: CHN
+- spell: 信太
+  name: 横手市ノミ「シンタ」
+  side: 姓
+  mark: 秋田
+  comment: 30%住 多 三種町
+  key: CHN
 - spell: 下タ村
   name: シタムラ
   side: 姓
@@ -7110,6 +7746,12 @@ name:
   side: 姓
   mark: 秋田
   comment: 70%住 多 鹿角市
+  key: CHN
+- spell: 戸嶋
+  name: トシマ
+  side: 姓
+  mark: 秋田
+  comment: 30%住 多 大仙市　
   key: CHN
 - spell: 登藤
   name: トドウ
@@ -7411,6 +8053,12 @@ name:
   mark: 秋田
   comment: 50%住 多 鹿角市
   key: CHN
+- spell: 鷲谷
+  name: ワシヤ
+  side: 姓
+  mark: 秋田
+  comment: 40%住 多 井川町　
+  key: CHN
 - spell: 相座
   name: アイザ
   side: 姓
@@ -7441,6 +8089,18 @@ name:
   mark: 山形
   comment: 30%住 東根市
   key: CHN
+- spell: 芦野
+  name: アシノ
+  side: 姓
+  mark: 山形
+  comment: 30%住 多 村山市　
+  key: CHN
+- spell: 安孫子
+  name: アビコ
+  side: 姓
+  mark: 山形
+  comment: 40%住 多 寒河江市　
+  key: CHN
 - spell: 阿彦
   name: アヒコ
   side: 姓
@@ -7452,6 +8112,30 @@ name:
   side: 姓
   mark: 山形
   comment: 30%住 酒田市
+  key: CHN
+- spell: 荒生
+  name: アラオ
+  side: 姓
+  mark: 山形
+  comment: 40%住 多 酒田市
+  key: CHN
+- spell: 嵐田
+  name: アラシダ
+  side: 姓
+  mark: 山形
+  comment: 40%住 多 米沢市
+  key: CHN
+- spell: 有路
+  name: アリジ
+  side: 姓
+  mark: 山形
+  comment: 30%住 多 尾花沢市
+  key: CHN
+- spell: 飯沢
+  name: イイザワ
+  side: 姓
+  mark: 山形
+  comment: 30%住 多 長井市
   key: CHN
 - spell: 井苅
   name: イガリ
@@ -7591,6 +8275,24 @@ name:
   mark: 山形
   comment: 30%住 戸沢村　
   key: CHN
+- spell: 柏倉
+  name: カシワグラ
+  side: 姓
+  mark: 山形
+  comment: 30%住 多 寒河江市　
+  key: CHN
+- spell: 叶内
+  name: カナウチ
+  side: 姓
+  mark: 山形
+  comment: 40%住 多 新庄市　
+  key: CHN
+- spell: 叶内
+  name: カノウチ
+  side: 姓
+  mark: 山形
+  comment: 40%住 多 新庄市　
+  key: CHN
 - spell: 鎌上
   name: カマガミ
   side: 姓
@@ -7716,6 +8418,30 @@ name:
   side: 姓
   mark: 山形
   comment: 40%住 山形市
+  key: CHN
+- spell: 色摩
+  name: シカマ
+  side: 姓
+  mark: 山形
+  comment: 60%住 多 米沢市　
+  key: CHN
+- spell: 志藤
+  name: シトウ
+  side: 姓
+  mark: 山形
+  comment: 30%住 多 朝日町
+  key: CHN
+- spell: 島貫
+  name: シマヌキ
+  side: 姓
+  mark: 山形
+  comment: 30%住 多 川西町
+  key: CHN
+- spell: 嶋貫
+  name: シマヌキ
+  side: 姓
+  mark: 山形
+  comment: 40%住 多 飯豊町　
   key: CHN
 - spell: 新館
   name: シンタテ
@@ -7849,6 +8575,18 @@ name:
   mark: 山形
   comment: 40%住 中山町
   key: CHN
+- spell: 新関
+  name: ニイゼキ
+  side: 姓
+  mark: 山形
+  comment: 30%住 多 山形市　
+  key: CHN
+- spell: 日塔
+  name: ニットウ
+  side: 姓
+  mark: 山形
+  comment: 40%住 多 河北町
+  key: CHN
 - spell: 二戸
   name: ニト
   side: 姓
@@ -7944,6 +8682,18 @@ name:
   side: 姓
   mark: 山形
   comment: 30%住 山形市
+  key: CHN
+- spell: 村形
+  name: ムラカタ
+  side: 姓
+  mark: 山形
+  comment: 40%住 多 天童市
+  key: CHN
+- spell: 八鍬
+  name: ヤクワ
+  side: 姓
+  mark: 山形
+  comment: 40%住 多 大蔵村　
   key: CHN
 - spell: 矢田目
   name: ヤタメ
@@ -8041,6 +8791,18 @@ name:
   mark: 福島
   comment: 50%住 郡山市
   key: CHN
+- spell: 穴沢
+  name: アナザワ
+  side: 姓
+  mark: 福島
+  comment: 30%住 多 会津若松市
+  key: CHN
+- spell: 荒
+  name: アラ
+  side: 姓
+  mark: 福島
+  comment: 30%住 多 相馬市　
+  key: CHN
 - spell: 荒明
   name: アラアケ
   side: 姓
@@ -8052,6 +8814,24 @@ name:
   side: 姓
   mark: 福島
   comment: 30%住 西会津町
+  key: CHN
+- spell: 有我
+  name: アリガ
+  side: 姓
+  mark: 福島
+  comment: 40%住 多 須賀川市
+  key: CHN
+- spell: 安斎
+  name: アンザイ
+  side: 姓
+  mark: 福島
+  comment: 40%住 多 二本松市　
+  key: CHN
+- spell: 安瀬
+  name: アンゼ
+  side: 姓
+  mark: 福島
+  comment: 50%住 多 田村市
   key: CHN
 - spell: 五十島
   name: イガシマ
@@ -8130,6 +8910,18 @@ name:
   side: 姓
   mark: 福島
   comment: 60%住 会津美里町
+  key: CHN
+- spell: 薄
+  name: ウスキ
+  side: 姓
+  mark: 福島
+  comment: 30%住 多 会津美里町　
+  key: CHN
+- spell: 薄葉
+  name: ウスバ
+  side: 姓
+  mark: 福島
+  comment: 30%住 多 いわき市　
   key: CHN
 - spell: 宇内
   name: ウナイ
@@ -8239,6 +9031,24 @@ name:
   mark: 福島
   comment: 50%住 いわき市
   key: CHN
+- spell: 片寄
+  name: カタヨセ
+  side: 姓
+  mark: 福島
+  comment: 30%住 多 いわき市
+  key: CHN
+- spell: 上遠野
+  name: カトウノ
+  side: 姓
+  mark: 福島
+  comment: 40%住 多 いわき市
+  key: CHN
+- spell: 金成
+  name: カナリ
+  side: 姓
+  mark: 福島
+  comment: 40%住 多 いわき市
+  key: CHN
 - spell: 金賀
   name: カネガ
   side: 姓
@@ -8335,6 +9145,12 @@ name:
   mark: 福島
   comment: 30%住 南相馬市
   key: CHN
+- spell: 鯨岡
+  name: クジラオカ
+  side: 姓
+  mark: 福島
+  comment: 30%住 多 いわき市
+  key: CHN
 - spell: 国玉
   name: クニタマ
   side: 姓
@@ -8358,6 +9174,18 @@ name:
   side: 姓
   mark: 福島
   comment: 60%住 福島市
+  key: CHN
+- spell: 栗城
+  name: クリキ
+  side: 姓
+  mark: 福島
+  comment: 40%住 多 会津若松市　
+  key: CHN
+- spell: 車田
+  name: クルマダ
+  side: 姓
+  mark: 福島
+  comment: 30%住 多 玉川村
   key: CHN
 - spell: 慶徳
   name: ケイトク
@@ -8413,11 +9241,47 @@ name:
   mark: 福島
   comment: 60%住 いわき市
   key: CHN
+- spell: 国分
+  name: コクブン
+  side: 姓
+  mark: 福島
+  comment: 30%住 多 郡山市
+  key: CHN
+- spell: 五ノ井
+  name: ゴノイ
+  side: 姓
+  mark: 福島
+  comment: 30%住 多 金山町
+  key: CHN
 - spell: 古張
   name: コバリ
   side: 姓
   mark: 福島
   comment: 30%住 矢祭町
+  key: CHN
+- spell: 小針
+  name: コバリ
+  side: 姓
+  mark: 福島
+  comment: 40%住 多 須賀川市　
+  key: CHN
+- spell: 小桧山
+  name: コヒヤマ
+  side: 姓
+  mark: 福島
+  comment: 50%住 多 喜多方市
+  key: CHN
+- spell: 小檜山
+  name: コヒヤマ
+  side: 姓
+  mark: 福島
+  comment: 30%住 多 猪苗代町
+  key: CHN
+- spell: 駒木根
+  name: コマキネ
+  side: 姓
+  mark: 福島
+  comment: 30%住 多 いわき市
   key: CHN
 - spell: 牛来
   name: ゴライ
@@ -8430,6 +9294,18 @@ name:
   side: 姓
   mark: 福島
   comment: 40%住 いわき市
+  key: CHN
+- spell: 木幡
+  name: コワタ
+  side: 姓
+  mark: 福島
+  comment: 30%住 多 南相馬市
+  key: CHN
+- spell: 近内
+  name: コンナイ
+  side: 姓
+  mark: 福島
+  comment: 40%住 多 石川町　
   key: CHN
 - spell: 斎須
   name: サイス
@@ -8473,6 +9349,18 @@ name:
   mark: 福島
   comment: 60%住 会津若松市
   key: CHN
+- spell: 三瓶
+  name: サンペイ
+  side: 姓
+  mark: 福島
+  comment: 40%住 多 郡山市　
+  key: CHN
+- spell: 三本木
+  name: サンボンギ
+  side: 姓
+  mark: 福島
+  comment: 30%住 多 郡山市
+  key: CHN
 - spell: 三本菅
   name: サンボンスゲ
   side: 姓
@@ -8497,11 +9385,41 @@ name:
   mark: 福島
   comment: 40%住 南会津町
   key: CHN
+- spell: 鴫原
+  name: シギハラ
+  side: 姓
+  mark: 福島
+  comment: 40%住 多 福島市　
+  key: CHN
+- spell: 四家
+  name: シケ
+  side: 姓
+  mark: 福島
+  comment: 60%住 多 いわき市
+  key: CHN
 - spell: 渋佐
   name: シブサ
   side: 姓
   mark: 福島
   comment: 30%住 南相馬市
+  key: CHN
+- spell: 下重
+  name: シモジュウ
+  side: 姓
+  mark: 福島
+  comment: 30%住 多 塙町
+  key: CHN
+- spell: 霜山
+  name: シモヤマ
+  side: 姓
+  mark: 福島
+  comment: 40%住 多 伊達市
+  key: CHN
+- spell: 下山田
+  name: シモヤマダ
+  side: 姓
+  mark: 福島
+  comment: 30%住 多 いわき市
   key: CHN
 - spell: 白石田
   name: シロイシタ
@@ -8569,6 +9487,18 @@ name:
   mark: 福島
   comment: 50%住 須賀川市
   key: CHN
+- spell: 高玉
+  name: タカタマ
+  side: 姓
+  mark: 福島
+  comment: 30%住 多 相馬市
+  key: CHN
+- spell: 高萩
+  name: タカハギ
+  side: 姓
+  mark: 福島
+  comment: 40%住 多 いわき市
+  key: CHN
 - spell: 田久
   name: タキュウ
   side: 姓
@@ -8581,11 +9511,23 @@ name:
   mark: 福島
   comment: 40%住 福島市
   key: CHN
+- spell: 但野
+  name: タダノ
+  side: 姓
+  mark: 福島
+  comment: 40%住 多 南相馬市
+  key: CHN
 - spell: 伹野
   name: タダノ
   side: 姓
   mark: 福島
   comment: 80%住 南相馬市
+  key: CHN
+- spell: 棚木
+  name: タナキ
+  side: 姓
+  mark: 福島
+  comment: 40%住 多 会津若松市　
   key: CHN
 - spell: 田場川
   name: タバカワ
@@ -8598,6 +9540,24 @@ name:
   side: 姓
   mark: 福島
   comment: 40%住 福島市
+  key: CHN
+- spell: 田母神
+  name: タモガミ
+  side: 姓
+  mark: 福島
+  comment: 40%住 多 郡山市
+  key: CHN
+- spell: 樽川
+  name: タルカワ
+  side: 姓
+  mark: 福島
+  comment: 50%住 多 須賀川市
+  key: CHN
+- spell: 丹治
+  name: タンジ
+  side: 姓
+  mark: 福島
+  comment: 40%住 多 福島市
   key: CHN
 - spell: 続橋
   name: ツヅキハシ
@@ -8707,6 +9667,24 @@ name:
   mark: 福島
   comment: 30%住 伊達市
   key: CHN
+- spell: 西間木
+  name: ニシマギ
+  side: 姓
+  mark: 福島
+  comment: 60%住 多 須賀川市
+  key: CHN
+- spell: 新国
+  name: ニックニ
+  side: 姓
+  mark: 福島
+  comment: 40%住 多 只見町　
+  key: CHN
+- spell: 二瓶
+  name: ニヘイ
+  side: 姓
+  mark: 福島
+  comment: 30%住 多 会津若松市　
+  key: CHN
 - spell: 糠沢
   name: ヌカザワ
   side: 姓
@@ -8718,6 +9696,12 @@ name:
   side: 姓
   mark: 福島
   comment: 40%住 いわき市
+  key: CHN
+- spell: 野地
+  name: ノジ
+  side: 姓
+  mark: 福島
+  comment: 30%住 多 福島市
   key: CHN
 - spell: 芳賀沼
   name: ハガヌマ
@@ -8839,6 +9823,24 @@ name:
   mark: 福島
   comment: 50%住 福島市
   key: CHN
+- spell: 本名
+  name: ホンナ
+  side: 姓
+  mark: 福島
+  comment: 30%住 多 昭和村
+  key: CHN
+- spell: 曲山
+  name: マガリヤマ
+  side: 姓
+  mark: 福島
+  comment: 50%住 多 石川町　
+  key: CHN
+- spell: 幕田
+  name: マクタ
+  side: 姓
+  mark: 福島
+  comment: 40%住 多 伊達市　
+  key: CHN
 - spell: 増戸
   name: マシト
   side: 姓
@@ -8856,6 +9858,18 @@ name:
   side: 姓
   mark: 福島
   comment: 30%住 須賀川市　
+  key: CHN
+- spell: 馬目
+  name: マノメ
+  side: 姓
+  mark: 福島
+  comment: 60%住 多 いわき市
+  key: CHN
+- spell: 真船
+  name: マフネ
+  side: 姓
+  mark: 福島
+  comment: 40%住 多 西郷村
   key: CHN
 - spell: 実沢
   name: ミサワ
@@ -8875,6 +9889,36 @@ name:
   mark: 福島
   comment: 40%住 いわき市
   key: CHN
+- spell: 水野谷
+  name: ミズノヤ
+  side: 姓
+  mark: 福島
+  comment: 40%住 多 中島村　
+  key: CHN
+- spell: 溝井
+  name: ミゾイ
+  side: 姓
+  mark: 福島
+  comment: 40%住 多 須賀川市　
+  key: CHN
+- spell: 三星
+  name: ミツボシ
+  side: 姓
+  mark: 福島
+  comment: 30%住 多 会津若松市
+  key: CHN
+- spell: 三津間
+  name: ミツマ
+  side: 姓
+  mark: 福島
+  comment: 50%住 二本松市
+  key: CHN
+- spell: 緑川
+  name: ミドリカワ
+  side: 姓
+  mark: 福島
+  comment: 30%住 多 いわき市　
+  key: CHN
 - spell: 御代
   name: ミヨ
   side: 姓
@@ -8886,6 +9930,24 @@ name:
   side: 姓
   mark: 福島
   comment: 30%住 郡山市
+  key: CHN
+- spell: 宗形
+  name: ムナカタ
+  side: 姓
+  mark: 福島
+  comment: 50%住 多 郡山市
+  key: CHN
+- spell: 宗像
+  name: ムナカタ
+  side: 姓
+  mark: 福島
+  comment: 40%住 多 郡山市　
+  key: CHN
+- spell: 馬上
+  name: モウエ
+  side: 姓
+  mark: 福島
+  comment: 40%住 多 いわき市
   key: CHN
 - spell: 舞木
   name: モウギ
@@ -8911,11 +9973,41 @@ name:
   mark: 福島
   comment: 40%住 泉崎村
   key: CHN
+- spell: 物江
+  name: モノエ
+  side: 姓
+  mark: 福島
+  comment: 50%住 多 喜多方市
+  key: CHN
+- spell: 森合
+  name: モリアイ
+  side: 姓
+  mark: 福島
+  comment: 30%住 多 郡山市
+  key: CHN
 - spell: 諸根
   name: モロネ
   side: 姓
   mark: 福島
   comment: 40%住 矢吹町　
+  key: CHN
+- spell: 門馬
+  name: モンマ
+  side: 姓
+  mark: 福島
+  comment: 30%住 多 南相馬市
+  key: CHN
+- spell: 八木沼
+  name: ヤギヌマ
+  side: 姓
+  mark: 福島
+  comment: 30%住 多 須賀川市　
+  key: CHN
+- spell: 柳沼
+  name: ヤギヌマ
+  side: 姓
+  mark: 福島
+  comment: 50%住 多 郡山市
   key: CHN
 - spell: 谷津田
   name: ヤツダ
@@ -8923,11 +10015,35 @@ name:
   mark: 福島
   comment: 30%住 相馬市
   key: CHN
+- spell: 柳内
+  name: ヤナイ
+  side: 姓
+  mark: 福島
+  comment: 30%住 多 いわき市
+  key: CHN
+- spell: 箭内
+  name: ヤナイ
+  side: 姓
+  mark: 福島
+  comment: 40%住 多 田村市　
+  key: CHN
 - spell: 柳葉
   name: ヤナギバ
   side: 姓
   mark: 福島
   comment: 30%住 いわき市
+  key: CHN
+- spell: 矢吹
+  name: ヤブキ
+  side: 姓
+  mark: 福島
+  comment: 30%住 多 いわき市
+  key: CHN
+- spell: 山野辺
+  name: ヤマノベ
+  side: 姓
+  mark: 福島
+  comment: 40%住 多 いわき市
   key: CHN
 - spell: 雪下
   name: ユキシタ
@@ -8958,6 +10074,18 @@ name:
   side: 姓
   mark: 福島
   comment: 50%住 会津若松市
+  key: CHN
+- spell: 和知
+  name: ワチ
+  side: 姓
+  mark: 福島
+  comment: 30%住 多 白河市
+  key: CHN
+- spell: 藁谷
+  name: ワラガイ
+  side: 姓
+  mark: 福島
+  comment: 50%住 多 いわき市
   key: CHN
 - spell: 会澤
   name: アイザワ
@@ -9667,11 +10795,29 @@ name:
   mark: 茨城
   comment: 60%住 鹿嶋市
   key: CHN
+- spell: 方波見
+  name: カタバミ
+  side: 姓
+  mark: 茨城
+  comment: 50%住 多 鉾田市　
+  key: CHN
 - spell: 片見
   name: カタミ
   side: 姓
   mark: 茨城
   comment: 40%住 つくばみらい市
+  key: CHN
+- spell: 加藤木
+  name: カトウギ
+  side: 姓
+  mark: 茨城
+  comment: 50%住 多 城里町　
+  key: CHN
+- spell: 金久保
+  name: カナクボ
+  side: 姓
+  mark: 茨城
+  comment: 30%住 多 境町　
   key: CHN
 - spell: 嘉成
   name: カナリ
@@ -9709,6 +10855,24 @@ name:
   mark: 茨城
   comment: 50%住 那珂市
   key: CHN
+- spell: 神永
+  name: カミナガ
+  side: 姓
+  mark: 茨城
+  comment: 40%住 多 北茨城市
+  key: CHN
+- spell: 神長
+  name: カミナガ
+  side: 姓
+  mark: 茨城
+  comment: 40%住 多 大子町
+  key: CHN
+- spell: 鴨志田
+  name: カモシダ
+  side: 姓
+  mark: 茨城
+  comment: 50%住 多 ひたちなか市　
+  key: CHN
 - spell: 茅場
   name: カヤバ
   side: 姓
@@ -9732,6 +10896,24 @@ name:
   side: 姓
   mark: 茨城
   comment: 50%住 笠間市
+  key: CHN
+- spell: 川又
+  name: カワマタ
+  side: 姓
+  mark: 茨城
+  comment: 30%住 多 ひたちなか市　
+  key: CHN
+- spell: 川松
+  name: カワマツ
+  side: 姓
+  mark: 茨城
+  comment: 30%住 多 笠間市
+  key: CHN
+- spell: 河原井
+  name: カワライ
+  side: 姓
+  mark: 茨城
+  comment: 60%住 多 笠間市
   key: CHN
 - spell: 川原井
   name: カワライ
@@ -9901,11 +11083,47 @@ name:
   mark: 茨城
   comment: 50%住 行方市
   key: CHN
+- spell: 来栖
+  name: クルス
+  side: 姓
+  mark: 茨城
+  comment: 30%住 多 土浦市　
+  key: CHN
+- spell: 黒羽
+  name: クロハ
+  side: 姓
+  mark: 茨城
+  comment: 40%住 多 常陸太田市
+  key: CHN
+- spell: 軍司
+  name: グンジ
+  side: 姓
+  mark: 茨城
+  comment: 50%住 多 ひたちなか市　
+  key: CHN
 - spell: 結束
   name: ケッソク
   side: 姓
   mark: 茨城
   comment: 50%住 つくば市
+  key: CHN
+- spell: 小圷
+  name: コアクツ
+  side: 姓
+  mark: 茨城
+  comment: 70%住 多 水戸市　
+  key: CHN
+- spell: 鯉淵
+  name: コイブチ
+  side: 姓
+  mark: 茨城
+  comment: 60%住 多 水戸市　
+  key: CHN
+- spell: 鯉渕
+  name: コイブチ
+  side: 姓
+  mark: 茨城
+  comment: 40%住 多 水戸市　
   key: CHN
 - spell: 五位淵
   name: ゴイブチ
@@ -9924,6 +11142,24 @@ name:
   side: 姓
   mark: 茨城
   comment: 50%住 常陸太田市　
+  key: CHN
+- spell: 古宇田
+  name: コウダ
+  side: 姓
+  mark: 茨城
+  comment: 40%住 多 筑西市
+  key: CHN
+- spell: 国府田
+  name: コウダ
+  side: 姓
+  mark: 茨城
+  comment: 40%住 多 つくば市
+  key: CHN
+- spell: 鴻巣
+  name: コウノス
+  side: 姓
+  mark: 茨城
+  comment: 50%住 多 龍ケ崎市　
   key: CHN
 - spell: 幸保
   name: コウホ
@@ -9985,6 +11221,18 @@ name:
   mark: 茨城
   comment: 50%住 河内町
   key: CHN
+- spell: 小又
+  name: コマタ
+  side: 姓
+  mark: 茨城
+  comment: 30%住 多 日立市
+  key: CHN
+- spell: 小松崎
+  name: コマツザキ
+  side: 姓
+  mark: 茨城
+  comment: 60%住 多 石岡市　
+  key: CHN
 - spell: 小松沢
   name: コマツザワ
   side: 姓
@@ -10027,6 +11275,18 @@ name:
   mark: 茨城
   comment: 60%住 古河市
   key: CHN
+- spell: 五来
+  name: ゴライ
+  side: 姓
+  mark: 茨城
+  comment: 80%住 多 日立市
+  key: CHN
+- spell: 古渡
+  name: コワタリ
+  side: 姓
+  mark: 茨城
+  comment: 50%住 多 かすみがうら市　
+  key: CHN
 - spell: 才賀
   name: サイガ
   side: 姓
@@ -10051,11 +11311,29 @@ name:
   mark: 茨城
   comment: 30%住 水戸市
   key: CHN
+- spell: 坂入
+  name: サカイリ
+  side: 姓
+  mark: 茨城
+  comment: 40%住 多 筑西市
+  key: CHN
+- spell: 坂場
+  name: サカバ
+  side: 姓
+  mark: 茨城
+  comment: 50%住 多 水戸市
+  key: CHN
 - spell: 坂寄
   name: サカヨリ
   side: 姓
   mark: 茨城
   comment: 30%住 つくば市
+  key: CHN
+- spell: 酒寄
+  name: サカヨリ
+  side: 姓
+  mark: 茨城
+  comment: 50%住 多 桜川市　
   key: CHN
 - spell: 笹嶋
   name: ササジマ
@@ -10153,6 +11431,18 @@ name:
   mark: 茨城
   comment: 70%住 水戸市
   key: CHN
+- spell: 蔀
+  name: シトミ
+  side: 姓
+  mark: 茨城
+  comment: 30%住 多 水戸市
+  key: CHN
+- spell: 柴沼
+  name: シバヌマ
+  side: 姓
+  mark: 茨城
+  comment: 60%住 多 笠間市　
+  key: CHN
 - spell: 芝沼
   name: シバヌマ
   side: 姓
@@ -10207,17 +11497,41 @@ name:
   mark: 茨城
   comment: 50%住 水戸市　
   key: CHN
+- spell: 助川
+  name: スケガワ
+  side: 姓
+  mark: 茨城
+  comment: 40%住 多 日立市　
+  key: CHN
 - spell: 鮏川
   name: スケガワ
   side: 姓
   mark: 茨城
   comment: 70%住 つくば市
   key: CHN
+- spell: 砂押
+  name: スナオシ
+  side: 姓
+  mark: 茨城
+  comment: 70%住 多 ひたちなか市
+  key: CHN
 - spell: 須能
   name: スノウ
   side: 姓
   mark: 茨城
   comment: 70%住 水戸市
+  key: CHN
+- spell: 須之内
+  name: スノウチ
+  side: 姓
+  mark: 茨城
+  comment: 40%住 多 神栖市
+  key: CHN
+- spell: 住谷
+  name: スミヤ
+  side: 姓
+  mark: 茨城
+  comment: 30%住 多 ひたちなか市
   key: CHN
 - spell: 勢司
   name: セイシ
@@ -10254,6 +11568,18 @@ name:
   side: 姓
   mark: 茨城
   comment: 60%住 坂東市
+  key: CHN
+- spell: 薗部
+  name: ソノベ
+  side: 姓
+  mark: 茨城
+  comment: 40%住 多 水戸市　
+  key: CHN
+- spell: 染野
+  name: ソメノ
+  side: 姓
+  mark: 茨城
+  comment: 30%住 多 取手市　
   key: CHN
 - spell: 高柿
   name: タカガキ
@@ -10345,6 +11671,18 @@ name:
   mark: 茨城
   comment: 30%住 神栖市
   key: CHN
+- spell: 為我井
+  name: タメガイ
+  side: 姓
+  mark: 茨城
+  comment: 50%住 多 八千代町
+  key: CHN
+- spell: 田山
+  name: タヤマ
+  side: 姓
+  mark: 茨城
+  comment: 30%住 多 鉾田市
+  key: CHN
 - spell: 田綿
   name: タワタ
   side: 姓
@@ -10416,6 +11754,18 @@ name:
   side: 姓
   mark: 茨城
   comment: 60%住 ひたちなか市　
+  key: CHN
+- spell: 照沼
+  name: テルヌマ
+  side: 姓
+  mark: 茨城
+  comment: 70%住 多 ひたちなか市　
+  key: CHN
+- spell: 照山
+  name: テルヤマ
+  side: 姓
+  mark: 茨城
+  comment: 50%住 多 日立市
   key: CHN
 - spell: 東ケ崎
   name: トウガサキ
@@ -10537,11 +11887,35 @@ name:
   mark: 茨城
   comment: 30%住 常総市　
   key: CHN
+- spell: 永作
+  name: ナガサク
+  side: 姓
+  mark: 茨城
+  comment: 50%住 多 行方市
+  key: CHN
+- spell: 長洲
+  name: ナガス
+  side: 姓
+  mark: 茨城
+  comment: 60%住 多 茨城町
+  key: CHN
 - spell: 長須
   name: ナガス
   side: 姓
   mark: 茨城
   comment: 50%住 筑西市
+  key: CHN
+- spell: 長塚
+  name: ナガツカ
+  side: 姓
+  mark: 茨城
+  comment: 30%住 多 取手市　
+  key: CHN
+- spell: 中庭
+  name: ナカニワ
+  side: 姓
+  mark: 茨城
+  comment: 30%住 多 水戸市
   key: CHN
 - spell: 仲見川
   name: ナカミガワ
@@ -10621,6 +11995,24 @@ name:
   mark: 茨城
   comment: 30%住 常陸大宮市
   key: CHN
+- spell: 額賀
+  name: ヌカガ
+  side: 姓
+  mark: 茨城
+  comment: 60%住 多 行方市　
+  key: CHN
+- spell: 沼尻
+  name: ヌマジリ
+  side: 姓
+  mark: 茨城
+  comment: 40%住 多 つくば市　
+  key: CHN
+- spell: 根崎
+  name: ネザキ
+  side: 姓
+  mark: 茨城
+  comment: 40%住 多 行方市　
+  key: CHN
 - spell: 根目沢
   name: ネメザワ
   side: 姓
@@ -10650,6 +12042,24 @@ name:
   side: 姓
   mark: 茨城
   comment: 40%住 土浦市
+  key: CHN
+- spell: 萩野谷
+  name: ハギノヤ
+  side: 姓
+  mark: 茨城
+  comment: 60%住 多 那珂市
+  key: CHN
+- spell: 萩谷
+  name: ハギヤ
+  side: 姓
+  mark: 茨城
+  comment: 50%住 多 常陸太田市　
+  key: CHN
+- spell: 箱守
+  name: ハコモリ
+  side: 姓
+  mark: 茨城
+  comment: 50%住 多 筑西市
   key: CHN
 - spell: 荷見
   name: ハスミ
@@ -10710,6 +12120,18 @@ name:
   side: 姓
   mark: 茨城
   comment: 40%住 美浦村
+  key: CHN
+- spell: 羽成
+  name: ハナリ
+  side: 姓
+  mark: 茨城
+  comment: 60%住 多 土浦市
+  key: CHN
+- spell: 塙
+  name: ハナワ
+  side: 姓
+  mark: 茨城
+  comment: 40%住 多 水戸市
   key: CHN
 - spell: 羽部
   name: ハブ
@@ -10777,6 +12199,24 @@ name:
   mark: 茨城
   comment: 40%住 常陸太田市
   key: CHN
+- spell: 檜山
+  name: ヒヤマ
+  side: 姓
+  mark: 茨城
+  comment: 30%住 多 水戸市　
+  key: CHN
+- spell: 日向寺
+  name: ヒュウガジ
+  side: 姓
+  mark: 茨城
+  comment: 50%住 多 鹿嶋市
+  key: CHN
+- spell: 平根
+  name: ヒラネ
+  side: 姓
+  mark: 茨城
+  comment: 60%住 多 常陸太田市
+  key: CHN
 - spell: 美留町
   name: ビルマチ
   side: 姓
@@ -10788,6 +12228,24 @@ name:
   side: 姓
   mark: 茨城
   comment: 70%住 笠間市
+  key: CHN
+- spell: 深作
+  name: フカサク
+  side: 姓
+  mark: 茨城
+  comment: 50%住 多 大洗町
+  key: CHN
+- spell: 藤枝
+  name: フジエダ
+  side: 姓
+  mark: 茨城
+  comment: 30%住 多 笠間市　
+  key: CHN
+- spell: 藤咲
+  name: フジサキ
+  side: 姓
+  mark: 茨城
+  comment: 60%住 多 ひたちなか市
   key: CHN
 - spell: 藤又
   name: フジマタ
@@ -10849,11 +12307,35 @@ name:
   mark: 茨城
   comment: 30%住 笠間市
   key: CHN
+- spell: 保立
+  name: ホタテ
+  side: 姓
+  mark: 茨城
+  comment: 40%住 多 神栖市
+  key: CHN
+- spell: 真家
+  name: マイエ
+  side: 姓
+  mark: 茨城
+  comment: 60%住 多 石岡市　
+  key: CHN
 - spell: 幕内
   name: マクウチ
   side: 姓
   mark: 茨城
   comment: 40%住 石岡市
+  key: CHN
+- spell: 益子
+  name: マシコ
+  side: 姓
+  mark: 茨城
+  comment: 30%住 多 大子町
+  key: CHN
+- spell: 益子
+  name: マスコ
+  side: 姓
+  mark: 茨城
+  comment: 30%住 多 大子町
   key: CHN
 - spell: 松兼
   name: マツカネ
@@ -11017,11 +12499,35 @@ name:
   mark: 茨城
   comment: 30%住 水戸市
   key: CHN
+- spell: 谷島
+  name: ヤジマ
+  side: 姓
+  mark: 茨城
+  comment: 30%住 多 筑西市
+  key: CHN
+- spell: 安
+  name: ヤス
+  side: 姓
+  mark: 茨城
+  comment: 60%住 多 ひたちなか市
+  key: CHN
 - spell: 矢須
   name: ヤス
   side: 姓
   mark: 茨城
   comment: 60%住 茨城町
+  key: CHN
+- spell: 谷田川
+  name: ヤタガワ
+  side: 姓
+  mark: 茨城
+  comment: 60%住 多 鹿嶋市
+  key: CHN
+- spell: 谷田部
+  name: ヤタベ
+  side: 姓
+  mark: 茨城
+  comment: 30%住 多 大子町
   key: CHN
 - spell: 八文字
   name: ヤツモンジ
@@ -11088,6 +12594,24 @@ name:
   side: 姓
   mark: 茨城
   comment: 50%住 稲敷市
+  key: CHN
+- spell: 弓野
+  name: ユミノ
+  side: 姓
+  mark: 茨城
+  comment: 60%住 多 日立市　
+  key: CHN
+- spell: 横島
+  name: ヨコシマ
+  side: 姓
+  mark: 茨城
+  comment: 30%住 多 常総市　
+  key: CHN
+- spell: 横須賀
+  name: ヨコスカ
+  side: 姓
+  mark: 茨城
+  comment: 50%住 多 ひたちなか市　
   key: CHN
 - spell: 横張
   name: ヨコハリ
@@ -11221,6 +12745,18 @@ name:
   mark: 栃木
   comment: 30%住 足利市
   key: CHN
+- spell: 天海
+  name: アマガイ
+  side: 姓
+  mark: 栃木
+  comment: 30%住 多 佐野市
+  key: CHN
+- spell: 阿見
+  name: アミ
+  side: 姓
+  mark: 栃木
+  comment: 60%住 多 那須塩原市
+  key: CHN
 - spell: 阿美
   name: アミ
   side: 姓
@@ -11244,6 +12780,18 @@ name:
   side: 姓
   mark: 栃木
   comment: 50%住 大平町
+  key: CHN
+- spell: 安生
+  name: アンジョウ
+  side: 姓
+  mark: 栃木
+  comment: 50%住 多 鹿沼市
+  key: CHN
+- spell: 安納
+  name: アンノウ
+  side: 姓
+  mark: 栃木
+  comment: 60%住 多 宇都宮市
   key: CHN
 - spell: 五百部
   name: イオベ
@@ -11280,6 +12828,24 @@ name:
   side: 姓
   mark: 栃木
   comment: 40%住 鹿沼市
+  key: CHN
+- spell: 石下
+  name: イシオロシ
+  side: 姓
+  mark: 栃木
+  comment: 40%住 多 塩谷町
+  key: CHN
+- spell: 磯
+  name: イソ
+  side: 姓
+  mark: 栃木
+  comment: 30%住 多 大田原市
+  key: CHN
+- spell: 礒
+  name: イソ
+  side: 姓
+  mark: 栃木
+  comment: 40%住 多 大田原市
   key: CHN
 - spell: 五十部
   name: イソベ
@@ -11371,6 +12937,24 @@ name:
   mark: 栃木
   comment: 50%住 日光市
   key: CHN
+- spell: 江面
+  name: エヅラ
+  side: 姓
+  mark: 栃木
+  comment: 30%住 多 矢板市
+  key: CHN
+- spell: 江連
+  name: エヅレ
+  side: 姓
+  mark: 栃木
+  comment: 40%住 多 那須塩原市
+  key: CHN
+- spell: 海老沼
+  name: エビヌマ
+  side: 姓
+  mark: 栃木
+  comment: 40%住 多 小山市
+  key: CHN
 - spell: 江俣
   name: エマタ
   side: 姓
@@ -11400,6 +12984,24 @@ name:
   side: 姓
   mark: 栃木
   comment: 40%住 宇都宮市
+  key: CHN
+- spell: 大出
+  name: オオデ
+  side: 姓
+  mark: 栃木
+  comment: 30%住 多 小山市
+  key: CHN
+- spell: 大根田
+  name: オオネダ
+  side: 姓
+  mark: 栃木
+  comment: 50%住 多 宇都宮市
+  key: CHN
+- spell: 大豆生田
+  name: オオマメウダ
+  side: 姓
+  mark: 栃木
+  comment: 60%住 多 栃木市
   key: CHN
 - spell: 大美賀
   name: オオミカ
@@ -11533,6 +13135,18 @@ name:
   mark: 栃木
   comment: 50%住 壬生町
   key: CHN
+- spell: 河又
+  name: カワマタ
+  side: 姓
+  mark: 栃木
+  comment: 40%住 多 茂木町
+  key: CHN
+- spell: 瓦井
+  name: カワライ
+  side: 姓
+  mark: 栃木
+  comment: 40%住 多 鹿沼市
+  key: CHN
 - spell: 寒沢
   name: カンザワ
   side: 姓
@@ -11568,6 +13182,18 @@ name:
   side: 姓
   mark: 栃木
   comment: 30%住 藤岡町
+  key: CHN
+- spell: 粂川
+  name: クメカワ
+  side: 姓
+  mark: 栃木
+  comment: 50%住 多 壬生町
+  key: CHN
+- spell: 倉井
+  name: クライ
+  side: 姓
+  mark: 栃木
+  comment: 30%住 多 下野市
   key: CHN
 - spell: 久留生
   name: クリュウ
@@ -11610,6 +13236,18 @@ name:
   side: 姓
   mark: 栃木
   comment: 50%住 宇都宮市
+  key: CHN
+- spell: 慶野
+  name: ケイノ
+  side: 姓
+  mark: 栃木
+  comment: 40%住 多 佐野市
+  key: CHN
+- spell: 毛塚
+  name: ケヅカ
+  side: 姓
+  mark: 栃木
+  comment: 40%住 多 栃木市
   key: CHN
 - spell: 癸生川
   name: ケブカワ
@@ -11658,6 +13296,18 @@ name:
   side: 姓
   mark: 栃木
   comment: 30%住 那須塩原市
+  key: CHN
+- spell: 小太刀
+  name: コダチ
+  side: 姓
+  mark: 栃木
+  comment: 60%住 多 鹿沼市
+  key: CHN
+- spell: 狐塚
+  name: コヅカ
+  side: 姓
+  mark: 栃木
+  comment: 50%住 多 日光市
   key: CHN
 - spell: 琴寄
   name: コトヨリ
@@ -11748,6 +13398,12 @@ name:
   side: 姓
   mark: 栃木
   comment: 30%住 佐野市
+  key: CHN
+- spell: 猿山
+  name: サルヤマ
+  side: 姓
+  mark: 栃木
+  comment: 40%住 多 栃木市
   key: CHN
 - spell: 山納
   name: サンノウ
@@ -11845,6 +13501,24 @@ name:
   mark: 栃木
   comment: 40%住 足利市
   key: CHN
+- spell: 五月女
+  name: ソウトメ
+  side: 姓
+  mark: 栃木
+  comment: 40%住 多 宇都宮市
+  key: CHN
+- spell: 早乙女
+  name: ソウトメ
+  side: 姓
+  mark: 栃木
+  comment: 50%住 多 栃木市
+  key: CHN
+- spell: 添野
+  name: ソエノ
+  side: 姓
+  mark: 栃木
+  comment: 30%住 多 小山市
+  key: CHN
 - spell: 添谷
   name: ソエヤ
   side: 姓
@@ -11862,6 +13536,18 @@ name:
   side: 姓
   mark: 栃木
   comment: 60%住 真岡市
+  key: CHN
+- spell: 高久
+  name: タカク
+  side: 姓
+  mark: 栃木
+  comment: 30%住 多 那須町
+  key: CHN
+- spell: 高塩
+  name: タカシオ
+  side: 姓
+  mark: 栃木
+  comment: 40%住 多 宇都宮市
   key: CHN
 - spell: 高実子
   name: タカジッコ
@@ -11922,6 +13608,24 @@ name:
   side: 姓
   mark: 栃木
   comment: 50%住 壬生町
+  key: CHN
+- spell: 蓼沼
+  name: タデヌマ
+  side: 姓
+  mark: 栃木
+  comment: 40%住 多 足利市
+  key: CHN
+- spell: 館野
+  name: タテノ
+  side: 姓
+  mark: 栃木
+  comment: 30%住 多 小山市
+  key: CHN
+- spell: 田名網
+  name: タナアミ
+  side: 姓
+  mark: 栃木
+  comment: 40%住 多 佐野市
   key: CHN
 - spell: 田波
   name: タナミ
@@ -12091,6 +13795,18 @@ name:
   mark: 栃木
   comment: 40%住 岩舟町
   key: CHN
+- spell: 長竹
+  name: ナガタケ
+  side: 姓
+  mark: 栃木
+  comment: 40%住 多 足利市
+  key: CHN
+- spell: 中三川
+  name: ナカミガワ
+  side: 姓
+  mark: 栃木
+  comment: 70%住 多 真岡市
+  key: CHN
 - spell: 七久保
   name: ナナクボ
   side: 姓
@@ -12187,11 +13903,29 @@ name:
   mark: 栃木
   comment: 70%住 さくら市
   key: CHN
+- spell: 初谷
+  name: ハツガイ
+  side: 姓
+  mark: 栃木
+  comment: 30%住 多 足利市
+  key: CHN
 - spell: 八長
   name: ハッチョウ
   side: 姓
   mark: 栃木
   comment: 60%住 足利市
+  key: CHN
+- spell: 花塚
+  name: ハナヅカ
+  side: 姓
+  mark: 栃木
+  comment: 40%住 多 大田原市
+  key: CHN
+- spell: 羽石
+  name: ハネイシ
+  side: 姓
+  mark: 栃木
+  comment: 40%住 多 茂木町
   key: CHN
 - spell: 伴瀬
   name: バンセ
@@ -12295,6 +14029,18 @@ name:
   mark: 栃木
   comment: 60%住 さくら市
   key: CHN
+- spell: 増淵
+  name: マスブチ
+  side: 姓
+  mark: 栃木
+  comment: 30%住 多 宇都宮市
+  key: CHN
+- spell: 増渕
+  name: マスブチ
+  side: 姓
+  mark: 栃木
+  comment: 40%住 多 宇都宮市
+  key: CHN
 - spell: 鱒淵
   name: マスブチ
   side: 姓
@@ -12325,6 +14071,18 @@ name:
   mark: 栃木
   comment: 40%住 岩舟町
   key: CHN
+- spell: 水沼
+  name: ミズヌマ
+  side: 姓
+  mark: 栃木
+  comment: 30%住 多 芳賀町
+  key: CHN
+- spell: 麦倉
+  name: ムギクラ
+  side: 姓
+  mark: 栃木
+  comment: 40%住 多 宇都宮市
+  key: CHN
 - spell: 室越
   name: ムロコシ
   side: 姓
@@ -12342,6 +14100,18 @@ name:
   side: 姓
   mark: 栃木
   comment: 30%住 那須烏山市
+  key: CHN
+- spell: 八木沢
+  name: ヤギサワ
+  side: 姓
+  mark: 栃木
+  comment: 40%住 多 那須塩原市
+  key: CHN
+- spell: 八木澤
+  name: ヤギサワ
+  side: 姓
+  mark: 栃木
+  comment: 40%住 多 日光市
   key: CHN
 - spell: 八下田
   name: ヤゲタ
@@ -12390,6 +14160,12 @@ name:
   side: 姓
   mark: 栃木
   comment: 50%住 栃木市
+  key: CHN
+- spell: 梁島
+  name: ヤナシマ
+  side: 姓
+  mark: 栃木
+  comment: 60%住 多 壬生町
   key: CHN
 - spell: 簗島
   name: ヤナシマ
@@ -12475,6 +14251,18 @@ name:
   mark: 栃木
   comment: 60%住 宇都宮市
   key: CHN
+- spell: 阿久沢
+  name: アクザワ
+  side: 姓
+  mark: 群馬
+  comment: 60%住 多 前橋市
+  key: CHN
+- spell: 阿久澤
+  name: アクザワ
+  side: 姓
+  mark: 群馬
+  comment: 60%住 多 前橋市
+  key: CHN
 - spell: 阿久戸
   name: アクド
   side: 姓
@@ -12516,6 +14304,18 @@ name:
   side: 姓
   mark: 群馬
   comment: 50%住 高崎市
+  key: CHN
+- spell: 天笠
+  name: アマガサ
+  side: 姓
+  mark: 群馬
+  comment: 40%住 多 太田市
+  key: CHN
+- spell: 天田
+  name: アマダ
+  side: 姓
+  mark: 群馬
+  comment: 40%住 多 高崎市
   key: CHN
 - spell: 蟻川
   name: アリカワ
@@ -12643,6 +14443,18 @@ name:
   mark: 群馬
   comment: 60%住 沼田市
   key: CHN
+- spell: 生形
+  name: ウブカタ
+  side: 姓
+  mark: 群馬
+  comment: 40%住 多 伊勢崎市
+  key: CHN
+- spell: 生方
+  name: ウブカタ
+  side: 姓
+  mark: 群馬
+  comment: 50%住 多 渋川市
+  key: CHN
 - spell: 鵜生川
   name: ウブカワ
   side: 姓
@@ -12697,6 +14509,18 @@ name:
   mark: 群馬
   comment: 50%住 東吾妻町
   key: CHN
+- spell: 小此木
+  name: オコノギ
+  side: 姓
+  mark: 群馬
+  comment: 60%住 多 伊勢崎市
+  key: CHN
+- spell: 長壁
+  name: オサカベ
+  side: 姓
+  mark: 群馬
+  comment: 50%住 多 高崎市
+  key: CHN
 - spell: 押江
   name: オシエ
   side: 姓
@@ -12708,6 +14532,24 @@ name:
   side: 姓
   mark: 群馬
   comment: 60%住 沼田市
+  key: CHN
+- spell: 小内
+  name: オナイ
+  side: 姓
+  mark: 群馬
+  comment: 30%住 多 太田市
+  key: CHN
+- spell: 尾内
+  name: オナイ
+  side: 姓
+  mark: 群馬
+  comment: 40%住 多 太田市
+  key: CHN
+- spell: 女屋
+  name: オナヤ
+  side: 姓
+  mark: 群馬
+  comment: 70%住 多 前橋市
   key: CHN
 - spell: 鬼形
   name: オニガタ
@@ -12726,6 +14568,18 @@ name:
   side: 姓
   mark: 群馬
   comment: 50%住 高崎市
+  key: CHN
+- spell: 小淵
+  name: オブチ
+  side: 姓
+  mark: 群馬
+  comment: 40%住 多 渋川市
+  key: CHN
+- spell: 小保方
+  name: オボカタ
+  side: 姓
+  mark: 群馬
+  comment: 60%住 多 伊勢崎市
   key: CHN
 - spell: 織間
   name: オリマ
@@ -12762,6 +14616,24 @@ name:
   side: 姓
   mark: 群馬
   comment: 30%住 伊勢崎市
+  key: CHN
+- spell: 粕川
+  name: カスカワ
+  side: 姓
+  mark: 群馬
+  comment: 30%住 多 前橋市
+  key: CHN
+- spell: 忰田
+  name: カセダ
+  side: 姓
+  mark: 群馬
+  comment: 60%住 多 安中市
+  key: CHN
+- spell: 片貝
+  name: カタカイ
+  side: 姓
+  mark: 群馬
+  comment: 50%住 多 前橋市
   key: CHN
 - spell: 鹿沼
   name: カヌマ
@@ -12919,6 +14791,18 @@ name:
   mark: 群馬
   comment: 90%住 伊勢崎市
   key: CHN
+- spell: 小板橋
+  name: コイタバシ
+  side: 姓
+  mark: 群馬
+  comment: 40%住 多 安中市
+  key: CHN
+- spell: 小井土
+  name: コイド
+  side: 姓
+  mark: 群馬
+  comment: 40%住 多 下仁田町
+  key: CHN
 - spell: 高野辺
   name: コウノベ
   side: 姓
@@ -12936,6 +14820,18 @@ name:
   side: 姓
   mark: 群馬
   comment: 40%住 富岡市
+  key: CHN
+- spell: 後閑
+  name: ゴカン
+  side: 姓
+  mark: 群馬
+  comment: 60%住 多 高崎市
+  key: CHN
+- spell: 木暮
+  name: コグレ
+  side: 姓
+  mark: 群馬
+  comment: 60%住 多 渋川市
   key: CHN
 - spell: 木檜
   name: コグレ
@@ -13009,6 +14905,18 @@ name:
   mark: 群馬
   comment: 70%住 高崎市
   key: CHN
+- spell: 佐俣
+  name: サマタ
+  side: 姓
+  mark: 群馬
+  comment: 50%住 多 富岡市
+  key: CHN
+- spell: 猿谷
+  name: サルヤ
+  side: 姓
+  mark: 群馬
+  comment: 40%住 多 安中市
+  key: CHN
 - spell: 沢浦
   name: サワウラ
   side: 姓
@@ -13075,6 +14983,18 @@ name:
   mark: 群馬
   comment: 60%住 沼田市
   key: CHN
+- spell: 周東
+  name: シュウトウ
+  side: 姓
+  mark: 群馬
+  comment: 40%住 多 桐生市
+  key: CHN
+- spell: 神宮
+  name: ジングウ
+  side: 姓
+  mark: 群馬
+  comment: 30%住 多 高崎市
+  key: CHN
 - spell: 神場
   name: ジンバ
   side: 姓
@@ -13086,6 +15006,18 @@ name:
   side: 姓
   mark: 群馬
   comment: 40%住 高崎市
+  key: CHN
+- spell: 須永
+  name: スナガ
+  side: 姓
+  mark: 群馬
+  comment: 30%住 多 伊勢崎市
+  key: CHN
+- spell: 関上
+  name: セキガミ
+  side: 姓
+  mark: 群馬
+  comment: 40%住 多 昭和村
   key: CHN
 - spell: 関沼
   name: セキヌマ
@@ -13147,6 +15079,36 @@ name:
   mark: 群馬
   comment: 50%住 前橋市
   key: CHN
+- spell: 高草木
+  name: タカクサキ
+  side: 姓
+  mark: 群馬
+  comment: 60%住 多 桐生市
+  key: CHN
+- spell: 多賀谷
+  name: タガヤ
+  side: 姓
+  mark: 群馬
+  comment: 30%住 多 伊勢崎市
+  key: CHN
+- spell: 竹淵
+  name: タケブチ
+  side: 姓
+  mark: 群馬
+  comment: 60%住 多 中之条町
+  key: CHN
+- spell: 竹渕
+  name: タケブチ
+  side: 姓
+  mark: 群馬
+  comment: 40%住 多 東吾妻町
+  key: CHN
+- spell: 多胡
+  name: タゴ
+  side: 姓
+  mark: 群馬
+  comment: 30%住 多 安中市
+  key: CHN
 - spell: 田胡
   name: タゴ
   side: 姓
@@ -13170,6 +15132,24 @@ name:
   side: 姓
   mark: 群馬
   comment: 30%住 渋川市
+  key: CHN
+- spell: 千吉良
+  name: チギラ
+  side: 姓
+  mark: 群馬
+  comment: 70%住 多 伊勢崎市
+  key: CHN
+- spell: 千明
+  name: チギラ
+  side: 姓
+  mark: 群馬
+  comment: 60%住 多 渋川市
+  key: CHN
+- spell: 千木良
+  name: チギラ
+  side: 姓
+  mark: 群馬
+  comment: 50%住 多 渋川市
   key: CHN
 - spell: 築比地
   name: ツイヒジ
@@ -13266,6 +15246,18 @@ name:
   side: 姓
   mark: 群馬
   comment: 60%住 東吾妻町
+  key: CHN
+- spell: 外丸
+  name: トマル
+  side: 姓
+  mark: 群馬
+  comment: 50%住 多 渋川市
+  key: CHN
+- spell: 戸丸
+  name: トマル
+  side: 姓
+  mark: 群馬
+  comment: 60%住 多 沼田市
   key: CHN
 - spell: 渡丸
   name: トマル
@@ -13399,6 +15391,18 @@ name:
   mark: 群馬
   comment: 50%住 前橋市
   key: CHN
+- spell: 原沢
+  name: ハラサワ
+  side: 姓
+  mark: 群馬
+  comment: 30%住 多 みなかみ町
+  key: CHN
+- spell: 原澤
+  name: ハラサワ
+  side: 姓
+  mark: 群馬
+  comment: 40%住 多 みなかみ町
+  key: CHN
 - spell: 樋下田
   name: ヒゲタ
   side: 姓
@@ -13453,6 +15457,18 @@ name:
   mark: 群馬
   comment: 80%住 高崎市
   key: CHN
+- spell: 藤生
+  name: フジウ
+  side: 姓
+  mark: 群馬
+  comment: 50%住 多 みどり市
+  key: CHN
+- spell: 毒島
+  name: ブスジマ
+  side: 姓
+  mark: 群馬
+  comment: 60%住 多 桐生市
+  key: CHN
 - spell: 布施川
   name: フセガワ
   side: 姓
@@ -13494,6 +15510,18 @@ name:
   side: 姓
   mark: 群馬
   comment: 50%住 前橋市
+  key: CHN
+- spell: 真下
+  name: マシモ
+  side: 姓
+  mark: 群馬
+  comment: 30%住 多 高崎市
+  key: CHN
+- spell: 真庭
+  name: マニワ
+  side: 姓
+  mark: 群馬
+  comment: 50%住 多 みなかみ町
   key: CHN
 - spell: 摩庭
   name: マニワ
@@ -13561,6 +15589,18 @@ name:
   mark: 群馬
   comment: 50%住 安中市
   key: CHN
+- spell: 森尻
+  name: モリジリ
+  side: 姓
+  mark: 群馬
+  comment: 50%住 多 太田市
+  key: CHN
+- spell: 諸田
+  name: モロタ
+  side: 姓
+  mark: 群馬
+  comment: 30%住 多 渋川市
+  key: CHN
 - spell: 紋谷
   name: モンヤ
   side: 姓
@@ -13590,6 +15630,18 @@ name:
   side: 姓
   mark: 群馬
   comment: 30%住 館林市
+  key: CHN
+- spell: 横坂
+  name: ヨコサカ
+  side: 姓
+  mark: 群馬
+  comment: 50%住 多 沼田市
+  key: CHN
+- spell: 横堀
+  name: ヨコボリ
+  side: 姓
+  mark: 群馬
+  comment: 30%住 多 伊勢崎市
   key: CHN
 - spell: 横室
   name: ヨコムロ
@@ -13626,6 +15678,12 @@ name:
   side: 姓
   mark: 埼玉
   comment: 30%住 春日部市
+  key: CHN
+- spell: 青鹿
+  name: アオシカ
+  side: 姓
+  mark: 埼玉
+  comment: 60%住 多 大利根町
   key: CHN
 - spell: 粟生田
   name: アオタ
@@ -13722,6 +15780,18 @@ name:
   side: 姓
   mark: 埼玉
   comment: 70%住 さいたま市
+  key: CHN
+- spell: 天沼
+  name: アマヌマ
+  side: 姓
+  mark: 埼玉
+  comment: 30%住 多 桶川市
+  key: CHN
+- spell: 新井
+  name: アライ
+  side: 姓
+  mark: 埼玉
+  comment: 30%住 多 秩父市
   key: CHN
 - spell: 荒幡
   name: アラハタ
@@ -13855,6 +15925,18 @@ name:
   mark: 埼玉
   comment: 80%住 行田市
   key: CHN
+- spell: 牛窪
+  name: ウシクボ
+  side: 姓
+  mark: 埼玉
+  comment: 50%住 多 川越市
+  key: CHN
+- spell: 臼倉
+  name: ウスクラ
+  side: 姓
+  mark: 埼玉
+  comment: 40%住 多 さいたま市
+  key: CHN
 - spell: 槍田
   name: ウツダ
   side: 姓
@@ -13986,6 +16068,18 @@ name:
   side: 姓
   mark: 埼玉
   comment: 40%住 幸手市
+  key: CHN
+- spell: 越阪部
+  name: オサカベ
+  side: 姓
+  mark: 埼玉
+  comment: 80%住 多 所沢市
+  key: CHN
+- spell: 忍田
+  name: オシダ
+  side: 姓
+  mark: 埼玉
+  comment: 30%住 多 川越市
   key: CHN
 - spell: 尾城
   name: オジロ
@@ -14227,6 +16321,24 @@ name:
   mark: 埼玉
   comment: 40%住 所沢市
   key: CHN
+- spell: 倉上
+  name: クラカミ
+  side: 姓
+  mark: 埼玉
+  comment: 40%住 多 深谷市
+  key: CHN
+- spell: 倉林
+  name: クラバヤシ
+  side: 姓
+  mark: 埼玉
+  comment: 30%住 多 本庄市
+  key: CHN
+- spell: 栗島
+  name: クリシマ
+  side: 姓
+  mark: 埼玉
+  comment: 30%住 多 小川町
+  key: CHN
 - spell: 黒米
   name: クロゴメ
   side: 姓
@@ -14286,6 +16398,18 @@ name:
   side: 姓
   mark: 埼玉
   comment: 50%住 小鹿野町
+  key: CHN
+- spell: 腰塚
+  name: コシヅカ
+  side: 姓
+  mark: 埼玉
+  comment: 40%住 多 熊谷市
+  key: CHN
+- spell: 腰塚
+  name: コシズカ
+  side: 姓
+  mark: 埼玉
+  comment: 40%住 多 熊谷市
   key: CHN
 - spell: 護守
   name: ゴノカミ
@@ -14473,6 +16597,18 @@ name:
   mark: 埼玉
   comment: 30%住 東松山市
   key: CHN
+- spell: 強矢
+  name: スネヤ
+  side: 姓
+  mark: 埼玉
+  comment: 70%住 多 小鹿野町
+  key: CHN
+- spell: 関根
+  name: セキネ
+  side: 姓
+  mark: 埼玉
+  comment: 30%住 多 さいたま市
+  key: CHN
 - spell: 関和
   name: セキワ
   side: 姓
@@ -14520,6 +16656,18 @@ name:
   side: 姓
   mark: 埼玉
   comment: 40%住 さいたま市
+  key: CHN
+- spell: 高篠
+  name: タカシノ
+  side: 姓
+  mark: 埼玉
+  comment: 60%住 多 鶴ケ島市
+  key: CHN
+- spell: 高荷
+  name: タカニ
+  side: 姓
+  mark: 埼玉
+  comment: 60%住 多 深谷市
   key: CHN
 - spell: 多ケ谷
   name: タガヤ
@@ -14725,6 +16873,24 @@ name:
   mark: 埼玉
   comment: 50%住 美里町
   key: CHN
+- spell: 戸口
+  name: トグチ
+  side: 姓
+  mark: 埼玉
+  comment: 40%住 多 ときがわ町
+  key: CHN
+- spell: 利根川
+  name: トネガワ
+  side: 姓
+  mark: 埼玉
+  comment: 40%住 多 さいたま市
+  key: CHN
+- spell: 戸張
+  name: トバリ
+  side: 姓
+  mark: 埼玉
+  comment: 30%住 多 吉川市
+  key: CHN
 - spell: 友光
   name: トモミツ
   side: 姓
@@ -14767,6 +16933,12 @@ name:
   mark: 埼玉
   comment: 40%住 美里町
   key: CHN
+- spell: 永堀
+  name: ナガホリ
+  side: 姓
+  mark: 埼玉
+  comment: 40%住 多 さいたま市
+  key: CHN
 - spell: 奈雲
   name: ナグモ
   side: 姓
@@ -14797,6 +16969,18 @@ name:
   mark: 埼玉
   comment: 30%住 熊谷市
   key: CHN
+- spell: 成塚
+  name: ナリヅカ
+  side: 姓
+  mark: 埼玉
+  comment: 40%住 多 鴻巣市
+  key: CHN
+- spell: 贄田
+  name: ニエダ
+  side: 姓
+  mark: 埼玉
+  comment: 40%住 多 滑川町
+  key: CHN
 - spell: 韮塚
   name: ニラヅカ
   side: 姓
@@ -14814,6 +16998,18 @@ name:
   side: 姓
   mark: 埼玉
   comment: 40%住 志木市
+  key: CHN
+- spell: 貫井
+  name: ヌクイ
+  side: 姓
+  mark: 埼玉
+  comment: 40%住 多 入間市
+  key: CHN
+- spell: 根岸
+  name: ネギシ
+  side: 姓
+  mark: 埼玉
+  comment: 30%住 多 深谷市
   key: CHN
 - spell: 納見
   name: ノウミ
@@ -14845,6 +17041,12 @@ name:
   mark: 埼玉
   comment: 30%住 本庄市
   key: CHN
+- spell: 蓮見
+  name: ハスミ
+  side: 姓
+  mark: 埼玉
+  comment: 40%住 多 さいたま市
+  key: CHN
 - spell: 畑仲
   name: ハタナカ
   side: 姓
@@ -14868,6 +17070,18 @@ name:
   side: 姓
   mark: 埼玉
   comment: 60%住 さいたま市
+  key: CHN
+- spell: 早船
+  name: ハヤフネ
+  side: 姓
+  mark: 埼玉
+  comment: 50%住 多 川口市
+  key: CHN
+- spell: 針ケ谷
+  name: ハリガヤ
+  side: 姓
+  mark: 埼玉
+  comment: 30%住 多 所沢市
   key: CHN
 - spell: 半貫
   name: ハンヌキ
@@ -14935,11 +17149,35 @@ name:
   mark: 埼玉
   comment: 40%住 入間市
   key: CHN
+- spell: 昼間
+  name: ヒルマ
+  side: 姓
+  mark: 埼玉
+  comment: 40%住 多 八潮市
+  key: CHN
+- spell: 保泉
+  name: ホズミ
+  side: 姓
+  mark: 埼玉
+  comment: 60%住 多 寄居町
+  key: CHN
 - spell: 保栖
   name: ホズミ
   side: 姓
   mark: 埼玉
   comment: 70%住 蓮田市
+  key: CHN
+- spell: 細沼
+  name: ホソヌマ
+  side: 姓
+  mark: 埼玉
+  comment: 60%住 多 さいたま市
+  key: CHN
+- spell: 細渕
+  name: ホソブチ
+  side: 姓
+  mark: 埼玉
+  comment: 40%住 多 さいたま市
   key: CHN
 - spell: 程塚
   name: ホドヅカ
@@ -14976,6 +17214,18 @@ name:
   side: 姓
   mark: 埼玉
   comment: 70%住 川越市
+  key: CHN
+- spell: 真々田
+  name: ママダ
+  side: 姓
+  mark: 埼玉
+  comment: 60%住 多 さいたま市
+  key: CHN
+- spell: 侭田
+  name: ママダ
+  side: 姓
+  mark: 埼玉
+  comment: 30%住 多 加須市
   key: CHN
 - spell: 間々田
   name: ママダ
@@ -15061,6 +17311,18 @@ name:
   mark: 埼玉
   comment: 40%住 北本市
   key: CHN
+- spell: 宮寺
+  name: ミヤデラ
+  side: 姓
+  mark: 埼玉
+  comment: 40%住 多 飯能市
+  key: CHN
+- spell: 武笠
+  name: ムカサ
+  side: 姓
+  mark: 埼玉
+  comment: 40%住 多 さいたま市
+  key: CHN
 - spell: 向佐
   name: ムカサ
   side: 姓
@@ -15108,6 +17370,18 @@ name:
   side: 姓
   mark: 埼玉
   comment: 60%住 松伏町
+  key: CHN
+- spell: 八木原
+  name: ヤギハラ
+  side: 姓
+  mark: 埼玉
+  comment: 30%住 多 熊谷市
+  key: CHN
+- spell: 谷古宇
+  name: ヤコウ
+  side: 姓
+  mark: 埼玉
+  comment: 40%住 多 三郷市
   key: CHN
 - spell: 谷塚
   name: ヤツカ
@@ -15234,6 +17508,12 @@ name:
   side: 姓
   mark: 千葉
   comment: 40%住 多 千葉市
+  key: CHN
+- spell: 秋谷
+  name: アキヤ
+  side: 姓
+  mark: 千葉
+  comment: 30%住 多 柏市
   key: CHN
 - spell: 莇
   name: アザミ
@@ -15564,6 +17844,12 @@ name:
   side: 姓
   mark: 千葉
   comment: 70%住 大網白里町
+  key: CHN
+- spell: 江波戸
+  name: エバト
+  side: 姓
+  mark: 千葉
+  comment: 60%住 多 匝瑳市
   key: CHN
 - spell: 大網
   name: オオアミ
@@ -15901,6 +18187,12 @@ name:
   mark: 千葉
   comment: 40%住 多 鴨川市
   key: CHN
+- spell: 刈込
+  name: カリコミ
+  side: 姓
+  mark: 千葉
+  comment: 70%住 多 鴨川市
+  key: CHN
 - spell: 苅込
   name: カリコミ
   side: 姓
@@ -16021,6 +18313,12 @@ name:
   mark: 千葉
   comment: 70%住 多 酒々井町
   key: CHN
+- spell: 清宮
+  name: キヨミヤ・セイミヤ
+  side: 姓
+  mark: 千葉
+  comment: 0%住 多 千葉市
+  key: CHN
 - spell: 切替
   name: キリカエ
   side: 姓
@@ -16056,6 +18354,12 @@ name:
   side: 姓
   mark: 千葉
   comment: 30%住 多 香取市
+  key: CHN
+- spell: 向後
+  name: コウゴ
+  side: 姓
+  mark: 千葉
+  comment: 60%住 多 旭市
   key: CHN
 - spell: 鴻崎
   name: コウザキ
@@ -16183,11 +18487,29 @@ name:
   mark: 千葉
   comment: 40%住 銚子市
   key: CHN
+- spell: 笹子
+  name: ササゴ
+  side: 姓
+  mark: 千葉
+  comment: 50%住 多 南房総市
+  key: CHN
 - spell: 佐生
   name: サショウ
   side: 姓
   mark: 千葉
   comment: 30%住 富津市
+  key: CHN
+- spell: 佐瀬
+  name: サセ
+  side: 姓
+  mark: 千葉
+  comment: 30%住 多 東金市
+  key: CHN
+- spell: 笹生
+  name: サソウ
+  side: 姓
+  mark: 千葉
+  comment: 40%住 多 鋸南町
   key: CHN
 - spell: 三幣
   name: サンペイ
@@ -16243,11 +18565,29 @@ name:
   mark: 千葉
   comment: 60%住 南房総市
   key: CHN
+- spell: 実方
+  name: ジツカタ
+  side: 姓
+  mark: 千葉
+  comment: 30%住 多 いすみ市
+  key: CHN
 - spell: 實川
   name: ジツカワ
   side: 姓
   mark: 千葉
   comment: 60%住 横芝光町
+  key: CHN
+- spell: 実川
+  name: ジツカワ
+  side: 姓
+  mark: 千葉
+  comment: 60%住 多 横芝光町
+  key: CHN
+- spell: 市東
+  name: シトウ
+  side: 姓
+  mark: 千葉
+  comment: 60%住 多 御宿町
   key: CHN
 - spell: 品村
   name: シナムラ
@@ -16320,6 +18660,12 @@ name:
   side: 姓
   mark: 千葉
   comment: 70%住 東金市
+  key: CHN
+- spell: 菅沢
+  name: スガサワ
+  side: 姓
+  mark: 千葉
+  comment: 30%住 多 多古町
   key: CHN
 - spell: 菅澤
   name: スガサワ
@@ -16657,6 +19003,12 @@ name:
   mark: 千葉
   comment: 30%住 東金市
   key: CHN
+- spell: 行木
+  name: ナメキ
+  side: 姓
+  mark: 千葉
+  comment: 60%住 多 九十九里町
+  key: CHN
 - spell: 名雪
   name: ナユキ
   side: 姓
@@ -16746,6 +19098,12 @@ name:
   side: 姓
   mark: 千葉
   comment: 50%住 旭市
+  key: CHN
+- spell: 花沢
+  name: ハナザワ
+  side: 姓
+  mark: 千葉
+  comment: 30%住 多 千葉市
   key: CHN
 - spell: 花澤
   name: ハナザワ
@@ -16902,6 +19260,30 @@ name:
   side: 姓
   mark: 千葉
   comment: 40%住 旭市
+  key: CHN
+- spell: 松戸
+  name: マツド
+  side: 姓
+  mark: 千葉
+  comment: 60%住 多 千葉市
+  key: CHN
+- spell: 松丸
+  name: マツマル
+  side: 姓
+  mark: 千葉
+  comment: 50%住 多 市川市
+  key: CHN
+- spell: 丸
+  name: マル
+  side: 姓
+  mark: 千葉
+  comment: 40%住 多 茂原市
+  key: CHN
+- spell: 丸島
+  name: マルシマ
+  side: 姓
+  mark: 千葉
+  comment: 40%住 多 茂原市
   key: CHN
 - spell: 万崎
   name: マンザキ
@@ -17245,6 +19627,24 @@ name:
   mark: 東京
   comment: 30%住 練馬区
   key: CHN
+- spell: 宇田川
+  name: ウダガワ
+  side: 姓
+  mark: 東京
+  comment: 30%住 多 江戸川区
+  key: CHN
+- spell: 上保
+  name: ウワボ
+  side: 姓
+  mark: 東京
+  comment: 40%住 多 世田谷区
+  key: CHN
+- spell: 榎戸
+  name: エノキド
+  side: 姓
+  mark: 東京
+  comment: 30%住 多 青梅市
+  key: CHN
 - spell: 追川
   name: オイカワ
   side: 姓
@@ -17286,6 +19686,24 @@ name:
   side: 姓
   mark: 東京
   comment: 30%住 新宿区
+  key: CHN
+- spell: 沖山
+  name: オキヤマ
+  side: 姓
+  mark: 東京
+  comment: 40%住 多 八丈町
+  key: CHN
+- spell: 奥住
+  name: オクズミ
+  side: 姓
+  mark: 東京
+  comment: 50%住 多 日野市
+  key: CHN
+- spell: 小作
+  name: オザク
+  side: 姓
+  mark: 東京
+  comment: 60%住 多 羽村市
   key: CHN
 - spell: 尾作
   name: オサク
@@ -17520,6 +19938,12 @@ name:
   side: 姓
   mark: 東京
   comment: 50%住 葛飾区
+  key: CHN
+- spell: 篠
+  name: シノ
+  side: 姓
+  mark: 東京
+  comment: 50%住 多 練馬区
   key: CHN
 - spell: 宿谷
   name: シュクヤ
@@ -17773,6 +20197,24 @@ name:
   mark: 東京
   comment: 40%住 調布市
   key: CHN
+- spell: 羽村
+  name: ハムラ
+  side: 姓
+  mark: 東京
+  comment: 50%住 多 羽村市
+  key: CHN
+- spell: 原島
+  name: ハラシマ
+  side: 姓
+  mark: 東京
+  comment: 40%住 多 青梅市
+  key: CHN
+- spell: 原嶋
+  name: ハラシマ
+  side: 姓
+  mark: 東京
+  comment: 30%住 多 青梅市
+  key: CHN
 - spell: 茨田
   name: バラダ
   side: 姓
@@ -17893,11 +20335,23 @@ name:
   mark: 東京
   comment: 60%住 練馬区
   key: CHN
+- spell: 峰尾
+  name: ミネオ
+  side: 姓
+  mark: 東京
+  comment: 40%住 多 八王子市
+  key: CHN
 - spell: 峯尾
   name: ミネオ
   side: 姓
   mark: 東京
   comment: 40%住 多 八王子市
+  key: CHN
+- spell: 峰岸
+  name: ミネギシ
+  side: 姓
+  mark: 東京
+  comment: 30%住 多 八王子市
   key: CHN
 - spell: 宮鍋
   name: ミヤナベ
@@ -18013,6 +20467,18 @@ name:
   mark: 神奈川
   comment: 60%住 秦野市
   key: CHN
+- spell: 浅場
+  name: アサバ
+  side: 姓
+  mark: 神奈川
+  comment: 40%住 多 藤沢市
+  key: CHN
+- spell: 浅葉
+  name: アサバ
+  side: 姓
+  mark: 神奈川
+  comment: 60%住 多 横須賀市
+  key: CHN
 - spell: 芦垣
   name: アシガキ
   side: 姓
@@ -18091,6 +20557,18 @@ name:
   mark: 神奈川
   comment: 60%住 厚木市
   key: CHN
+- spell: 石渡
+  name: イシワタ
+  side: 姓
+  mark: 神奈川
+  comment: 40%住 多 横須賀市
+  key: CHN
+- spell: 石綿
+  name: イシワタ
+  side: 姓
+  mark: 神奈川
+  comment: 30%住 多 小田原市
+  key: CHN
 - spell: 磯ケ谷
   name: イソガヤ
   side: 姓
@@ -18144,6 +20622,18 @@ name:
   side: 姓
   mark: 神奈川
   comment: 40%住 鎌倉市
+  key: CHN
+- spell: 江成
+  name: エナリ
+  side: 姓
+  mark: 神奈川
+  comment: 70%住 多 相模原市
+  key: CHN
+- spell: 海老塚
+  name: エビヅカ
+  side: 姓
+  mark: 神奈川
+  comment: 70%住 多 横浜市
   key: CHN
 - spell: 翁川
   name: オイカワ
@@ -18253,6 +20743,24 @@ name:
   mark: 神奈川
   comment: 90%住 伊勢原市
   key: CHN
+- spell: 勝俣
+  name: カツマタ
+  side: 姓
+  mark: 神奈川
+  comment: 30%住 多 箱根町
+  key: CHN
+- spell: 門倉
+  name: カドクラ
+  side: 姓
+  mark: 神奈川
+  comment: 30%住 多 相模原市
+  key: CHN
+- spell: 門松
+  name: カドマツ
+  side: 姓
+  mark: 神奈川
+  comment: 30%住 多 小田原市
+  key: CHN
 - spell: 金目
   name: カナメ
   side: 姓
@@ -18283,6 +20791,18 @@ name:
   mark: 神奈川
   comment: 60%住 愛川町
   key: CHN
+- spell: 加山
+  name: カヤマ
+  side: 姓
+  mark: 神奈川
+  comment: 30%住 多 横浜市
+  key: CHN
+- spell: 嘉山
+  name: カヤマ
+  side: 姓
+  mark: 神奈川
+  comment: 60%住 多 横須賀市
+  key: CHN
 - spell: 唐戸
   name: カラト
   side: 姓
@@ -18295,11 +20815,47 @@ name:
   mark: 神奈川
   comment: 40%住 藤沢市
   key: CHN
+- spell: 菊地原
+  name: キクチハラ
+  side: 姓
+  mark: 神奈川
+  comment: 70%住 多 相模原市
+  key: CHN
 - spell: 岸名
   name: キシナ
   side: 姓
   mark: 神奈川
   comment: 30%住 葉山町
+  key: CHN
+- spell: 橘川
+  name: キッカワ
+  side: 姓
+  mark: 神奈川
+  comment: 40%住 多 綾瀬市
+  key: CHN
+- spell: 城所
+  name: キドコロ
+  side: 姓
+  mark: 神奈川
+  comment: 30%住 多 横浜市
+  key: CHN
+- spell: 桐ケ谷
+  name: キリガヤ
+  side: 姓
+  mark: 神奈川
+  comment: 60%住 多 横浜市
+  key: CHN
+- spell: 草柳
+  name: クサヤナギ
+  side: 姓
+  mark: 神奈川
+  comment: 60%住 多 横浜市
+  key: CHN
+- spell: 草山
+  name: クサヤマ
+  side: 姓
+  mark: 神奈川
+  comment: 40%住 多 秦野市
   key: CHN
 - spell: 久保倉
   name: クボクラ
@@ -18312,6 +20868,24 @@ name:
   side: 姓
   mark: 神奈川
   comment: 80%住 川崎市
+  key: CHN
+- spell: 久保寺
+  name: クボデラ
+  side: 姓
+  mark: 神奈川
+  comment: 50%住 多 横浜市
+  key: CHN
+- spell: 久保寺
+  name: クボテラ
+  side: 姓
+  mark: 神奈川
+  comment: 50%住 多 横浜市
+  key: CHN
+- spell: 熊澤
+  name: クマザワ
+  side: 姓
+  mark: 神奈川
+  comment: 30%住 多 横浜市
   key: CHN
 - spell: 熊山
   name: クマヤマ
@@ -18384,6 +20958,18 @@ name:
   side: 姓
   mark: 神奈川
   comment: 80%住 愛川町
+  key: CHN
+- spell: 越地
+  name: コシヂ
+  side: 姓
+  mark: 神奈川
+  comment: 50%住 多 伊勢原市
+  key: CHN
+- spell: 小清水
+  name: コシミズ
+  side: 姓
+  mark: 神奈川
+  comment: 40%住 多 平塚市
   key: CHN
 - spell: 越光
   name: コシミツ
@@ -18462,6 +21048,12 @@ name:
   side: 姓
   mark: 神奈川
   comment: 60%住 川崎市
+  key: CHN
+- spell: 坂間
+  name: サカマ
+  side: 姓
+  mark: 神奈川
+  comment: 50%住 多 横浜市
   key: CHN
 - spell: 佐須
   name: サス
@@ -18547,11 +21139,47 @@ name:
   mark: 神奈川
   comment: 30%住 横浜市
   key: CHN
+- spell: 霜島
+  name: シモジマ
+  side: 姓
+  mark: 神奈川
+  comment: 80%住 多 厚木市
+  key: CHN
+- spell: 杉崎
+  name: スギザキ
+  side: 姓
+  mark: 神奈川
+  comment: 30%住 多 横浜市
+  key: CHN
+- spell: 鈴野
+  name: スズノ
+  side: 姓
+  mark: 神奈川
+  comment: 70%住 多 秦野市
+  key: CHN
 - spell: 諏訪間
   name: スワマ
   side: 姓
   mark: 神奈川
   comment: 50%住 藤沢市
+  key: CHN
+- spell: 関野
+  name: セキノ
+  side: 姓
+  mark: 神奈川
+  comment: 30%住 多 秦野市
+  key: CHN
+- spell: 関水
+  name: セキミズ
+  side: 姓
+  mark: 神奈川
+  comment: 70%住 多 大和市
+  key: CHN
+- spell: 前場
+  name: ゼンバ
+  side: 姓
+  mark: 神奈川
+  comment: 30%住 多 厚木市
   key: CHN
 - spell: 善波
   name: ゼンバ
@@ -18618,6 +21246,12 @@ name:
   side: 姓
   mark: 神奈川
   comment: 80%住 横浜市
+  key: CHN
+- spell: 露木
+  name: ツユキ
+  side: 姓
+  mark: 神奈川
+  comment: 60%住 多 横浜市
   key: CHN
 - spell: 徳植
   name: トクウエ
@@ -18697,6 +21331,18 @@ name:
   mark: 神奈川
   comment: 40%住 横須賀市
   key: CHN
+- spell: 成井
+  name: ナルイ
+  side: 姓
+  mark: 神奈川
+  comment: 30%住 多 横浜市
+  key: CHN
+- spell: 新倉
+  name: ニイクラ
+  side: 姓
+  mark: 神奈川
+  comment: 50%住 多 横須賀市
+  key: CHN
 - spell: 二挺木
   name: ニチョウギ
   side: 姓
@@ -18708,6 +21354,18 @@ name:
   side: 姓
   mark: 神奈川
   comment: 90%住 大磯町
+  key: CHN
+- spell: 二本木
+  name: ニホンギ
+  side: 姓
+  mark: 神奈川
+  comment: 50%住 多 横須賀市
+  key: CHN
+- spell: 沼上
+  name: ヌマガミ
+  side: 姓
+  mark: 神奈川
+  comment: 40%住 多 茅ケ崎市
   key: CHN
 - spell: 能条
   name: ノウジョウ
@@ -18804,6 +21462,18 @@ name:
   side: 姓
   mark: 神奈川
   comment: 80%住 藤沢市
+  key: CHN
+- spell: 比留川
+  name: ヒルカワ
+  side: 姓
+  mark: 神奈川
+  comment: 80%住 多 綾瀬市
+  key: CHN
+- spell: 府川
+  name: フカワ
+  side: 姓
+  mark: 神奈川
+  comment: 60%住 多 小田原市
   key: CHN
 - spell: 普川
   name: フカワ
@@ -18937,6 +21607,18 @@ name:
   mark: 神奈川
   comment: 60%住 湯河原町
   key: CHN
+- spell: 三觜
+  name: ミツハシ
+  side: 姓
+  mark: 神奈川
+  comment: 60%住 多 藤沢市
+  key: CHN
+- spell: 三堀
+  name: ミツボリ
+  side: 姓
+  mark: 神奈川
+  comment: 60%住 多 横浜市
+  key: CHN
 - spell: 三ツ堀
   name: ミツボリ
   side: 姓
@@ -18985,6 +21667,12 @@ name:
   mark: 神奈川
   comment: 30%住 小田原市
   key: CHN
+- spell: 簑島
+  name: ミノシマ
+  side: 姓
+  mark: 神奈川
+  comment: 60%住 多 大磯町
+  key: CHN
 - spell: 蓑宮
   name: ミノミヤ
   side: 姓
@@ -18996,6 +21684,24 @@ name:
   side: 姓
   mark: 神奈川
   comment: 80%住 山北町
+  key: CHN
+- spell: 宮治
+  name: ミヤジ
+  side: 姓
+  mark: 神奈川
+  comment: 30%住 多 藤沢市
+  key: CHN
+- spell: 宮代
+  name: ミヤシロ
+  side: 姓
+  mark: 神奈川
+  comment: 30%住 多 平塚市
+  key: CHN
+- spell: 宮代
+  name: ミヤダイ
+  side: 姓
+  mark: 神奈川
+  comment: 30%住 多 平塚市
   key: CHN
 - spell: 宮台
   name: ミヤダイ
@@ -19020,6 +21726,18 @@ name:
   side: 姓
   mark: 神奈川
   comment: 60%住 厚木市
+  key: CHN
+- spell: 森久保
+  name: モリクボ
+  side: 姓
+  mark: 神奈川
+  comment: 30%住 多 相模原市
+  key: CHN
+- spell: 森住
+  name: モリズミ
+  side: 姓
+  mark: 神奈川
+  comment: 30%住 多 厚木市
   key: CHN
 - spell: 森町
   name: モリマチ
@@ -19057,11 +21775,41 @@ name:
   mark: 神奈川
   comment: 70%住 伊勢原市
   key: CHN
+- spell: 柳下
+  name: ヤギシタ
+  side: 姓
+  mark: 神奈川
+  comment: 40%住 多 横浜市
+  key: CHN
+- spell: 八木下
+  name: ヤギシタ
+  side: 姓
+  mark: 神奈川
+  comment: 40%住 多 横浜市
+  key: CHN
+- spell: 矢後
+  name: ヤゴ
+  side: 姓
+  mark: 神奈川
+  comment: 30%住 多 南足柄市
+  key: CHN
 - spell: 矢向
   name: ヤコウ
   side: 姓
   mark: 神奈川
   comment: 40%住 横浜市
+  key: CHN
+- spell: 安池
+  name: ヤスイケ
+  side: 姓
+  mark: 神奈川
+  comment: 40%住 多 平塚市
+  key: CHN
+- spell: 安室
+  name: ヤスムロ
+  side: 姓
+  mark: 神奈川
+  comment: 30%住 多 横浜市
   key: CHN
 - spell: 谷知
   name: ヤチ
@@ -19092,6 +21840,18 @@ name:
   side: 姓
   mark: 神奈川
   comment: 70%住 海老名市
+  key: CHN
+- spell: 譲原
+  name: ユズリハラ
+  side: 姓
+  mark: 神奈川
+  comment: 70%住 多 小田原市
+  key: CHN
+- spell: 横溝
+  name: ヨコミゾ
+  side: 姓
+  mark: 神奈川
+  comment: 30%住 多 横浜市
   key: CHN
 - spell: 芳垣
   name: ヨシガキ
@@ -19177,6 +21937,18 @@ name:
   mark: 新潟
   comment: 50%住 新潟市
   key: CHN
+- spell: 阿達
+  name: アダチ
+  side: 姓
+  mark: 新潟
+  comment: 30%住 多 新潟市
+  key: CHN
+- spell: 安中
+  name: アンナカ
+  side: 姓
+  mark: 新潟
+  comment: 30%住 多 五泉市
+  key: CHN
 - spell: 飯浜
   name: イイハマ
   side: 姓
@@ -19242,6 +22014,18 @@ name:
   side: 姓
   mark: 新潟
   comment: 30%住 上越市
+  key: CHN
+- spell: 石附
+  name: イシヅキ
+  side: 姓
+  mark: 新潟
+  comment: 50%住 多 新潟市
+  key: CHN
+- spell: 石月
+  name: イシヅキ
+  side: 姓
+  mark: 新潟
+  comment: 40%住 多 三条市
   key: CHN
 - spell: 磴
   name: イシバシ
@@ -19501,11 +22285,29 @@ name:
   mark: 新潟
   comment: 40%住 新潟市
   key: CHN
+- spell: 押見
+  name: オシミ
+  side: 姓
+  mark: 新潟
+  comment: 30%住 多 柏崎市
+  key: CHN
+- spell: 乙川
+  name: オトガワ
+  side: 姓
+  mark: 新潟
+  comment: 40%住 多 新潟市
+  key: CHN
 - spell: 小根山
   name: オネヤマ
   side: 姓
   mark: 新潟
   comment: 30%住 長岡市
+  key: CHN
+- spell: 小野塚
+  name: オノヅカ
+  side: 姓
+  mark: 新潟
+  comment: 30%住 多 長岡市
   key: CHN
 - spell: 小武内
   name: オブナイ
@@ -19548,6 +22350,18 @@ name:
   side: 姓
   mark: 新潟
   comment: 50%住 新潟市
+  key: CHN
+- spell: 海津
+  name: カイヅ
+  side: 姓
+  mark: 新潟
+  comment: 30%住 多 柏崎市
+  key: CHN
+- spell: 貝沼
+  name: カイヌマ
+  side: 姓
+  mark: 新潟
+  comment: 30%住 多 村上市
   key: CHN
 - spell: 柿倉
   name: カキクラ
@@ -19620,6 +22434,18 @@ name:
   side: 姓
   mark: 新潟
   comment: 30%住 妙高市
+  key: CHN
+- spell: 金安
+  name: カネヤス
+  side: 姓
+  mark: 新潟
+  comment: 30%住 多 長岡市
+  key: CHN
+- spell: 蒲沢
+  name: カマサワ
+  side: 姓
+  mark: 新潟
+  comment: 50%住 多 新潟市
   key: CHN
 - spell: 神喰
   name: カミジキ
@@ -19915,6 +22741,18 @@ name:
   mark: 新潟
   comment: 40%住 新潟市
   key: CHN
+- spell: 駒形
+  name: コマガタ
+  side: 姓
+  mark: 新潟
+  comment: 30%住 多 南魚沼市
+  key: CHN
+- spell: 古俣
+  name: コマタ
+  side: 姓
+  mark: 新潟
+  comment: 50%住 多 新潟市
+  key: CHN
 - spell: 小師
   name: コモロ
   side: 姓
@@ -19939,6 +22777,24 @@ name:
   mark: 新潟
   comment: 60%住 上越市
   key: CHN
+- spell: 坂爪
+  name: サカヅメ
+  side: 姓
+  mark: 新潟
+  comment: 30%住 多 新潟市
+  key: CHN
+- spell: 坂詰
+  name: サカヅメ
+  side: 姓
+  mark: 新潟
+  comment: 40%住 多 長岡市
+  key: CHN
+- spell: 坂牧
+  name: サカマキ
+  side: 姓
+  mark: 新潟
+  comment: 30%住 多 長岡市
+  key: CHN
 - spell: 佐久美
   name: サクミ
   side: 姓
@@ -19950,6 +22806,18 @@ name:
   side: 姓
   mark: 新潟
   comment: 30%住 新潟市
+  key: CHN
+- spell: 捧
+  name: ササゲ
+  side: 姓
+  mark: 新潟
+  comment: 50%住 多 三条市
+  key: CHN
+- spell: 更科
+  name: サラシナ
+  side: 姓
+  mark: 新潟
+  comment: 30%住 多 燕市
   key: CHN
 - spell: 沢栗
   name: サワクリ
@@ -20059,6 +22927,18 @@ name:
   mark: 新潟
   comment: 30%住 糸魚川市
   key: CHN
+- spell: 霜鳥
+  name: シモトリ
+  side: 姓
+  mark: 新潟
+  comment: 40%住 多 燕市
+  key: CHN
+- spell: 下鳥
+  name: シモトリ
+  side: 姓
+  mark: 新潟
+  comment: 30%住 多 上越市
+  key: CHN
 - spell: 周佐
   name: シュウサ
   side: 姓
@@ -20076,6 +22956,30 @@ name:
   side: 姓
   mark: 新潟
   comment: 30%住 見附市
+  key: CHN
+- spell: 真貝
+  name: シンガイ
+  side: 姓
+  mark: 新潟
+  comment: 30%住 多 柏崎市
+  key: CHN
+- spell: 真保
+  name: シンボ
+  side: 姓
+  mark: 新潟
+  comment: 30%住 多 新潟市
+  key: CHN
+- spell: 須佐
+  name: スサ
+  side: 姓
+  mark: 新潟
+  comment: 30%住 多 三条市
+  key: CHN
+- spell: 諏佐
+  name: スサ
+  side: 姓
+  mark: 新潟
+  comment: 30%住 多 長岡市
   key: CHN
 - spell: 砂塚
   name: スナヅカ
@@ -20197,6 +23101,12 @@ name:
   mark: 新潟
   comment: 30%住 柏崎市
   key: CHN
+- spell: 田巻
+  name: タマキ
+  side: 姓
+  mark: 新潟
+  comment: 40%住 多 新潟市
+  key: CHN
 - spell: 俵山
   name: タワラヤマ
   side: 姓
@@ -20275,6 +23185,12 @@ name:
   mark: 新潟
   comment: 30%住 十日町市
   key: CHN
+- spell: 坪谷
+  name: ツボヤ
+  side: 姓
+  mark: 新潟
+  comment: 30%住 多 加茂市
+  key: CHN
 - spell: 劔
   name: ツルギ
   side: 姓
@@ -20292,6 +23208,18 @@ name:
   side: 姓
   mark: 新潟
   comment: 30%住 阿賀野市
+  key: CHN
+- spell: 鶴巻
+  name: ツルマキ
+  side: 姓
+  mark: 新潟
+  comment: 30%住 多 新潟市
+  key: CHN
+- spell: 弦巻
+  name: ツルマキ
+  side: 姓
+  mark: 新潟
+  comment: 30%住 多 新潟市
   key: CHN
 - spell: 伝
   name: デン
@@ -20437,6 +23365,18 @@ name:
   mark: 新潟
   comment: 40%住 柏崎市
   key: CHN
+- spell: 西片
+  name: ニシカタ
+  side: 姓
+  mark: 新潟
+  comment: 40%住 多 長岡市
+  key: CHN
+- spell: 西潟
+  name: ニシガタ
+  side: 姓
+  mark: 新潟
+  comment: 50%住 多 三条市
+  key: CHN
 - spell: 仁多見
   name: ニタミ
   side: 姓
@@ -20460,6 +23400,24 @@ name:
   side: 姓
   mark: 新潟
   comment: 40%住 妙高市
+  key: CHN
+- spell: 韮沢
+  name: ニラサワ
+  side: 姓
+  mark: 新潟
+  comment: 50%住 多 長岡市
+  key: CHN
+- spell: 庭野
+  name: ニワノ
+  side: 姓
+  mark: 新潟
+  comment: 40%住 多 十日町市
+  key: CHN
+- spell: 庭山
+  name: ニワヤマ
+  side: 姓
+  mark: 新潟
+  comment: 40%住 多 柏崎市
   key: CHN
 - spell: 根立
   name: 'ネダチ '
@@ -20671,11 +23629,29 @@ name:
   mark: 新潟
   comment: 50%住 多 新潟市
   key: CHN
+- spell: 保苅
+  name: ホカリ
+  side: 姓
+  mark: 新潟
+  comment: 60%住 多 新潟市
+  key: CHN
 - spell: 保倉
   name: ホクラ
   side: 姓
   mark: 新潟
   comment: 30%住 新潟市
+  key: CHN
+- spell: 星名
+  name: ホシナ
+  side: 姓
+  mark: 新潟
+  comment: 30%住 多 十日町市
+  key: CHN
+- spell: 細貝
+  name: ホソガイ
+  side: 姓
+  mark: 新潟
+  comment: 30%住 多 長岡市
   key: CHN
 - spell: 本合
   name: ホンゴウ
@@ -20778,6 +23754,18 @@ name:
   side: 姓
   mark: 新潟
   comment: 70%住 新潟市
+  key: CHN
+- spell: 宗村
+  name: ムネムラ
+  side: 姓
+  mark: 新潟
+  comment: 30%住 多 新潟市
+  key: CHN
+- spell: 室橋
+  name: ムロハシ
+  side: 姓
+  mark: 新潟
+  comment: 40%住 多 長岡市
   key: CHN
 - spell: 室星
   name: ムロホシ
@@ -20929,6 +23917,18 @@ name:
   mark: 新潟
   comment: 50%住 三条市
   key: CHN
+- spell: 涌井
+  name: ワクイ
+  side: 姓
+  mark: 新潟
+  comment: 30%住 多 新潟市
+  key: CHN
+- spell: 和栗
+  name: ワグリ
+  side: 姓
+  mark: 新潟
+  comment: 30%住 多 上越市
+  key: CHN
 - spell: 逢沢
   name: アイザワ
   side: 姓
@@ -20983,11 +23983,53 @@ name:
   mark: 長野
   comment: 50%住 飯島町
   key: CHN
+- spell: 足助
+  name: アスケ
+  side: 姓
+  mark: 長野
+  comment: 40%住 多 塩尻市
+  key: CHN
+- spell: 畔上
+  name: アゼガミ
+  side: 姓
+  mark: 長野
+  comment: 30%住 多 山ノ内町
+  key: CHN
+- spell: 甘利
+  name: アマリ
+  side: 姓
+  mark: 長野
+  comment: 30%住 多 小諸市
+  key: CHN
+- spell: 鮎沢
+  name: アユザワ
+  side: 姓
+  mark: 長野
+  comment: 40%住 多 岡谷市
+  key: CHN
+- spell: 鮎沢
+  name: アイザワ
+  side: 姓
+  mark: 長野
+  comment: 40%住 多 岡谷市
+  key: CHN
+- spell: 有賀
+  name: アルガ
+  side: 姓
+  mark: 長野
+  comment: 30%住 多 伊那市
+  key: CHN
 - spell: 粟津原
   name: アワヅハラ
   side: 姓
   mark: 長野
   comment: 80%住 朝日村
+  key: CHN
+- spell: 飯森
+  name: イイモリ
+  side: 姓
+  mark: 長野
+  comment: 30%住 多 麻績村
   key: CHN
 - spell: 石曽根
   name: イシソネ
@@ -21072,6 +24114,12 @@ name:
   side: 姓
   mark: 長野
   comment: 30%住 中野市
+  key: CHN
+- spell: 岩垂
+  name: イワダレ
+  side: 姓
+  mark: 長野
+  comment: 60%住 多 松本市
   key: CHN
 - spell: 上兼
   name: ウエガネ
@@ -21205,6 +24253,18 @@ name:
   mark: 長野
   comment: 40%住 塩尻市
   key: CHN
+- spell: 小口
+  name: オグチ
+  side: 姓
+  mark: 長野
+  comment: 30%住 多 岡谷市
+  key: CHN
+- spell: 奥原
+  name: オクハラ
+  side: 姓
+  mark: 長野
+  comment: 30%住 多 松本市
+  key: CHN
 - spell: 押鐘
   name: オシカネ
   side: 姓
@@ -21277,6 +24337,18 @@ name:
   mark: 長野
   comment: 30%住 伊那市
   key: CHN
+- spell: 折井
+  name: オリイ
+  side: 姓
+  mark: 長野
+  comment: 30%住 多 松本市
+  key: CHN
+- spell: 掛川
+  name: カケガワ
+  side: 姓
+  mark: 長野
+  comment: 30%住 多 小諸市
+  key: CHN
 - spell: 傘木
   name: カサギ
   side: 姓
@@ -21336,6 +24408,18 @@ name:
   side: 姓
   mark: 長野
   comment: 60%住 木曽町
+  key: CHN
+- spell: 上条
+  name: カミジョウ
+  side: 姓
+  mark: 長野
+  comment: 50%住 多 松本市
+  key: CHN
+- spell: 上條
+  name: カミジョウ
+  side: 姓
+  mark: 長野
+  comment: 50%住 多 松本市
   key: CHN
 - spell: 上沼
   name: カミヌマ
@@ -21421,6 +24505,18 @@ name:
   mark: 長野
   comment: 60%住 千曲市
   key: CHN
+- spell: 北沢
+  name: キタザワ
+  side: 姓
+  mark: 長野
+  comment: 40%住 多 長野市
+  key: CHN
+- spell: 木次
+  name: キツギ
+  side: 姓
+  mark: 長野
+  comment: 40%住 多 佐久市
+  key: CHN
 - spell: 木戸岡
   name: キドオカ
   side: 姓
@@ -21463,6 +24559,42 @@ name:
   mark: 長野
   comment: 70%住 木曽町
   key: CHN
+- spell: 沓掛
+  name: クツカケ
+  side: 姓
+  mark: 長野
+  comment: 40%住 多 上田市
+  key: CHN
+- spell: 久保村
+  name: クボムラ
+  side: 姓
+  mark: 長野
+  comment: 40%住 多 伊那市
+  key: CHN
+- spell: 倉石
+  name: クライシ
+  side: 姓
+  mark: 長野
+  comment: 30%住 多 長野市
+  key: CHN
+- spell: 倉沢
+  name: クラサワ
+  side: 姓
+  mark: 長野
+  comment: 30%住 多 長野市
+  key: CHN
+- spell: 倉科
+  name: クラシナ
+  side: 姓
+  mark: 長野
+  comment: 60%住 多 松本市
+  key: CHN
+- spell: 倉島
+  name: クラシマ
+  side: 姓
+  mark: 長野
+  comment: 30%住 多 長野市
+  key: CHN
 - spell: 倉根
   name: クラネ
   side: 姓
@@ -21498,6 +24630,18 @@ name:
   side: 姓
   mark: 長野
   comment: 70%住 松本市
+  key: CHN
+- spell: 黒河内
+  name: クロコウチ
+  side: 姓
+  mark: 長野
+  comment: 40%住 多 伊那市
+  key: CHN
+- spell: 桑沢
+  name: クワザワ
+  side: 姓
+  mark: 長野
+  comment: 40%住 多 辰野町
   key: CHN
 - spell: 毛涯
   name: ケガイ
@@ -21535,6 +24679,18 @@ name:
   mark: 長野
   comment: 50%住 長野市
   key: CHN
+- spell: 神津
+  name: コウヅ
+  side: 姓
+  mark: 長野
+  comment: 50%住 多 佐久市
+  key: CHN
+- spell: 郷津
+  name: ゴウヅ
+  side: 姓
+  mark: 長野
+  comment: 70%住 多 白馬村
+  key: CHN
 - spell: 江津
   name: ゴウヅ
   side: 姓
@@ -21571,11 +24727,29 @@ name:
   mark: 長野
   comment: 50%住 松本市
   key: CHN
+- spell: 越
+  name: コシ
+  side: 姓
+  mark: 長野
+  comment: 30%住 多 須坂市
+  key: CHN
+- spell: 腰原
+  name: コシハラ
+  side: 姓
+  mark: 長野
+  comment: 60%住 多 松本市
+  key: CHN
 - spell: 古清水
   name: コシミズ
   side: 姓
   mark: 長野
   comment: 40%住 小海町
+  key: CHN
+- spell: 小須田
+  name: コスダ
+  side: 姓
+  mark: 長野
+  comment: 40%住 多 佐久市
   key: CHN
 - spell: 古平
   name: コダイラ
@@ -21594,6 +24768,24 @@ name:
   side: 姓
   mark: 長野
   comment: 40%住 駒ケ根市
+  key: CHN
+- spell: 駒津
+  name: コマツ
+  side: 姓
+  mark: 長野
+  comment: 60%住 多 須坂市
+  key: CHN
+- spell: 駒村
+  name: コマムラ
+  side: 姓
+  mark: 長野
+  comment: 30%住 多 長野市
+  key: CHN
+- spell: 五明
+  name: ゴミョウ
+  side: 姓
+  mark: 長野
+  comment: 30%住 多 長野市
   key: CHN
 - spell: 斉間
   name: サイマ
@@ -21703,6 +24895,18 @@ name:
   mark: 長野
   comment: 60%住 茅野市
   key: CHN
+- spell: 下平
+  name: シモダイラ
+  side: 姓
+  mark: 長野
+  comment: 30%住 多 飯田市
+  key: CHN
+- spell: 城倉
+  name: ジョウクラ
+  side: 姓
+  mark: 長野
+  comment: 50%住 多 伊那市
+  key: CHN
 - spell: 所沢
   name: ショザワ
   side: 姓
@@ -21733,6 +24937,24 @@ name:
   mark: 長野
   comment: 40%住 長野市
   key: CHN
+- spell: 須沢
+  name: スザワ
+  side: 姓
+  mark: 長野
+  comment: 40%住 多 松本市
+  key: CHN
+- spell: 春原
+  name: スノハラ
+  side: 姓
+  mark: 長野
+  comment: 50%住 多 上田市
+  key: CHN
+- spell: 関島
+  name: セキジマ
+  side: 姓
+  mark: 長野
+  comment: 50%住 多 飯田市
+  key: CHN
 - spell: 善財
   name: ゼンザイ
   side: 姓
@@ -21744,6 +24966,18 @@ name:
   side: 姓
   mark: 長野
   comment: 50%住 岡谷市
+  key: CHN
+- spell: 曽根原
+  name: ソネハラ
+  side: 姓
+  mark: 長野
+  comment: 70%住 多 安曇野市
+  key: CHN
+- spell: 園原
+  name: ソノハラ
+  side: 姓
+  mark: 長野
+  comment: 30%住 多 阿智村
   key: CHN
 - spell: 征矢
   name: ソヤ
@@ -21769,6 +25003,12 @@ name:
   mark: 長野
   comment: 80%住 須坂市
   key: CHN
+- spell: 大工原
+  name: ダイクハラ
+  side: 姓
+  mark: 長野
+  comment: 40%住 多 佐久市
+  key: CHN
 - spell: 高池
   name: タカイケ
   side: 姓
@@ -21786,6 +25026,18 @@ name:
   side: 姓
   mark: 長野
   comment: 80%住 茅野市
+  key: CHN
+- spell: 高見沢
+  name: タカミザワ
+  side: 姓
+  mark: 長野
+  comment: 50%住 多 佐久穂町
+  key: CHN
+- spell: 武居
+  name: タケイ
+  side: 姓
+  mark: 長野
+  comment: 30%住 多 塩尻市
   key: CHN
 - spell: 竹入
   name: タケイリ
@@ -21810,6 +25062,12 @@ name:
   side: 姓
   mark: 長野
   comment: 70%住 山ノ内町
+  key: CHN
+- spell: 竹前
+  name: タケマエ
+  side: 姓
+  mark: 長野
+  comment: 50%住 多 須坂市
   key: CHN
 - spell: 田幸
   name: タコウ
@@ -21949,11 +25207,47 @@ name:
   mark: 長野
   comment: 50%住 千曲市
   key: CHN
+- spell: 徳竹
+  name: トクタケ
+  side: 姓
+  mark: 長野
+  comment: 60%住 多 山ノ内町
+  key: CHN
+- spell: 徳武
+  name: トクタケ
+  side: 姓
+  mark: 長野
+  comment: 60%住 多 長野市
+  key: CHN
 - spell: 床尾
   name: トコオ
   side: 姓
   mark: 長野
   comment: 50%住 松本市
+  key: CHN
+- spell: 等々力
+  name: トドリキ
+  side: 姓
+  mark: 長野
+  comment: 60%住 多 安曇野市
+  key: CHN
+- spell: 等々力
+  name: トドロキ
+  side: 姓
+  mark: 長野
+  comment: 60%住 多 安曇野市
+  key: CHN
+- spell: 登内
+  name: トノウチ
+  side: 姓
+  mark: 長野
+  comment: 60%住 多 伊那市
+  key: CHN
+- spell: 外谷
+  name: トヤ
+  side: 姓
+  mark: 長野
+  comment: 40%住 多 飯綱町
   key: CHN
 - spell: 豊城
   name: トヨキ
@@ -22045,6 +25339,18 @@ name:
   mark: 長野
   comment: 30%住 千曲市
   key: CHN
+- spell: 祢津
+  name: ネツ
+  side: 姓
+  mark: 長野
+  comment: 60%住 多 長野市
+  key: CHN
+- spell: 根橋
+  name: ネバシ
+  side: 姓
+  mark: 長野
+  comment: 50%住 多 辰野町
+  key: CHN
 - spell: 野明
   name: ノアケ
   side: 姓
@@ -22069,6 +25375,12 @@ name:
   mark: 長野
   comment: 40%住 伊那市
   key: CHN
+- spell: 羽毛田
+  name: ハケタ
+  side: 姓
+  mark: 長野
+  comment: 50%住 多 佐久市
+  key: CHN
 - spell: 箱山
   name: ハコヤマ
   side: 姓
@@ -22092,6 +25404,18 @@ name:
   side: 姓
   mark: 長野
   comment: 30%住 長野市
+  key: CHN
+- spell: 花里
+  name: ハナザト
+  side: 姓
+  mark: 長野
+  comment: 50%住 多 佐久市
+  key: CHN
+- spell: 羽生田
+  name: ハニュウダ
+  side: 姓
+  mark: 長野
+  comment: 50%住 多 須坂市
   key: CHN
 - spell: 羽入田
   name: ハニュウダ
@@ -22218,6 +25542,60 @@ name:
   side: 姓
   mark: 長野
   comment: 40%住 安曇野市
+  key: CHN
+- spell: 降幡
+  name: フリハタ
+  side: 姓
+  mark: 長野
+  comment: 60%住 多 安曇野市
+  key: CHN
+- spell: 降幡
+  name: フルハタ
+  side: 姓
+  mark: 長野
+  comment: 60%住 多 安曇野市
+  key: CHN
+- spell: 降旗
+  name: フリハタ
+  side: 姓
+  mark: 長野
+  comment: 60%住 多 松本市
+  key: CHN
+- spell: 降旗
+  name: フルハタ
+  side: 姓
+  mark: 長野
+  comment: 60%住 多 松本市
+  key: CHN
+- spell: 降籏
+  name: フリハタ
+  side: 姓
+  mark: 長野
+  comment: 70%住 多 松本市
+  key: CHN
+- spell: 降籏
+  name: フルハタ
+  side: 姓
+  mark: 長野
+  comment: 70%住 多 松本市
+  key: CHN
+- spell: 古越
+  name: フルコシ
+  side: 姓
+  mark: 長野
+  comment: 60%住 多 御代田町
+  key: CHN
+- spell: 古幡
+  name: フルハタ
+  side: 姓
+  mark: 長野
+  comment: 70%住 多 安曇野市
+  key: CHN
+- spell: 古畑
+  name: フルハタ
+  side: 姓
+  mark: 長野
+  comment: 40%住 多 塩尻市
   key: CHN
 - spell: 古旗
   name: フルハタ
@@ -22351,11 +25729,41 @@ name:
   mark: 長野
   comment: 40%住 佐久市
   key: CHN
+- spell: 三石
+  name: ミツイシ
+  side: 姓
+  mark: 長野
+  comment: 30%住 多 佐久市
+  key: CHN
 - spell: 満木
   name: ミツギ
   side: 姓
   mark: 長野
   comment: 30%住 上田市
+  key: CHN
+- spell: 翠川
+  name: ミドリカワ
+  side: 姓
+  mark: 長野
+  comment: 50%住 多 長和町
+  key: CHN
+- spell: 南沢
+  name: ミナミサワ
+  side: 姓
+  mark: 長野
+  comment: 40%住 多 長野市
+  key: CHN
+- spell: 峰村
+  name: ミネムラ
+  side: 姓
+  mark: 長野
+  comment: 30%住 多 長野市
+  key: CHN
+- spell: 峯村
+  name: ミネムラ
+  side: 姓
+  mark: 長野
+  comment: 40%住 多 長野市
   key: CHN
 - spell: 嶺村
   name: ミネムラ
@@ -22459,6 +25867,18 @@ name:
   mark: 長野
   comment: 40%住 中川村
   key: CHN
+- spell: 百瀬
+  name: モモセ
+  side: 姓
+  mark: 長野
+  comment: 50%住 多 松本市
+  key: CHN
+- spell: 森泉
+  name: モリイズミ
+  side: 姓
+  mark: 長野
+  comment: 40%住 多 佐久市
+  key: CHN
 - spell: 森角
   name: モリカク
   side: 姓
@@ -22495,6 +25915,18 @@ name:
   mark: 長野
   comment: 30%住 多 松本市
   key: CHN
+- spell: 柳沢
+  name: ヤナギサワ
+  side: 姓
+  mark: 長野
+  comment: 30%住 多 佐久市
+  key: CHN
+- spell: 柳平
+  name: ヤナギダイラ
+  side: 姓
+  mark: 長野
+  comment: 50%住 多 茅野市
+  key: CHN
 - spell: 矢ノ口
   name: ヤノクチ
   side: 姓
@@ -22506,6 +25938,12 @@ name:
   side: 姓
   mark: 長野
   comment: 70%住 安曇野市
+  key: CHN
+- spell: 矢花
+  name: ヤバナ
+  side: 姓
+  mark: 長野
+  comment: 60%住 多 安曇野市
   key: CHN
 - spell: 矢彦沢
   name: ヤヒコザワ
@@ -22578,6 +26016,18 @@ name:
   side: 姓
   mark: 長野
   comment: 50%住 塩尻市
+  key: CHN
+- spell: 米窪
+  name: ヨネクボ
+  side: 姓
+  mark: 長野
+  comment: 60%住 多 塩尻市
+  key: CHN
+- spell: 六川
+  name: ロクガワ
+  side: 姓
+  mark: 長野
+  comment: 40%住 多 上田市
   key: CHN
 - spell: 六波羅
   name: ロクハラ
@@ -22699,11 +26149,59 @@ name:
   mark: 山梨
   comment: 40%住 甲州市
   key: CHN
+- spell: 大柴
+  name: オオシバ
+  side: 姓
+  mark: 山梨
+  comment: 40%住 多 北杜市　
+  key: CHN
+- spell: 奥秋
+  name: オクアキ
+  side: 姓
+  mark: 山梨
+  comment: 40%住 多 都留市
+  key: CHN
+- spell: 奥脇
+  name: オクワキ
+  side: 姓
+  mark: 山梨
+  comment: 60%住 多 富士吉田市
+  key: CHN
+- spell: 小佐野
+  name: オサノ
+  side: 姓
+  mark: 山梨
+  comment: 50%住 多 富士河口湖町
+  key: CHN
+- spell: 乙黒
+  name: オトグロ
+  side: 姓
+  mark: 山梨
+  comment: 50%住 多 甲府市　
+  key: CHN
+- spell: 小尾
+  name: オビ
+  side: 姓
+  mark: 山梨
+  comment: 30%住 多 北杜市
+  key: CHN
+- spell: 小俣
+  name: オマタ
+  side: 姓
+  mark: 山梨
+  comment: 30%住 多 大月市　
+  key: CHN
 - spell: 加賀爪
   name: カガツメ
   side: 姓
   mark: 山梨
   comment: 30%住 韮崎市
+  key: CHN
+- spell: 加賀美
+  name: カガミ
+  side: 姓
+  mark: 山梨
+  comment: 30%住 多 甲府市　
   key: CHN
 - spell: 加々美
   name: カガミ
@@ -22921,6 +26419,12 @@ name:
   mark: 山梨
   comment: 60%住 富士川町
   key: CHN
+- spell: 田草川
+  name: タクサガワ
+  side: 姓
+  mark: 山梨
+  comment: 50%住 多 甲府市　
+  key: CHN
 - spell: 竜沢
   name: タツザワ
   side: 姓
@@ -23083,6 +26587,18 @@ name:
   mark: 山梨
   comment: 30%住 多 甲府市
   key: CHN
+- spell: 日原
+  name: ヒハラ
+  side: 姓
+  mark: 山梨
+  comment: 30%住 多 山梨市
+  key: CHN
+- spell: 舟久保
+  name: フナクボ
+  side: 姓
+  mark: 山梨
+  comment: 70%住 多 富士吉田市
+  key: CHN
 - spell: 舟窪
   name: フナクボ
   side: 姓
@@ -23106,6 +26622,12 @@ name:
   side: 姓
   mark: 山梨
   comment: 50%住 多 甲斐市
+  key: CHN
+- spell: 松土
+  name: マツド
+  side: 姓
+  mark: 山梨
+  comment: 50%住 多 山梨市　
   key: CHN
 - spell: 三科
   name: ミシナ
@@ -23185,11 +26707,65 @@ name:
   mark: 山梨
   comment: 40%住 富士吉田市
   key: CHN
+- spell: 阿井
+  name: アイ
+  side: 姓
+  mark: 静岡
+  comment: 30%住 多 藤枝市
+  key: CHN
 - spell: 相佐
   name: アイサ
   side: 姓
   mark: 静岡
   comment: 80%住 富士宮市
+  key: CHN
+- spell: 相曽
+  name: アイソ
+  side: 姓
+  mark: 静岡
+  comment: 70%住 多 浜松市
+  key: CHN
+- spell: 相磯
+  name: アイソ
+  side: 姓
+  mark: 静岡
+  comment: 50%住 多 沼津市
+  key: CHN
+- spell: 青島
+  name: アオシマ
+  side: 姓
+  mark: 静岡
+  comment: 60%住 多 静岡市
+  key: CHN
+- spell: 青嶋
+  name: アオシマ
+  side: 姓
+  mark: 静岡
+  comment: 40%住 多 静岡市
+  key: CHN
+- spell: 阿形
+  name: アガタ
+  side: 姓
+  mark: 静岡
+  comment: 30%住 多 御前崎市
+  key: CHN
+- spell: 県
+  name: アガタ
+  side: 姓
+  mark: 静岡
+  comment: 30%住 多 浜松市
+  key: CHN
+- spell: 縣
+  name: アガタ
+  side: 姓
+  mark: 静岡
+  comment: 30%住 多 浜松市
+  key: CHN
+- spell: 赤堀
+  name: アカホリ
+  side: 姓
+  mark: 静岡
+  comment: 40%住 多 掛川市
   key: CHN
 - spell: 赤掘
   name: アカホリ
@@ -23214,6 +26790,18 @@ name:
   side: 姓
   mark: 静岡
   comment: 70%住 御前崎市
+  key: CHN
+- spell: 朝比奈
+  name: アサヒナ
+  side: 姓
+  mark: 静岡
+  comment: 30%住 多 静岡市
+  key: CHN
+- spell: 芦川
+  name: アシカワ
+  side: 姓
+  mark: 静岡
+  comment: 30%住 多 富士市
   key: CHN
 - spell: 阿隅
   name: アズミ
@@ -23280,6 +26868,24 @@ name:
   side: 姓
   mark: 静岡
   comment: 70%住 沼津市
+  key: CHN
+- spell: 生熊
+  name: イクマ
+  side: 姓
+  mark: 静岡
+  comment: 40%住 多 浜松市
+  key: CHN
+- spell: 伊熊
+  name: イクマ
+  side: 姓
+  mark: 静岡
+  comment: 50%住 多 浜松市
+  key: CHN
+- spell: 伊久美
+  name: イクミ
+  side: 姓
+  mark: 静岡
+  comment: 70%住 多 藤枝市
   key: CHN
 - spell: 幾見
   name: イクミ
@@ -23479,6 +27085,12 @@ name:
   mark: 静岡
   comment: 50%住 浜松市
   key: CHN
+- spell: 岩辺
+  name: イワナベ
+  side: 姓
+  mark: 静岡
+  comment: 70%住 多 静岡市
+  key: CHN
 - spell: 浮海
   name: ウキガイ
   side: 姓
@@ -23520,6 +27132,18 @@ name:
   side: 姓
   mark: 静岡
   comment: 60%住 焼津市
+  key: CHN
+- spell: 海野
+  name: ウンノ
+  side: 姓
+  mark: 静岡
+  comment: 30%住 多 静岡市
+  key: CHN
+- spell: 江塚
+  name: エヅカ
+  side: 姓
+  mark: 静岡
+  comment: 60%住 多 磐田市
   key: CHN
 - spell: 榎土
   name: エノキド
@@ -23592,6 +27216,18 @@ name:
   side: 姓
   mark: 静岡
   comment: 70%住 富士市
+  key: CHN
+- spell: 小粥
+  name: オガイ
+  side: 姓
+  mark: 静岡
+  comment: 50%住 多 浜松市
+  key: CHN
+- spell: 小楠
+  name: オグス
+  side: 姓
+  mark: 静岡
+  comment: 50%住 多 浜松市
   key: CHN
 - spell: 納本
   name: オクモト
@@ -23683,6 +27319,30 @@ name:
   mark: 静岡
   comment: 50%住 多 御殿場市
   key: CHN
+- spell: 勝間田
+  name: カツマタ
+  side: 姓
+  mark: 静岡
+  comment: 60%住 多 御殿場市
+  key: CHN
+- spell: 勝亦
+  name: カツマタ
+  side: 姓
+  mark: 静岡
+  comment: 70%住 多 富士市
+  key: CHN
+- spell: 金指
+  name: カナザシ
+  side: 姓
+  mark: 静岡
+  comment: 50%住 多 下田市
+  key: CHN
+- spell: 金刺
+  name: カナザシ
+  side: 姓
+  mark: 静岡
+  comment: 50%住 多 富士市
+  key: CHN
 - spell: 兼高
   name: カネタカ
   side: 姓
@@ -23736,6 +27396,12 @@ name:
   side: 姓
   mark: 静岡
   comment: 80%住 菊川市
+  key: CHN
+- spell: 岸山
+  name: キシヤマ
+  side: 姓
+  mark: 静岡
+  comment: 50%住 多 静岡市
   key: CHN
 - spell: 桔川
   name: キツカワ
@@ -23821,6 +27487,18 @@ name:
   mark: 静岡
   comment: 40%住 富士市
   key: CHN
+- spell: 熊切
+  name: クマキリ
+  side: 姓
+  mark: 静岡
+  comment: 40%住 多 掛川市
+  key: CHN
+- spell: 粂田
+  name: クメタ
+  side: 姓
+  mark: 静岡
+  comment: 30%住 多 掛川市
+  key: CHN
 - spell: 雲野
   name: クモノ
   side: 姓
@@ -23838,6 +27516,18 @@ name:
   side: 姓
   mark: 静岡
   comment: 70%住 島田市
+  key: CHN
+- spell: 紅林
+  name: クレバヤシ
+  side: 姓
+  mark: 静岡
+  comment: 60%住 多 牧之原市
+  key: CHN
+- spell: 榑松
+  name: クレマツ
+  side: 姓
+  mark: 静岡
+  comment: 60%住 多 菊川市
   key: CHN
 - spell: 桑高
   name: クワタカ
@@ -23965,6 +27655,18 @@ name:
   mark: 静岡
   comment: 40%住 掛川市
   key: CHN
+- spell: 鷺坂
+  name: サギサカ
+  side: 姓
+  mark: 静岡
+  comment: 50%住 多 静岡市
+  key: CHN
+- spell: 匂坂
+  name: サギサカ
+  side: 姓
+  mark: 静岡
+  comment: 60%住 多 浜松市
+  key: CHN
 - spell: 左口
   name: サグチ
   side: 姓
@@ -24012,6 +27714,24 @@ name:
   side: 姓
   mark: 静岡
   comment: 40%住 浜松市
+  key: CHN
+- spell: 佐塚
+  name: サヅカ
+  side: 姓
+  mark: 静岡
+  comment: 40%住 多 静岡市
+  key: CHN
+- spell: 薩川
+  name: サツカワ
+  side: 姓
+  mark: 静岡
+  comment: 60%住 多 静岡市
+  key: CHN
+- spell: 沢入
+  name: サワイリ
+  side: 姓
+  mark: 静岡
+  comment: 60%住 多 御前崎市
   key: CHN
 - spell: 澤入
   name: サワイリ
@@ -24067,11 +27787,41 @@ name:
   mark: 静岡
   comment: 70%住 静岡市
   key: CHN
+- spell: 白柳
+  name: シラヤナギ
+  side: 姓
+  mark: 静岡
+  comment: 60%住 多 浜松市
+  key: CHN
+- spell: 進士
+  name: シンジ
+  side: 姓
+  mark: 静岡
+  comment: 40%住 多 下田市
+  key: CHN
 - spell: 榛地
   name: シンチ
   side: 姓
   mark: 静岡
   comment: 80%住 牧之原市
+  key: CHN
+- spell: 榛葉
+  name: シンバ
+  side: 姓
+  mark: 静岡
+  comment: 60%住 多 掛川市
+  key: CHN
+- spell: 新間
+  name: シンマ
+  side: 姓
+  mark: 静岡
+  comment: 60%住 多 島田市
+  key: CHN
+- spell: 榛村
+  name: シンムラ
+  side: 姓
+  mark: 静岡
+  comment: 70%住 多 掛川市
   key: CHN
 - spell: 杉保
   name: スギホ
@@ -24115,11 +27865,35 @@ name:
   mark: 静岡
   comment: 60%住 浜松市
   key: CHN
+- spell: 諏訪部
+  name: スワベ
+  side: 姓
+  mark: 静岡
+  comment: 30%住 多 富士宮市
+  key: CHN
+- spell: 清
+  name: セイ
+  side: 姓
+  mark: 静岡
+  comment: 40%住 多 富士宮市
+  key: CHN
 - spell: 堰沢
   name: セキザワ
   side: 姓
   mark: 静岡
   comment: 90%住 沼津市
+  key: CHN
+- spell: 芹沢
+  name: セリザワ
+  side: 姓
+  mark: 静岡
+  comment: 50%住 多 沼津市
+  key: CHN
+- spell: 芹澤
+  name: セリザワ
+  side: 姓
+  mark: 静岡
+  comment: 40%住 多 沼津市
   key: CHN
 - spell: 先生
   name: センジョウ
@@ -24445,6 +28219,18 @@ name:
   mark: 静岡
   comment: 60%住 川根本町
   key: CHN
+- spell: 成岡
+  name: ナルオカ
+  side: 姓
+  mark: 静岡
+  comment: 40%住 多 島田市
+  key: CHN
+- spell: 西ケ谷
+  name: ニシガヤ
+  side: 姓
+  mark: 静岡
+  comment: 50%住 多 静岡市
+  key: CHN
 - spell: 西子
   name: ニシコ
   side: 姓
@@ -24517,11 +28303,59 @@ name:
   mark: 静岡
   comment: 40%住 清水町
   key: CHN
+- spell: 野末
+  name: ノズエ
+  side: 姓
+  mark: 静岡
+  comment: 50%住 多 浜松市
+  key: CHN
+- spell: 野寄
+  name: ノヨリ
+  side: 姓
+  mark: 静岡
+  comment: 40%住 多 浜松市
+  key: CHN
+- spell: 法月
+  name: ノリヅキ
+  side: 姓
+  mark: 静岡
+  comment: 70%住 多 焼津市
+  key: CHN
+- spell: 袴田
+  name: ハカマタ
+  side: 姓
+  mark: 静岡
+  comment: 50%住 多 浜松市
+  key: CHN
+- spell: 袴田
+  name: ハカマダ
+  side: 姓
+  mark: 静岡
+  comment: 50%住 多 浜松市
+  key: CHN
 - spell: 萩倉
   name: ハギクラ
   side: 姓
   mark: 静岡
   comment: 60%住 御殿場市
+  key: CHN
+- spell: 萩田
+  name: ハギタ
+  side: 姓
+  mark: 静岡
+  comment: 30%住 多 掛川市
+  key: CHN
+- spell: 羽切
+  name: ハギリ
+  side: 姓
+  mark: 静岡
+  comment: 60%住 多 沼津市
+  key: CHN
+- spell: 橋ケ谷
+  name: ハシガヤ
+  side: 姓
+  mark: 静岡
+  comment: 90%住 多 焼津市
   key: CHN
 - spell: 初又
   name: ハツマタ
@@ -24540,6 +28374,24 @@ name:
   side: 姓
   mark: 静岡
   comment: 60%住 富士市
+  key: CHN
+- spell: 原川
+  name: ハラカワ
+  side: 姓
+  mark: 静岡
+  comment: 40%住 多 焼津市
+  key: CHN
+- spell: 原木
+  name: ハラキ
+  side: 姓
+  mark: 静岡
+  comment: 50%住 多 藤枝市
+  key: CHN
+- spell: 原崎
+  name: ハラサキ
+  side: 姓
+  mark: 静岡
+  comment: 30%住 多 焼津市
   key: CHN
 - spell: 原科
   name: ハラシナ
@@ -24811,6 +28663,18 @@ name:
   mark: 静岡
   comment: 30%住 浜松市
   key: CHN
+- spell: 向笠
+  name: ムカサ
+  side: 姓
+  mark: 静岡
+  comment: 40%住 多 清水町
+  key: CHN
+- spell: 向島
+  name: ムコウジマ
+  side: 姓
+  mark: 静岡
+  comment: 40%住 多 藤枝市
+  key: CHN
 - spell: 無州
   name: ムシュウ
   side: 姓
@@ -24828,6 +28692,18 @@ name:
   side: 姓
   mark: 静岡
   comment: 30%住 河津町
+  key: CHN
+- spell: 村松
+  name: ムラマツ
+  side: 姓
+  mark: 静岡
+  comment: 30%住 多 浜松市
+  key: CHN
+- spell: 室伏
+  name: ムロフシ
+  side: 姓
+  mark: 静岡
+  comment: 50%住 多 小山町
   key: CHN
 - spell: 杢谷
   name: モクタニ
@@ -24943,11 +28819,23 @@ name:
   mark: 静岡
   comment: 30%住 藤枝市
   key: CHN
+- spell: 藪崎
+  name: ヤブザキ
+  side: 姓
+  mark: 静岡
+  comment: 40%住 多 藤枝市
+  key: CHN
 - spell: 山泉
   name: ヤマイズミ
   side: 姓
   mark: 静岡
   comment: 30%住 袋井市
+  key: CHN
+- spell: 山梨
+  name: ヤマナシ
+  side: 姓
+  mark: 静岡
+  comment: 60%住 多 静岡市
   key: CHN
 - spell: 山杢
   name: ヤマモク
@@ -25015,6 +28903,42 @@ name:
   mark: 静岡
   comment: 50%住 浜松市
   key: CHN
+- spell: 良知
+  name: ラチ
+  side: 姓
+  mark: 静岡
+  comment: 80%住 多 焼津市
+  key: CHN
+- spell: 和久田
+  name: ワクダ
+  side: 姓
+  mark: 静岡
+  comment: 50%住 多 浜松市
+  key: CHN
+- spell: 鷲巣
+  name: ワシズ
+  side: 姓
+  mark: 静岡
+  comment: 60%住 多 静岡市
+  key: CHN
+- spell: 鷲山
+  name: ワシヤマ
+  side: 姓
+  mark: 静岡
+  comment: 30%住 多 浜松市
+  key: CHN
+- spell: 渡井
+  name: ワタイ
+  side: 姓
+  mark: 静岡
+  comment: 50%住 多 富士宮市
+  key: CHN
+- spell: 藁科
+  name: ワラシナ
+  side: 姓
+  mark: 静岡
+  comment: 60%住 多 焼津市
+  key: CHN
 - spell: 愛敬
   name: アイケイ
   side: 姓
@@ -25032,6 +28956,12 @@ name:
   side: 姓
   mark: 愛知
   comment: 30%住 豊田市
+  key: CHN
+- spell: 相羽
+  name: アイバ
+  side: 姓
+  mark: 愛知
+  comment: 30%住 多 豊明市
   key: CHN
 - spell: 愛葉
   name: アイバ
@@ -25135,6 +29065,18 @@ name:
   mark: 愛知
   comment: 60%住 一宮市
   key: CHN
+- spell: 猪飼
+  name: イカイ
+  side: 姓
+  mark: 愛知
+  comment: 40%住 多 名古屋市
+  key: CHN
+- spell: 伊神
+  name: イガミ
+  side: 姓
+  mark: 愛知
+  comment: 60%住 多 江南市
+  key: CHN
 - spell: 伊岐見
   name: イキミ
   side: 姓
@@ -25195,6 +29137,42 @@ name:
   mark: 愛知
   comment: 30%住 名古屋市
   key: CHN
+- spell: 市古
+  name: イチコ
+  side: 姓
+  mark: 愛知
+  comment: 70%住 多 碧南市
+  key: CHN
+- spell: 市野
+  name: イチノ
+  side: 姓
+  mark: 愛知
+  comment: 40%住 多 半田市
+  key: CHN
+- spell: 井戸田
+  name: イトダ
+  side: 姓
+  mark: 愛知
+  comment: 60%住 多 名古屋市
+  key: CHN
+- spell: 伊奈
+  name: イナ
+  side: 姓
+  mark: 愛知
+  comment: 40%住 多 常滑市
+  key: CHN
+- spell: 稲石
+  name: イナイシ
+  side: 姓
+  mark: 愛知
+  comment: 40%住 多 蒲郡市
+  key: CHN
+- spell: 稲熊
+  name: イナグマ
+  side: 姓
+  mark: 愛知
+  comment: 70%住 多 名古屋市
+  key: CHN
 - spell: 井浪
   name: イナミ
   side: 姓
@@ -25206,6 +29184,24 @@ name:
   side: 姓
   mark: 愛知
   comment: 40%住 一宮市
+  key: CHN
+- spell: 稲吉
+  name: イナヨシ
+  side: 姓
+  mark: 愛知
+  comment: 50%住 多 蒲郡市
+  key: CHN
+- spell: 犬飼
+  name: イヌカイ
+  side: 姓
+  mark: 愛知
+  comment: 40%住 多 名古屋市
+  key: CHN
+- spell: 犬塚
+  name: イヌヅカ
+  side: 姓
+  mark: 愛知
+  comment: 30%住 多 西尾市
   key: CHN
 - spell: 今飯田
   name: イマイイダ
@@ -25255,6 +29251,18 @@ name:
   mark: 愛知
   comment: 60%住 一宮市
   key: CHN
+- spell: 岩月
+  name: イワツキ
+  side: 姓
+  mark: 愛知
+  comment: 60%住 多 岡崎市
+  key: CHN
+- spell: 岩附
+  name: イワツキ
+  side: 姓
+  mark: 愛知
+  comment: 40%住 多 岡崎市
+  key: CHN
 - spell: 鵜居
   name: ウイ
   side: 姓
@@ -25267,11 +29275,41 @@ name:
   mark: 愛知
   comment: 70%住 岩倉市
   key: CHN
+- spell: 鵜飼
+  name: ウカイ
+  side: 姓
+  mark: 愛知
+  comment: 40%住 多 一宮市
+  key: CHN
+- spell: 請井
+  name: ウケイ
+  side: 姓
+  mark: 愛知
+  comment: 70%住 多 新城市
+  key: CHN
+- spell: 牛田
+  name: ウシダ
+  side: 姓
+  mark: 愛知
+  comment: 40%住 多 名古屋市
+  key: CHN
 - spell: 楳村
   name: ウメムラ
   side: 姓
   mark: 愛知
   comment: 40%住 稲沢市
+  key: CHN
+- spell: 梅村
+  name: ウメムラ
+  side: 姓
+  mark: 愛知
+  comment: 30%住 多 名古屋市
+  key: CHN
+- spell: 江坂
+  name: エザカ
+  side: 姓
+  mark: 愛知
+  comment: 50%住 多 刈谷市
   key: CHN
 - spell: 榎島
   name: エノキジマ
@@ -25302,6 +29340,48 @@ name:
   side: 姓
   mark: 愛知
   comment: 60%住 豊田市
+  key: CHN
+- spell: 大鹿
+  name: オオシカ
+  side: 姓
+  mark: 愛知
+  comment: 40%住 多 津島市
+  key: CHN
+- spell: 大嶽
+  name: オオタケ
+  side: 姓
+  mark: 愛知
+  comment: 30%住 多 幡豆町
+  key: CHN
+- spell: 大羽
+  name: オオバ
+  side: 姓
+  mark: 愛知
+  comment: 40%住 多 豊橋市
+  key: CHN
+- spell: 大見
+  name: オオミ
+  side: 姓
+  mark: 愛知
+  comment: 30%住 多 安城市
+  key: CHN
+- spell: 大参
+  name: オオミ
+  side: 姓
+  mark: 愛知
+  comment: 80%住 多 安城市
+  key: CHN
+- spell: 大脇
+  name: オオワキ
+  side: 姓
+  mark: 愛知
+  comment: 30%住 多 名古屋市
+  key: CHN
+- spell: 岡戸
+  name: オカド
+  side: 姓
+  mark: 愛知
+  comment: 30%住 多 阿久比町
   key: CHN
 - spell: 荻巣
   name: オギス
@@ -25339,11 +29419,47 @@ name:
   mark: 愛知
   comment: 50%住 安城市
   key: CHN
+- spell: 小柳津
+  name: オヤイヅ
+  side: 姓
+  mark: 愛知
+  comment: 40%住 多 豊橋市
+  key: CHN
+- spell: 及部
+  name: オヨベ
+  side: 姓
+  mark: 愛知
+  comment: 70%住 多 豊橋市
+  key: CHN
 - spell: 飼沼
   name: カイヌマ
   side: 姓
   mark: 愛知
   comment: 70%住 名古屋市
+  key: CHN
+- spell: 鏡味
+  name: カガミ
+  side: 姓
+  mark: 愛知
+  comment: 80%住 多 名古屋市
+  key: CHN
+- spell: 垣見
+  name: カキミ
+  side: 姓
+  mark: 愛知
+  comment: 30%住 多 津島市
+  key: CHN
+- spell: 掛布
+  name: カケノ
+  side: 姓
+  mark: 愛知
+  comment: 60%住 多 江南市
+  key: CHN
+- spell: 掛布
+  name: カケフ
+  side: 姓
+  mark: 愛知
+  comment: 60%住 多 江南市
   key: CHN
 - spell: 勘解由
   name: カゲユ
@@ -25374,6 +29490,24 @@ name:
   side: 姓
   mark: 愛知
   comment: 30%住 阿久比町
+  key: CHN
+- spell: 梶浦
+  name: カジウラ
+  side: 姓
+  mark: 愛知
+  comment: 30%住 多 一宮市
+  key: CHN
+- spell: 春日井
+  name: カスガイ
+  side: 姓
+  mark: 愛知
+  comment: 50%住 多 一宮市
+  key: CHN
+- spell: 糟谷
+  name: カスヤ
+  side: 姓
+  mark: 愛知
+  comment: 30%住 多 吉良町
   key: CHN
 - spell: 片岩
   name: カタイワ
@@ -25483,6 +29617,18 @@ name:
   mark: 愛知
   comment: 30%住 岡崎市
   key: CHN
+- spell: 川澄
+  name: カワスミ
+  side: 姓
+  mark: 愛知
+  comment: 30%住 多 岡崎市
+  key: CHN
+- spell: 川角
+  name: カワスミ
+  side: 姓
+  mark: 愛知
+  comment: 30%住 多 高浜市
+  key: CHN
 - spell: 河竹
   name: カワタケ
   side: 姓
@@ -25506,6 +29652,30 @@ name:
   side: 姓
   mark: 愛知
   comment: 90%住 南知多町
+  key: CHN
+- spell: 北折
+  name: キタオリ
+  side: 姓
+  mark: 愛知
+  comment: 70%住 多 扶桑町
+  key: CHN
+- spell: 北河
+  name: キタガワ
+  side: 姓
+  mark: 愛知
+  comment: 40%住 多 豊橋市
+  key: CHN
+- spell: 紀藤
+  name: キトウ
+  side: 姓
+  mark: 愛知
+  comment: 40%住 多 犬山市
+  key: CHN
+- spell: 鬼頭
+  name: キトウ
+  side: 姓
+  mark: 愛知
+  comment: 60%住 多 名古屋市
   key: CHN
 - spell: 城殿
   name: キドノ
@@ -25567,11 +29737,47 @@ name:
   mark: 愛知
   comment: 60%住 美浜町
   key: CHN
+- spell: 久野
+  name: クノ
+  side: 姓
+  mark: 愛知
+  comment: 30%住 多 名古屋市
+  key: CHN
+- spell: 久納
+  name: クノウ
+  side: 姓
+  mark: 愛知
+  comment: 50%住 多 名古屋市
+  key: CHN
+- spell: 倉知
+  name: クラチ
+  side: 姓
+  mark: 愛知
+  comment: 60%住 多 小牧市
+  key: CHN
 - spell: 蔵地
   name: クラチ
   side: 姓
   mark: 愛知
   comment: 70%住 豊橋市
+  key: CHN
+- spell: 倉地
+  name: クラチ
+  side: 姓
+  mark: 愛知
+  comment: 40%住 多 豊田市
+  key: CHN
+- spell: 栗木
+  name: クリキ
+  side: 姓
+  mark: 愛知
+  comment: 30%住 多 名古屋市
+  key: CHN
+- spell: 久留宮
+  name: クルミヤ
+  side: 姓
+  mark: 愛知
+  comment: 60%住 多 弥富市
   key: CHN
 - spell: 来本
   name: クルモト
@@ -25585,11 +29791,65 @@ name:
   mark: 愛知
   comment: 50%住 一宮市
   key: CHN
+- spell: 黒野
+  name: クロノ
+  side: 姓
+  mark: 愛知
+  comment: 50%住 多 吉良町
+  key: CHN
+- spell: 黒宮
+  name: クロミヤ
+  side: 姓
+  mark: 愛知
+  comment: 30%住 多 名古屋市
+  key: CHN
+- spell: 黒柳
+  name: クロヤナギ
+  side: 姓
+  mark: 愛知
+  comment: 40%住 多 岡崎市
+  key: CHN
+- spell: 畔柳
+  name: クロヤナギ
+  side: 姓
+  mark: 愛知
+  comment: 70%住 多 岡崎市
+  key: CHN
+- spell: 桑山
+  name: クワヤマ
+  side: 姓
+  mark: 愛知
+  comment: 30%住 多 名古屋市
+  key: CHN
 - spell: 小芦
   name: コアシ
   side: 姓
   mark: 愛知
   comment: 40%住 岡崎市
+  key: CHN
+- spell: 鯉江
+  name: コイエ
+  side: 姓
+  mark: 愛知
+  comment: 70%住 多 常滑市
+  key: CHN
+- spell: 纐纈
+  name: コウケツ
+  side: 姓
+  mark: 愛知
+  comment: 30%住 多 名古屋市
+  key: CHN
+- spell: 高阪
+  name: コウサカ
+  side: 姓
+  mark: 愛知
+  comment: 30%住 多 蟹江町
+  key: CHN
+- spell: 光崎
+  name: コウザキ
+  side: 姓
+  mark: 愛知
+  comment: 60%住 多 一宮市
   key: CHN
 - spell: 郷治
   name: ゴウジ
@@ -25602,6 +29862,18 @@ name:
   side: 姓
   mark: 愛知
   comment: 70%住 田原市
+  key: CHN
+- spell: 香村
+  name: コウムラ
+  side: 姓
+  mark: 愛知
+  comment: 40%住 多 岡崎市
+  key: CHN
+- spell: 甲村
+  name: コウムラ
+  side: 姓
+  mark: 愛知
+  comment: 60%住 多 豊田市
   key: CHN
 - spell: 小貝
   name: コガイ
@@ -25632,6 +29904,24 @@ name:
   side: 姓
   mark: 愛知
   comment: 30%住 春日井市
+  key: CHN
+- spell: 樹神
+  name: コダマ
+  side: 姓
+  mark: 愛知
+  comment: 80%住 多 豊田市
+  key: CHN
+- spell: 小塚
+  name: コヅカ
+  side: 姓
+  mark: 愛知
+  comment: 30%住 多 名古屋市
+  key: CHN
+- spell: 五藤
+  name: ゴトウ
+  side: 姓
+  mark: 愛知
+  comment: 40%住 多 一宮市
   key: CHN
 - spell: 駒瀬
   name: コマセ
@@ -25729,6 +30019,18 @@ name:
   mark: 愛知
   comment: 60%住 吉良町
   key: CHN
+- spell: 佐橋
+  name: サハシ
+  side: 姓
+  mark: 愛知
+  comment: 40%住 多 名古屋市
+  key: CHN
+- spell: 佐分
+  name: サブリ
+  side: 姓
+  mark: 愛知
+  comment: 60%住 多 一宮市
+  key: CHN
 - spell: 佐溝
   name: サミゾ
   side: 姓
@@ -25782,6 +30084,12 @@ name:
   side: 姓
   mark: 愛知
   comment: 30%住 吉良町
+  key: CHN
+- spell: 柴垣
+  name: シバガキ
+  side: 姓
+  mark: 愛知
+  comment: 30%住 多 一宮市
   key: CHN
 - spell: 下方
   name: シモカタ
@@ -25849,17 +30157,65 @@ name:
   mark: 愛知
   comment: 60%住 一宮市
   key: CHN
+- spell: 水藤
+  name: スイトウ
+  side: 姓
+  mark: 愛知
+  comment: 50%住 多 蒲郡市
+  key: CHN
+- spell: 杉浦
+  name: スギウラ
+  side: 姓
+  mark: 愛知
+  comment: 50%住 多 碧南市
+  key: CHN
+- spell: 杉江
+  name: スギエ
+  side: 姓
+  mark: 愛知
+  comment: 30%住 多 常滑市
+  key: CHN
 - spell: 椙江
   name: スギエ
   side: 姓
   mark: 愛知
   comment: 70%住 知多市
   key: CHN
+- spell: 鋤柄
+  name: スキガラ
+  side: 姓
+  mark: 愛知
+  comment: 50%住 多 岡崎市
+  key: CHN
+- spell: 杉戸
+  name: スギト
+  side: 姓
+  mark: 愛知
+  comment: 30%住 多 名古屋市
+  key: CHN
 - spell: 椙村
   name: スギムラ
   side: 姓
   mark: 愛知
   comment: 40%住 津島市
+  key: CHN
+- spell: 鈴置
+  name: スズオキ
+  side: 姓
+  mark: 愛知
+  comment: 70%住 多 大府市
+  key: CHN
+- spell: 鈴村
+  name: スズムラ
+  side: 姓
+  mark: 愛知
+  comment: 40%住 多 名古屋市
+  key: CHN
+- spell: 墨
+  name: スミ
+  side: 姓
+  mark: 愛知
+  comment: 60%住 多 一宮市
   key: CHN
 - spell: 瀬辺
   name: セベ
@@ -25897,6 +30253,12 @@ name:
   mark: 愛知
   comment: 80%住 半田市
   key: CHN
+- spell: 左右田
+  name: ソウダ
+  side: 姓
+  mark: 愛知
+  comment: 40%住 多 吉良町
+  key: CHN
 - spell: 惣卜
   name: ソウボク
   side: 姓
@@ -25914,6 +30276,24 @@ name:
   side: 姓
   mark: 愛知
   comment: 50%住 名古屋市
+  key: CHN
+- spell: 高須
+  name: タカス
+  side: 姓
+  mark: 愛知
+  comment: 30%住 多 一色町
+  key: CHN
+- spell: 鷹羽
+  name: タカバ
+  side: 姓
+  mark: 愛知
+  comment: 40%住 多 大府市
+  key: CHN
+- spell: 高羽
+  name: タカハネ
+  side: 姓
+  mark: 愛知
+  comment: 30%住 多 名古屋市
   key: CHN
 - spell: 高御堂
   name: タカミドウ
@@ -26029,6 +30409,30 @@ name:
   mark: 愛知
   comment: 40%住 武豊町
   key: CHN
+- spell: 都築
+  name: ツヅキ
+  side: 姓
+  mark: 愛知
+  comment: 40%住 多 安城市
+  key: CHN
+- spell: 都筑
+  name: ツヅキ
+  side: 姓
+  mark: 愛知
+  comment: 30%住 多 美浜町
+  key: CHN
+- spell: 恒川
+  name: ツネカワ
+  side: 姓
+  mark: 愛知
+  comment: 60%住 多 名古屋市
+  key: CHN
+- spell: 角岡
+  name: ツノオカ
+  side: 姓
+  mark: 愛知
+  comment: 40%住 多 刈谷市
+  key: CHN
 - spell: 鍔本
   name: ツバモト
   side: 姓
@@ -26107,11 +30511,59 @@ name:
   mark: 愛知
   comment: 70%住 一宮市
   key: CHN
+- spell: 鳥居
+  name: トリイ
+  side: 姓
+  mark: 愛知
+  comment: 30%住 多 碧南市
+  key: CHN
+- spell: 長江
+  name: ナガエ
+  side: 姓
+  mark: 愛知
+  comment: 30%住 多 瀬戸市
+  key: CHN
+- spell: 中神
+  name: ナカガミ
+  side: 姓
+  mark: 愛知
+  comment: 40%住 多 豊橋市
+  key: CHN
 - spell: 永草
   name: ナガクサ
   side: 姓
   mark: 愛知
   comment: 50%住 春日井市
+  key: CHN
+- spell: 長坂
+  name: ナガサカ
+  side: 姓
+  mark: 愛知
+  comment: 30%住 多 東浦町
+  key: CHN
+- spell: 永坂
+  name: ナガサカ
+  side: 姓
+  mark: 愛知
+  comment: 40%住 多 碧南市
+  key: CHN
+- spell: 永津
+  name: ナガツ
+  side: 姓
+  mark: 愛知
+  comment: 30%住 多 名古屋市
+  key: CHN
+- spell: 長縄
+  name: ナガナワ
+  side: 姓
+  mark: 愛知
+  comment: 40%住 多 春日井市
+  key: CHN
+- spell: 中根
+  name: ナカネ
+  side: 姓
+  mark: 愛知
+  comment: 30%住 多 岡崎市
   key: CHN
 - spell: 長神
   name: ナガミ
@@ -26179,6 +30631,24 @@ name:
   mark: 愛知
   comment: 60%住 名古屋市
   key: CHN
+- spell: 新美
+  name: ニイミ
+  side: 姓
+  mark: 愛知
+  comment: 70%住 多 半田市
+  key: CHN
+- spell: 新実
+  name: ニイミ
+  side: 姓
+  mark: 愛知
+  comment: 70%住 多 西尾市
+  key: CHN
+- spell: 新実
+  name: ニイノミ
+  side: 姓
+  mark: 愛知
+  comment: 70%住 多 西尾市
+  key: CHN
 - spell: 新實
   name: ニイミ
   side: 姓
@@ -26221,6 +30691,24 @@ name:
   mark: 愛知
   comment: 70%住 豊橋市
   key: CHN
+- spell: 丹羽
+  name: ニワ
+  side: 姓
+  mark: 愛知
+  comment: 30%住 多 名古屋市
+  key: CHN
+- spell: 布目
+  name: ヌノメ
+  side: 姓
+  mark: 愛知
+  comment: 40%住 多 名古屋市
+  key: CHN
+- spell: 祢宜田
+  name: ネギタ
+  side: 姓
+  mark: 愛知
+  comment: 90%住 多 碧南市
+  key: CHN
 - spell: 野杁
   name: ノイリ
   side: 姓
@@ -26233,11 +30721,53 @@ name:
   mark: 愛知
   comment: 80%住 江南市
   key: CHN
+- spell: 野々垣
+  name: ノノガキ
+  side: 姓
+  mark: 愛知
+  comment: 50%住 多 一宮市
+  key: CHN
+- spell: 野々川
+  name: ノノカワ
+  side: 姓
+  mark: 愛知
+  comment: 50%住 多 小牧市
+  key: CHN
+- spell: 野々部
+  name: ノノベ
+  side: 姓
+  mark: 愛知
+  comment: 70%住 多 稲沢市
+  key: CHN
 - spell: 野々目
   name: ノノメ
   side: 姓
   mark: 愛知
   comment: 70%住 甚目寺町
+  key: CHN
+- spell: 野々山
+  name: ノノヤマ
+  side: 姓
+  mark: 愛知
+  comment: 70%住 多 刈谷市
+  key: CHN
+- spell: 野場
+  name: ノバ
+  side: 姓
+  mark: 愛知
+  comment: 40%住 多 豊田市
+  key: CHN
+- spell: 則竹
+  name: ノリタケ
+  side: 姓
+  mark: 愛知
+  comment: 70%住 多 一宮市
+  key: CHN
+- spell: 則武
+  name: ノリタケ
+  side: 姓
+  mark: 愛知
+  comment: 30%住 多 一宮市
   key: CHN
 - spell: 羽飼
   name: ハガイ
@@ -26335,6 +30865,18 @@ name:
   mark: 愛知
   comment: 30%住 江南市
   key: CHN
+- spell: 阪野
+  name: バンノ
+  side: 姓
+  mark: 愛知
+  comment: 50%住 多 名古屋市
+  key: CHN
+- spell: 樋江井
+  name: ヒエイ
+  side: 姓
+  mark: 愛知
+  comment: 80%住 多 稲沢市
+  key: CHN
 - spell: 日栄
   name: ヒエイ
   side: 姓
@@ -26359,11 +30901,35 @@ name:
   mark: 愛知
   comment: 40%住 名古屋市
   key: CHN
+- spell: 日比
+  name: ヒビ
+  side: 姓
+  mark: 愛知
+  comment: 30%住 多 名古屋市
+  key: CHN
+- spell: 日比野
+  name: ヒビノ
+  side: 姓
+  mark: 愛知
+  comment: 30%住 多 名古屋市
+  key: CHN
 - spell: 兵道
   name: ヒョウドウ
   side: 姓
   mark: 愛知
   comment: 50%住 豊橋市
+  key: CHN
+- spell: 平岩
+  name: ヒライワ
+  side: 姓
+  mark: 愛知
+  comment: 30%住 多 岡崎市
+  key: CHN
+- spell: 平手
+  name: ヒラテ
+  side: 姓
+  mark: 愛知
+  comment: 50%住 多 小牧市
   key: CHN
 - spell: 広浜
   name: ヒロハマ
@@ -26382,6 +30948,18 @@ name:
   side: 姓
   mark: 愛知
   comment: 80%住 豊橋市
+  key: CHN
+- spell: 深津
+  name: フカツ
+  side: 姓
+  mark: 愛知
+  comment: 30%住 多 豊田市
+  key: CHN
+- spell: 深谷
+  name: フカヤ
+  side: 姓
+  mark: 愛知
+  comment: 30%住 多 大府市
   key: CHN
 - spell: 福安
   name: フクヤス
@@ -26413,11 +30991,35 @@ name:
   mark: 愛知
   comment: 40%住 田原市
   key: CHN
+- spell: 舟橋
+  name: フナバシ
+  side: 姓
+  mark: 愛知
+  comment: 40%住 多 小牧市
+  key: CHN
 - spell: 舩橋
   name: フナバシ
   side: 姓
   mark: 愛知
   comment: 30%住 小牧市
+  key: CHN
+- spell: 夫馬
+  name: フマ
+  side: 姓
+  mark: 愛知
+  comment: 70%住 多 一宮市
+  key: CHN
+- spell: 武馬
+  name: ブマ
+  side: 姓
+  mark: 愛知
+  comment: 70%住 多 江南市
+  key: CHN
+- spell: 古居
+  name: フルイ
+  side: 姓
+  mark: 愛知
+  comment: 50%住 多 西尾市
   key: CHN
 - spell: 穂浪
   name: ホナミ
@@ -26443,6 +31045,24 @@ name:
   mark: 愛知
   comment: 70%住 半田市
   key: CHN
+- spell: 牧原
+  name: マキハラ
+  side: 姓
+  mark: 愛知
+  comment: 40%住 多 蒲郡市
+  key: CHN
+- spell: 間瀬
+  name: マセ
+  side: 姓
+  mark: 愛知
+  comment: 50%住 多 半田市
+  key: CHN
+- spell: 柵木
+  name: マセギ
+  side: 姓
+  mark: 愛知
+  comment: 70%住 多 岡崎市
+  key: CHN
 - spell: 真能
   name: マノウ
   side: 姓
@@ -26460,6 +31080,18 @@ name:
   side: 姓
   mark: 愛知
   comment: 30%住 春日井市
+  key: CHN
+- spell: 水鳥
+  name: ミズトリ
+  side: 姓
+  mark: 愛知
+  comment: 60%住 多 吉良町
+  key: CHN
+- spell: 水野
+  name: ミズノ
+  side: 姓
+  mark: 愛知
+  comment: 30%住 多 名古屋市
   key: CHN
 - spell: 三ツ口
   name: ミツグチ
@@ -26539,6 +31171,24 @@ name:
   mark: 愛知
   comment: 60%住 稲沢市
   key: CHN
+- spell: 村瀬
+  name: ムラセ
+  side: 姓
+  mark: 愛知
+  comment: 30%住 多 名古屋市
+  key: CHN
+- spell: 村手
+  name: ムラテ
+  side: 姓
+  mark: 愛知
+  comment: 60%住 多 名古屋市
+  key: CHN
+- spell: 毛受
+  name: メンジョウ
+  side: 姓
+  mark: 愛知
+  comment: 60%住 多 知立市
+  key: CHN
 - spell: 杢野
   name: モクノ
   side: 姓
@@ -26563,6 +31213,18 @@ name:
   mark: 愛知
   comment: 60%住 常滑市
   key: CHN
+- spell: 森部
+  name: モリベ
+  side: 姓
+  mark: 愛知
+  comment: 30%住 多 名古屋市
+  key: CHN
+- spell: 八神
+  name: ヤガミ
+  side: 姓
+  mark: 愛知
+  comment: 70%住 多 名古屋市
+  key: CHN
 - spell: 矢神
   name: ヤガミ
   side: 姓
@@ -26574,6 +31236,30 @@ name:
   side: 姓
   mark: 愛知
   comment: 70%住 豊川市
+  key: CHN
+- spell: 山守
+  name: ヤマモリ
+  side: 姓
+  mark: 愛知
+  comment: 40%住 多 名古屋市
+  key: CHN
+- spell: 山盛
+  name: ヤマモリ
+  side: 姓
+  mark: 愛知
+  comment: 50%住 多 名古屋市
+  key: CHN
+- spell: 百合草
+  name: ユリクサ
+  side: 姓
+  mark: 愛知
+  comment: 70%住 多 美浜町
+  key: CHN
+- spell: 与語
+  name: ヨゴ
+  side: 姓
+  mark: 愛知
+  comment: 90%住 多 長久手町
   key: CHN
 - spell: 余吾
   name: ヨゴ
@@ -26592,6 +31278,12 @@ name:
   side: 姓
   mark: 愛知
   comment: 70%住 長久手町
+  key: CHN
+- spell: 横井
+  name: ヨコイ
+  side: 姓
+  mark: 愛知
+  comment: 30%住 多 名古屋市
   key: CHN
 - spell: 余郷
   name: ヨゴウ
@@ -26640,6 +31332,18 @@ name:
   side: 姓
   mark: 愛知
   comment: 70%住 阿久比町
+  key: CHN
+- spell: 鷲津
+  name: ワシヅ
+  side: 姓
+  mark: 愛知
+  comment: 30%住 多 一宮市
+  key: CHN
+- spell: 鷲野
+  name: ワシノ
+  side: 姓
+  mark: 愛知
+  comment: 30%住 多 名古屋市
   key: CHN
 - spell: 和出
   name: ワデ
@@ -26983,6 +31687,42 @@ name:
   mark: 岐阜
   comment: 30%住 郡上市
   key: CHN
+- spell: 蒲
+  name: カバ
+  side: 姓
+  mark: 岐阜
+  comment: 40%住 多 郡上市
+  key: CHN
+- spell: 粥川
+  name: カユカワ
+  side: 姓
+  mark: 岐阜
+  comment: 40%住 多 中津川市
+  key: CHN
+- spell: 苅谷
+  name: カリヤ
+  side: 姓
+  mark: 岐阜
+  comment: 30%住 多 各務原市
+  key: CHN
+- spell: 河尻
+  name: カワジリ
+  side: 姓
+  mark: 岐阜
+  comment: 30%住 多 下呂市
+  key: CHN
+- spell: 河地
+  name: カワチ
+  side: 姓
+  mark: 岐阜
+  comment: 30%住 多 多治見市
+  key: CHN
+- spell: 川地
+  name: カワチ
+  side: 姓
+  mark: 岐阜
+  comment: 30%住 多 養老町
+  key: CHN
 - spell: 河出
   name: カワデ
   side: 姓
@@ -27048,6 +31788,18 @@ name:
   side: 姓
   mark: 岐阜
   comment: 30%住 岐阜市
+  key: CHN
+- spell: 熊崎
+  name: クマザキ
+  side: 姓
+  mark: 岐阜
+  comment: 50%住 多 下呂市
+  key: CHN
+- spell: 汲田
+  name: クミタ
+  side: 姓
+  mark: 岐阜
+  comment: 40%住 多 大野町
   key: CHN
 - spell: 倉家
   name: クラケ
@@ -27126,6 +31878,24 @@ name:
   side: 姓
   mark: 岐阜
   comment: 50%住 関市
+  key: CHN
+- spell: 坂井田
+  name: サカイダ
+  side: 姓
+  mark: 岐阜
+  comment: 30%住 多 岐阜市
+  key: CHN
+- spell: 酒向
+  name: サコウ
+  side: 姓
+  mark: 岐阜
+  comment: 50%住 多 美濃加茂市
+  key: CHN
+- spell: 佐合
+  name: サゴウ
+  side: 姓
+  mark: 岐阜
+  comment: 50%住 多 美濃加茂市
   key: CHN
 - spell: 笹俣
   name: ササマタ
@@ -27276,6 +32046,18 @@ name:
   side: 姓
   mark: 岐阜
   comment: 40%住 恵那市
+  key: CHN
+- spell: 宗宮
+  name: ソウミヤ
+  side: 姓
+  mark: 岐阜
+  comment: 50%住 多 揖斐川町
+  key: CHN
+- spell: 傍島
+  name: ソバジマ
+  side: 姓
+  mark: 岐阜
+  comment: 50%住 多 大垣市
   key: CHN
 - spell: 田垣
   name: タガキ
@@ -27451,6 +32233,12 @@ name:
   mark: 岐阜
   comment: 30%住 恵那市
   key: CHN
+- spell: 永冶
+  name: ナガヤ
+  side: 姓
+  mark: 岐阜
+  comment: 70%住 多 中津川市
+  key: CHN
 - spell: 長良
   name: ナガラ
   side: 姓
@@ -27462,6 +32250,12 @@ name:
   side: 姓
   mark: 岐阜
   comment: 60%住 本巣市
+  key: CHN
+- spell: 西部
+  name: ニシブ
+  side: 姓
+  mark: 岐阜
+  comment: 30%住 多 関市
   key: CHN
 - spell: 納土
   name: ノウド
@@ -27612,6 +32406,12 @@ name:
   side: 姓
   mark: 岐阜
   comment: 60%住 多 岐南町
+  key: CHN
+- spell: 船坂
+  name: フナサカ
+  side: 姓
+  mark: 岐阜
+  comment: 40%住 多 高山市
   key: CHN
 - spell: 舩坂
   name: フナサカ
@@ -27781,6 +32581,12 @@ name:
   mark: 岐阜
   comment: 60%住 飛騨市
   key: CHN
+- spell: 横幕
+  name: ヨコマク
+  side: 姓
+  mark: 岐阜
+  comment: 40%住 多 大垣市
+  key: CHN
 - spell: 横家
   name: ヨコヤ
   side: 姓
@@ -27894,6 +32700,12 @@ name:
   side: 姓
   mark: 三重
   comment: 70%住 大紀町
+  key: CHN
+- spell: 磯和
+  name: イソワ
+  side: 姓
+  mark: 三重
+  comment: 60%住 多 志摩市
   key: CHN
 - spell: 一尾
   name: イチオ
@@ -28051,6 +32863,18 @@ name:
   mark: 三重
   comment: 60%住 津市
   key: CHN
+- spell: 奥岡
+  name: オクオカ
+  side: 姓
+  mark: 三重
+  comment: 40%住 多 いなべ市
+  key: CHN
+- spell: 奥地
+  name: オクチ
+  side: 姓
+  mark: 三重
+  comment: 30%住 多 御浜町　
+  key: CHN
 - spell: 小掠
   name: オグラ
   side: 姓
@@ -28159,6 +32983,18 @@ name:
   mark: 三重
   comment: 40%住 津市
   key: CHN
+- spell: 草川
+  name: クサカワ
+  side: 姓
+  mark: 三重
+  comment: 30%住 多 亀山市
+  key: CHN
+- spell: 草深
+  name: クサフカ
+  side: 姓
+  mark: 三重
+  comment: 40%住 多 津市
+  key: CHN
 - spell: 久志本
   name: クシモト
   side: 姓
@@ -28213,6 +33049,24 @@ name:
   mark: 三重
   comment: 60%住 伊勢市
   key: CHN
+- spell: 駒田
+  name: コマダ
+  side: 姓
+  mark: 三重
+  comment: 30%住 多 津市
+  key: CHN
+- spell: 阪
+  name: サカ
+  side: 姓
+  mark: 三重
+  comment: 40%住 多 津市
+  key: CHN
+- spell: 酒徳
+  name: サカトク
+  side: 姓
+  mark: 三重
+  comment: 60%住 多 伊勢市
+  key: CHN
 - spell: 崎久保
   name: サキクボ
   side: 姓
@@ -28224,6 +33078,18 @@ name:
   side: 姓
   mark: 三重
   comment: 50%住 熊野市
+  key: CHN
+- spell: 里中
+  name: サトナカ
+  side: 姓
+  mark: 三重
+  comment: 30%住 多 鳥羽市
+  key: CHN
+- spell: 佐波
+  name: サバ
+  side: 姓
+  mark: 三重
+  comment: 40%住 多 松阪市
   key: CHN
 - spell: 鯖戸
   name: サバト
@@ -28278,6 +33144,24 @@ name:
   side: 姓
   mark: 三重
   comment: 30%住 鳥羽市
+  key: CHN
+- spell: 瀬古
+  name: セコ
+  side: 姓
+  mark: 三重
+  comment: 30%住 多 桑名市　
+  key: CHN
+- spell: 世古
+  name: セコ
+  side: 姓
+  mark: 三重
+  comment: 50%住 多 尾鷲市
+  key: CHN
+- spell: 世古口
+  name: セコグチ
+  side: 姓
+  mark: 三重
+  comment: 60%住 多 伊勢市
   key: CHN
 - spell: 曽野
   name: ソノ
@@ -28374,6 +33258,12 @@ name:
   side: 姓
   mark: 三重
   comment: 50%住 津市
+  key: CHN
+- spell: 中北
+  name: ナカキタ
+  side: 姓
+  mark: 三重
+  comment: 30%住 多 伊勢市
   key: CHN
 - spell: 中子
   name: ナカコ
@@ -28507,6 +33397,18 @@ name:
   mark: 三重
   comment: 60%住 四日市市
   key: CHN
+- spell: 日沖
+  name: ヒオキ
+  side: 姓
+  mark: 三重
+  comment: 50%住 多 いなべ市
+  key: CHN
+- spell: 日紫喜
+  name: ヒシキ
+  side: 姓
+  mark: 三重
+  comment: 60%住 多 いなべ市
+  key: CHN
 - spell: 桧作
   name: ヒヅクリ
   side: 姓
@@ -28638,6 +33540,18 @@ name:
   side: 姓
   mark: 三重
   comment: 50%住 桑名市
+  key: CHN
+- spell: 三鬼
+  name: ミキ
+  side: 姓
+  mark: 三重
+  comment: 60%住 多 尾鷲市
+  key: CHN
+- spell: 三林
+  name: ミツバヤシ
+  side: 姓
+  mark: 三重
+  comment: 30%住 多 桑名市
   key: CHN
 - spell: 源口
   name: ミナグチ
@@ -28788,6 +33702,12 @@ name:
   side: 姓
   mark: 富山
   comment: 40%住 滑川市
+  key: CHN
+- spell: 安念
+  name: アンネン
+  side: 姓
+  mark: 富山
+  comment: 30%住 多 砺波市
   key: CHN
 - spell: 五十井
   name: イカイ
@@ -30247,6 +35167,12 @@ name:
   mark: 石川
   comment: 30%住 宝達志水町　
   key: CHN
+- spell: 越村
+  name: コシムラ
+  side: 姓
+  mark: 石川
+  comment: 30%住 多 金沢市
+  key: CHN
 - spell: 小谷内
   name: コヤチ
   side: 姓
@@ -30613,6 +35539,12 @@ name:
   mark: 石川
   comment: 70%住 津幡町
   key: CHN
+- spell: 米林
+  name: ヨネバヤシ
+  side: 姓
+  mark: 石川
+  comment: 30%住 多 金沢市
+  key: CHN
 - spell: 揚原
   name: アゲハラ
   side: 姓
@@ -30756,6 +35688,12 @@ name:
   side: 姓
   mark: 福井
   comment: 30%住 大野市
+  key: CHN
+- spell: 白崎
+  name: シラサキ
+  side: 姓
+  mark: 福井
+  comment: 30%住 多 福井市
   key: CHN
 - spell: 鈴間
   name: スズマ
@@ -34543,6 +39481,12 @@ name:
   mark: 大阪
   comment: 40%住 堺市
   key: CHN
+- spell: 東野
+  name: ヒガシノ
+  side: 姓
+  mark: 大阪
+  comment: 30%住 多 大阪市
+  key: CHN
 - spell: 髭
   name: ヒゲ
   side: 姓
@@ -35058,6 +40002,12 @@ name:
   side: 姓
   mark: 大阪
   comment: 70%住 大阪市
+  key: CHN
+- spell: 薮野
+  name: ヤブノ
+  side: 姓
+  mark: 大阪
+  comment: 40%住 多 大阪市
   key: CHN
 - spell: 籔野
   name: ヤブノ
@@ -36319,6 +41269,12 @@ name:
   mark: 兵庫
   comment: 30%住 篠山市
   key: CHN
+- spell: 衣笠
+  name: キヌガサ
+  side: 姓
+  mark: 兵庫
+  comment: 40%住 多 神戸市
+  key: CHN
 - spell: 衣畑
   name: キヌハタ
   side: 姓
@@ -36336,6 +41292,12 @@ name:
   side: 姓
   mark: 兵庫
   comment: 30%住 宍粟市
+  key: CHN
+- spell: 清瀬
+  name: キヨセ
+  side: 姓
+  mark: 兵庫
+  comment: 50%住 多 姫路市
   key: CHN
 - spell: 金月
   name: キンゲツ
@@ -37681,6 +42643,12 @@ name:
   mark: 兵庫
   comment: 50%住 姫路市
   key: CHN
+- spell: 名村
+  name: ナムラ
+  side: 姓
+  mark: 兵庫
+  comment: 40%住 多 たつの市
+  key: CHN
 - spell: 成定
   name: ナリサダ
   side: 姓
@@ -38112,6 +43080,12 @@ name:
   side: 姓
   mark: 兵庫
   comment: 70%住 佐用町
+  key: CHN
+- spell: 船引
+  name: フナビキ
+  side: 姓
+  mark: 兵庫
+  comment: 60%住 多 姫路市
   key: CHN
 - spell: 振角
   name: フリカド
@@ -38851,6 +43825,12 @@ name:
   mark: 奈良
   comment: 70%住 大和郡山市
   key: CHN
+- spell: 岡橋
+  name: オカハシ
+  side: 姓
+  mark: 奈良
+  comment: 30%住 多 橿原市
+  key: CHN
 - spell: 御宮知
   name: オングウチ
   side: 姓
@@ -39426,6 +44406,12 @@ name:
   side: 姓
   mark: 和歌山
   comment: 50%住 美浜町
+  key: CHN
+- spell: 塩路
+  name: シオジ
+  side: 姓
+  mark: 和歌山
+  comment: 40%住 多 御坊市
   key: CHN
 - spell: 塩地
   name: シオジ
@@ -40429,6 +45415,18 @@ name:
   mark: 島根
   comment: 40%住 松江市
   key: CHN
+- spell: 板持
+  name: イタモチ
+  side: 姓
+  mark: 島根
+  comment: 50%住 多 雲南市
+  key: CHN
+- spell: 糸原
+  name: イトハラ
+  side: 姓
+  mark: 島根
+  comment: 50%住 多 奥出雲町
+  key: CHN
 - spell: 犬山
   name: イヌヤマ
   side: 姓
@@ -40452,6 +45450,12 @@ name:
   side: 姓
   mark: 島根
   comment: 60%住 出雲市
+  key: CHN
+- spell: 漆谷
+  name: ウルシダニ
+  side: 姓
+  mark: 島根
+  comment: 30%住 多 美郷町
   key: CHN
 - spell: 江角
   name: エスミ
@@ -40705,6 +45709,18 @@ name:
   mark: 島根
   comment: 60%住 安来市
   key: CHN
+- spell: 城市
+  name: ジョウイチ
+  side: 姓
+  mark: 島根
+  comment: 40%住 多 益田市
+  key: CHN
+- spell: 昌子
+  name: ショウジ
+  side: 姓
+  mark: 島根
+  comment: 60%住 多 出雲市
+  key: CHN
 - spell: 白築
   name: シラツキ
   side: 姓
@@ -40813,6 +45829,18 @@ name:
   mark: 島根
   comment: 30%住 江津市
   key: CHN
+- spell: 月森
+  name: ツキモリ
+  side: 姓
+  mark: 島根
+  comment: 40%住 多 大田市
+  key: CHN
+- spell: 土江
+  name: ツチエ
+  side: 姓
+  mark: 島根
+  comment: 50%住 多 出雲市
+  key: CHN
 - spell: 津戸
   name: ツド
   side: 姓
@@ -40872,6 +45900,36 @@ name:
   side: 姓
   mark: 島根
   comment: 50%住 隠岐の島町
+  key: CHN
+- spell: 柳楽
+  name: ナギラ
+  side: 姓
+  mark: 島根
+  comment: 50%住 多 出雲市
+  key: CHN
+- spell: 名原
+  name: ナハラ
+  side: 姓
+  mark: 島根
+  comment: 40%住 多 雲南市
+  key: CHN
+- spell: 成相
+  name: ナリアイ
+  side: 姓
+  mark: 島根
+  comment: 50%住 多 出雲市
+  key: CHN
+- spell: 錦織
+  name: ニシコオリ
+  side: 姓
+  mark: 島根
+  comment: 30%住 多 出雲市
+  key: CHN
+- spell: 錦織
+  name: "(「ニシコリ」モアル)"
+  side: 姓
+  mark: 島根
+  comment: 30%住 多 出雲市
   key: CHN
 - spell: 仁宮
   name: ニミヤ
@@ -40956,6 +46014,12 @@ name:
   side: 姓
   mark: 島根
   comment: 40%住 松江市
+  key: CHN
+- spell: 福間
+  name: フクマ
+  side: 姓
+  mark: 島根
+  comment: 30%住 多 松江市
   key: CHN
 - spell: 福頼
   name: フクヨリ
@@ -41107,6 +46171,12 @@ name:
   mark: 島根
   comment: 60%住 出雲市
   key: CHN
+- spell: 青江
+  name: アオエ
+  side: 姓
+  mark: 岡山
+  comment: 40%住 多 岡山市
+  key: CHN
 - spell: 赤枝
   name: アカエダ
   side: 姓
@@ -41257,6 +46327,18 @@ name:
   mark: 岡山
   comment: 60%住 倉敷市
   key: CHN
+- spell: 岩藤
+  name: イワドウ
+  side: 姓
+  mark: 岡山
+  comment: 30%住 多 岡山市
+  key: CHN
+- spell: 植月
+  name: ウエツキ
+  side: 姓
+  mark: 岡山
+  comment: 50%住 多 勝央町
+  key: CHN
 - spell: 宇垣
   name: ウガキ
   side: 姓
@@ -41395,6 +46477,18 @@ name:
   mark: 岡山
   comment: 40%住 岡山市
   key: CHN
+- spell: 小郷
+  name: オゴウ
+  side: 姓
+  mark: 岡山
+  comment: 50%住 多 倉敷市
+  key: CHN
+- spell: 小坂田
+  name: オサカダ
+  side: 姓
+  mark: 岡山
+  comment: 50%住 多 美作市
+  key: CHN
 - spell: 小阪田
   name: オサカダ
   side: 姓
@@ -41436,6 +46530,18 @@ name:
   side: 姓
   mark: 岡山
   comment: 70%住 浅口市
+  key: CHN
+- spell: 貝原
+  name: カイハラ
+  side: 姓
+  mark: 岡山
+  comment: 30%住 多 倉敷市
+  key: CHN
+- spell: 風早
+  name: カザハヤ
+  side: 姓
+  mark: 岡山
+  comment: 40%住 多 総社市
   key: CHN
 - spell: 笠行
   name: カサユキ
@@ -41622,6 +46728,12 @@ name:
   side: 姓
   mark: 岡山
   comment: 30%住 井原市
+  key: CHN
+- spell: 国定
+  name: クニサダ
+  side: 姓
+  mark: 岡山
+  comment: 30%住 多 岡山市
   key: CHN
 - spell: 国塩
   name: クニシオ
@@ -42073,6 +47185,30 @@ name:
   mark: 岡山
   comment: 90%住 岡山市
   key: CHN
+- spell: 白髪
+  name: シラガ
+  side: 姓
+  mark: 岡山
+  comment: 50%住 多 倉敷市
+  key: CHN
+- spell: 白神
+  name: シラガ
+  side: 姓
+  mark: 岡山
+  comment: 60%住 多 倉敷市
+  key: CHN
+- spell: 白神
+  name: シラガミ
+  side: 姓
+  mark: 岡山
+  comment: 60%住 多 倉敷市
+  key: CHN
+- spell: 塩飽
+  name: シワク
+  side: 姓
+  mark: 岡山
+  comment: 40%住 多 井原市
+  key: CHN
 - spell: 神宝
   name: シンポウ
   side: 姓
@@ -42126,6 +47262,24 @@ name:
   side: 姓
   mark: 岡山
   comment: 80%住 倉敷市
+  key: CHN
+- spell: 関藤
+  name: セキトウ
+  side: 姓
+  mark: 岡山
+  comment: 40%住 多 笠岡市
+  key: CHN
+- spell: 瀬島
+  name: セジマ
+  side: 姓
+  mark: 岡山
+  comment: 30%住 多 真庭市
+  key: CHN
+- spell: 妹尾
+  name: セノオ
+  side: 姓
+  mark: 岡山
+  comment: 30%住 多 倉敷市
   key: CHN
 - spell: 善木
   name: ゼンキ
@@ -42379,6 +47533,12 @@ name:
   mark: 岡山
   comment: 70%住 倉敷市
   key: CHN
+- spell: 寺見
+  name: テラミ
+  side: 姓
+  mark: 岡山
+  comment: 50%住 多 岡山市
+  key: CHN
 - spell: 都井
   name: トイ
   side: 姓
@@ -42510,6 +47670,18 @@ name:
   side: 姓
   mark: 岡山
   comment: 60%住 勝央町
+  key: CHN
+- spell: 頓宮
+  name: トングウ
+  side: 姓
+  mark: 岡山
+  comment: 50%住 多 備前市
+  key: CHN
+- spell: 中桐
+  name: ナカギリ
+  side: 姓
+  mark: 岡山
+  comment: 50%住 多 倉敷市
   key: CHN
 - spell: 仲達
   name: ナカダチ
@@ -42733,6 +47905,12 @@ name:
   mark: 岡山
   comment: 60%住 倉敷市
   key: CHN
+- spell: 長谷井
+  name: ハセイ
+  side: 姓
+  mark: 岡山
+  comment: 50%住 多 玉野市
+  key: CHN
 - spell: 幡上
   name: ハタガミ
   side: 姓
@@ -42955,6 +48133,12 @@ name:
   mark: 岡山
   comment: 50%住 津山市
   key: CHN
+- spell: 増成
+  name: マスナリ
+  side: 姓
+  mark: 岡山
+  comment: 40%住 多 笠岡市
+  key: CHN
 - spell: 万波
   name: マンナミ
   side: 姓
@@ -43008,6 +48192,18 @@ name:
   side: 姓
   mark: 岡山
   comment: 30%住 総社市
+  key: CHN
+- spell: 溝手
+  name: ミゾテ
+  side: 姓
+  mark: 岡山
+  comment: 40%住 多 岡山市
+  key: CHN
+- spell: 道広
+  name: ミチヒロ
+  side: 姓
+  mark: 岡山
+  comment: 70%住 多 浅口市
   key: CHN
 - spell: 光信
   name: ミツノブ
@@ -43140,6 +48336,18 @@ name:
   side: 姓
   mark: 岡山
   comment: 60%住 備前市
+  key: CHN
+- spell: 森安
+  name: モリヤス
+  side: 姓
+  mark: 岡山
+  comment: 30%住 多 岡山市
+  key: CHN
+- spell: 守安
+  name: モリヤス
+  side: 姓
+  mark: 岡山
+  comment: 60%住 多 総社市
   key: CHN
 - spell: 守分
   name: モリワケ
@@ -43459,6 +48667,18 @@ name:
   mark: 広島
   comment: 80%住 福山市
   key: CHN
+- spell: 粟根
+  name: アワネ
+  side: 姓
+  mark: 広島
+  comment: 50%住 多 府中市
+  key: CHN
+- spell: 粟村
+  name: アワムラ
+  side: 姓
+  mark: 広島
+  comment: 50%住 多 福山市
+  key: CHN
 - spell: 胃甲
   name: イコウ
   side: 姓
@@ -43633,6 +48853,24 @@ name:
   mark: 広島
   comment: 50%住 福山市
   key: CHN
+- spell: 江種
+  name: エグサ
+  side: 姓
+  mark: 広島
+  comment: 60%住 多 福山市
+  key: CHN
+- spell: 江草
+  name: エグサ
+  side: 姓
+  mark: 広島
+  comment: 40%住 多 福山市
+  key: CHN
+- spell: 枝広
+  name: エダヒロ
+  side: 姓
+  mark: 広島
+  comment: 50%住 多 福山市
+  key: CHN
 - spell: 枝廣
   name: エダヒロ
   side: 姓
@@ -43656,6 +48894,18 @@ name:
   side: 姓
   mark: 広島
   comment: 80%住 広島市
+  key: CHN
+- spell: 胡子
+  name: エビス
+  side: 姓
+  mark: 広島
+  comment: 70%住 多 広島市
+  key: CHN
+- spell: 胡
+  name: エビス
+  side: 姓
+  mark: 広島
+  comment: 70%住 多 廿日市市
   key: CHN
 - spell: 胡田
   name: エビスダ
@@ -43843,6 +49093,18 @@ name:
   mark: 広島
   comment: 80%住 広島市
   key: CHN
+- spell: 沖元
+  name: オキモト
+  side: 姓
+  mark: 広島
+  comment: 50%住 多 広島市
+  key: CHN
+- spell: 沖本
+  name: オキモト
+  side: 姓
+  mark: 広島
+  comment: 40%住 多 広島市
+  key: CHN
 - spell: 沖森
   name: オキモリ
   side: 姓
@@ -43944,6 +49206,12 @@ name:
   side: 姓
   mark: 広島
   comment: 70%住 福山市
+  key: CHN
+- spell: 開原
+  name: カイハラ
+  side: 姓
+  mark: 広島
+  comment: 50%住 多 福山市
   key: CHN
 - spell: 篝
   name: カガリ
@@ -44053,6 +49321,12 @@ name:
   mark: 広島
   comment: 60%住 江田島市
   key: CHN
+- spell: 上瀬
+  name: カミセ
+  side: 姓
+  mark: 広島
+  comment: 50%住 多 呉市
+  key: CHN
 - spell: 賀谷
   name: カヤ
   side: 姓
@@ -44064,6 +49338,24 @@ name:
   side: 姓
   mark: 広島
   comment: 60%住 福山市
+  key: CHN
+- spell: 河相
+  name: カワイ
+  side: 姓
+  mark: 広島
+  comment: 60%住 多 福山市
+  key: CHN
+- spell: 河相
+  name: カアイ
+  side: 姓
+  mark: 広島
+  comment: 60%住 多 福山市
+  key: CHN
+- spell: 川岡
+  name: カワオカ
+  side: 姓
+  mark: 広島
+  comment: 40%住 多 呉市
   key: CHN
 - spell: 神舎
   name: カンジャ
@@ -44106,6 +49398,18 @@ name:
   side: 姓
   mark: 広島
   comment: 60%住 広島市
+  key: CHN
+- spell: 来山
+  name: キタヤマ
+  side: 姓
+  mark: 広島
+  comment: 60%住 多 福山市
+  key: CHN
+- spell: 橘高
+  name: キッタカ
+  side: 姓
+  mark: 広島
+  comment: 60%住 多 福山市
   key: CHN
 - spell: 寄能
   name: キノウ
@@ -44695,6 +49999,24 @@ name:
   mark: 広島
   comment: 40%住 福山市
   key: CHN
+- spell: 世羅
+  name: セラ
+  side: 姓
+  mark: 広島
+  comment: 60%住 多 広島市
+  key: CHN
+- spell: 世良
+  name: セラ
+  side: 姓
+  mark: 広島
+  comment: 30%住 多 福山市
+  key: CHN
+- spell: 瀬良
+  name: セラ
+  side: 姓
+  mark: 広島
+  comment: 30%住 多 福山市
+  key: CHN
 - spell: 惣明
   name: ソウミョウ
   side: 姓
@@ -44712,6 +50034,12 @@ name:
   side: 姓
   mark: 広島
   comment: 50%住 福山市
+  key: CHN
+- spell: 空
+  name: ソラ
+  side: 姓
+  mark: 広島
+  comment: 30%住 多 江田島市
   key: CHN
 - spell: 空井
   name: ソライ
@@ -46267,6 +51595,18 @@ name:
   mark: 山口
   comment: 50%住 柳井市
   key: CHN
+- spell: 上利
+  name: アガリ
+  side: 姓
+  mark: 山口
+  comment: 50%住 多 美祢市
+  key: CHN
+- spell: 秋枝
+  name: アキエダ
+  side: 姓
+  mark: 山口
+  comment: 40%住 多 下関市
+  key: CHN
 - spell: 秋貞
   name: アキサダ
   side: 姓
@@ -46567,6 +51907,18 @@ name:
   mark: 山口
   comment: 30%住 下松市
   key: CHN
+- spell: 兼重
+  name: カネシゲ
+  side: 姓
+  mark: 山口
+  comment: 60%住 多 周南市
+  key: CHN
+- spell: 金重
+  name: カネシゲ
+  side: 姓
+  mark: 山口
+  comment: 40%住 多 宇部市
+  key: CHN
 - spell: 金近
   name: カネチカ
   side: 姓
@@ -46734,6 +52086,18 @@ name:
   side: 姓
   mark: 山口
   comment: 30%住 周南市
+  key: CHN
+- spell: 蔵重
+  name: クラシゲ
+  side: 姓
+  mark: 山口
+  comment: 40%住 多 宇部市
+  key: CHN
+- spell: 倉重
+  name: クラシゲ
+  side: 姓
+  mark: 山口
+  comment: 30%住 多 防府市
   key: CHN
 - spell: 蔵永
   name: クラナガ
@@ -46927,6 +52291,24 @@ name:
   mark: 山口
   comment: 40%住 山口市
   key: CHN
+- spell: 水津
+  name: スイヅ
+  side: 姓
+  mark: 山口
+  comment: 40%住 多 萩市
+  key: CHN
+- spell: 末岡
+  name: スエオカ
+  side: 姓
+  mark: 山口
+  comment: 30%住 多 光市
+  key: CHN
+- spell: 末富
+  name: スエトミ
+  side: 姓
+  mark: 山口
+  comment: 40%住 多 防府市
+  key: CHN
 - spell: 末成
   name: スエナリ
   side: 姓
@@ -46963,6 +52345,12 @@ name:
   mark: 山口
   comment: 60%住 周南市
   key: CHN
+- spell: 竹重
+  name: タケシゲ
+  side: 姓
+  mark: 山口
+  comment: 30%住 多 萩市
+  key: CHN
 - spell: 武波
   name: タケナミ
   side: 姓
@@ -46974,6 +52362,12 @@ name:
   side: 姓
   mark: 山口
   comment: 60%住 宇部市
+  key: CHN
+- spell: 千々松
+  name: チヂマツ
+  side: 姓
+  mark: 山口
+  comment: 50%住 多 宇部市
   key: CHN
 - spell: 津秋
   name: ツアキ
@@ -47197,6 +52591,24 @@ name:
   mark: 山口
   comment: 40%住 宇部市
   key: CHN
+- spell: 弘津
+  name: ヒロツ
+  side: 姓
+  mark: 山口
+  comment: 50%住 多 柳井市
+  key: CHN
+- spell: 弘中
+  name: ヒロナカ
+  side: 姓
+  mark: 山口
+  comment: 60%住 多 下関市
+  key: CHN
+- spell: 広中
+  name: ヒロナカ
+  side: 姓
+  mark: 山口
+  comment: 30%住 多 岩国市
+  key: CHN
 - spell: 弘永
   name: ヒロナガ
   side: 姓
@@ -47220,6 +52632,18 @@ name:
   side: 姓
   mark: 山口
   comment: 60%住 岩国市
+  key: CHN
+- spell: 藤重
+  name: フジシゲ
+  side: 姓
+  mark: 山口
+  comment: 30%住 多 岩国市
+  key: CHN
+- spell: 藤津
+  name: フジツ
+  side: 姓
+  mark: 山口
+  comment: 50%住 多 山口市
   key: CHN
 - spell: 部坂
   name: ヘサカ
@@ -47587,6 +53011,18 @@ name:
   mark: 徳島
   comment: 40%住 つるぎ町
   key: CHN
+- spell: 小笠
+  name: オガサ
+  side: 姓
+  mark: 徳島
+  comment: 30%住 多 美馬市
+  key: CHN
+- spell: 岡久
+  name: オカヒサ
+  side: 姓
+  mark: 徳島
+  comment: 50%住 多 阿南市
+  key: CHN
 - spell: 表原
   name: オモテハラ
   side: 姓
@@ -47664,6 +53100,12 @@ name:
   side: 姓
   mark: 徳島
   comment: 40%住 那賀町
+  key: CHN
+- spell: 川人
+  name: カワヒト
+  side: 姓
+  mark: 徳島
+  comment: 30%住 多 阿波市
   key: CHN
 - spell: 川真田
   name: カワマタ
@@ -47995,6 +53437,12 @@ name:
   mark: 徳島
   comment: 40%住 鳴門市
   key: CHN
+- spell: 美馬
+  name: ミマ
+  side: 姓
+  mark: 徳島
+  comment: 30%住 多 徳島市
+  key: CHN
 - spell: 宮繁
   name: ミヤシゲ
   side: 姓
@@ -48027,6 +53475,12 @@ name:
   key: CHN
 - spell: 阿河
   name: アガ
+  side: 姓
+  mark: 香川
+  comment: 40%住 坂出市
+  key: CHN
+- spell: 阿河
+  name: アガワ
   side: 姓
   mark: 香川
   comment: 40%住 坂出市
@@ -48433,6 +53887,18 @@ name:
   mark: 香川
   comment: 80%住 高松市
   key: CHN
+- spell: 造田
+  name: ゾウダ
+  side: 姓
+  mark: 香川
+  comment: 40%住 多 高松市
+  key: CHN
+- spell: 十河
+  name: ソゴウ
+  side: 姓
+  mark: 香川
+  comment: 30%住 多 高松市
+  key: CHN
 - spell: 琢磨
   name: タクマ
   side: 姓
@@ -48727,6 +54193,18 @@ name:
   mark: 香川
   comment: 50%住 高松市
   key: CHN
+- spell: 宮武
+  name: ミヤタケ
+  side: 姓
+  mark: 香川
+  comment: 40%住 多 高松市
+  key: CHN
+- spell: 六車
+  name: ムグルマ
+  side: 姓
+  mark: 香川
+  comment: 40%住 多 さぬき市
+  key: CHN
 - spell: 牟礼
   name: ムレ
   side: 姓
@@ -48900,6 +54378,18 @@ name:
   side: 姓
   mark: 愛媛
   comment: 50%住 西条市
+  key: CHN
+- spell: 宇高
+  name: ウダカ
+  side: 姓
+  mark: 愛媛
+  comment: 30%住 多 今治市
+  key: CHN
+- spell: 宇都宮
+  name: ウツノミヤ
+  side: 姓
+  mark: 愛媛
+  comment: 30%住 多 西予市
   key: CHN
 - spell: 祖母井
   name: ウバガイ
@@ -49080,6 +54570,12 @@ name:
   side: 姓
   mark: 愛媛
   comment: 30%住 西条市
+  key: CHN
+- spell: 忽那
+  name: クツナ
+  side: 姓
+  mark: 愛媛
+  comment: 50%住 多 松山市
   key: CHN
 - spell: 倉瀬
   name: クラセ
@@ -49303,17 +54799,53 @@ name:
   mark: 愛媛
   comment: 50%住 多 鬼北町
   key: CHN
+- spell: 仙波
+  name: センバ
+  side: 姓
+  mark: 愛媛
+  comment: 30%住 多 松山市
+  key: CHN
+- spell: 曽我部
+  name: ソガベ
+  side: 姓
+  mark: 愛媛
+  comment: 40%住 多 西条市
+  key: CHN
+- spell: 十亀
+  name: ソガメ
+  side: 姓
+  mark: 愛媛
+  comment: 40%住 多 西条市
+  key: CHN
 - spell: 田井野
   name: タイノ
   side: 姓
   mark: 愛媛
   comment: 60%住 東温市
   key: CHN
+- spell: 高市
+  name: タカイチ
+  side: 姓
+  mark: 愛媛
+  comment: 50%住 多 松山市
+  key: CHN
+- spell: 高須賀
+  name: タカスカ
+  side: 姓
+  mark: 愛媛
+  comment: 50%住 多 東温市
+  key: CHN
 - spell: 高智
   name: タカチ
   side: 姓
   mark: 愛媛
   comment: 50%住 松山市
+  key: CHN
+- spell: 田窪
+  name: タクボ
+  side: 姓
+  mark: 愛媛
+  comment: 40%住 多 今治市
   key: CHN
 - spell: 武方
   name: タケカタ
@@ -49435,11 +54967,35 @@ name:
   mark: 愛媛
   comment: 40%住 松山市
   key: CHN
+- spell: 友近
+  name: トモチカ
+  side: 姓
+  mark: 愛媛
+  comment: 50%住 多 松山市
+  key: CHN
+- spell: 鳥生
+  name: トリウ
+  side: 姓
+  mark: 愛媛
+  comment: 60%住 多 今治市
+  key: CHN
 - spell: 仲渡
   name: ナカト
   side: 姓
   mark: 愛媛
   comment: 70%住 今治市
+  key: CHN
+- spell: 中矢
+  name: ナカヤ
+  side: 姓
+  mark: 愛媛
+  comment: 40%住 多 松山市
+  key: CHN
+- spell: 永易
+  name: ナガヤス
+  side: 姓
+  mark: 愛媛
+  comment: 50%住 多 新居浜市
   key: CHN
 - spell: 難波江
   name: ナバエ
@@ -49507,6 +55063,18 @@ name:
   mark: 愛媛
   comment: 70%住 大洲市
   key: CHN
+- spell: 萩森
+  name: ハギモリ
+  side: 姓
+  mark: 愛媛
+  comment: 40%住 多 八幡浜市
+  key: CHN
+- spell: 羽藤
+  name: ハトウ
+  side: 姓
+  mark: 愛媛
+  comment: 40%住 多 今治市
+  key: CHN
 - spell: 原井川
   name: ハライカワ
   side: 姓
@@ -49519,11 +55087,35 @@ name:
   mark: 愛媛
   comment: 60%住 今治市
   key: CHN
+- spell: 日浅
+  name: ヒアサ
+  side: 姓
+  mark: 愛媛
+  comment: 50%住 多 今治市
+  key: CHN
+- spell: 桧垣
+  name: ヒガキ
+  side: 姓
+  mark: 愛媛
+  comment: 40%住 多 今治市
+  key: CHN
 - spell: 日野林
   name: ヒノバヤシ
   side: 姓
   mark: 愛媛
   comment: 60%住 松山市
+  key: CHN
+- spell: 兵頭
+  name: ヒョウドウ
+  side: 姓
+  mark: 愛媛
+  comment: 50%住 多 西予市
+  key: CHN
+- spell: 日和佐
+  name: ヒワサ
+  side: 姓
+  mark: 愛媛
+  comment: 40%住 多 西条市
   key: CHN
 - spell: 福積
   name: フクズミ
@@ -49596,6 +55188,12 @@ name:
   side: 姓
   mark: 愛媛
   comment: 40%住 多 今治市
+  key: CHN
+- spell: 松友
+  name: マツトモ
+  side: 姓
+  mark: 愛媛
+  comment: 50%住 多 松山市
   key: CHN
 - spell: 水関
   name: ミズセキ
@@ -49693,11 +55291,23 @@ name:
   mark: 愛媛
   comment: 60%住 松山市
   key: CHN
+- spell: 薬師神
+  name: ヤクシジン
+  side: 姓
+  mark: 愛媛
+  comment: 50%住 多 宇和島市
+  key: CHN
 - spell: 八束
   name: ヤツヅカ
   side: 姓
   mark: 愛媛
   comment: 40%住 松山市
+  key: CHN
+- spell: 八塚
+  name: ヤツヅカ
+  side: 姓
+  mark: 愛媛
+  comment: 40%住 多 今治市
   key: CHN
 - spell: 矢葺
   name: ヤブキ
@@ -49830,6 +55440,12 @@ name:
   side: 姓
   mark: 高知
   comment: 50%住 南国市
+  key: CHN
+- spell: 石元
+  name: イシモト
+  side: 姓
+  mark: 高知
+  comment: 30%住 多 土佐市
   key: CHN
 - spell: 出間
   name: イズマ
@@ -49969,6 +55585,12 @@ name:
   mark: 高知
   comment: 30%住 香美市
   key: CHN
+- spell: 掛水
+  name: カケミズ
+  side: 姓
+  mark: 高知
+  comment: 40%住 多 仁淀川町
+  key: CHN
 - spell: 籠尾
   name: カゴオ
   side: 姓
@@ -50040,6 +55662,30 @@ name:
   side: 姓
   mark: 高知
   comment: 40%住 安芸市
+  key: CHN
+- spell: 北添
+  name: キタゾエ
+  side: 姓
+  mark: 高知
+  comment: 60%住 多 高知市
+  key: CHN
+- spell: 北代
+  name: キタダイ
+  side: 姓
+  mark: 高知
+  comment: 30%住 多 高知市
+  key: CHN
+- spell: 清岡
+  name: キヨオカ
+  side: 姓
+  mark: 高知
+  comment: 40%住 多 高知市
+  key: CHN
+- spell: 清遠
+  name: キヨトウ
+  side: 姓
+  mark: 高知
+  comment: 70%住 多 高知市
   key: CHN
 - spell: 切詰
   name: キリヅメ
@@ -50281,6 +55927,18 @@ name:
   mark: 高知
   comment: 50%住 高知市
   key: CHN
+- spell: 千頭
+  name: チカミ
+  side: 姓
+  mark: 高知
+  comment: 50%住 多 高知市
+  key: CHN
+- spell: 近森
+  name: チカモリ
+  side: 姓
+  mark: 高知
+  comment: 50%住 多 高知市
+  key: CHN
 - spell: 千屋
   name: チヤ
   side: 姓
@@ -50419,11 +56077,29 @@ name:
   mark: 高知
   comment: 30%住 宿毛市
   key: CHN
+- spell: 野並
+  name: ノナミ
+  side: 姓
+  mark: 高知
+  comment: 50%住 多 四万十市
+  key: CHN
+- spell: 野町
+  name: ノマチ
+  side: 姓
+  mark: 高知
+  comment: 50%住 多 高知市
+  key: CHN
 - spell: 羽方
   name: ハカタ
   side: 姓
   mark: 高知
   comment: 40%住 土佐市
+  key: CHN
+- spell: 浜渦
+  name: ハマウズ
+  side: 姓
+  mark: 高知
+  comment: 70%住 多 北川村
   key: CHN
 - spell: 濱渦
   name: ハマウズ
@@ -50478,6 +56154,18 @@ name:
   side: 姓
   mark: 高知
   comment: 40%住 高知市
+  key: CHN
+- spell: 弘瀬
+  name: ヒロセ
+  side: 姓
+  mark: 高知
+  comment: 50%住 多 高知市
+  key: CHN
+- spell: 弘田
+  name: ヒロタ
+  side: 姓
+  mark: 高知
+  comment: 40%住 多 高知市
   key: CHN
 - spell: 弘松
   name: ヒロマツ
@@ -50544,6 +56232,24 @@ name:
   side: 姓
   mark: 高知
   comment: 70%住 高知市
+  key: CHN
+- spell: 味元
+  name: ミモト
+  side: 姓
+  mark: 高知
+  comment: 60%住 多 佐川町
+  key: CHN
+- spell: 明神
+  name: ミョウジン
+  side: 姓
+  mark: 高知
+  comment: 50%住 多 高知市
+  key: CHN
+- spell: 宗石
+  name: ムネイシ
+  side: 姓
+  mark: 高知
+  comment: 50%住 多 香美市
   key: CHN
 - spell: 宗光
   name: ムネミツ
@@ -50779,6 +56485,18 @@ name:
   mark: 福岡
   comment: 70%住 福岡市
   key: CHN
+- spell: 荒牧
+  name: アラマキ
+  side: 姓
+  mark: 福岡
+  comment: 30%住 多 宮若市
+  key: CHN
+- spell: 荒巻
+  name: アラマキ
+  side: 姓
+  mark: 福岡
+  comment: 40%住 多 柳川市
+  key: CHN
 - spell: 有門
   name: アリカド
   side: 姓
@@ -50808,6 +56526,24 @@ name:
   side: 姓
   mark: 福岡
   comment: 50%住 みやこ町
+  key: CHN
+- spell: 有松
+  name: アリマツ
+  side: 姓
+  mark: 福岡
+  comment: 30%住 多 行橋市
+  key: CHN
+- spell: 有吉
+  name: アリヨシ
+  side: 姓
+  mark: 福岡
+  comment: 40%住 多 福岡市
+  key: CHN
+- spell: 安徳
+  name: アントク
+  side: 姓
+  mark: 福岡
+  comment: 50%住 多 久留米市
   key: CHN
 - spell: 案納
   name: アンノウ
@@ -50869,11 +56605,47 @@ name:
   mark: 福岡
   comment: 50%住 飯塚市
   key: CHN
+- spell: 池松
+  name: イケマツ
+  side: 姓
+  mark: 福岡
+  comment: 30%住 多 久留米市
+  key: CHN
+- spell: 池末
+  name: イケマツ
+  side: 姓
+  mark: 福岡
+  comment: 60%住 多 柳川市
+  key: CHN
+- spell: 池末
+  name: イケスエ
+  side: 姓
+  mark: 福岡
+  comment: 60%住 多 柳川市
+  key: CHN
+- spell: 諫山
+  name: イサヤマ
+  side: 姓
+  mark: 福岡
+  comment: 40%住 多 うきは市
+  key: CHN
+- spell: 諌山
+  name: イサヤマ
+  side: 姓
+  mark: 福岡
+  comment: 40%住 多 朝倉市
+  key: CHN
 - spell: 石迫
   name: イシサコ
   side: 姓
   mark: 福岡
   comment: 40%住 北九州市
+  key: CHN
+- spell: 石松
+  name: イシマツ
+  side: 姓
+  mark: 福岡
+  comment: 50%住 多 宗像市
   key: CHN
 - spell: 伊豆丸
   name: イズマル
@@ -50928,6 +56700,18 @@ name:
   side: 姓
   mark: 福岡
   comment: 30%住 飯塚市
+  key: CHN
+- spell: 稲永
+  name: イナナガ
+  side: 姓
+  mark: 福岡
+  comment: 80%住 多 福岡市
+  key: CHN
+- spell: 稲益
+  name: イナマス
+  side: 姓
+  mark: 福岡
+  comment: 60%住 多 久留米市
   key: CHN
 - spell: 稲又
   name: イナマタ
@@ -51049,6 +56833,18 @@ name:
   mark: 福岡
   comment: 60%住 大牟田市
   key: CHN
+- spell: 牛嶋
+  name: ウシジマ
+  side: 姓
+  mark: 福岡
+  comment: 30%住 多 久留米市
+  key: CHN
+- spell: 牛島
+  name: ウシジマ
+  side: 姓
+  mark: 福岡
+  comment: 30%住 多 八女市
+  key: CHN
 - spell: 牛房
   name: ウシフサ
   side: 姓
@@ -51114,6 +56910,18 @@ name:
   side: 姓
   mark: 福岡
   comment: 40%住 朝倉市
+  key: CHN
+- spell: 占部
+  name: ウラベ
+  side: 姓
+  mark: 福岡
+  comment: 40%住 多 宗像市
+  key: CHN
+- spell: 瓜生
+  name: ウリュウ
+  side: 姓
+  mark: 福岡
+  comment: 30%住 多 飯塚市
   key: CHN
 - spell: 永露
   name: エイロ
@@ -51181,6 +56989,18 @@ name:
   mark: 福岡
   comment: 60%住 中間市
   key: CHN
+- spell: 大楠
+  name: オオクス
+  side: 姓
+  mark: 福岡
+  comment: 40%住 多 朝倉市
+  key: CHN
+- spell: 大隈
+  name: オオクマ
+  side: 姓
+  mark: 福岡
+  comment: 30%住 多 八女市
+  key: CHN
 - spell: 大籠
   name: オオゴモリ
   side: 姓
@@ -51211,6 +57031,24 @@ name:
   mark: 福岡
   comment: 80%住 福岡市
   key: CHN
+- spell: 大穂
+  name: オオホ
+  side: 姓
+  mark: 福岡
+  comment: 70%住 多 福岡市
+  key: CHN
+- spell: 大曲
+  name: オオマガリ
+  side: 姓
+  mark: 福岡
+  comment: 30%住 多 柳川市
+  key: CHN
+- spell: 岡松
+  name: オカマツ
+  side: 姓
+  mark: 福岡
+  comment: 30%住 多 飯塚市
+  key: CHN
 - spell: 置鮎
   name: オキアユ
   side: 姓
@@ -51234,6 +57072,18 @@ name:
   side: 姓
   mark: 福岡
   comment: 60%住 大牟田市
+  key: CHN
+- spell: 奥薗
+  name: オクゾノ
+  side: 姓
+  mark: 福岡
+  comment: 40%住 多 大牟田市
+  key: CHN
+- spell: 奥永
+  name: オクナガ
+  side: 姓
+  mark: 福岡
+  comment: 40%住 多 大任町
   key: CHN
 - spell: 尾倉
   name: オグラ
@@ -51325,6 +57175,18 @@ name:
   mark: 福岡
   comment: 70%住 みやこ町
   key: CHN
+- spell: 柿添
+  name: カキゾエ
+  side: 姓
+  mark: 福岡
+  comment: 50%住 多 大川市
+  key: CHN
+- spell: 加来
+  name: カク
+  side: 姓
+  mark: 福岡
+  comment: 40%住 多 北九州市
+  key: CHN
 - spell: 角銅
   name: カクドウ
   side: 姓
@@ -51403,6 +57265,18 @@ name:
   mark: 福岡
   comment: 30%住 二丈町
   key: CHN
+- spell: 甲木
+  name: カツキ
+  side: 姓
+  mark: 福岡
+  comment: 60%住 多 柳川市
+  key: CHN
+- spell: 香月
+  name: カツキ
+  side: 姓
+  mark: 福岡
+  comment: 40%住 多 北九州市
+  key: CHN
 - spell: 加藤田
   name: カトウダ
   side: 姓
@@ -51444,6 +57318,18 @@ name:
   side: 姓
   mark: 福岡
   comment: 70%住 八女市
+  key: CHN
+- spell: 樺島
+  name: カバシマ
+  side: 姓
+  mark: 福岡
+  comment: 50%住 多 みやま市
+  key: CHN
+- spell: 椛島
+  name: カバシマ
+  side: 姓
+  mark: 福岡
+  comment: 60%住 多 柳川市
   key: CHN
 - spell: 椛嶋
   name: カバシマ
@@ -51540,6 +57426,24 @@ name:
   side: 姓
   mark: 福岡
   comment: 70%住 大宰府市
+  key: CHN
+- spell: 菊次
+  name: キクツギ
+  side: 姓
+  mark: 福岡
+  comment: 50%住 多 柳川市
+  key: CHN
+- spell: 岸原
+  name: キシハラ
+  side: 姓
+  mark: 福岡
+  comment: 30%住 多 福岡市
+  key: CHN
+- spell: 吉瀬
+  name: キチセ
+  side: 姓
+  mark: 福岡
+  comment: 50%住 多 うきは市
   key: CHN
 - spell: 木附
   name: キツキ
@@ -51655,6 +57559,12 @@ name:
   mark: 福岡
   comment: 60%住 立花町
   key: CHN
+- spell: 国崎
+  name: クニサキ
+  side: 姓
+  mark: 福岡
+  comment: 40%住 多 大牟田市
+  key: CHN
 - spell: 國崎
   name: クニサキ
   side: 姓
@@ -51685,6 +57595,36 @@ name:
   mark: 福岡
   comment: 40%住 飯塚市
   key: CHN
+- spell: 久芳
+  name: クバ
+  side: 姓
+  mark: 福岡
+  comment: 40%住 多 久山町
+  key: CHN
+- spell: 久保山
+  name: クボヤマ
+  side: 姓
+  mark: 福岡
+  comment: 30%住 多 朝倉市
+  key: CHN
+- spell: 窪山
+  name: クボヤマ
+  side: 姓
+  mark: 福岡
+  comment: 50%住 多 朝倉市
+  key: CHN
+- spell: 隈
+  name: クマ
+  side: 姓
+  mark: 福岡
+  comment: 50%住 多 久留米市
+  key: CHN
+- spell: 久間
+  name: クマ
+  side: 姓
+  mark: 福岡
+  comment: 30%住 多 八女市
+  key: CHN
 - spell: 熊添
   name: クマゾエ
   side: 姓
@@ -51708,6 +57648,18 @@ name:
   side: 姓
   mark: 福岡
   comment: 50%住 小郡市
+  key: CHN
+- spell: 熊丸
+  name: クママル
+  side: 姓
+  mark: 福岡
+  comment: 50%住 多 久留米市
+  key: CHN
+- spell: 隈本
+  name: クマモト
+  side: 姓
+  mark: 福岡
+  comment: 30%住 多 八女市
   key: CHN
 - spell: 組坂
   name: クミサカ
@@ -51739,6 +57691,12 @@ name:
   mark: 福岡
   comment: 50%住 桂川町
   key: CHN
+- spell: 倉富
+  name: クラトミ
+  side: 姓
+  mark: 福岡
+  comment: 40%住 多 久留米市
+  key: CHN
 - spell: 倉成
   name: クラナリ
   side: 姓
@@ -51750,6 +57708,12 @@ name:
   side: 姓
   mark: 福岡
   comment: 50%住 久留米市
+  key: CHN
+- spell: 倉光
+  name: クラミツ
+  side: 姓
+  mark: 福岡
+  comment: 30%住 多 福岡市
   key: CHN
 - spell: 蔵森
   name: クラモリ
@@ -51841,11 +57805,35 @@ name:
   mark: 福岡
   comment: 30%住 北九州市
   key: CHN
+- spell: 合原
+  name: ゴウハラ
+  side: 姓
+  mark: 福岡
+  comment: 40%住 多 久留米市
+  key: CHN
+- spell: 合屋
+  name: ゴウヤ
+  side: 姓
+  mark: 福岡
+  comment: 70%住 多 須恵町
+  key: CHN
 - spell: 合谷
   name: ゴウヤ
   side: 姓
   mark: 福岡
   comment: 30%住 北九州市
+  key: CHN
+- spell: 古賀
+  name: コガ
+  side: 姓
+  mark: 福岡
+  comment: 40%住 多 久留米市
+  key: CHN
+- spell: 小金丸
+  name: コガネマル
+  side: 姓
+  mark: 福岡
+  comment: 60%住 多 福岡市
   key: CHN
 - spell: 小木戸
   name: コキド
@@ -52027,6 +58015,18 @@ name:
   mark: 福岡
   comment: 60%住 朝倉市
   key: CHN
+- spell: 讃井
+  name: サヌイ
+  side: 姓
+  mark: 福岡
+  comment: 50%住 多 福岡市
+  key: CHN
+- spell: 実藤
+  name: サネトウ
+  side: 姓
+  mark: 福岡
+  comment: 30%住 多 嘉麻市
+  key: CHN
 - spell: 鞘野
   name: サヤノ
   side: 姓
@@ -52134,6 +58134,12 @@ name:
   side: 姓
   mark: 福岡
   comment: 70%住 筑後市
+  key: CHN
+- spell: 渋田
+  name: シブタ
+  side: 姓
+  mark: 福岡
+  comment: 40%住 多 古賀市
   key: CHN
 - spell: 嶋井
   name: シマイ
@@ -52267,11 +58273,23 @@ name:
   mark: 佐賀
   comment: 50%住 佐賀市
   key: CHN
+- spell: 天本
+  name: アマモト
+  side: 姓
+  mark: 佐賀
+  comment: 30%住 多 鳥栖市
+  key: CHN
 - spell: 蘭
   name: アララギ
   side: 姓
   mark: 佐賀
   comment: 30%住 佐賀市
+  key: CHN
+- spell: 飯盛
+  name: イサカリ
+  side: 姓
+  mark: 佐賀
+  comment: 30%住 多 佐賀市
   key: CHN
 - spell: 石隈
   name: イシグマ
@@ -52284,6 +58302,12 @@ name:
   side: 姓
   mark: 佐賀
   comment: 40%住 神埼市
+  key: CHN
+- spell: 市丸
+  name: イチマル
+  side: 姓
+  mark: 佐賀
+  comment: 30%住 多 唐津市
   key: CHN
 - spell: 糸山
   name: イトヤマ
@@ -52344,6 +58368,12 @@ name:
   side: 姓
   mark: 佐賀
   comment: 40%住 佐賀市
+  key: CHN
+- spell: 江里口
+  name: エリグチ
+  side: 姓
+  mark: 佐賀
+  comment: 40%住 多 小城市
   key: CHN
 - spell: 大古場
   name: オオコバ
@@ -52561,6 +58591,18 @@ name:
   mark: 佐賀
   comment: 40%住 嬉野市
   key: CHN
+- spell: 千住
+  name: センジュウ
+  side: 姓
+  mark: 佐賀
+  comment: 30%住 多 佐賀市
+  key: CHN
+- spell: 副島
+  name: ソエジマ
+  side: 姓
+  mark: 佐賀
+  comment: 30%住 多 佐賀市
+  key: CHN
 - spell: 尊田
   name: ソンダ
   side: 姓
@@ -52663,6 +58705,12 @@ name:
   mark: 佐賀
   comment: 30%住 多 佐賀市
   key: CHN
+- spell: 永淵
+  name: ナガフチ
+  side: 姓
+  mark: 佐賀
+  comment: 30%住 多 佐賀市
+  key: CHN
 - spell: 浪口
   name: ナミグチ
   side: 姓
@@ -52728,6 +58776,12 @@ name:
   side: 姓
   mark: 佐賀
   comment: 30%住 多 佐賀市
+  key: CHN
+- spell: 秀島
+  name: ヒデシマ
+  side: 姓
+  mark: 佐賀
+  comment: 30%住 多 唐津市
   key: CHN
 - spell: 百武
   name: ヒャクタケ
@@ -52800,6 +58854,12 @@ name:
   side: 姓
   mark: 佐賀
   comment: 40%住 佐賀市
+  key: CHN
+- spell: 松雪
+  name: マツユキ
+  side: 姓
+  mark: 佐賀
+  comment: 60%住 多 鳥栖市
   key: CHN
 - spell: 三ケ島
   name: ミカシマ
@@ -52921,6 +58981,12 @@ name:
   mark: 佐賀
   comment: 40%住 佐賀市
   key: CHN
+- spell: 脇山
+  name: ワキヤマ
+  side: 姓
+  mark: 佐賀
+  comment: 30%住 多 唐津市
+  key: CHN
 - spell: 鷲崎
   name: ワシザキ
   side: 姓
@@ -52945,6 +59011,18 @@ name:
   mark: 長崎
   comment: 60%住 長崎市
   key: CHN
+- spell: 芦塚
+  name: アシヅカ
+  side: 姓
+  mark: 長崎
+  comment: 50%住 多 諫早市
+  key: CHN
+- spell: 阿比留
+  name: アビル
+  side: 姓
+  mark: 長崎
+  comment: 50%住 多 対馬市
+  key: CHN
 - spell: 綾香
   name: アヤカ
   side: 姓
@@ -52968,6 +59046,12 @@ name:
   side: 姓
   mark: 長崎
   comment: 50%住 南島原市
+  key: CHN
+- spell: 糸瀬
+  name: イトセ
+  side: 姓
+  mark: 長崎
+  comment: 40%住 多 対馬市
   key: CHN
 - spell: 犬束
   name: イヌヅカ
@@ -53113,6 +59197,18 @@ name:
   mark: 長崎
   comment: 40%住 長崎市
   key: CHN
+- spell: 上戸
+  name: カミト
+  side: 姓
+  mark: 長崎
+  comment: 40%住 多 長崎市
+  key: CHN
+- spell: 烏山
+  name: カラスヤマ
+  side: 姓
+  mark: 長崎
+  comment: 40%住 多 長崎市
+  key: CHN
 - spell: 河浪
   name: カワナミ
   side: 姓
@@ -53160,6 +59256,12 @@ name:
   side: 姓
   mark: 長崎
   comment: 40%住 佐世保市
+  key: CHN
+- spell: 熊
+  name: クマ
+  side: 姓
+  mark: 長崎
+  comment: 40%住 多 長崎市
   key: CHN
 - spell: 熊脇
   name: クマワキ
@@ -53280,6 +59382,24 @@ name:
   side: 姓
   mark: 長崎
   comment: 60%住 新上五島町
+  key: CHN
+- spell: 佐々野
+  name: ササノ
+  side: 姓
+  mark: 長崎
+  comment: 40%住 多 五島市
+  key: CHN
+- spell: 指方
+  name: サシカタ
+  side: 姓
+  mark: 長崎
+  comment: 50%住 多 佐世保市
+  key: CHN
+- spell: 貞方
+  name: サダカタ
+  side: 姓
+  mark: 長崎
+  comment: 40%住 多 五島市
   key: CHN
 - spell: 里崎
   name: サトザキ
@@ -53545,6 +59665,18 @@ name:
   mark: 長崎
   comment: 60%住 五島市
   key: CHN
+- spell: 朝永
+  name: トモナガ
+  side: 姓
+  mark: 長崎
+  comment: 50%住 多 佐世保市
+  key: CHN
+- spell: 朝長
+  name: トモナガ
+  side: 姓
+  mark: 長崎
+  comment: 50%住 多 大村市
+  key: CHN
 - spell: 豊坂
   name: トヨサカ
   side: 姓
@@ -53719,6 +59851,24 @@ name:
   mark: 長崎
   comment: 30%住 長崎市
   key: CHN
+- spell: 松添
+  name: マツゾエ
+  side: 姓
+  mark: 長崎
+  comment: 50%住 多 長崎市　
+  key: CHN
+- spell: 松園
+  name: マツゾノ
+  side: 姓
+  mark: 長崎
+  comment: 30%住 多 五島市
+  key: CHN
+- spell: 松竹
+  name: マツタケ
+  side: 姓
+  mark: 長崎
+  comment: 40%住 多 長崎市
+  key: CHN
 - spell: 真鳥
   name: マトリ
   side: 姓
@@ -53869,6 +60019,24 @@ name:
   mark: 熊本
   comment: 60%住 人吉市
   key: CHN
+- spell: 井
+  name: イ
+  side: 姓
+  mark: 熊本
+  comment: 40%住 多 産山村
+  key: CHN
+- spell: 飯星
+  name: イイホシ
+  side: 姓
+  mark: 熊本
+  comment: 50%住 多 山都町
+  key: CHN
+- spell: 家入
+  name: イエイリ
+  side: 姓
+  mark: 熊本
+  comment: 50%住 多 阿蘇市
+  key: CHN
 - spell: 石貫
   name: イシヌキ
   side: 姓
@@ -53941,6 +60109,12 @@ name:
   mark: 熊本
   comment: 60%住 人吉市
   key: CHN
+- spell: 有働
+  name: ウドウ
+  side: 姓
+  mark: 熊本
+  comment: 40%住 多 山鹿市
+  key: CHN
 - spell: 鵜口
   name: ウノクチ
   side: 姓
@@ -53982,6 +60156,18 @@ name:
   side: 姓
   mark: 熊本
   comment: 50%住 球磨村
+  key: CHN
+- spell: 太田黒
+  name: オオタグロ
+  side: 姓
+  mark: 熊本
+  comment: 40%住 多 熊本市
+  key: CHN
+- spell: 大田黒
+  name: オオタグロ
+  side: 姓
+  mark: 熊本
+  comment: 50%住 多 熊本市
   key: CHN
 - spell: 大仁田
   name: オオニタ
@@ -54036,6 +60222,12 @@ name:
   side: 姓
   mark: 熊本
   comment: 60%住 山都町
+  key: CHN
+- spell: 鹿子木
+  name: カノコギ
+  side: 姓
+  mark: 熊本
+  comment: 40%住 多 山鹿市
   key: CHN
 - spell: 釜賀
   name: カマガ
@@ -54097,6 +60289,18 @@ name:
   mark: 熊本
   comment: 40%住 天草市
   key: CHN
+- spell: 隈部
+  name: クマベ
+  side: 姓
+  mark: 熊本
+  comment: 30%住 多 山鹿市
+  key: CHN
+- spell: 蔵原
+  name: クラハラ
+  side: 姓
+  mark: 熊本
+  comment: 40%住 多 阿蘇市
+  key: CHN
 - spell: 鍬崎
   name: クワサキ
   side: 姓
@@ -54120,6 +60324,18 @@ name:
   side: 姓
   mark: 熊本
   comment: 50%住 多良木町
+  key: CHN
+- spell: 合志
+  name: ゴウシ
+  side: 姓
+  mark: 熊本
+  comment: 50%住 多 熊本市
+  key: CHN
+- spell: 古閑
+  name: コガ
+  side: 姓
+  mark: 熊本
+  comment: 50%住 多 熊本市
   key: CHN
 - spell: 古上
   name: コガミ
@@ -54198,6 +60414,12 @@ name:
   side: 姓
   mark: 熊本
   comment: 80%住 玉名市
+  key: CHN
+- spell: 坂梨
+  name: サカナシ
+  side: 姓
+  mark: 熊本
+  comment: 40%住 多 熊本市
   key: CHN
 - spell: 作村
   name: サクムラ
@@ -54625,6 +60847,18 @@ name:
   mark: 熊本
   comment: 60%住 大津町
   key: CHN
+- spell: 古荘
+  name: フルショウ
+  side: 姓
+  mark: 熊本
+  comment: 30%住 多 熊本市
+  key: CHN
+- spell: 古庄
+  name: フルショウ
+  side: 姓
+  mark: 熊本
+  comment: 30%住 多 大津町
+  key: CHN
 - spell: 別城
   name: ベッキ
   side: 姓
@@ -54805,6 +61039,18 @@ name:
   mark: 熊本
   comment: 50%住 美里町
   key: CHN
+- spell: 吉海
+  name: ヨシガイ
+  side: 姓
+  mark: 熊本
+  comment: 40%住 多 水俣市
+  key: CHN
+- spell: 吉里
+  name: ヨシザト
+  side: 姓
+  mark: 熊本
+  comment: 30%住 多 山鹿市
+  key: CHN
 - spell: 吉鶴
   name: ヨシヅル
   side: 姓
@@ -54871,6 +61117,12 @@ name:
   mark: 大分
   comment: 60%住 大分市
   key: CHN
+- spell: 芦刈
+  name: アシカリ
+  side: 姓
+  mark: 大分
+  comment: 60%住 多 豊後大野市
+  key: CHN
 - spell: 芦苅
   name: アシカリ
   side: 姓
@@ -54888,6 +61140,24 @@ name:
   side: 姓
   mark: 大分
   comment: 50%住 大分市
+  key: CHN
+- spell: 穴井
+  name: アナイ
+  side: 姓
+  mark: 大分
+  comment: 40%住 多 日田市
+  key: CHN
+- spell: 阿南
+  name: アナン
+  side: 姓
+  mark: 大分
+  comment: 50%住 多 大分市
+  key: CHN
+- spell: 阿南
+  name: アナミ
+  side: 姓
+  mark: 大分
+  comment: 50%住 多 大分市
   key: CHN
 - spell: 綾垣
   name: アヤガキ
@@ -55147,6 +61417,18 @@ name:
   mark: 大分
   comment: 60%住 日出町
   key: CHN
+- spell: 賀来
+  name: カク
+  side: 姓
+  mark: 大分
+  comment: 30%住 多 中津市
+  key: CHN
+- spell: 笠置
+  name: カサギ
+  side: 姓
+  mark: 大分
+  comment: 30%住 多 日出町
+  key: CHN
 - spell: 笠村
   name: カサムラ
   side: 姓
@@ -55164,6 +61446,18 @@ name:
   side: 姓
   mark: 大分
   comment: 50%住 佐伯市
+  key: CHN
+- spell: 萱島
+  name: カヤシマ
+  side: 姓
+  mark: 大分
+  comment: 50%住 多 大分市
+  key: CHN
+- spell: 辛島
+  name: カラシマ
+  side: 姓
+  mark: 大分
+  comment: 30%住 多 宇佐市
   key: CHN
 - spell: 狩生
   name: カリウ
@@ -55201,6 +61495,18 @@ name:
   mark: 大分
   comment: 60%住 日出町
   key: CHN
+- spell: 岐部
+  name: キベ
+  side: 姓
+  mark: 大分
+  comment: 40%住 多 国東市
+  key: CHN
+- spell: 木許
+  name: キモト
+  side: 姓
+  mark: 大分
+  comment: 60%住 多 佐伯市
+  key: CHN
 - spell: 木藪
   name: キヤブ
   side: 姓
@@ -55224,6 +61530,18 @@ name:
   side: 姓
   mark: 大分
   comment: 30%住 国東市
+  key: CHN
+- spell: 清松
+  name: キヨマツ
+  side: 姓
+  mark: 大分
+  comment: 40%住 多 佐伯市
+  key: CHN
+- spell: 釘宮
+  name: クギミヤ
+  side: 姓
+  mark: 大分
+  comment: 60%住 多 大分市
   key: CHN
 - spell: 久々宮
   name: クグミヤ
@@ -55351,6 +61669,24 @@ name:
   mark: 大分
   comment: 30%住 国東市
   key: CHN
+- spell: 是永
+  name: コレナガ
+  side: 姓
+  mark: 大分
+  comment: 30%住 多 大分市
+  key: CHN
+- spell: 財前
+  name: ザイゼン
+  side: 姓
+  mark: 大分
+  comment: 50%住 多 豊後高田市
+  key: CHN
+- spell: 財津
+  name: ザイツ
+  side: 姓
+  mark: 大分
+  comment: 30%住 多 日田市
+  key: CHN
 - spell: 指原
   name: サシハラ
   side: 姓
@@ -55453,6 +61789,24 @@ name:
   mark: 大分
   comment: 50%住 大分市
   key: CHN
+- spell: 宿利
+  name: シュクリ
+  side: 姓
+  mark: 大分
+  comment: 50%住 多 玖珠町
+  key: CHN
+- spell: 首藤
+  name: シュトウ
+  side: 姓
+  mark: 大分
+  comment: 30%住 多 大分市
+  key: CHN
+- spell: 首藤
+  name: シュドウ
+  side: 姓
+  mark: 大分
+  comment: 30%住 多 大分市
+  key: CHN
 - spell: 出納
   name: スイドウ
   side: 姓
@@ -55518,6 +61872,12 @@ name:
   side: 姓
   mark: 大分
   comment: 50%住 佐伯市
+  key: CHN
+- spell: 高司
+  name: タカジ
+  side: 姓
+  mark: 大分
+  comment: 60%住 多 佐伯市
   key: CHN
 - spell: 滝石
   name: タキイシ
@@ -55663,6 +62023,18 @@ name:
   mark: 大分
   comment: 50%住 大分市
   key: CHN
+- spell: 中津留
+  name: ナカツル
+  side: 姓
+  mark: 大分
+  comment: 40%住 多 津久見市
+  key: CHN
+- spell: 仲摩
+  name: ナカマ
+  side: 姓
+  mark: 大分
+  comment: 50%住 多 大分市
+  key: CHN
 - spell: 仲町
   name: ナカマチ
   side: 姓
@@ -55801,6 +62173,18 @@ name:
   mark: 大分
   comment: 30%住 臼杵市
   key: CHN
+- spell: 日隈
+  name: ヒグマ
+  side: 姓
+  mark: 大分
+  comment: 30%住 多 玖珠町
+  key: CHN
+- spell: 泥谷
+  name: ヒジヤ
+  side: 姓
+  mark: 大分
+  comment: 30%住 多 佐伯市
+  key: CHN
 - spell: 飛高
   name: ヒダカ
   side: 姓
@@ -55915,6 +62299,18 @@ name:
   mark: 大分
   comment: 50%住 豊後高田市
   key: CHN
+- spell: 三重野
+  name: ミエノ
+  side: 姓
+  mark: 大分
+  comment: 60%住 多 大分市
+  key: CHN
+- spell: 三ケ尻
+  name: ミカジリ
+  side: 姓
+  mark: 大分
+  comment: 40%住 多 大分市
+  key: CHN
 - spell: 水之江
   name: ミズノエ
   side: 姓
@@ -56004,6 +62400,18 @@ name:
   side: 姓
   mark: 大分
   comment: 30%住 別府市
+  key: CHN
+- spell: 矢羽田
+  name: ヤハタ
+  side: 姓
+  mark: 大分
+  comment: 30%住 多 日田市
+  key: CHN
+- spell: 矢幡
+  name: ヤハタ
+  side: 姓
+  mark: 大分
+  comment: 30%住 多 日田市
   key: CHN
 - spell: 山香
   name: ヤマガ
@@ -56101,11 +62509,29 @@ name:
   mark: 宮崎
   comment: 30%住 日向市
   key: CHN
+- spell: 荒武
+  name: アラタケ
+  side: 姓
+  mark: 宮崎
+  comment: 40%住 多 日南市
+  key: CHN
 - spell: 阿波野
   name: アワノ
   side: 姓
   mark: 宮崎
   comment: 30%住 延岡市
+  key: CHN
+- spell: 飯干
+  name: イイホシ
+  side: 姓
+  mark: 宮崎
+  comment: 50%住 多 高千穂町
+  key: CHN
+- spell: 壱岐
+  name: イキ
+  side: 姓
+  mark: 宮崎
+  comment: 30%住 多 西都市
   key: CHN
 - spell: 伊豆本
   name: イズモト
@@ -56154,6 +62580,18 @@ name:
   side: 姓
   mark: 宮崎
   comment: 30%住 高原町
+  key: CHN
+- spell: 岩切
+  name: イワキリ
+  side: 姓
+  mark: 宮崎
+  comment: 40%住 多 宮崎市
+  key: CHN
+- spell: 岩満
+  name: イワミツ
+  side: 姓
+  mark: 宮崎
+  comment: 50%住 多 都城市
   key: CHN
 - spell: 上ノ薗
   name: ウエノソノ
@@ -56317,6 +62755,24 @@ name:
   mark: 宮崎
   comment: 50%住 都城市
   key: CHN
+- spell: 鬼束
+  name: オニツカ
+  side: 姓
+  mark: 宮崎
+  comment: 60%住 多 宮崎市
+  key: CHN
+- spell: 尾前
+  name: オマエ
+  side: 姓
+  mark: 宮崎
+  comment: 30%住 多 椎葉村
+  key: CHN
+- spell: 甲斐
+  name: カイ
+  side: 姓
+  mark: 宮崎
+  comment: 30%住 多 延岡市
+  key: CHN
 - spell: 加行
   name: カギョウ
   side: 姓
@@ -56479,11 +62935,29 @@ name:
   mark: 宮崎
   comment: 70%住 小林市
   key: CHN
+- spell: 高妻
+  name: コウヅマ
+  side: 姓
+  mark: 宮崎
+  comment: 60%住 多 宮崎市
+  key: CHN
+- spell: 興梠
+  name: コウロギ
+  side: 姓
+  mark: 宮崎
+  comment: 40%住 多 高千穂町
+  key: CHN
 - spell: 古小路
   name: コショウジ
   side: 姓
   mark: 宮崎
   comment: 50%住 延岡市
+  key: CHN
+- spell: 小八重
+  name: コバエ
+  side: 姓
+  mark: 宮崎
+  comment: 60%住 多 宮崎市
   key: CHN
 - spell: 米吉
   name: コメヨシ
@@ -56539,6 +63013,18 @@ name:
   mark: 宮崎
   comment: 40%住 都城市
   key: CHN
+- spell: 椎葉
+  name: シイバ
+  side: 姓
+  mark: 宮崎
+  comment: 30%住 多 椎葉村
+  key: CHN
+- spell: 椎屋
+  name: シイヤ
+  side: 姓
+  mark: 宮崎
+  comment: 40%住 多 都城市
+  key: CHN
 - spell: 志々目
   name: シシメ
   side: 姓
@@ -56586,6 +63072,18 @@ name:
   side: 姓
   mark: 宮崎
   comment: 60%住 都城市
+  key: CHN
+- spell: 杉尾
+  name: スギオ
+  side: 姓
+  mark: 宮崎
+  comment: 30%住 多 宮崎市
+  key: CHN
+- spell: 図師
+  name: ズシ
+  side: 姓
+  mark: 宮崎
+  comment: 30%住 多 宮崎市
   key: CHN
 - spell: 須志田
   name: スシダ
@@ -56671,6 +63169,24 @@ name:
   mark: 宮崎
   comment: 60%住 延岡市
   key: CHN
+- spell: 土持
+  name: ツチモチ
+  side: 姓
+  mark: 宮崎
+  comment: 30%住 多 宮崎市
+  key: CHN
+- spell: 津曲
+  name: ツマガリ
+  side: 姓
+  mark: 宮崎
+  comment: 30%住 多 都城市
+  key: CHN
+- spell: 寺原
+  name: テラハラ
+  side: 姓
+  mark: 宮崎
+  comment: 40%住 多 日向市
+  key: CHN
 - spell: 堂領
   name: ドウリョウ
   side: 姓
@@ -56682,6 +63198,12 @@ name:
   side: 姓
   mark: 宮崎
   comment: 60%住 えびの市
+  key: CHN
+- spell: 時任
+  name: トキトウ
+  side: 姓
+  mark: 宮崎
+  comment: 40%住 多 宮崎市
   key: CHN
 - spell: 土工
   name: ドコウ
@@ -56767,11 +63289,53 @@ name:
   mark: 宮崎
   comment: 30%住 川南町
   key: CHN
+- spell: 中武
+  name: ナカタケ
+  side: 姓
+  mark: 宮崎
+  comment: 60%住 多 西都市
+  key: CHN
+- spell: 長渡
+  name: ナガト
+  side: 姓
+  mark: 宮崎
+  comment: 50%住 多 日南市
+  key: CHN
+- spell: 長友
+  name: ナガトモ
+  side: 姓
+  mark: 宮崎
+  comment: 60%住 多 宮崎市
+  key: CHN
+- spell: 永友
+  name: ナガトモ
+  side: 姓
+  mark: 宮崎
+  comment: 50%住 多 川南町
+  key: CHN
 - spell: 中別府
   name: ナカベップ
   side: 姓
   mark: 宮崎
   comment: 40%住 小林市
+  key: CHN
+- spell: 奈須
+  name: ナス
+  side: 姓
+  mark: 宮崎
+  comment: 30%住 多 日向市
+  key: CHN
+- spell: 夏田
+  name: ナツダ
+  side: 姓
+  mark: 宮崎
+  comment: 40%住 多 延岡市
+  key: CHN
+- spell: 成合
+  name: ナリアイ
+  side: 姓
+  mark: 宮崎
+  comment: 50%住 多 日向市
   key: CHN
 - spell: 西立野
   name: ニシタテノ
@@ -56796,6 +63360,18 @@ name:
   side: 姓
   mark: 宮崎
   comment: 80%住 高原町
+  key: CHN
+- spell: 温水
+  name: ヌクミズ
+  side: 姓
+  mark: 宮崎
+  comment: 60%住 多 都城市
+  key: CHN
+- spell: 根井
+  name: ネイ
+  side: 姓
+  mark: 宮崎
+  comment: 30%住 多 宮崎市
   key: CHN
 - spell: 野別
   name: ノベツ
@@ -56845,6 +63421,18 @@ name:
   mark: 宮崎
   comment: 40%住 宮崎市
   key: CHN
+- spell: 浜砂
+  name: ハマスナ
+  side: 姓
+  mark: 宮崎
+  comment: 60%住 多 西都市
+  key: CHN
+- spell: 比江島
+  name: ヒエジマ
+  side: 姓
+  mark: 宮崎
+  comment: 60%住 多 新富町
+  key: CHN
 - spell: 比恵島
   name: ヒエジマ
   side: 姓
@@ -56886,6 +63474,24 @@ name:
   side: 姓
   mark: 宮崎
   comment: 60%住 宮崎市
+  key: CHN
+- spell: 細山田
+  name: ホソヤマダ
+  side: 姓
+  mark: 宮崎
+  comment: 30%住 多 都城市
+  key: CHN
+- spell: 本部
+  name: ホンブ
+  side: 姓
+  mark: 宮崎
+  comment: 30%住 多 西都市
+  key: CHN
+- spell: 真方
+  name: マガタ
+  side: 姓
+  mark: 宮崎
+  comment: 40%住 多 都城市
   key: CHN
 - spell: 牧崎
   name: マキザキ
@@ -57061,6 +63667,12 @@ name:
   mark: 鹿児島
   comment: 40%住 阿久根市
   key: CHN
+- spell: 阿久根
+  name: アクネ
+  side: 姓
+  mark: 鹿児島
+  comment: 40%住 多 南さつま市
+  key: CHN
 - spell: 揚野
   name: アゲノ
   side: 姓
@@ -57133,6 +63745,24 @@ name:
   mark: 鹿児島
   comment: 50%住 錦江町
   key: CHN
+- spell: 厚地
+  name: アツチ
+  side: 姓
+  mark: 鹿児島
+  comment: 40%住 多 霧島市
+  key: CHN
+- spell: 棈木
+  name: アベキ
+  side: 姓
+  mark: 鹿児島
+  comment: 30%住 多 南大隅町
+  key: CHN
+- spell: 棈松
+  name: アベマツ
+  side: 姓
+  mark: 鹿児島
+  comment: 50%住 多 鹿児島市
+  key: CHN
 - spell: 天辰
   name: アマタツ
   side: 姓
@@ -57204,6 +63834,18 @@ name:
   side: 姓
   mark: 鹿児島
   comment: 40%住 枕崎市
+  key: CHN
+- spell: 有留
+  name: アリドメ
+  side: 姓
+  mark: 鹿児島
+  comment: 50%住 多 鹿児島市
+  key: CHN
+- spell: 有水
+  name: アリミズ
+  side: 姓
+  mark: 鹿児島
+  comment: 30%住 多 鹿児島市
   key: CHN
 - spell: 有満
   name: アリミツ
@@ -57337,6 +63979,12 @@ name:
   mark: 鹿児島
   comment: 60%住 屋久島町
   key: CHN
+- spell: 伊地知
+  name: イジチ
+  side: 姓
+  mark: 鹿児島
+  comment: 30%住 多 鹿児島市
+  key: CHN
 - spell: 石走
   name: イシバシリ
   side: 姓
@@ -57390,6 +64038,12 @@ name:
   side: 姓
   mark: 鹿児島
   comment: 40%住 霧島市
+  key: CHN
+- spell: 板敷
+  name: イタシキ
+  side: 姓
+  mark: 鹿児島
+  comment: 50%住 多 枕崎市
   key: CHN
 - spell: 井立田
   name: イタチダ
@@ -57462,6 +64116,12 @@ name:
   side: 姓
   mark: 鹿児島
   comment: 50%住 志布志市
+  key: CHN
+- spell: 稲留
+  name: イナドメ
+  side: 姓
+  mark: 鹿児島
+  comment: 40%住 多 鹿児島市
   key: CHN
 - spell: 稲盛
   name: イナモリ
@@ -57613,11 +64273,35 @@ name:
   mark: 鹿児島
   comment: 60%住 薩摩川内市
   key: CHN
+- spell: 井料
+  name: イリョウ
+  side: 姓
+  mark: 鹿児島
+  comment: 50%住 多 南さつま市
+  key: CHN
+- spell: 祝迫
+  name: イワイザコ
+  side: 姓
+  mark: 鹿児島
+  comment: 50%住 多 南九州市
+  key: CHN
 - spell: 岩井田
   name: イワイダ
   side: 姓
   mark: 鹿児島
   comment: 30%住 日置市
+  key: CHN
+- spell: 岩重
+  name: イワシゲ
+  side: 姓
+  mark: 鹿児島
+  comment: 40%住 多 鹿児島市
+  key: CHN
+- spell: 岩元
+  name: イワモト
+  side: 姓
+  mark: 鹿児島
+  comment: 40%住 多 鹿児島市
   key: CHN
 - spell: 上夷
   name: ウエエビス
@@ -57648,6 +64332,18 @@ name:
   side: 姓
   mark: 鹿児島
   comment: 40%住 いちき串木野市
+  key: CHN
+- spell: 上園
+  name: ウエゾノ
+  side: 姓
+  mark: 鹿児島
+  comment: 50%住 多 鹿児島市
+  key: CHN
+- spell: 上薗
+  name: ウエゾノ
+  side: 姓
+  mark: 鹿児島
+  comment: 60%住 多 日置市
   key: CHN
 - spell: 上之
   name: ウエノ
@@ -57780,6 +64476,36 @@ name:
   side: 姓
   mark: 鹿児島
   comment: 40%住 指宿市
+  key: CHN
+- spell: 内
+  name: ウチ
+  side: 姓
+  mark: 鹿児島
+  comment: 50%住 多 鹿児島市
+  key: CHN
+- spell: 内門
+  name: ウチカド
+  side: 姓
+  mark: 鹿児島
+  comment: 50%住 多 南九州市
+  key: CHN
+- spell: 内木場
+  name: ウチコバ
+  side: 姓
+  mark: 鹿児島
+  comment: 50%住 多 鹿児島市
+  key: CHN
+- spell: 内薗
+  name: ウチゾノ
+  side: 姓
+  mark: 鹿児島
+  comment: 50%住 多 指宿市
+  key: CHN
+- spell: 内園
+  name: ウチゾノ
+  side: 姓
+  mark: 鹿児島
+  comment: 50%住 多 鹿児島市
   key: CHN
 - spell: 内西
   name: ウチニシ
@@ -57967,6 +64693,18 @@ name:
   mark: 鹿児島
   comment: 30%住 指宿市
   key: CHN
+- spell: 大迫
+  name: オオサコ
+  side: 姓
+  mark: 鹿児島
+  comment: 30%住 多 鹿児島市
+  key: CHN
+- spell: 大重
+  name: オオシゲ
+  side: 姓
+  mark: 鹿児島
+  comment: 30%住 多 鹿児島市
+  key: CHN
 - spell: 大茂
   name: オオシゲ
   side: 姓
@@ -57984,6 +64722,12 @@ name:
   side: 姓
   mark: 鹿児島
   comment: 60%住 湧水町
+  key: CHN
+- spell: 大園
+  name: オオゾノ
+  side: 姓
+  mark: 鹿児島
+  comment: 30%住 多 鹿児島市
   key: CHN
 - spell: 大囿
   name: オオゾノ
@@ -58117,6 +64861,12 @@ name:
   mark: 鹿児島
   comment: 40%住 阿久根市
   key: CHN
+- spell: 尾辻
+  name: オツジ
+  side: 姓
+  mark: 鹿児島
+  comment: 40%住 多 鹿児島市
+  key: CHN
 - spell: 尾ノ上
   name: オノウエ
   side: 姓
@@ -58177,6 +64927,18 @@ name:
   mark: 鹿児島
   comment: 30%住 南大隅町
   key: CHN
+- spell: 柿元
+  name: カキモト
+  side: 姓
+  mark: 鹿児島
+  comment: 40%住 多 鹿児島市
+  key: CHN
+- spell: 栫
+  name: カコイ
+  side: 姓
+  mark: 鹿児島
+  comment: 50%住 多 鹿児島市
+  key: CHN
 - spell: 栫山
   name: カコイヤマ
   side: 姓
@@ -58201,11 +64963,35 @@ name:
   mark: 鹿児島
   comment: 40%住 曽於市
   key: CHN
+- spell: 加治木
+  name: カジキ
+  side: 姓
+  mark: 鹿児島
+  comment: 40%住 多 鹿児島市
+  key: CHN
+- spell: 加治佐
+  name: カジサ
+  side: 姓
+  mark: 鹿児島
+  comment: 50%住 多 南九州市
+  key: CHN
+- spell: 加治屋
+  name: カジヤ
+  side: 姓
+  mark: 鹿児島
+  comment: 50%住 多 鹿児島市
+  key: CHN
 - spell: 鍛治屋
   name: カジヤ
   side: 姓
   mark: 鹿児島
   comment: 60%住 日置市
+  key: CHN
+- spell: 加世田
+  name: カセダ
+  side: 姓
+  mark: 鹿児島
+  comment: 40%住 多 鹿児島市
   key: CHN
 - spell: 加世堂
   name: カセドウ
@@ -58416,6 +65202,18 @@ name:
   side: 姓
   mark: 鹿児島
   comment: 50%住 鹿児島市
+  key: CHN
+- spell: 神薗
+  name: カミゾノ
+  side: 姓
+  mark: 鹿児島
+  comment: 50%住 多 南九州市
+  key: CHN
+- spell: 神園
+  name: カミゾノ
+  side: 姓
+  mark: 鹿児島
+  comment: 50%住 多 枕崎市
   key: CHN
 - spell: 上高原
   name: カミタカハラ
@@ -58687,6 +65485,18 @@ name:
   mark: 鹿児島
   comment: 30%住 霧島市
   key: CHN
+- spell: 木佐貫
+  name: キサヌキ
+  side: 姓
+  mark: 鹿児島
+  comment: 40%住 多 鹿児島市
+  key: CHN
+- spell: 貴島
+  name: キジマ
+  side: 姓
+  mark: 鹿児島
+  comment: 30%住 多 鹿児島市
+  key: CHN
 - spell: 岸良
   name: キシラ
   side: 姓
@@ -58722,6 +65532,18 @@ name:
   side: 姓
   mark: 鹿児島
   comment: 60%住 肝付町
+  key: CHN
+- spell: 木之下
+  name: キノシタ
+  side: 姓
+  mark: 鹿児島
+  comment: 30%住 多 鹿児島市
+  key: CHN
+- spell: 肝付
+  name: キモツキ
+  side: 姓
+  mark: 鹿児島
+  comment: 40%住 多 曽於市
   key: CHN
 - spell: 喜山
   name: キヤマ
@@ -58867,6 +65689,12 @@ name:
   mark: 鹿児島
   comment: 60%住 鹿屋市
   key: CHN
+- spell: 久保園
+  name: クボゾノ
+  side: 姓
+  mark: 鹿児島
+  comment: 40%住 多 鹿児島市
+  key: CHN
 - spell: 窪園
   name: クボゾノ
   side: 姓
@@ -58968,6 +65796,12 @@ name:
   side: 姓
   mark: 鹿児島
   comment: 30%住 多 霧島市
+  key: CHN
+- spell: 栗野
+  name: クリノ
+  side: 姓
+  mark: 鹿児島
+  comment: 30%住 多 南さつま市
   key: CHN
 - spell: 栗脇
   name: クリワキ
@@ -59131,6 +65965,12 @@ name:
   mark: 鹿児島
   comment: 60%住 霧島市
   key: CHN
+- spell: 国生
+  name: コクショウ
+  side: 姓
+  mark: 鹿児島
+  comment: 50%住 多 鹿児島市
+  key: CHN
 - spell: 御供田
   name: ゴクデン
   side: 姓
@@ -59155,11 +65995,29 @@ name:
   mark: 鹿児島
   comment: 50%住 鹿児島市
   key: CHN
+- spell: 小薗
+  name: コゾノ
+  side: 姓
+  mark: 鹿児島
+  comment: 40%住 多 鹿屋市
+  key: CHN
+- spell: 小園
+  name: コゾノ
+  side: 姓
+  mark: 鹿児島
+  comment: 40%住 多 鹿児島市
+  key: CHN
 - spell: 五反
   name: ゴタン
   side: 姓
   mark: 鹿児島
   comment: 30%住 鹿児島市
+  key: CHN
+- spell: 五反田
+  name: ゴタンダ
+  side: 姓
+  mark: 鹿児島
+  comment: 30%住 多 南九州市
   key: CHN
 - spell: 小土橋
   name: コツチバシ
@@ -59329,11 +66187,23 @@ name:
   mark: 鹿児島
   comment: 50%住 鹿児島市
   key: CHN
+- spell: 逆瀬川
+  name: サカセガワ
+  side: 姓
+  mark: 鹿児島
+  comment: 40%住 多 曽於市
+  key: CHN
 - spell: 佐潟
   name: サガタ
   side: 姓
   mark: 鹿児島
   comment: 40%住 阿久根市
+  key: CHN
+- spell: 佐@
+  name: サガタ
+  side: 姓
+  mark: 鹿児島
+  comment: 100%住 阿久根市
   key: CHN
 - spell: 坂之上
   name: サカノウエ
@@ -59401,6 +66271,12 @@ name:
   mark: 鹿児島
   comment: 40%住 伊仙町 (奄美)
   key: CHN
+- spell: 鮫島
+  name: サメシマ
+  side: 姓
+  mark: 鹿児島
+  comment: 40%住 多 鹿児島市
+  key: CHN
 - spell: 鞘脇
   name: サヤワキ
   side: 姓
@@ -59425,6 +66301,18 @@ name:
   mark: 鹿児島
   comment: 50%住 南さつま市
   key: CHN
+- spell: 塩満
+  name: シオミツ
+  side: 姓
+  mark: 鹿児島
+  comment: 30%住 多 鹿児島市
+  key: CHN
+- spell: 塩屋
+  name: シオヤ
+  side: 姓
+  mark: 鹿児島
+  comment: 30%住 多 南さつま市
+  key: CHN
 - spell: 志風
   name: シカゼ
   side: 姓
@@ -59442,6 +66330,18 @@ name:
   side: 姓
   mark: 鹿児島
   comment: 50%住 日置市
+  key: CHN
+- spell: 重留
+  name: シゲトメ
+  side: 姓
+  mark: 鹿児島
+  comment: 50%住 多 鹿児島市
+  key: CHN
+- spell: 重信
+  name: シゲノブ
+  side: 姓
+  mark: 鹿児島
+  comment: 30%住 多 鹿児島市
   key: CHN
 - spell: 重畠
   name: シゲハタ
@@ -59616,6 +66516,18 @@ name:
   side: 姓
   mark: 鹿児島
   comment: 60%住 鹿児島市
+  key: CHN
+- spell: 下薗
+  name: シモゾノ
+  side: 姓
+  mark: 鹿児島
+  comment: 40%住 多 阿久根市
+  key: CHN
+- spell: 下園
+  name: シモゾノ
+  side: 姓
+  mark: 鹿児島
+  comment: 50%住 多 鹿児島市
   key: CHN
 - spell: 下田平
   name: シモダイラ
@@ -59947,6 +66859,42 @@ name:
   mark: 沖縄
   comment: 90%住 多 うるま市
   key: CHN
+- spell: 安里
+  name: アサト
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
+  key: CHN
+- spell: 安座間
+  name: アザマ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 うるま市
+  key: CHN
+- spell: 安次富
+  name: アシトミ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
+  key: CHN
+- spell: 安次嶺
+  name: アシミネ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
+  key: CHN
+- spell: 安谷屋
+  name: アダニヤ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 豊見城市
+  key: CHN
+- spell: 安仁屋
+  name: アニヤ
+  side: 姓
+  mark: 沖縄
+  comment: 90%住 多 那覇市
+  key: CHN
 - spell: 阿波根
   name: アハゴン
   side: 姓
@@ -59964,6 +66912,30 @@ name:
   side: 姓
   mark: 沖縄
   comment: 90%住 金武町
+  key: CHN
+- spell: 天久
+  name: アメク
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 宜野湾市
+  key: CHN
+- spell: 新垣
+  name: アラカキ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
+  key: CHN
+- spell: 新垣
+  name: シンガキ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
+  key: CHN
+- spell: 新垣
+  name: アラガキ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
   key: CHN
 - spell: 新嘉喜
   name: アラカキ
@@ -60007,6 +66979,18 @@ name:
   mark: 沖縄
   comment: 60%住 那覇市
   key: CHN
+- spell: 伊計
+  name: イケイ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 うるま市
+  key: CHN
+- spell: 伊芸
+  name: イゲイ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 金武町
+  key: CHN
 - spell: 池城
   name: イケシロ
   side: 姓
@@ -60019,11 +67003,35 @@ name:
   mark: 沖縄
   comment: 70%住 うるま市
   key: CHN
+- spell: 池原
+  name: イケハラ
+  side: 姓
+  mark: 沖縄
+  comment: 30%住 多 読谷村
+  key: CHN
+- spell: 池間
+  name: イケマ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 宮古島市
+  key: CHN
 - spell: 池味
   name: イケミ
   side: 姓
   mark: 沖縄
   comment: 90%住 うるま市
+  key: CHN
+- spell: 池宮城
+  name: イケミヤギ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 うるま市
+  key: CHN
+- spell: 伊佐
+  name: イサ
+  side: 姓
+  mark: 沖縄
+  comment: 40%住 多 宜野湾市
   key: CHN
 - spell: 伊差川
   name: イサガワ
@@ -60031,11 +67039,35 @@ name:
   mark: 沖縄
   comment: 70%住 浦添市
   key: CHN
+- spell: 伊敷
+  name: イシキ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 糸満市
+  key: CHN
+- spell: 伊志嶺
+  name: イシミネ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 宮古島市
+  key: CHN
+- spell: 石嶺
+  name: イシミネ
+  side: 姓
+  mark: 沖縄
+  comment: 70%住 多 那覇市
+  key: CHN
 - spell: 伊舎堂
   name: イシャドウ
   side: 姓
   mark: 沖縄
   comment: 80%住 那覇市
+  key: CHN
+- spell: 伊集
+  name: イジュ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
   key: CHN
 - spell: 伊豆味
   name: イズミ
@@ -60067,11 +67099,53 @@ name:
   mark: 沖縄
   comment: 70%住 那覇市
   key: CHN
+- spell: 糸数
+  name: イトカズ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
+  key: CHN
+- spell: 糸洲
+  name: イトス
+  side: 姓
+  mark: 沖縄
+  comment: 70%住 多 那覇市
+  key: CHN
+- spell: 糸満
+  name: イトマン
+  side: 姓
+  mark: 沖縄
+  comment: 70%住 多 那覇市
+  key: CHN
 - spell: 糸村
   name: イトムラ
   side: 姓
   mark: 沖縄
   comment: 60%住 北谷町
+  key: CHN
+- spell: 稲福
+  name: イナフク
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
+  key: CHN
+- spell: 稲嶺
+  name: イナミネ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 北谷町
+  key: CHN
+- spell: 伊野波
+  name: イノハ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 本部町
+  key: CHN
+- spell: 伊波
+  name: イハ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 うるま市
   key: CHN
 - spell: 伊覇
   name: イハ
@@ -60097,17 +67171,83 @@ name:
   mark: 沖縄
   comment: 80%住 うるま市
   key: CHN
+- spell: 伊良波
+  name: イラハ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
+  key: CHN
+- spell: 伊良部
+  name: イラブ
+  side: 姓
+  mark: 沖縄
+  comment: 90%住 多 宮古島市
+  key: CHN
+- spell: 伊良皆
+  name: イラミナ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 宮古島市
+  key: CHN
 - spell: 西表
   name: イリオモテ
   side: 姓
   mark: 沖縄
   comment: 80%住 石垣市
   key: CHN
+- spell: 伊礼
+  name: イレイ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 うるま市
+  key: CHN
+- spell: 伊禮
+  name: イレイ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 沖縄市
+  key: CHN
+- spell: 上里
+  name: ウエザト
+  side: 姓
+  mark: 沖縄
+  comment: 60%住 多 那覇市
+  key: CHN
+- spell: 上門
+  name: ウエジョウ
+  side: 姓
+  mark: 沖縄
+  comment: 40%住 多 うるま市
+  key: CHN
+- spell: 上江洲
+  name: ウエズ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
+  key: CHN
 - spell: 上江田
   name: ウエダ
   side: 姓
   mark: 沖縄
   comment: 90%住 那覇市
+  key: CHN
+- spell: 上地
+  name: ウエチ
+  side: 姓
+  mark: 沖縄
+  comment: 50%住 多 宮古島市
+  key: CHN
+- spell: 宇栄原
+  name: ウエハラ
+  side: 姓
+  mark: 沖縄
+  comment: 90%住 多 那覇市
+  key: CHN
+- spell: 上間
+  name: ウエマ
+  side: 姓
+  mark: 沖縄
+  comment: 70%住 多 那覇市
   key: CHN
 - spell: 宇久
   name: ウク
@@ -60144,6 +67284,18 @@ name:
   side: 姓
   mark: 沖縄
   comment: 70%住 那覇市
+  key: CHN
+- spell: 宇良
+  name: ウラ
+  side: 姓
+  mark: 沖縄
+  comment: 70%住 多 那覇市
+  key: CHN
+- spell: 浦崎
+  name: ウラサキ
+  side: 姓
+  mark: 沖縄
+  comment: 30%住 多 那覇市
   key: CHN
 - spell: 浦添
   name: ウラソエ
@@ -60229,11 +67381,59 @@ name:
   mark: 沖縄
   comment: 40%住 石垣市
   key: CHN
+- spell: 大見謝
+  name: オオミジャ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
+  key: CHN
+- spell: 大嶺
+  name: オオミネ
+  side: 姓
+  mark: 沖縄
+  comment: 70%住 多 那覇市
+  key: CHN
+- spell: 大湾
+  name: オオワン
+  side: 姓
+  mark: 沖縄
+  comment: 70%住 多 読谷村
+  key: CHN
 - spell: 岳原
   name: オカハラ
   side: 姓
   mark: 沖縄
   comment: 70%住 那覇市
+  key: CHN
+- spell: 荻堂
+  name: オギドウ
+  side: 姓
+  mark: 沖縄
+  comment: 70%住 多 那覇市
+  key: CHN
+- spell: 奥浜
+  name: オクハマ
+  side: 姓
+  mark: 沖縄
+  comment: 60%住 多 宮古島市
+  key: CHN
+- spell: 奥間
+  name: オクマ
+  side: 姓
+  mark: 沖縄
+  comment: 70%住 多 嘉手納町
+  key: CHN
+- spell: 小渡
+  name: オド
+  side: 姓
+  mark: 沖縄
+  comment: 50%住 多 那覇市
+  key: CHN
+- spell: 翁長
+  name: オナガ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
   key: CHN
 - spell: 小那覇
   name: オナハ
@@ -60259,6 +67459,24 @@ name:
   mark: 沖縄
   comment: 80%住 うるま市
   key: CHN
+- spell: 親泊
+  name: オヤドマリ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
+  key: CHN
+- spell: 親富祖
+  name: オヤフソ
+  side: 姓
+  mark: 沖縄
+  comment: 90%住 多 浦添市
+  key: CHN
+- spell: 小禄
+  name: オロク
+  side: 姓
+  mark: 沖縄
+  comment: 90%住 多 宮古島市
+  key: CHN
 - spell: 恩河
   name: オンガ
   side: 姓
@@ -60271,17 +67489,107 @@ name:
   mark: 沖縄
   comment: 70%住 うるま市
   key: CHN
+- spell: 賀数
+  name: カカズ
+  side: 姓
+  mark: 沖縄
+  comment: 90%住 多 糸満市
+  key: CHN
+- spell: 嘉数(嘉數)
+  name: カカズ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
+  key: CHN
+- spell: 垣花
+  name: カキノハナ
+  side: 姓
+  mark: 沖縄
+  comment: 70%住 多 宮古島市
+  key: CHN
+- spell: 垣花
+  name: カキハナ
+  side: 姓
+  mark: 沖縄
+  comment: 70%住 多 宮古島市
+  key: CHN
+- spell: 我喜屋
+  name: ガキヤ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
+  key: CHN
+- spell: 我謝
+  name: ガジャ
+  side: 姓
+  mark: 沖縄
+  comment: 90%住 多 那覇市
+  key: CHN
+- spell: 勝連
+  name: カツレン
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 宮古島市
+  key: CHN
+- spell: 嘉手苅
+  name: カデカル
+  side: 姓
+  mark: 沖縄
+  comment: 90%住 多 那覇市
+  key: CHN
+- spell: 嘉手苅
+  name: カテカル
+  side: 姓
+  mark: 沖縄
+  comment: 90%住 多 那覇市
+  key: CHN
 - spell: 嘉手川
   name: カデカワ
   side: 姓
   mark: 沖縄
   comment: 80%住 那覇市
   key: CHN
+- spell: 嘉手納
+  name: カデナ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
+  key: CHN
+- spell: 我那覇
+  name: ガナハ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
+  key: CHN
 - spell: 兼久
   name: カネク
   side: 姓
   mark: 沖縄
   comment: 30%住 うるま市
+  key: CHN
+- spell: 我如古
+  name: ガネコ
+  side: 姓
+  mark: 沖縄
+  comment: 90%住 多 うるま市
+  key: CHN
+- spell: 兼次
+  name: カネシ
+  side: 姓
+  mark: 沖縄
+  comment: 70%住 多 那覇市
+  key: CHN
+- spell: 兼島
+  name: カネシマ
+  side: 姓
+  mark: 沖縄
+  comment: 70%住 多 沖縄市
+  key: CHN
+- spell: 兼城
+  name: カネシロ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 うるま市
   key: CHN
 - spell: 兼浜
   name: カネハマ
@@ -60294,6 +67602,18 @@ name:
   side: 姓
   mark: 沖縄
   comment: 60%住 那覇市
+  key: CHN
+- spell: 上運天
+  name: カミウンテン
+  side: 姓
+  mark: 沖縄
+  comment: 90%住 多 うるま市
+  key: CHN
+- spell: 神里
+  name: カミサト
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 南風原町
   key: CHN
 - spell: 嘉味田
   name: カミタ
@@ -60342,6 +67662,18 @@ name:
   side: 姓
   mark: 沖縄
   comment: 90%住 糸満市
+  key: CHN
+- spell: 川満
+  name: カワミツ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 宮古島市
+  key: CHN
+- spell: 漢那
+  name: カンナ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
   key: CHN
 - spell: 喜久川
   name: キクカワ
@@ -60403,6 +67735,18 @@ name:
   mark: 沖縄
   comment: 80%住 那覇市
   key: CHN
+- spell: 喜納
+  name: キナ
+  side: 姓
+  mark: 沖縄
+  comment: 70%住 多 那覇市
+  key: CHN
+- spell: 宜野座
+  name: ギノザ
+  side: 姓
+  mark: 沖縄
+  comment: 90%住 多 金武町
+  key: CHN
 - spell: 儀部
   name: ギブ
   side: 姓
@@ -60415,11 +67759,59 @@ name:
   mark: 沖縄
   comment: 70%住 那覇市
   key: CHN
+- spell: 儀保
+  name: ギボ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 南風原町
+  key: CHN
+- spell: 宜保
+  name: ギボ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 豊見城市
+  key: CHN
+- spell: 儀間
+  name: ギマ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
+  key: CHN
+- spell: 喜屋武
+  name: キャン
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 沖縄市
+  key: CHN
+- spell: 喜友名
+  name: キユナ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 沖縄市
+  key: CHN
+- spell: 金城
+  name: キンジョウ
+  side: 姓
+  mark: 沖縄
+  comment: 70%住 多 那覇市
+  key: CHN
 - spell: 金良
   name: キンラ
   side: 姓
   mark: 沖縄
   comment: 90%住 北谷町
+  key: CHN
+- spell: 久貝
+  name: クガイ
+  side: 姓
+  mark: 沖縄
+  comment: 60%住 多 宮古島市
+  key: CHN
+- spell: 具志
+  name: グシ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
   key: CHN
 - spell: 久志
   name: クシ
@@ -60433,11 +67825,47 @@ name:
   mark: 沖縄
   comment: 80%住 伊江村
   key: CHN
+- spell: 具志堅
+  name: グシケン
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
+  key: CHN
+- spell: 久高
+  name: クダカ
+  side: 姓
+  mark: 沖縄
+  comment: 70%住 多 那覇市
+  key: CHN
+- spell: 久手堅
+  name: クデケン
+  side: 姓
+  mark: 沖縄
+  comment: 90%住 多 那覇市
+  key: CHN
+- spell: 国仲
+  name: クニナカ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 宮古島市
+  key: CHN
+- spell: 国吉
+  name: クニヨシ
+  side: 姓
+  mark: 沖縄
+  comment: 50%住 多 那覇市
+  key: CHN
 - spell: 國吉
   name: クニヨシ
   side: 姓
   mark: 沖縄
   comment: 30%住 那覇市
+  key: CHN
+- spell: 久場
+  name: クバ
+  side: 姓
+  mark: 沖縄
+  comment: 60%住 多 那覇市
   key: CHN
 - spell: 久場川
   name: クバカワ
@@ -60462,6 +67890,18 @@ name:
   side: 姓
   mark: 沖縄
   comment: 70%住 うるま市
+  key: CHN
+- spell: 来間
+  name: クリマ
+  side: 姓
+  mark: 沖縄
+  comment: 30%住 多 宮古島市
+  key: CHN
+- spell: 桑江
+  name: クワエ
+  side: 姓
+  mark: 沖縄
+  comment: 70%住 多 沖縄市
   key: CHN
 - spell: 慶田城
   name: ケダシロ
@@ -60493,6 +67933,18 @@ name:
   mark: 沖縄
   comment: 100%住 うるま市
   key: CHN
+- spell: 幸喜
+  name: コウキ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 うるま市
+  key: CHN
+- spell: 幸地
+  name: コウチ
+  side: 姓
+  mark: 沖縄
+  comment: 70%住 多 那覇市
+  key: CHN
 - spell: 幸良
   name: コウラ
   side: 姓
@@ -60510,6 +67962,18 @@ name:
   side: 姓
   mark: 沖縄
   comment: 70%住 名護市
+  key: CHN
+- spell: 国場
+  name: コクバ
+  side: 姓
+  mark: 沖縄
+  comment: 70%住 多 那覇市
+  key: CHN
+- spell: 古謝
+  name: コジャ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 うるま市
   key: CHN
 - spell: 湖城
   name: コシロ
@@ -60547,6 +68011,24 @@ name:
   mark: 沖縄
   comment: 80%住 那覇市
   key: CHN
+- spell: 古波蔵
+  name: コハグラ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 宜野湾市
+  key: CHN
+- spell: 小橋川
+  name: コバシガワ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
+  key: CHN
+- spell: 小波津
+  name: コハツ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 西原町
+  key: CHN
 - spell: 古波津
   name: コハツ
   side: 姓
@@ -60558,6 +68040,24 @@ name:
   side: 姓
   mark: 沖縄
   comment: 90%住 石垣市
+  key: CHN
+- spell: 小嶺
+  name: コミネ
+  side: 姓
+  mark: 沖縄
+  comment: 30%住 多 那覇市
+  key: CHN
+- spell: 米須
+  name: コメス
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 宜野湾市
+  key: CHN
+- spell: 呉屋
+  name: ゴヤ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 西原町
   key: CHN
 - spell: 崎枝
   name: サキエダ
@@ -60571,6 +68071,18 @@ name:
   mark: 沖縄
   comment: 60%住 那覇市
   key: CHN
+- spell: 崎浜
+  name: サキハマ
+  side: 姓
+  mark: 沖縄
+  comment: 70%住 多 名護市
+  key: CHN
+- spell: 崎原
+  name: サキハラ
+  side: 姓
+  mark: 沖縄
+  comment: 70%住 多 北谷町
+  key: CHN
 - spell: 崎間
   name: サキマ
   side: 姓
@@ -60582,6 +68094,24 @@ name:
   side: 姓
   mark: 沖縄
   comment: 70%住 宜野湾市
+  key: CHN
+- spell: 座喜味
+  name: ザキミ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
+  key: CHN
+- spell: 佐久川
+  name: サクガワ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
+  key: CHN
+- spell: 佐久田
+  name: サクタ
+  side: 姓
+  mark: 沖縄
+  comment: 60%住 多 宮古島市
   key: CHN
 - spell: 佐久真
   name: サクマ
@@ -60612,6 +68142,30 @@ name:
   side: 姓
   mark: 沖縄
   comment: 80%住 那覇市
+  key: CHN
+- spell: 座波
+  name: ザハ
+  side: 姓
+  mark: 沖縄
+  comment: 70%住 多 那覇市
+  key: CHN
+- spell: 座間味
+  name: ザマミ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 うるま市
+  key: CHN
+- spell: 座安
+  name: ザヤス
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 豊見城市
+  key: CHN
+- spell: 佐和田
+  name: サワダ
+  side: 姓
+  mark: 沖縄
+  comment: 70%住 多 宮古島市
   key: CHN
 - spell: 潮平
   name: シオヒラ
@@ -60661,6 +68215,24 @@ name:
   mark: 沖縄
   comment: 80%住 石垣市
   key: CHN
+- spell: 島袋
+  name: シマブクロ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
+  key: CHN
+- spell: 島袋
+  name: シマブク
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
+  key: CHN
+- spell: 下地
+  name: シモジ
+  side: 姓
+  mark: 沖縄
+  comment: 70%住 多 宮古島市
+  key: CHN
 - spell: 下門
   name: シモジョウ
   side: 姓
@@ -60691,6 +68263,18 @@ name:
   mark: 沖縄
   comment: 80%住 うるま市
   key: CHN
+- spell: 諸喜田
+  name: ショキタ
+  side: 姓
+  mark: 沖縄
+  comment: 70%住 多 今帰仁村
+  key: CHN
+- spell: 志良堂
+  name: シラドウ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
+  key: CHN
 - spell: 白保
   name: シラホ
   side: 姓
@@ -60703,17 +68287,83 @@ name:
   mark: 沖縄
   comment: 90%住 石垣市
   key: CHN
+- spell: 城間
+  name: シロマ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
+  key: CHN
+- spell: 新里
+  name: シンザト
+  side: 姓
+  mark: 沖縄
+  comment: 70%住 多 那覇市
+  key: CHN
+- spell: 新城
+  name: シンジョウ
+  side: 姓
+  mark: 沖縄
+  comment: 70%住 多 那覇市
+  key: CHN
+- spell: 洲鎌
+  name: スガマ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 宮古島市
+  key: CHN
 - spell: 洌鎌
   name: スガマ
   side: 姓
   mark: 沖縄
   comment: 80%住 宮古島市
   key: CHN
+- spell: 瑞慶山
+  name: ズケヤマ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 うるま市
+  key: CHN
+- spell: 瑞慶覧
+  name: ズケラン
+  side: 姓
+  mark: 沖縄
+  comment: 90%住 多 那覇市
+  key: CHN
+- spell: 砂川
+  name: スナガワ
+  side: 姓
+  mark: 沖縄
+  comment: 40%住 多 宮古島市
+  key: CHN
+- spell: 砂川
+  name: スナカワ
+  side: 姓
+  mark: 沖縄
+  comment: 40%住 多 宮古島市
+  key: CHN
+- spell: 砂辺
+  name: スナベ
+  side: 姓
+  mark: 沖縄
+  comment: 60%住 多 読谷村
+  key: CHN
 - spell: 生盛
   name: セイモリ
   side: 姓
   mark: 沖縄
   comment: 60%住 石垣市
+  key: CHN
+- spell: 瀬底
+  name: セソコ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
+  key: CHN
+- spell: 瀬長
+  name: セナガ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 豊見城市
   key: CHN
 - spell: 瀬名波
   name: セナハ
@@ -60787,6 +68437,30 @@ name:
   mark: 沖縄
   comment: 100%住 石垣市
   key: CHN
+- spell: 高江洲
+  name: タカエス
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 沖縄市
+  key: CHN
+- spell: 高里
+  name: タカサト
+  side: 姓
+  mark: 沖縄
+  comment: 70%住 多 那覇市
+  key: CHN
+- spell: 高嶺
+  name: タカミネ
+  side: 姓
+  mark: 沖縄
+  comment: 50%住 多 那覇市
+  key: CHN
+- spell: 高宮城
+  name: タカミヤギ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 沖縄市
+  key: CHN
 - spell: 多嘉良
   name: タカラ
   side: 姓
@@ -60841,6 +68515,18 @@ name:
   mark: 沖縄
   comment: 90%住 沖縄市
   key: CHN
+- spell: 田里
+  name: タサト
+  side: 姓
+  mark: 沖縄
+  comment: 60%住 多 沖縄市
+  key: CHN
+- spell: 立津
+  name: タテツ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 宮古島市
+  key: CHN
 - spell: 田名
   name: ダナ
   side: 姓
@@ -60852,6 +68538,60 @@ name:
   side: 姓
   mark: 沖縄
   comment: 60%住 宮古島市
+  key: CHN
+- spell: 棚原
+  name: タナハラ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 浦添市
+  key: CHN
+- spell: 田場
+  name: タバ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 うるま市
+  key: CHN
+- spell: 玉栄
+  name: タマエ
+  side: 姓
+  mark: 沖縄
+  comment: 90%住 多 うるま市
+  key: CHN
+- spell: 玉城
+  name: タマキ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
+  key: CHN
+- spell: 玉城
+  name: タマシロ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
+  key: CHN
+- spell: 玉那覇
+  name: タマナハ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 西原町
+  key: CHN
+- spell: 玉元
+  name: タマモト
+  side: 姓
+  mark: 沖縄
+  comment: 70%住 多 沖縄市
+  key: CHN
+- spell: 玉寄
+  name: タマヨセ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
+  key: CHN
+- spell: 田港
+  name: タミナト
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
   key: CHN
 - spell: 田盛
   name: タモリ
@@ -60865,6 +68605,36 @@ name:
   mark: 沖縄
   comment: 90%住 宮古島市
   key: CHN
+- spell: 多和田
+  name: タワタ
+  side: 姓
+  mark: 沖縄
+  comment: 40%住 多 宜野湾市
+  key: CHN
+- spell: 知名
+  name: チナ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 うるま市
+  key: CHN
+- spell: 知念
+  name: チネン
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
+  key: CHN
+- spell: 知花
+  name: チバナ
+  side: 姓
+  mark: 沖縄
+  comment: 90%住 多 読谷村
+  key: CHN
+- spell: 津嘉山
+  name: ツカヤマ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 北谷町
+  key: CHN
 - spell: 津堅
   name: ツケン
   side: 姓
@@ -60877,17 +68647,59 @@ name:
   mark: 沖縄
   comment: 70%住 沖縄市
   key: CHN
+- spell: 津波
+  name: ツハ
+  side: 姓
+  mark: 沖縄
+  comment: 70%住 多 名護市
+  key: CHN
+- spell: 津波古
+  name: ツハコ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
+  key: CHN
 - spell: 手登根
   name: テドコン
   side: 姓
   mark: 沖縄
   comment: 80%住 浦添市
   key: CHN
+- spell: 照喜名
+  name: テルキナ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 南城市
+  key: CHN
+- spell: 照屋
+  name: テルヤ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
+  key: CHN
+- spell: 天願
+  name: テンガン
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 うるま市
+  key: CHN
 - spell: 通事
   name: トウジ
   side: 姓
   mark: 沖縄
   comment: 90%住 石垣市
+  key: CHN
+- spell: 桃原
+  name: トウバル
+  side: 姓
+  mark: 沖縄
+  comment: 70%住 多 那覇市
+  key: CHN
+- spell: 當真
+  name: トウマ
+  side: 姓
+  mark: 沖縄
+  comment: 90%住 多 沖縄市
   key: CHN
 - spell: 唐真
   name: トウマ
@@ -60907,6 +68719,30 @@ name:
   mark: 沖縄
   comment: 80%住 那覇市
   key: CHN
+- spell: 当間
+  name: トウマ
+  side: 姓
+  mark: 沖縄
+  comment: 60%住 多 那覇市
+  key: CHN
+- spell: 當間
+  name: トウマ
+  side: 姓
+  mark: 沖縄
+  comment: 70%住 多 那覇市
+  key: CHN
+- spell: 当銘
+  name: トウメ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 豊見城市
+  key: CHN
+- spell: 當銘
+  name: トウメ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
+  key: CHN
 - spell: 東門
   name: トウモン
   side: 姓
@@ -60918,6 +68754,24 @@ name:
   side: 姓
   mark: 沖縄
   comment: 70%住 うるま市
+  key: CHN
+- spell: 當山
+  name: トウヤマ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 沖縄市
+  key: CHN
+- spell: 当山
+  name: トウヤマ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
+  key: CHN
+- spell: 渡嘉敷
+  name: トカシキ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
   key: CHN
 - spell: 徳門
   name: トクジョウ
@@ -60931,6 +68785,24 @@ name:
   mark: 沖縄
   comment: 90%住 うるま市
   key: CHN
+- spell: 渡久地
+  name: トグチ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
+  key: CHN
+- spell: 渡口
+  name: トグチ
+  side: 姓
+  mark: 沖縄
+  comment: 50%住 多 那覇市
+  key: CHN
+- spell: 渡具知
+  name: トグチ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 名護市
+  key: CHN
 - spell: 徳松
   name: トクマツ
   side: 姓
@@ -60943,17 +68815,53 @@ name:
   mark: 沖縄
   comment: 80%住 宮古島市
   key: CHN
+- spell: 徳村
+  name: トクムラ
+  side: 姓
+  mark: 沖縄
+  comment: 30%住 多 糸満市
+  key: CHN
+- spell: 徳元
+  name: トクモト
+  side: 姓
+  mark: 沖縄
+  comment: 40%住 多 糸満市
+  key: CHN
 - spell: 徳盛
   name: トクモリ
   side: 姓
   mark: 沖縄
   comment: 40%住 うるま市
   key: CHN
+- spell: 渡久山
+  name: トクヤマ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 宮古島市
+  key: CHN
+- spell: 渡慶次
+  name: トケシ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
+  key: CHN
+- spell: 渡名喜
+  name: トナキ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
+  key: CHN
 - spell: 登野城
   name: トノシロ
   side: 姓
   mark: 沖縄
   comment: 70%住 石垣市
+  key: CHN
+- spell: 渡真利
+  name: トマリ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 宮古島市
   key: CHN
 - spell: 富浜
   name: トミハマ
@@ -60979,6 +68887,30 @@ name:
   mark: 沖縄
   comment: 50%住 那覇市
   key: CHN
+- spell: 豊見山
+  name: トミヤマ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 宮古島市
+  key: CHN
+- spell: 友寄
+  name: トモヨセ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
+  key: CHN
+- spell: 友利
+  name: トモリ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 宮古島市
+  key: CHN
+- spell: 豊里
+  name: トヨザト
+  side: 姓
+  mark: 沖縄
+  comment: 70%住 多 那覇市
+  key: CHN
 - spell: 豊平
   name: トヨヒラ
   side: 姓
@@ -60990,6 +68922,18 @@ name:
   side: 姓
   mark: 沖縄
   comment: 60%住 浦添市
+  key: CHN
+- spell: 名嘉
+  name: ナカ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
+  key: CHN
+- spell: 仲井間
+  name: ナカイマ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
   key: CHN
 - spell: 仲井真
   name: ナカイマ
@@ -61009,6 +68953,18 @@ name:
   mark: 沖縄
   comment: 70%住 那覇市
   key: CHN
+- spell: 仲座
+  name: ナカザ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 八重瀬町
+  key: CHN
+- spell: 仲里
+  name: ナカザト
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
+  key: CHN
 - spell: 仲門
   name: ナカジョウ
   side: 姓
@@ -61021,11 +68977,35 @@ name:
   mark: 沖縄
   comment: 30%住 石垣市
   key: CHN
+- spell: 仲宗根
+  name: ナカソネ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 沖縄市
+  key: CHN
+- spell: 仲地
+  name: ナカチ
+  side: 姓
+  mark: 沖縄
+  comment: 70%住 多 那覇市
+  key: CHN
+- spell: 長堂
+  name: ナガドウ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
+  key: CHN
 - spell: 仲泊
   name: ナカドマリ
   side: 姓
   mark: 沖縄
   comment: 50%住 北中城村
+  key: CHN
+- spell: 仲原
+  name: ナカハラ
+  side: 姓
+  mark: 沖縄
+  comment: 30%住 多 那覇市
   key: CHN
 - spell: 名嘉原
   name: ナカハラ
@@ -61033,11 +69013,35 @@ name:
   mark: 沖縄
   comment: 80%住 那覇市
   key: CHN
+- spell: 仲程
+  name: ナカホド
+  side: 姓
+  mark: 沖縄
+  comment: 90%住 多 沖縄市
+  key: CHN
+- spell: 名嘉真
+  name: ナカマ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 うるま市
+  key: CHN
 - spell: 中真
   name: ナカマ
   side: 姓
   mark: 沖縄
   comment: 80%住 伊江村
+  key: CHN
+- spell: 仲真
+  name: ナカマ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 沖縄市
+  key: CHN
+- spell: 仲間
+  name: ナカマ
+  side: 姓
+  mark: 沖縄
+  comment: 70%住 多 宮古島市
   key: CHN
 - spell: 長間
   name: ナガマ
@@ -61051,11 +69055,41 @@ name:
   mark: 沖縄
   comment: 90%住 石垣市
   key: CHN
+- spell: 仲松
+  name: ナカマツ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 中城村
+  key: CHN
+- spell: 仲嶺
+  name: ナカミネ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 沖縄市
+  key: CHN
+- spell: 長嶺
+  name: ナガミネ
+  side: 姓
+  mark: 沖縄
+  comment: 30%住 多 那覇市
+  key: CHN
 - spell: 名嘉村
   name: ナカムラ
   side: 姓
   mark: 沖縄
   comment: 90%住 うるま市
+  key: CHN
+- spell: 仲村
+  name: ナカムラ
+  side: 姓
+  mark: 沖縄
+  comment: 30%住 多 那覇市
+  key: CHN
+- spell: 仲本
+  name: ナカモト
+  side: 姓
+  mark: 沖縄
+  comment: 60%住 多 那覇市
   key: CHN
 - spell: 仲盛
   name: ナカモリ
@@ -61075,6 +69109,30 @@ name:
   mark: 沖縄
   comment: 60%住 那覇市
   key: CHN
+- spell: 仲村渠
+  name: ナカンダカリ
+  side: 姓
+  mark: 沖縄
+  comment: 90%住 多 那覇市
+  key: CHN
+- spell: 名護
+  name: ナゴ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 うるま市
+  key: CHN
+- spell: 名幸
+  name: ナコウ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 北中城村
+  key: CHN
+- spell: 名城
+  name: ナシロ
+  side: 姓
+  mark: 沖縄
+  comment: 70%住 多 那覇市
+  key: CHN
 - spell: 名渡山
   name: ナドヤマ
   side: 姓
@@ -61087,11 +69145,59 @@ name:
   mark: 沖縄
   comment: 90%住 うるま市
   key: CHN
+- spell: 並里
+  name: ナミサト
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 本部町
+  key: CHN
+- spell: 並里
+  name: ナミザト
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 本部町
+  key: CHN
+- spell: 波平
+  name: ナミヒラ
+  side: 姓
+  mark: 沖縄
+  comment: 60%住 多 読谷村
+  key: CHN
 - spell: 成底
   name: ナリソコ
   side: 姓
   mark: 沖縄
   comment: 80%住 石垣市
+  key: CHN
+- spell: 荷川取
+  name: ニカワドリ
+  side: 姓
+  mark: 沖縄
+  comment: 90%住 多 宮古島市
+  key: CHN
+- spell: 荷川取
+  name: ニカドリ
+  side: 姓
+  mark: 沖縄
+  comment: 90%住 多 宮古島市
+  key: CHN
+- spell: 西里
+  name: ニシザト
+  side: 姓
+  mark: 沖縄
+  comment: 40%住 多 宮古島市
+  key: CHN
+- spell: 西平
+  name: ニシヒラ
+  side: 姓
+  mark: 沖縄
+  comment: 30%住 多 那覇市
+  key: CHN
+- spell: 西銘
+  name: ニシメ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
   key: CHN
 - spell: 禰覇
   name: ネハ
@@ -61105,6 +69211,18 @@ name:
   mark: 沖縄
   comment: 70%住 うるま市
   key: CHN
+- spell: 根間
+  name: ネマ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 宮古島市
+  key: CHN
+- spell: 根路銘
+  name: ネロメ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
+  key: CHN
 - spell: 野国
   name: ノグニ
   side: 姓
@@ -61116,6 +69234,18 @@ name:
   side: 姓
   mark: 沖縄
   comment: 80%住 石垣市
+  key: CHN
+- spell: 饒波
+  name: ノハ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
+  key: CHN
+- spell: 登川
+  name: ノボリカワ
+  side: 姓
+  mark: 沖縄
+  comment: 60%住 多 沖縄市
   key: CHN
 - spell: 南風原
   name: ハエバラ
@@ -61159,6 +69289,18 @@ name:
   mark: 沖縄
   comment: 80%住 石垣市
   key: CHN
+- spell: 花城
+  name: ハナシロ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
+  key: CHN
+- spell: 羽地
+  name: ハネジ
+  side: 姓
+  mark: 沖縄
+  comment: 60%住 多 宮古島市
+  key: CHN
 - spell: 浜比嘉
   name: ハマヒガ
   side: 姓
@@ -61170,6 +69312,24 @@ name:
   side: 姓
   mark: 沖縄
   comment: 70%住 那覇市
+  key: CHN
+- spell: 比嘉
+  name: ヒガ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
+  key: CHN
+- spell: 東恩納
+  name: ヒガシオンナ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
+  key: CHN
+- spell: 東恩納
+  name: ヒガオンナ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
   key: CHN
 - spell: 東浜
   name: ヒガシハマ
@@ -61309,6 +69469,18 @@ name:
   mark: 沖縄
   comment: 90%住 石垣市
   key: CHN
+- spell: 古堅
+  name: フルゲン
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
+  key: CHN
+- spell: 平敷
+  name: ヘシキ
+  side: 姓
+  mark: 沖縄
+  comment: 70%住 多 那覇市
+  key: CHN
 - spell: 平識
   name: ヘシキ
   side: 姓
@@ -61326,6 +69498,36 @@ name:
   side: 姓
   mark: 沖縄
   comment: 70%住 宜野湾市
+  key: CHN
+- spell: 平安山
+  name: ヘンザン
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
+  key: CHN
+- spell: 辺土名
+  name: ヘントナ
+  side: 姓
+  mark: 沖縄
+  comment: 90%住 多 沖縄市
+  key: CHN
+- spell: 平安名
+  name: ヘンナ
+  side: 姓
+  mark: 沖縄
+  comment: 90%住 多 うるま市
+  key: CHN
+- spell: 平安名
+  name: ヘイアンナ
+  side: 姓
+  mark: 沖縄
+  comment: 90%住 多 うるま市
+  key: CHN
+- spell: 外間
+  name: ホカマ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
   key: CHN
 - spell: 保良
   name: ボラ
@@ -61363,6 +69565,18 @@ name:
   mark: 沖縄
   comment: 80%住 那覇市
   key: CHN
+- spell: 真栄城
+  name: マエシロ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
+  key: CHN
+- spell: 真栄田
+  name: マエダ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
+  key: CHN
 - spell: 前津
   name: マエツ
   side: 姓
@@ -61375,6 +69589,12 @@ name:
   mark: 沖縄
   comment: 80%住 うるま市
   key: CHN
+- spell: 前泊
+  name: マエドマリ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 宮古島市
+  key: CHN
 - spell: 真栄平
   name: マエヒラ
   side: 姓
@@ -61386,6 +69606,12 @@ name:
   side: 姓
   mark: 沖縄
   comment: 70%住 石垣市
+  key: CHN
+- spell: 真喜志
+  name: マキシ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
   key: CHN
 - spell: 牧志
   name: マキシ
@@ -61471,17 +69697,65 @@ name:
   mark: 沖縄
   comment: 60%住 東村
   key: CHN
+- spell: 嶺井
+  name: ミネイ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 南城市
+  key: CHN
+- spell: 宮城
+  name: ミヤギ
+  side: 姓
+  mark: 沖縄
+  comment: 50%住 多 那覇市
+  key: CHN
 - spell: 宮國
   name: ミヤグニ
   side: 姓
   mark: 沖縄
   comment: 60%住 那覇市
   key: CHN
+- spell: 宮国
+  name: ミヤグニ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 宮古島市
+  key: CHN
+- spell: 宮里
+  name: ミヤザト
+  side: 姓
+  mark: 沖縄
+  comment: 60%住 多 那覇市
+  key: CHN
+- spell: 宮平
+  name: ミヤヒラ
+  side: 姓
+  mark: 沖縄
+  comment: 70%住 多 那覇市
+  key: CHN
+- spell: 宮良
+  name: ミヤラ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 石垣市
+  key: CHN
 - spell: 迎里
   name: ムカイザト
   side: 姓
   mark: 沖縄
   comment: 70%住 石垣市
+  key: CHN
+- spell: 村吉
+  name: ムラヨシ
+  side: 姓
+  mark: 沖縄
+  comment: 50%住 多 那覇市
+  key: CHN
+- spell: 銘苅
+  name: メカル
+  side: 姓
+  mark: 沖縄
+  comment: 90%住 多 浦添市
   key: CHN
 - spell: 目取真
   name: メドルマ
@@ -61507,11 +69781,35 @@ name:
   mark: 沖縄
   comment: 80%住 南城市
   key: CHN
+- spell: 諸見
+  name: モロミ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 浦添市
+  key: CHN
+- spell: 諸見里
+  name: モロミザト
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
+  key: CHN
 - spell: 屋嘉
   name: ヤカ
   side: 姓
   mark: 沖縄
   comment: 70%住 名護市
+  key: CHN
+- spell: 屋我
+  name: ヤガ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 沖縄市
+  key: CHN
+- spell: 屋嘉比
+  name: ヤカビ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
   key: CHN
 - spell: 屋嘉部
   name: ヤカベ
@@ -61519,11 +69817,65 @@ name:
   mark: 沖縄
   comment: 70%住 石垣市
   key: CHN
+- spell: 屋宜
+  name: ヤギ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 沖縄市
+  key: CHN
+- spell: 屋比久
+  name: ヤビク
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 南城市
+  key: CHN
 - spell: 屋部
   name: ヤブ
   side: 姓
   mark: 沖縄
   comment: 50%住 名護市
+  key: CHN
+- spell: 屋富祖
+  name: ヤフソ
+  side: 姓
+  mark: 沖縄
+  comment: 90%住 多 那覇市
+  key: CHN
+- spell: 山里
+  name: ヤマザト
+  side: 姓
+  mark: 沖縄
+  comment: 50%住 多 那覇市
+  key: CHN
+- spell: 山城
+  name: ヤマシロ
+  side: 姓
+  mark: 沖縄
+  comment: 50%住 多 うるま市
+  key: CHN
+- spell: 山入端
+  name: ヤマノハ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 名護市
+  key: CHN
+- spell: 山入端
+  name: ヤマニハ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 名護市
+  key: CHN
+- spell: 屋良
+  name: ヤラ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
+  key: CHN
+- spell: 与儀
+  name: ヨギ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
   key: CHN
 - spell: 與儀
   name: ヨギ
@@ -61554,6 +69906,12 @@ name:
   side: 姓
   mark: 沖縄
   comment: 70%住 南風原町
+  key: CHN
+- spell: 与座
+  name: ヨザ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 浦添市
   key: CHN
 - spell: 吉味
   name: ヨシミ
@@ -61591,11 +69949,35 @@ name:
   mark: 沖縄
   comment: 60%住 那覇市
   key: CHN
+- spell: 与那城
+  name: ヨナシロ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
+  key: CHN
+- spell: 与那覇
+  name: ヨナハ
+  side: 姓
+  mark: 沖縄
+  comment: 90%住 多 宮古島市
+  key: CHN
 - spell: 與那覇
   name: ヨナハ
   side: 姓
   mark: 沖縄
   comment: 70%住 那覇市
+  key: CHN
+- spell: 与那原
+  name: ヨナハラ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
+  key: CHN
+- spell: 与那嶺
+  name: ヨナミネ
+  side: 姓
+  mark: 沖縄
+  comment: 80%住 多 那覇市
   key: CHN
 - spell: 與那嶺
   name: ヨナミネ
@@ -61646,49 +70028,50 @@ name:
   comment: 50%住 沖縄市
   key: CHN
 timestamp:
-  hokkaido.htm: 2020-06-04 03:22:48.000000000 Z
-  aomori.htm: 2020-06-04 03:22:29.000000000 Z
-  iwate.htm: 2020-06-04 03:22:56.000000000 Z
-  miyagi.htm: 2020-06-07 10:33:54.000000000 Z
-  akita.htm: 2020-06-04 03:22:27.000000000 Z
-  yamagata.htm: 2020-06-04 03:24:03.000000000 Z
-  fukushima.htm: 2020-06-06 10:20:24.000000000 Z
-  ibaraki.htm: 2020-06-04 03:22:52.000000000 Z
-  tochigi.htm: 2020-06-04 03:23:45.000000000 Z
-  gumma.htm: 2020-06-04 03:22:44.000000000 Z
-  saitama.htm: 2020-06-04 03:23:37.000000000 Z
-  chiba.htm: 2020-06-04 03:22:31.000000000 Z
-  tokyo.htm: 2020-06-04 03:23:49.000000000 Z
-  kanagawa.htm: 2020-06-04 03:23:01.000000000 Z
-  niigata.htm: 2020-06-04 03:23:22.000000000 Z
-  nagano.htm: 2020-06-04 03:23:15.000000000 Z
-  yamanashi.htm: 2020-06-04 03:24:07.000000000 Z
-  shizuoka.htm: 2020-06-04 03:23:43.000000000 Z
-  gifu.htm: 2020-06-04 03:22:42.000000000 Z
-  mie.htm: 2020-06-04 03:23:07.000000000 Z
-  toyama.htm: 2020-06-04 03:23:58.000000000 Z
-  ishikawa.htm: 2020-06-04 03:22:54.000000000 Z
-  fukui.htm: 2020-06-04 03:22:34.000000000 Z
-  shiga.htm: 2020-06-04 03:23:39.000000000 Z
-  kyoto.htm: 2020-06-04 03:23:06.000000000 Z
-  osaka.htm: 2020-06-04 03:23:33.000000000 Z
-  hyogo.htm: 2020-06-04 03:22:50.000000000 Z
-  nara.htm: 2020-06-04 03:23:20.000000000 Z
-  wakayama.htm: 2020-06-04 03:24:02.000000000 Z
-  tottori.htm: 2020-06-04 03:23:53.000000000 Z
-  shimane.htm: 2020-06-04 03:23:41.000000000 Z
-  okayama.htm: 2020-06-04 03:23:27.000000000 Z
-  hiroshima.htm: 2020-06-04 03:22:46.000000000 Z
-  yamaguchi.htm: 2020-06-04 03:24:05.000000000 Z
-  tokushima.htm: 2020-06-12 04:29:14.000000000 Z
-  kagawa.htm: 2020-06-04 03:22:57.000000000 Z
-  ehime.htm: 2020-06-04 03:22:33.000000000 Z
-  kochi.htm: 2020-06-04 03:23:03.000000000 Z
-  fukuoka.htm: 2020-06-04 03:22:36.000000000 Z
-  saga.htm: 2020-06-04 03:23:35.000000000 Z
-  nagasaki.htm: 2020-06-04 03:23:18.000000000 Z
-  kumamoto.htm: 2020-06-04 03:23:04.000000000 Z
-  oita.htm: 2020-06-04 03:23:25.000000000 Z
-  miyazaki.htm: 2020-06-04 03:23:11.000000000 Z
-  kagoshima.htm: 2020-06-04 03:22:59.000000000 Z
-  okinawa.htm: 2020-06-04 03:23:31.000000000 Z
+  hokkaido.htm: 2020-09-08 10:39:56.000000000 Z
+  aomori.htm: 2020-09-08 10:39:43.000000000 Z
+  iwate.htm: 2020-09-08 10:40:02.000000000 Z
+  miyagi.htm: 2020-09-07 11:56:35.000000000 Z
+  akita.htm: 2020-09-08 10:39:41.000000000 Z
+  yamagata.htm: 2020-09-07 11:57:03.000000000 Z
+  fukushima.htm: 2020-09-08 10:39:51.000000000 Z
+  ibaraki.htm: 2020-09-08 10:39:59.000000000 Z
+  tochigi.htm: 2020-09-07 11:56:56.000000000 Z
+  gumma.htm: 2020-09-08 10:39:53.000000000 Z
+  saitama.htm: 2020-09-07 11:56:51.000000000 Z
+  chiba.htm: 2020-09-08 10:39:44.000000000 Z
+  tokyo.htm: 2020-09-07 11:56:59.000000000 Z
+  kanagawa.htm: 2020-09-07 11:56:29.000000000 Z
+  niigata.htm: 2020-09-07 11:56:43.000000000 Z
+  nagano.htm: 2020-09-07 11:56:39.000000000 Z
+  yamanashi.htm: 2020-09-07 11:57:06.000000000 Z
+  shizuoka.htm: 2020-09-07 11:56:55.000000000 Z
+  aichi.htm: 2020-09-08 10:39:40.000000000 Z
+  gifu.htm: 2020-09-08 10:39:52.000000000 Z
+  mie.htm: 2020-09-07 12:31:56.000000000 Z
+  toyama.htm: 2020-09-07 11:57:01.000000000 Z
+  ishikawa.htm: 2020-09-08 10:40:01.000000000 Z
+  fukui.htm: 2020-09-08 10:39:47.000000000 Z
+  shiga.htm: 2020-09-07 11:56:53.000000000 Z
+  kyoto.htm: 2020-09-07 11:56:33.000000000 Z
+  osaka.htm: 2020-09-07 11:56:49.000000000 Z
+  hyogo.htm: 2020-09-08 10:39:58.000000000 Z
+  nara.htm: 2020-09-07 11:56:42.000000000 Z
+  wakayama.htm: 2020-09-07 11:57:02.000000000 Z
+  tottori.htm: 2020-09-07 11:57:00.000000000 Z
+  shimane.htm: 2020-09-07 11:56:54.000000000 Z
+  okayama.htm: 2020-09-07 11:56:46.000000000 Z
+  hiroshima.htm: 2020-09-08 10:39:55.000000000 Z
+  yamaguchi.htm: 2020-09-07 11:57:05.000000000 Z
+  tokushima.htm: 2020-09-07 11:56:58.000000000 Z
+  kagawa.htm: 2020-09-07 11:56:27.000000000 Z
+  ehime.htm: 2020-09-08 10:39:45.000000000 Z
+  kochi.htm: 2020-09-07 12:16:11.000000000 Z
+  fukuoka.htm: 2020-09-08 10:39:48.000000000 Z
+  saga.htm: 2020-09-07 11:56:50.000000000 Z
+  nagasaki.htm: 2020-09-07 12:16:22.000000000 Z
+  kumamoto.htm: 2020-09-07 11:56:32.000000000 Z
+  oita.htm: 2020-09-07 11:56:44.000000000 Z
+  miyazaki.htm: 2020-09-07 11:56:37.000000000 Z
+  kagoshima.htm: 2020-09-07 11:56:28.000000000 Z
+  okinawa.htm: 2020-09-07 12:16:33.000000000 Z
