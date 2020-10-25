@@ -66,7 +66,7 @@ Query.randoms.choice = (type)->
 romans = "I II III IV V VI VII VIII IX X XI XII XIII XIV XV XVI XVII XVIII XIX XX XXI".split(" ")
 
 State.transaction ->
-  for type, o of require '../yaml/random.yml'
+  for type, o of require '../../../giji/app/yaml/random.yml'
     order = 0
     for key, oo of o
       order++

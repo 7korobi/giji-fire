@@ -43,7 +43,7 @@ format = require "date-fns/format"
 { share, localStorage, firestore_model, firestore_models, to_tempo } = require "vue-petit-store"
 
 { form } = require "~/app/plugins/form"
-{ nation, village } = require "~/app/yaml/rule.yml"
+{ nation, village } = require "../../../giji/app/yaml/rule.yml"
 
 module.exports =
   mixins: [

@@ -29,7 +29,7 @@ article.fine(v-root-size)
 _ = require 'lodash'
 { resize } = require "vue-petit-store"
 { Query } = require "memory-orm"
-{ url } = require "~/app/config/live.yml"
+{ url } = require "~/../giji/config/yaml/live.yml"
 
 id_line = ({ v, w, vpos, wpos })->
   "#{[v,w]}=#{[vpos,wpos]}"

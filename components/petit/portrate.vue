@@ -1,6 +1,6 @@
 <script lang="coffee">
 { Query } = require 'memory-orm'
-{ url } = require "~/app/config/live.yml"
+{ url } = require "~/../giji/config/yaml/live.yml"
 
 module.exports =
   props:

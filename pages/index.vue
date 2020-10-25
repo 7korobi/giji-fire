@@ -1,14 +1,18 @@
 <template lang="pug">
 div
-  c-post(@focus="focus" handle="XSAY" id="title" :write_at="1169852700003" style="height: 38ex")
-    diagram-view(:value="d_pair")
-      path(v-for="o in applogo_path" v-bind="o")
-      text(text-anchor="middle" label="祝！人狼議事10周年！" x="57" y="260" class="path") 祝！人狼議事10周年！
   fire-oauth(@focus="focus" handle="TSAY" id="private")
     p ログイン中にできること。
     p #[i.mdi.mdi-map-marker]：過去ログビュアーでタップしたとき、栞を挟んで記録します。
 
   c-report(@focus="focus" handle="footer" deco="center" id="head-private" v-if="user") ロビー
+  c-talk.form(@focus="focus" handle="GSAY" id="link-to" face_id="t82" head="子ども食堂 サガタ").
+    ほい、いらっしゃい！
+
+    うちは食堂だからね。どこからきたどんなお客にも、#[a(href="https://twitter.com/hello_giji") 手作りの温かいご飯]を食べてってもらうのさ。
+
+    炊き出しはおかわりも自由だよ。まあちょっと座って、一食おあがりよ。
+
+
   c-report(@focus="focus" handle="footer" deco="center" id="head-public") みんなの情報
   c-post.form(@focus="focus" handle="SSAY")
     nuxt-link(to="/rule-guide") 人狼議事のルール
@@ -44,7 +48,7 @@ div
     a(href="https://github.com/7korobi/sow-giji/commits/show-fix") 人狼(ciel)
 
   c-post.form(@focus="focus" handle="VGSAY" id="appendix")
-    a(href="https://giji-db923.firebaseapp.com/") テストサイト
+    a(href="https://giji-db923.web.app/") テストサイト
     br
     .card つくりかけの人狼議事総合トップが置いてあります。
 
@@ -58,17 +62,7 @@ div
     .card 創作のお供にどうぞ。
 
   c-talk.form(@focus="focus" handle="GSAY" id="link-to" face_id="sf04" head="お散歩隊長 アシモフ").
-    とたたたたたたんっ。
-
-    ぼくはドメインの壁なんてへっちゃらでちゅ。
-    #[span(data-ruby="おさんぽ") 広報活動]に#[a(href="https://twitter.com/jinrogiji") ついてきて]もかまわないでちゅよ？
-
-  c-talk.form(@focus="focus" handle="GSAY" id="link-to" face_id="t82" head="子ども食堂 サガタ").
-    ほい、いらっしゃい！
-
-    うちは食堂だからね。どこからきたどんなお客にも、#[a(href="https://twitter.com/hello_giji") 手作りの温かいご飯]を食べてってもらうのさ。
-
-    炊き出しはおかわりも自由だよ。まあちょっと座って、一食おあがりよ。
+    居眠りを思わせる安らいだ表情で、白鼠が小さく丸まり、#[a(href="https://twitter.com/jinrogiji") #[ruby 凍り付いている#[rt freeze]]]…。
 
   c-report(@focus="focus" handle="footer" deco="giji" id="fcm-head")
     h3.center 企画村予定／開始待ちの村／進行中の村
@@ -127,53 +121,6 @@ anime = require('animejs').default
 { Query } = require 'memory-orm'
 { share, poll, replaceState, on_appear } = require "vue-petit-store"
 
-pairs = [
-  vs: ["t97","w59"]
-  labels: ["愛し面影"]
-  lines: ['<=>']
-,
-  vs: ["c41","c47"]
-  labels: ["ふうらいの"]
-  lines: ['<=>']
-,
-  vs: ["c37","c75"]
-  labels: ["オーケストラ"]
-  lines: ['<=>']
-,
-  vs: ["sf18","sf19"]
-  labels: ["絆（物理）"]
-  lines: ['<=>']
-,
-  vs: ["c32","c33"]
-  labels: ["双生児"]
-  lines: ['<=>']
-,
-  vs: ["m11","m12"]
-  labels: ["騎士道"]
-  lines: ['<=>']
-,
-  vs: ["c67","c76"]
-  labels: ["はじめての"]
-  lines: ['<=>']
-,
-  vs: ["w08","w07"]
-  labels: ["双子"]
-  lines: ['<=>']
-,
-  vs: ["c103","c99"]
-  labels: ["ひきこもり"]
-  lines: ['<=>']
-,
-  vs: ["t50","t51"]
-  labels: ["道居士"]
-  lines: ['<=>']
-,
-  vs: ["m19","m20"]
-  labels: ["ズッ友⭐"]
-  lines: ['o=>']
-]
-d_pair_idx = 0
-
 module.exports =
   directives:
     appear: on_appear 'applogo'
@@ -185,34 +132,6 @@ module.exports =
   ]
   data: ->
     idx: ""
-    applogo: [
-      { x:  0, y:   90, height: -150, width:  87.5, fill: "#3b8070", to: [{ y:  30, height: 150 },{ x:  40 }]}
-      { x:  0, y:  120, height: -180, width: 105,   fill: "#41b883", to: [{ y:   0, height: 180 },{ x: -12 }]}
-      { x:  0, y:   60, height: -120, width:  70,   fill: "#35495e", to: [{ y:  60, height: 120 },{ x:  23 }]}
-      { x:  0, y:    0, height:  -60, width:  35,   fill:    "#fff", to: [{ y: 120, height:  60 },{ x: -12, y: 180, width: 0, height: 0 }]}
-    ]
-    d_pair:
-      icons: [
-        v: "-1"
-        roll: 0
-        x: -170
-        y:   70
-      ,
-        v: "-2"
-        roll: 0
-        x:  170
-        y:   70
-      ]
-      lines: [
-        v: "-1"
-        w: "-2"
-        vpos:   0
-        wpos:   0
-        line: "   "
-      ]
-      clusters: []
-      random: []
-      size: [2,4,18]
 
   computed:
     plan: ->
@@ -230,12 +149,9 @@ module.exports =
         d = "M#{x},#{y} L#{ x - width },#{ y + height } #{ x + width },#{ y + height }"
         { d, fill, key: fill }
 
-  mounted: ->
-    @initialize()
 
   methods:
     focus: (@idx)->
-
 
     change_chr: (idx)->
       pair = pairs[idx]
@@ -257,61 +173,6 @@ module.exports =
           line: pair.lines[0]
         ]
 
-    initialize: ->
-      @$nextTick ->
-        tl = anime.timeline()
-        tl.add
-          targets: @applogo
-          delay:     500
-          duration: 2500
-          easing: 'easeInOutBack'
-          y:      (o)=>  o.to[0].y
-          height: (o)=>  o.to[0].height
-        tl.add
-          targets: @applogo[3..3]
-          duration:     500
-          easing: 'linear'
-          x:      (o)=>  o.to[1].x
-          y:      (o)=>  o.to[1].y
-          width:  (o)=>  o.to[1].width
-          height: (o)=>  o.to[1].height
-        tl.add
-          targets: @applogo[0..2]
-          delay:    (el, i, l)-> 1000 - 500 * (l - i)
-          duration: (el, i, l)->        500 * (l - i)
-          easing: 'linear'
-          x:      (o)=>  o.to[1].x
-
-      @change_chr 0
-      d_pair_idx = 0
-      setInterval =>
-        anime
-          targets: @d_pair.icons[0]
-          duration: 300
-          easing: 'easeInOutSine'
-          x: -400
-          complete: =>
-            anime
-              targets: @d_pair.icons[0]
-              duration: 400
-              easing: 'easeInOutSine'
-              x: -170
-            d_pair_idx = (d_pair_idx + 1) % pairs.length
-            @change_chr d_pair_idx
-
-        anime
-          targets: @d_pair.icons[1]
-          duration: 300
-          easing: 'easeInOutSine'
-          x:  400
-          complete: =>
-            anime
-              targets: @d_pair.icons[1]
-              duration: 400
-              easing: 'easeInOutSine'
-              x:  170
-
-      , 4000
 </script>
 <style lang="sass" scoped>
 .card

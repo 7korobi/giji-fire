@@ -205,9 +205,9 @@ new Rule("chr_job").schema ->
         Query.chr_npcs.find @id
 
 State.transaction ->
-  Set.tag.set  require "../yaml/chr_tag.yml"
+  Set.tag.set  require "../../../giji/app/yaml/chr_tag.yml"
 
-  Set.face.set faces = require "../yaml/chr_face.yml"
+  Set.face.set faces = require "../../../giji/app/yaml/chr_face.yml"
   for o, idx in faces
     o.yml_idx = idx
     o.aggregate =
@@ -226,7 +226,7 @@ State.transaction ->
         count: 0
 
   for key in order
-    o = require "../yaml/cs_#{key}.yml"
+    o = require "../../../giji/app/yaml/cs_#{key}.yml"
 
     Set.chr_set.append o.chr_set
     { id } = o.chr_set

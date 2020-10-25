@@ -1,5 +1,5 @@
 { Set, Model, Query, Rule } = Mem = require "memory-orm"
-{ url } = require "~/app/config/live.yml"
+{ url } = require "~/../giji/config/yaml/live.yml"
 format = require 'date-fns/format'
 locale = require "date-fns/locale/ja"
 
@@ -190,8 +190,8 @@ new Rule("folder").schema ->
     return if @disabled = ! path
     @route = { path, name: @_id }
 
-Set.folder.set        require "../yaml/sow_folder.yml"
-Set.sow_roletable.set require "../yaml/sow_roletables.yml"
+Set.folder.set        require "../../../giji/app/yaml/sow_folder.yml"
+Set.sow_roletable.set require "../../../giji/app/yaml/sow_roletables.yml"
 
 welcome = (h)->
   chats  = {}

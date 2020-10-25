@@ -168,7 +168,7 @@ div
 </template>
 <script lang="coffee">
 { Query } = require 'memory-orm'
-{ url } = require "~/app/config/live.yml"
+{ url } = require "~/../giji/config/yaml/live.yml"
 { poll, replaceState } = require "vue-petit-store"
 
 module.exports =

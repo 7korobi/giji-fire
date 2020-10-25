@@ -4,7 +4,7 @@
 yaml = require 'js-yaml'
 fs   = require 'fs'
 pkg  = require '../../../package'
-{ url } = yaml.safeLoad fs.readFileSync "app/config/live.yml", 'utf8'
+{ url } = yaml.safeLoad fs.readFileSync "../giji/config/yaml/live.yml", 'utf8'
 
 module.exports =
   title: pkg.description

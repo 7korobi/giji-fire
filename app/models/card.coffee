@@ -65,5 +65,5 @@ new Rule("able").schema ->
       emit "group", o.group,
         list: true
 
-Set.role.set require '../yaml/set_roles.yml'
-Set.able.set require '../yaml/set_ables.yml'
+Set.role.set require '../../../giji/app/yaml/set_roles.yml'
+Set.able.set require '../../../giji/app/yaml/set_ables.yml'

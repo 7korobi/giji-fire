@@ -1,7 +1,7 @@
 importScripts 'https://www.gstatic.com/firebasejs/5.8.5/firebase-app.js'
 importScripts 'https://www.gstatic.com/firebasejs/5.8.5/firebase-messaging.js'
 
-live = require "~/app/config/live.yml"
+live = require "~/../giji/config/yaml/live.yml"
 firebase.initializeApp live.firebase
 messaging = firebase.messaging()
 

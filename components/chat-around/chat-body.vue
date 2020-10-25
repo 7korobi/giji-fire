@@ -115,7 +115,7 @@ module.exports =
 
         else
           key = 'log'
-          component = 'slate'
+          component = 'html'
 
       id = "#{key}-#{ @id }"
       if @$listeners['update:bans']

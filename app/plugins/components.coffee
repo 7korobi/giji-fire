@@ -1,10 +1,10 @@
 Vue = require "vue"
 
 { Query, State } = require 'memory-orm'
-{ url } = require "~/app/config/live.yml"
+{ url } = require "~/../giji/config/yaml/live.yml"
 
 if window?
-  live = require "~/app/config/live.yml"
+  live = require "~/../giji/config/yaml/live.yml"
   firebase = require "firebase/app"
   require 'firebase/auth'
   require 'firebase/firestore'

@@ -3,7 +3,7 @@
 format = require 'date-fns/format'
 locale = require "date-fns/locale/ja"
 
-{ game } = require "~/app/config/live.yml"
+{ game } = require "~/../giji/config/yaml/live.yml"
 
 if window?
   format = format.default 
@@ -101,10 +101,10 @@ new Rule("mark").schema ->
   @scope (all)->
 
 State.transaction (m)->
-  Set.locale.set require "../yaml/set_locale.yml"
-  Set.option.set require '../yaml/set_option.yml'
-  Set.winner.set require '../yaml/set_winner.yml'
-  Set.say.set    require '../yaml/set_says.yml'
-  Set.mark.set   require '../yaml/set_mark.yml'
-  Set.game.set   require "../yaml/sow_game.yml"
+  Set.locale.set require "../../../giji/app/yaml/set_locale.yml"
+  Set.option.set require '../../../giji/app/yaml/set_option.yml'
+  Set.winner.set require '../../../giji/app/yaml/set_winner.yml'
+  Set.say.set    require '../../../giji/app/yaml/set_says.yml'
+  Set.mark.set   require '../../../giji/app/yaml/set_mark.yml'
+  Set.game.set   require "../../../giji/app/yaml/sow_game.yml"
 , Query.static.meta

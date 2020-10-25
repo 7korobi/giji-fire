@@ -1,7 +1,7 @@
 <script lang="coffee">
 { poll } = require 'vue-petit-store'
 { Query } = require 'memory-orm'
-{ url } = require "~/app/config/live.yml"
+{ url } = require "~/../giji/config/yaml/live.yml"
 
 module.exports =
   mixins: [
@@ -74,20 +74,18 @@ module.exports =
 #welcome(:style="welcome_style")
   .form#export(v-if="title")
     .welcome-btns.cap ロビー
-    .welcome-btns.cap 夢の形
-    .welcome-btns.cap 陰謀
+    .welcome-btns.cap 夢の形、陰謀
     .welcome-btns.cap ＲＰ
 
     .welcome-links.form.tap
       sow(folder_id="LOBBY")
       sow(folder_id="OFFPARTY")
     .welcome-links.form
-      sow(folder_id="MORPHE")
-      sow(folder_id="CABALA") cafe
-    .welcome-links.form
       sow(folder_id="WOLF")
       sow(folder_id="ULTIMATE")
       sow(folder_id="ALLSTAR")
+      sow(folder_id="MORPHE")
+      sow(folder_id="CABALA") cafe
     .welcome-links.form
       sow(folder_id="RP") role-play
       sow(folder_id="PRETENSE") RP-advance
@@ -95,6 +93,7 @@ module.exports =
       sow(folder_id="XEBEC")
       sow(folder_id="CRAZY")
       sow(folder_id="CIEL")
+      sow(folder_id="DAIS")
 
     .welcome-btns.col4
       btn(v-model="export_to" as="finish")   終了した村
@@ -120,7 +119,7 @@ module.exports =
 
   display: grid
   justify-content: center
-  grid-template-areas: ". . . ."
+  grid-template-areas: ". . ."
   grid-gap: 0 4px
 
 .welcome-btns
@@ -133,7 +132,7 @@ module.exports =
   background-color: rgba(23,47,31,0.4)
 
 .col4
-  grid-column: 1 / 5
+  grid-column: 1 / 4
 
 .cap
   border-radius: 9px 9px 0 0

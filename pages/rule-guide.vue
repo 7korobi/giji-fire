@@ -123,7 +123,7 @@ module.exports =
   ]
 
   data: ->
-    require "~/app/yaml/rule.yml"
+    require "../../giji/app/yaml/rule.yml"
   beforeRouteUpdate: ({ hash }, oldRoute, next)->
     next()
     @scroll_to

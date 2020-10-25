@@ -96,7 +96,7 @@ module.exports =
       Query.marks.where(enable: true).list
 
   created: ->
-    @shuffle() unless @label
+    @shuffle2() unless @label
 
   methods:
     shuffle1: ->

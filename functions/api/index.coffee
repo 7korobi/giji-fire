@@ -1,7 +1,7 @@
 func = require 'firebase-functions'
 admin = require 'firebase-admin'
 
-serviceAccount = require "~/app/config/service_account.yml"
+serviceAccount = require "~/../giji/config/yamlservice_account.yml"
 
 admin.initializeApp
   credential:  admin.credential.cert serviceAccount

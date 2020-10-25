@@ -2,7 +2,7 @@
 { poll } = require "vue-petit-store"
 
 require "../models/index"
-{ nation } = require "../yaml/rule.yml"
+{ nation } = require "../../../giji/app/yaml/rule.yml"
 
 
 titles =

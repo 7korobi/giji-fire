@@ -1,5 +1,5 @@
 <script lang="coffee">
-{ url } = require "~/app/config/live.yml"
+{ url } = require "~/../giji/config/yaml/live.yml"
 { scroll, geo, localStorage } = require "vue-petit-store"
 
 module.exports =
