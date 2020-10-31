@@ -1,11 +1,12 @@
 <template lang="pug">
 div
+  br
   fire-oauth(@focus="focus" handle="TSAY" id="private")
     p ログイン中にできること。
     p #[i.mdi.mdi-map-marker]：過去ログビュアーでタップしたとき、栞を挟んで記録します。
 
   c-report(@focus="focus" handle="footer" deco="center" id="head-private" v-if="user") ロビー
-  c-talk.form(@focus="focus" handle="GSAY" id="link-to" face_id="t82" head="子ども食堂 サガタ").
+  c-talk.form(@focus="focus" handle="SSAY" id="link-to" face_id="t82" head="子ども食堂 サガタ").
     ほい、いらっしゃい！
 
     うちは食堂だからね。どこからきたどんなお客にも、#[a(href="https://twitter.com/hello_giji") 手作りの温かいご飯]を食べてってもらうのさ。
@@ -20,31 +21,52 @@ div
     .card 人狼議事を遊ぶとき、従うべきルールはこちら。
 
   c-post.form(@focus="focus" handle="VSSAY" id="character")
+    | &nbsp;
     nuxt-link(to="/chr/list")
       | キャラクター一覧
+    | &nbsp;
     nuxt-link(to="/chr/npc")
       | 最初の犠牲者一覧
     .card 人狼議事を遊ぶ参考にどうぞ。
-
-  c-post.form(@focus="focus" handle="VSSAY" id="chr-sort")
-    nuxt-link(to="/chr/sort") キャラクター並べ替えゲーム
-    br
-    .card 人狼議事キャラソートを作ってみました。長い！
 
   c-post.form(@focus="focus" handle="VSSAY" id="summary-face")
     nuxt-link(to="/summary/faces") キャラクター活躍記録
     br
     .card どこかの村で活躍したことのあるキャラクターはこちら。
 
+  c-post.form(@focus="focus" handle="PSAY" id="chr-sort")
+    nuxt-link(to="/chr/sort") キャラクター並べ替えゲーム
+    br
+    .card 人狼議事キャラソートを作ってみました。長い！
+
+  c-post(handle="GSAY" id="oldlog")
+    | 進行中形式のままの過去ログ
+    hr
+    p.
+      過去ログビューアとはまた違った読み味の、進行中のスタイルそのままの過去ログを、一部分ですが用意しました。
+    | &nbsp;
+    a(href="http://dais.kokage.cc/giji-log/cafe/sow.cgi?cmd=oldlog") cafe
+    | &nbsp;
+    a(href="http://dais.kokage.cc/giji-log/crazy/sow.cgi?cmd=oldlog") crazy
+    | &nbsp;
+    a(href="http://dais.kokage.cc/giji-log/morphe/sow.cgi?cmd=oldlog") morphe
+
+
   c-report(@focus="focus" handle="footer" deco="center" id="head-appendix") おまけの情報
   c-post.form(@focus="focus" handle="SSAY" id="history")
     | 更新履歴
     hr
+    | &nbsp;
     a(href="https://github.com/7korobi/giji-fire/commits/master") 総合トップ
+    | &nbsp;
     a(href="https://github.com/7korobi/giji_assets/commits/chr-add") キャラ更新
+    | &nbsp;
     a(href="https://github.com/7korobi/giji-sow-api/commits/master") 村ログAPI
+    | &nbsp;
     a(href="https://github.com/7korobi/giji_rails/commits/master") 村ログ収集
+    | &nbsp;
     a(href="https://github.com/7korobi/sow-giji/commits/cabala") 人狼
+    | &nbsp;
     a(href="https://github.com/7korobi/sow-giji/commits/show-fix") 人狼(ciel)
 
   c-post.form(@focus="focus" handle="VGSAY" id="appendix")
@@ -53,10 +75,15 @@ div
     .card つくりかけの人狼議事総合トップが置いてあります。
 
   c-post.form(@focus="focus" handle="VGSAY" id="creation")
+    | &nbsp;
     nuxt-link.button(to="/demo/names" no-prefetch) 人名単語索引
+    | &nbsp;
     a(href="https://naming-dic.com/about.html") ネーミング辞典
+    | &nbsp;
     a(href="https://myth.maji.asia") 紳魔精妖名辞典
+    | &nbsp;
     a(href="http://naming.nobody.jp/") 創作支援名前倉庫
+    | &nbsp;
     a(href="https://ichiranya.com/") いちらん屋
     br
     .card 創作のお供にどうぞ。
