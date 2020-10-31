@@ -26,6 +26,7 @@ c-report(handle="footer", :write_at="1169852700003")
         SoyBean
         Sangria
         @7korobi
+        @hello_giji
 </template>
 <script lang="coffee">
 

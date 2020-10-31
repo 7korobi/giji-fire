@@ -87,6 +87,12 @@ div
       | 蕎麥花
       sup 如
       sub 雪
+    input(style="width: 3em" type="text")
+    input(style="width: 3em" type="number")
+    select
+      option 1
+      option 2
+
     hr
     h6 h6
     hr.stripe
@@ -123,16 +129,8 @@ module.exports =
     
     colors: ->
       """DEL_M DEL_S ADMIN executed suicide victim cursed feared droop mob alive grave visiter juror live suddendead leave  LOVER HATER PIXI GURU EVIL LONEWOLF WOLF HUMAN DISH MOB NONE  FSAY LSAY hide GAIM  AIM MSAY SSAY VSSAY GSAY VGSAY WSAY PSAY XSAY TSAY public private MAKER TITLE""".split /\s+/
-    hues: ->
-      [0..9]
-    themes: ->
-      """O A F T Y W""".split /\s+/
     handles: ->
-      list = []
-      for hue in @hues
-        for theme in @themes
-          list.push "#{theme}#{hue}"
-      list
+      'O0 O1 O2 O3 MAKER O5 TITLE O7 ADMIN O9 A0 A1 public A3 A4 A5 A6 A7 A8 A9 WSAY LSAY F2 XSAY F4 FSAY F6 F7 F8 F9 T0 TSAY T2 hide T4 HSAY T6 T7 T8 T9 Y0 VSSAY SSAY Y3 Y4 Y5 VGSAY GSAY Y8 Y9 W0 PSAY AIM W3 ELSE W5 GAIM W7 W8 W9'.split /\s+/
   methods:
     deco: (idx)->
       ["","head","mono"][idx % 3]
