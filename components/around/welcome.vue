@@ -89,9 +89,9 @@ module.exports =
     .welcome-links.form
       sow(folder_id="RP") role-play
       sow(folder_id="PRETENSE") RP-advance
+      sow(folder_id="CRAZY")
       sow(folder_id="PERJURY")
       sow(folder_id="XEBEC")
-      sow(folder_id="CRAZY")
       sow(folder_id="CIEL")
       sow(folder_id="DAIS")
 
