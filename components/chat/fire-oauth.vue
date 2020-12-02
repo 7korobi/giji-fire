@@ -13,9 +13,11 @@ component(v-bind="for_top" v-on="$listeners")
       span.tap
         i.btn.mdi.mdi-facebook-box(@click="facebook")
         i.btn.mdi.mdi-twitter(@click="twitter")
-        i.btn.mdi.mdi-google(@click="google")
-        i.btn.mdi.mdi-github-face(@click="github")
+      span.tap
         i.btn.mdi.mdi-windows(@click="microsoft")
+        i.btn.mdi.mdi-google(@click="google")
+      span.tap
+        i.btn.mdi.mdi-github-face(@click="github")
       
     p(v-if="code") {{ code }}
     p(v-if="message") {{ message }}
