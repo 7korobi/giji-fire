@@ -29,16 +29,6 @@ div
       | 最初の犠牲者一覧
     .card 人狼議事を遊ぶ参考にどうぞ。
 
-  c-post.form(@focus="focus" handle="VSSAY" id="summary-face")
-    nuxt-link(to="/summary/faces") キャラクター活躍記録
-    br
-    .card どこかの村で活躍したことのあるキャラクターはこちら。
-
-  c-post.form(@focus="focus" handle="PSAY" id="chr-sort")
-    nuxt-link(to="/chr/sort") キャラクター並べ替えゲーム
-    br
-    .card 人狼議事キャラソートを作ってみました。長い！
-
   c-post(handle="GSAY" id="oldlog")
     | 進行中形式のままの過去ログ
     hr
@@ -51,6 +41,20 @@ div
     | &nbsp;
     a(href="http://dais.kokage.cc/giji-log/morphe/sow.cgi?cmd=oldlog") morphe
 
+  c-post.form(@focus="focus" handle="PSAY" id="summary-face")
+    nuxt-link(to="/summary/faces") キャラクター活躍記録
+    br
+    .card どこかの村で活躍したことのあるキャラクターはこちら。
+
+  c-post.form(@focus="focus" handle="PSAY" id="chr-sort")
+    nuxt-link(to="/chr/sort") キャラクター並べ替えゲーム
+    br
+    .card 人狼議事キャラソートを作ってみました。長い！
+
+  c-post.form(@focus="focus" handle="PSAY" id="waoon-record")
+    a(href="https://waoon.net/record/") 人狼戦績まとめ
+    br
+    .card あのとき同村したあの人のことが知りたい、というときはこちら。
 
   c-report(@focus="focus" handle="footer" deco="center" id="head-appendix") おまけの情報
   c-post.form(@focus="focus" handle="SSAY" id="history")

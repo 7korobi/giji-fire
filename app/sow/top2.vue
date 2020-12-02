@@ -13,7 +13,7 @@ div
       li
         a(href="./sow.cgi?cmd=howto") 遊び方
         |、
-        a(href="http://crazy-crazy.sakura.ne.jp/giji/?(Knowledge)Operation") 操作方法
+        a(href="http://dais.kokage.cc/guide/?(Knowledge)Operation") 操作方法
         |、
         a(href="http://giji.f5.si/rule-guide#nation") ルール
         |、
@@ -21,12 +21,12 @@ div
         | をよく読もう。なにをする遊び場かわかったら、すぐ下に村がある。
         br
         | 他の人狼クローンを遊んだ事のあるきみは、まず
-        a(href="http://crazy-crazy.sakura.ne.jp/giji/?(What)Other") 他の人狼ゲームとの違い
+        a(href="http://dais.kokage.cc/guide/?(What)Other") 他の人狼ゲームとの違い
         | を読もう。多くのことがここに書かれている。
       li
         | 人狼ゲームの基本的な知識、人狼議事独自システムの説明は、公式まとめサイトで知ろう。
         br
-        a(href="http://crazy-crazy.sakura.ne.jp/giji/")
+        a(href="http://dais.kokage.cc/guide/")
           img(src="http://s3-ap-northeast-1.amazonaws.com/giji-assets/images/banner/guide.png")
 
   c-report(handle="header")
@@ -40,9 +40,6 @@ div
         |（wiki：stinさん管理）
       dd これから始まる村の予定が並んでいる。ロールプレイヤー必見かも。
 
-      dt
-        a(href="http://crazy-crazy.sakura.ne.jp/giji_lobby/lobby/sow.cgi?vid=11&game=MISTERY&trsid=all#mode=memo_all_open_last_player&width=480&font=normal&navi=link") 村建て相談所
-      dd 遊びたい村の相談をする場所。迷ったら飛び込むといい。
 </template>
 <script lang="coffee">
 module.exports = {}

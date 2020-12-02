@@ -11,7 +11,7 @@ div
     | まず
     a(href="./sow.cgi?cmd=rule#make") 村建て人の心構え
     |、
-    a(href="http://crazy-crazy.sakura.ne.jp/giji/?(Knowledge)Manual") 村建てマニュアル
+    a(href="http://dais.kokage.cc/guide/?(Knowledge)Manual") 村建てマニュアル
     | を読んでから村を建てよう。
     br
     | ◆参考：
