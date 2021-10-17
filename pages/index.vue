@@ -20,6 +20,11 @@ div
     br
     .card 人狼議事を遊ぶとき、従うべきルールはこちら。
 
+  c-post.form(@focus="focus" handle="SSAY")
+    nuxt-link(to="/guideline") 人狼議事二次利用のガイドライン
+    br
+    .card 人狼議事の思い出で、もっと遊ぶときのガイドラインはこちら。
+
   c-post.form(@focus="focus" handle="VSSAY" id="character")
     | &nbsp;
     nuxt-link(to="/chr/list")

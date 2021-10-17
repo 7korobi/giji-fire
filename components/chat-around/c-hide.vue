@@ -5,7 +5,7 @@ module.exports = require("./chat.coffee")()
 
 .hide
   height: 2px
-  margin -7px 8px 6px 125px
+  margin: -7px 8px 6px 125px
 
 </style>
 
