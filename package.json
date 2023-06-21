@@ -54,7 +54,7 @@
     "is-hotkey": "^0.1.6",
     "normalize-url": "^5.3.0",
     "npm-run-all": "^4.1.5",
-    "nuxt": "^2.14.5",
+    "nuxt": "^3.4.3",
     "vue-petit-store": "^0.9.20",
     "vue-toasted": "^1.1.28"
   },
